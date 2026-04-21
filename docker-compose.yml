@@ -1,0 +1,36 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: cloudru-tz-backend
+    env_file:
+      - .env
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./faiss_index:/app/faiss_index
+      - ./crawl_cache:/app/crawl_cache
+      - ./uploads:/app/uploads
+      - ./reports:/app/reports
+      - ./knowledge_base_data:/app/knowledge_base_data
+
+  ui:
+    build:
+      context: .
+      dockerfile: Dockerfile.ui
+    container_name: cloudru-tz-ui
+    environment:
+      BACKEND_API_URL: http://backend:8000
+      LLM_PROVIDER: ${LLM_PROVIDER:-gigachat}
+      GIGACHAT_MODEL: ${GIGACHAT_MODEL:-GigaChat-2}
+      GIGACHAT_SCOPE: ${GIGACHAT_SCOPE:-GIGACHAT_API_PERS}
+      GIGACHAT_EMBEDDING_MODEL: ${GIGACHAT_EMBEDDING_MODEL:-Embeddings}
+      OPENAI_API_BASE: ${OPENAI_API_BASE:-http://localhost:8000/v1}
+      OPENAI_MODEL: ${OPENAI_MODEL:-local-model}
+    depends_on:
+      - backend
+    restart: unless-stopped
+    ports:
+      - "8501:8501"

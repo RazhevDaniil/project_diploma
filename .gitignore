@@ -1,0 +1,11 @@
+venv/
+__pycache__/
+*.pyc
+.env
+faiss_index/
+crawl_cache/
+uploads/
+reports/
+*.egg-info/
+.DS_Store
+*.log

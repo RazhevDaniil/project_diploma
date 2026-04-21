@@ -1,0 +1,14 @@
+venv/
+__pycache__/
+*.pyc
+.env
+.DS_Store
+.git/
+.claude/
+uploads/
+reports/
+crawl_cache/
+faiss_index/
+knowledge_base_data/
+files/
+new_tech_deal/
