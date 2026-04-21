@@ -15,7 +15,7 @@ for d in [KNOWLEDGE_BASE_DIR, FAISS_INDEX_DIR, UPLOAD_DIR, REPORTS_DIR]:
 
 # Foundation Models API settings (OpenAI-compatible)
 OPENAI_API_BASE = os.getenv("OPENAI_API_BASE", "https://foundation-models.api.cloud.ru/v1")
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "MGYxMDU5MWUtNDFmOS00NzFhLWEwNWQtYTJhZjA3MGRlNTk1.06ec4b3ea7df976cbf2dc16c6ee5a163")
 OPENAI_MODEL = os.getenv("OPENAI_MODEL", "GigaChat/GigaChat-2-Max")
 OPENAI_EMBEDDING_MODEL = os.getenv("OPENAI_EMBEDDING_MODEL", "BAAI/bge-m3")
 
