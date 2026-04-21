@@ -35,6 +35,16 @@ CATEGORY_LABELS = {
     "other": "Прочее",
 }
 
+KEY_MATCHES_LIMIT = 10
+CATEGORY_PRIORITY = {
+    "technical": 0,
+    "sla": 1,
+    "security": 2,
+    "legal": 3,
+    "commercial": 4,
+    "other": 5,
+}
+
 
 def _section_label(v: RequirementVerdict) -> str:
     """Format the section/point label with fallback."""
@@ -55,6 +65,45 @@ def _req_text(v: RequirementVerdict, max_len: int = 200) -> str:
     return "[текст требования не извлечён]"
 
 
+def _priority_sort_key(v: RequirementVerdict) -> tuple:
+    return (
+        CATEGORY_PRIORITY.get(v.category, 9),
+        -v.confidence,
+        v.section or "",
+        v.requirement_id,
+    )
+
+
+def _decision_summary(report: AnalysisReport) -> str:
+    if report.mismatch_count > 0:
+        return "Обнаружены несоответствия. Начните проверку отчёта с блокеров ниже."
+    if report.clarification_count > 0:
+        return "Критичных блокеров не найдено, но есть пункты, требующие ручного уточнения."
+    if report.partial_count > 0:
+        return "Явных блокеров не найдено, но есть частичные соответствия, требующие доработки."
+    return "Явных блокеров не найдено. Достаточно выборочно перепроверить подтверждённые ключевые требования."
+
+
+def _top_key_matches(report: AnalysisReport, limit: int = KEY_MATCHES_LIMIT) -> list[RequirementVerdict]:
+    matches = [v for v in report.verdicts if v.verdict == "match"]
+    matches.sort(key=_priority_sort_key)
+    return matches[:limit]
+
+
+def _format_problem_entry(lines: list[str], verdict: RequirementVerdict, reason_label: str) -> None:
+    cat = CATEGORY_LABELS.get(verdict.category, verdict.category)
+    lines.append(f"### {_section_label(verdict)} ({cat})")
+    lines.append(f"**Пункт / раздел в ТЗ:** {verdict.section or f'#{verdict.requirement_id}'}")
+    lines.append(f"**Требование:** {_req_text(verdict)}")
+    lines.append(f"**{reason_label}:** {verdict.reasoning or 'Требуется ручная проверка'}")
+    if verdict.recommendation:
+        lines.append(f"**Рекомендация:** {verdict.recommendation}")
+    if verdict.source_urls:
+        links = ", ".join(f"[{_url_short_name(u)}]({u})" for u in verdict.source_urls[:5])
+        lines.append(f"**Документация:** {links}")
+    lines.append("")
+
+
 def generate_markdown(report: AnalysisReport) -> str:
     """Generate a full Markdown report."""
     lines = []
@@ -67,6 +116,7 @@ def generate_markdown(report: AnalysisReport) -> str:
     pct = report.compliance_percentage
     lines.append(f"## Общий процент соответствия: {pct}%")
     lines.append(f"**{report.score} из {report.max_score} баллов**\n")
+    lines.append(f"**Быстрый вывод:** {_decision_summary(report)}\n")
 
     # Methodology
     lines.append("### Методика оценки\n")
@@ -99,49 +149,48 @@ def generate_markdown(report: AnalysisReport) -> str:
         lines.append(report.summary)
         lines.append("")
 
-    # Mismatches detail
-    mismatches = [v for v in report.verdicts if v.verdict == "mismatch"]
+    mismatches = sorted([v for v in report.verdicts if v.verdict == "mismatch"], key=_priority_sort_key)
+    clarifications = sorted([v for v in report.verdicts if v.verdict == "needs_clarification"], key=_priority_sort_key)
+    partials = sorted([v for v in report.verdicts if v.verdict == "partial"], key=_priority_sort_key)
+    key_matches = _top_key_matches(report)
+
+    # Priority checks first
+    lines.append("## Что проверить в первую очередь\n")
+    lines.append(f"- Несоответствия: **{report.mismatch_count}**")
+    lines.append(f"- Требуют уточнения: **{report.clarification_count}**")
+    lines.append(f"- Частичные соответствия: **{report.partial_count}**")
+    lines.append("")
+
     if mismatches:
         lines.append("## Несоответствия\n")
         for v in mismatches:
-            cat = CATEGORY_LABELS.get(v.category, v.category)
-            lines.append(f"### {_section_label(v)} ({cat})")
-            lines.append(f"> {_req_text(v)}")
-            lines.append(f"\n**Причина:** {v.reasoning}")
-            lines.append(f"\n**Рекомендация:** {v.recommendation}")
-            if v.source_urls:
-                links = ", ".join(f"[{_url_short_name(u)}]({u})" for u in v.source_urls[:5])
-                lines.append(f"\n**Документация:** {links}")
-            lines.append("")
+            _format_problem_entry(lines, v, "Причина")
 
-    # Partial matches
-    partials = [v for v in report.verdicts if v.verdict == "partial"]
+    if clarifications:
+        lines.append("## Требуют уточнения\n")
+        for v in clarifications:
+            _format_problem_entry(lines, v, "Комментарий")
+
     if partials:
         lines.append("## Частичное соответствие\n")
         for v in partials:
+            _format_problem_entry(lines, v, "Обоснование")
+
+    if key_matches:
+        lines.append("## Подтверждённые важные соответствия\n")
+        lines.append(f"Показаны только наиболее значимые подтверждённые пункты: {len(key_matches)} из {report.match_count}.")
+        lines.append("")
+        for v in key_matches:
             cat = CATEGORY_LABELS.get(v.category, v.category)
             lines.append(f"### {_section_label(v)} ({cat})")
-            lines.append(f"> {_req_text(v)}")
-            lines.append(f"\n**Обоснование:** {v.reasoning}")
-            lines.append(f"\n**Рекомендация:** {v.recommendation}")
+            lines.append(f"**Пункт / раздел в ТЗ:** {v.section or f'#{v.requirement_id}'}")
+            lines.append(f"**Требование:** {_req_text(v)}")
+            if v.reasoning:
+                lines.append(f"**Почему соответствует:** {v.reasoning}")
             if v.source_urls:
                 links = ", ".join(f"[{_url_short_name(u)}]({u})" for u in v.source_urls[:5])
-                lines.append(f"\n**Документация:** {links}")
+                lines.append(f"**Документация:** {links}")
             lines.append("")
-
-    # Needs clarification
-    clarifications = [v for v in report.verdicts if v.verdict == "needs_clarification"]
-    if clarifications:
-        lines.append("## Требуют уточнения\n")
-        lines.append("| Пункт ТЗ | Категория | Требование | Комментарий |")
-        lines.append("|---|---|---|---|")
-        for v in clarifications:
-            text_short = _req_text(v, 80).replace("|", "\\|").replace("\n", " ")
-            reasoning = v.reasoning.replace("|", "\\|").replace("\n", " ")
-            cat = CATEGORY_LABELS.get(v.category, v.category)
-            section = v.section or f"#{v.requirement_id}"
-            lines.append(f"| {section} | {cat} | {text_short} | {reasoning} |")
-        lines.append("")
 
     # Full detail by category
     lines.append("## Детализация по всем требованиям\n")
@@ -266,37 +315,69 @@ def save_docx(report: AnalysisReport, output_dir: Path | None = None) -> Path:
         doc.add_heading("Резюме", level=2)
         doc.add_paragraph(report.summary)
 
-    # Mismatches
-    mismatches = [v for v in report.verdicts if v.verdict == "mismatch"]
+    doc.add_heading("Что проверить в первую очередь", level=1)
+    doc.add_paragraph(_decision_summary(report))
+
+    mismatches = sorted([v for v in report.verdicts if v.verdict == "mismatch"], key=_priority_sort_key)
+    clarifications = sorted([v for v in report.verdicts if v.verdict == "needs_clarification"], key=_priority_sort_key)
+    partials = sorted([v for v in report.verdicts if v.verdict == "partial"], key=_priority_sort_key)
+    key_matches = _top_key_matches(report)
+
     if mismatches:
         doc.add_heading("Несоответствия", level=1)
-        t = doc.add_table(rows=1, cols=5)
+        t = doc.add_table(rows=1, cols=6)
         t.style = "Table Grid"
-        for j, h in enumerate(["Пункт ТЗ", "Требование", "Причина", "Рекомендация", "Ссылки на документацию"]):
+        for j, h in enumerate(["Пункт ТЗ", "Категория", "Требование", "Причина", "Рекомендация", "Ссылки на документацию"]):
             t.rows[0].cells[j].text = h
         for v in mismatches:
             row = t.add_row()
             row.cells[0].text = v.section or f"#{v.requirement_id}"
-            row.cells[1].text = _req_text(v, 150)
-            row.cells[2].text = v.reasoning
-            row.cells[3].text = v.recommendation
-            row.cells[4].text = "\n".join(v.source_urls[:5]) if v.source_urls else ""
+            row.cells[1].text = CATEGORY_LABELS.get(v.category, v.category)
+            row.cells[2].text = _req_text(v, 150)
+            row.cells[3].text = v.reasoning
+            row.cells[4].text = v.recommendation
+            row.cells[5].text = "\n".join(v.source_urls[:5]) if v.source_urls else ""
 
-    # Partial
-    partials = [v for v in report.verdicts if v.verdict == "partial"]
+    if clarifications:
+        doc.add_heading("Требуют уточнения", level=1)
+        t = doc.add_table(rows=1, cols=4)
+        t.style = "Table Grid"
+        for j, h in enumerate(["Пункт ТЗ", "Категория", "Требование", "Комментарий"]):
+            t.rows[0].cells[j].text = h
+        for v in clarifications:
+            row = t.add_row()
+            row.cells[0].text = v.section or f"#{v.requirement_id}"
+            row.cells[1].text = CATEGORY_LABELS.get(v.category, v.category)
+            row.cells[2].text = _req_text(v, 150)
+            row.cells[3].text = v.reasoning
+
     if partials:
         doc.add_heading("Частичное соответствие", level=1)
-        t = doc.add_table(rows=1, cols=5)
+        t = doc.add_table(rows=1, cols=6)
         t.style = "Table Grid"
-        for j, h in enumerate(["Пункт ТЗ", "Требование", "Обоснование", "Рекомендация", "Ссылки на документацию"]):
+        for j, h in enumerate(["Пункт ТЗ", "Категория", "Требование", "Обоснование", "Рекомендация", "Ссылки на документацию"]):
             t.rows[0].cells[j].text = h
         for v in partials:
             row = t.add_row()
             row.cells[0].text = v.section or f"#{v.requirement_id}"
-            row.cells[1].text = _req_text(v, 150)
-            row.cells[2].text = v.reasoning
-            row.cells[3].text = v.recommendation
-            row.cells[4].text = "\n".join(v.source_urls[:5]) if v.source_urls else ""
+            row.cells[1].text = CATEGORY_LABELS.get(v.category, v.category)
+            row.cells[2].text = _req_text(v, 150)
+            row.cells[3].text = v.reasoning
+            row.cells[4].text = v.recommendation
+            row.cells[5].text = "\n".join(v.source_urls[:5]) if v.source_urls else ""
+
+    if key_matches:
+        doc.add_heading("Подтверждённые важные соответствия", level=1)
+        t = doc.add_table(rows=1, cols=4)
+        t.style = "Table Grid"
+        for j, h in enumerate(["Пункт ТЗ", "Категория", "Требование", "Документация"]):
+            t.rows[0].cells[j].text = h
+        for v in key_matches:
+            row = t.add_row()
+            row.cells[0].text = v.section or f"#{v.requirement_id}"
+            row.cells[1].text = CATEGORY_LABELS.get(v.category, v.category)
+            row.cells[2].text = _req_text(v, 150)
+            row.cells[3].text = "\n".join(v.source_urls[:5]) if v.source_urls else ""
 
     doc.save(str(path))
     logger.info("Saved DOCX report: %s", path)
@@ -490,25 +571,36 @@ def save_pdf(report: AnalysisReport, output_dir: Path | None = None) -> Path:
         pdf.multi_cell(0, 6, _safe(report.summary), new_x=XPos.LMARGIN, new_y=YPos.NEXT)
         pdf.ln(5)
 
-    # Verdicts by section
-    for verdict_key, verdict_label in VERDICT_LABELS.items():
-        filtered = [v for v in report.verdicts if v.verdict == verdict_key]
-        if not filtered:
-            continue
+    pdf.set_font(font_name, "", 12)
+    pdf.cell(0, 8, _safe("Что проверить в первую очередь"), new_x="LMARGIN", new_y="NEXT")
+    pdf.set_font(font_name, "", 10)
+    pdf.multi_cell(0, 6, _safe(_decision_summary(report)), new_x=XPos.LMARGIN, new_y=YPos.NEXT)
+    pdf.ln(3)
 
+    sections = [
+        ("Несоответствия", sorted([v for v in report.verdicts if v.verdict == "mismatch"], key=_priority_sort_key), "Причина"),
+        ("Требуют уточнения", sorted([v for v in report.verdicts if v.verdict == "needs_clarification"], key=_priority_sort_key), "Комментарий"),
+        ("Частичное соответствие", sorted([v for v in report.verdicts if v.verdict == "partial"], key=_priority_sort_key), "Обоснование"),
+        ("Подтверждённые важные соответствия", _top_key_matches(report), "Почему соответствует"),
+    ]
+
+    for title, items, reason_label in sections:
+        if not items:
+            continue
         pdf.set_font(font_name, "", 13)
-        pdf.cell(0, 8, _safe(verdict_label), new_x="LMARGIN", new_y="NEXT")
+        pdf.cell(0, 8, _safe(title), new_x="LMARGIN", new_y="NEXT")
         pdf.ln(2)
 
-        for v in filtered:
+        for v in items:
             cat = CATEGORY_LABELS.get(v.category, v.category)
             pdf.set_font(font_name, "", 11)
             pdf.multi_cell(0, 6, _safe(f"{_section_label(v)} ({cat})"), new_x=XPos.LMARGIN, new_y=YPos.NEXT)
             pdf.set_font(font_name, "", 9)
+            pdf.multi_cell(0, 5, _safe(f"Пункт / раздел в ТЗ: {v.section or f'#{v.requirement_id}'}"), new_x=XPos.LMARGIN, new_y=YPos.NEXT)
             pdf.multi_cell(0, 5, _safe(f"Требование: {_req_text(v, 300)}"), new_x=XPos.LMARGIN, new_y=YPos.NEXT)
             if v.reasoning:
-                pdf.multi_cell(0, 5, _safe(f"Обоснование: {v.reasoning}"), new_x=XPos.LMARGIN, new_y=YPos.NEXT)
-            if v.recommendation:
+                pdf.multi_cell(0, 5, _safe(f"{reason_label}: {v.reasoning}"), new_x=XPos.LMARGIN, new_y=YPos.NEXT)
+            if v.recommendation and v.verdict != "match":
                 pdf.multi_cell(0, 5, _safe(f"Рекомендация: {v.recommendation}"), new_x=XPos.LMARGIN, new_y=YPos.NEXT)
             if v.source_urls:
                 pdf.multi_cell(0, 5, _safe(f"Документация: {', '.join(v.source_urls[:5])}"), new_x=XPos.LMARGIN, new_y=YPos.NEXT)

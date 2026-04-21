@@ -450,14 +450,7 @@ with tab_report:
 
         st.divider()
 
-        if not st.session_state.report_markdown:
-            try:
-                fetch_report_markdown()
-            except Exception as exc:
-                show_request_error(exc)
-
-        if st.session_state.report_markdown:
-            st.markdown(st.session_state.report_markdown)
+        st.caption("Полная детализация скрыта в UI. Для проверки проблемных пунктов и полного реестра скачайте отчёт в нужном формате.")
 
         st.divider()
         col_a, col_b, col_c, col_d = st.columns(4)
