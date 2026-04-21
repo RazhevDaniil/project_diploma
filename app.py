@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import os
+from urllib.parse import unquote
 
 import requests
 import streamlit as st
@@ -72,11 +73,27 @@ def api_post_files(path: str, files: list, data: dict, timeout: int = 1200) -> d
     return response.json()
 
 
-def _response_filename(response: requests.Response) -> str:
+def _response_filename(response: requests.Response, default_name: str = "download.bin") -> str:
     disposition = response.headers.get("content-disposition", "")
-    if "filename=" not in disposition:
-        return "download.bin"
-    return disposition.split("filename=", 1)[1].strip().strip('"')
+    if not disposition:
+        return default_name
+
+    parts = [part.strip() for part in disposition.split(";")]
+
+    for part in parts:
+        if part.lower().startswith("filename*="):
+            value = part.split("=", 1)[1].strip()
+            if "''" in value:
+                _, encoded = value.split("''", 1)
+                return unquote(encoded.strip('"')) or default_name
+            return unquote(value.strip('"')) or default_name
+
+    for part in parts:
+        if part.lower().startswith("filename="):
+            value = part.split("=", 1)[1].strip().strip('"')
+            return value or default_name
+
+    return default_name
 
 
 def build_upload_files(uploaded_files) -> list:
@@ -110,9 +127,15 @@ def prepare_download(format_name: str):
     url = f"{st.session_state.backend_api_url}/reports/export/{format_name}"
     response = requests.post(url, json={"report": report}, timeout=300)
     response.raise_for_status()
+    extension_map = {
+        "md": "report.md",
+        "docx": "report.docx",
+        "pdf": "report.pdf",
+        "xlsx": "report.xlsx",
+    }
     st.session_state.downloads[format_name] = {
         "content": response.content,
-        "filename": _response_filename(response),
+        "filename": _response_filename(response, default_name=extension_map.get(format_name, "download.bin")),
     }
 
 
