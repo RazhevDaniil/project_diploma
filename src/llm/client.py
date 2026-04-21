@@ -8,17 +8,11 @@ from typing import Optional
 
 from langchain_core.language_models import BaseChatModel
 from langchain_core.messages import HumanMessage, SystemMessage
+from openai import OpenAI
 
 import config as cfg
 
 logger = logging.getLogger(__name__)
-
-
-def get_llm(temperature: float = 0.1, max_tokens: int = 4096) -> BaseChatModel:
-    """Return an LLM instance based on the configured provider."""
-    if cfg.LLM_PROVIDER == "gigachat":
-        return _get_gigachat(temperature, max_tokens)
-    return _get_openai_compatible(temperature, max_tokens)
 
 
 def _get_gigachat(temperature: float, max_tokens: int) -> BaseChatModel:
@@ -35,16 +29,54 @@ def _get_gigachat(temperature: float, max_tokens: int) -> BaseChatModel:
     )
 
 
-def _get_openai_compatible(temperature: float, max_tokens: int) -> BaseChatModel:
-    from langchain_community.chat_models import ChatOpenAI
+def _get_openai_client() -> OpenAI:
+    """Return an OpenAI-compatible client configured by env/runtime settings."""
+    return OpenAI(
+        api_key=cfg.OPENAI_API_KEY,
+        base_url=cfg.OPENAI_API_BASE,
+    )
 
-    return ChatOpenAI(
-        openai_api_base=cfg.OPENAI_API_BASE,
-        openai_api_key=cfg.OPENAI_API_KEY,
-        model_name=cfg.OPENAI_MODEL,
+
+def _call_gigachat(
+    prompt: str,
+    system_prompt: Optional[str],
+    temperature: float,
+    max_tokens: int,
+) -> str:
+    """Call GigaChat through LangChain and return plain text."""
+    llm = _get_gigachat(temperature=temperature, max_tokens=max_tokens)
+    messages = []
+    if system_prompt:
+        messages.append(SystemMessage(content=system_prompt))
+    messages.append(HumanMessage(content=prompt))
+
+    response = llm.invoke(messages)
+    return response.content
+
+
+def _call_openai_compatible(
+    prompt: str,
+    system_prompt: Optional[str],
+    temperature: float,
+    max_tokens: int,
+) -> str:
+    """Call an OpenAI-compatible API via the official OpenAI client."""
+    client = _get_openai_client()
+    messages = []
+    if system_prompt:
+        messages.append({"role": "system", "content": system_prompt})
+    messages.append({"role": "user", "content": prompt})
+
+    response = client.chat.completions.create(
+        model=cfg.OPENAI_MODEL,
+        messages=messages,
         temperature=temperature,
         max_tokens=max_tokens,
     )
+    content = response.choices[0].message.content if response.choices else ""
+    if content is None:
+        return ""
+    return content
 
 
 def call_llm(
@@ -57,18 +89,25 @@ def call_llm(
     """Simple helper: send a prompt, get a string back. Retries on timeout."""
     import time
 
-    llm = get_llm(temperature=temperature, max_tokens=max_tokens)
-    messages = []
-    if system_prompt:
-        messages.append(SystemMessage(content=system_prompt))
-    messages.append(HumanMessage(content=prompt))
-
     for attempt in range(1, max_retries + 1):
         try:
-            response = llm.invoke(messages)
+            if cfg.LLM_PROVIDER == "gigachat":
+                response = _call_gigachat(
+                    prompt=prompt,
+                    system_prompt=system_prompt,
+                    temperature=temperature,
+                    max_tokens=max_tokens,
+                )
+            else:
+                response = _call_openai_compatible(
+                    prompt=prompt,
+                    system_prompt=system_prompt,
+                    temperature=temperature,
+                    max_tokens=max_tokens,
+                )
             # Small delay between successful calls to avoid rate limiting
             time.sleep(1)
-            return response.content
+            return response
         except Exception as e:
             if attempt == max_retries:
                 raise

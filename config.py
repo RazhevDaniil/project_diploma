@@ -20,9 +20,9 @@ GIGACHAT_MODEL = os.getenv("GIGACHAT_MODEL", "GigaChat")
 GIGACHAT_SCOPE = os.getenv("GIGACHAT_SCOPE", "GIGACHAT_API_PERS")
 
 # OpenAI-compatible fallback
-OPENAI_API_BASE = os.getenv("OPENAI_API_BASE", "http://localhost:8000/v1")
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "not-needed")
-OPENAI_MODEL = os.getenv("OPENAI_MODEL", "local-model")
+OPENAI_API_BASE = os.getenv("OPENAI_API_BASE", "https://foundation-models.api.cloud.ru/v1")
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "MGYxMDU5MWUtNDFmOS00NzFhLWEwNWQtYTJhZjA3MGRlNTk1.06ec4b3ea7df976cbf2dc16c6ee5a163")
+OPENAI_MODEL = os.getenv("OPENAI_MODEL", "GigaChat/GigaChat-2-Maxl")
 
 # Embedding Settings (GigaChat Embeddings API)
 GIGACHAT_EMBEDDING_MODEL = os.getenv("GIGACHAT_EMBEDDING_MODEL", "Embeddings")
