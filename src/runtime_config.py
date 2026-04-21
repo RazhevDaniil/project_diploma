@@ -16,19 +16,15 @@ def apply_runtime_settings(settings: dict | None) -> None:
         return
 
     field_map = {
-        "provider": "LLM_PROVIDER",
-        "gigachat_credentials": "GIGACHAT_CREDENTIALS",
-        "gigachat_model": "GIGACHAT_MODEL",
-        "gigachat_scope": "GIGACHAT_SCOPE",
-        "gigachat_embedding_model": "GIGACHAT_EMBEDDING_MODEL",
         "openai_api_base": "OPENAI_API_BASE",
         "openai_api_key": "OPENAI_API_KEY",
         "openai_model": "OPENAI_MODEL",
+        "openai_embedding_model": "OPENAI_EMBEDDING_MODEL",
     }
     embedding_fields = {
-        "gigachat_credentials",
-        "gigachat_scope",
-        "gigachat_embedding_model",
+        "openai_api_base",
+        "openai_api_key",
+        "openai_embedding_model",
     }
 
     refresh_vectorstore = False

@@ -84,12 +84,11 @@ nano .env
 Минимальный пример:
 
 ```env
-LLM_PROVIDER=gigachat
-GIGACHAT_CREDENTIALS=ваш_ключ
-GIGACHAT_MODEL=GigaChat-2
-GIGACHAT_SCOPE=GIGACHAT_API_PERS
-GIGACHAT_EMBEDDING_MODEL=Embeddings
 BACKEND_API_URL=http://backend:8000
+OPENAI_API_BASE=https://foundation-models.api.cloud.ru/v1
+OPENAI_API_KEY=ваш_api_key
+OPENAI_MODEL=GigaChat/GigaChat-2-Max
+OPENAI_EMBEDDING_MODEL=BAAI/bge-m3
 CHUNK_SIZE=500
 CHUNK_OVERLAP=80
 TOP_K_RESULTS=5
@@ -115,6 +114,8 @@ rsync -az --progress \
 ```
 
 Если индекс уже готов, это самый быстрый путь.
+
+Если вы меняли `OPENAI_EMBEDDING_MODEL`, старый `faiss_index/` переносить не нужно: его надо пересобрать заново, потому что векторы разных embedding-моделей несовместимы.
 
 ## 9. Вариант B: собрать индекс уже на VM
 

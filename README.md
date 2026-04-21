@@ -33,33 +33,20 @@ source venv/bin/activate    # macOS / Linux
 pip install -r requirements.txt
 ```
 
-### 2. Настройка LLM
+### 2. Настройка Foundation Models API
 
-Бот работает с одним из двух LLM-провайдеров. Настроить можно через переменные окружения или через боковую панель в UI.
-
-**Вариант A: GigaChat (по умолчанию)**
+Проект использует OpenAI-совместимый API сервиса Foundation Models на Cloud.ru.
 
 ```bash
-export GIGACHAT_CREDENTIALS="ваш_ключ_авторизации"
-# Опционально:
-export GIGACHAT_MODEL="GigaChat-Pro"        # или GigaChat, GigaChat-Plus, GigaChat-Max
-export GIGACHAT_SCOPE="GIGACHAT_API_PERS"   # GIGACHAT_API_PERS для физлиц, GIGACHAT_API_CORP для юрлиц
+export OPENAI_API_BASE="https://foundation-models.api.cloud.ru/v1"
+export OPENAI_API_KEY="ваш_api_key"
+export OPENAI_MODEL="GigaChat/GigaChat-2-Max"
+export OPENAI_EMBEDDING_MODEL="BAAI/bge-m3"
 ```
 
-Ключ авторизации получается в [developers.sber.ru](https://developers.sber.ru/docs/ru/gigachat/individuals-quickstart).
+Для текстовых запросов можно использовать модели GigaChat, доступные в Foundation Models. Для RAG-поиска нужны отдельные embedding-модели, например `BAAI/bge-m3` или `Qwen/Qwen3-Embedding-0.6B`.
 
-**Вариант B: OpenAI-совместимый API**
-
-```bash
-export LLM_PROVIDER="openai_compatible"
-export OPENAI_API_BASE="http://localhost:8000/v1"   # URL вашего API
-export OPENAI_API_KEY="ваш_ключ"
-export OPENAI_MODEL="название_модели"
-```
-
-Подходит для локальных моделей (vLLM, Ollama, LM Studio) или любого OpenAI-совместимого сервера.
-
-> **Важно:** GigaChat используется и для LLM, и для эмбеддингов (модель `Embeddings`). Один и тот же `GIGACHAT_CREDENTIALS` используется для обоих. Локальная модель эмбеддингов не нужна — всё работает через API.
+> **Важно:** после смены embedding-модели нужно пересобрать `faiss_index/`, иначе старый индекс будет несовместим с новыми векторами.
 
 ### 3. Наполнение базы знаний
 
@@ -116,12 +103,11 @@ cp .env.example .env
 Минимальный набор:
 
 ```env
-LLM_PROVIDER=gigachat
-GIGACHAT_CREDENTIALS=ваш_ключ
-GIGACHAT_MODEL=GigaChat-2
-GIGACHAT_SCOPE=GIGACHAT_API_PERS
-GIGACHAT_EMBEDDING_MODEL=Embeddings
 BACKEND_API_URL=http://backend:8000
+OPENAI_API_BASE=https://foundation-models.api.cloud.ru/v1
+OPENAI_API_KEY=ваш_api_key
+OPENAI_MODEL=GigaChat/GigaChat-2-Max
+OPENAI_EMBEDDING_MODEL=BAAI/bge-m3
 ```
 
 ### 2. Поднимите сервисы
@@ -185,14 +171,10 @@ docker compose down
 
 | Переменная | По умолчанию | Описание |
 |---|---|---|
-| `LLM_PROVIDER` | `gigachat` | `gigachat` или `openai_compatible` |
-| `GIGACHAT_CREDENTIALS` | — | Ключ авторизации GigaChat |
-| `GIGACHAT_MODEL` | `GigaChat` | Модель GigaChat |
-| `GIGACHAT_SCOPE` | `GIGACHAT_API_PERS` | Скоуп API |
-| `OPENAI_API_BASE` | `http://localhost:8000/v1` | URL OpenAI-совместимого API |
-| `OPENAI_API_KEY` | `not-needed` | API ключ |
-| `OPENAI_MODEL` | `local-model` | Название модели |
-| `GIGACHAT_EMBEDDING_MODEL` | `Embeddings` | Модель эмбеддингов GigaChat |
+| `OPENAI_API_BASE` | `https://foundation-models.api.cloud.ru/v1` | URL Foundation Models API |
+| `OPENAI_API_KEY` | — | API key сервисного аккаунта Cloud.ru |
+| `OPENAI_MODEL` | `GigaChat/GigaChat-2-Max` | LLM-модель для чата и анализа |
+| `OPENAI_EMBEDDING_MODEL` | `BAAI/bge-m3` | Embedding-модель для RAG |
 | `CHUNK_SIZE` | `500` | Размер чанка при разбиении текста |
 | `CHUNK_OVERLAP` | `80` | Перекрытие чанков |
 | `TOP_K_RESULTS` | `5` | Количество результатов из FAISS при поиске |
@@ -248,8 +230,11 @@ project_diploma/
 # 1. Активировать окружение
 source venv/bin/activate
 
-# 2. Задать ключ LLM
-export GIGACHAT_CREDENTIALS="ваш_ключ"
+# 2. Задать параметры Foundation Models
+export OPENAI_API_BASE="https://foundation-models.api.cloud.ru/v1"
+export OPENAI_API_KEY="ваш_api_key"
+export OPENAI_MODEL="GigaChat/GigaChat-2-Max"
+export OPENAI_EMBEDDING_MODEL="BAAI/bge-m3"
 
 # 3. Проиндексировать документацию (первый раз)
 python seed_knowledge_base.py --max-pages 500

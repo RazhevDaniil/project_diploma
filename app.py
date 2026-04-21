@@ -10,7 +10,15 @@ import streamlit as st
 
 
 DEFAULT_BACKEND_API_URL = os.getenv("BACKEND_API_URL", "http://localhost:8000").rstrip("/")
-MODEL_OPTIONS = ["GigaChat-2", "GigaChat-2-Pro", "GigaChat", "GigaChat-2-Max"]
+MODEL_OPTIONS = [
+    "GigaChat/GigaChat-2-Max",
+    "GigaChat/GigaChat-2-Pro",
+    "GigaChat/GigaChat-2",
+]
+EMBEDDING_MODEL_OPTIONS = [
+    "BAAI/bge-m3",
+    "Qwen/Qwen3-Embedding-0.6B",
+]
 
 
 def init_state():
@@ -21,14 +29,10 @@ def init_state():
         "report_markdown": "",
         "downloads": {},
         "backend_api_url": DEFAULT_BACKEND_API_URL,
-        "llm_provider": os.getenv("LLM_PROVIDER", "gigachat"),
-        "gigachat_credentials": os.getenv("GIGACHAT_CREDENTIALS", ""),
-        "gigachat_model": os.getenv("GIGACHAT_MODEL", MODEL_OPTIONS[0]),
-        "gigachat_scope": os.getenv("GIGACHAT_SCOPE", "GIGACHAT_API_PERS"),
-        "gigachat_embedding_model": os.getenv("GIGACHAT_EMBEDDING_MODEL", "Embeddings"),
-        "openai_api_base": os.getenv("OPENAI_API_BASE", "http://localhost:8000/v1"),
-        "openai_api_key": os.getenv("OPENAI_API_KEY", "not-needed"),
-        "openai_model": os.getenv("OPENAI_MODEL", "local-model"),
+        "openai_api_base": os.getenv("OPENAI_API_BASE", "https://foundation-models.api.cloud.ru/v1"),
+        "openai_api_key": os.getenv("OPENAI_API_KEY", ""),
+        "openai_model": os.getenv("OPENAI_MODEL", MODEL_OPTIONS[0]),
+        "openai_embedding_model": os.getenv("OPENAI_EMBEDDING_MODEL", EMBEDDING_MODEL_OPTIONS[0]),
     }
     for key, value in defaults.items():
         if key not in st.session_state:
@@ -37,14 +41,10 @@ def init_state():
 
 def llm_settings_payload() -> dict:
     return {
-        "provider": st.session_state.llm_provider,
-        "gigachat_credentials": st.session_state.gigachat_credentials,
-        "gigachat_model": st.session_state.gigachat_model,
-        "gigachat_scope": st.session_state.gigachat_scope,
-        "gigachat_embedding_model": st.session_state.gigachat_embedding_model,
         "openai_api_base": st.session_state.openai_api_base,
         "openai_api_key": st.session_state.openai_api_key,
         "openai_model": st.session_state.openai_model,
+        "openai_embedding_model": st.session_state.openai_embedding_model,
     }
 
 
@@ -156,20 +156,13 @@ with st.sidebar:
 
     st.divider()
 
-    st.subheader("Настройки LLM")
-    st.selectbox("Провайдер", ["gigachat", "openai_compatible"], key="llm_provider")
-    st.text_input("GigaChat Credentials", type="password", key="gigachat_credentials")
-    st.text_input("GigaChat Scope", key="gigachat_scope")
-    st.text_input("Embedding Model", key="gigachat_embedding_model")
-
-    if st.session_state.llm_provider == "gigachat":
-        model_index = MODEL_OPTIONS.index(st.session_state.gigachat_model) if st.session_state.gigachat_model in MODEL_OPTIONS else 0
-        st.selectbox("Модель", MODEL_OPTIONS, index=model_index, key="gigachat_model")
-    else:
-        st.caption("Даже в этом режиме RAG и эмбеддинги используют GigaChat credentials выше.")
-        st.text_input("API Base URL", key="openai_api_base")
-        st.text_input("API Key", type="password", key="openai_api_key")
-        st.text_input("Model Name", key="openai_model")
+    st.subheader("Foundation Models API")
+    st.text_input("API Base URL", key="openai_api_base")
+    st.text_input("API Key", type="password", key="openai_api_key")
+    model_index = MODEL_OPTIONS.index(st.session_state.openai_model) if st.session_state.openai_model in MODEL_OPTIONS else 0
+    st.selectbox("LLM Model", MODEL_OPTIONS, index=model_index, key="openai_model")
+    embedding_index = EMBEDDING_MODEL_OPTIONS.index(st.session_state.openai_embedding_model) if st.session_state.openai_embedding_model in EMBEDDING_MODEL_OPTIONS else 0
+    st.selectbox("Embedding Model", EMBEDDING_MODEL_OPTIONS, index=embedding_index, key="openai_embedding_model")
 
     st.divider()
 

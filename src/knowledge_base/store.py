@@ -3,13 +3,12 @@
 from __future__ import annotations
 
 import logging
-from pathlib import Path
 
 from langchain_community.vectorstores import FAISS
-from langchain_gigachat import GigaChatEmbeddings
 from langchain_core.documents import Document
 from langchain_core.embeddings import Embeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
+from openai import OpenAI
 
 import config as cfg
 
@@ -19,16 +18,35 @@ _embeddings: Embeddings | None = None
 _vectorstore: FAISS | None = None
 
 
+class FoundationModelsEmbeddings(Embeddings):
+    """Embeddings adapter for Cloud.ru Foundation Models."""
+
+    def __init__(self, api_key: str, base_url: str, model: str):
+        self._client = OpenAI(api_key=api_key, base_url=base_url)
+        self._model = model
+
+    def embed_documents(self, texts: list[str]) -> list[list[float]]:
+        if not texts:
+            return []
+        response = self._client.embeddings.create(
+            model=self._model,
+            input=texts,
+        )
+        return [item.embedding for item in response.data]
+
+    def embed_query(self, text: str) -> list[float]:
+        return self.embed_documents([text])[0]
+
+
 def get_embeddings() -> Embeddings:
-    """Singleton embeddings model (GigaChat API)."""
+    """Singleton embeddings model for Cloud.ru Foundation Models."""
     global _embeddings
     if _embeddings is None:
-        logger.info("Loading GigaChat embeddings (model=%s)", cfg.GIGACHAT_EMBEDDING_MODEL)
-        _embeddings = GigaChatEmbeddings(
-            credentials=cfg.GIGACHAT_CREDENTIALS,
-            scope=cfg.GIGACHAT_SCOPE,
-            model=cfg.GIGACHAT_EMBEDDING_MODEL,
-            verify_ssl_certs=False,
+        logger.info("Loading Foundation Models embeddings (model=%s)", cfg.OPENAI_EMBEDDING_MODEL)
+        _embeddings = FoundationModelsEmbeddings(
+            api_key=cfg.OPENAI_API_KEY,
+            base_url=cfg.OPENAI_API_BASE,
+            model=cfg.OPENAI_EMBEDDING_MODEL,
         )
     return _embeddings
 
@@ -67,8 +85,8 @@ def get_persisted_vector_count() -> int:
     return index.ntotal
 
 
-# GigaChat Embeddings API has a strict request size limit.
-# We batch chunks to stay well under it.
+# Remote embeddings APIs have request size limits.
+# We batch chunks to stay within a reasonable payload size.
 EMBEDDING_BATCH_SIZE = 50
 
 
@@ -86,7 +104,7 @@ def create_or_update_vectorstore(documents: list[Document]) -> FAISS:
 
     embeddings = get_embeddings()
 
-    # Index in small batches to avoid 413 from GigaChat API
+    # Index in small batches to avoid oversized requests to the embeddings API
     for i in range(0, len(chunks), EMBEDDING_BATCH_SIZE):
         batch = chunks[i : i + EMBEDDING_BATCH_SIZE]
         logger.info(

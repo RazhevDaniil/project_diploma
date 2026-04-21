@@ -13,23 +13,13 @@ REPORTS_DIR = PROJECT_ROOT / "reports"
 for d in [KNOWLEDGE_BASE_DIR, FAISS_INDEX_DIR, UPLOAD_DIR, REPORTS_DIR]:
     d.mkdir(exist_ok=True)
 
-# LLM Settings
-LLM_PROVIDER = os.getenv("LLM_PROVIDER", "gigachat")  # "gigachat" or "openai_compatible"
-GIGACHAT_CREDENTIALS = os.getenv("GIGACHAT_CREDENTIALS", "")
-GIGACHAT_MODEL = os.getenv("GIGACHAT_MODEL", "GigaChat")
-GIGACHAT_SCOPE = os.getenv("GIGACHAT_SCOPE", "GIGACHAT_API_PERS")
-
-# OpenAI-compatible fallback
+# Foundation Models API settings (OpenAI-compatible)
 OPENAI_API_BASE = os.getenv("OPENAI_API_BASE", "https://foundation-models.api.cloud.ru/v1")
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "MGYxMDU5MWUtNDFmOS00NzFhLWEwNWQtYTJhZjA3MGRlNTk1.06ec4b3ea7df976cbf2dc16c6ee5a163")
-OPENAI_MODEL = os.getenv("OPENAI_MODEL", "GigaChat/GigaChat-2-Maxl")
-
-# Embedding Settings (GigaChat Embeddings API)
-GIGACHAT_EMBEDDING_MODEL = os.getenv("GIGACHAT_EMBEDDING_MODEL", "Embeddings")
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
+OPENAI_MODEL = os.getenv("OPENAI_MODEL", "GigaChat/GigaChat-2-Max")
+OPENAI_EMBEDDING_MODEL = os.getenv("OPENAI_EMBEDDING_MODEL", "BAAI/bge-m3")
 
 # RAG Settings
-# GigaChat Embeddings API limit: 514 tokens per text.
-# For Russian text ~1.5-2 chars/token, so 500 chars ≈ 250-330 tokens — safe margin.
 CHUNK_SIZE = int(os.getenv("CHUNK_SIZE", "500"))
 CHUNK_OVERLAP = int(os.getenv("CHUNK_OVERLAP", "80"))
 TOP_K_RESULTS = int(os.getenv("TOP_K_RESULTS", "5"))

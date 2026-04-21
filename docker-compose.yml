@@ -23,12 +23,9 @@ services:
     container_name: cloudru-tz-ui
     environment:
       BACKEND_API_URL: http://backend:8000
-      LLM_PROVIDER: ${LLM_PROVIDER:-gigachat}
-      GIGACHAT_MODEL: ${GIGACHAT_MODEL:-GigaChat-2}
-      GIGACHAT_SCOPE: ${GIGACHAT_SCOPE:-GIGACHAT_API_PERS}
-      GIGACHAT_EMBEDDING_MODEL: ${GIGACHAT_EMBEDDING_MODEL:-Embeddings}
-      OPENAI_API_BASE: ${OPENAI_API_BASE:-http://localhost:8000/v1}
-      OPENAI_MODEL: ${OPENAI_MODEL:-local-model}
+      OPENAI_API_BASE: ${OPENAI_API_BASE:-https://foundation-models.api.cloud.ru/v1}
+      OPENAI_MODEL: ${OPENAI_MODEL:-GigaChat/GigaChat-2-Max}
+      OPENAI_EMBEDDING_MODEL: ${OPENAI_EMBEDDING_MODEL:-BAAI/bge-m3}
     depends_on:
       - backend
     restart: unless-stopped

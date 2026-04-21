@@ -108,8 +108,10 @@ def _search_results_to_dict(results) -> list[dict]:
 def healthcheck():
     return {
         "status": "ok",
-        "provider": cfg.LLM_PROVIDER,
+        "provider": "foundation_models",
         "vector_count": get_persisted_vector_count(),
+        "llm_model": cfg.OPENAI_MODEL,
+        "embedding_model": cfg.OPENAI_EMBEDDING_MODEL,
     }
 
 
