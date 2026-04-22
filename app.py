@@ -26,9 +26,13 @@ def init_state():
     defaults = {
         "analysis_report": None,
         "requirements": None,
+        "analysis_search_mode": "rag",
         "parsed_files": [],
         "report_markdown": "",
         "downloads": {},
+        "analysis_qa_history": [],
+        "analysis_question_input": "",
+        "pending_analysis_question": None,
         "backend_api_url": DEFAULT_BACKEND_API_URL,
         "openai_api_base": os.getenv("OPENAI_API_BASE", "https://foundation-models.api.cloud.ru/v1"),
         "openai_api_key": os.getenv("OPENAI_API_KEY", ""),
@@ -118,6 +122,14 @@ def fetch_report_markdown():
         return
     result = api_post_json("/reports/markdown", {"report": report}, timeout=120)
     st.session_state.report_markdown = result.get("markdown", "")
+
+
+def apply_pending_analysis_question():
+    pending_question = st.session_state.get("pending_analysis_question")
+    if pending_question is None:
+        return
+    st.session_state.analysis_question_input = pending_question
+    st.session_state.pending_analysis_question = None
 
 
 def prepare_download(format_name: str):
@@ -244,6 +256,7 @@ with tab_analyze:
                 st.session_state.requirements = result.get("requirements", [])
                 st.session_state.parsed_files = result.get("files", [])
                 st.session_state.analysis_report = None
+                st.session_state.analysis_qa_history = []
                 st.session_state.report_markdown = ""
                 st.session_state.downloads = {}
                 st.success(f"Найдено {result.get('total_requirements', 0)} требований")
@@ -269,6 +282,8 @@ with tab_analyze:
                         timeout=3600,
                     )
                     st.session_state.analysis_report = report
+                    st.session_state.analysis_search_mode = search_mode
+                    st.session_state.analysis_qa_history = []
                     st.session_state.downloads = {}
                     fetch_report_markdown()
                 st.success(
@@ -447,6 +462,71 @@ with tab_report:
         if report.get("summary"):
             st.markdown("### Резюме")
             st.markdown(report["summary"])
+
+        st.divider()
+
+        st.subheader("Задать вопрос по анализу")
+        st.caption("Можно переспросить по конкретному пункту ТЗ, по спорному вердикту или по источникам, на которые опирался анализ.")
+
+        apply_pending_analysis_question()
+
+        suggested_questions = [
+            "Почему этот пункт признан несоответствием?",
+            "Что именно нужно перепроверить вручную в этом ТЗ?",
+            "Какие 3 самых рискованных пункта в этом анализе?",
+        ]
+        cols = st.columns(len(suggested_questions))
+        for idx, question in enumerate(suggested_questions):
+            if cols[idx].button(question, key=f"suggested_question_{idx}", use_container_width=True):
+                st.session_state.pending_analysis_question = question
+                st.rerun()
+
+        st.text_area(
+            "Вопрос по анализу",
+            key="analysis_question_input",
+            height=100,
+            placeholder="Например: Почему пункт 7.2.4 отмечен как несоответствие и на какие источники вы опирались?",
+        )
+
+        if st.button("Спросить", disabled=not st.session_state.analysis_question_input.strip(), use_container_width=True):
+            try:
+                current_question = st.session_state.analysis_question_input.strip()
+                with st.spinner("Готовлю ответ по контексту ТЗ, анализа и базы знаний..."):
+                    answer = api_post_json(
+                        "/analysis/ask",
+                        {
+                            "question": current_question,
+                            "report": report,
+                            "requirements": st.session_state.requirements or [],
+                            "search_mode": st.session_state.analysis_search_mode,
+                            "history": st.session_state.analysis_qa_history,
+                            "llm_settings": llm_settings_payload(),
+                        },
+                        timeout=3600,
+                    )
+                st.session_state.analysis_qa_history.append(
+                    {
+                        "question": current_question,
+                        "answer": answer.get("answer", ""),
+                        "related_sections": answer.get("related_sections", []),
+                        "source_urls": answer.get("source_urls", []),
+                    }
+                )
+                st.session_state.pending_analysis_question = ""
+                st.rerun()
+            except Exception as exc:
+                show_request_error(exc)
+
+        if st.session_state.analysis_qa_history:
+            for idx, item in enumerate(reversed(st.session_state.analysis_qa_history), start=1):
+                with st.expander(f"Вопрос {len(st.session_state.analysis_qa_history) - idx + 1}: {item['question']}", expanded=(idx == 1)):
+                    st.markdown(item["answer"])
+                    if item.get("related_sections"):
+                        st.caption("Связанные пункты ТЗ: " + ", ".join(item["related_sections"]))
+                    if item.get("source_urls"):
+                        st.markdown("**Источники:**")
+                        for url in item["source_urls"]:
+                            st.markdown(f"- [{url}]({url})")
 
         st.divider()
 
