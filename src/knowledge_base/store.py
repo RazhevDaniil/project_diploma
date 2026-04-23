@@ -3,12 +3,13 @@
 from __future__ import annotations
 
 import logging
+import time
 
 from langchain_community.vectorstores import FAISS
 from langchain_core.documents import Document
 from langchain_core.embeddings import Embeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from openai import OpenAI
+from openai import APIConnectionError, APITimeoutError, InternalServerError, OpenAI, RateLimitError
 
 import config as cfg
 
@@ -25,14 +26,43 @@ class FoundationModelsEmbeddings(Embeddings):
         self._client = OpenAI(api_key=api_key, base_url=base_url)
         self._model = model
 
+    def _embed_batch(self, texts: list[str], attempt: int = 1) -> list[list[float]]:
+        try:
+            response = self._client.embeddings.create(
+                model=self._model,
+                input=texts,
+            )
+            return [item.embedding for item in response.data]
+        except (InternalServerError, RateLimitError, APIConnectionError, APITimeoutError) as exc:
+            if len(texts) > 1:
+                midpoint = max(1, len(texts) // 2)
+                logger.warning(
+                    "Embeddings batch failed for %d texts (%s). Retrying as split batches of %d and %d.",
+                    len(texts),
+                    exc.__class__.__name__,
+                    midpoint,
+                    len(texts) - midpoint,
+                )
+                return self._embed_batch(texts[:midpoint]) + self._embed_batch(texts[midpoint:])
+
+            if attempt >= cfg.OPENAI_EMBEDDING_MAX_RETRIES:
+                raise
+
+            delay = min(8.0, 2 ** (attempt - 1))
+            logger.warning(
+                "Embedding request failed for a single text (%s), retry %d/%d in %.1fs",
+                exc.__class__.__name__,
+                attempt,
+                cfg.OPENAI_EMBEDDING_MAX_RETRIES,
+                delay,
+            )
+            time.sleep(delay)
+            return self._embed_batch(texts, attempt + 1)
+
     def embed_documents(self, texts: list[str]) -> list[list[float]]:
         if not texts:
             return []
-        response = self._client.embeddings.create(
-            model=self._model,
-            input=texts,
-        )
-        return [item.embedding for item in response.data]
+        return self._embed_batch(texts)
 
     def embed_query(self, text: str) -> list[float]:
         return self.embed_documents([text])[0]
@@ -87,7 +117,7 @@ def get_persisted_vector_count() -> int:
 
 # Remote embeddings APIs have request size limits.
 # We batch chunks to stay within a reasonable payload size.
-EMBEDDING_BATCH_SIZE = 50
+EMBEDDING_BATCH_SIZE = cfg.OPENAI_EMBEDDING_BATCH_SIZE
 
 
 def create_or_update_vectorstore(documents: list[Document]) -> FAISS:

@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 import logging
 from pathlib import Path
+import re
 from uuid import uuid4
 
 from fastapi import Body, FastAPI, File, Form, HTTPException, UploadFile
@@ -21,6 +22,7 @@ from src.parser.document_parser import parse_document
 from src.parser.requirement_extractor import extract_requirements
 from src.report.generator import generate_markdown, save_docx, save_excel, save_markdown, save_pdf
 from src.runtime_config import apply_runtime_settings
+from src.llm.client import call_llm
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
@@ -102,6 +104,184 @@ def _search_results_to_dict(results) -> list[dict]:
             }
         )
     return payload
+
+
+def _tokenize(text: str) -> set[str]:
+    return {token for token in re.findall(r"[A-Za-zА-Яа-яЁё0-9_-]{3,}", text.lower())}
+
+
+def _verdict_relevance(question: str, verdict: RequirementVerdict) -> tuple[int, float]:
+    q_tokens = _tokenize(question)
+    haystack = " ".join(
+        [
+            verdict.section or "",
+            verdict.requirement_text or "",
+            verdict.reasoning or "",
+            verdict.recommendation or "",
+            verdict.evidence or "",
+        ]
+    ).lower()
+    score = sum(1 for token in q_tokens if token in haystack)
+
+    section_refs = re.findall(r"\b\d+(?:\.\d+)+\b", question)
+    if section_refs and any(ref in (verdict.section or "") for ref in section_refs):
+        score += 6
+
+    verdict_rank = {
+        "mismatch": 0,
+        "needs_clarification": 1,
+        "partial": 2,
+        "match": 3,
+    }.get(verdict.verdict, 4)
+    return score, -verdict_rank + verdict.confidence
+
+
+def _requirement_relevance(question: str, req: Requirement) -> int:
+    q_tokens = _tokenize(question)
+    haystack = " ".join([req.section or "", req.text or "", req.tables or ""]).lower()
+    score = sum(1 for token in q_tokens if token in haystack)
+
+    section_refs = re.findall(r"\b\d+(?:\.\d+)+\b", question)
+    if section_refs and any(ref in (req.section or "") for ref in section_refs):
+        score += 6
+    return score
+
+
+def _build_analysis_chat_context(
+    question: str,
+    report: AnalysisReport,
+    requirements: list[Requirement],
+    search_mode: str,
+) -> tuple[str, list[str], list[str]]:
+    sorted_verdicts = sorted(
+        report.verdicts,
+        key=lambda verdict: _verdict_relevance(question, verdict),
+        reverse=True,
+    )
+    relevant_verdicts = [verdict for verdict in sorted_verdicts[:5] if _verdict_relevance(question, verdict)[0] > 0]
+    if not relevant_verdicts:
+        relevant_verdicts = sorted_verdicts[:3]
+
+    sorted_requirements = sorted(
+        requirements,
+        key=lambda req: _requirement_relevance(question, req),
+        reverse=True,
+    )
+    relevant_requirements = [req for req in sorted_requirements[:5] if _requirement_relevance(question, req) > 0]
+    if not relevant_requirements:
+        relevant_requirements = sorted_requirements[:3]
+
+    related_sections = list(
+        dict.fromkeys(
+            [verdict.section for verdict in relevant_verdicts if verdict.section]
+            + [req.section for req in relevant_requirements if req.section]
+        )
+    )
+
+    source_urls: list[str] = []
+    verdict_lines = []
+    for verdict in relevant_verdicts:
+        source_urls.extend(verdict.source_urls)
+        verdict_lines.append(
+            "\n".join(
+                [
+                    f"Пункт ТЗ: {verdict.section or f'#{verdict.requirement_id}'}",
+                    f"Категория: {verdict.category}",
+                    f"Вердикт: {verdict.verdict}",
+                    f"Требование: {verdict.requirement_text}",
+                    f"Обоснование: {verdict.reasoning}",
+                    f"Рекомендация: {verdict.recommendation}",
+                    f"Источники: {', '.join(verdict.source_urls[:5]) if verdict.source_urls else 'нет'}",
+                ]
+            )
+        )
+
+    requirement_lines = []
+    for req in relevant_requirements:
+        requirement_lines.append(
+            "\n".join(
+                [
+                    f"Пункт ТЗ: {req.section or f'#{req.id}'}",
+                    f"Категория: {req.category}",
+                    f"Требование: {req.text}",
+                    f"Таблицы: {req.tables or 'нет'}",
+                ]
+            )
+        )
+
+    kb_results = search(question, k=5)
+    kb_lines = []
+    for doc in kb_results:
+        doc_url = doc.metadata.get("url", doc.metadata.get("source", ""))
+        if doc_url:
+            source_urls.append(doc_url)
+        kb_lines.append(
+            "\n".join(
+                [
+                    f"Источник: {doc_url or doc.metadata.get('source', 'unknown')}",
+                    f"Заголовок: {doc.metadata.get('title', '')}",
+                    f"Контент: {doc.page_content[:1200]}",
+                ]
+            )
+        )
+
+    live_lines = []
+    if search_mode == "live":
+        try:
+            from src.search.live_search import search_for_requirement
+
+            live_results = search_for_requirement(question, category="other", max_results=5)
+            for item in live_results:
+                if item.url:
+                    source_urls.append(item.url)
+                live_lines.append(
+                    "\n".join(
+                        [
+                            f"Источник: {item.url}",
+                            f"Заголовок: {item.title}",
+                            f"Фрагмент: {item.content[:1200]}",
+                        ]
+                    )
+                )
+        except Exception as exc:
+            logger.warning("Live search for analysis chat failed: %s", exc)
+
+    context_parts = [
+        f"Документ: {report.document_name}",
+        f"Сводка анализа: {report.summary}",
+        "Релевантные выводы анализа:\n" + ("\n\n---\n\n".join(verdict_lines) if verdict_lines else "нет"),
+        "Релевантные требования ТЗ:\n" + ("\n\n---\n\n".join(requirement_lines) if requirement_lines else "нет"),
+        "Контекст из базы знаний:\n" + ("\n\n---\n\n".join(kb_lines) if kb_lines else "нет"),
+    ]
+    if live_lines:
+        context_parts.append("Контекст из live search:\n" + "\n\n---\n\n".join(live_lines))
+
+    dedup_urls = list(dict.fromkeys([url for url in source_urls if url]))
+    return "\n\n".join(context_parts), related_sections[:10], dedup_urls[:15]
+
+
+ANALYSIS_CHAT_SYSTEM = """Ты — технический пресейл-ассистент Cloud.ru.
+Отвечай на вопросы только на основании переданного контекста: ТЗ, уже проведённого анализа, базы знаний и найденных источников.
+
+Правила ответа:
+- Отвечай по-русски.
+- Начинай с прямого ответа на вопрос.
+- Если вопрос связан с конкретным пунктом ТЗ, обязательно укажи номер/раздел этого пункта.
+- Если данных недостаточно, честно скажи, чего не хватает.
+- Не выдумывай документы, цифры или источники.
+- Если есть риск ошибки в анализе, прямо предложи, что именно перепроверить вручную.
+"""
+
+
+def _format_history(history: list[dict]) -> str:
+    lines = []
+    for item in history[-6:]:
+        question = str(item.get("question", "")).strip()
+        answer = str(item.get("answer", "")).strip()
+        if not question or not answer:
+            continue
+        lines.append(f"Вопрос: {question}\nОтвет: {answer}")
+    return "\n\n".join(lines) if lines else "нет"
 
 
 @app.get("/health")
@@ -250,6 +430,63 @@ def analysis_report(payload: dict = Body(...)):
         search_mode=str(payload.get("search_mode", "rag")),
     )
     return report.to_dict()
+
+
+@app.post("/analysis/ask")
+def analysis_ask(payload: dict = Body(...)):
+    apply_runtime_settings(payload.get("llm_settings"))
+
+    question = str(payload.get("question", "")).strip()
+    if not question:
+        raise HTTPException(status_code=400, detail="Question is required")
+
+    report_payload = payload.get("report")
+    if not report_payload:
+        raise HTTPException(status_code=400, detail="Report is required")
+
+    report = _report_from_dict(report_payload)
+    requirements = [_requirement_from_dict(item) for item in payload.get("requirements", [])]
+    search_mode = str(payload.get("search_mode", "rag"))
+    history = payload.get("history", [])
+    if not isinstance(history, list):
+        history = []
+
+    context, related_sections, source_urls = _build_analysis_chat_context(
+        question=question,
+        report=report,
+        requirements=requirements,
+        search_mode=search_mode,
+    )
+
+    prompt = f"""Вопрос пользователя:
+{question}
+
+История предыдущих вопросов по этому анализу:
+{_format_history(history)}
+
+Контекст анализа:
+{context}
+
+Сформируй краткий, но содержательный ответ.
+Если уместно, используй структуру:
+1. Короткий вывод
+2. Почему такой вывод
+3. Что перепроверить вручную
+4. На какие пункты ТЗ и источники опираться
+"""
+
+    answer = call_llm(
+        prompt,
+        system_prompt=ANALYSIS_CHAT_SYSTEM,
+        max_tokens=1800,
+        temperature=0.1,
+    )
+
+    return {
+        "answer": answer,
+        "related_sections": related_sections,
+        "source_urls": source_urls,
+    }
 
 
 @app.post("/reports/markdown")
