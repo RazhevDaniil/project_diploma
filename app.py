@@ -11,22 +11,19 @@ import streamlit as st
 
 
 DEFAULT_BACKEND_API_URL = os.getenv("BACKEND_API_URL", "http://localhost:8000").rstrip("/")
-MODEL_OPTIONS = [
-    "GigaChat/GigaChat-2-Max",
-    "GigaChat/GigaChat-2-Pro",
-    "GigaChat/GigaChat-2",
-]
-EMBEDDING_MODEL_OPTIONS = [
-    "BAAI/bge-m3",
-    "Qwen/Qwen3-Embedding-0.6B",
-]
+MODEL_OPTIONS = {
+    "gpt-oss-120b": "openai/gpt-oss-120b",
+    "GLM-4.6": "zai-org/GLM-4.6",
+    "Qwen3-235B-A22B-Instruct-2507": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+    "Qwen3-Next-80B-A3B-Instruct": "Qwen/Qwen3-Next-80B-A3B-Instruct",
+}
 
 
 def init_state():
     defaults = {
         "analysis_report": None,
         "requirements": None,
-        "analysis_search_mode": "rag",
+        "analysis_search_mode": "managed_rag",
         "parsed_files": [],
         "report_markdown": "",
         "downloads": {},
@@ -36,8 +33,17 @@ def init_state():
         "backend_api_url": DEFAULT_BACKEND_API_URL,
         "openai_api_base": os.getenv("OPENAI_API_BASE", "https://foundation-models.api.cloud.ru/v1"),
         "openai_api_key": os.getenv("OPENAI_API_KEY", ""),
-        "openai_model": os.getenv("OPENAI_MODEL", MODEL_OPTIONS[0]),
-        "openai_embedding_model": os.getenv("OPENAI_EMBEDDING_MODEL", EMBEDDING_MODEL_OPTIONS[0]),
+        "openai_model": os.getenv("OPENAI_MODEL", MODEL_OPTIONS["gpt-oss-120b"]),
+        "managed_rag_url": os.getenv(
+            "MANAGED_RAG_URL",
+            "https://e424a162-618c-4862-b789-b089abd81b46.managed-rag.inference.cloud.ru/api/v2/retrieve_generate",
+        ),
+        "managed_rag_kb_version": os.getenv("MANAGED_RAG_KB_VERSION", "eb73eb63-ec91-47c9-851e-1c14949b7a14"),
+        "managed_rag_api_key": os.getenv("MANAGED_RAG_API_KEY", os.getenv("OPENAI_API_KEY", "")),
+        "managed_rag_results": int(os.getenv("MANAGED_RAG_RESULTS", "3")),
+        "managed_rag_context_chunks": int(os.getenv("MANAGED_RAG_CONTEXT_CHUNKS", "5")),
+        "managed_rag_max_tokens": int(os.getenv("MANAGED_RAG_MAX_TOKENS", "512")),
+        "managed_rag_temperature": float(os.getenv("MANAGED_RAG_TEMPERATURE", "0.01")),
     }
     for key, value in defaults.items():
         if key not in st.session_state:
@@ -49,7 +55,13 @@ def llm_settings_payload() -> dict:
         "openai_api_base": st.session_state.openai_api_base,
         "openai_api_key": st.session_state.openai_api_key,
         "openai_model": st.session_state.openai_model,
-        "openai_embedding_model": st.session_state.openai_embedding_model,
+        "managed_rag_url": st.session_state.managed_rag_url,
+        "managed_rag_kb_version": st.session_state.managed_rag_kb_version,
+        "managed_rag_api_key": st.session_state.managed_rag_api_key or st.session_state.openai_api_key,
+        "managed_rag_results": st.session_state.managed_rag_results,
+        "managed_rag_context_chunks": st.session_state.managed_rag_context_chunks,
+        "managed_rag_max_tokens": st.session_state.managed_rag_max_tokens,
+        "managed_rag_temperature": st.session_state.managed_rag_temperature,
     }
 
 
@@ -75,6 +87,13 @@ def api_post_files(path: str, files: list, data: dict, timeout: int = 1200) -> d
     response = requests.post(url, files=files, data=data, timeout=timeout)
     response.raise_for_status()
     return response.json()
+
+
+def model_label(model_value: str) -> str:
+    for label, value in MODEL_OPTIONS.items():
+        if value == model_value:
+            return label
+    return model_value
 
 
 def _response_filename(response: requests.Response, default_name: str = "download.bin") -> str:
@@ -184,7 +203,7 @@ with st.sidebar:
     if backend_health:
         st.success(
             f"Backend доступен: {backend_health.get('status', 'ok')}, "
-            f"векторов: {backend_health.get('vector_count', 0)}"
+            f"RAG: {backend_health.get('rag_provider', 'managed_rag')}"
         )
     else:
         st.error(f"Backend недоступен: {backend_error}")
@@ -194,42 +213,26 @@ with st.sidebar:
     st.subheader("Foundation Models API")
     st.text_input("API Base URL", key="openai_api_base")
     st.text_input("API Key", type="password", key="openai_api_key")
-    model_index = MODEL_OPTIONS.index(st.session_state.openai_model) if st.session_state.openai_model in MODEL_OPTIONS else 0
-    st.selectbox("LLM Model", MODEL_OPTIONS, index=model_index, key="openai_model")
-    embedding_index = EMBEDDING_MODEL_OPTIONS.index(st.session_state.openai_embedding_model) if st.session_state.openai_embedding_model in EMBEDDING_MODEL_OPTIONS else 0
-    st.selectbox("Embedding Model", EMBEDDING_MODEL_OPTIONS, index=embedding_index, key="openai_embedding_model")
+    model_values = list(MODEL_OPTIONS.values())
+    if st.session_state.openai_model not in model_values:
+        st.session_state.openai_model = MODEL_OPTIONS["gpt-oss-120b"]
+    model_index = model_values.index(st.session_state.openai_model) if st.session_state.openai_model in model_values else 0
+    st.selectbox("LLM Model", model_values, index=model_index, key="openai_model", format_func=model_label)
 
     st.divider()
 
-    st.subheader("База знаний")
-    if st.button("🗑️ Сбросить базу знаний", disabled=not backend_health):
-        try:
-            api_post_json("/kb/reset", {}, timeout=60)
-            st.success("База знаний очищена")
-            st.rerun()
-        except Exception as exc:
-            show_request_error(exc)
+    st.subheader("Managed RAG")
+    st.text_input("RAG URL", key="managed_rag_url")
+    st.text_input("Knowledge Base Version", key="managed_rag_kb_version")
+    st.text_input("RAG API Key", type="password", key="managed_rag_api_key")
+    st.number_input("Кол-во результатов", min_value=1, max_value=10, key="managed_rag_results")
+    st.number_input("Чанков в контексте", min_value=1, max_value=20, key="managed_rag_context_chunks")
 
-tab_analyze, tab_kb, tab_report = st.tabs(["📄 Анализ ТЗ", "📚 База знаний", "📊 Отчёт"])
+tab_analyze, tab_prompts, tab_report = st.tabs(["📄 Анализ ТЗ", "✍️ Промпты", "📊 Отчёт"])
 
 with tab_analyze:
     st.header("Загрузка и анализ ТЗ")
-
-    search_mode = st.radio(
-        "Режим поиска информации",
-        ["rag", "live"],
-        format_func=lambda x: {
-            "rag": "📦 RAG (по проиндексированной базе знаний)",
-            "live": "🌐 Live Search (поиск в интернете и cloud.ru/docs)",
-        }[x],
-        horizontal=True,
-    )
-
-    if search_mode == "live":
-        st.caption(
-            "Технические/SLA/ИБ требования ищутся по cloud.ru/docs, "
-            "юридические и коммерческие могут уходить в live search."
-        )
+    st.caption("Проверка возможностей Cloud.ru выполняется через Managed RAG.")
 
     uploaded_files = st.file_uploader(
         "Загрузите ТЗ (PDF, DOCX, XLSX, TXT)",
@@ -275,14 +278,14 @@ with tab_analyze:
                         "/analysis/report",
                         {
                             "document_name": uploaded_files[0].name if uploaded_files else "document",
-                            "search_mode": search_mode,
+                            "search_mode": "managed_rag",
                             "requirements": st.session_state.requirements,
                             "llm_settings": llm_settings_payload(),
                         },
                         timeout=3600,
                     )
                     st.session_state.analysis_report = report
-                    st.session_state.analysis_search_mode = search_mode
+                    st.session_state.analysis_search_mode = "managed_rag"
                     st.session_state.analysis_qa_history = []
                     st.session_state.downloads = {}
                     fetch_report_markdown()
@@ -329,103 +332,98 @@ with tab_analyze:
                     st.markdown("**Таблица:**")
                     st.markdown(req["tables"])
 
-with tab_kb:
-    st.header("База знаний — документация Cloud.ru")
-    st.markdown(
-        """
-        База знаний наполняется из официальной документации [cloud.ru/docs](https://cloud.ru/docs).
-        Краулинг и индексация выполняются на backend-сервисе.
-        """
-    )
+with tab_prompts:
+    st.header("Промпты")
 
-    kb_status = None
-    if backend_health:
+    if not backend_health:
+        st.info("Backend недоступен")
+    else:
         try:
-            kb_status = api_get("/kb/status", timeout=10)
+            prompts_payload = api_get("/prompts", timeout=20)
         except Exception as exc:
             show_request_error(exc)
+            prompts_payload = {"prompts": {}}
 
-    if kb_status:
-        st.info(f"Индекс: {kb_status.get('vector_count', 0)} векторов")
-
-    col_crawl1, col_crawl2 = st.columns(2)
-    with col_crawl1:
-        max_pages = st.number_input("Макс. страниц (0 = все ~7000)", min_value=0, max_value=10000, value=0, step=100)
-    with col_crawl2:
-        concurrency = st.number_input("Параллельность запросов", min_value=1, max_value=50, value=10)
-
-    if st.button("🌐 Запустить краулинг cloud.ru/docs", use_container_width=True, disabled=not backend_health):
-        try:
-            with st.spinner("Краулинг и индексация на backend..."):
-                result = api_post_json(
-                    "/kb/crawl",
-                    {
-                        "max_pages": int(max_pages),
-                        "concurrency": int(concurrency),
-                        "llm_settings": llm_settings_payload(),
-                    },
-                    timeout=7200,
+        prompts = prompts_payload.get("prompts", {})
+        prompt_keys = list(prompts.keys())
+        if not prompt_keys:
+            st.warning("Промпты пока не инициализированы")
+        else:
+            left, main = st.columns([1, 3])
+            with left:
+                selected_key = st.selectbox(
+                    "Промпт",
+                    prompt_keys,
+                    format_func=lambda key: prompts[key].get("label", key),
+                    key="selected_prompt_key",
                 )
-            st.success(
-                f"Проиндексировано {result.get('indexed_pages', 0)} страниц. "
-                f"Всего векторов: {result.get('vector_count', 0)}"
-            )
-            st.balloons()
-        except Exception as exc:
-            show_request_error(exc)
+                selected_prompt = prompts[selected_key]
+                versions = selected_prompt.get("versions", [])
+                active_version = selected_prompt.get("active_version")
+                version_by_id = {version.get("id"): version for version in versions}
+                version_ids = list(version_by_id.keys())
+                active_index = version_ids.index(active_version) if active_version in version_ids else 0
+                selected_version_id = st.selectbox(
+                    "Версия",
+                    version_ids,
+                    index=active_index,
+                    format_func=lambda version_id: (
+                        f"{version_by_id[version_id].get('label', 'Версия')} · "
+                        f"{version_by_id[version_id].get('created_at', '')}"
+                    ),
+                    key=f"selected_version_{selected_key}",
+                )
+                selected_version = version_by_id[selected_version_id]
+                if selected_version_id != active_version:
+                    if st.button("Сделать активной", use_container_width=True):
+                        try:
+                            api_post_json(
+                                "/prompts/activate",
+                                {"prompt_key": selected_key, "version_id": selected_version_id},
+                                timeout=30,
+                            )
+                            st.success("Активная версия обновлена")
+                            st.rerun()
+                        except Exception as exc:
+                            show_request_error(exc)
 
-    st.divider()
-
-    with st.expander("📁 Загрузить дополнительные файлы вручную"):
-        kb_files = st.file_uploader(
-            "Дополнительная документация (TXT, MD, HTML, PDF, DOCX)",
-            type=["txt", "md", "html", "pdf", "docx"],
-            accept_multiple_files=True,
-            key="kb_uploader",
-        )
-
-        if st.button("📥 Индексировать файлы", disabled=not kb_files or not backend_health):
-            try:
-                with st.spinner("Индексация файлов на backend..."):
-                    result = api_post_files(
-                        "/kb/index-files",
-                        build_upload_files(kb_files),
-                        {"llm_settings_json": json.dumps(llm_settings_payload(), ensure_ascii=False)},
-                        timeout=3600,
-                    )
-                st.success(f"Индексировано! Всего векторов в базе: {result.get('vector_count', 0)}")
-                st.rerun()
-            except Exception as exc:
-                show_request_error(exc)
-
-    st.divider()
-
-    st.subheader("Тестовый поиск по базе")
-    test_query = st.text_input("Поисковый запрос")
-    if st.button("🔍 Искать", disabled=not backend_health) and test_query:
-        try:
-            result = api_post_json(
-                "/kb/search",
-                {
-                    "query": test_query,
-                    "k": 5,
-                    "llm_settings": llm_settings_payload(),
-                },
-                timeout=120,
-            )
-            results = result.get("results", [])
-            if results:
-                for i, doc in enumerate(results):
-                    label = f"{doc.get('title', '')} — {doc.get('source', 'unknown')}".strip(" —")
-                    with st.expander(f"Результат {i + 1} — {label}"):
-                        st.markdown(doc.get("content", "")[:500])
-                        source = doc.get("source", "")
-                        if source.startswith("http"):
-                            st.markdown(f"[Открыть в документации]({source})")
-            else:
-                st.warning("Ничего не найдено")
-        except Exception as exc:
-            show_request_error(exc)
+            with main:
+                st.subheader(selected_prompt.get("label", selected_key))
+                st.caption(f"Активная версия: {active_version}")
+                editor_key = f"prompt_editor_{selected_key}_{selected_version.get('id')}"
+                edited_content = st.text_area(
+                    "Текст промпта",
+                    value=selected_version.get("content", ""),
+                    height=420,
+                    key=editor_key,
+                )
+                label_key = f"prompt_label_{selected_key}_{selected_version.get('id')}"
+                version_label = st.text_input("Название новой версии", value="", key=label_key)
+                col_save, col_hint = st.columns([1, 2])
+                with col_save:
+                    if st.button("Сохранить новую версию", use_container_width=True):
+                        try:
+                            api_post_json(
+                                "/prompts/version",
+                                {
+                                    "prompt_key": selected_key,
+                                    "content": edited_content,
+                                    "label": version_label,
+                                    "activate": True,
+                                },
+                                timeout=30,
+                            )
+                            st.success("Новая версия сохранена и активирована")
+                            st.rerun()
+                        except Exception as exc:
+                            show_request_error(exc)
+                with col_hint:
+                    if selected_key == "parser_user_template":
+                        st.caption("Доступная переменная: {document_text}")
+                    elif selected_key == "analysis_user_template":
+                        st.caption("Доступные переменные: {requirements_block}, {context}")
+                    elif selected_key == "summary_user_template":
+                        st.caption("Доступные переменные: {doc_name}, {total}, {match_count}, {partial_count}, {mismatch_count}, {clarification_count}, {compliance_pct}, {top_mismatches}")
 
 with tab_report:
     st.header("Отчёт по анализу")
@@ -466,7 +464,7 @@ with tab_report:
         st.divider()
 
         st.subheader("Задать вопрос по анализу")
-        st.caption("Можно переспросить по конкретному пункту ТЗ, по спорному вердикту или по источникам, на которые опирался анализ.")
+        st.caption("Можно переспросить по конкретному пункту ТЗ, по спорному вердикту или по источникам Managed RAG.")
 
         apply_pending_analysis_question()
 
@@ -491,7 +489,7 @@ with tab_report:
         if st.button("Спросить", disabled=not st.session_state.analysis_question_input.strip(), use_container_width=True):
             try:
                 current_question = st.session_state.analysis_question_input.strip()
-                with st.spinner("Готовлю ответ по контексту ТЗ, анализа и базы знаний..."):
+                with st.spinner("Готовлю ответ по контексту ТЗ, анализа и Managed RAG..."):
                     answer = api_post_json(
                         "/analysis/ask",
                         {
