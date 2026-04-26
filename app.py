@@ -40,10 +40,12 @@ def init_state():
         ),
         "managed_rag_kb_version": os.getenv("MANAGED_RAG_KB_VERSION", "eb73eb63-ec91-47c9-851e-1c14949b7a14"),
         "managed_rag_api_key": os.getenv("MANAGED_RAG_API_KEY", os.getenv("OPENAI_API_KEY", "")),
-        "managed_rag_results": int(os.getenv("MANAGED_RAG_RESULTS", "3")),
-        "managed_rag_context_chunks": int(os.getenv("MANAGED_RAG_CONTEXT_CHUNKS", "5")),
-        "managed_rag_max_tokens": int(os.getenv("MANAGED_RAG_MAX_TOKENS", "512")),
+        "managed_rag_results": int(os.getenv("MANAGED_RAG_RESULTS", "2")),
+        "managed_rag_context_chunks": int(os.getenv("MANAGED_RAG_CONTEXT_CHUNKS", "3")),
+        "managed_rag_max_tokens": int(os.getenv("MANAGED_RAG_MAX_TOKENS", "256")),
         "managed_rag_temperature": float(os.getenv("MANAGED_RAG_TEMPERATURE", "0.01")),
+        "managed_rag_concurrency": int(os.getenv("MANAGED_RAG_CONCURRENCY", "4")),
+        "managed_rag_cache_enabled": os.getenv("MANAGED_RAG_CACHE_ENABLED", "true").lower() in {"1", "true", "yes", "on"},
     }
     for key, value in defaults.items():
         if key not in st.session_state:
@@ -62,6 +64,8 @@ def llm_settings_payload() -> dict:
         "managed_rag_context_chunks": st.session_state.managed_rag_context_chunks,
         "managed_rag_max_tokens": st.session_state.managed_rag_max_tokens,
         "managed_rag_temperature": st.session_state.managed_rag_temperature,
+        "managed_rag_concurrency": st.session_state.managed_rag_concurrency,
+        "managed_rag_cache_enabled": st.session_state.managed_rag_cache_enabled,
     }
 
 
@@ -227,6 +231,9 @@ with st.sidebar:
     st.text_input("RAG API Key", type="password", key="managed_rag_api_key")
     st.number_input("Кол-во результатов", min_value=1, max_value=10, key="managed_rag_results")
     st.number_input("Чанков в контексте", min_value=1, max_value=20, key="managed_rag_context_chunks")
+    st.number_input("Макс. токенов RAG", min_value=128, max_value=4096, step=128, key="managed_rag_max_tokens")
+    st.number_input("Параллельность RAG", min_value=1, max_value=10, key="managed_rag_concurrency")
+    st.checkbox("Кэшировать RAG-ответы", key="managed_rag_cache_enabled")
 
 tab_analyze, tab_prompts, tab_report = st.tabs(["📄 Анализ ТЗ", "✍️ Промпты", "📊 Отчёт"])
 

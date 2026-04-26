@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import logging
 from urllib.parse import urlparse
 from src.managed_rag.client import ManagedRagResult, retrieve_generate
@@ -79,15 +80,60 @@ def _managed_rag_query(req: Requirement) -> str:
     return query
 
 
+def _value_to_text(value) -> str:
+    if value in (None, ""):
+        return ""
+    if isinstance(value, str):
+        return value
+    if isinstance(value, list):
+        return "\n".join(_value_to_text(item) for item in value if item not in (None, ""))
+    if isinstance(value, dict):
+        return "\n".join(f"{key}: {_value_to_text(val)}" for key, val in value.items())
+    return str(value)
+
+
+def _safe_float(value, default: float = 0.5) -> float:
+    try:
+        return float(value)
+    except (TypeError, ValueError):
+        return default
+
+
+def _fetch_managed_rag(req: Requirement) -> tuple[int, ManagedRagResult | None, str | None]:
+    try:
+        result = retrieve_generate(_managed_rag_query(req), number_of_results=cfg.MANAGED_RAG_RESULTS)
+        return req.id, result, None
+    except Exception as exc:
+        return req.id, None, str(exc)
+
+
 def _analyze_batch(requirements: list[Requirement]) -> list[RequirementVerdict]:
     """Analyze a batch of requirements."""
     all_context_parts = []
     req_rag_results: dict[int, ManagedRagResult] = {}
     req_source_urls: dict[int, list[str]] = {r.id: [] for r in requirements}
+    req_map = {r.id: r for r in requirements}
 
-    for req in requirements:
-        try:
-            rag_result = retrieve_generate(_managed_rag_query(req), number_of_results=cfg.TOP_K_RESULTS)
+    max_workers = max(1, min(cfg.MANAGED_RAG_CONCURRENCY, len(requirements)))
+    logger.info("Fetching Managed RAG context for %d requirements (parallel=%d)", len(requirements), max_workers)
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        futures = [executor.submit(_fetch_managed_rag, req) for req in requirements]
+        for future in as_completed(futures):
+            req_id, rag_result, error = future.result()
+            req = req_map[req_id]
+            if error or rag_result is None:
+                logger.warning("Managed RAG failed for requirement %s: %s", req_id, error)
+                all_context_parts.append(
+                    "\n".join(
+                        [
+                            f"ID требования: {req.id}",
+                            f"Пункт ТЗ: {req.section}",
+                            "Managed RAG не вернул контекст для этого требования.",
+                        ]
+                    )
+                )
+                continue
+
             req_rag_results[req.id] = rag_result
             req_source_urls[req.id].extend(_filter_urls(rag_result.source_labels))
             all_context_parts.append(
@@ -96,17 +142,6 @@ def _analyze_batch(requirements: list[Requirement]) -> list[RequirementVerdict]:
                         f"ID требования: {req.id}",
                         f"Пункт ТЗ: {req.section}",
                         rag_result.as_context(),
-                    ]
-                )
-            )
-        except Exception as exc:
-            logger.warning("Managed RAG failed for requirement %s: %s", req.id, exc)
-            all_context_parts.append(
-                "\n".join(
-                    [
-                        f"ID требования: {req.id}",
-                        f"Пункт ТЗ: {req.section}",
-                        "Managed RAG не вернул контекст для этого требования.",
                     ]
                 )
             )
@@ -136,13 +171,16 @@ def _analyze_batch(requirements: list[Requirement]) -> list[RequirementVerdict]:
     verdicts = []
     items = result if isinstance(result, list) else [result]
 
-    # Build a lookup for requirements
-    req_map = {r.id: r for r in requirements}
-
     for item in items:
         if not isinstance(item, dict):
             continue
-        req_id = item.get("requirement_id", 0)
+        try:
+            req_id = int(item.get("requirement_id", 0))
+        except (TypeError, ValueError):
+            req_id = 0
+        if req_id == 0:
+            logger.warning("Skipping verdict without requirement_id: %s", item)
+            continue
         req = req_map.get(req_id)
         # Collect source URLs from LLM response + search results, filter junk
         urls_from_llm = _filter_urls(item.get("source_urls", []))
@@ -158,11 +196,11 @@ def _analyze_batch(requirements: list[Requirement]) -> list[RequirementVerdict]:
             section=req.section if req else "",
             requirement_text=req.text if req else "",
             category=req.category if req else "other",
-            verdict=item.get("verdict", "needs_clarification"),
-            confidence=float(item.get("confidence", 0.5)),
-            reasoning=item.get("reasoning", ""),
-            evidence=(item.get("evidence", "") or "") + source_note,
-            recommendation=item.get("recommendation", ""),
+            verdict=_value_to_text(item.get("verdict", "needs_clarification")) or "needs_clarification",
+            confidence=_safe_float(item.get("confidence"), 0.5),
+            reasoning=_value_to_text(item.get("reasoning", "")),
+            evidence=_value_to_text(item.get("evidence", "")) + source_note,
+            recommendation=_value_to_text(item.get("recommendation", "")),
             source_urls=combined_urls,
         ))
 

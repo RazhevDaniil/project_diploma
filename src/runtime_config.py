@@ -26,6 +26,8 @@ def apply_runtime_settings(settings: dict | None) -> None:
         "managed_rag_context_chunks": "MANAGED_RAG_CONTEXT_CHUNKS",
         "managed_rag_max_tokens": "MANAGED_RAG_MAX_TOKENS",
         "managed_rag_temperature": "MANAGED_RAG_TEMPERATURE",
+        "managed_rag_concurrency": "MANAGED_RAG_CONCURRENCY",
+        "managed_rag_cache_enabled": "MANAGED_RAG_CACHE_ENABLED",
     }
 
     for incoming_key, cfg_key in field_map.items():
@@ -33,7 +35,12 @@ def apply_runtime_settings(settings: dict | None) -> None:
         if value in (None, ""):
             continue
         current = getattr(cfg, cfg_key)
-        if isinstance(current, int):
+        if isinstance(current, bool):
+            if isinstance(value, str):
+                value = value.lower() in {"1", "true", "yes", "on"}
+            else:
+                value = bool(value)
+        elif isinstance(current, int):
             value = int(value)
         elif isinstance(current, float):
             value = float(value)

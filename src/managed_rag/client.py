@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+import hashlib
+import json
 import logging
 from typing import Any
 
@@ -68,6 +70,58 @@ def _source_labels(results: list[dict[str, Any]]) -> list[str]:
     return labels
 
 
+def _cache_key(query: str, number_of_results: int) -> str:
+    payload = {
+        "url": cfg.MANAGED_RAG_URL,
+        "knowledge_base_version": cfg.MANAGED_RAG_KB_VERSION,
+        "model": cfg.OPENAI_MODEL,
+        "number_of_results": number_of_results,
+        "context_chunks": cfg.MANAGED_RAG_CONTEXT_CHUNKS,
+        "max_tokens": cfg.MANAGED_RAG_MAX_TOKENS,
+        "temperature": cfg.MANAGED_RAG_TEMPERATURE,
+        "retrieval_type": cfg.MANAGED_RAG_RETRIEVAL_TYPE,
+        "query": query,
+    }
+    raw = json.dumps(payload, ensure_ascii=False, sort_keys=True)
+    return hashlib.sha256(raw.encode("utf-8")).hexdigest()
+
+
+def _load_cached_result(key: str) -> ManagedRagResult | None:
+    if not cfg.MANAGED_RAG_CACHE_ENABLED:
+        return None
+    path = cfg.MANAGED_RAG_CACHE_DIR / f"{key}.json"
+    if not path.exists():
+        return None
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+        return ManagedRagResult(
+            answer=str(data.get("answer", "") or ""),
+            results=[item for item in data.get("results", []) if isinstance(item, dict)],
+            reasoning_content=str(data.get("reasoning_content", "") or ""),
+            source_labels=[str(item) for item in data.get("source_labels", [])],
+        )
+    except Exception as exc:
+        logger.warning("Failed to read Managed RAG cache %s: %s", path.name, exc)
+        return None
+
+
+def _save_cached_result(key: str, result: ManagedRagResult) -> None:
+    if not cfg.MANAGED_RAG_CACHE_ENABLED:
+        return
+    cfg.MANAGED_RAG_CACHE_DIR.mkdir(exist_ok=True)
+    path = cfg.MANAGED_RAG_CACHE_DIR / f"{key}.json"
+    payload = {
+        "answer": result.answer,
+        "results": result.results,
+        "reasoning_content": result.reasoning_content,
+        "source_labels": result.source_labels,
+    }
+    try:
+        path.write_text(json.dumps(payload, ensure_ascii=False), encoding="utf-8")
+    except Exception as exc:
+        logger.warning("Failed to write Managed RAG cache %s: %s", path.name, exc)
+
+
 def retrieve_generate(query: str, number_of_results: int | None = None) -> ManagedRagResult:
     """Ask Managed RAG for Cloud.ru capability context."""
     if not cfg.MANAGED_RAG_URL:
@@ -75,11 +129,18 @@ def retrieve_generate(query: str, number_of_results: int | None = None) -> Manag
     if not cfg.MANAGED_RAG_KB_VERSION:
         raise RuntimeError("MANAGED_RAG_KB_VERSION is not configured")
 
+    result_count = number_of_results or cfg.MANAGED_RAG_RESULTS
+    cache_key = _cache_key(query, result_count)
+    cached = _load_cached_result(cache_key)
+    if cached is not None:
+        logger.info("Managed RAG cache hit: %s", cache_key[:12])
+        return cached
+
     payload = {
         "knowledge_base_version": cfg.MANAGED_RAG_KB_VERSION,
         "query": query,
         "retrieval_configuration": {
-            "number_of_results": number_of_results or cfg.MANAGED_RAG_RESULTS,
+            "number_of_results": result_count,
             "retrieval_type": cfg.MANAGED_RAG_RETRIEVAL_TYPE,
         },
         "generation_configuration": {
@@ -103,9 +164,11 @@ def retrieve_generate(query: str, number_of_results: int | None = None) -> Manag
     if not isinstance(results, list):
         results = []
 
-    return ManagedRagResult(
+    result = ManagedRagResult(
         answer=str(data.get("llm_answer", "") or ""),
         results=[item for item in results if isinstance(item, dict)],
         reasoning_content=str(data.get("reasoning_content", "") or ""),
         source_labels=_source_labels(results),
     )
+    _save_cached_result(cache_key, result)
+    return result
