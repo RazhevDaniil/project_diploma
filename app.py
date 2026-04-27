@@ -30,6 +30,8 @@ def init_state():
         "analysis_qa_history": [],
         "analysis_question_input": "",
         "pending_analysis_question": None,
+        "last_backend_health": None,
+        "last_prompts_payload": None,
         "backend_api_url": DEFAULT_BACKEND_API_URL,
         "openai_api_base": os.getenv("OPENAI_API_BASE", "https://foundation-models.api.cloud.ru/v1"),
         "openai_api_key": os.getenv("OPENAI_API_KEY", ""),
@@ -72,6 +74,20 @@ def llm_settings_payload() -> dict:
 def api_get(path: str, timeout: int = 10) -> dict:
     url = f"{st.session_state.backend_api_url}{path}"
     response = requests.get(url, timeout=timeout)
+    response.raise_for_status()
+    return response.json()
+
+
+@st.cache_data(ttl=15, show_spinner=False)
+def cached_backend_health(base_url: str) -> dict:
+    response = requests.get(f"{base_url}/health", timeout=15)
+    response.raise_for_status()
+    return response.json()
+
+
+@st.cache_data(ttl=30, show_spinner=False)
+def cached_prompts(base_url: str) -> dict:
+    response = requests.get(f"{base_url}/prompts", timeout=20)
     response.raise_for_status()
     return response.json()
 
@@ -191,10 +207,14 @@ init_state()
 
 backend_health = None
 backend_error = None
+backend_health_stale = False
 try:
-    backend_health = api_get("/health", timeout=5)
+    backend_health = cached_backend_health(st.session_state.backend_api_url)
+    st.session_state.last_backend_health = backend_health
 except Exception as exc:
     backend_error = str(exc)
+    backend_health = st.session_state.last_backend_health
+    backend_health_stale = backend_health is not None
 
 with st.sidebar:
     st.title("☁️ Cloud.ru TZ Analyzer")
@@ -204,10 +224,15 @@ with st.sidebar:
     st.subheader("Backend API")
     st.text_input("Backend URL", key="backend_api_url")
 
-    if backend_health:
+    if backend_health and not backend_health_stale:
         st.success(
             f"Backend доступен: {backend_health.get('status', 'ok')}, "
             f"RAG: {backend_health.get('rag_provider', 'managed_rag')}"
+        )
+    elif backend_health_stale:
+        st.warning(
+            "Backend отвечает медленно. Использую последний успешный статус; "
+            "долгий анализ может продолжаться в фоне."
         )
     else:
         st.error(f"Backend недоступен: {backend_error}")
@@ -346,10 +371,14 @@ with tab_prompts:
         st.info("Backend недоступен")
     else:
         try:
-            prompts_payload = api_get("/prompts", timeout=20)
+            prompts_payload = cached_prompts(st.session_state.backend_api_url)
+            st.session_state.last_prompts_payload = prompts_payload
         except Exception as exc:
-            show_request_error(exc)
-            prompts_payload = {"prompts": {}}
+            prompts_payload = st.session_state.last_prompts_payload or {"prompts": {}}
+            if not prompts_payload.get("prompts"):
+                show_request_error(exc)
+            else:
+                st.warning("Промпты временно отвечают медленно. Показываю последнюю успешную версию.")
 
         prompts = prompts_payload.get("prompts", {})
         prompt_keys = list(prompts.keys())
@@ -389,6 +418,7 @@ with tab_prompts:
                                 {"prompt_key": selected_key, "version_id": selected_version_id},
                                 timeout=30,
                             )
+                            cached_prompts.clear()
                             st.success("Активная версия обновлена")
                             st.rerun()
                         except Exception as exc:
@@ -420,6 +450,7 @@ with tab_prompts:
                                 },
                                 timeout=30,
                             )
+                            cached_prompts.clear()
                             st.success("Новая версия сохранена и активирована")
                             st.rerun()
                         except Exception as exc:

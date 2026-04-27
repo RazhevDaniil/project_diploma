@@ -238,7 +238,7 @@ def _format_history(history: list[dict]) -> str:
 
 
 @app.get("/health")
-def healthcheck():
+async def healthcheck():
     return {
         "status": "ok",
         "provider": "foundation_models",
