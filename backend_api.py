@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 import logging
 from pathlib import Path
+import re
 from uuid import uuid4
 
 from fastapi import Body, FastAPI, File, Form, HTTPException, UploadFile
@@ -13,14 +14,14 @@ from fastapi.responses import FileResponse
 
 import config as cfg
 from src.analysis.analyzer import analyze_requirements
-from src.crawler.spider import crawl_docs_sync, fetch_sitemap_urls, filter_docs_urls, index_crawled_pages
-from src.knowledge_base.indexer import index_raw_texts
-from src.knowledge_base.store import get_persisted_vector_count, reset_vectorstore, search
+from src.managed_rag.client import retrieve_generate
 from src.models import AnalysisReport, Requirement, RequirementVerdict
 from src.parser.document_parser import parse_document
 from src.parser.requirement_extractor import extract_requirements
+from src.prompt_store import activate_prompt_version, create_prompt_version, list_prompts
 from src.report.generator import generate_markdown, save_docx, save_excel, save_markdown, save_pdf
 from src.runtime_config import apply_runtime_settings
+from src.llm.client import call_llm
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
@@ -90,119 +91,197 @@ def _report_from_dict(item: dict) -> AnalysisReport:
     )
 
 
-def _search_results_to_dict(results) -> list[dict]:
-    payload = []
-    for doc in results:
-        payload.append(
-            {
-                "content": doc.page_content,
-                "metadata": dict(doc.metadata),
-                "source": doc.metadata.get("url", doc.metadata.get("source", "unknown")),
-                "title": doc.metadata.get("title", ""),
-            }
+def _tokenize(text: str) -> set[str]:
+    return {token for token in re.findall(r"[A-Za-zА-Яа-яЁё0-9_-]{3,}", text.lower())}
+
+
+def _verdict_relevance(question: str, verdict: RequirementVerdict) -> tuple[int, float]:
+    q_tokens = _tokenize(question)
+    haystack = " ".join(
+        [
+            verdict.section or "",
+            verdict.requirement_text or "",
+            verdict.reasoning or "",
+            verdict.recommendation or "",
+            verdict.evidence or "",
+        ]
+    ).lower()
+    score = sum(1 for token in q_tokens if token in haystack)
+
+    section_refs = re.findall(r"\b\d+(?:\.\d+)+\b", question)
+    if section_refs and any(ref in (verdict.section or "") for ref in section_refs):
+        score += 6
+
+    verdict_rank = {
+        "mismatch": 0,
+        "needs_clarification": 1,
+        "partial": 2,
+        "match": 3,
+    }.get(verdict.verdict, 4)
+    return score, -verdict_rank + verdict.confidence
+
+
+def _requirement_relevance(question: str, req: Requirement) -> int:
+    q_tokens = _tokenize(question)
+    haystack = " ".join([req.section or "", req.text or "", req.tables or ""]).lower()
+    score = sum(1 for token in q_tokens if token in haystack)
+
+    section_refs = re.findall(r"\b\d+(?:\.\d+)+\b", question)
+    if section_refs and any(ref in (req.section or "") for ref in section_refs):
+        score += 6
+    return score
+
+
+def _build_analysis_chat_context(
+    question: str,
+    report: AnalysisReport,
+    requirements: list[Requirement],
+    search_mode: str,
+) -> tuple[str, list[str], list[str]]:
+    sorted_verdicts = sorted(
+        report.verdicts,
+        key=lambda verdict: _verdict_relevance(question, verdict),
+        reverse=True,
+    )
+    relevant_verdicts = [verdict for verdict in sorted_verdicts[:5] if _verdict_relevance(question, verdict)[0] > 0]
+    if not relevant_verdicts:
+        relevant_verdicts = sorted_verdicts[:3]
+
+    sorted_requirements = sorted(
+        requirements,
+        key=lambda req: _requirement_relevance(question, req),
+        reverse=True,
+    )
+    relevant_requirements = [req for req in sorted_requirements[:5] if _requirement_relevance(question, req) > 0]
+    if not relevant_requirements:
+        relevant_requirements = sorted_requirements[:3]
+
+    related_sections = list(
+        dict.fromkeys(
+            [verdict.section for verdict in relevant_verdicts if verdict.section]
+            + [req.section for req in relevant_requirements if req.section]
         )
-    return payload
+    )
+
+    source_urls: list[str] = []
+    verdict_lines = []
+    for verdict in relevant_verdicts:
+        source_urls.extend(verdict.source_urls)
+        verdict_lines.append(
+            "\n".join(
+                [
+                    f"Пункт ТЗ: {verdict.section or f'#{verdict.requirement_id}'}",
+                    f"Категория: {verdict.category}",
+                    f"Вердикт: {verdict.verdict}",
+                    f"Требование: {verdict.requirement_text}",
+                    f"Обоснование: {verdict.reasoning}",
+                    f"Рекомендация: {verdict.recommendation}",
+                    f"Источники: {', '.join(verdict.source_urls[:5]) if verdict.source_urls else 'нет'}",
+                ]
+            )
+        )
+
+    requirement_lines = []
+    for req in relevant_requirements:
+        requirement_lines.append(
+            "\n".join(
+                [
+                    f"Пункт ТЗ: {req.section or f'#{req.id}'}",
+                    f"Категория: {req.category}",
+                    f"Требование: {req.text}",
+                    f"Таблицы: {req.tables or 'нет'}",
+                ]
+            )
+        )
+
+    managed_rag_lines = []
+    try:
+        rag_result = retrieve_generate(question, number_of_results=5)
+        managed_rag_lines.append(rag_result.as_context())
+    except Exception as exc:
+        logger.warning("Managed RAG search for analysis chat failed: %s", exc)
+
+    context_parts = [
+        f"Документ: {report.document_name}",
+        f"Сводка анализа: {report.summary}",
+        "Релевантные выводы анализа:\n" + ("\n\n---\n\n".join(verdict_lines) if verdict_lines else "нет"),
+        "Релевантные требования ТЗ:\n" + ("\n\n---\n\n".join(requirement_lines) if requirement_lines else "нет"),
+        "Контекст Managed RAG:\n" + ("\n\n---\n\n".join(managed_rag_lines) if managed_rag_lines else "нет"),
+    ]
+
+    dedup_urls = list(dict.fromkeys([url for url in source_urls if url]))
+    return "\n\n".join(context_parts), related_sections[:10], dedup_urls[:15]
+
+
+ANALYSIS_CHAT_SYSTEM = """Ты — технический пресейл-ассистент Cloud.ru.
+Отвечай на вопросы только на основании переданного контекста: ТЗ, уже проведённого анализа, базы знаний и найденных источников.
+
+Правила ответа:
+- Отвечай по-русски.
+- Начинай с прямого ответа на вопрос.
+- Если вопрос связан с конкретным пунктом ТЗ, обязательно укажи номер/раздел этого пункта.
+- Если данных недостаточно, честно скажи, чего не хватает.
+- Не выдумывай документы, цифры или источники.
+- Если есть риск ошибки в анализе, прямо предложи, что именно перепроверить вручную.
+"""
+
+
+def _format_history(history: list[dict]) -> str:
+    lines = []
+    for item in history[-6:]:
+        question = str(item.get("question", "")).strip()
+        answer = str(item.get("answer", "")).strip()
+        if not question or not answer:
+            continue
+        lines.append(f"Вопрос: {question}\nОтвет: {answer}")
+    return "\n\n".join(lines) if lines else "нет"
 
 
 @app.get("/health")
-def healthcheck():
+async def healthcheck():
     return {
         "status": "ok",
         "provider": "foundation_models",
-        "vector_count": get_persisted_vector_count(),
+        "rag_provider": "managed_rag",
         "llm_model": cfg.OPENAI_MODEL,
-        "embedding_model": cfg.OPENAI_EMBEDDING_MODEL,
+        "managed_rag_kb_version": cfg.MANAGED_RAG_KB_VERSION,
     }
 
 
-@app.get("/kb/status")
-def knowledge_base_status():
-    count = get_persisted_vector_count()
-    return {
-        "index_exists": count > 0,
-        "vector_count": count,
-        "paths": {
-            "faiss_index": str(cfg.FAISS_INDEX_DIR),
-            "reports": str(cfg.REPORTS_DIR),
-        },
-    }
+@app.get("/prompts")
+def prompts_list():
+    return list_prompts()
 
 
-@app.post("/kb/reset")
-def knowledge_base_reset():
-    reset_vectorstore()
-    return {"ok": True, "vector_count": 0}
-
-
-@app.post("/kb/crawl")
-def knowledge_base_crawl(payload: dict = Body(...)):
-    apply_runtime_settings(payload.get("llm_settings"))
-
-    max_pages = int(payload.get("max_pages", cfg.CRAWL_MAX_PAGES))
-    concurrency = int(payload.get("concurrency", cfg.CRAWL_CONCURRENCY))
-
-    all_urls = fetch_sitemap_urls()
-    doc_urls = filter_docs_urls(all_urls)
-    total_urls = len(doc_urls) if max_pages == 0 else min(max_pages, len(doc_urls))
-
-    pages = crawl_docs_sync(
-        urls=doc_urls,
-        max_pages=max_pages,
-        concurrency=concurrency,
-    )
-    total_vectors = index_crawled_pages(pages)
-
-    return {
-        "ok": True,
-        "found_urls": len(doc_urls),
-        "crawled_urls": total_urls,
-        "indexed_pages": len(pages),
-        "vector_count": total_vectors,
-    }
-
-
-@app.post("/kb/index-files")
-async def knowledge_base_index_files(
-    files: list[UploadFile] = File(...),
-    llm_settings_json: str | None = Form(default=None),
-):
-    apply_runtime_settings(_parse_settings_json(llm_settings_json))
-
-    texts = []
-    file_summaries = []
-
-    for upload in files:
-        tmp_path = await _save_upload(upload, cfg.KNOWLEDGE_BASE_DIR)
-        suffix = tmp_path.suffix.lower()
-        if suffix in (".pdf", ".docx", ".doc"):
-            parsed = parse_document(tmp_path)
-            text = parsed.full_text
-        else:
-            text = tmp_path.read_text(encoding="utf-8", errors="replace")
-
-        texts.append({"text": text, "source": upload.filename or tmp_path.name, "filename": upload.filename or tmp_path.name})
-        file_summaries.append(
-            {
-                "filename": upload.filename or tmp_path.name,
-                "chars": len(text),
-            }
+@app.post("/prompts/version")
+def prompts_create_version(payload: dict = Body(...)):
+    prompt_key = str(payload.get("prompt_key", "")).strip()
+    content = str(payload.get("content", "")).strip()
+    if not prompt_key or not content:
+        raise HTTPException(status_code=400, detail="prompt_key and content are required")
+    try:
+        version = create_prompt_version(
+            prompt_key=prompt_key,
+            content=content,
+            label=str(payload.get("label", "")).strip() or None,
+            activate=bool(payload.get("activate", True)),
         )
+    except KeyError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+    return {"ok": True, "version": version, "prompts": list_prompts()}
 
-    total = index_raw_texts(texts)
-    return {"ok": True, "files": file_summaries, "vector_count": total}
 
-
-@app.post("/kb/search")
-def knowledge_base_search(payload: dict = Body(...)):
-    apply_runtime_settings(payload.get("llm_settings"))
-
-    query = str(payload.get("query", "")).strip()
-    if not query:
-        raise HTTPException(status_code=400, detail="Query is required")
-
-    k = int(payload.get("k", cfg.TOP_K_RESULTS))
-    results = search(query, k=k)
-    return {"results": _search_results_to_dict(results)}
+@app.post("/prompts/activate")
+def prompts_activate(payload: dict = Body(...)):
+    prompt_key = str(payload.get("prompt_key", "")).strip()
+    version_id = str(payload.get("version_id", "")).strip()
+    if not prompt_key or not version_id:
+        raise HTTPException(status_code=400, detail="prompt_key and version_id are required")
+    try:
+        prompt = activate_prompt_version(prompt_key, version_id)
+    except KeyError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+    return {"ok": True, "prompt": prompt, "prompts": list_prompts()}
 
 
 @app.post("/requirements/extract")
@@ -247,9 +326,66 @@ def analysis_report(payload: dict = Body(...)):
     report = analyze_requirements(
         requirements=requirements,
         document_name=str(payload.get("document_name", "document")),
-        search_mode=str(payload.get("search_mode", "rag")),
+        search_mode=str(payload.get("search_mode", "managed_rag")),
     )
     return report.to_dict()
+
+
+@app.post("/analysis/ask")
+def analysis_ask(payload: dict = Body(...)):
+    apply_runtime_settings(payload.get("llm_settings"))
+
+    question = str(payload.get("question", "")).strip()
+    if not question:
+        raise HTTPException(status_code=400, detail="Question is required")
+
+    report_payload = payload.get("report")
+    if not report_payload:
+        raise HTTPException(status_code=400, detail="Report is required")
+
+    report = _report_from_dict(report_payload)
+    requirements = [_requirement_from_dict(item) for item in payload.get("requirements", [])]
+    search_mode = str(payload.get("search_mode", "managed_rag"))
+    history = payload.get("history", [])
+    if not isinstance(history, list):
+        history = []
+
+    context, related_sections, source_urls = _build_analysis_chat_context(
+        question=question,
+        report=report,
+        requirements=requirements,
+        search_mode=search_mode,
+    )
+
+    prompt = f"""Вопрос пользователя:
+{question}
+
+История предыдущих вопросов по этому анализу:
+{_format_history(history)}
+
+Контекст анализа:
+{context}
+
+Сформируй краткий, но содержательный ответ.
+Если уместно, используй структуру:
+1. Короткий вывод
+2. Почему такой вывод
+3. Что перепроверить вручную
+4. На какие пункты ТЗ и источники опираться
+"""
+
+    answer = call_llm(
+        prompt,
+        system_prompt=ANALYSIS_CHAT_SYSTEM,
+        max_tokens=1800,
+        temperature=0.1,
+    )
+
+    return {
+        "answer": answer,
+        "related_sections": related_sections,
+        "source_urls": source_urls,
+    }
 
 
 @app.post("/reports/markdown")

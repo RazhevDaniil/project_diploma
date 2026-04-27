@@ -73,8 +73,12 @@ def extract_requirements(document_text: str, max_chunk_size: int = 6000) -> list
 
     for i, chunk in enumerate(chunks):
         logger.info("Extracting requirements from chunk %d/%d", i + 1, len(chunks))
-        prompt = EXTRACTION_PROMPT_TEMPLATE.format(document_text=chunk)
-        result = call_llm_json(prompt, system_prompt=EXTRACTION_SYSTEM_PROMPT, max_tokens=8000)
+        from src.prompt_store import get_prompt
+
+        prompt_template = get_prompt("parser_user_template")
+        system_prompt = get_prompt("parser_system")
+        prompt = prompt_template.format(document_text=chunk)
+        result = call_llm_json(prompt, system_prompt=system_prompt, max_tokens=8000)
 
         items = result if isinstance(result, list) else result.get("requirements", result.get("raw", []))
         if isinstance(items, str):

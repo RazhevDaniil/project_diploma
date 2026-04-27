@@ -10,11 +10,10 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./faiss_index:/app/faiss_index
-      - ./crawl_cache:/app/crawl_cache
       - ./uploads:/app/uploads
       - ./reports:/app/reports
-      - ./knowledge_base_data:/app/knowledge_base_data
+      - ./prompt_versions:/app/prompt_versions
+      - ./rag_cache:/app/rag_cache
 
   ui:
     build:
@@ -24,8 +23,14 @@ services:
     environment:
       BACKEND_API_URL: http://backend:8000
       OPENAI_API_BASE: ${OPENAI_API_BASE:-https://foundation-models.api.cloud.ru/v1}
-      OPENAI_MODEL: ${OPENAI_MODEL:-GigaChat/GigaChat-2-Max}
-      OPENAI_EMBEDDING_MODEL: ${OPENAI_EMBEDDING_MODEL:-BAAI/bge-m3}
+      OPENAI_MODEL: ${OPENAI_MODEL:-openai/gpt-oss-120b}
+      MANAGED_RAG_URL: ${MANAGED_RAG_URL:-https://e424a162-618c-4862-b789-b089abd81b46.managed-rag.inference.cloud.ru/api/v2/retrieve_generate}
+      MANAGED_RAG_KB_VERSION: ${MANAGED_RAG_KB_VERSION:-eb73eb63-ec91-47c9-851e-1c14949b7a14}
+      MANAGED_RAG_RESULTS: ${MANAGED_RAG_RESULTS:-2}
+      MANAGED_RAG_CONTEXT_CHUNKS: ${MANAGED_RAG_CONTEXT_CHUNKS:-3}
+      MANAGED_RAG_MAX_TOKENS: ${MANAGED_RAG_MAX_TOKENS:-256}
+      MANAGED_RAG_CONCURRENCY: ${MANAGED_RAG_CONCURRENCY:-4}
+      MANAGED_RAG_CACHE_ENABLED: ${MANAGED_RAG_CACHE_ENABLED:-true}
     depends_on:
       - backend
     restart: unless-stopped

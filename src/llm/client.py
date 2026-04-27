@@ -127,6 +127,35 @@ def call_llm_json(
     if result is not None:
         return result
 
+    repair_prompt = f"""Преобразуй следующий ответ модели в валидный JSON.
+
+Правила:
+- Верни только JSON без markdown и пояснений.
+- Не добавляй новые факты.
+- Сохрани все элементы и поля, которые можно восстановить из ответа.
+- Если ответ содержит список объектов, верни JSON-массив.
+- Если восстановить структуру невозможно, верни пустой JSON-массив [].
+
+Исходный ответ:
+---
+{raw}
+---
+"""
+    try:
+        repaired_raw = call_llm(
+            repair_prompt,
+            system_prompt="Ты исправляешь поврежденный JSON. Отвечай только валидным JSON.",
+            temperature=0,
+            max_tokens=max_tokens,
+            max_retries=2,
+        )
+        repaired = _extract_json(repaired_raw)
+        if repaired is not None:
+            logger.info("Successfully repaired LLM JSON response")
+            return repaired
+    except Exception as exc:
+        logger.warning("Failed to repair LLM JSON response: %s", exc)
+
     logger.warning("Failed to parse LLM JSON response, returning raw text")
     logger.debug("Raw LLM response: %s", raw[:500])
     return {"raw": raw}
