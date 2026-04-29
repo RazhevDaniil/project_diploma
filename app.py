@@ -208,6 +208,41 @@ def status_label(status: str) -> str:
     }.get(status or "", status or "Неизвестно")
 
 
+def platform_cell(assessment: dict) -> str:
+    symbol = {
+        "match": "+",
+        "partial": "±",
+        "mismatch": "-",
+        "needs_clarification": "?",
+    }.get(assessment.get("verdict"), "?")
+    refs = assessment.get("evidence_refs") or []
+    return f"{symbol} {', '.join(refs[:2])}".strip()
+
+
+def report_platform_matrix(report: dict) -> list[dict]:
+    platform_names = []
+    for verdict in report.get("verdicts", []):
+        for assessment in verdict.get("platform_assessments", []) or []:
+            name = assessment.get("platform_name") or "Не определено"
+            if name not in platform_names:
+                platform_names.append(name)
+
+    rows = []
+    for verdict in report.get("verdicts", []):
+        row = {
+            "Пункт ТЗ": verdict.get("section") or f"#{verdict.get('requirement_id')}",
+            "Требование": (verdict.get("requirement_text") or "")[:140],
+        }
+        by_platform = {
+            assessment.get("platform_name") or "Не определено": assessment
+            for assessment in verdict.get("platform_assessments", []) or []
+        }
+        for platform_name in platform_names:
+            row[platform_name] = platform_cell(by_platform[platform_name]) if platform_name in by_platform else "-"
+        rows.append(row)
+    return rows
+
+
 def render_run_status(run: dict):
     status = run.get("status", "unknown")
     stage = run.get("stage", "")
@@ -661,6 +696,27 @@ with tab_report:
         if report.get("summary"):
             st.markdown("### Резюме")
             st.markdown(report["summary"])
+
+        platform_matrix = report_platform_matrix(report)
+        if platform_matrix:
+            st.divider()
+            st.subheader("Матрица по платформам")
+            st.caption("`+` — соответствует, `±` — частично, `-` — не подтверждено, `?` — нужно уточнить. Сноски раскрыты в скачиваемом отчёте.")
+            st.dataframe(platform_matrix, use_container_width=True, hide_index=True)
+
+        external_items = [
+            verdict for verdict in report.get("verdicts", [])
+            if verdict.get("requires_external_service")
+        ]
+        if external_items:
+            with st.expander(f"Внешние услуги / подрядчики ({len(external_items)})"):
+                for verdict in external_items:
+                    st.markdown(
+                        f"**{verdict.get('section') or '#' + str(verdict.get('requirement_id'))}** — "
+                        f"{(verdict.get('requirement_text') or '')[:220]}"
+                    )
+                    if verdict.get("external_service_notes"):
+                        st.caption(verdict["external_service_notes"])
 
         st.divider()
 

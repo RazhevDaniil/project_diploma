@@ -15,7 +15,7 @@ from fastapi.responses import FileResponse
 import config as cfg
 from src.analysis.analyzer import analyze_requirements
 from src.managed_rag.client import retrieve_generate
-from src.models import AnalysisReport, Requirement, RequirementVerdict
+from src.models import AnalysisReport, PlatformAssessment, Requirement, RequirementVerdict
 from src.parser.document_parser import parse_document
 from src.parser.requirement_extractor import extract_requirements
 from src.prompt_store import activate_prompt_version, create_prompt_version, list_prompts
@@ -69,8 +69,32 @@ def _requirement_from_dict(item: dict) -> Requirement:
 
 
 def _report_from_dict(item: dict) -> AnalysisReport:
+    def _safe_bool(value) -> bool:
+        if isinstance(value, bool):
+            return value
+        if isinstance(value, str):
+            return value.strip().lower() in {"1", "true", "yes", "да", "нужно", "required"}
+        return bool(value)
+
     verdicts = []
     for verdict in item.get("verdicts", []):
+        platform_assessments = []
+        for platform_item in verdict.get("platform_assessments", []) or []:
+            if not isinstance(platform_item, dict):
+                continue
+            platform_assessments.append(
+                PlatformAssessment(
+                    platform_name=str(platform_item.get("platform_name", "") or "Не определено"),
+                    verdict=str(platform_item.get("verdict", "needs_clarification") or "needs_clarification"),
+                    confidence=float(platform_item.get("confidence", 0.0) or 0.0),
+                    reasoning=str(platform_item.get("reasoning", "") or ""),
+                    evidence_refs=[str(ref) for ref in platform_item.get("evidence_refs", []) or []],
+                    source_urls=[str(url) for url in platform_item.get("source_urls", []) or []],
+                    source_titles=[str(title) for title in platform_item.get("source_titles", []) or []],
+                    source_type=str(platform_item.get("source_type", "platform") or "platform"),
+                    recommendation=str(platform_item.get("recommendation", "") or ""),
+                )
+            )
         verdicts.append(
             RequirementVerdict(
                 requirement_id=int(verdict["requirement_id"]),
@@ -83,6 +107,9 @@ def _report_from_dict(item: dict) -> AnalysisReport:
                 evidence=str(verdict.get("evidence", "")),
                 recommendation=str(verdict.get("recommendation", "")),
                 source_urls=[str(url) for url in verdict.get("source_urls", [])],
+                platform_assessments=platform_assessments,
+                requires_external_service=_safe_bool(verdict.get("requires_external_service", False)),
+                external_service_notes=str(verdict.get("external_service_notes", "") or ""),
             )
         )
     return AnalysisReport(
@@ -168,6 +195,12 @@ def _build_analysis_chat_context(
     verdict_lines = []
     for verdict in relevant_verdicts:
         source_urls.extend(verdict.source_urls)
+        platform_lines = []
+        for assessment in verdict.platform_assessments:
+            platform_lines.append(
+                f"{assessment.platform_name} ({assessment.source_type}): "
+                f"{assessment.verdict}, {assessment.reasoning}"
+            )
         verdict_lines.append(
             "\n".join(
                 [
@@ -177,6 +210,8 @@ def _build_analysis_chat_context(
                     f"Требование: {verdict.requirement_text}",
                     f"Обоснование: {verdict.reasoning}",
                     f"Рекомендация: {verdict.recommendation}",
+                    "Оценка по платформам: " + ("; ".join(platform_lines) if platform_lines else "нет"),
+                    f"Внешние услуги/подрядчики: {verdict.external_service_notes if verdict.requires_external_service else 'нет'}",
                     f"Источники: {', '.join(verdict.source_urls[:5]) if verdict.source_urls else 'нет'}",
                 ]
             )

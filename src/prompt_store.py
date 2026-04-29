@@ -78,15 +78,24 @@ def _read_store() -> dict:
     changed = False
     prompts = store.setdefault("prompts", {})
     for key, definition in PROMPT_DEFINITIONS.items():
+        default_prompt = _default_store()["prompts"][key]
         if key not in prompts:
-            prompts[key] = _default_store()["prompts"][key]
+            prompts[key] = default_prompt
             changed = True
         else:
             prompts[key].setdefault("label", definition["label"])
             prompts[key].setdefault("active_version", "default")
             prompts[key].setdefault("versions", [])
             if not prompts[key]["versions"]:
-                prompts[key]["versions"].append(_default_store()["prompts"][key]["versions"][0])
+                prompts[key]["versions"].append(default_prompt["versions"][0])
+                changed = True
+            for version in prompts[key]["versions"]:
+                if version.get("id") == "default" and version.get("content") != definition["default_content"]:
+                    version["content"] = definition["default_content"]
+                    changed = True
+                    break
+            if not any(version.get("id") == "default" for version in prompts[key]["versions"]):
+                prompts[key]["versions"].insert(0, default_prompt["versions"][0])
                 changed = True
 
     if changed:
