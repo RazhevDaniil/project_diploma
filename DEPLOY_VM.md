@@ -55,6 +55,7 @@ BACKEND_API_URL=http://backend:8000
 OPENAI_API_BASE=https://foundation-models.api.cloud.ru/v1
 OPENAI_API_KEY=your_foundation_models_api_key_here
 OPENAI_MODEL=openai/gpt-oss-120b
+OPENAI_TEMPERATURE=0.05
 
 MANAGED_RAG_URL=https://e424a162-618c-4862-b789-b089abd81b46.managed-rag.inference.cloud.ru/api/v2/retrieve_generate
 MANAGED_RAG_KB_VERSION=eb73eb63-ec91-47c9-851e-1c14949b7a14
@@ -70,7 +71,7 @@ MANAGED_RAG_CACHE_ENABLED=true
 ## 5. Подготовить директории
 
 ```bash
-mkdir -p uploads reports prompt_versions rag_cache
+mkdir -p uploads reports runs prompt_versions rag_cache
 ```
 
 ## 6. Запустить

@@ -7,17 +7,19 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).parent
 UPLOAD_DIR = PROJECT_ROOT / "uploads"
 REPORTS_DIR = PROJECT_ROOT / "reports"
+RUNS_DIR = PROJECT_ROOT / "runs"
 PROMPT_VERSIONS_DIR = PROJECT_ROOT / "prompt_versions"
 PROMPT_STORE_PATH = PROMPT_VERSIONS_DIR / "prompts.json"
 MANAGED_RAG_CACHE_DIR = PROJECT_ROOT / "rag_cache"
 
-for d in [UPLOAD_DIR, REPORTS_DIR, PROMPT_VERSIONS_DIR, MANAGED_RAG_CACHE_DIR]:
+for d in [UPLOAD_DIR, REPORTS_DIR, RUNS_DIR, PROMPT_VERSIONS_DIR, MANAGED_RAG_CACHE_DIR]:
     d.mkdir(exist_ok=True)
 
 # Foundation Models API settings (OpenAI-compatible)
 OPENAI_API_BASE = os.getenv("OPENAI_API_BASE", "https://foundation-models.api.cloud.ru/v1")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
 OPENAI_MODEL = os.getenv("OPENAI_MODEL", "openai/gpt-oss-120b")
+OPENAI_TEMPERATURE = float(os.getenv("OPENAI_TEMPERATURE", "0.05"))
 
 # Cloud.ru Managed RAG settings
 MANAGED_RAG_URL = os.getenv(

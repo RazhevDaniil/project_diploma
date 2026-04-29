@@ -12,6 +12,7 @@ services:
     volumes:
       - ./uploads:/app/uploads
       - ./reports:/app/reports
+      - ./runs:/app/runs
       - ./prompt_versions:/app/prompt_versions
       - ./rag_cache:/app/rag_cache
 
@@ -24,6 +25,7 @@ services:
       BACKEND_API_URL: http://backend:8000
       OPENAI_API_BASE: ${OPENAI_API_BASE:-https://foundation-models.api.cloud.ru/v1}
       OPENAI_MODEL: ${OPENAI_MODEL:-openai/gpt-oss-120b}
+      OPENAI_TEMPERATURE: ${OPENAI_TEMPERATURE:-0.05}
       MANAGED_RAG_URL: ${MANAGED_RAG_URL:-https://e424a162-618c-4862-b789-b089abd81b46.managed-rag.inference.cloud.ru/api/v2/retrieve_generate}
       MANAGED_RAG_KB_VERSION: ${MANAGED_RAG_KB_VERSION:-eb73eb63-ec91-47c9-851e-1c14949b7a14}
       MANAGED_RAG_RESULTS: ${MANAGED_RAG_RESULTS:-2}

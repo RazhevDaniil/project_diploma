@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import os
+import time
 from urllib.parse import unquote
 
 import requests
@@ -30,12 +31,17 @@ def init_state():
         "analysis_qa_history": [],
         "analysis_question_input": "",
         "pending_analysis_question": None,
+        "selected_run_id": None,
+        "active_run": None,
+        "runs_list": [],
+        "auto_refresh_run": True,
         "last_backend_health": None,
         "last_prompts_payload": None,
         "backend_api_url": DEFAULT_BACKEND_API_URL,
         "openai_api_base": os.getenv("OPENAI_API_BASE", "https://foundation-models.api.cloud.ru/v1"),
         "openai_api_key": os.getenv("OPENAI_API_KEY", ""),
         "openai_model": os.getenv("OPENAI_MODEL", MODEL_OPTIONS["gpt-oss-120b"]),
+        "openai_temperature": float(os.getenv("OPENAI_TEMPERATURE", "0.05")),
         "managed_rag_url": os.getenv(
             "MANAGED_RAG_URL",
             "https://e424a162-618c-4862-b789-b089abd81b46.managed-rag.inference.cloud.ru/api/v2/retrieve_generate",
@@ -59,6 +65,7 @@ def llm_settings_payload() -> dict:
         "openai_api_base": st.session_state.openai_api_base,
         "openai_api_key": st.session_state.openai_api_key,
         "openai_model": st.session_state.openai_model,
+        "openai_temperature": st.session_state.openai_temperature,
         "managed_rag_url": st.session_state.managed_rag_url,
         "managed_rag_kb_version": st.session_state.managed_rag_kb_version,
         "managed_rag_api_key": st.session_state.managed_rag_api_key or st.session_state.openai_api_key,
@@ -155,6 +162,82 @@ def build_upload_files(uploaded_files) -> list:
     return payload
 
 
+def fetch_runs(limit: int = 50) -> list[dict]:
+    payload = api_get(f"/runs?limit={limit}", timeout=20)
+    return payload.get("runs", [])
+
+
+def fetch_run(run_id: str) -> dict:
+    return api_get(f"/runs/{run_id}", timeout=20)
+
+
+def load_run_into_state(run: dict):
+    previous_run_id = st.session_state.get("selected_run_id")
+    st.session_state.selected_run_id = run.get("id")
+    st.session_state.active_run = run
+    st.session_state.requirements = run.get("requirements") or None
+    st.session_state.parsed_files = run.get("parsed_files") or []
+    st.session_state.analysis_report = run.get("report")
+    st.session_state.analysis_search_mode = "managed_rag"
+    if previous_run_id != run.get("id"):
+        st.session_state.analysis_qa_history = []
+        st.session_state.downloads = {}
+        st.session_state.report_markdown = ""
+    elif not run.get("report"):
+        st.session_state.report_markdown = ""
+
+
+def reset_current_outputs():
+    st.session_state.analysis_report = None
+    st.session_state.requirements = None
+    st.session_state.parsed_files = []
+    st.session_state.report_markdown = ""
+    st.session_state.downloads = {}
+    st.session_state.analysis_qa_history = []
+
+
+def status_label(status: str) -> str:
+    return {
+        "created": "Создан",
+        "queued": "В очереди",
+        "extracting": "Извлечение требований",
+        "extracted": "Требования извлечены",
+        "analyzing": "Анализ требований",
+        "completed": "Готово",
+        "failed": "Ошибка",
+    }.get(status or "", status or "Неизвестно")
+
+
+def render_run_status(run: dict):
+    status = run.get("status", "unknown")
+    stage = run.get("stage", "")
+    done = int(run.get("progress_done") or 0)
+    total = int(run.get("progress_total") or 0)
+
+    if status == "failed":
+        st.error(f"{status_label(status)}: {run.get('error') or 'без деталей'}")
+    elif status in {"queued", "extracting", "analyzing"}:
+        st.info(f"{status_label(status)} · {stage}")
+    elif status == "completed":
+        st.success("Анализ завершён")
+    elif status == "extracted":
+        st.success("Требования извлечены, можно запускать анализ")
+    else:
+        st.caption(f"{status_label(status)} · {stage}")
+
+    if total > 0:
+        st.progress(min(max(done / total, 0.0), 1.0), text=f"{done}/{total}")
+
+
+def refresh_selected_run():
+    run_id = st.session_state.get("selected_run_id")
+    if not run_id:
+        return None
+    run = fetch_run(run_id)
+    load_run_into_state(run)
+    return run
+
+
 def fetch_report_markdown():
     report = st.session_state.analysis_report
     if not report:
@@ -247,6 +330,14 @@ with st.sidebar:
         st.session_state.openai_model = MODEL_OPTIONS["gpt-oss-120b"]
     model_index = model_values.index(st.session_state.openai_model) if st.session_state.openai_model in model_values else 0
     st.selectbox("LLM Model", model_values, index=model_index, key="openai_model", format_func=model_label)
+    st.slider(
+        "Температура LLM",
+        min_value=0.0,
+        max_value=1.0,
+        step=0.01,
+        key="openai_temperature",
+        help="Ниже — стабильнее и строже, выше — больше вариативности в формулировках.",
+    )
 
     st.divider()
 
@@ -260,11 +351,44 @@ with st.sidebar:
     st.number_input("Параллельность RAG", min_value=1, max_value=10, key="managed_rag_concurrency")
     st.checkbox("Кэшировать RAG-ответы", key="managed_rag_cache_enabled")
 
-tab_analyze, tab_prompts, tab_report = st.tabs(["📄 Анализ ТЗ", "✍️ Промпты", "📊 Отчёт"])
+if backend_health:
+    try:
+        st.session_state.runs_list = fetch_runs()
+        if st.session_state.selected_run_id:
+            refresh_selected_run()
+        elif st.session_state.runs_list:
+            latest_run = fetch_run(st.session_state.runs_list[0]["id"])
+            load_run_into_state(latest_run)
+    except Exception:
+        pass
+
+tab_analyze, tab_history, tab_prompts, tab_report = st.tabs(["📄 Анализ ТЗ", "🕘 История", "✍️ Промпты", "📊 Отчёт"])
 
 with tab_analyze:
     st.header("Загрузка и анализ ТЗ")
     st.caption("Проверка возможностей Cloud.ru выполняется через Managed RAG.")
+
+    active_run = st.session_state.active_run
+    if active_run:
+        st.subheader("Текущий запуск")
+        left, right = st.columns([3, 1])
+        with left:
+            st.markdown(
+                f"**{active_run.get('document_name', 'document')}**  \n"
+                f"`{active_run.get('id')}`  \n"
+                f"Обновлено: {active_run.get('updated_at', '')}"
+            )
+            render_run_status(active_run)
+        with right:
+            st.checkbox("Автообновлять", key="auto_refresh_run")
+            if st.button("Обновить статус", use_container_width=True):
+                try:
+                    refresh_selected_run()
+                    st.rerun()
+                except Exception as exc:
+                    show_request_error(exc)
+
+        st.divider()
 
     uploaded_files = st.file_uploader(
         "Загрузите ТЗ (PDF, DOCX, XLSX, TXT)",
@@ -279,54 +403,43 @@ with tab_analyze:
     col1, col2 = st.columns(2)
 
     with col1:
-        if st.button("1️⃣ Извлечь требования", disabled=not uploaded_files or not backend_health, use_container_width=True):
+        if st.button("1️⃣ Запустить извлечение", disabled=not uploaded_files or not backend_health, use_container_width=True):
             try:
-                with st.spinner("Извлечение требований через backend..."):
-                    result = api_post_files(
-                        "/requirements/extract",
+                with st.spinner("Создаю запуск на backend..."):
+                    run = api_post_files(
+                        "/runs/extract",
                         build_upload_files(uploaded_files),
                         {"llm_settings_json": json.dumps(llm_settings_payload(), ensure_ascii=False)},
-                        timeout=1800,
+                        timeout=120,
                     )
-                st.session_state.requirements = result.get("requirements", [])
-                st.session_state.parsed_files = result.get("files", [])
-                st.session_state.analysis_report = None
-                st.session_state.analysis_qa_history = []
-                st.session_state.report_markdown = ""
-                st.session_state.downloads = {}
-                st.success(f"Найдено {result.get('total_requirements', 0)} требований")
+                    reset_current_outputs()
+                    load_run_into_state(run)
+                st.success("Запуск создан. Извлечение продолжится на backend.")
+                st.rerun()
             except Exception as exc:
                 show_request_error(exc)
 
     with col2:
+        can_analyze = bool(st.session_state.requirements and st.session_state.selected_run_id)
+        current_status = (st.session_state.active_run or {}).get("status")
+        is_busy = current_status in {"queued", "extracting", "analyzing"}
         if st.button(
             "2️⃣ Запустить анализ",
-            disabled=not st.session_state.requirements or not backend_health,
+            disabled=not can_analyze or is_busy or not backend_health,
             use_container_width=True,
         ):
             try:
-                with st.spinner("Анализ требований..."):
-                    report = api_post_json(
-                        "/analysis/report",
-                        {
-                            "document_name": uploaded_files[0].name if uploaded_files else "document",
-                            "search_mode": "managed_rag",
-                            "requirements": st.session_state.requirements,
-                            "llm_settings": llm_settings_payload(),
-                        },
-                        timeout=3600,
+                with st.spinner("Ставлю анализ в очередь на backend..."):
+                    run = api_post_json(
+                        f"/runs/{st.session_state.selected_run_id}/analysis",
+                        {"llm_settings": llm_settings_payload()},
+                        timeout=60,
                     )
-                    st.session_state.analysis_report = report
-                    st.session_state.analysis_search_mode = "managed_rag"
+                    load_run_into_state(run)
                     st.session_state.analysis_qa_history = []
                     st.session_state.downloads = {}
-                    fetch_report_markdown()
-                st.success(
-                    "Анализ завершён! "
-                    f"Соответствие: {report.get('compliance_percentage', 0)}% "
-                    f"({report.get('score', 0)}/{report.get('max_score', 0)} баллов)"
-                )
-                st.balloons()
+                st.success("Анализ запущен. Можно обновлять страницу и возвращаться позже.")
+                st.rerun()
             except Exception as exc:
                 show_request_error(exc)
 
@@ -363,6 +476,56 @@ with tab_analyze:
                 if req.get("tables"):
                     st.markdown("**Таблица:**")
                     st.markdown(req["tables"])
+
+    active_run = st.session_state.active_run
+    if (
+        active_run
+        and st.session_state.auto_refresh_run
+        and active_run.get("status") in {"queued", "extracting", "analyzing"}
+    ):
+        time.sleep(3)
+        st.rerun()
+
+with tab_history:
+    st.header("История запусков")
+    st.caption("Здесь можно вернуться к прошлым обработкам даже после обновления или закрытия страницы.")
+
+    if not backend_health:
+        st.info("Backend недоступен")
+    else:
+        if st.button("Обновить историю"):
+            try:
+                st.session_state.runs_list = fetch_runs()
+            except Exception as exc:
+                show_request_error(exc)
+
+        runs = st.session_state.runs_list or []
+        if not runs:
+            st.info("История пока пустая")
+        else:
+            for run_info in runs:
+                cols = st.columns([3, 1.3, 1.2, 1])
+                with cols[0]:
+                    st.markdown(
+                        f"**{run_info.get('document_name', 'document')}**  \n"
+                        f"`{run_info.get('id')}`"
+                    )
+                    if run_info.get("error"):
+                        st.caption(run_info["error"])
+                with cols[1]:
+                    st.markdown(status_label(run_info.get("status", "")))
+                    st.caption(run_info.get("updated_at", ""))
+                with cols[2]:
+                    st.metric("Требований", run_info.get("total_requirements", 0))
+                with cols[3]:
+                    if st.button("Открыть", key=f"open_run_{run_info.get('id')}", use_container_width=True):
+                        try:
+                            run = fetch_run(run_info["id"])
+                            load_run_into_state(run)
+                            st.rerun()
+                        except Exception as exc:
+                            show_request_error(exc)
+                st.divider()
 
 with tab_prompts:
     st.header("Промпты")

@@ -49,7 +49,7 @@ def _call_foundation_models(
 def call_llm(
     prompt: str,
     system_prompt: Optional[str] = None,
-    temperature: float = 0.05,
+    temperature: float | None = None,
     max_tokens: int = 4096,
     max_retries: int = 3,
 ) -> str:
@@ -58,10 +58,11 @@ def call_llm(
 
     for attempt in range(1, max_retries + 1):
         try:
+            effective_temperature = cfg.OPENAI_TEMPERATURE if temperature is None else temperature
             response = _call_foundation_models(
                 prompt=prompt,
                 system_prompt=system_prompt,
-                temperature=temperature,
+                temperature=effective_temperature,
                 max_tokens=max_tokens,
             )
             time.sleep(1)
@@ -117,7 +118,7 @@ def _extract_json(text: str) -> dict | list | None:
 def call_llm_json(
     prompt: str,
     system_prompt: Optional[str] = None,
-    temperature: float = 0.1,
+    temperature: float | None = None,
     max_tokens: int = 4096,
 ) -> dict | list:
     """Call LLM and parse the response as JSON."""

@@ -8,7 +8,7 @@ from pathlib import Path
 import re
 from uuid import uuid4
 
-from fastapi import Body, FastAPI, File, Form, HTTPException, UploadFile
+from fastapi import BackgroundTasks, Body, FastAPI, File, Form, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 
@@ -21,6 +21,7 @@ from src.parser.requirement_extractor import extract_requirements
 from src.prompt_store import activate_prompt_version, create_prompt_version, list_prompts
 from src.report.generator import generate_markdown, save_docx, save_excel, save_markdown, save_pdf
 from src.runtime_config import apply_runtime_settings
+from src.run_store import create_run, get_run, list_runs, update_run
 from src.llm.client import call_llm
 
 logger = logging.getLogger(__name__)
@@ -237,6 +238,94 @@ def _format_history(history: list[dict]) -> str:
     return "\n\n".join(lines) if lines else "нет"
 
 
+def _run_extract_requirements(run_id: str, uploads: list[dict], settings: dict | None) -> None:
+    try:
+        apply_runtime_settings(settings)
+        update_run(
+            run_id,
+            status="extracting",
+            stage="extracting_requirements",
+            progress_done=0,
+            progress_total=len(uploads),
+            error="",
+        )
+
+        all_requirements = []
+        parsed_files = []
+        for index, item in enumerate(uploads, start=1):
+            path = Path(item["path"])
+            parsed = parse_document(path)
+            requirements = extract_requirements(parsed.full_text)
+            all_requirements.extend(requirements)
+            parsed_files.append(
+                {
+                    "filename": item.get("filename") or path.name,
+                    "text_chars": len(parsed.text),
+                    "table_count": len(parsed.tables),
+                    "requirements_found": len(requirements),
+                }
+            )
+            update_run(
+                run_id,
+                parsed_files=parsed_files,
+                requirements=[req.to_dict() for req in all_requirements],
+                progress_done=index,
+            )
+
+        update_run(
+            run_id,
+            status="extracted",
+            stage="requirements_ready",
+            parsed_files=parsed_files,
+            requirements=[req.to_dict() for req in all_requirements],
+            progress_done=len(uploads),
+            progress_total=len(uploads),
+            error="",
+        )
+    except Exception as exc:
+        logger.exception("Run %s extraction failed", run_id)
+        update_run(run_id, status="failed", stage="extract_failed", error=str(exc))
+
+
+def _run_analyze_requirements(run_id: str, settings: dict | None) -> None:
+    try:
+        apply_runtime_settings(settings)
+        run = get_run(run_id)
+        if not run:
+            return
+        requirements = [_requirement_from_dict(item) for item in run.get("requirements", [])]
+        update_run(
+            run_id,
+            status="analyzing",
+            stage="analysis_running",
+            progress_done=0,
+            progress_total=len(requirements),
+            error="",
+        )
+
+        def progress(done: int, total: int) -> None:
+            update_run(run_id, progress_done=done, progress_total=total)
+
+        report = analyze_requirements(
+            requirements=requirements,
+            document_name=str(run.get("document_name", "document")),
+            search_mode="managed_rag",
+            progress_callback=progress,
+        )
+        update_run(
+            run_id,
+            status="completed",
+            stage="analysis_completed",
+            report=report.to_dict(),
+            progress_done=len(requirements),
+            progress_total=len(requirements),
+            error="",
+        )
+    except Exception as exc:
+        logger.exception("Run %s analysis failed", run_id)
+        update_run(run_id, status="failed", stage="analysis_failed", error=str(exc))
+
+
 @app.get("/health")
 async def healthcheck():
     return {
@@ -244,6 +333,7 @@ async def healthcheck():
         "provider": "foundation_models",
         "rag_provider": "managed_rag",
         "llm_model": cfg.OPENAI_MODEL,
+        "llm_temperature": cfg.OPENAI_TEMPERATURE,
         "managed_rag_kb_version": cfg.MANAGED_RAG_KB_VERSION,
     }
 
@@ -282,6 +372,74 @@ def prompts_activate(payload: dict = Body(...)):
     except KeyError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
     return {"ok": True, "prompt": prompt, "prompts": list_prompts()}
+
+
+@app.get("/runs")
+def runs_list(limit: int = 50):
+    return {"runs": list_runs(limit=limit)}
+
+
+@app.get("/runs/{run_id}")
+def runs_get(run_id: str):
+    run = get_run(run_id)
+    if not run:
+        raise HTTPException(status_code=404, detail=f"Run not found: {run_id}")
+    return run
+
+
+@app.post("/runs/extract")
+async def runs_start_extract(
+    background_tasks: BackgroundTasks,
+    files: list[UploadFile] = File(...),
+    llm_settings_json: str | None = Form(default=None),
+):
+    settings = _parse_settings_json(llm_settings_json) or {}
+    saved_files = []
+    for upload in files:
+        tmp_path = await _save_upload(upload, cfg.UPLOAD_DIR)
+        saved_files.append(
+            {
+                "filename": upload.filename or tmp_path.name,
+                "path": str(tmp_path),
+                "size": tmp_path.stat().st_size,
+            }
+        )
+
+    document_name = saved_files[0]["filename"] if saved_files else "document"
+    run = create_run(document_name=document_name, files=saved_files, settings=settings)
+    update_run(
+        run["id"],
+        status="queued",
+        stage="extract_queued",
+        progress_done=0,
+        progress_total=len(saved_files),
+    )
+    background_tasks.add_task(_run_extract_requirements, run["id"], saved_files, settings)
+    return get_run(run["id"])
+
+
+@app.post("/runs/{run_id}/analysis")
+def runs_start_analysis(run_id: str, background_tasks: BackgroundTasks, payload: dict = Body(...)):
+    run = get_run(run_id)
+    if not run:
+        raise HTTPException(status_code=404, detail=f"Run not found: {run_id}")
+    if not run.get("requirements"):
+        raise HTTPException(status_code=400, detail="Run has no extracted requirements")
+    if run.get("status") in {"extracting", "analyzing", "queued"}:
+        return run
+
+    settings = payload.get("llm_settings") or run.get("settings") or {}
+    update_run(
+        run_id,
+        status="queued",
+        stage="analysis_queued",
+        settings=settings,
+        progress_done=0,
+        progress_total=len(run.get("requirements", [])),
+        error="",
+    )
+    background_tasks.add_task(_run_analyze_requirements, run_id, settings)
+    return get_run(run_id)
 
 
 @app.post("/requirements/extract")
@@ -378,7 +536,6 @@ def analysis_ask(payload: dict = Body(...)):
         prompt,
         system_prompt=ANALYSIS_CHAT_SYSTEM,
         max_tokens=1800,
-        temperature=0.1,
     )
 
     return {

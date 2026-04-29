@@ -19,6 +19,7 @@ def apply_runtime_settings(settings: dict | None) -> None:
         "openai_api_base": "OPENAI_API_BASE",
         "openai_api_key": "OPENAI_API_KEY",
         "openai_model": "OPENAI_MODEL",
+        "openai_temperature": "OPENAI_TEMPERATURE",
         "managed_rag_url": "MANAGED_RAG_URL",
         "managed_rag_kb_version": "MANAGED_RAG_KB_VERSION",
         "managed_rag_api_key": "MANAGED_RAG_API_KEY",

@@ -41,6 +41,7 @@ BACKEND_API_URL=http://backend:8000
 OPENAI_API_BASE=https://foundation-models.api.cloud.ru/v1
 OPENAI_API_KEY=your_foundation_models_api_key_here
 OPENAI_MODEL=openai/gpt-oss-120b
+OPENAI_TEMPERATURE=0.05
 
 MANAGED_RAG_URL=https://e424a162-618c-4862-b789-b089abd81b46.managed-rag.inference.cloud.ru/api/v2/retrieve_generate
 MANAGED_RAG_KB_VERSION=eb73eb63-ec91-47c9-851e-1c14949b7a14
@@ -62,6 +63,8 @@ MANAGED_RAG_CACHE_ENABLED=true
 3. Нажмите «Извлечь требования».
 4. Нажмите «Запустить анализ».
 5. На вкладке «Отчёт» посмотрите оценку и summary, затем скачайте полный отчет.
+
+Состояние обработки сохраняется в `runs/`: после обновления страницы UI подхватит текущий запуск, а на вкладке «История» можно открыть прошлые результаты.
 
 ## Промпты
 
@@ -101,6 +104,8 @@ project_diploma/
 │   ├── report/
 │   └── prompt_store.py
 ├── prompt_versions/
+├── runs/
+├── rag_cache/
 ├── uploads/
 └── reports/
 ```
