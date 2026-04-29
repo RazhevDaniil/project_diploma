@@ -49,7 +49,7 @@ def _call_foundation_models(
 def call_llm(
     prompt: str,
     system_prompt: Optional[str] = None,
-    temperature: float = 0.05,
+    temperature: float | None = None,
     max_tokens: int = 4096,
     max_retries: int = 3,
 ) -> str:
@@ -58,10 +58,11 @@ def call_llm(
 
     for attempt in range(1, max_retries + 1):
         try:
+            effective_temperature = cfg.OPENAI_TEMPERATURE if temperature is None else temperature
             response = _call_foundation_models(
                 prompt=prompt,
                 system_prompt=system_prompt,
-                temperature=temperature,
+                temperature=effective_temperature,
                 max_tokens=max_tokens,
             )
             time.sleep(1)
@@ -117,7 +118,7 @@ def _extract_json(text: str) -> dict | list | None:
 def call_llm_json(
     prompt: str,
     system_prompt: Optional[str] = None,
-    temperature: float = 0.1,
+    temperature: float | None = None,
     max_tokens: int = 4096,
 ) -> dict | list:
     """Call LLM and parse the response as JSON."""
@@ -126,6 +127,35 @@ def call_llm_json(
     result = _extract_json(raw)
     if result is not None:
         return result
+
+    repair_prompt = f"""Преобразуй следующий ответ модели в валидный JSON.
+
+Правила:
+- Верни только JSON без markdown и пояснений.
+- Не добавляй новые факты.
+- Сохрани все элементы и поля, которые можно восстановить из ответа.
+- Если ответ содержит список объектов, верни JSON-массив.
+- Если восстановить структуру невозможно, верни пустой JSON-массив [].
+
+Исходный ответ:
+---
+{raw}
+---
+"""
+    try:
+        repaired_raw = call_llm(
+            repair_prompt,
+            system_prompt="Ты исправляешь поврежденный JSON. Отвечай только валидным JSON.",
+            temperature=0,
+            max_tokens=max_tokens,
+            max_retries=2,
+        )
+        repaired = _extract_json(repaired_raw)
+        if repaired is not None:
+            logger.info("Successfully repaired LLM JSON response")
+            return repaired
+    except Exception as exc:
+        logger.warning("Failed to repair LLM JSON response: %s", exc)
 
     logger.warning("Failed to parse LLM JSON response, returning raw text")
     logger.debug("Raw LLM response: %s", raw[:500])

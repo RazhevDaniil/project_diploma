@@ -1,39 +1,14 @@
-# Деплой на виртуальную машину Cloud.ru
+# Деплой на VM Cloud.ru
 
-Ниже сценарий для Ubuntu 22.04+, если проект хранится в GitHub, а UI и backend запускаются через Docker Compose.
+Сценарий для Ubuntu 22.04+ и Docker Compose.
 
-## 1. Подготовить репозиторий локально
-
-Проверьте, что в Git не попадают:
-
-- `.env`
-- `venv/`
-- `crawl_cache/`
-- `uploads/`
-- `reports/`
-- `faiss_index/`
-
-Важно: `faiss_index/index.faiss` обычно больше лимита GitHub на обычные файлы. Эту папку лучше переносить отдельно через `rsync` или пересобирать на VM.
-
-## 2. Запушить код в GitHub
-
-```bash
-cd /Users/daniil/Desktop/project_diploma
-git init
-git add .
-git commit -m "Add dockerized backend and UI"
-git branch -M main
-git remote add origin https://github.com/<username>/<repo>.git
-git push -u origin main
-```
-
-## 3. Подключиться к VM
+## 1. Подключиться
 
 ```bash
 ssh user1@82.202.136.67
 ```
 
-## 4. Установить Docker и Compose plugin
+## 2. Установить Docker
 
 ```bash
 sudo apt update
@@ -43,115 +18,86 @@ sudo install -m 0755 -d /etc/apt/keyrings
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 sudo chmod a+r /etc/apt/keyrings/docker.gpg
 
-echo \
-  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-  $(. /etc/os-release && echo \"$VERSION_CODENAME\") stable" | \
-  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
 sudo apt update
 sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 sudo usermod -aG docker $USER
 ```
 
-После установки переподключитесь:
+Переподключиться:
 
 ```bash
 exit
 ssh user1@82.202.136.67
 ```
 
-Проверка:
+## 3. Забрать проект
 
 ```bash
-docker --version
-docker compose version
+git clone https://github.com/RazhevDaniil/project_diploma.git
+cd project_diploma
+git checkout version_wno_rag
 ```
 
-## 5. Склонировать проект
-
-```bash
-git clone https://github.com/<username>/<repo>.git
-cd <repo>
-```
-
-## 6. Создать `.env`
+## 4. Создать `.env`
 
 ```bash
 cp .env.example .env
 nano .env
 ```
 
-Минимальный пример:
+Минимально:
 
 ```env
 BACKEND_API_URL=http://backend:8000
+
 OPENAI_API_BASE=https://foundation-models.api.cloud.ru/v1
-OPENAI_API_KEY=ваш_api_key
-OPENAI_MODEL=GigaChat/GigaChat-2-Max
-OPENAI_EMBEDDING_MODEL=BAAI/bge-m3
-CHUNK_SIZE=500
-CHUNK_OVERLAP=80
-TOP_K_RESULTS=5
-CRAWL_MAX_PAGES=0
-CRAWL_CONCURRENCY=10
-CRAWL_DELAY=0.2
+OPENAI_API_KEY=your_foundation_models_api_key_here
+OPENAI_MODEL=openai/gpt-oss-120b
+OPENAI_TEMPERATURE=0.05
+
+MANAGED_RAG_URL=https://e424a162-618c-4862-b789-b089abd81b46.managed-rag.inference.cloud.ru/api/v2/retrieve_generate
+MANAGED_RAG_KB_VERSION=eb73eb63-ec91-47c9-851e-1c14949b7a14
+MANAGED_RAG_API_KEY=your_managed_rag_api_key_here
+MANAGED_RAG_RESULTS=2
+MANAGED_RAG_CONTEXT_CHUNKS=3
+MANAGED_RAG_MAX_TOKENS=256
+MANAGED_RAG_TEMPERATURE=0.01
+MANAGED_RAG_CONCURRENCY=4
+MANAGED_RAG_CACHE_ENABLED=true
 ```
 
-## 7. Подготовить директории данных
+## 5. Подготовить директории
 
 ```bash
-mkdir -p faiss_index crawl_cache uploads reports knowledge_base_data
+mkdir -p uploads reports runs prompt_versions rag_cache
 ```
 
-## 8. Вариант A: перенести готовый `faiss_index` с локальной машины
-
-На локальной машине:
-
-```bash
-rsync -az --progress \
-  /Users/daniil/Desktop/project_diploma/faiss_index/ \
-  user1@82.202.136.67:/home/user1/<repo>/faiss_index/
-```
-
-Если индекс уже готов, это самый быстрый путь.
-
-Если вы меняли `OPENAI_EMBEDDING_MODEL`, старый `faiss_index/` переносить не нужно: его надо пересобрать заново, потому что векторы разных embedding-моделей несовместимы.
-
-## 9. Вариант B: собрать индекс уже на VM
-
-Если папку `faiss_index/` не переносите, после запуска контейнеров заполните базу знаний через UI на вкладке «База знаний».
-
-## 10. Собрать и запустить сервисы
+## 6. Запустить
 
 ```bash
 docker compose up -d --build
-```
-
-Проверить статус:
-
-```bash
 docker compose ps
-docker compose logs -f backend
-docker compose logs -f ui
+curl http://127.0.0.1:8000/health
 ```
 
-## 11. Открыть сервисы
+## 7. Открыть UI
 
-Если security group разрешает входящий трафик:
+В Cloud.ru security group откройте входящий TCP `8501`, затем:
 
-- UI: `http://82.202.136.67:8501`
-- Backend health: `http://82.202.136.67:8000/health`
+```text
+http://82.202.136.67:8501
+```
 
-Для постоянного доступа лучше завернуть UI в nginx.
+Для нормального доступа лучше открыть только `80` и поставить nginx.
 
-## 12. Настроить nginx как reverse proxy
+## 8. Nginx
 
 ```bash
 sudo apt install -y nginx
 sudo nano /etc/nginx/sites-available/tz-analyzer
 ```
-
-Вставьте:
 
 ```nginx
 server {
@@ -174,58 +120,30 @@ server {
 }
 ```
 
-Активировать:
-
 ```bash
-sudo ln -s /etc/nginx/sites-available/tz-analyzer /etc/nginx/sites-enabled/tz-analyzer
+sudo ln -sf /etc/nginx/sites-available/tz-analyzer /etc/nginx/sites-enabled/tz-analyzer
 sudo nginx -t
 sudo systemctl reload nginx
 ```
 
-После этого UI будет доступен по адресу:
+Открыть в Cloud.ru TCP `80`, затем зайти:
 
 ```text
 http://82.202.136.67
 ```
 
-## 13. Открыть порты в Cloud.ru
-
-Обычно достаточно:
-
-- `22/tcp` — SSH
-- `80/tcp` — nginx
-
-Временный вариант для диагностики:
-
-- `8501/tcp` — Streamlit UI
-- `8000/tcp` — backend API
-
-Для production лучше оставить наружу только `80`, а потом добавить `443`.
-
-## 14. Обновление после нового push
-
-На VM:
+## 9. Обновление
 
 ```bash
-cd /home/user1/<repo>
+cd ~/project_diploma
 git pull
 docker compose up -d --build
 ```
 
-## 15. Если база знаний пустая
+## 10. Проверка
 
-Есть два пути:
-
-1. Перенести готовую `faiss_index/` с локальной машины.
-2. Зайти в UI и запустить краулинг на вкладке «База знаний».
-
-Для этой VM быстрее и надёжнее обычно перенос готового индекса.
-
-## 16. Что проверить после деплоя
-
-1. Открывается UI.
-2. `http://127.0.0.1:8000/health` отвечает на VM.
-3. В UI видно количество векторов.
-4. Загружается тестовый `.txt` или `.docx`.
-5. Проходит извлечение требований.
-6. Скачиваются отчёты в MD/DOCX/PDF/XLSX.
+```bash
+docker compose ps
+docker compose logs -f backend
+curl http://127.0.0.1:8000/health
+```

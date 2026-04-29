@@ -6,6 +6,9 @@ faiss_index/
 crawl_cache/
 uploads/
 reports/
+runs/
+prompt_versions/
+rag_cache/
 *.egg-info/
 .DS_Store
 *.log
