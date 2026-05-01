@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import json
 import os
-import time
 from urllib.parse import unquote
 
 import requests
@@ -180,6 +179,10 @@ def fetch_run(run_id: str) -> dict:
     return api_get(f"/runs/{run_id}", timeout=20)
 
 
+def fetch_run_status(run_id: str) -> dict:
+    return api_get(f"/runs/{run_id}/status", timeout=5)
+
+
 def load_run_into_state(run: dict):
     previous_run_id = st.session_state.get("selected_run_id")
     st.session_state.selected_run_id = run.get("id")
@@ -194,6 +197,18 @@ def load_run_into_state(run: dict):
         st.session_state.report_markdown = ""
     elif not run.get("report"):
         st.session_state.report_markdown = ""
+
+
+def load_run_status_into_state(status_payload: dict):
+    current = st.session_state.active_run or {}
+    previous_status = current.get("status")
+    merged = {**current, **status_payload}
+    st.session_state.active_run = merged
+    if status_payload.get("status") in {"extracted", "completed", "failed"} and previous_status != status_payload.get("status"):
+        full_run = fetch_run(status_payload["id"])
+        load_run_into_state(full_run)
+        return True
+    return False
 
 
 def reset_current_outputs():
@@ -326,6 +341,40 @@ def refresh_selected_run():
     return run
 
 
+def refresh_selected_run_status():
+    run_id = st.session_state.get("selected_run_id")
+    if not run_id:
+        return None
+    status_payload = fetch_run_status(run_id)
+    full_refreshed = load_run_status_into_state(status_payload)
+    return {"status": status_payload, "full_refreshed": full_refreshed}
+
+
+def render_current_run_panel():
+    active_run = st.session_state.active_run
+    if not active_run:
+        return
+
+    st.subheader("Текущий запуск")
+    left, right = st.columns([3, 1])
+    with left:
+        st.markdown(
+            f"**{active_run.get('document_name', 'document')}**  \n"
+            f"`{active_run.get('id')}`  \n"
+            f"Обновлено: {active_run.get('updated_at', '')}"
+        )
+        render_run_status(active_run)
+    with right:
+        st.checkbox("Автообновлять", key="auto_refresh_run")
+        if st.button("Обновить статус", use_container_width=True, key="refresh_run_status"):
+            try:
+                refresh_result = refresh_selected_run_status()
+                if refresh_result and refresh_result.get("full_refreshed"):
+                    st.rerun()
+            except Exception as exc:
+                show_request_error(exc)
+
+
 def fetch_report_markdown():
     report = st.session_state.analysis_report
     if not report:
@@ -426,6 +475,74 @@ def render_download_controls():
             )
 
 
+def render_analysis_chat(report: dict):
+    st.subheader("Задать вопрос по анализу")
+    st.caption("Можно переспросить по конкретному пункту ТЗ, по спорному вердикту или по источникам Managed RAG.")
+
+    apply_pending_analysis_question()
+
+    suggested_questions = [
+        "Почему этот пункт признан несоответствием?",
+        "Что именно нужно перепроверить вручную в этом ТЗ?",
+        "Какие 3 самых рискованных пункта в этом анализе?",
+    ]
+    cols = st.columns(len(suggested_questions))
+    for idx, question in enumerate(suggested_questions):
+        if cols[idx].button(question, key=f"suggested_question_{idx}", use_container_width=True):
+            st.session_state.pending_analysis_question = question
+            st.rerun()
+
+    st.text_area(
+        "Вопрос по анализу",
+        key="analysis_question_input",
+        height=100,
+        placeholder="Например: Почему пункт 7.2.4 отмечен как несоответствие и на какие источники вы опирались?",
+    )
+
+    if st.button("Спросить", disabled=not st.session_state.analysis_question_input.strip(), use_container_width=True):
+        try:
+            current_question = st.session_state.analysis_question_input.strip()
+            with st.spinner("Готовлю ответ по контексту ТЗ, анализа и Managed RAG..."):
+                answer = api_post_json(
+                    "/analysis/ask",
+                    {
+                        "question": current_question,
+                        "report": report,
+                        "requirements": st.session_state.requirements or [],
+                        "search_mode": st.session_state.analysis_search_mode,
+                        "history": st.session_state.analysis_qa_history,
+                        "llm_settings": llm_settings_payload(),
+                    },
+                    timeout=3600,
+                )
+            st.session_state.analysis_qa_history.append(
+                {
+                    "question": current_question,
+                    "answer": answer.get("answer", ""),
+                    "related_sections": answer.get("related_sections", []),
+                    "source_urls": answer.get("source_urls", []),
+                }
+            )
+            st.session_state.pending_analysis_question = ""
+            st.rerun()
+        except Exception as exc:
+            show_request_error(exc)
+
+    if st.session_state.analysis_qa_history:
+        for idx, item in enumerate(reversed(st.session_state.analysis_qa_history), start=1):
+            with st.expander(
+                f"Вопрос {len(st.session_state.analysis_qa_history) - idx + 1}: {item['question']}",
+                expanded=(idx == 1),
+            ):
+                st.markdown(item["answer"])
+                if item.get("related_sections"):
+                    st.caption("Связанные пункты ТЗ: " + ", ".join(item["related_sections"]))
+                if item.get("source_urls"):
+                    st.markdown("**Источники:**")
+                    for url in item["source_urls"]:
+                        st.markdown(f"- [{url}]({url})")
+
+
 def show_request_error(exc: Exception):
     detail = str(exc)
     response = getattr(exc, "response", None)
@@ -440,6 +557,26 @@ def show_request_error(exc: Exception):
 
 st.set_page_config(page_title="Cloud.ru — Анализ ТЗ", page_icon="☁️", layout="wide")
 init_state()
+
+if hasattr(st, "fragment"):
+    @st.fragment(run_every="3s")
+    def render_live_run_panel():
+        active_run = st.session_state.active_run or {}
+        if (
+            st.session_state.get("selected_run_id")
+            and st.session_state.get("auto_refresh_run")
+            and active_run.get("status") in {"queued", "extracting", "analyzing"}
+        ):
+            try:
+                refresh_result = refresh_selected_run_status()
+                if refresh_result and refresh_result.get("full_refreshed"):
+                    st.rerun()
+            except Exception:
+                pass
+        render_current_run_panel()
+else:
+    def render_live_run_panel():
+        render_current_run_panel()
 
 backend_health = None
 backend_error = None
@@ -511,10 +648,11 @@ with st.sidebar:
 
 if backend_health:
     try:
-        st.session_state.runs_list = fetch_runs()
         if st.session_state.selected_run_id:
-            refresh_selected_run()
-        elif st.session_state.runs_list:
+            refresh_selected_run_status()
+        else:
+            st.session_state.runs_list = fetch_runs()
+        if not st.session_state.selected_run_id and st.session_state.runs_list:
             latest_run = fetch_run(st.session_state.runs_list[0]["id"])
             load_run_into_state(latest_run)
     except Exception:
@@ -526,26 +664,8 @@ with tab_analyze:
     st.header("Загрузка и анализ ТЗ")
     st.caption("Проверка возможностей Cloud.ru выполняется через Managed RAG.")
 
-    active_run = st.session_state.active_run
-    if active_run:
-        st.subheader("Текущий запуск")
-        left, right = st.columns([3, 1])
-        with left:
-            st.markdown(
-                f"**{active_run.get('document_name', 'document')}**  \n"
-                f"`{active_run.get('id')}`  \n"
-                f"Обновлено: {active_run.get('updated_at', '')}"
-            )
-            render_run_status(active_run)
-        with right:
-            st.checkbox("Автообновлять", key="auto_refresh_run")
-            if st.button("Обновить статус", use_container_width=True):
-                try:
-                    refresh_selected_run()
-                    st.rerun()
-                except Exception as exc:
-                    show_request_error(exc)
-
+    if st.session_state.active_run:
+        render_live_run_panel()
         st.divider()
 
     uploaded_files = st.file_uploader(
@@ -611,38 +731,11 @@ with tab_analyze:
             )
 
     if st.session_state.requirements:
+        st.caption(f"Извлечено требований: {len(st.session_state.requirements)}. Полный список доступен в скачиваемом отчёте.")
+
+    if st.session_state.analysis_report:
         st.divider()
-        st.subheader(f"Извлечённые требования ({len(st.session_state.requirements)})")
-        categories = sorted({req["category"] for req in st.session_state.requirements})
-        selected_cats = st.multiselect("Фильтр по категории", categories, default=categories)
-        filtered = [req for req in st.session_state.requirements if req["category"] in selected_cats]
-
-        for req in filtered:
-            cat_label = {
-                "technical": "🔧 Техническое",
-                "sla": "📊 SLA",
-                "legal": "⚖️ Юридическое",
-                "commercial": "💰 Коммерческое",
-                "security": "🔒 ИБ",
-                "other": "📌 Прочее",
-            }.get(req["category"], req["category"])
-
-            with st.expander(f"#{req['id']} [{req['section']}] {cat_label} — {req['text'][:80]}..."):
-                st.markdown(f"**Категория:** {cat_label}")
-                st.markdown(f"**Раздел:** {req['section']}")
-                st.markdown(f"**Текст:** {req['text']}")
-                if req.get("tables"):
-                    st.markdown("**Таблица:**")
-                    st.markdown(req["tables"])
-
-    active_run = st.session_state.active_run
-    if (
-        active_run
-        and st.session_state.auto_refresh_run
-        and active_run.get("status") in {"queued", "extracting", "analyzing"}
-    ):
-        time.sleep(3)
-        st.rerun()
+        render_analysis_chat(st.session_state.analysis_report)
 
 with tab_history:
     st.header("История запусков")
@@ -851,68 +944,3 @@ with tab_report:
 
         st.divider()
         render_download_controls()
-
-        st.divider()
-
-        st.subheader("Задать вопрос по анализу")
-        st.caption("Можно переспросить по конкретному пункту ТЗ, по спорному вердикту или по источникам Managed RAG.")
-
-        apply_pending_analysis_question()
-
-        suggested_questions = [
-            "Почему этот пункт признан несоответствием?",
-            "Что именно нужно перепроверить вручную в этом ТЗ?",
-            "Какие 3 самых рискованных пункта в этом анализе?",
-        ]
-        cols = st.columns(len(suggested_questions))
-        for idx, question in enumerate(suggested_questions):
-            if cols[idx].button(question, key=f"suggested_question_{idx}", use_container_width=True):
-                st.session_state.pending_analysis_question = question
-                st.rerun()
-
-        st.text_area(
-            "Вопрос по анализу",
-            key="analysis_question_input",
-            height=100,
-            placeholder="Например: Почему пункт 7.2.4 отмечен как несоответствие и на какие источники вы опирались?",
-        )
-
-        if st.button("Спросить", disabled=not st.session_state.analysis_question_input.strip(), use_container_width=True):
-            try:
-                current_question = st.session_state.analysis_question_input.strip()
-                with st.spinner("Готовлю ответ по контексту ТЗ, анализа и Managed RAG..."):
-                    answer = api_post_json(
-                        "/analysis/ask",
-                        {
-                            "question": current_question,
-                            "report": report,
-                            "requirements": st.session_state.requirements or [],
-                            "search_mode": st.session_state.analysis_search_mode,
-                            "history": st.session_state.analysis_qa_history,
-                            "llm_settings": llm_settings_payload(),
-                        },
-                        timeout=3600,
-                    )
-                st.session_state.analysis_qa_history.append(
-                    {
-                        "question": current_question,
-                        "answer": answer.get("answer", ""),
-                        "related_sections": answer.get("related_sections", []),
-                        "source_urls": answer.get("source_urls", []),
-                    }
-                )
-                st.session_state.pending_analysis_question = ""
-                st.rerun()
-            except Exception as exc:
-                show_request_error(exc)
-
-        if st.session_state.analysis_qa_history:
-            for idx, item in enumerate(reversed(st.session_state.analysis_qa_history), start=1):
-                with st.expander(f"Вопрос {len(st.session_state.analysis_qa_history) - idx + 1}: {item['question']}", expanded=(idx == 1)):
-                    st.markdown(item["answer"])
-                    if item.get("related_sections"):
-                        st.caption("Связанные пункты ТЗ: " + ", ".join(item["related_sections"]))
-                    if item.get("source_urls"):
-                        st.markdown("**Источники:**")
-                        for url in item["source_urls"]:
-                            st.markdown(f"- [{url}]({url})")

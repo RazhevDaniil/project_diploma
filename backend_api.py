@@ -21,7 +21,7 @@ from src.parser.requirement_extractor import extract_requirements
 from src.prompt_store import activate_prompt_version, create_prompt_version, list_prompts
 from src.report.generator import generate_markdown, save_docx, save_excel, save_markdown, save_pdf
 from src.runtime_config import apply_runtime_settings
-from src.run_store import create_run, get_run, list_runs, update_run
+from src.run_store import create_run, get_run, list_runs, summarize_run, update_run
 from src.llm.client import call_llm
 
 logger = logging.getLogger(__name__)
@@ -412,6 +412,14 @@ def prompts_activate(payload: dict = Body(...)):
 @app.get("/runs")
 def runs_list(limit: int = 50):
     return {"runs": list_runs(limit=limit)}
+
+
+@app.get("/runs/{run_id}/status")
+def runs_status(run_id: str):
+    run = get_run(run_id)
+    if not run:
+        raise HTTPException(status_code=404, detail=f"Run not found: {run_id}")
+    return summarize_run(run)
 
 
 @app.get("/runs/{run_id}")

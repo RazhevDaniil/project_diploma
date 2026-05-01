@@ -75,6 +75,22 @@ def update_run(run_id: str, **changes) -> dict:
         return _write(run)
 
 
+def summarize_run(run: dict) -> dict:
+    return {
+        "id": run.get("id"),
+        "document_name": run.get("document_name", "document"),
+        "status": run.get("status", "unknown"),
+        "stage": run.get("stage", ""),
+        "created_at": run.get("created_at", ""),
+        "updated_at": run.get("updated_at", ""),
+        "progress_done": run.get("progress_done", 0),
+        "progress_total": run.get("progress_total", 0),
+        "total_requirements": len(run.get("requirements", [])),
+        "has_report": bool(run.get("report")),
+        "error": run.get("error", ""),
+    }
+
+
 def list_runs(limit: int = 50) -> list[dict]:
     cfg.RUNS_DIR.mkdir(exist_ok=True)
     runs = []
@@ -83,21 +99,7 @@ def list_runs(limit: int = 50) -> list[dict]:
             run = json.loads(path.read_text(encoding="utf-8"))
         except json.JSONDecodeError:
             continue
-        runs.append(
-            {
-                "id": run.get("id"),
-                "document_name": run.get("document_name", "document"),
-                "status": run.get("status", "unknown"),
-                "stage": run.get("stage", ""),
-                "created_at": run.get("created_at", ""),
-                "updated_at": run.get("updated_at", ""),
-                "progress_done": run.get("progress_done", 0),
-                "progress_total": run.get("progress_total", 0),
-                "total_requirements": len(run.get("requirements", [])),
-                "has_report": bool(run.get("report")),
-                "error": run.get("error", ""),
-            }
-        )
+        runs.append(summarize_run(run))
         if len(runs) >= limit:
             break
     return runs
