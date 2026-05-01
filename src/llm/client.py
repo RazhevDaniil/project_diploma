@@ -65,7 +65,8 @@ def call_llm(
                 temperature=effective_temperature,
                 max_tokens=max_tokens,
             )
-            time.sleep(1)
+            if cfg.LLM_REQUEST_DELAY > 0:
+                time.sleep(cfg.LLM_REQUEST_DELAY)
             return response
         except Exception as e:
             if attempt == max_retries:

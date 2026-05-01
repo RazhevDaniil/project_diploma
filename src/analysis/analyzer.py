@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import logging
+import threading
 from urllib.parse import urlparse
 from src.managed_rag.client import ManagedRagResult, retrieve_generate
 from src.models import AnalysisReport, PlatformAssessment, Requirement, RequirementVerdict
@@ -16,6 +17,7 @@ logger = logging.getLogger(__name__)
 # Domains considered relevant for Cloud.ru analysis
 _TRUSTED_DOMAINS = {"cloud.ru", "cloudru.tech", "sbercloud.ru",
                     "fstec.ru", "rkn.gov.ru", "consultant.ru", "garant.ru"}
+PLATFORM_COLUMNS = ("Evolution", "Advanced", "Облако VMware")
 
 
 def _filter_urls(urls: list) -> list[str]:
@@ -52,15 +54,36 @@ def analyze_requirements(
     """
     report = AnalysisReport(document_name=document_name)
 
-    total_batches = (len(requirements) + batch_size - 1) // batch_size
-    for i in range(0, len(requirements), batch_size):
-        batch = requirements[i:i + batch_size]
-        batch_num = i // batch_size + 1
-        logger.info("Analyzing batch %d/%d (%d requirements)", batch_num, total_batches, len(batch))
-        verdicts = _analyze_batch(batch)
-        report.verdicts.extend(verdicts)
-        if progress_callback:
-            progress_callback(min(i + batch_size, len(requirements)), len(requirements))
+    batches = [
+        (i // batch_size, requirements[i:i + batch_size])
+        for i in range(0, len(requirements), batch_size)
+    ]
+    total_batches = len(batches)
+    completed_requirements = 0
+    progress_lock = threading.Lock()
+    batch_results: dict[int, list[RequirementVerdict]] = {}
+
+    def analyze_one_batch(batch_index: int, batch: list[Requirement]) -> tuple[int, list[RequirementVerdict], int]:
+        logger.info("Analyzing batch %d/%d (%d requirements)", batch_index + 1, total_batches, len(batch))
+        return batch_index, _analyze_batch(batch), len(batch)
+
+    max_workers = max(1, min(cfg.ANALYSIS_BATCH_CONCURRENCY, total_batches))
+    logger.info("Analyzing %d batches (parallel=%d)", total_batches, max_workers)
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        futures = [
+            executor.submit(analyze_one_batch, batch_index, batch)
+            for batch_index, batch in batches
+        ]
+        for future in as_completed(futures):
+            batch_index, verdicts, batch_len = future.result()
+            batch_results[batch_index] = verdicts
+            if progress_callback:
+                with progress_lock:
+                    completed_requirements += batch_len
+                    progress_callback(min(completed_requirements, len(requirements)), len(requirements))
+
+    for batch_index in range(total_batches):
+        report.verdicts.extend(batch_results.get(batch_index, []))
 
     report.summary = _generate_summary(report)
     return report
@@ -162,6 +185,18 @@ def _looks_external_service(text: str) -> bool:
     return any(marker in lowered for marker in markers)
 
 
+def _canonical_platform_name(value: str) -> str:
+    text = (value or "").strip()
+    lowered = text.lower()
+    if "vmware" in lowered or "vcloud" in lowered or "облако vmware" in lowered:
+        return "Облако VMware"
+    if "advanced" in lowered:
+        return "Advanced"
+    if "evolution" in lowered:
+        return "Evolution"
+    return text
+
+
 def _source_type_from_result(item: dict) -> str:
     metadata = _result_metadata(item)
     explicit = _metadata_value(
@@ -195,10 +230,10 @@ def _platform_from_result(item: dict, idx: int) -> str:
         ),
     )
     if explicit:
-        return explicit
+        return _canonical_platform_name(explicit)
     title = _metadata_value(metadata, ("title", "document_name", "filename"))
     if title:
-        return title.split("|", 1)[0].split(" — ", 1)[0].split(" - ", 1)[0].strip()
+        return _canonical_platform_name(title.split("|", 1)[0].split(" — ", 1)[0].split(" - ", 1)[0].strip())
     return f"Cloud.ru источник {idx}"
 
 
@@ -274,18 +309,21 @@ def _assessment_from_item(item: dict, rag_result: ManagedRagResult | None, idx: 
 
     if rag_result and idx <= len(rag_result.results):
         source = rag_result.results[idx - 1]
+        source_platform = _platform_from_result(source, idx)
         if not source_urls:
             source_urls = _filter_urls([_result_url(source)])
         title = _result_label(source, idx)
         if title and title not in source_titles:
             source_titles.append(title)
-        if not platform_name:
-            platform_name = _platform_from_result(source, idx)
         if source_type == "platform":
             source_type = _source_type_from_result(source)
+        if source_type == "platform" and source_platform:
+            platform_name = source_platform
+        elif not platform_name:
+            platform_name = source_platform
 
     return PlatformAssessment(
-        platform_name=platform_name or "Cloud.ru (платформа не определена)",
+        platform_name=_canonical_platform_name(platform_name) or "Cloud.ru (платформа не определена)",
         verdict=_normalize_verdict(item.get("verdict", "needs_clarification")),
         confidence=_safe_float(item.get("confidence"), 0.5),
         reasoning=_value_to_text(item.get("reasoning", "")),

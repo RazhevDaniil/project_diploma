@@ -51,6 +51,13 @@ PLATFORM_VERDICT_SYMBOLS = {
     "mismatch": "-",
     "needs_clarification": "?",
 }
+PLATFORM_COLUMNS = ["Evolution", "Advanced", "Облако VMware"]
+PLATFORM_VERDICT_RANK = {
+    "match": 3,
+    "partial": 2,
+    "needs_clarification": 1,
+    "mismatch": 0,
+}
 
 
 def _section_label(v: RequirementVerdict) -> str:
@@ -118,13 +125,41 @@ def _assessment_symbol(assessment: dict | object, refs: dict[str, int]) -> str:
     return f"{symbol} {ref}".strip()
 
 
+def _canonical_platform_name(value: str) -> str:
+    text = (value or "").strip()
+    lowered = text.lower()
+    if "vmware" in lowered or "vcloud" in lowered or "облако vmware" in lowered:
+        return "Облако VMware"
+    if "advanced" in lowered:
+        return "Advanced"
+    if "evolution" in lowered:
+        return "Evolution"
+    return text
+
+
+def _is_matrix_platform(assessment: object) -> bool:
+    if getattr(assessment, "source_type", "") == "external_service":
+        return False
+    return _canonical_platform_name(getattr(assessment, "platform_name", "")) in PLATFORM_COLUMNS
+
+
+def _best_platform_assessment(items: list) -> object | None:
+    if not items:
+        return None
+    return sorted(
+        items,
+        key=lambda item: (
+            PLATFORM_VERDICT_RANK.get(getattr(item, "verdict", ""), -1),
+            getattr(item, "confidence", 0.0),
+        ),
+        reverse=True,
+    )[0]
+
+
 def _platform_names(report: AnalysisReport) -> list[str]:
-    names = []
-    for verdict in report.verdicts:
-        for assessment in verdict.platform_assessments:
-            if assessment.platform_name and assessment.platform_name not in names:
-                names.append(assessment.platform_name)
-    return names
+    if any(_is_matrix_platform(assessment) for verdict in report.verdicts for assessment in verdict.platform_assessments):
+        return PLATFORM_COLUMNS.copy()
+    return []
 
 
 def _platform_matrix_rows(report: AnalysisReport, refs: dict[str, int]) -> list[dict]:
@@ -135,9 +170,13 @@ def _platform_matrix_rows(report: AnalysisReport, refs: dict[str, int]) -> list[
             "Пункт ТЗ": verdict.section or f"#{verdict.requirement_id}",
             "Требование": _req_text(verdict, 140),
         }
-        by_platform = {item.platform_name: item for item in verdict.platform_assessments}
+        by_platform: dict[str, list] = {platform_name: [] for platform_name in platform_names}
+        for item in verdict.platform_assessments:
+            platform_name = _canonical_platform_name(item.platform_name)
+            if item.source_type != "external_service" and platform_name in by_platform:
+                by_platform[platform_name].append(item)
         for platform_name in platform_names:
-            assessment = by_platform.get(platform_name)
+            assessment = _best_platform_assessment(by_platform.get(platform_name, []))
             row[platform_name] = _assessment_symbol(assessment, refs) if assessment else "-"
         rows.append(row)
     return rows
@@ -148,17 +187,22 @@ def _platform_totals(report: AnalysisReport) -> dict[str, tuple[int, int, int, i
     for platform_name in _platform_names(report):
         match_count = partial_count = mismatch_count = clarification_count = 0
         for verdict in report.verdicts:
-            for assessment in verdict.platform_assessments:
-                if assessment.platform_name != platform_name:
-                    continue
-                if assessment.verdict == "match":
-                    match_count += 1
-                elif assessment.verdict == "partial":
-                    partial_count += 1
-                elif assessment.verdict == "mismatch":
-                    mismatch_count += 1
-                else:
-                    clarification_count += 1
+            items = [
+                assessment for assessment in verdict.platform_assessments
+                if assessment.source_type != "external_service"
+                and _canonical_platform_name(assessment.platform_name) == platform_name
+            ]
+            assessment = _best_platform_assessment(items)
+            if assessment is None:
+                continue
+            if assessment.verdict == "match":
+                match_count += 1
+            elif assessment.verdict == "partial":
+                partial_count += 1
+            elif assessment.verdict == "mismatch":
+                mismatch_count += 1
+            else:
+                clarification_count += 1
         totals[platform_name] = (match_count, partial_count, mismatch_count, clarification_count)
     return totals
 
@@ -736,6 +780,10 @@ def save_pdf(report: AnalysisReport, output_dir: Path | None = None) -> Path:
         """Clean text for PDF output."""
         return text.replace("\r", "").strip()
 
+    def _cut(text: str, limit: int) -> str:
+        text = _safe(str(text or "")).replace("\n", " ")
+        return text if len(text) <= limit else text[: limit - 1] + "…"
+
     pdf.add_page()
 
     # Title
@@ -791,6 +839,39 @@ def save_pdf(report: AnalysisReport, output_dir: Path | None = None) -> Path:
         pdf.set_font(font_name, "", 10)
         pdf.multi_cell(0, 6, _safe(report.summary), new_x=XPos.LMARGIN, new_y=YPos.NEXT)
         pdf.ln(5)
+
+    refs = _collect_reference_map(report)
+    matrix_rows = _platform_matrix_rows(report, refs)
+    platform_names = _platform_names(report)
+    if matrix_rows and platform_names:
+        pdf.add_page(orientation="L")
+        pdf.set_font(font_name, "", 13)
+        pdf.cell(0, 8, _safe("Матрица соответствия по платформам"), new_x="LMARGIN", new_y="NEXT")
+        pdf.set_font(font_name, "", 7)
+        headers = ["Пункт ТЗ", "Требование"] + platform_names
+        widths = [25, 150, 36, 36, 42]
+        for width, header in zip(widths, headers):
+            pdf.cell(width, 7, _cut(header, 24), border=1)
+        pdf.ln(7)
+        for row in matrix_rows:
+            if pdf.get_y() > 185:
+                pdf.add_page(orientation="L")
+                pdf.set_font(font_name, "", 7)
+                for width, header in zip(widths, headers):
+                    pdf.cell(width, 7, _cut(header, 24), border=1)
+                pdf.ln(7)
+            values = [
+                row.get("Пункт ТЗ", ""),
+                row.get("Требование", ""),
+                row.get("Evolution", ""),
+                row.get("Advanced", ""),
+                row.get("Облако VMware", ""),
+            ]
+            limits = [18, 115, 16, 16, 18]
+            for width, value, limit in zip(widths, values, limits):
+                pdf.cell(width, 7, _cut(value, limit), border=1)
+            pdf.ln(7)
+        pdf.add_page()
 
     totals = _platform_totals(report)
     if totals:
@@ -856,6 +937,13 @@ def save_pdf(report: AnalysisReport, output_dir: Path | None = None) -> Path:
             if v.source_urls:
                 pdf.multi_cell(0, 5, _safe(f"Документация: {', '.join(v.source_urls[:5])}"), new_x=XPos.LMARGIN, new_y=YPos.NEXT)
             pdf.ln(3)
+
+    if refs:
+        pdf.set_font(font_name, "", 12)
+        pdf.cell(0, 8, _safe("Сноски RAG"), new_x="LMARGIN", new_y=YPos.NEXT)
+        pdf.set_font(font_name, "", 8)
+        for key, index in sorted(refs.items(), key=lambda item: item[1]):
+            pdf.multi_cell(0, 5, _safe(f"[{index}] {key}"), new_x=XPos.LMARGIN, new_y=YPos.NEXT)
 
     pdf.output(str(path))
     logger.info("Saved PDF report: %s", path)

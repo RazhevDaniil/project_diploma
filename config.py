@@ -20,6 +20,7 @@ OPENAI_API_BASE = os.getenv("OPENAI_API_BASE", "https://foundation-models.api.cl
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
 OPENAI_MODEL = os.getenv("OPENAI_MODEL", "openai/gpt-oss-120b")
 OPENAI_TEMPERATURE = float(os.getenv("OPENAI_TEMPERATURE", "0.05"))
+LLM_REQUEST_DELAY = float(os.getenv("LLM_REQUEST_DELAY", "0"))
 
 # Cloud.ru Managed RAG settings
 MANAGED_RAG_URL = os.getenv(
@@ -38,3 +39,6 @@ MANAGED_RAG_CACHE_ENABLED = os.getenv("MANAGED_RAG_CACHE_ENABLED", "true").lower
 
 # Analysis Settings
 MAX_REQUIREMENTS_PER_BATCH = 10
+PARSER_CHUNK_SIZE = int(os.getenv("PARSER_CHUNK_SIZE", "6000"))
+PARSER_CONCURRENCY = int(os.getenv("PARSER_CONCURRENCY", "4"))
+ANALYSIS_BATCH_CONCURRENCY = int(os.getenv("ANALYSIS_BATCH_CONCURRENCY", "2"))

@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import logging
 
+import config as cfg
 from src.models import Requirement
 from src.llm.client import call_llm_json
 
@@ -62,39 +64,57 @@ def _extract_field(item: dict, keys: list[str]) -> str:
     return ""
 
 
-def extract_requirements(document_text: str, max_chunk_size: int = 6000) -> list[Requirement]:
+def _extract_chunk_items(chunk_index: int, total_chunks: int, chunk: str) -> tuple[int, list[dict]]:
+    logger.info("Extracting requirements from chunk %d/%d", chunk_index + 1, total_chunks)
+    from src.prompt_store import get_prompt
+
+    prompt_template = get_prompt("parser_user_template")
+    system_prompt = get_prompt("parser_system")
+    prompt = prompt_template.format(document_text=chunk)
+    result = call_llm_json(prompt, system_prompt=system_prompt, max_tokens=8000)
+
+    items = result if isinstance(result, list) else result.get("requirements", result.get("raw", []))
+    if isinstance(items, str):
+        logger.warning("LLM returned string instead of list for chunk %d", chunk_index + 1)
+        return chunk_index, []
+    if not isinstance(items, list):
+        logger.warning("LLM returned unsupported payload for chunk %d: %s", chunk_index + 1, type(items).__name__)
+        return chunk_index, []
+
+    if items and isinstance(items[0], dict):
+        logger.info(
+            "LLM response keys for chunk %d: %s (first item sample: %s)",
+            chunk_index + 1,
+            list(items[0].keys()),
+            {k: str(v)[:50] for k, v in items[0].items()},
+        )
+    return chunk_index, [item for item in items if isinstance(item, dict)]
+
+
+def extract_requirements(document_text: str, max_chunk_size: int | None = None) -> list[Requirement]:
     """Extract structured requirements from document text using LLM.
 
     Splits long documents into chunks and processes each separately.
     """
-    chunks = _split_text(document_text, max_chunk_size)
+    chunks = _split_text(document_text, max_chunk_size or cfg.PARSER_CHUNK_SIZE)
     all_requirements: list[Requirement] = []
     global_id = 1
+    chunk_items: dict[int, list[dict]] = {}
 
-    for i, chunk in enumerate(chunks):
-        logger.info("Extracting requirements from chunk %d/%d", i + 1, len(chunks))
-        from src.prompt_store import get_prompt
+    max_workers = max(1, min(cfg.PARSER_CONCURRENCY, len(chunks)))
+    logger.info("Extracting requirements from %d chunks (parallel=%d)", len(chunks), max_workers)
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        futures = [
+            executor.submit(_extract_chunk_items, index, len(chunks), chunk)
+            for index, chunk in enumerate(chunks)
+        ]
+        for future in as_completed(futures):
+            chunk_index, items = future.result()
+            chunk_items[chunk_index] = items
 
-        prompt_template = get_prompt("parser_user_template")
-        system_prompt = get_prompt("parser_system")
-        prompt = prompt_template.format(document_text=chunk)
-        result = call_llm_json(prompt, system_prompt=system_prompt, max_tokens=8000)
-
-        items = result if isinstance(result, list) else result.get("requirements", result.get("raw", []))
-        if isinstance(items, str):
-            logger.warning("LLM returned string instead of list for chunk %d", i + 1)
-            continue
-
-        # Log first item keys to help debug field name mismatches
-        if items and isinstance(items[0], dict):
-            logger.info("LLM response keys for chunk %d: %s (first item sample: %s)",
-                        i + 1, list(items[0].keys()),
-                        {k: str(v)[:50] for k, v in items[0].items()})
-
+    for i in range(len(chunks)):
+        items = chunk_items.get(i, [])
         for item in items:
-            if not isinstance(item, dict):
-                continue
-
             text = _extract_field(item, ["text", "requirement", "requirement_text",
                                          "description", "content", "требование",
                                          "текст", "текст_требования"])

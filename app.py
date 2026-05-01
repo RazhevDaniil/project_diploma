@@ -18,6 +18,7 @@ MODEL_OPTIONS = {
     "Qwen3-235B-A22B-Instruct-2507": "Qwen/Qwen3-235B-A22B-Instruct-2507",
     "Qwen3-Next-80B-A3B-Instruct": "Qwen/Qwen3-Next-80B-A3B-Instruct",
 }
+PLATFORM_COLUMNS = ["Evolution", "Advanced", "Облако VMware"]
 
 
 def init_state():
@@ -42,6 +43,10 @@ def init_state():
         "openai_api_key": os.getenv("OPENAI_API_KEY", ""),
         "openai_model": os.getenv("OPENAI_MODEL", MODEL_OPTIONS["gpt-oss-120b"]),
         "openai_temperature": float(os.getenv("OPENAI_TEMPERATURE", "0.05")),
+        "llm_request_delay": float(os.getenv("LLM_REQUEST_DELAY", "0")),
+        "parser_chunk_size": int(os.getenv("PARSER_CHUNK_SIZE", "6000")),
+        "parser_concurrency": int(os.getenv("PARSER_CONCURRENCY", "4")),
+        "analysis_batch_concurrency": int(os.getenv("ANALYSIS_BATCH_CONCURRENCY", "2")),
         "managed_rag_url": os.getenv(
             "MANAGED_RAG_URL",
             "https://e424a162-618c-4862-b789-b089abd81b46.managed-rag.inference.cloud.ru/api/v2/retrieve_generate",
@@ -66,6 +71,10 @@ def llm_settings_payload() -> dict:
         "openai_api_key": st.session_state.openai_api_key,
         "openai_model": st.session_state.openai_model,
         "openai_temperature": st.session_state.openai_temperature,
+        "llm_request_delay": st.session_state.llm_request_delay,
+        "parser_chunk_size": st.session_state.parser_chunk_size,
+        "parser_concurrency": st.session_state.parser_concurrency,
+        "analysis_batch_concurrency": st.session_state.analysis_batch_concurrency,
         "managed_rag_url": st.session_state.managed_rag_url,
         "managed_rag_kb_version": st.session_state.managed_rag_kb_version,
         "managed_rag_api_key": st.session_state.managed_rag_api_key or st.session_state.openai_api_key,
@@ -215,17 +224,56 @@ def platform_cell(assessment: dict) -> str:
         "mismatch": "-",
         "needs_clarification": "?",
     }.get(assessment.get("verdict"), "?")
-    refs = assessment.get("evidence_refs") or []
+    refs = assessment.get("_ui_refs") or assessment.get("evidence_refs") or []
     return f"{symbol} {', '.join(refs[:2])}".strip()
 
 
-def report_platform_matrix(report: dict) -> list[dict]:
-    platform_names = []
+def canonical_platform_name(value: str) -> str:
+    text = (value or "").strip()
+    lowered = text.lower()
+    if "vmware" in lowered or "vcloud" in lowered or "облако vmware" in lowered:
+        return "Облако VMware"
+    if "advanced" in lowered:
+        return "Advanced"
+    if "evolution" in lowered:
+        return "Evolution"
+    return text
+
+
+def report_reference_map(report: dict) -> dict[str, int]:
+    refs = {}
     for verdict in report.get("verdicts", []):
         for assessment in verdict.get("platform_assessments", []) or []:
-            name = assessment.get("platform_name") or "Не определено"
-            if name not in platform_names:
-                platform_names.append(name)
+            source_urls = assessment.get("source_urls") or []
+            source_titles = assessment.get("source_titles") or []
+            key = (source_urls[0] if source_urls else None) or (source_titles[0] if source_titles else None)
+            if key and key not in refs:
+                refs[key] = len(refs) + 1
+        for url in verdict.get("source_urls", []) or []:
+            if url and url not in refs:
+                refs[url] = len(refs) + 1
+    return refs
+
+
+def best_platform_assessment(items: list[dict], refs: dict[str, int]) -> dict | None:
+    if not items:
+        return None
+    rank = {"match": 3, "partial": 2, "needs_clarification": 1, "mismatch": 0}
+    best = sorted(
+        items,
+        key=lambda item: (rank.get(item.get("verdict"), -1), float(item.get("confidence") or 0)),
+        reverse=True,
+    )[0].copy()
+    source_urls = best.get("source_urls") or []
+    source_titles = best.get("source_titles") or []
+    key = (source_urls[0] if source_urls else None) or (source_titles[0] if source_titles else None)
+    best["_ui_refs"] = [f"[{refs[key]}]"] if key in refs else []
+    return best
+
+
+def report_platform_matrix(report: dict) -> list[dict]:
+    refs = report_reference_map(report)
+    has_platform_assessment = False
 
     rows = []
     for verdict in report.get("verdicts", []):
@@ -233,14 +281,19 @@ def report_platform_matrix(report: dict) -> list[dict]:
             "Пункт ТЗ": verdict.get("section") or f"#{verdict.get('requirement_id')}",
             "Требование": (verdict.get("requirement_text") or "")[:140],
         }
-        by_platform = {
-            assessment.get("platform_name") or "Не определено": assessment
-            for assessment in verdict.get("platform_assessments", []) or []
-        }
-        for platform_name in platform_names:
-            row[platform_name] = platform_cell(by_platform[platform_name]) if platform_name in by_platform else "-"
+        by_platform = {platform_name: [] for platform_name in PLATFORM_COLUMNS}
+        for assessment in verdict.get("platform_assessments", []) or []:
+            if assessment.get("source_type") == "external_service":
+                continue
+            platform_name = canonical_platform_name(assessment.get("platform_name") or "")
+            if platform_name in by_platform:
+                has_platform_assessment = True
+                by_platform[platform_name].append(assessment)
+        for platform_name in PLATFORM_COLUMNS:
+            assessment = best_platform_assessment(by_platform[platform_name], refs)
+            row[platform_name] = platform_cell(assessment) if assessment else "-"
         rows.append(row)
-    return rows
+    return rows if has_platform_assessment else []
 
 
 def render_run_status(run: dict):
@@ -308,6 +361,71 @@ def prepare_download(format_name: str):
     }
 
 
+def render_download_controls():
+    st.subheader("Скачать полный отчёт")
+    col_a, col_b, col_c, col_d = st.columns(4)
+
+    with col_a:
+        if st.button("💾 Подготовить Markdown", key="prepare_md_top"):
+            try:
+                prepare_download("md")
+            except Exception as exc:
+                show_request_error(exc)
+        if "md" in st.session_state.downloads:
+            st.download_button(
+                "📥 Скачать MD",
+                data=st.session_state.downloads["md"]["content"],
+                file_name=st.session_state.downloads["md"]["filename"],
+                mime="text/markdown",
+                key="download_md_top",
+            )
+
+    with col_b:
+        if st.button("💾 Подготовить DOCX", key="prepare_docx_top"):
+            try:
+                prepare_download("docx")
+            except Exception as exc:
+                show_request_error(exc)
+        if "docx" in st.session_state.downloads:
+            st.download_button(
+                "📥 Скачать DOCX",
+                data=st.session_state.downloads["docx"]["content"],
+                file_name=st.session_state.downloads["docx"]["filename"],
+                mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                key="download_docx_top",
+            )
+
+    with col_c:
+        if st.button("💾 Подготовить PDF", key="prepare_pdf_top"):
+            try:
+                prepare_download("pdf")
+            except Exception as exc:
+                show_request_error(exc)
+        if "pdf" in st.session_state.downloads:
+            st.download_button(
+                "📥 Скачать PDF",
+                data=st.session_state.downloads["pdf"]["content"],
+                file_name=st.session_state.downloads["pdf"]["filename"],
+                mime="application/pdf",
+                key="download_pdf_top",
+            )
+
+    with col_d:
+        if st.button("💾 Подготовить Excel", key="prepare_xlsx_top"):
+            try:
+                prepare_download("xlsx")
+            except Exception as exc:
+                show_request_error(exc)
+        if "xlsx" in st.session_state.downloads:
+            st.download_button(
+                "📥 Скачать XLSX",
+                data=st.session_state.downloads["xlsx"]["content"],
+                file_name=st.session_state.downloads["xlsx"]["filename"],
+                mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                key="download_xlsx_top",
+            )
+
+
 def show_request_error(exc: Exception):
     detail = str(exc)
     response = getattr(exc, "response", None)
@@ -373,6 +491,11 @@ with st.sidebar:
         key="openai_temperature",
         help="Ниже — стабильнее и строже, выше — больше вариативности в формулировках.",
     )
+    with st.expander("Скорость обработки"):
+        st.number_input("Размер чанка парсера", min_value=3000, max_value=20000, step=1000, key="parser_chunk_size")
+        st.number_input("Параллельность парсера", min_value=1, max_value=10, key="parser_concurrency")
+        st.number_input("Параллельность батчей анализа", min_value=1, max_value=6, key="analysis_batch_concurrency")
+        st.number_input("Пауза между LLM-запросами, сек", min_value=0.0, max_value=5.0, step=0.1, key="llm_request_delay")
 
     st.divider()
 
@@ -701,8 +824,16 @@ with tab_report:
         if platform_matrix:
             st.divider()
             st.subheader("Матрица по платформам")
-            st.caption("`+` — соответствует, `±` — частично, `-` — не подтверждено, `?` — нужно уточнить. Сноски раскрыты в скачиваемом отчёте.")
+            st.caption("`+` — соответствует, `±` — частично, `-` — не подтверждено, `?` — нужно уточнить.")
             st.dataframe(platform_matrix, use_container_width=True, hide_index=True)
+            refs = report_reference_map(report)
+            if refs:
+                with st.expander("Сноски RAG"):
+                    for source, index in sorted(refs.items(), key=lambda item: item[1]):
+                        if str(source).startswith("http"):
+                            st.markdown(f"[{index}] [{source}]({source})")
+                        else:
+                            st.markdown(f"[{index}] {source}")
 
         external_items = [
             verdict for verdict in report.get("verdicts", [])
@@ -717,6 +848,9 @@ with tab_report:
                     )
                     if verdict.get("external_service_notes"):
                         st.caption(verdict["external_service_notes"])
+
+        st.divider()
+        render_download_controls()
 
         st.divider()
 
@@ -782,66 +916,3 @@ with tab_report:
                         st.markdown("**Источники:**")
                         for url in item["source_urls"]:
                             st.markdown(f"- [{url}]({url})")
-
-        st.divider()
-
-        st.caption("Полная детализация скрыта в UI. Для проверки проблемных пунктов и полного реестра скачайте отчёт в нужном формате.")
-
-        st.divider()
-        col_a, col_b, col_c, col_d = st.columns(4)
-
-        with col_a:
-            if st.button("💾 Подготовить Markdown"):
-                try:
-                    prepare_download("md")
-                except Exception as exc:
-                    show_request_error(exc)
-            if "md" in st.session_state.downloads:
-                st.download_button(
-                    "📥 Скачать MD",
-                    data=st.session_state.downloads["md"]["content"],
-                    file_name=st.session_state.downloads["md"]["filename"],
-                    mime="text/markdown",
-                )
-
-        with col_b:
-            if st.button("💾 Подготовить DOCX"):
-                try:
-                    prepare_download("docx")
-                except Exception as exc:
-                    show_request_error(exc)
-            if "docx" in st.session_state.downloads:
-                st.download_button(
-                    "📥 Скачать DOCX",
-                    data=st.session_state.downloads["docx"]["content"],
-                    file_name=st.session_state.downloads["docx"]["filename"],
-                    mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-                )
-
-        with col_c:
-            if st.button("💾 Подготовить PDF"):
-                try:
-                    prepare_download("pdf")
-                except Exception as exc:
-                    show_request_error(exc)
-            if "pdf" in st.session_state.downloads:
-                st.download_button(
-                    "📥 Скачать PDF",
-                    data=st.session_state.downloads["pdf"]["content"],
-                    file_name=st.session_state.downloads["pdf"]["filename"],
-                    mime="application/pdf",
-                )
-
-        with col_d:
-            if st.button("💾 Подготовить Excel"):
-                try:
-                    prepare_download("xlsx")
-                except Exception as exc:
-                    show_request_error(exc)
-            if "xlsx" in st.session_state.downloads:
-                st.download_button(
-                    "📥 Скачать XLSX",
-                    data=st.session_state.downloads["xlsx"]["content"],
-                    file_name=st.session_state.downloads["xlsx"]["filename"],
-                    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-                )
