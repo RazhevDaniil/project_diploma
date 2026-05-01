@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import logging
+import re
 
 import config as cfg
 from src.models import Requirement
@@ -91,11 +92,156 @@ def _extract_chunk_items(chunk_index: int, total_chunks: int, chunk: str) -> tup
     return chunk_index, [item for item in items if isinstance(item, dict)]
 
 
+def _normalize_text(text: str) -> str:
+    return re.sub(r"\s+", " ", text or "").strip()
+
+
+def _category_from_text(text: str) -> str:
+    lowered = text.lower()
+    if any(token in lowered for token in ("sla", "доступност", "время реакции", "rto", "rpo", "простой", "инцидент")):
+        return "sla"
+    if any(token in lowered for token in ("персональн", "152-фз", "фстэк", "фсб", "скзи", "шифр", "доступ", "защит", "иб", "антивирус")):
+        return "security"
+    if any(token in lowered for token in ("штраф", "неустой", "оплат", "стоимост", "цена", "договор", "контракт")):
+        return "commercial"
+    if any(token in lowered for token in ("закон", "лиценз", "сертифик", "соответств", "право", "персональных данных")):
+        return "legal"
+    if any(token in lowered for token in ("сервер", "виртуаль", "кластер", "сеть", "хранилищ", "cpu", "ram", "api", "резервн", "мониторинг")):
+        return "technical"
+    return "other"
+
+
+def _section_from_line(line: str) -> tuple[str, str] | None:
+    match = re.match(r"^\s*(?:п\.|пункт\s*)?(\d+(?:\.\d+){1,6})[.)]?\s+(.+)$", line, re.IGNORECASE)
+    if not match:
+        return None
+    section, rest = match.groups()
+    rest = rest.strip()
+    if len(rest) < 8:
+        return None
+    return section, rest
+
+
+def _is_probably_heading(text: str) -> bool:
+    stripped = text.strip()
+    if len(stripped) > 140:
+        return False
+    if stripped.endswith((".", ";", ":")):
+        return False
+    words = stripped.split()
+    return len(words) <= 10
+
+
+def _dedupe_requirements(requirements: list[Requirement]) -> list[Requirement]:
+    seen = set()
+    result = []
+    for req in requirements:
+        key = re.sub(r"[^a-zа-яё0-9]+", " ", req.text.lower()).strip()
+        key = key[:500]
+        if key in seen:
+            continue
+        seen.add(key)
+        result.append(req)
+    for idx, req in enumerate(result, start=1):
+        req.id = idx
+    return result
+
+
+def _cap_requirements(requirements: list[Requirement]) -> list[Requirement]:
+    max_items = max(1, cfg.PARSER_FAST_MAX_REQUIREMENTS)
+    if len(requirements) <= max_items:
+        return requirements
+
+    priority = {
+        "technical": 0,
+        "sla": 1,
+        "security": 2,
+        "legal": 3,
+        "commercial": 4,
+        "other": 5,
+    }
+    sorted_items = sorted(
+        requirements,
+        key=lambda req: (
+            priority.get(req.category, 9),
+            0 if len(req.text) > 60 else 1,
+            req.id,
+        ),
+    )
+    kept = sorted(sorted_items[:max_items], key=lambda req: req.id)
+    for idx, req in enumerate(kept, start=1):
+        req.id = idx
+    logger.info("Capped fast parser requirements from %d to %d", len(requirements), len(kept))
+    return kept
+
+
+def _extract_requirements_fast(document_text: str) -> list[Requirement]:
+    """Fast local parser for numbered TZ clauses.
+
+    It avoids LLM extraction by using stable section numbering from procurement TZs.
+    """
+    lines = [_normalize_text(line) for line in document_text.splitlines()]
+    lines = [line for line in lines if line]
+    candidates: list[tuple[str, str]] = []
+    current_section = ""
+    current_parts: list[str] = []
+
+    def flush_current() -> None:
+        nonlocal current_section, current_parts
+        if not current_section or not current_parts:
+            current_section = ""
+            current_parts = []
+            return
+        text = _normalize_text(" ".join(current_parts))
+        if len(text) >= 25 and not _is_probably_heading(text):
+            candidates.append((current_section, text))
+        current_section = ""
+        current_parts = []
+
+    for line in lines:
+        parsed = _section_from_line(line)
+        if parsed:
+            flush_current()
+            current_section, first_text = parsed
+            current_parts = [first_text]
+            continue
+        if current_section:
+            if _section_from_line(line):
+                flush_current()
+            elif len(line) > 8:
+                current_parts.append(line)
+    flush_current()
+
+    requirements = [
+        Requirement(
+            id=index,
+            section=section,
+            text=text,
+            category=_category_from_text(text),
+            tables="",
+        )
+        for index, (section, text) in enumerate(candidates, start=1)
+    ]
+    requirements = _dedupe_requirements(requirements)
+    requirements = _cap_requirements(requirements)
+    logger.info("Fast parser extracted %d requirements", len(requirements))
+    return requirements
+
+
 def extract_requirements(document_text: str, max_chunk_size: int | None = None) -> list[Requirement]:
     """Extract structured requirements from document text using LLM.
 
     Splits long documents into chunks and processes each separately.
     """
+    if cfg.PARSER_MODE in {"fast", "hybrid"}:
+        fast_requirements = _extract_requirements_fast(document_text)
+        if cfg.PARSER_MODE == "fast" or len(fast_requirements) >= cfg.PARSER_FAST_MIN_REQUIREMENTS:
+            return fast_requirements
+        logger.info(
+            "Fast parser found only %d requirements, falling back to LLM extraction",
+            len(fast_requirements),
+        )
+
     chunks = _split_text(document_text, max_chunk_size or cfg.PARSER_CHUNK_SIZE)
     all_requirements: list[Requirement] = []
     global_id = 1

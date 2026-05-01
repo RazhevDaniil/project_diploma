@@ -43,8 +43,13 @@ def init_state():
         "openai_model": os.getenv("OPENAI_MODEL", MODEL_OPTIONS["gpt-oss-120b"]),
         "openai_temperature": float(os.getenv("OPENAI_TEMPERATURE", "0.05")),
         "llm_request_delay": float(os.getenv("LLM_REQUEST_DELAY", "0")),
+        "parser_mode": os.getenv("PARSER_MODE", "fast").lower(),
         "parser_chunk_size": int(os.getenv("PARSER_CHUNK_SIZE", "6000")),
         "parser_concurrency": int(os.getenv("PARSER_CONCURRENCY", "4")),
+        "parser_fast_min_requirements": int(os.getenv("PARSER_FAST_MIN_REQUIREMENTS", "20")),
+        "parser_fast_max_requirements": int(os.getenv("PARSER_FAST_MAX_REQUIREMENTS", "220")),
+        "max_requirements_per_batch": int(os.getenv("MAX_REQUIREMENTS_PER_BATCH", "20")),
+        "analysis_rag_mode": os.getenv("ANALYSIS_RAG_MODE", "grouped").lower(),
         "analysis_batch_concurrency": int(os.getenv("ANALYSIS_BATCH_CONCURRENCY", "2")),
         "managed_rag_url": os.getenv(
             "MANAGED_RAG_URL",
@@ -71,8 +76,13 @@ def llm_settings_payload() -> dict:
         "openai_model": st.session_state.openai_model,
         "openai_temperature": st.session_state.openai_temperature,
         "llm_request_delay": st.session_state.llm_request_delay,
+        "parser_mode": st.session_state.parser_mode,
         "parser_chunk_size": st.session_state.parser_chunk_size,
         "parser_concurrency": st.session_state.parser_concurrency,
+        "parser_fast_min_requirements": st.session_state.parser_fast_min_requirements,
+        "parser_fast_max_requirements": st.session_state.parser_fast_max_requirements,
+        "max_requirements_per_batch": st.session_state.max_requirements_per_batch,
+        "analysis_rag_mode": st.session_state.analysis_rag_mode,
         "analysis_batch_concurrency": st.session_state.analysis_batch_concurrency,
         "managed_rag_url": st.session_state.managed_rag_url,
         "managed_rag_kb_version": st.session_state.managed_rag_kb_version,
@@ -629,8 +639,33 @@ with st.sidebar:
         help="Ниже — стабильнее и строже, выше — больше вариативности в формулировках.",
     )
     with st.expander("Скорость обработки"):
+        parser_modes = ["fast", "hybrid", "llm"]
+        if st.session_state.parser_mode not in parser_modes:
+            st.session_state.parser_mode = "fast"
+        st.selectbox(
+            "Режим извлечения требований",
+            parser_modes,
+            key="parser_mode",
+            format_func=lambda value: {
+                "fast": "Быстрый локальный",
+                "hybrid": "Локальный + fallback LLM",
+                "llm": "Только LLM",
+            }.get(value, value),
+        )
         st.number_input("Размер чанка парсера", min_value=3000, max_value=20000, step=1000, key="parser_chunk_size")
         st.number_input("Параллельность парсера", min_value=1, max_value=10, key="parser_concurrency")
+        st.number_input("Мин. требований для fast/hybrid", min_value=1, max_value=200, key="parser_fast_min_requirements")
+        st.number_input("Макс. требований для анализа", min_value=20, max_value=1000, step=20, key="parser_fast_max_requirements")
+        st.number_input("Требований в батче анализа", min_value=5, max_value=50, step=5, key="max_requirements_per_batch")
+        rag_modes = ["grouped", "per_requirement"]
+        if st.session_state.analysis_rag_mode not in rag_modes:
+            st.session_state.analysis_rag_mode = "grouped"
+        st.selectbox(
+            "RAG для анализа",
+            rag_modes,
+            key="analysis_rag_mode",
+            format_func=lambda value: "1 RAG-запрос на батч" if value == "grouped" else "RAG-запрос на каждое требование",
+        )
         st.number_input("Параллельность батчей анализа", min_value=1, max_value=6, key="analysis_batch_concurrency")
         st.number_input("Пауза между LLM-запросами, сек", min_value=0.0, max_value=5.0, step=0.1, key="llm_request_delay")
 

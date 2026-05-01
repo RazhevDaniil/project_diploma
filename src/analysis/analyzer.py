@@ -105,6 +105,28 @@ def _managed_rag_query(req: Requirement) -> str:
     return query
 
 
+def _managed_rag_batch_query(requirements: list[Requirement]) -> str:
+    lines = [
+        "Нужно проверить возможность Cloud.ru выполнить группу требований из ТЗ.",
+        "Верни релевантные документы по платформам Cloud.ru и, если нужно, по внешним услугам/подрядчикам.",
+        "Приоритет поиска: 1) документация по платформам Cloud.ru; 2) документация по внешним услугам.",
+        "Требования:",
+    ]
+    for req in requirements:
+        requirement_text = req.text[:700]
+        lines.append(
+            "\n".join(
+                [
+                    f"ID={req.id}",
+                    f"Пункт ТЗ: {req.section or req.id}",
+                    f"Категория: {req.category}",
+                    f"Требование: {requirement_text}",
+                ]
+            )
+        )
+    return "\n\n---\n\n".join(lines)
+
+
 def _value_to_text(value) -> str:
     if value in (None, ""):
         return ""
@@ -273,6 +295,47 @@ def _format_rag_context(req: Requirement, rag_result: ManagedRagResult | None, m
     return "\n\n".join(parts)
 
 
+def _format_batch_rag_context(requirements: list[Requirement], rag_result: ManagedRagResult | None) -> str:
+    req_lines = []
+    for req in requirements:
+        req_lines.append(f"ID требования: {req.id}; пункт ТЗ: {req.section}; категория: {req.category}")
+    if not rag_result:
+        return "\n".join(
+            [
+                "Контекст Managed RAG для группы требований.",
+                "\n".join(req_lines),
+                "Managed RAG не вернул контекст для этой группы.",
+            ]
+        )
+
+    parts = [
+        "Контекст Managed RAG для группы требований.",
+        "\n".join(req_lines),
+        f"Ответ Managed RAG: {rag_result.answer or 'нет ответа'}",
+    ]
+    for idx, source in enumerate(rag_result.results, start=1):
+        title = _result_label(source, idx)
+        platform = _platform_from_result(source, idx)
+        source_type = _source_type_from_result(source)
+        url = _result_url(source)
+        content = _result_content(source)
+        parts.append(
+            "\n".join(
+                [
+                    f"[{idx}]",
+                    f"Название документа: {title}",
+                    f"Тип источника: {source_type}",
+                    f"Платформа/услуга: {platform}",
+                    f"URL/источник: {url or title}",
+                    f"Фрагмент: {content[:1600] if content else 'нет текста'}",
+                ]
+            )
+        )
+    return "\n\n".join(parts)
+
+
+
+
 def _safe_float(value, default: float = 0.5) -> float:
     try:
         return float(value)
@@ -383,6 +446,14 @@ def _fetch_managed_rag(req: Requirement) -> tuple[int, ManagedRagResult | None, 
         return req.id, None, str(exc)
 
 
+def _fetch_batch_managed_rag(requirements: list[Requirement]) -> tuple[ManagedRagResult | None, str | None]:
+    try:
+        result = retrieve_generate(_managed_rag_batch_query(requirements), number_of_results=cfg.MANAGED_RAG_RESULTS)
+        return result, None
+    except Exception as exc:
+        return None, str(exc)
+
+
 def _analyze_batch(requirements: list[Requirement]) -> list[RequirementVerdict]:
     """Analyze a batch of requirements."""
     all_context_parts = []
@@ -390,23 +461,39 @@ def _analyze_batch(requirements: list[Requirement]) -> list[RequirementVerdict]:
     req_source_urls: dict[int, list[str]] = {r.id: [] for r in requirements}
     req_map = {r.id: r for r in requirements}
 
-    max_workers = max(1, min(cfg.MANAGED_RAG_CONCURRENCY, len(requirements)))
-    logger.info("Fetching Managed RAG context for %d requirements (parallel=%d)", len(requirements), max_workers)
-    with ThreadPoolExecutor(max_workers=max_workers) as executor:
-        futures = [executor.submit(_fetch_managed_rag, req) for req in requirements]
-        for future in as_completed(futures):
-            req_id, rag_result, error = future.result()
-            req = req_map[req_id]
-            if error or rag_result is None:
-                logger.warning("Managed RAG failed for requirement %s: %s", req_id, error)
-                all_context_parts.append(_format_rag_context(req, None))
-                continue
-
-            req_rag_results[req.id] = rag_result
-            req_source_urls[req.id].extend(_filter_urls(rag_result.source_labels))
+    if cfg.ANALYSIS_RAG_MODE == "grouped":
+        logger.info("Fetching grouped Managed RAG context for %d requirements", len(requirements))
+        rag_result, error = _fetch_batch_managed_rag(requirements)
+        if error or rag_result is None:
+            logger.warning("Grouped Managed RAG failed: %s", error)
+            all_context_parts.append(_format_batch_rag_context(requirements, None))
+        else:
+            all_context_parts.append(_format_batch_rag_context(requirements, rag_result))
+            source_urls = _filter_urls(rag_result.source_labels)
             for idx, source in enumerate(rag_result.results, start=1):
-                req_source_urls[req.id].extend(_filter_urls([_result_url(source)]))
-            all_context_parts.append(_format_rag_context(req, rag_result))
+                source_urls.extend(_filter_urls([_result_url(source)]))
+            source_urls = list(dict.fromkeys(source_urls))
+            for req in requirements:
+                req_rag_results[req.id] = rag_result
+                req_source_urls[req.id].extend(source_urls)
+    else:
+        max_workers = max(1, min(cfg.MANAGED_RAG_CONCURRENCY, len(requirements)))
+        logger.info("Fetching Managed RAG context for %d requirements (parallel=%d)", len(requirements), max_workers)
+        with ThreadPoolExecutor(max_workers=max_workers) as executor:
+            futures = [executor.submit(_fetch_managed_rag, req) for req in requirements]
+            for future in as_completed(futures):
+                req_id, rag_result, error = future.result()
+                req = req_map[req_id]
+                if error or rag_result is None:
+                    logger.warning("Managed RAG failed for requirement %s: %s", req_id, error)
+                    all_context_parts.append(_format_rag_context(req, None))
+                    continue
+
+                req_rag_results[req.id] = rag_result
+                req_source_urls[req.id].extend(_filter_urls(rag_result.source_labels))
+                for idx, source in enumerate(rag_result.results, start=1):
+                    req_source_urls[req.id].extend(_filter_urls([_result_url(source)]))
+                all_context_parts.append(_format_rag_context(req, rag_result))
 
     context = "\n\n---\n\n".join(all_context_parts) if all_context_parts else "Managed RAG не вернул релевантной информации."
 
