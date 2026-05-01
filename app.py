@@ -34,6 +34,8 @@ def init_state():
         "selected_run_id": None,
         "active_run": None,
         "runs_list": [],
+        "suppress_auto_load_latest": False,
+        "upload_widget_version": 0,
         "auto_refresh_run": True,
         "last_backend_health": None,
         "last_prompts_payload": None,
@@ -197,6 +199,7 @@ def load_run_into_state(run: dict):
     previous_run_id = st.session_state.get("selected_run_id")
     st.session_state.selected_run_id = run.get("id")
     st.session_state.active_run = run
+    st.session_state.suppress_auto_load_latest = False
     st.session_state.requirements = run.get("requirements") or None
     st.session_state.parsed_files = run.get("parsed_files") or []
     st.session_state.analysis_report = run.get("report")
@@ -228,6 +231,14 @@ def reset_current_outputs():
     st.session_state.report_markdown = ""
     st.session_state.downloads = {}
     st.session_state.analysis_qa_history = []
+
+
+def start_new_analysis():
+    st.session_state.selected_run_id = None
+    st.session_state.active_run = None
+    st.session_state.suppress_auto_load_latest = True
+    st.session_state.upload_widget_version += 1
+    reset_current_outputs()
 
 
 def status_label(status: str) -> str:
@@ -687,7 +698,11 @@ if backend_health:
             refresh_selected_run_status()
         else:
             st.session_state.runs_list = fetch_runs()
-        if not st.session_state.selected_run_id and st.session_state.runs_list:
+        if (
+            not st.session_state.selected_run_id
+            and not st.session_state.suppress_auto_load_latest
+            and st.session_state.runs_list
+        ):
             latest_run = fetch_run(st.session_state.runs_list[0]["id"])
             load_run_into_state(latest_run)
     except Exception:
@@ -699,6 +714,12 @@ with tab_analyze:
     st.header("Загрузка и анализ ТЗ")
     st.caption("Проверка возможностей Cloud.ru выполняется через Managed RAG.")
 
+    col_title, col_new = st.columns([3, 1])
+    with col_new:
+        if st.button("Новый анализ", width="stretch"):
+            start_new_analysis()
+            st.rerun()
+
     if st.session_state.active_run:
         render_live_run_panel()
         st.divider()
@@ -707,6 +728,7 @@ with tab_analyze:
         "Загрузите ТЗ (PDF, DOCX, XLSX, TXT)",
         type=["pdf", "docx", "doc", "xlsx", "xls", "txt"],
         accept_multiple_files=True,
+        key=f"uploaded_files_{st.session_state.upload_widget_version}",
     )
 
     if uploaded_files:
