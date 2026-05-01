@@ -9,6 +9,7 @@ import re
 import config as cfg
 from src.models import Requirement
 from src.llm.client import call_llm_json
+from src.parser.document_parser import ParsedBlock, ParsedDocument
 
 logger = logging.getLogger(__name__)
 
@@ -100,26 +101,238 @@ def _category_from_text(text: str) -> str:
     lowered = text.lower()
     if any(token in lowered for token in ("sla", "доступност", "время реакции", "rto", "rpo", "простой", "инцидент")):
         return "sla"
-    if any(token in lowered for token in ("персональн", "152-фз", "фстэк", "фсб", "скзи", "шифр", "доступ", "защит", "иб", "антивирус")):
+    if any(token in lowered for token in ("сервер", "виртуаль", "виртуальная машина", "вм", "кластер", "сеть", "хранилищ", "cpu", "vcpu", "ram", "iops", "bps", "ssd", "hdd", "ip-адрес", "мбит", "интернет", "api", "резервн", "мониторинг", "личный кабинет", "цод")):
+        return "technical"
+    if any(token in lowered for token in ("персональн", "152-фз", "фстэк", "фсб", "скзи", "шифр", "защит", "иб", "антивирус", "аутентификац", "двухфактор", "аттестат", "модель угроз", "к1", "уз-1", "несанкционирован")):
         return "security"
     if any(token in lowered for token in ("штраф", "неустой", "оплат", "стоимост", "цена", "договор", "контракт")):
         return "commercial"
     if any(token in lowered for token in ("закон", "лиценз", "сертифик", "соответств", "право", "персональных данных")):
         return "legal"
-    if any(token in lowered for token in ("сервер", "виртуаль", "кластер", "сеть", "хранилищ", "cpu", "ram", "api", "резервн", "мониторинг")):
-        return "technical"
     return "other"
 
 
 def _section_from_line(line: str) -> tuple[str, str] | None:
-    match = re.match(r"^\s*(?:п\.|пункт\s*)?(\d+(?:\.\d+){1,6})[.)]?\s+(.+)$", line, re.IGNORECASE)
+    match = re.match(
+        r"^\s*(?:п\.|пункт\s*)?(\d+(?:\s*\.\s*\d+){1,6})[.)]?\s+(.+)$",
+        line,
+        re.IGNORECASE,
+    )
     if not match:
         return None
     section, rest = match.groups()
+    section = re.sub(r"\s*\.\s*", ".", section).strip(".")
     rest = rest.strip()
     if len(rest) < 8:
         return None
     return section, rest
+
+
+def _is_list_style(style: str) -> bool:
+    lowered = (style or "").lower()
+    return "list" in lowered or "спис" in lowered or "марк" in lowered
+
+
+def _is_table_caption(text: str) -> bool:
+    return bool(re.match(r"^таблица\s*(?:№|n)?\s*\d+", text.strip(), re.IGNORECASE))
+
+
+def _is_terms_context(context: str) -> bool:
+    lowered = context.lower()
+    return "термины и определения" in lowered
+
+
+def _context_label(path_stack: dict[int, str]) -> str:
+    return " > ".join(path_stack[level] for level in sorted(path_stack))
+
+
+def _synthetic_section(context: str, block_index: int, suffix: str = "") -> str:
+    label = context.strip() if context else "Без раздела"
+    if len(label) > 120:
+        label = label[:117].rstrip() + "..."
+    return f"{label} / {suffix or f'блок {block_index}'}"
+
+
+def _is_section_title_only(text: str) -> bool:
+    lowered = text.lower().strip(" .:")
+    if lowered.startswith("требования к ") or lowered.startswith("требования по "):
+        return True
+    if lowered in {"общие требования оказания услуг", "требования к услугам"}:
+        return True
+    return False
+
+
+def _is_requirement_text(text: str) -> bool:
+    lowered = text.lower()
+    markers = (
+        "должен",
+        "должна",
+        "должно",
+        "должны",
+        "обязан",
+        "обязана",
+        "обязуется",
+        "необходимо",
+        "требуется",
+        "предоставить",
+        "предоставляет",
+        "предоставляться",
+        "обеспечить",
+        "обеспечивает",
+        "соответствовать",
+        "соответствует",
+        "не менее",
+        "не более",
+        "круглосуточ",
+        "двухфактор",
+        "лицензи",
+        "сертификат",
+        "аттестат",
+    )
+    if any(marker in lowered for marker in markers):
+        return True
+    return bool(re.search(r"\b(?:до|от)\s+\d", lowered))
+
+
+def _is_intro_requirement(text: str) -> bool:
+    lowered = text.lower().strip()
+    if not lowered.endswith(":"):
+        return False
+    return any(
+        marker in lowered
+        for marker in (
+            "следующ",
+            "возможность",
+            "в том числе",
+            "должен обеспечить",
+            "должны обеспечиваться",
+            "должен предоставить",
+            "обязан предоставить",
+            "предоставить",
+            "обеспечить",
+        )
+    )
+
+
+def _is_requirement_table(caption: str, headers: list[str]) -> bool:
+    blob = " ".join([caption, *headers]).lower()
+    if "описание приоритетов" in blob or "категории запросов" in blob:
+        return False
+    table_markers = (
+        "параметр",
+        "объем",
+        "объём",
+        "целев",
+        "показатель",
+        "время решения",
+        "sla",
+        "услуг",
+    )
+    return any(marker in blob for marker in table_markers)
+
+
+def _table_requirement_text(caption: str, block: ParsedBlock) -> str:
+    pairs = []
+    for index, cell in enumerate(block.cells):
+        if not cell:
+            continue
+        header = block.headers[index] if index < len(block.headers) and block.headers[index] else f"Колонка {index + 1}"
+        pairs.append(f"{header}: {cell}")
+    prefix = caption or f"Таблица {block.table_index}"
+    return f"{prefix}. " + "; ".join(pairs)
+
+
+def _extract_requirements_from_blocks(document: ParsedDocument) -> list[Requirement]:
+    """Fast parser that uses DOCX structure: headings, lists and table rows."""
+    requirements: list[Requirement] = []
+    path_stack: dict[int, str] = {}
+    current_intro = ""
+    current_table_caption = ""
+
+    def add_requirement(section: str, text: str, tables: str = "") -> None:
+        normalized = _normalize_text(text)
+        if len(normalized) < 12 or _is_probably_heading(normalized):
+            return
+        requirements.append(
+            Requirement(
+                id=len(requirements) + 1,
+                section=section,
+                text=normalized,
+                category=_category_from_text(normalized),
+                tables=tables,
+            )
+        )
+
+    for block_index, block in enumerate(document.blocks, start=1):
+        text = _normalize_text(block.text)
+        if not text:
+            continue
+
+        if block.kind == "table_row":
+            context = _context_label(path_stack)
+            if _is_terms_context(context):
+                continue
+            if not _is_requirement_table(current_table_caption, block.headers):
+                continue
+            section = current_table_caption or f"Таблица {block.table_index}"
+            section = f"{section}, строка {block.row_index}"
+            add_requirement(section, _table_requirement_text(current_table_caption, block))
+            continue
+
+        if _is_table_caption(text):
+            current_table_caption = text
+            continue
+
+        parsed_section = _section_from_line(text)
+        style = block.style or ""
+        is_list = _is_list_style(style)
+        level = block.level
+
+        if level:
+            for existing_level in list(path_stack):
+                if existing_level >= level:
+                    del path_stack[existing_level]
+            path_stack[level] = text
+
+        context = _context_label(path_stack)
+        if _is_terms_context(context or text):
+            current_intro = ""
+            continue
+
+        if parsed_section:
+            section, rest = parsed_section
+            add_requirement(section, rest)
+            current_intro = rest if _is_intro_requirement(rest) else ""
+            continue
+
+        if is_list:
+            if text.endswith(":"):
+                current_intro = text
+                continue
+            if current_intro and not _is_terms_context(current_intro):
+                section = _synthetic_section(context, block_index, f"пункт списка {block_index}")
+                parent = current_intro.rstrip(":")
+                add_requirement(section, f"{parent}: {text}")
+            elif _is_requirement_text(text):
+                section = _synthetic_section(context, block_index, f"пункт списка {block_index}")
+                add_requirement(section, text)
+            continue
+
+        if _is_intro_requirement(text):
+            current_intro = text
+            continue
+
+        if _is_requirement_text(text) and not _is_section_title_only(text):
+            section = _synthetic_section(context, block_index)
+            add_requirement(section, text)
+            current_intro = text if _is_intro_requirement(text) else ""
+        elif level:
+            current_intro = text if _is_intro_requirement(text) else ""
+
+    result = _dedupe_requirements(requirements)
+    result = _cap_requirements(result)
+    logger.info("Structured parser extracted %d requirements", len(result))
+    return result
 
 
 def _is_probably_heading(text: str) -> bool:
@@ -228,13 +441,18 @@ def _extract_requirements_fast(document_text: str) -> list[Requirement]:
     return requirements
 
 
-def extract_requirements(document_text: str, max_chunk_size: int | None = None) -> list[Requirement]:
+def extract_requirements(document: str | ParsedDocument, max_chunk_size: int | None = None) -> list[Requirement]:
     """Extract structured requirements from document text using LLM.
 
     Splits long documents into chunks and processes each separately.
     """
+    document_text = document.full_text if isinstance(document, ParsedDocument) else document
+
     if cfg.PARSER_MODE in {"fast", "hybrid"}:
-        fast_requirements = _extract_requirements_fast(document_text)
+        if isinstance(document, ParsedDocument) and document.blocks:
+            fast_requirements = _extract_requirements_from_blocks(document)
+        else:
+            fast_requirements = _extract_requirements_fast(document_text)
         if cfg.PARSER_MODE == "fast" or len(fast_requirements) >= cfg.PARSER_FAST_MIN_REQUIREMENTS:
             return fast_requirements
         logger.info(

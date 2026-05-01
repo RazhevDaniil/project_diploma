@@ -17,7 +17,16 @@ logger = logging.getLogger(__name__)
 # Domains considered relevant for Cloud.ru analysis
 _TRUSTED_DOMAINS = {"cloud.ru", "cloudru.tech", "sbercloud.ru",
                     "fstec.ru", "rkn.gov.ru", "consultant.ru", "garant.ru"}
-PLATFORM_COLUMNS = ("Evolution", "Advanced", "Облако VMware")
+KNOWN_PLATFORM_PATTERNS = (
+    ("гособлак", "ГосОблако"),
+    ("гос облак", "ГосОблако"),
+    ("goscloud", "ГосОблако"),
+    ("vmware", "Облако VMware"),
+    ("vcloud", "Облако VMware"),
+    ("облако vmware", "Облако VMware"),
+    ("advanced", "Advanced"),
+    ("evolution", "Evolution"),
+)
 
 
 def _filter_urls(urls: list) -> list[str]:
@@ -90,11 +99,15 @@ def analyze_requirements(
 
 
 def _managed_rag_query(req: Requirement) -> str:
+    profile = _requirement_search_profile(req)
     query = "\n".join(
         [
             "Нужно проверить возможность Cloud.ru выполнить требование из ТЗ.",
             "Приоритет поиска: 1) документация по платформам Cloud.ru; 2) документация по внешним услугам/подрядчикам.",
             "Если платформенной документации нет, явно ищи документы по внешним услугам, ПНР, ПСИ и подрядным работам.",
+            f"Профиль требования: {profile['cluster']}",
+            f"Целевые поисковые термины: {', '.join(profile['terms'])}",
+            f"Предпочтительная/вероятная платформа: {profile['platform_hint'] or 'не определена'}",
             f"Пункт ТЗ: {req.section or req.id}",
             f"Категория: {req.category}",
             f"Требование: {req.text}",
@@ -110,16 +123,21 @@ def _managed_rag_batch_query(requirements: list[Requirement]) -> str:
         "Нужно проверить возможность Cloud.ru выполнить группу требований из ТЗ.",
         "Верни релевантные документы по платформам Cloud.ru и, если нужно, по внешним услугам/подрядчикам.",
         "Приоритет поиска: 1) документация по платформам Cloud.ru; 2) документация по внешним услугам.",
+        "Для каждого требования учитывай профиль поиска: безопасность, лимиты ВМ, сеть, SLA, ЦОД/колокация, личный кабинет/IAM или внешние услуги.",
         "Требования:",
     ]
     for req in requirements:
         requirement_text = req.text[:700]
+        profile = _requirement_search_profile(req)
         lines.append(
             "\n".join(
                 [
                     f"ID={req.id}",
                     f"Пункт ТЗ: {req.section or req.id}",
                     f"Категория: {req.category}",
+                    f"Профиль поиска: {profile['cluster']}",
+                    f"Поисковые термины: {', '.join(profile['terms'])}",
+                    f"Вероятная платформа: {profile['platform_hint'] or 'не определена'}",
                     f"Требование: {requirement_text}",
                 ]
             )
@@ -207,16 +225,51 @@ def _looks_external_service(text: str) -> bool:
     return any(marker in lowered for marker in markers)
 
 
+def _known_platform_from_text(text: str) -> str:
+    lowered = (text or "").lower()
+    for marker, platform_name in KNOWN_PLATFORM_PATTERNS:
+        if marker in lowered:
+            return platform_name
+    return ""
+
+
 def _canonical_platform_name(value: str) -> str:
     text = (value or "").strip()
-    lowered = text.lower()
-    if "vmware" in lowered or "vcloud" in lowered or "облако vmware" in lowered:
-        return "Облако VMware"
-    if "advanced" in lowered:
-        return "Advanced"
-    if "evolution" in lowered:
-        return "Evolution"
-    return text
+    return _known_platform_from_text(text) or text
+
+
+def _requirement_search_profile(req: Requirement) -> dict[str, object]:
+    text = " ".join([req.section or "", req.category or "", req.text or "", req.tables or ""]).lower()
+    cluster = "general"
+    terms: list[str] = []
+    platform_hint = ""
+
+    if any(token in text for token in ("гис", "к1", "уз-1", "152-фз", "фстэк", "фсб", "аттестат", "модель угроз", "зокии")):
+        cluster = "security_certification"
+        terms.extend(["ГИС К1", "ИСПДн УЗ-1", "ФСТЭК", "аттестат соответствия", "модель угроз"])
+        platform_hint = "ГосОблако"
+    if any(token in text for token in ("ram", "vcpu", "cpu", "диск", "iops", "bps", "виртуальн", "вм", "ssd")):
+        cluster = "vm_limits"
+        terms.extend(["конфигурации виртуальных машин", "лимиты ВМ", "vCPU", "RAM", "диски", "IOPS", "BPS"])
+    if any(token in text for token in ("sla", "доступност", "инцидент", "время решения", "техническ", "поддержк", "24/7")):
+        cluster = "sla_support"
+        terms.extend(["SLA", "техническая поддержка", "инциденты", "время решения"])
+    if any(token in text for token in ("интернет", "ip-адрес", "публичн", "потер", "задержк", "мбит", "сеть")):
+        cluster = "network"
+        terms.extend(["VPC", "публичный IP", "интернет", "сетевая задержка", "пропускная способность"])
+    if any(token in text for token in ("цод", "tier", "колокац", "размещени", "2u", "стойк", "питани", "физический доступ")):
+        cluster = "datacenter_colocation"
+        terms.extend(["ЦОД", "TIER III", "колокация", "размещение оборудования", "физический доступ"])
+    if any(token in text for token in ("личный кабинет", "2fa", "двухфактор", "ролевая", "логирован", "пользовател")):
+        cluster = "console_iam"
+        terms.extend(["личный кабинет", "2FA", "ролевая модель", "IAM", "аудит действий"])
+    if _looks_external_service(text):
+        terms.extend(["внешние услуги", "подрядчики", "ПНР", "ПСИ"])
+
+    if not terms:
+        terms.extend(["Cloud.ru документация", req.category or "требование"])
+    terms = list(dict.fromkeys(terms))
+    return {"cluster": cluster, "terms": terms[:10], "platform_hint": platform_hint}
 
 
 def _source_type_from_result(item: dict) -> str:
@@ -230,7 +283,7 @@ def _source_type_from_result(item: dict) -> str:
     blob = " ".join([explicit, label, platform]).strip()
     if _looks_external_service(blob):
         return "external_service"
-    if platform:
+    if platform and not platform.lower().startswith("cloud.ru источник"):
         return "platform"
     return "unknown"
 
@@ -254,8 +307,13 @@ def _platform_from_result(item: dict, idx: int) -> str:
     if explicit:
         return _canonical_platform_name(explicit)
     title = _metadata_value(metadata, ("title", "document_name", "filename"))
-    if title:
-        return _canonical_platform_name(title.split("|", 1)[0].split(" — ", 1)[0].split(" - ", 1)[0].strip())
+    platform_from_title = _known_platform_from_text(title)
+    if platform_from_title:
+        return platform_from_title
+    content = _result_content(item)
+    platform_from_content = _known_platform_from_text(content[:1000])
+    if platform_from_content:
+        return platform_from_content
     return f"Cloud.ru источник {idx}"
 
 

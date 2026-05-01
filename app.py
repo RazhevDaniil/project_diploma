@@ -17,7 +17,7 @@ MODEL_OPTIONS = {
     "Qwen3-235B-A22B-Instruct-2507": "Qwen/Qwen3-235B-A22B-Instruct-2507",
     "Qwen3-Next-80B-A3B-Instruct": "Qwen/Qwen3-Next-80B-A3B-Instruct",
 }
-PLATFORM_COLUMNS = ["Evolution", "Advanced", "Облако VMware"]
+PREFERRED_PLATFORM_ORDER = ["ГосОблако", "Evolution", "Advanced", "Облако VMware"]
 
 
 def init_state():
@@ -267,6 +267,8 @@ def platform_cell(assessment: dict) -> str:
 def canonical_platform_name(value: str) -> str:
     text = (value or "").strip()
     lowered = text.lower()
+    if "гособлак" in lowered or "гос облак" in lowered or "goscloud" in lowered:
+        return "ГосОблако"
     if "vmware" in lowered or "vcloud" in lowered or "облако vmware" in lowered:
         return "Облако VMware"
     if "advanced" in lowered:
@@ -274,6 +276,33 @@ def canonical_platform_name(value: str) -> str:
     if "evolution" in lowered:
         return "Evolution"
     return text
+
+
+def is_matrix_platform_name(value: str) -> bool:
+    text = canonical_platform_name(value)
+    lowered = text.lower()
+    if not text:
+        return False
+    if lowered.startswith("cloud.ru источник"):
+        return False
+    if "документация не найдена" in lowered or "платформа не определена" in lowered:
+        return False
+    return True
+
+
+def report_platform_names(report: dict) -> list[str]:
+    names = []
+    for verdict in report.get("verdicts", []):
+        for assessment in verdict.get("platform_assessments", []) or []:
+            if assessment.get("source_type") == "external_service":
+                continue
+            platform_name = canonical_platform_name(assessment.get("platform_name") or "")
+            if is_matrix_platform_name(platform_name) and platform_name not in names:
+                names.append(platform_name)
+
+    preferred = [name for name in PREFERRED_PLATFORM_ORDER if name in names]
+    other = sorted([name for name in names if name not in PREFERRED_PLATFORM_ORDER], key=str.casefold)
+    return preferred + other
 
 
 def report_reference_map(report: dict) -> dict[str, int]:
@@ -309,7 +338,9 @@ def best_platform_assessment(items: list[dict], refs: dict[str, int]) -> dict | 
 
 def report_platform_matrix(report: dict) -> list[dict]:
     refs = report_reference_map(report)
-    has_platform_assessment = False
+    platform_names = report_platform_names(report)
+    if not platform_names:
+        return []
 
     rows = []
     for verdict in report.get("verdicts", []):
@@ -317,19 +348,18 @@ def report_platform_matrix(report: dict) -> list[dict]:
             "Пункт ТЗ": verdict.get("section") or f"#{verdict.get('requirement_id')}",
             "Требование": (verdict.get("requirement_text") or "")[:140],
         }
-        by_platform = {platform_name: [] for platform_name in PLATFORM_COLUMNS}
+        by_platform = {platform_name: [] for platform_name in platform_names}
         for assessment in verdict.get("platform_assessments", []) or []:
             if assessment.get("source_type") == "external_service":
                 continue
             platform_name = canonical_platform_name(assessment.get("platform_name") or "")
             if platform_name in by_platform:
-                has_platform_assessment = True
                 by_platform[platform_name].append(assessment)
-        for platform_name in PLATFORM_COLUMNS:
+        for platform_name in platform_names:
             assessment = best_platform_assessment(by_platform[platform_name], refs)
             row[platform_name] = platform_cell(assessment) if assessment else "-"
         rows.append(row)
-    return rows if has_platform_assessment else []
+    return rows
 
 
 def render_run_status(run: dict):

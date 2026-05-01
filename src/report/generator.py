@@ -51,7 +51,7 @@ PLATFORM_VERDICT_SYMBOLS = {
     "mismatch": "-",
     "needs_clarification": "?",
 }
-PLATFORM_COLUMNS = ["Evolution", "Advanced", "Облако VMware"]
+PREFERRED_PLATFORM_ORDER = ["ГосОблако", "Evolution", "Advanced", "Облако VMware"]
 PLATFORM_VERDICT_RANK = {
     "match": 3,
     "partial": 2,
@@ -128,6 +128,8 @@ def _assessment_symbol(assessment: dict | object, refs: dict[str, int]) -> str:
 def _canonical_platform_name(value: str) -> str:
     text = (value or "").strip()
     lowered = text.lower()
+    if "гособлак" in lowered or "гос облак" in lowered or "goscloud" in lowered:
+        return "ГосОблако"
     if "vmware" in lowered or "vcloud" in lowered or "облако vmware" in lowered:
         return "Облако VMware"
     if "advanced" in lowered:
@@ -137,10 +139,22 @@ def _canonical_platform_name(value: str) -> str:
     return text
 
 
+def _is_matrix_platform_name(value: str) -> bool:
+    text = _canonical_platform_name(value)
+    lowered = text.lower()
+    if not text:
+        return False
+    if lowered.startswith("cloud.ru источник"):
+        return False
+    if "документация не найдена" in lowered or "платформа не определена" in lowered:
+        return False
+    return True
+
+
 def _is_matrix_platform(assessment: object) -> bool:
     if getattr(assessment, "source_type", "") == "external_service":
         return False
-    return _canonical_platform_name(getattr(assessment, "platform_name", "")) in PLATFORM_COLUMNS
+    return _is_matrix_platform_name(getattr(assessment, "platform_name", ""))
 
 
 def _best_platform_assessment(items: list) -> object | None:
@@ -157,9 +171,18 @@ def _best_platform_assessment(items: list) -> object | None:
 
 
 def _platform_names(report: AnalysisReport) -> list[str]:
-    if any(_is_matrix_platform(assessment) for verdict in report.verdicts for assessment in verdict.platform_assessments):
-        return PLATFORM_COLUMNS.copy()
-    return []
+    names = []
+    for verdict in report.verdicts:
+        for assessment in verdict.platform_assessments:
+            if not _is_matrix_platform(assessment):
+                continue
+            platform_name = _canonical_platform_name(assessment.platform_name)
+            if platform_name not in names:
+                names.append(platform_name)
+
+    preferred = [name for name in PREFERRED_PLATFORM_ORDER if name in names]
+    other = sorted([name for name in names if name not in PREFERRED_PLATFORM_ORDER], key=str.casefold)
+    return preferred + other
 
 
 def _platform_matrix_rows(report: AnalysisReport, refs: dict[str, int]) -> list[dict]:
@@ -849,7 +872,11 @@ def save_pdf(report: AnalysisReport, output_dir: Path | None = None) -> Path:
         pdf.cell(0, 8, _safe("Матрица соответствия по платформам"), new_x="LMARGIN", new_y="NEXT")
         pdf.set_font(font_name, "", 7)
         headers = ["Пункт ТЗ", "Требование"] + platform_names
-        widths = [25, 150, 36, 36, 42]
+        usable_width = pdf.w - pdf.l_margin - pdf.r_margin
+        point_width = 25
+        requirement_width = min(135, max(80, usable_width * 0.42))
+        platform_width = max(18, (usable_width - point_width - requirement_width) / len(platform_names))
+        widths = [point_width, requirement_width] + [platform_width] * len(platform_names)
         for width, header in zip(widths, headers):
             pdf.cell(width, 7, _cut(header, 24), border=1)
         pdf.ln(7)
@@ -860,14 +887,10 @@ def save_pdf(report: AnalysisReport, output_dir: Path | None = None) -> Path:
                 for width, header in zip(widths, headers):
                     pdf.cell(width, 7, _cut(header, 24), border=1)
                 pdf.ln(7)
-            values = [
-                row.get("Пункт ТЗ", ""),
-                row.get("Требование", ""),
-                row.get("Evolution", ""),
-                row.get("Advanced", ""),
-                row.get("Облако VMware", ""),
+            values = [row.get("Пункт ТЗ", ""), row.get("Требование", "")] + [
+                row.get(platform_name, "") for platform_name in platform_names
             ]
-            limits = [18, 115, 16, 16, 18]
+            limits = [18, 105] + [max(10, int(platform_width / 2.2))] * len(platform_names)
             for width, value, limit in zip(widths, values, limits):
                 pdf.cell(width, 7, _cut(value, limit), border=1)
             pdf.ln(7)

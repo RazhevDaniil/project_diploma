@@ -290,7 +290,7 @@ def _run_extract_requirements(run_id: str, uploads: list[dict], settings: dict |
         for index, item in enumerate(uploads, start=1):
             path = Path(item["path"])
             parsed = parse_document(path)
-            requirements = extract_requirements(parsed.full_text)
+            requirements = extract_requirements(parsed)
             all_requirements.extend(requirements)
             parsed_files.append(
                 {
@@ -498,7 +498,7 @@ async def extract_requirements_endpoint(
     for upload in files:
         tmp_path = await _save_upload(upload, cfg.UPLOAD_DIR)
         parsed = parse_document(tmp_path)
-        requirements = extract_requirements(parsed.full_text)
+        requirements = extract_requirements(parsed)
         all_requirements.extend(requirements)
         parsed_files.append(
             {
