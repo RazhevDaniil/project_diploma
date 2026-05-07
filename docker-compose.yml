@@ -10,11 +10,12 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./faiss_index:/app/faiss_index
-      - ./crawl_cache:/app/crawl_cache
       - ./uploads:/app/uploads
       - ./reports:/app/reports
-      - ./knowledge_base_data:/app/knowledge_base_data
+      - ./runs:/app/runs
+      - ./prompt_versions:/app/prompt_versions
+      - ./rag_cache:/app/rag_cache
+      - ./settings:/app/settings
 
   ui:
     build:
@@ -24,8 +25,25 @@ services:
     environment:
       BACKEND_API_URL: http://backend:8000
       OPENAI_API_BASE: ${OPENAI_API_BASE:-https://foundation-models.api.cloud.ru/v1}
-      OPENAI_MODEL: ${OPENAI_MODEL:-GigaChat/GigaChat-2-Max}
-      OPENAI_EMBEDDING_MODEL: ${OPENAI_EMBEDDING_MODEL:-BAAI/bge-m3}
+      OPENAI_MODEL: ${OPENAI_MODEL:-openai/gpt-oss-120b}
+      OPENAI_TEMPERATURE: ${OPENAI_TEMPERATURE:-0.05}
+      LLM_REQUEST_DELAY: ${LLM_REQUEST_DELAY:-0}
+      PARSER_MODE: ${PARSER_MODE:-fast}
+      PARSER_CHUNK_SIZE: ${PARSER_CHUNK_SIZE:-6000}
+      PARSER_CONCURRENCY: ${PARSER_CONCURRENCY:-4}
+      PARSER_FAST_MIN_REQUIREMENTS: ${PARSER_FAST_MIN_REQUIREMENTS:-20}
+      PARSER_FAST_MAX_REQUIREMENTS: ${PARSER_FAST_MAX_REQUIREMENTS:-1000}
+      MAX_REQUIREMENTS_PER_BATCH: ${MAX_REQUIREMENTS_PER_BATCH:-12}
+      ANALYSIS_RAG_MODE: ${ANALYSIS_RAG_MODE:-grouped}
+      ANALYSIS_BATCH_CONCURRENCY: ${ANALYSIS_BATCH_CONCURRENCY:-2}
+      MANAGED_RAG_URL: ${MANAGED_RAG_URL:-https://e424a162-618c-4862-b789-b089abd81b46.managed-rag.inference.cloud.ru/api/v2/retrieve_generate}
+      MANAGED_RAG_KB_VERSION: ${MANAGED_RAG_KB_VERSION:-eb73eb63-ec91-47c9-851e-1c14949b7a14}
+      MANAGED_RAG_RESULTS: ${MANAGED_RAG_RESULTS:-5}
+      MANAGED_RAG_CONTEXT_CHUNKS: ${MANAGED_RAG_CONTEXT_CHUNKS:-6}
+      MANAGED_RAG_MAX_TOKENS: ${MANAGED_RAG_MAX_TOKENS:-768}
+      MANAGED_RAG_TEMPERATURE: ${MANAGED_RAG_TEMPERATURE:-0.01}
+      MANAGED_RAG_CONCURRENCY: ${MANAGED_RAG_CONCURRENCY:-4}
+      MANAGED_RAG_CACHE_ENABLED: ${MANAGED_RAG_CACHE_ENABLED:-true}
     depends_on:
       - backend
     restart: unless-stopped

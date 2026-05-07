@@ -45,6 +45,20 @@ CATEGORY_PRIORITY = {
     "other": 5,
 }
 
+PLATFORM_VERDICT_SYMBOLS = {
+    "match": "+",
+    "partial": "±",
+    "mismatch": "-",
+    "needs_clarification": "?",
+}
+PREFERRED_PLATFORM_ORDER = ["ГосОблако", "Evolution", "Advanced", "Облако VMware"]
+PLATFORM_VERDICT_RANK = {
+    "match": 3,
+    "partial": 2,
+    "needs_clarification": 1,
+    "mismatch": 0,
+}
+
 
 def _section_label(v: RequirementVerdict) -> str:
     """Format the section/point label with fallback."""
@@ -74,7 +88,158 @@ def _priority_sort_key(v: RequirementVerdict) -> tuple:
     )
 
 
+def _assessment_ref_key(assessment: dict | object) -> str:
+    source_urls = getattr(assessment, "source_urls", []) if not isinstance(assessment, dict) else assessment.get("source_urls", [])
+    source_titles = getattr(assessment, "source_titles", []) if not isinstance(assessment, dict) else assessment.get("source_titles", [])
+    if source_urls:
+        return str(source_urls[0])
+    if source_titles:
+        return str(source_titles[0])
+    return ""
+
+
+def _collect_reference_map(report: AnalysisReport) -> dict[str, int]:
+    refs: dict[str, int] = {}
+    for verdict in report.verdicts:
+        for assessment in verdict.platform_assessments:
+            key = _assessment_ref_key(assessment)
+            if key and key not in refs:
+                refs[key] = len(refs) + 1
+        for url in verdict.source_urls:
+            if url and url not in refs:
+                refs[url] = len(refs) + 1
+    return refs
+
+
+def _assessment_ref_label(assessment: dict | object, refs: dict[str, int]) -> str:
+    key = _assessment_ref_key(assessment)
+    if not key or key not in refs:
+        return ""
+    return f"[{refs[key]}]"
+
+
+def _assessment_symbol(assessment: dict | object, refs: dict[str, int]) -> str:
+    verdict = getattr(assessment, "verdict", "") if not isinstance(assessment, dict) else assessment.get("verdict", "")
+    symbol = PLATFORM_VERDICT_SYMBOLS.get(verdict, "?")
+    ref = _assessment_ref_label(assessment, refs)
+    return f"{symbol} {ref}".strip()
+
+
+def _canonical_platform_name(value: str) -> str:
+    text = (value or "").strip()
+    lowered = text.lower()
+    if "гособлак" in lowered or "гос облак" in lowered or "goscloud" in lowered:
+        return "ГосОблако"
+    if "vmware" in lowered or "vcloud" in lowered or "облако vmware" in lowered:
+        return "Облако VMware"
+    if "advanced" in lowered:
+        return "Advanced"
+    if "evolution" in lowered:
+        return "Evolution"
+    return text
+
+
+def _is_matrix_platform_name(value: str) -> bool:
+    text = _canonical_platform_name(value)
+    lowered = text.lower()
+    if not text:
+        return False
+    if lowered.startswith("cloud.ru источник"):
+        return False
+    if "документация не найдена" in lowered or "платформа не определена" in lowered:
+        return False
+    return True
+
+
+def _is_matrix_platform(assessment: object) -> bool:
+    if getattr(assessment, "source_type", "") == "external_service":
+        return False
+    return _is_matrix_platform_name(getattr(assessment, "platform_name", ""))
+
+
+def _best_platform_assessment(items: list) -> object | None:
+    if not items:
+        return None
+    return sorted(
+        items,
+        key=lambda item: (
+            PLATFORM_VERDICT_RANK.get(getattr(item, "verdict", ""), -1),
+            getattr(item, "confidence", 0.0),
+        ),
+        reverse=True,
+    )[0]
+
+
+def _platform_names(report: AnalysisReport) -> list[str]:
+    names = []
+    for verdict in report.verdicts:
+        for assessment in verdict.platform_assessments:
+            if not _is_matrix_platform(assessment):
+                continue
+            platform_name = _canonical_platform_name(assessment.platform_name)
+            if platform_name not in names:
+                names.append(platform_name)
+
+    preferred = [name for name in PREFERRED_PLATFORM_ORDER if name in names]
+    other = sorted([name for name in names if name not in PREFERRED_PLATFORM_ORDER], key=str.casefold)
+    return preferred + other
+
+
+def _platform_matrix_rows(report: AnalysisReport, refs: dict[str, int]) -> list[dict]:
+    platform_names = _platform_names(report)
+    rows = []
+    for verdict in report.verdicts:
+        row = {
+            "Пункт ТЗ": verdict.section or f"#{verdict.requirement_id}",
+            "Требование": _req_text(verdict, 140),
+        }
+        by_platform: dict[str, list] = {platform_name: [] for platform_name in platform_names}
+        for item in verdict.platform_assessments:
+            platform_name = _canonical_platform_name(item.platform_name)
+            if item.source_type != "external_service" and platform_name in by_platform:
+                by_platform[platform_name].append(item)
+        for platform_name in platform_names:
+            assessment = _best_platform_assessment(by_platform.get(platform_name, []))
+            row[platform_name] = _assessment_symbol(assessment, refs) if assessment else "-"
+        rows.append(row)
+    return rows
+
+
+def _platform_totals(report: AnalysisReport) -> dict[str, tuple[int, int, int, int]]:
+    totals = {}
+    for platform_name in _platform_names(report):
+        match_count = partial_count = mismatch_count = clarification_count = 0
+        for verdict in report.verdicts:
+            items = [
+                assessment for assessment in verdict.platform_assessments
+                if assessment.source_type != "external_service"
+                and _canonical_platform_name(assessment.platform_name) == platform_name
+            ]
+            assessment = _best_platform_assessment(items)
+            if assessment is None:
+                continue
+            if assessment.verdict == "match":
+                match_count += 1
+            elif assessment.verdict == "partial":
+                partial_count += 1
+            elif assessment.verdict == "mismatch":
+                mismatch_count += 1
+            else:
+                clarification_count += 1
+        totals[platform_name] = (match_count, partial_count, mismatch_count, clarification_count)
+    return totals
+
+
+def _reference_title_from_key(key: str) -> str:
+    if key.startswith("http"):
+        return _url_short_name(key)
+    return key
+
+
 def _decision_summary(report: AnalysisReport) -> str:
+    coverage_warnings = _extraction_warning_lines(report)
+    if coverage_warnings:
+        return "Есть риск неполного анализа ТЗ: " + coverage_warnings[0]
     if report.mismatch_count > 0:
         return "Обнаружены несоответствия. Начните проверку отчёта с блокеров ниже."
     if report.clarification_count > 0:
@@ -84,10 +249,143 @@ def _decision_summary(report: AnalysisReport) -> str:
     return "Явных блокеров не найдено. Достаточно выборочно перепроверить подтверждённые ключевые требования."
 
 
+def _extraction_files(report: AnalysisReport) -> list[dict]:
+    summary = report.extraction_summary if isinstance(report.extraction_summary, dict) else {}
+    files = summary.get("files")
+    if isinstance(files, list):
+        return [item for item in files if isinstance(item, dict)]
+    return [summary] if summary else []
+
+
+def _extraction_warning_lines(report: AnalysisReport) -> list[str]:
+    warnings = []
+    for item in _extraction_files(report):
+        filename = item.get("filename") or report.document_name
+        if item.get("cap_applied"):
+            warnings.append(
+                f"{filename}: найдено {item.get('requirements_detected_before_cap', '?')} требований, "
+                f"в анализ передано {item.get('requirements_returned', '?')}; "
+                f"{item.get('requirements_omitted_by_cap', '?')} отброшено лимитом."
+            )
+        missing = item.get("missing_key_signals_after_extraction") or []
+        if missing:
+            warnings.append(
+                f"{filename}: ключевые сигналы не попали в извлеченные требования: {', '.join(missing[:8])}."
+            )
+    return warnings
+
+
+def _extraction_coverage_rows(report: AnalysisReport) -> list[dict]:
+    rows = []
+    for item in _extraction_files(report):
+        filename = item.get("filename") or report.document_name
+        rows.append(
+            {
+                "Файл": filename,
+                "Показатель": "Требований найдено парсером",
+                "Значение": item.get("requirements_detected_before_cap", ""),
+            }
+        )
+        rows.append(
+            {
+                "Файл": filename,
+                "Показатель": "Передано в анализ",
+                "Значение": item.get("requirements_returned", ""),
+            }
+        )
+        rows.append(
+            {
+                "Файл": filename,
+                "Показатель": "Лимит применен",
+                "Значение": "да" if item.get("cap_applied") else "нет",
+            }
+        )
+        category_counts = item.get("category_counts_returned") or {}
+        if isinstance(category_counts, dict) and category_counts:
+            rows.append(
+                {
+                    "Файл": filename,
+                    "Показатель": "Категории в анализе",
+                    "Значение": ", ".join(f"{CATEGORY_LABELS.get(k, k)}: {v}" for k, v in category_counts.items()),
+                }
+            )
+        missing = item.get("missing_key_signals_after_extraction") or []
+        rows.append(
+            {
+                "Файл": filename,
+                "Показатель": "Ключевые сигналы вне анализа",
+                "Значение": ", ".join(missing) if missing else "нет",
+            }
+        )
+    return rows
+
+
+def _key_signal_rows(report: AnalysisReport) -> list[dict]:
+    rows = []
+    for item in _extraction_files(report):
+        filename = item.get("filename") or report.document_name
+        for signal in item.get("key_signal_coverage", []) or []:
+            if not isinstance(signal, dict) or not signal.get("present_in_document"):
+                continue
+            rows.append(
+                {
+                    "Файл": filename,
+                    "Сигнал": signal.get("label", ""),
+                    "Критичный": "да" if signal.get("critical") else "нет",
+                    "В извлечении": "да" if signal.get("present_in_extracted") else "нет",
+                }
+            )
+    return rows
+
+
 def _top_key_matches(report: AnalysisReport, limit: int = KEY_MATCHES_LIMIT) -> list[RequirementVerdict]:
     matches = [v for v in report.verdicts if v.verdict == "match"]
     matches.sort(key=_priority_sort_key)
     return matches[:limit]
+
+
+def _md_cell(value) -> str:
+    return str(value or "").replace("\n", " ").replace("|", "\\|")
+
+
+def _suspicious_items(report: AnalysisReport) -> list[dict]:
+    return report.suspicious_items
+
+
+def _trace_rows(report: AnalysisReport) -> list[dict]:
+    rows = []
+    for verdict in report.verdicts:
+        trace = verdict.trace or {}
+        profile = trace.get("profile", {}) if isinstance(trace.get("profile"), dict) else {}
+        selected_sources = trace.get("selected_sources", []) if isinstance(trace.get("selected_sources"), list) else []
+        if not selected_sources:
+            rows.append(
+                {
+                    "Пункт ТЗ": verdict.section or f"#{verdict.requirement_id}",
+                    "Профиль": profile.get("cluster", ""),
+                    "Платформа": profile.get("platform_hint", ""),
+                    "Источник": "",
+                    "Score": "",
+                    "Причины выбора": trace.get("rag_error", "нет выбранных источников"),
+                    "Вердикт": VERDICT_LABELS.get(verdict.verdict, verdict.verdict),
+                    "Evidence status": verdict.evidence_status,
+                }
+            )
+            continue
+        for source in selected_sources[:3]:
+            rows.append(
+                {
+                    "Пункт ТЗ": verdict.section or f"#{verdict.requirement_id}",
+                    "Профиль": profile.get("cluster", ""),
+                    "Платформа": source.get("platform") or profile.get("platform_hint", ""),
+                    "Источник": source.get("title", ""),
+                    "Score": source.get("score", ""),
+                    "Причины выбора": "; ".join(source.get("reasons", []) or []),
+                    "Вердикт": VERDICT_LABELS.get(verdict.verdict, verdict.verdict),
+                    "Evidence status": verdict.evidence_status,
+                }
+            )
+    return rows
 
 
 def _format_problem_entry(lines: list[str], verdict: RequirementVerdict, reason_label: str) -> None:
@@ -101,6 +399,14 @@ def _format_problem_entry(lines: list[str], verdict: RequirementVerdict, reason_
     if verdict.source_urls:
         links = ", ".join(f"[{_url_short_name(u)}]({u})" for u in verdict.source_urls[:5])
         lines.append(f"**Документация:** {links}")
+    if verdict.platform_assessments:
+        lines.append("**Оценка по платформам/услугам:**")
+        for assessment in verdict.platform_assessments:
+            label = VERDICT_LABELS.get(assessment.verdict, assessment.verdict)
+            source_type = "внешняя услуга" if assessment.source_type == "external_service" else "платформа"
+            lines.append(f"- {assessment.platform_name} ({source_type}): {label}. {assessment.reasoning}")
+    if verdict.requires_external_service:
+        lines.append(f"**Нужна проработка подрядчиков:** {verdict.external_service_notes or 'Да'}")
     lines.append("")
 
 
@@ -144,9 +450,108 @@ def generate_markdown(report: AnalysisReport) -> str:
     lines.append(f"| **Общее соответствие** | **{pct}%** |")
     lines.append("")
 
+    coverage_rows = _extraction_coverage_rows(report)
+    signal_rows = _key_signal_rows(report)
+    if coverage_rows:
+        lines.append("## Покрытие извлечения\n")
+        warning_lines = _extraction_warning_lines(report)
+        if warning_lines:
+            lines.append("**Внимание:**")
+            for warning in warning_lines:
+                lines.append(f"- {warning}")
+            lines.append("")
+        lines.append("| Файл | Показатель | Значение |")
+        lines.append("|---|---|---|")
+        for row in coverage_rows:
+            lines.append(
+                f"| {_md_cell(row.get('Файл'))} | {_md_cell(row.get('Показатель'))} | {_md_cell(row.get('Значение'))} |"
+            )
+        lines.append("")
+        if signal_rows:
+            lines.append("| Файл | Ключевой сигнал | Критичный | Попал в извлечение |")
+            lines.append("|---|---|---|---|")
+            for row in signal_rows:
+                lines.append(
+                    f"| {_md_cell(row.get('Файл'))} | {_md_cell(row.get('Сигнал'))} | "
+                    f"{_md_cell(row.get('Критичный'))} | {_md_cell(row.get('В извлечении'))} |"
+                )
+            lines.append("")
+
     if report.summary:
         lines.append("### Резюме\n")
         lines.append(report.summary)
+        lines.append("")
+
+    refs = _collect_reference_map(report)
+    matrix_rows = _platform_matrix_rows(report, refs)
+    platform_names = _platform_names(report)
+    if matrix_rows and platform_names:
+        lines.append("## Матрица соответствия по платформам\n")
+        header = ["Пункт ТЗ", "Требование"] + platform_names
+        lines.append("| " + " | ".join(header) + " |")
+        lines.append("| " + " | ".join(["---"] * len(header)) + " |")
+        for row in matrix_rows:
+            lines.append("| " + " | ".join(str(row.get(column, "")).replace("\n", " ") for column in header) + " |")
+        totals = _platform_totals(report)
+        lines.append("")
+        lines.append("### Итого по платформам\n")
+        lines.append("| Платформа / услуга | + | ± | - | ? |")
+        lines.append("|---|---:|---:|---:|---:|")
+        for platform_name, (match_count, partial_count, mismatch_count, clarification_count) in totals.items():
+            lines.append(f"| {platform_name} | {match_count} | {partial_count} | {mismatch_count} | {clarification_count} |")
+        lines.append("")
+
+    external_items = [v for v in report.verdicts if v.requires_external_service]
+    if external_items:
+        lines.append("## Требования для проработки внешних услуг / подрядчиков\n")
+        for v in external_items:
+            lines.append(f"- **{v.section or f'#{v.requirement_id}'}**: {_req_text(v, 180)}")
+            if v.external_service_notes:
+                lines.append(f"  - {v.external_service_notes}")
+        lines.append("")
+
+    suspicious_items = _suspicious_items(report)
+    if suspicious_items:
+        lines.append("## Сомнительные места\n")
+        lines.append("| Пункт ТЗ | Вердикт | Уверенность | Причины | Требование |")
+        lines.append("|---|---|---:|---|---|")
+        for item in suspicious_items:
+            lines.append(
+                "| "
+                + " | ".join(
+                    [
+                        _md_cell(item.get("section") or f"#{item.get('requirement_id')}"),
+                        _md_cell(VERDICT_LABELS.get(item.get("verdict", ""), item.get("verdict", ""))),
+                        _md_cell(f"{float(item.get('confidence') or 0):.0%}"),
+                        _md_cell("; ".join(item.get("reasons", []) or [])),
+                        _md_cell(str(item.get("requirement_text", ""))[:180]),
+                    ]
+                )
+                + " |"
+            )
+        lines.append("")
+
+    trace_rows = _trace_rows(report)
+    if trace_rows:
+        lines.append("## Трассировка RAG\n")
+        lines.append("| Пункт ТЗ | Профиль | Платформа | Источник | Score | Причины выбора | Evidence |")
+        lines.append("|---|---|---|---|---:|---|---|")
+        for row in trace_rows:
+            lines.append(
+                "| "
+                + " | ".join(
+                    [
+                        _md_cell(row.get("Пункт ТЗ")),
+                        _md_cell(row.get("Профиль")),
+                        _md_cell(row.get("Платформа")),
+                        _md_cell(row.get("Источник")),
+                        _md_cell(row.get("Score")),
+                        _md_cell(row.get("Причины выбора")),
+                        _md_cell(row.get("Evidence status")),
+                    ]
+                )
+                + " |"
+            )
         lines.append("")
 
     mismatches = sorted([v for v in report.verdicts if v.verdict == "mismatch"], key=_priority_sort_key)
@@ -191,6 +596,15 @@ def generate_markdown(report: AnalysisReport) -> str:
                 links = ", ".join(f"[{_url_short_name(u)}]({u})" for u in v.source_urls[:5])
                 lines.append(f"**Документация:** {links}")
             lines.append("")
+
+    if refs:
+        lines.append("## Сноски RAG\n")
+        for key, index in sorted(refs.items(), key=lambda item: item[1]):
+            if key.startswith("http"):
+                lines.append(f"[{index}] [{_reference_title_from_key(key)}]({key})")
+            else:
+                lines.append(f"[{index}] {key}")
+        lines.append("")
 
     # Full detail by category
     lines.append("## Детализация по всем требованиям\n")
@@ -311,9 +725,106 @@ def save_docx(report: AnalysisReport, output_dir: Path | None = None) -> Path:
         table.rows[i].cells[0].text = k
         table.rows[i].cells[1].text = v
 
+    coverage_rows = _extraction_coverage_rows(report)
+    signal_rows = _key_signal_rows(report)
+    if coverage_rows:
+        doc.add_heading("Покрытие извлечения", level=1)
+        for warning in _extraction_warning_lines(report):
+            doc.add_paragraph(f"Внимание: {warning}")
+        coverage_table = doc.add_table(rows=1, cols=3)
+        coverage_table.style = "Table Grid"
+        for j, h in enumerate(["Файл", "Показатель", "Значение"]):
+            coverage_table.rows[0].cells[j].text = h
+        for item in coverage_rows:
+            row = coverage_table.add_row()
+            row.cells[0].text = str(item.get("Файл", ""))
+            row.cells[1].text = str(item.get("Показатель", ""))
+            row.cells[2].text = str(item.get("Значение", ""))
+        if signal_rows:
+            signals_table = doc.add_table(rows=1, cols=4)
+            signals_table.style = "Table Grid"
+            for j, h in enumerate(["Файл", "Ключевой сигнал", "Критичный", "Попал в извлечение"]):
+                signals_table.rows[0].cells[j].text = h
+            for item in signal_rows:
+                row = signals_table.add_row()
+                row.cells[0].text = str(item.get("Файл", ""))
+                row.cells[1].text = str(item.get("Сигнал", ""))
+                row.cells[2].text = str(item.get("Критичный", ""))
+                row.cells[3].text = str(item.get("В извлечении", ""))
+
     if report.summary:
         doc.add_heading("Резюме", level=2)
         doc.add_paragraph(report.summary)
+
+    refs = _collect_reference_map(report)
+    matrix_rows = _platform_matrix_rows(report, refs)
+    platform_names = _platform_names(report)
+    if matrix_rows and platform_names:
+        doc.add_heading("Матрица соответствия по платформам", level=1)
+        header = ["Пункт ТЗ", "Требование"] + platform_names
+        matrix_table = doc.add_table(rows=1, cols=len(header))
+        matrix_table.style = "Table Grid"
+        for j, h in enumerate(header):
+            matrix_table.rows[0].cells[j].text = h
+        for item in matrix_rows:
+            row = matrix_table.add_row()
+            for j, column in enumerate(header):
+                row.cells[j].text = str(item.get(column, ""))
+
+        doc.add_heading("Итого по платформам", level=2)
+        totals = _platform_totals(report)
+        totals_table = doc.add_table(rows=1, cols=5)
+        totals_table.style = "Table Grid"
+        for j, h in enumerate(["Платформа / услуга", "+", "±", "-", "?"]):
+            totals_table.rows[0].cells[j].text = h
+        for platform_name, (match_count, partial_count, mismatch_count, clarification_count) in totals.items():
+            row = totals_table.add_row()
+            row.cells[0].text = platform_name
+            row.cells[1].text = str(match_count)
+            row.cells[2].text = str(partial_count)
+            row.cells[3].text = str(mismatch_count)
+            row.cells[4].text = str(clarification_count)
+
+    external_items = [v for v in report.verdicts if v.requires_external_service]
+    if external_items:
+        doc.add_heading("Требования для проработки внешних услуг / подрядчиков", level=1)
+        for v in external_items:
+            doc.add_paragraph(
+                f"{v.section or f'#{v.requirement_id}'}: {_req_text(v, 180)} "
+                f"{v.external_service_notes or ''}",
+                style=None,
+            )
+
+    suspicious_items = _suspicious_items(report)
+    if suspicious_items:
+        doc.add_heading("Сомнительные места", level=1)
+        t = doc.add_table(rows=1, cols=5)
+        t.style = "Table Grid"
+        for j, h in enumerate(["Пункт ТЗ", "Вердикт", "Уверенность", "Причины", "Требование"]):
+            t.rows[0].cells[j].text = h
+        for item in suspicious_items:
+            row = t.add_row()
+            row.cells[0].text = str(item.get("section") or f"#{item.get('requirement_id')}")
+            row.cells[1].text = VERDICT_LABELS.get(item.get("verdict", ""), item.get("verdict", ""))
+            row.cells[2].text = f"{float(item.get('confidence') or 0):.0%}"
+            row.cells[3].text = "; ".join(item.get("reasons", []) or [])
+            row.cells[4].text = str(item.get("requirement_text", ""))[:180]
+
+    trace_rows = _trace_rows(report)
+    if trace_rows:
+        doc.add_heading("Трассировка RAG", level=1)
+        t = doc.add_table(rows=1, cols=6)
+        t.style = "Table Grid"
+        for j, h in enumerate(["Пункт ТЗ", "Профиль", "Платформа", "Источник", "Score", "Причины выбора"]):
+            t.rows[0].cells[j].text = h
+        for item in trace_rows[:120]:
+            row = t.add_row()
+            row.cells[0].text = str(item.get("Пункт ТЗ", ""))
+            row.cells[1].text = str(item.get("Профиль", ""))
+            row.cells[2].text = str(item.get("Платформа", ""))
+            row.cells[3].text = str(item.get("Источник", ""))[:180]
+            row.cells[4].text = str(item.get("Score", ""))
+            row.cells[5].text = str(item.get("Причины выбора", ""))[:240]
 
     doc.add_heading("Что проверить в первую очередь", level=1)
     doc.add_paragraph(_decision_summary(report))
@@ -379,6 +890,11 @@ def save_docx(report: AnalysisReport, output_dir: Path | None = None) -> Path:
             row.cells[2].text = _req_text(v, 150)
             row.cells[3].text = "\n".join(v.source_urls[:5]) if v.source_urls else ""
 
+    if refs:
+        doc.add_heading("Сноски RAG", level=1)
+        for key, index in sorted(refs.items(), key=lambda item: item[1]):
+            doc.add_paragraph(f"[{index}] {key}")
+
     doc.save(str(path))
     logger.info("Saved DOCX report: %s", path)
     return path
@@ -399,6 +915,11 @@ def save_excel(report: AnalysisReport, output_dir: Path | None = None) -> Path:
     rows = []
     for v in report.verdicts:
         score_val = 2 if v.verdict == "match" else (1 if v.verdict == "partial" else 0)
+        platform_summary = []
+        for assessment in v.platform_assessments:
+            platform_summary.append(
+                f"{assessment.platform_name}: {VERDICT_LABELS.get(assessment.verdict, assessment.verdict)}"
+            )
         rows.append({
             "Пункт ТЗ": v.section or f"#{v.requirement_id}",
             "Текст требования": _req_text(v, 1000),
@@ -410,9 +931,53 @@ def save_excel(report: AnalysisReport, output_dir: Path | None = None) -> Path:
             "Источник (цитата)": v.evidence,
             "Рекомендация": v.recommendation,
             "Ссылки на документацию": "\n".join(v.source_urls[:5]) if v.source_urls else "",
+            "Оценка по платформам": "\n".join(platform_summary),
+            "Нужна проработка подрядчиков": "Да" if v.requires_external_service else "Нет",
+            "Внешние услуги / комментарий": v.external_service_notes,
+            "Evidence status": v.evidence_status,
+            "Evidence contract notes": "\n".join(v.evidence_contract_notes),
         })
 
     df = pd.DataFrame(rows)
+    refs = _collect_reference_map(report)
+    df_matrix = pd.DataFrame(_platform_matrix_rows(report, refs))
+    detail_rows = []
+    for v in report.verdicts:
+        for assessment in v.platform_assessments:
+            detail_rows.append(
+                {
+                    "Пункт ТЗ": v.section or f"#{v.requirement_id}",
+                    "Требование": _req_text(v, 500),
+                    "Платформа / услуга": assessment.platform_name,
+                    "Тип источника": assessment.source_type,
+                    "Вердикт": VERDICT_LABELS.get(assessment.verdict, assessment.verdict),
+                    "Уверенность": f"{assessment.confidence:.0%}",
+                    "Обоснование": assessment.reasoning,
+                    "Сноски": ", ".join(assessment.evidence_refs),
+                    "Источники": "\n".join(assessment.source_urls or assessment.source_titles),
+                    "Рекомендация": assessment.recommendation,
+                }
+            )
+    df_platform_detail = pd.DataFrame(detail_rows)
+    df_refs = pd.DataFrame(
+        [{"Сноска": f"[{index}]", "Источник": key} for key, index in sorted(refs.items(), key=lambda item: item[1])]
+    )
+    df_suspicious = pd.DataFrame(
+        [
+            {
+                "Пункт ТЗ": item.get("section") or f"#{item.get('requirement_id')}",
+                "Требование": str(item.get("requirement_text", ""))[:500],
+                "Вердикт": VERDICT_LABELS.get(item.get("verdict", ""), item.get("verdict", "")),
+                "Уверенность": f"{float(item.get('confidence') or 0):.0%}",
+                "Причины": "\n".join(item.get("reasons", []) or []),
+                "Рекомендация": item.get("recommendation", ""),
+            }
+            for item in _suspicious_items(report)
+        ]
+    )
+    df_trace = pd.DataFrame(_trace_rows(report))
+    df_extraction = pd.DataFrame(_extraction_coverage_rows(report))
+    df_signals = pd.DataFrame(_key_signal_rows(report))
 
     pct = report.compliance_percentage
 
@@ -435,6 +1000,20 @@ def save_excel(report: AnalysisReport, output_dir: Path | None = None) -> Path:
 
     with pd.ExcelWriter(str(path), engine="openpyxl") as writer:
         df_summary.to_excel(writer, sheet_name="Сводка", index=False)
+        if not df_matrix.empty:
+            df_matrix.to_excel(writer, sheet_name="Матрица платформ", index=False)
+        if not df_platform_detail.empty:
+            df_platform_detail.to_excel(writer, sheet_name="Платформы детально", index=False)
+        if not df_refs.empty:
+            df_refs.to_excel(writer, sheet_name="Сноски RAG", index=False)
+        if not df_suspicious.empty:
+            df_suspicious.to_excel(writer, sheet_name="Сомнительные места", index=False)
+        if not df_trace.empty:
+            df_trace.to_excel(writer, sheet_name="Трассировка RAG", index=False)
+        if not df_extraction.empty:
+            df_extraction.to_excel(writer, sheet_name="Покрытие извлечения", index=False)
+        if not df_signals.empty:
+            df_signals.to_excel(writer, sheet_name="Ключевые сигналы", index=False)
         df.to_excel(writer, sheet_name="Все требования", index=False)
 
         # Separate sheets by verdict
@@ -515,6 +1094,10 @@ def save_pdf(report: AnalysisReport, output_dir: Path | None = None) -> Path:
         """Clean text for PDF output."""
         return text.replace("\r", "").strip()
 
+    def _cut(text: str, limit: int) -> str:
+        text = _safe(str(text or "")).replace("\n", " ")
+        return text if len(text) <= limit else text[: limit - 1] + "…"
+
     pdf.add_page()
 
     # Title
@@ -564,12 +1147,147 @@ def save_pdf(report: AnalysisReport, output_dir: Path | None = None) -> Path:
         pdf.cell(0, 6, _safe(line), new_x="LMARGIN", new_y="NEXT")
     pdf.ln(5)
 
+    coverage_rows = _extraction_coverage_rows(report)
+    if coverage_rows:
+        pdf.set_font(font_name, "", 12)
+        pdf.cell(0, 8, _safe("Покрытие извлечения"), new_x="LMARGIN", new_y="NEXT")
+        pdf.set_font(font_name, "", 9)
+        for warning in _extraction_warning_lines(report):
+            pdf.multi_cell(0, 5, _safe(f"Внимание: {warning}"), new_x=XPos.LMARGIN, new_y=YPos.NEXT)
+        for row in coverage_rows[:20]:
+            pdf.multi_cell(
+                0,
+                5,
+                _safe(f"{row.get('Файл', '')}: {row.get('Показатель', '')} — {_cut(row.get('Значение', ''), 220)}"),
+                new_x=XPos.LMARGIN,
+                new_y=YPos.NEXT,
+            )
+        signal_rows = _key_signal_rows(report)
+        if signal_rows:
+            pdf.set_font(font_name, "", 8)
+            for row in signal_rows[:30]:
+                pdf.multi_cell(
+                    0,
+                    4,
+                    _safe(
+                        f"Сигнал: {row.get('Сигнал', '')}; критичный: {row.get('Критичный', '')}; "
+                        f"в извлечении: {row.get('В извлечении', '')}"
+                    ),
+                    new_x=XPos.LMARGIN,
+                    new_y=YPos.NEXT,
+                )
+        pdf.ln(3)
+
     if report.summary:
         pdf.set_font(font_name, "", 11)
         pdf.cell(0, 8, _safe("Резюме"), new_x="LMARGIN", new_y="NEXT")
         pdf.set_font(font_name, "", 10)
         pdf.multi_cell(0, 6, _safe(report.summary), new_x=XPos.LMARGIN, new_y=YPos.NEXT)
         pdf.ln(5)
+
+    refs = _collect_reference_map(report)
+    matrix_rows = _platform_matrix_rows(report, refs)
+    platform_names = _platform_names(report)
+    if matrix_rows and platform_names:
+        pdf.add_page(orientation="L")
+        pdf.set_font(font_name, "", 13)
+        pdf.cell(0, 8, _safe("Матрица соответствия по платформам"), new_x="LMARGIN", new_y="NEXT")
+        pdf.set_font(font_name, "", 7)
+        headers = ["Пункт ТЗ", "Требование"] + platform_names
+        usable_width = pdf.w - pdf.l_margin - pdf.r_margin
+        point_width = 25
+        requirement_width = min(135, max(80, usable_width * 0.42))
+        platform_width = max(18, (usable_width - point_width - requirement_width) / len(platform_names))
+        widths = [point_width, requirement_width] + [platform_width] * len(platform_names)
+        for width, header in zip(widths, headers):
+            pdf.cell(width, 7, _cut(header, 24), border=1)
+        pdf.ln(7)
+        for row in matrix_rows:
+            if pdf.get_y() > 185:
+                pdf.add_page(orientation="L")
+                pdf.set_font(font_name, "", 7)
+                for width, header in zip(widths, headers):
+                    pdf.cell(width, 7, _cut(header, 24), border=1)
+                pdf.ln(7)
+            values = [row.get("Пункт ТЗ", ""), row.get("Требование", "")] + [
+                row.get(platform_name, "") for platform_name in platform_names
+            ]
+            limits = [18, 105] + [max(10, int(platform_width / 2.2))] * len(platform_names)
+            for width, value, limit in zip(widths, values, limits):
+                pdf.cell(width, 7, _cut(value, limit), border=1)
+            pdf.ln(7)
+        pdf.add_page()
+
+    totals = _platform_totals(report)
+    if totals:
+        pdf.set_font(font_name, "", 12)
+        pdf.cell(0, 8, _safe("Итого по платформам / услугам"), new_x="LMARGIN", new_y="NEXT")
+        pdf.set_font(font_name, "", 9)
+        for platform_name, (match_count, partial_count, mismatch_count, clarification_count) in totals.items():
+            pdf.multi_cell(
+                0,
+                5,
+                _safe(f"{platform_name}: + {match_count}, ± {partial_count}, - {mismatch_count}, ? {clarification_count}"),
+                new_x=XPos.LMARGIN,
+                new_y=YPos.NEXT,
+            )
+        pdf.ln(3)
+
+    external_items = [v for v in report.verdicts if v.requires_external_service]
+    if external_items:
+        pdf.set_font(font_name, "", 12)
+        pdf.cell(0, 8, _safe("Внешние услуги / подрядчики"), new_x="LMARGIN", new_y="NEXT")
+        pdf.set_font(font_name, "", 9)
+        for v in external_items[:20]:
+            pdf.multi_cell(
+                0,
+                5,
+                _safe(f"{v.section or f'#{v.requirement_id}'}: {_req_text(v, 220)} {v.external_service_notes or ''}"),
+                new_x=XPos.LMARGIN,
+                new_y=YPos.NEXT,
+            )
+        pdf.ln(3)
+
+    suspicious_items = _suspicious_items(report)
+    if suspicious_items:
+        pdf.set_font(font_name, "", 12)
+        pdf.cell(0, 8, _safe("Сомнительные места"), new_x="LMARGIN", new_y="NEXT")
+        pdf.set_font(font_name, "", 9)
+        for item in suspicious_items[:25]:
+            section = item.get("section") or f"#{item.get('requirement_id')}"
+            reasons = "; ".join(item.get("reasons", []) or [])
+            verdict_label = VERDICT_LABELS.get(item.get("verdict", ""), item.get("verdict", ""))
+            pdf.multi_cell(
+                0,
+                5,
+                _safe(
+                    f"{section}: {verdict_label}, уверенность {float(item.get('confidence') or 0):.0%}. "
+                    f"Причины: {_cut(reasons, 220)}"
+                ),
+                new_x=XPos.LMARGIN,
+                new_y=YPos.NEXT,
+            )
+        pdf.ln(3)
+
+    trace_rows = _trace_rows(report)
+    if trace_rows:
+        pdf.set_font(font_name, "", 12)
+        pdf.cell(0, 8, _safe("Трассировка RAG"), new_x="LMARGIN", new_y="NEXT")
+        pdf.set_font(font_name, "", 8)
+        for row in trace_rows[:40]:
+            pdf.multi_cell(
+                0,
+                4,
+                _safe(
+                    f"{row.get('Пункт ТЗ', '')}: профиль={row.get('Профиль', '')}; "
+                    f"платформа={row.get('Платформа', '')}; score={row.get('Score', '')}; "
+                    f"источник={_cut(row.get('Источник', ''), 130)}; "
+                    f"причины={_cut(row.get('Причины выбора', ''), 170)}"
+                ),
+                new_x=XPos.LMARGIN,
+                new_y=YPos.NEXT,
+            )
+        pdf.ln(3)
 
     pdf.set_font(font_name, "", 12)
     pdf.cell(0, 8, _safe("Что проверить в первую очередь"), new_x="LMARGIN", new_y="NEXT")
@@ -605,6 +1323,13 @@ def save_pdf(report: AnalysisReport, output_dir: Path | None = None) -> Path:
             if v.source_urls:
                 pdf.multi_cell(0, 5, _safe(f"Документация: {', '.join(v.source_urls[:5])}"), new_x=XPos.LMARGIN, new_y=YPos.NEXT)
             pdf.ln(3)
+
+    if refs:
+        pdf.set_font(font_name, "", 12)
+        pdf.cell(0, 8, _safe("Сноски RAG"), new_x="LMARGIN", new_y=YPos.NEXT)
+        pdf.set_font(font_name, "", 8)
+        for key, index in sorted(refs.items(), key=lambda item: item[1]):
+            pdf.multi_cell(0, 5, _safe(f"[{index}] {key}"), new_x=XPos.LMARGIN, new_y=YPos.NEXT)
 
     pdf.output(str(path))
     logger.info("Saved PDF report: %s", path)

@@ -4,20 +4,23 @@ from __future__ import annotations
 
 import json
 import logging
-from typing import Optional
+from typing import TYPE_CHECKING, Optional
 
-from openai import OpenAI
+from src.runtime_config import RuntimeSettings, build_runtime_settings
 
-import config as cfg
+if TYPE_CHECKING:
+    from openai import OpenAI
 
 logger = logging.getLogger(__name__)
 
 
-def _get_openai_client() -> OpenAI:
+def _get_openai_client(settings: RuntimeSettings) -> "OpenAI":
     """Return a Foundation Models client configured by env/runtime settings."""
+    from openai import OpenAI
+
     return OpenAI(
-        api_key=cfg.OPENAI_API_KEY,
-        base_url=cfg.OPENAI_API_BASE,
+        api_key=settings.openai_api_key,
+        base_url=settings.openai_api_base,
     )
 
 
@@ -26,16 +29,17 @@ def _call_foundation_models(
     system_prompt: Optional[str],
     temperature: float,
     max_tokens: int,
+    settings: RuntimeSettings,
 ) -> str:
     """Call Cloud.ru Foundation Models via the official OpenAI client."""
-    client = _get_openai_client()
+    client = _get_openai_client(settings)
     messages = []
     if system_prompt:
         messages.append({"role": "system", "content": system_prompt})
     messages.append({"role": "user", "content": prompt})
 
     response = client.chat.completions.create(
-        model=cfg.OPENAI_MODEL,
+        model=settings.openai_model,
         messages=messages,
         temperature=temperature,
         max_tokens=max_tokens,
@@ -49,22 +53,27 @@ def _call_foundation_models(
 def call_llm(
     prompt: str,
     system_prompt: Optional[str] = None,
-    temperature: float = 0.05,
+    temperature: float | None = None,
     max_tokens: int = 4096,
     max_retries: int = 3,
+    settings: RuntimeSettings | dict | None = None,
 ) -> str:
     """Simple helper: send a prompt, get a string back. Retries on timeout."""
     import time
 
+    runtime_settings = build_runtime_settings(settings)
     for attempt in range(1, max_retries + 1):
         try:
+            effective_temperature = runtime_settings.openai_temperature if temperature is None else temperature
             response = _call_foundation_models(
                 prompt=prompt,
                 system_prompt=system_prompt,
-                temperature=temperature,
+                temperature=effective_temperature,
                 max_tokens=max_tokens,
+                settings=runtime_settings,
             )
-            time.sleep(1)
+            if runtime_settings.llm_request_delay > 0:
+                time.sleep(runtime_settings.llm_request_delay)
             return response
         except Exception as e:
             if attempt == max_retries:
@@ -117,15 +126,47 @@ def _extract_json(text: str) -> dict | list | None:
 def call_llm_json(
     prompt: str,
     system_prompt: Optional[str] = None,
-    temperature: float = 0.1,
+    temperature: float | None = None,
     max_tokens: int = 4096,
+    settings: RuntimeSettings | dict | None = None,
 ) -> dict | list:
     """Call LLM and parse the response as JSON."""
-    raw = call_llm(prompt, system_prompt, temperature, max_tokens)
+    runtime_settings = build_runtime_settings(settings)
+    raw = call_llm(prompt, system_prompt, temperature, max_tokens, settings=runtime_settings)
 
     result = _extract_json(raw)
     if result is not None:
         return result
+
+    repair_prompt = f"""Преобразуй следующий ответ модели в валидный JSON.
+
+Правила:
+- Верни только JSON без markdown и пояснений.
+- Не добавляй новые факты.
+- Сохрани все элементы и поля, которые можно восстановить из ответа.
+- Если ответ содержит список объектов, верни JSON-массив.
+- Если восстановить структуру невозможно, верни пустой JSON-массив [].
+
+Исходный ответ:
+---
+{raw}
+---
+"""
+    try:
+        repaired_raw = call_llm(
+            repair_prompt,
+            system_prompt="Ты исправляешь поврежденный JSON. Отвечай только валидным JSON.",
+            temperature=0,
+            max_tokens=max_tokens,
+            max_retries=2,
+            settings=runtime_settings,
+        )
+        repaired = _extract_json(repaired_raw)
+        if repaired is not None:
+            logger.info("Successfully repaired LLM JSON response")
+            return repaired
+    except Exception as exc:
+        logger.warning("Failed to repair LLM JSON response: %s", exc)
 
     logger.warning("Failed to parse LLM JSON response, returning raw text")
     logger.debug("Raw LLM response: %s", raw[:500])
