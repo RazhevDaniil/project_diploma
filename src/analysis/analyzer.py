@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import logging
+import re
 import threading
 from urllib.parse import urlparse
 from src.managed_rag.client import ManagedRagResult, retrieve_generate
@@ -27,6 +28,7 @@ KNOWN_PLATFORM_PATTERNS = (
     ("advanced", "Advanced"),
     ("evolution", "Evolution"),
 )
+RERANK_TOP_K = 3
 
 
 def _filter_urls(urls: list) -> list[str]:
@@ -272,6 +274,172 @@ def _requirement_search_profile(req: Requirement) -> dict[str, object]:
     return {"cluster": cluster, "terms": terms[:10], "platform_hint": platform_hint}
 
 
+def _rank_tokens(text: str) -> set[str]:
+    stop_words = {
+        "для",
+        "или",
+        "при",
+        "что",
+        "как",
+        "над",
+        "под",
+        "без",
+        "это",
+        "исполнитель",
+        "заказчик",
+        "услуга",
+        "услуг",
+        "должен",
+        "должна",
+        "должно",
+        "должны",
+    }
+    return {
+        token
+        for token in re.findall(r"[A-Za-zА-Яа-яЁё0-9_-]{3,}", (text or "").lower())
+        if token not in stop_words
+    }
+
+
+def _rank_numbers(text: str) -> set[str]:
+    numbers = set()
+    for raw in re.findall(r"\d+(?:[,.]\d+)?", text or ""):
+        normalized = raw.replace(",", ".").lstrip("0")
+        numbers.add(normalized or "0")
+    return numbers
+
+
+def _is_trusted_url(url: str) -> bool:
+    if not url or not url.startswith("http"):
+        return False
+    try:
+        hostname = urlparse(url).hostname or ""
+    except Exception:
+        return False
+    return any(hostname == domain or hostname.endswith("." + domain) for domain in _TRUSTED_DOMAINS)
+
+
+def _score_rag_source(req: Requirement, source: dict, idx: int) -> tuple[float, list[str]]:
+    profile = _requirement_search_profile(req)
+    title = _result_label(source, idx)
+    content = _result_content(source)
+    url = _result_url(source)
+    platform = _platform_from_result(source, idx)
+    source_type = _source_type_from_result(source)
+    haystack = " ".join([title, content[:5000], url, platform, source_type]).lower()
+
+    score = 0.0
+    reasons: list[str] = []
+
+    req_tokens = _rank_tokens(" ".join([req.section or "", req.category or "", req.text or "", req.tables or ""]))
+    source_tokens = _rank_tokens(haystack)
+    overlap = sorted(req_tokens & source_tokens)
+    if overlap:
+        score += min(len(overlap), 14) * 0.22
+        reasons.append("совпали термины: " + ", ".join(overlap[:6]))
+
+    matched_terms = []
+    for term in profile.get("terms", []):
+        term_text = str(term).lower()
+        term_tokens = _rank_tokens(term_text)
+        if term_text in haystack or (term_tokens and term_tokens.issubset(source_tokens)):
+            matched_terms.append(str(term))
+    if matched_terms:
+        score += min(len(matched_terms), 4) * 0.9
+        reasons.append("совпал профиль поиска: " + ", ".join(matched_terms[:4]))
+
+    req_numbers = _rank_numbers(req.text + " " + (req.tables or ""))
+    source_numbers = _rank_numbers(title + " " + content[:5000])
+    number_overlap = sorted(req_numbers & source_numbers)
+    if number_overlap:
+        score += min(len(number_overlap), 4) * 0.8
+        reasons.append("совпали числовые значения: " + ", ".join(number_overlap[:4]))
+
+    platform_hint = str(profile.get("platform_hint") or "")
+    if platform_hint and _canonical_platform_name(platform) == _canonical_platform_name(platform_hint):
+        score += 1.5
+        reasons.append(f"совпала целевая платформа: {platform_hint}")
+
+    cluster = str(profile.get("cluster", "general"))
+    if source_type == "platform" and cluster != "external_service":
+        score += 0.45
+        reasons.append("платформенный источник")
+    if source_type == "external_service" and _looks_external_service(req.text):
+        score += 0.9
+        reasons.append("источник по внешним услугам")
+    if _is_trusted_url(url):
+        score += 0.35
+        reasons.append("доверенный домен")
+    if not content:
+        score -= 0.7
+        reasons.append("нет текстового фрагмента")
+
+    return round(score, 3), reasons or ["слабая лексическая релевантность"]
+
+
+def _rerank_rag_result(req: Requirement, rag_result: ManagedRagResult | None) -> ManagedRagResult | None:
+    if not rag_result or not rag_result.results:
+        return rag_result
+
+    ranked = []
+    for idx, source in enumerate(rag_result.results, start=1):
+        score, reasons = _score_rag_source(req, source, idx)
+        annotated = dict(source)
+        annotated["_rerank"] = {
+            "original_rank": idx,
+            "score": score,
+            "reasons": reasons,
+        }
+        ranked.append((score, idx, annotated))
+
+    ranked.sort(key=lambda item: (item[0], -item[1]), reverse=True)
+    selected = [item[2] for item in ranked[:RERANK_TOP_K]]
+    source_labels = [_result_label(item, idx) for idx, item in enumerate(selected, start=1)]
+    return ManagedRagResult(
+        answer=rag_result.answer,
+        results=selected,
+        reasoning_content=rag_result.reasoning_content,
+        source_labels=list(dict.fromkeys(source_labels)),
+    )
+
+
+def _trace_source_summary(source: dict, idx: int) -> dict:
+    rerank = source.get("_rerank", {}) if isinstance(source.get("_rerank"), dict) else {}
+    content = _result_content(source)
+    return {
+        "rank": idx,
+        "original_rank": rerank.get("original_rank", idx),
+        "score": rerank.get("score", 0.0),
+        "reasons": rerank.get("reasons", []),
+        "title": _result_label(source, idx),
+        "url": _result_url(source),
+        "platform": _platform_from_result(source, idx),
+        "source_type": _source_type_from_result(source),
+        "excerpt": content[:500] if content else "",
+    }
+
+
+def _build_analysis_trace(
+    req: Requirement,
+    rag_mode: str,
+    rag_query: str,
+    rag_result: ManagedRagResult | None,
+    rag_error: str | None = None,
+) -> dict:
+    profile = _requirement_search_profile(req)
+    selected_sources = []
+    if rag_result and rag_result.results:
+        selected_sources = [_trace_source_summary(source, idx) for idx, source in enumerate(rag_result.results, start=1)]
+    return {
+        "rag_mode": rag_mode,
+        "profile": profile,
+        "rag_query": rag_query[:3000],
+        "rag_error": rag_error or "",
+        "managed_rag_answer": (rag_result.answer[:1000] if rag_result and rag_result.answer else ""),
+        "selected_sources": selected_sources,
+    }
+
+
 def _source_type_from_result(item: dict) -> str:
     metadata = _result_metadata(item)
     explicit = _metadata_value(
@@ -338,6 +506,8 @@ def _format_rag_context(req: Requirement, rag_result: ManagedRagResult | None, m
         source_type = _source_type_from_result(source)
         url = _result_url(source)
         content = _result_content(source)
+        rerank = source.get("_rerank", {}) if isinstance(source.get("_rerank"), dict) else {}
+        rerank_reasons = "; ".join(rerank.get("reasons", [])[:4]) if isinstance(rerank.get("reasons"), list) else ""
         parts.append(
             "\n".join(
                 [
@@ -345,6 +515,7 @@ def _format_rag_context(req: Requirement, rag_result: ManagedRagResult | None, m
                     f"Название документа: {title}",
                     f"Тип источника: {source_type}",
                     f"Платформа/услуга: {platform}",
+                    f"RAG-rerank score: {rerank.get('score', 'n/a')}; причины: {rerank_reasons or 'не указаны'}",
                     f"URL/источник: {url or title}",
                     f"Фрагмент: {content[:max_chars_per_result] if content else 'нет текста'}",
                 ]
@@ -377,6 +548,8 @@ def _format_batch_rag_context(requirements: list[Requirement], rag_result: Manag
         source_type = _source_type_from_result(source)
         url = _result_url(source)
         content = _result_content(source)
+        rerank = source.get("_rerank", {}) if isinstance(source.get("_rerank"), dict) else {}
+        rerank_reasons = "; ".join(rerank.get("reasons", [])[:4]) if isinstance(rerank.get("reasons"), list) else ""
         parts.append(
             "\n".join(
                 [
@@ -384,6 +557,7 @@ def _format_batch_rag_context(requirements: list[Requirement], rag_result: Manag
                     f"Название документа: {title}",
                     f"Тип источника: {source_type}",
                     f"Платформа/услуга: {platform}",
+                    f"RAG-rerank score: {rerank.get('score', 'n/a')}; причины: {rerank_reasons or 'не указаны'}",
                     f"URL/источник: {url or title}",
                     f"Фрагмент: {content[:1600] if content else 'нет текста'}",
                 ]
@@ -436,6 +610,8 @@ def _assessment_from_item(item: dict, rag_result: ManagedRagResult | None, idx: 
         title = _result_label(source, idx)
         if title and title not in source_titles:
             source_titles.append(title)
+        if not item.get("evidence_refs"):
+            item = {**item, "evidence_refs": [f"[{idx}]"]}
         if source_type == "platform":
             source_type = _source_type_from_result(source)
         if source_type == "platform" and source_platform:
@@ -496,6 +672,116 @@ def _platform_assessments_from_llm(
     ]
 
 
+def _assessment_has_source(assessment: PlatformAssessment) -> bool:
+    return bool(assessment.source_urls or assessment.source_titles)
+
+
+def _assessment_has_ref(assessment: PlatformAssessment) -> bool:
+    return bool(assessment.evidence_refs)
+
+
+def _refs_from_text(text: str) -> list[int]:
+    refs = []
+    for raw in re.findall(r"\[(\d+)\]", text or ""):
+        try:
+            refs.append(int(raw))
+        except ValueError:
+            continue
+    return refs
+
+
+def _refs_match_selected_sources(refs: list[int], selected_source_count: int) -> bool:
+    return bool(selected_source_count > 0 and any(1 <= ref <= selected_source_count for ref in refs))
+
+
+def _evidence_quote_text(evidence: str) -> str:
+    return (evidence or "").split("\n\nВыбранные документы Managed RAG:", 1)[0].strip()
+
+
+def _verdict_has_evidence_quote(verdict: RequirementVerdict, selected_source_count: int) -> bool:
+    text = _evidence_quote_text(verdict.evidence)
+    return bool(len(text) >= 12 and _refs_match_selected_sources(_refs_from_text(text), selected_source_count))
+
+
+def _verdict_has_cited_evidence(verdict: RequirementVerdict) -> bool:
+    has_source = bool(verdict.source_urls) or any(_assessment_has_source(item) for item in verdict.platform_assessments)
+    selected_source_count = len((verdict.trace or {}).get("selected_sources") or [])
+    return has_source and _verdict_has_evidence_quote(verdict, selected_source_count)
+
+
+def _apply_evidence_contract(verdict: RequirementVerdict) -> RequirementVerdict:
+    notes = list(verdict.evidence_contract_notes or [])
+    original_verdict = verdict.verdict
+    selected_source_count = len((verdict.trace or {}).get("selected_sources") or [])
+
+    for assessment in verdict.platform_assessments:
+        if assessment.verdict not in {"match", "partial"}:
+            continue
+        assessment_refs_valid = _refs_match_selected_sources(
+            _refs_from_text(" ".join(assessment.evidence_refs)),
+            selected_source_count,
+        )
+        if _assessment_has_source(assessment) and _assessment_has_ref(assessment) and assessment_refs_valid:
+            continue
+        if _assessment_has_source(assessment) and _assessment_has_ref(assessment) and not assessment_refs_valid:
+            assessment.verdict = "needs_clarification"
+            assessment.reasoning = (
+                assessment.reasoning.rstrip()
+                + " Evidence contract: сноска не соответствует выбранным RAG-фрагментам."
+            ).strip()
+            notes.append(f"{assessment.platform_name}: сноска не соответствует выбранным RAG-фрагментам")
+            continue
+        if _assessment_has_source(assessment) and not _assessment_has_ref(assessment):
+            assessment.verdict = "needs_clarification"
+            assessment.reasoning = (
+                assessment.reasoning.rstrip()
+                + " Evidence contract: источник найден, но нет явной сноски на подтверждающий фрагмент."
+            ).strip()
+            notes.append(f"{assessment.platform_name}: нет явной сноски на источник")
+        else:
+            assessment.verdict = "needs_clarification"
+            assessment.reasoning = (
+                assessment.reasoning.rstrip()
+                + " Evidence contract: нет подтверждающего источника из RAG."
+            ).strip()
+            notes.append(f"{assessment.platform_name}: нет подтверждающего источника")
+
+    if verdict.verdict in {"match", "partial"} and not _verdict_has_cited_evidence(verdict):
+        verdict.verdict = "needs_clarification"
+        verdict.confidence = min(verdict.confidence, 0.5)
+        if not (verdict.trace or {}).get("selected_sources"):
+            notes.append("Нет выбранного RAG-фрагмента")
+        if not (bool(verdict.source_urls) or any(_assessment_has_source(item) for item in verdict.platform_assessments)):
+            notes.append("Нет подтверждающего источника")
+        if not _verdict_has_evidence_quote(verdict, selected_source_count):
+            notes.append("В evidence нет содержательной цитаты/доказательства с валидной сноской [n]")
+        notes.append(
+            f"Вердикт {original_verdict} понижен: нет связки источник + сноска + выбранный RAG-фрагмент"
+        )
+
+    if verdict.verdict in {"match", "partial"}:
+        verdict.evidence_status = "confirmed"
+    elif notes:
+        verdict.evidence_status = "downgraded" if original_verdict != verdict.verdict else "weak"
+    elif not (verdict.trace or {}).get("selected_sources"):
+        verdict.evidence_status = "missing"
+    else:
+        verdict.evidence_status = "weak" if verdict.verdict == "needs_clarification" else "confirmed"
+
+    if notes:
+        prefix = "Evidence contract: "
+        verdict.reasoning = (verdict.reasoning.rstrip() + "\n" + prefix + "; ".join(dict.fromkeys(notes))).strip()
+    verdict.evidence_contract_notes = list(dict.fromkeys(notes))
+    if verdict.trace is not None:
+        verdict.trace["evidence_contract"] = {
+            "original_verdict": original_verdict,
+            "final_verdict": verdict.verdict,
+            "status": verdict.evidence_status,
+            "notes": verdict.evidence_contract_notes,
+        }
+    return verdict
+
+
 def _fetch_managed_rag(req: Requirement) -> tuple[int, ManagedRagResult | None, str | None]:
     try:
         result = retrieve_generate(_managed_rag_query(req), number_of_results=cfg.MANAGED_RAG_RESULTS)
@@ -504,9 +790,9 @@ def _fetch_managed_rag(req: Requirement) -> tuple[int, ManagedRagResult | None, 
         return req.id, None, str(exc)
 
 
-def _fetch_batch_managed_rag(requirements: list[Requirement]) -> tuple[ManagedRagResult | None, str | None]:
+def _fetch_batch_managed_rag(requirements: list[Requirement], query: str | None = None) -> tuple[ManagedRagResult | None, str | None]:
     try:
-        result = retrieve_generate(_managed_rag_batch_query(requirements), number_of_results=cfg.MANAGED_RAG_RESULTS)
+        result = retrieve_generate(query or _managed_rag_batch_query(requirements), number_of_results=cfg.MANAGED_RAG_RESULTS)
         return result, None
     except Exception as exc:
         return None, str(exc)
@@ -517,23 +803,28 @@ def _analyze_batch(requirements: list[Requirement]) -> list[RequirementVerdict]:
     all_context_parts = []
     req_rag_results: dict[int, ManagedRagResult] = {}
     req_source_urls: dict[int, list[str]] = {r.id: [] for r in requirements}
+    req_traces: dict[int, dict] = {}
     req_map = {r.id: r for r in requirements}
 
     if cfg.ANALYSIS_RAG_MODE == "grouped":
         logger.info("Fetching grouped Managed RAG context for %d requirements", len(requirements))
-        rag_result, error = _fetch_batch_managed_rag(requirements)
+        batch_query = _managed_rag_batch_query(requirements)
+        rag_result, error = _fetch_batch_managed_rag(requirements, batch_query)
         if error or rag_result is None:
             logger.warning("Grouped Managed RAG failed: %s", error)
-            all_context_parts.append(_format_batch_rag_context(requirements, None))
-        else:
-            all_context_parts.append(_format_batch_rag_context(requirements, rag_result))
-            source_urls = _filter_urls(rag_result.source_labels)
-            for idx, source in enumerate(rag_result.results, start=1):
-                source_urls.extend(_filter_urls([_result_url(source)]))
-            source_urls = list(dict.fromkeys(source_urls))
             for req in requirements:
-                req_rag_results[req.id] = rag_result
-                req_source_urls[req.id].extend(source_urls)
+                req_traces[req.id] = _build_analysis_trace(req, "grouped", batch_query, None, error)
+                all_context_parts.append(_format_rag_context(req, None))
+        else:
+            for req in requirements:
+                reranked = _rerank_rag_result(req, rag_result)
+                req_rag_results[req.id] = reranked
+                req_traces[req.id] = _build_analysis_trace(req, "grouped", batch_query, reranked)
+                source_urls = []
+                for idx, source in enumerate((reranked.results if reranked else []), start=1):
+                    source_urls.extend(_filter_urls([_result_url(source)]))
+                req_source_urls[req.id].extend(list(dict.fromkeys(source_urls)))
+                all_context_parts.append(_format_rag_context(req, reranked, max_chars_per_result=900))
     else:
         max_workers = max(1, min(cfg.MANAGED_RAG_CONCURRENCY, len(requirements)))
         logger.info("Fetching Managed RAG context for %d requirements (parallel=%d)", len(requirements), max_workers)
@@ -544,14 +835,16 @@ def _analyze_batch(requirements: list[Requirement]) -> list[RequirementVerdict]:
                 req = req_map[req_id]
                 if error or rag_result is None:
                     logger.warning("Managed RAG failed for requirement %s: %s", req_id, error)
+                    req_traces[req_id] = _build_analysis_trace(req, "per_requirement", _managed_rag_query(req), None, error)
                     all_context_parts.append(_format_rag_context(req, None))
                     continue
 
-                req_rag_results[req.id] = rag_result
-                req_source_urls[req.id].extend(_filter_urls(rag_result.source_labels))
-                for idx, source in enumerate(rag_result.results, start=1):
+                reranked = _rerank_rag_result(req, rag_result)
+                req_rag_results[req.id] = reranked
+                req_traces[req.id] = _build_analysis_trace(req, "per_requirement", _managed_rag_query(req), reranked)
+                for idx, source in enumerate((reranked.results if reranked else []), start=1):
                     req_source_urls[req.id].extend(_filter_urls([_result_url(source)]))
-                all_context_parts.append(_format_rag_context(req, rag_result))
+                all_context_parts.append(_format_rag_context(req, reranked, max_chars_per_result=900))
 
     context = "\n\n---\n\n".join(all_context_parts) if all_context_parts else "Managed RAG не вернул релевантной информации."
 
@@ -597,9 +890,16 @@ def _analyze_batch(requirements: list[Requirement]) -> list[RequirementVerdict]:
         platform_assessments = _platform_assessments_from_llm(item, rag_result, req, combined_urls)
         source_note = ""
         if rag_result and rag_result.source_labels:
-            source_note = "\n\nДокументы Managed RAG: " + ", ".join(rag_result.source_labels[:5])
+            source_note = "\n\nВыбранные документы Managed RAG: " + ", ".join(rag_result.source_labels[:5])
+        trace = dict(req_traces.get(req_id, {}))
+        trace["llm_response"] = {
+            "verdict": _value_to_text(item.get("verdict", "")),
+            "confidence": item.get("confidence"),
+            "source_urls": item.get("source_urls", []),
+            "evidence": _value_to_text(item.get("evidence", ""))[:1000],
+        }
 
-        verdicts.append(RequirementVerdict(
+        verdict = RequirementVerdict(
             requirement_id=req_id,
             section=req.section if req else "",
             requirement_text=req.text if req else "",
@@ -614,7 +914,9 @@ def _analyze_batch(requirements: list[Requirement]) -> list[RequirementVerdict]:
             requires_external_service=_safe_bool(item.get("requires_external_service"))
             or any(a.source_type == "external_service" for a in platform_assessments),
             external_service_notes=_value_to_text(item.get("external_service_notes", "")),
-        ))
+            trace=trace,
+        )
+        verdicts.append(_apply_evidence_contract(verdict))
 
     # Add verdicts for requirements not returned by LLM
     returned_ids = {v.requirement_id for v in verdicts}
@@ -630,6 +932,9 @@ def _analyze_batch(requirements: list[Requirement]) -> list[RequirementVerdict]:
                 reasoning="Не удалось получить оценку от LLM",
                 evidence="",
                 recommendation="Требуется ручная проверка",
+                evidence_status="missing",
+                evidence_contract_notes=["LLM не вернула вердикт по требованию"],
+                trace=req_traces.get(req.id, {}),
                 platform_assessments=[
                     PlatformAssessment(
                         platform_name="Cloud.ru (документация не найдена)",

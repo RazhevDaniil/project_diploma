@@ -70,6 +70,9 @@ class RequirementVerdict:
     platform_assessments: list[PlatformAssessment] = field(default_factory=list)
     requires_external_service: bool = False
     external_service_notes: str = ""
+    evidence_status: str = "unchecked"  # confirmed, weak, missing, downgraded, unchecked
+    evidence_contract_notes: list[str] = field(default_factory=list)
+    trace: dict = field(default_factory=dict)
 
     def to_dict(self) -> dict:
         return {
@@ -86,6 +89,9 @@ class RequirementVerdict:
             "platform_assessments": [item.to_dict() for item in self.platform_assessments],
             "requires_external_service": self.requires_external_service,
             "external_service_notes": self.external_service_notes,
+            "evidence_status": self.evidence_status,
+            "evidence_contract_notes": self.evidence_contract_notes,
+            "trace": self.trace,
         }
 
 
@@ -172,6 +178,42 @@ class AnalysisReport:
             ),
         )
 
+    @property
+    def suspicious_items(self) -> list[dict]:
+        items = []
+        for verdict in self.verdicts:
+            reasons = list(verdict.evidence_contract_notes or [])
+            if verdict.verdict == "needs_clarification":
+                reasons.append("Требует ручного уточнения")
+            if verdict.confidence < 0.55:
+                reasons.append(f"Низкая уверенность: {verdict.confidence:.0%}")
+            if verdict.requires_external_service:
+                reasons.append("Нужна проработка внешних услуг / подрядчиков")
+            if verdict.evidence_status in {"missing", "weak", "downgraded"}:
+                reasons.append(f"Статус доказательств: {verdict.evidence_status}")
+
+            trace = verdict.trace or {}
+            selected_sources = trace.get("selected_sources", []) if isinstance(trace, dict) else []
+            if not selected_sources:
+                reasons.append("Нет выбранных RAG-источников")
+            elif not any(float(source.get("score", 0) or 0) >= 2.0 for source in selected_sources if isinstance(source, dict)):
+                reasons.append("RAG-источники имеют слабую релевантность")
+
+            if not reasons:
+                continue
+            items.append(
+                {
+                    "requirement_id": verdict.requirement_id,
+                    "section": verdict.section,
+                    "requirement_text": verdict.requirement_text,
+                    "verdict": verdict.verdict,
+                    "confidence": verdict.confidence,
+                    "reasons": list(dict.fromkeys(reasons)),
+                    "recommendation": verdict.recommendation,
+                }
+            )
+        return items
+
     def to_dict(self) -> dict:
         return {
             "document_name": self.document_name,
@@ -186,4 +228,5 @@ class AnalysisReport:
             "max_score": self.max_score,
             "compliance_percentage": self.compliance_percentage,
             "platform_summary": self.platform_summary,
+            "suspicious_items": self.suspicious_items,
         }

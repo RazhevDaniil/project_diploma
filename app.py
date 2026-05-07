@@ -429,6 +429,35 @@ def report_platform_matrix(report: dict) -> list[dict]:
     return rows
 
 
+def report_suspicious_items(report: dict) -> list[dict]:
+    items = report.get("suspicious_items")
+    if isinstance(items, list):
+        return [item for item in items if isinstance(item, dict)]
+
+    result = []
+    for verdict in report.get("verdicts", []):
+        reasons = list(verdict.get("evidence_contract_notes") or [])
+        if verdict.get("verdict") == "needs_clarification":
+            reasons.append("Требует ручного уточнения")
+        if float(verdict.get("confidence") or 0) < 0.55:
+            reasons.append("Низкая уверенность")
+        if verdict.get("requires_external_service"):
+            reasons.append("Нужна проработка внешних услуг / подрядчиков")
+        if verdict.get("evidence_status") in {"missing", "weak", "downgraded"}:
+            reasons.append(f"Статус доказательств: {verdict.get('evidence_status')}")
+        if reasons:
+            result.append(
+                {
+                    "section": verdict.get("section") or f"#{verdict.get('requirement_id')}",
+                    "requirement_text": verdict.get("requirement_text", ""),
+                    "verdict": verdict.get("verdict", ""),
+                    "confidence": verdict.get("confidence", 0),
+                    "reasons": list(dict.fromkeys(reasons)),
+                }
+            )
+    return result
+
+
 def render_run_status(run: dict):
     status = run.get("status", "unknown")
     stage = run.get("stage", "")
@@ -1098,6 +1127,52 @@ with tab_report:
         if report.get("summary"):
             st.markdown("### Резюме")
             st.markdown(report["summary"])
+
+        suspicious_items = report_suspicious_items(report)
+        if suspicious_items:
+            st.divider()
+            st.subheader("Сомнительные места")
+            st.caption("Пункты, где мало доказательств, слабая релевантность RAG, низкая уверенность или нужна ручная проработка.")
+            suspicious_rows = []
+            for item in suspicious_items:
+                verdict_label = {
+                    "match": "Соответствует",
+                    "partial": "Частично",
+                    "mismatch": "Не соответствует",
+                    "needs_clarification": "Уточнить",
+                }.get(item.get("verdict", ""), item.get("verdict", ""))
+                suspicious_rows.append(
+                    {
+                        "Пункт ТЗ": item.get("section") or f"#{item.get('requirement_id')}",
+                        "Вердикт": verdict_label,
+                        "Уверенность": f"{float(item.get('confidence') or 0):.0%}",
+                        "Причины": "; ".join(item.get("reasons", []) or []),
+                        "Требование": (item.get("requirement_text") or "")[:180],
+                    }
+                )
+            st.dataframe(suspicious_rows, use_container_width=True, hide_index=True)
+
+            with st.expander("Трассировка RAG по сомнительным местам"):
+                verdict_by_section = {
+                    (verdict.get("section") or f"#{verdict.get('requirement_id')}"): verdict
+                    for verdict in report.get("verdicts", [])
+                }
+                for item in suspicious_items[:30]:
+                    section = item.get("section") or f"#{item.get('requirement_id')}"
+                    verdict = verdict_by_section.get(section, {})
+                    trace = verdict.get("trace") or {}
+                    st.markdown(f"**{section}**")
+                    profile = trace.get("profile") or {}
+                    if profile:
+                        st.caption(
+                            f"Профиль: {profile.get('cluster', 'n/a')}; "
+                            f"платформа: {profile.get('platform_hint') or 'не определена'}"
+                        )
+                    for source in (trace.get("selected_sources") or [])[:3]:
+                        title = source.get("title") or "Источник"
+                        score = source.get("score", 0)
+                        reasons = "; ".join(source.get("reasons") or [])
+                        st.markdown(f"- `{score}` **{title}** — {reasons}")
 
         platform_matrix = report_platform_matrix(report)
         if platform_matrix:

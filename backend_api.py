@@ -111,6 +111,9 @@ def _report_from_dict(item: dict) -> AnalysisReport:
                 platform_assessments=platform_assessments,
                 requires_external_service=_safe_bool(verdict.get("requires_external_service", False)),
                 external_service_notes=str(verdict.get("external_service_notes", "") or ""),
+                evidence_status=str(verdict.get("evidence_status", "unchecked") or "unchecked"),
+                evidence_contract_notes=[str(note) for note in verdict.get("evidence_contract_notes", []) or []],
+                trace=verdict.get("trace", {}) if isinstance(verdict.get("trace"), dict) else {},
             )
         )
     return AnalysisReport(

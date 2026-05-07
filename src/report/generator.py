@@ -252,6 +252,50 @@ def _top_key_matches(report: AnalysisReport, limit: int = KEY_MATCHES_LIMIT) -> 
     return matches[:limit]
 
 
+def _md_cell(value) -> str:
+    return str(value or "").replace("\n", " ").replace("|", "\\|")
+
+
+def _suspicious_items(report: AnalysisReport) -> list[dict]:
+    return report.suspicious_items
+
+
+def _trace_rows(report: AnalysisReport) -> list[dict]:
+    rows = []
+    for verdict in report.verdicts:
+        trace = verdict.trace or {}
+        profile = trace.get("profile", {}) if isinstance(trace.get("profile"), dict) else {}
+        selected_sources = trace.get("selected_sources", []) if isinstance(trace.get("selected_sources"), list) else []
+        if not selected_sources:
+            rows.append(
+                {
+                    "Пункт ТЗ": verdict.section or f"#{verdict.requirement_id}",
+                    "Профиль": profile.get("cluster", ""),
+                    "Платформа": profile.get("platform_hint", ""),
+                    "Источник": "",
+                    "Score": "",
+                    "Причины выбора": trace.get("rag_error", "нет выбранных источников"),
+                    "Вердикт": VERDICT_LABELS.get(verdict.verdict, verdict.verdict),
+                    "Evidence status": verdict.evidence_status,
+                }
+            )
+            continue
+        for source in selected_sources[:3]:
+            rows.append(
+                {
+                    "Пункт ТЗ": verdict.section or f"#{verdict.requirement_id}",
+                    "Профиль": profile.get("cluster", ""),
+                    "Платформа": source.get("platform") or profile.get("platform_hint", ""),
+                    "Источник": source.get("title", ""),
+                    "Score": source.get("score", ""),
+                    "Причины выбора": "; ".join(source.get("reasons", []) or []),
+                    "Вердикт": VERDICT_LABELS.get(verdict.verdict, verdict.verdict),
+                    "Evidence status": verdict.evidence_status,
+                }
+            )
+    return rows
+
+
 def _format_problem_entry(lines: list[str], verdict: RequirementVerdict, reason_label: str) -> None:
     cat = CATEGORY_LABELS.get(verdict.category, verdict.category)
     lines.append(f"### {_section_label(verdict)} ({cat})")
@@ -345,6 +389,50 @@ def generate_markdown(report: AnalysisReport) -> str:
             lines.append(f"- **{v.section or f'#{v.requirement_id}'}**: {_req_text(v, 180)}")
             if v.external_service_notes:
                 lines.append(f"  - {v.external_service_notes}")
+        lines.append("")
+
+    suspicious_items = _suspicious_items(report)
+    if suspicious_items:
+        lines.append("## Сомнительные места\n")
+        lines.append("| Пункт ТЗ | Вердикт | Уверенность | Причины | Требование |")
+        lines.append("|---|---|---:|---|---|")
+        for item in suspicious_items:
+            lines.append(
+                "| "
+                + " | ".join(
+                    [
+                        _md_cell(item.get("section") or f"#{item.get('requirement_id')}"),
+                        _md_cell(VERDICT_LABELS.get(item.get("verdict", ""), item.get("verdict", ""))),
+                        _md_cell(f"{float(item.get('confidence') or 0):.0%}"),
+                        _md_cell("; ".join(item.get("reasons", []) or [])),
+                        _md_cell(str(item.get("requirement_text", ""))[:180]),
+                    ]
+                )
+                + " |"
+            )
+        lines.append("")
+
+    trace_rows = _trace_rows(report)
+    if trace_rows:
+        lines.append("## Трассировка RAG\n")
+        lines.append("| Пункт ТЗ | Профиль | Платформа | Источник | Score | Причины выбора | Evidence |")
+        lines.append("|---|---|---|---|---:|---|---|")
+        for row in trace_rows:
+            lines.append(
+                "| "
+                + " | ".join(
+                    [
+                        _md_cell(row.get("Пункт ТЗ")),
+                        _md_cell(row.get("Профиль")),
+                        _md_cell(row.get("Платформа")),
+                        _md_cell(row.get("Источник")),
+                        _md_cell(row.get("Score")),
+                        _md_cell(row.get("Причины выбора")),
+                        _md_cell(row.get("Evidence status")),
+                    ]
+                )
+                + " |"
+            )
         lines.append("")
 
     mismatches = sorted([v for v in report.verdicts if v.verdict == "mismatch"], key=_priority_sort_key)
@@ -561,6 +649,37 @@ def save_docx(report: AnalysisReport, output_dir: Path | None = None) -> Path:
                 style=None,
             )
 
+    suspicious_items = _suspicious_items(report)
+    if suspicious_items:
+        doc.add_heading("Сомнительные места", level=1)
+        t = doc.add_table(rows=1, cols=5)
+        t.style = "Table Grid"
+        for j, h in enumerate(["Пункт ТЗ", "Вердикт", "Уверенность", "Причины", "Требование"]):
+            t.rows[0].cells[j].text = h
+        for item in suspicious_items:
+            row = t.add_row()
+            row.cells[0].text = str(item.get("section") or f"#{item.get('requirement_id')}")
+            row.cells[1].text = VERDICT_LABELS.get(item.get("verdict", ""), item.get("verdict", ""))
+            row.cells[2].text = f"{float(item.get('confidence') or 0):.0%}"
+            row.cells[3].text = "; ".join(item.get("reasons", []) or [])
+            row.cells[4].text = str(item.get("requirement_text", ""))[:180]
+
+    trace_rows = _trace_rows(report)
+    if trace_rows:
+        doc.add_heading("Трассировка RAG", level=1)
+        t = doc.add_table(rows=1, cols=6)
+        t.style = "Table Grid"
+        for j, h in enumerate(["Пункт ТЗ", "Профиль", "Платформа", "Источник", "Score", "Причины выбора"]):
+            t.rows[0].cells[j].text = h
+        for item in trace_rows[:120]:
+            row = t.add_row()
+            row.cells[0].text = str(item.get("Пункт ТЗ", ""))
+            row.cells[1].text = str(item.get("Профиль", ""))
+            row.cells[2].text = str(item.get("Платформа", ""))
+            row.cells[3].text = str(item.get("Источник", ""))[:180]
+            row.cells[4].text = str(item.get("Score", ""))
+            row.cells[5].text = str(item.get("Причины выбора", ""))[:240]
+
     doc.add_heading("Что проверить в первую очередь", level=1)
     doc.add_paragraph(_decision_summary(report))
 
@@ -669,6 +788,8 @@ def save_excel(report: AnalysisReport, output_dir: Path | None = None) -> Path:
             "Оценка по платформам": "\n".join(platform_summary),
             "Нужна проработка подрядчиков": "Да" if v.requires_external_service else "Нет",
             "Внешние услуги / комментарий": v.external_service_notes,
+            "Evidence status": v.evidence_status,
+            "Evidence contract notes": "\n".join(v.evidence_contract_notes),
         })
 
     df = pd.DataFrame(rows)
@@ -695,6 +816,20 @@ def save_excel(report: AnalysisReport, output_dir: Path | None = None) -> Path:
     df_refs = pd.DataFrame(
         [{"Сноска": f"[{index}]", "Источник": key} for key, index in sorted(refs.items(), key=lambda item: item[1])]
     )
+    df_suspicious = pd.DataFrame(
+        [
+            {
+                "Пункт ТЗ": item.get("section") or f"#{item.get('requirement_id')}",
+                "Требование": str(item.get("requirement_text", ""))[:500],
+                "Вердикт": VERDICT_LABELS.get(item.get("verdict", ""), item.get("verdict", "")),
+                "Уверенность": f"{float(item.get('confidence') or 0):.0%}",
+                "Причины": "\n".join(item.get("reasons", []) or []),
+                "Рекомендация": item.get("recommendation", ""),
+            }
+            for item in _suspicious_items(report)
+        ]
+    )
+    df_trace = pd.DataFrame(_trace_rows(report))
 
     pct = report.compliance_percentage
 
@@ -723,6 +858,10 @@ def save_excel(report: AnalysisReport, output_dir: Path | None = None) -> Path:
             df_platform_detail.to_excel(writer, sheet_name="Платформы детально", index=False)
         if not df_refs.empty:
             df_refs.to_excel(writer, sheet_name="Сноски RAG", index=False)
+        if not df_suspicious.empty:
+            df_suspicious.to_excel(writer, sheet_name="Сомнительные места", index=False)
+        if not df_trace.empty:
+            df_trace.to_excel(writer, sheet_name="Трассировка RAG", index=False)
         df.to_excel(writer, sheet_name="Все требования", index=False)
 
         # Separate sheets by verdict
@@ -921,6 +1060,47 @@ def save_pdf(report: AnalysisReport, output_dir: Path | None = None) -> Path:
                 0,
                 5,
                 _safe(f"{v.section or f'#{v.requirement_id}'}: {_req_text(v, 220)} {v.external_service_notes or ''}"),
+                new_x=XPos.LMARGIN,
+                new_y=YPos.NEXT,
+            )
+        pdf.ln(3)
+
+    suspicious_items = _suspicious_items(report)
+    if suspicious_items:
+        pdf.set_font(font_name, "", 12)
+        pdf.cell(0, 8, _safe("Сомнительные места"), new_x="LMARGIN", new_y="NEXT")
+        pdf.set_font(font_name, "", 9)
+        for item in suspicious_items[:25]:
+            section = item.get("section") or f"#{item.get('requirement_id')}"
+            reasons = "; ".join(item.get("reasons", []) or [])
+            verdict_label = VERDICT_LABELS.get(item.get("verdict", ""), item.get("verdict", ""))
+            pdf.multi_cell(
+                0,
+                5,
+                _safe(
+                    f"{section}: {verdict_label}, уверенность {float(item.get('confidence') or 0):.0%}. "
+                    f"Причины: {_cut(reasons, 220)}"
+                ),
+                new_x=XPos.LMARGIN,
+                new_y=YPos.NEXT,
+            )
+        pdf.ln(3)
+
+    trace_rows = _trace_rows(report)
+    if trace_rows:
+        pdf.set_font(font_name, "", 12)
+        pdf.cell(0, 8, _safe("Трассировка RAG"), new_x="LMARGIN", new_y="NEXT")
+        pdf.set_font(font_name, "", 8)
+        for row in trace_rows[:40]:
+            pdf.multi_cell(
+                0,
+                4,
+                _safe(
+                    f"{row.get('Пункт ТЗ', '')}: профиль={row.get('Профиль', '')}; "
+                    f"платформа={row.get('Платформа', '')}; score={row.get('Score', '')}; "
+                    f"источник={_cut(row.get('Источник', ''), 130)}; "
+                    f"причины={_cut(row.get('Причины выбора', ''), 170)}"
+                ),
                 new_x=XPos.LMARGIN,
                 new_y=YPos.NEXT,
             )
