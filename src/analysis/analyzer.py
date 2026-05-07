@@ -10,8 +10,7 @@ from urllib.parse import urlparse
 from src.managed_rag.client import ManagedRagResult, retrieve_generate
 from src.models import AnalysisReport, PlatformAssessment, Requirement, RequirementVerdict
 from src.llm.client import call_llm, call_llm_json
-
-import config as cfg
+from src.runtime_config import RuntimeSettings, build_runtime_settings
 
 logger = logging.getLogger(__name__)
 
@@ -54,8 +53,10 @@ def analyze_requirements(
     requirements: list[Requirement],
     document_name: str,
     search_mode: str = "managed_rag",
-    batch_size: int = cfg.MAX_REQUIREMENTS_PER_BATCH,
+    batch_size: int | None = None,
     progress_callback=None,
+    extraction_summary: dict | None = None,
+    settings: RuntimeSettings | dict | None = None,
 ) -> AnalysisReport:
     """Analyze all requirements against Cloud.ru Managed RAG context.
 
@@ -63,11 +64,13 @@ def analyze_requirements(
         search_mode: kept for API compatibility. Managed RAG is always used.
         progress_callback: optional callable(done, total) for progress updates.
     """
-    report = AnalysisReport(document_name=document_name)
+    runtime_settings = build_runtime_settings(settings)
+    effective_batch_size = max(1, batch_size or runtime_settings.max_requirements_per_batch)
+    report = AnalysisReport(document_name=document_name, extraction_summary=extraction_summary or {})
 
     batches = [
-        (i // batch_size, requirements[i:i + batch_size])
-        for i in range(0, len(requirements), batch_size)
+        (i // effective_batch_size, requirements[i:i + effective_batch_size])
+        for i in range(0, len(requirements), effective_batch_size)
     ]
     total_batches = len(batches)
     completed_requirements = 0
@@ -76,9 +79,9 @@ def analyze_requirements(
 
     def analyze_one_batch(batch_index: int, batch: list[Requirement]) -> tuple[int, list[RequirementVerdict], int]:
         logger.info("Analyzing batch %d/%d (%d requirements)", batch_index + 1, total_batches, len(batch))
-        return batch_index, _analyze_batch(batch), len(batch)
+        return batch_index, _analyze_batch(batch, runtime_settings), len(batch)
 
-    max_workers = max(1, min(cfg.ANALYSIS_BATCH_CONCURRENCY, total_batches))
+    max_workers = max(1, min(runtime_settings.analysis_batch_concurrency, total_batches))
     logger.info("Analyzing %d batches (parallel=%d)", total_batches, max_workers)
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
         futures = [
@@ -96,7 +99,7 @@ def analyze_requirements(
     for batch_index in range(total_batches):
         report.verdicts.extend(batch_results.get(batch_index, []))
 
-    report.summary = _generate_summary(report)
+    report.summary = _generate_summary(report, runtime_settings)
     return report
 
 
@@ -782,23 +785,38 @@ def _apply_evidence_contract(verdict: RequirementVerdict) -> RequirementVerdict:
     return verdict
 
 
-def _fetch_managed_rag(req: Requirement) -> tuple[int, ManagedRagResult | None, str | None]:
+def _fetch_managed_rag(
+    req: Requirement,
+    settings: RuntimeSettings,
+) -> tuple[int, ManagedRagResult | None, str | None]:
     try:
-        result = retrieve_generate(_managed_rag_query(req), number_of_results=cfg.MANAGED_RAG_RESULTS)
+        result = retrieve_generate(
+            _managed_rag_query(req),
+            number_of_results=settings.managed_rag_results,
+            settings=settings,
+        )
         return req.id, result, None
     except Exception as exc:
         return req.id, None, str(exc)
 
 
-def _fetch_batch_managed_rag(requirements: list[Requirement], query: str | None = None) -> tuple[ManagedRagResult | None, str | None]:
+def _fetch_batch_managed_rag(
+    requirements: list[Requirement],
+    settings: RuntimeSettings,
+    query: str | None = None,
+) -> tuple[ManagedRagResult | None, str | None]:
     try:
-        result = retrieve_generate(query or _managed_rag_batch_query(requirements), number_of_results=cfg.MANAGED_RAG_RESULTS)
+        result = retrieve_generate(
+            query or _managed_rag_batch_query(requirements),
+            number_of_results=settings.managed_rag_results,
+            settings=settings,
+        )
         return result, None
     except Exception as exc:
         return None, str(exc)
 
 
-def _analyze_batch(requirements: list[Requirement]) -> list[RequirementVerdict]:
+def _analyze_batch(requirements: list[Requirement], settings: RuntimeSettings) -> list[RequirementVerdict]:
     """Analyze a batch of requirements."""
     all_context_parts = []
     req_rag_results: dict[int, ManagedRagResult] = {}
@@ -806,10 +824,10 @@ def _analyze_batch(requirements: list[Requirement]) -> list[RequirementVerdict]:
     req_traces: dict[int, dict] = {}
     req_map = {r.id: r for r in requirements}
 
-    if cfg.ANALYSIS_RAG_MODE == "grouped":
+    if settings.analysis_rag_mode == "grouped":
         logger.info("Fetching grouped Managed RAG context for %d requirements", len(requirements))
         batch_query = _managed_rag_batch_query(requirements)
-        rag_result, error = _fetch_batch_managed_rag(requirements, batch_query)
+        rag_result, error = _fetch_batch_managed_rag(requirements, settings, batch_query)
         if error or rag_result is None:
             logger.warning("Grouped Managed RAG failed: %s", error)
             for req in requirements:
@@ -826,10 +844,10 @@ def _analyze_batch(requirements: list[Requirement]) -> list[RequirementVerdict]:
                 req_source_urls[req.id].extend(list(dict.fromkeys(source_urls)))
                 all_context_parts.append(_format_rag_context(req, reranked, max_chars_per_result=900))
     else:
-        max_workers = max(1, min(cfg.MANAGED_RAG_CONCURRENCY, len(requirements)))
+        max_workers = max(1, min(settings.managed_rag_concurrency, len(requirements)))
         logger.info("Fetching Managed RAG context for %d requirements (parallel=%d)", len(requirements), max_workers)
         with ThreadPoolExecutor(max_workers=max_workers) as executor:
-            futures = [executor.submit(_fetch_managed_rag, req) for req in requirements]
+            futures = [executor.submit(_fetch_managed_rag, req, settings) for req in requirements]
             for future in as_completed(futures):
                 req_id, rag_result, error = future.result()
                 req = req_map[req_id]
@@ -866,7 +884,7 @@ def _analyze_batch(requirements: list[Requirement]) -> list[RequirementVerdict]:
         context=context,
     )
 
-    result = call_llm_json(prompt, system_prompt=analysis_system, max_tokens=8000)
+    result = call_llm_json(prompt, system_prompt=analysis_system, max_tokens=8000, settings=settings)
 
     verdicts = []
     items = result if isinstance(result, list) else [result]
@@ -950,7 +968,7 @@ def _analyze_batch(requirements: list[Requirement]) -> list[RequirementVerdict]:
     return verdicts
 
 
-def _generate_summary(report: AnalysisReport) -> str:
+def _generate_summary(report: AnalysisReport, settings: RuntimeSettings) -> str:
     """Generate a text summary of the report."""
     top_mismatches = []
     for v in report.verdicts:
@@ -973,4 +991,4 @@ def _generate_summary(report: AnalysisReport) -> str:
         top_mismatches=top_mismatches_text,
     )
 
-    return call_llm(prompt, system_prompt=summary_system, max_tokens=2000)
+    return call_llm(prompt, system_prompt=summary_system, max_tokens=2000, settings=settings)

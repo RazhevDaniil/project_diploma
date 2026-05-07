@@ -41,6 +41,7 @@ class ParsedBlock:
     row_index: int | None = None
     headers: list[str] = field(default_factory=list)
     cells: list[str] = field(default_factory=list)
+    caption: str = ""
 
 
 @dataclass
@@ -142,6 +143,12 @@ def _parse_docx(path: Path) -> ParsedDocument:
                 return int(parts[-1])
         return None
 
+    def cell_text(cell) -> str:
+        parts = [" ".join(paragraph.text.split()) for paragraph in cell.paragraphs]
+        return "\n".join(part for part in parts if part)
+
+    last_table_caption = ""
+
     for item in iter_block_items(doc):
         if isinstance(item, Paragraph):
             text = " ".join(item.text.split())
@@ -156,18 +163,22 @@ def _parse_docx(path: Path) -> ParsedDocument:
                 level=level,
             ))
             text_parts.append(text)
+            if text.lower().startswith(("таблица", "табл.")):
+                last_table_caption = text
             continue
 
         table_index += 1
+        caption_for_table = last_table_caption
+        last_table_caption = ""
         raw_rows = []
         for row in item.rows:
-            raw_rows.append([" ".join(cell.text.split()) for cell in row.cells])
+            raw_rows.append([cell_text(cell) for cell in row.cells])
         if len(raw_rows) < 2:
             continue
         headers = raw_rows[0]
         rows = raw_rows[1:]
         table = ParsedTable(
-            page_or_section=f"таблица {table_index}",
+            page_or_section=caption_for_table or f"таблица {table_index}",
             headers=headers,
             rows=rows,
         )
@@ -189,6 +200,7 @@ def _parse_docx(path: Path) -> ParsedDocument:
                     row_index=row_index,
                     headers=headers,
                     cells=row,
+                    caption=caption_for_table,
                 ))
 
     return ParsedDocument(

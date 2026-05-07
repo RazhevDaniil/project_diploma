@@ -20,9 +20,9 @@ from src.parser.document_parser import parse_document
 from src.parser.requirement_extractor import extract_requirements
 from src.prompt_store import activate_prompt_version, create_prompt_version, list_prompts
 from src.report.generator import generate_markdown, save_docx, save_excel, save_markdown, save_pdf
-from src.runtime_config import apply_runtime_settings
+from src.runtime_config import RuntimeSettings, build_runtime_settings
 from src.run_store import create_run, get_run, list_runs, summarize_run, update_run
-from src.settings_store import load_ui_settings, save_ui_settings
+from src.settings_store import load_ui_settings, sanitize_settings, save_ui_settings
 from src.llm.client import call_llm
 
 logger = logging.getLogger(__name__)
@@ -46,6 +46,15 @@ def _parse_settings_json(raw: str | None) -> dict | None:
         return json.loads(raw)
     except json.JSONDecodeError as exc:
         raise HTTPException(status_code=400, detail=f"Invalid llm_settings_json: {exc}") from exc
+
+
+def _effective_settings(settings: dict | None) -> dict:
+    saved = load_ui_settings().get("settings", {})
+    if not isinstance(saved, dict):
+        saved = {}
+    if not isinstance(settings, dict):
+        settings = {}
+    return {**saved, **settings}
 
 
 async def _save_upload(upload: UploadFile, target_dir: Path) -> Path:
@@ -120,6 +129,7 @@ def _report_from_dict(item: dict) -> AnalysisReport:
         document_name=str(item.get("document_name", "document")),
         verdicts=verdicts,
         summary=str(item.get("summary", "")),
+        extraction_summary=item.get("extraction_summary", {}) if isinstance(item.get("extraction_summary"), dict) else {},
     )
 
 
@@ -169,6 +179,7 @@ def _build_analysis_chat_context(
     report: AnalysisReport,
     requirements: list[Requirement],
     search_mode: str,
+    settings: RuntimeSettings,
 ) -> tuple[str, list[str], list[str]]:
     sorted_verdicts = sorted(
         report.verdicts,
@@ -236,7 +247,7 @@ def _build_analysis_chat_context(
 
     managed_rag_lines = []
     try:
-        rag_result = retrieve_generate(question, number_of_results=5)
+        rag_result = retrieve_generate(question, number_of_results=5, settings=settings)
         managed_rag_lines.append(rag_result.as_context())
     except Exception as exc:
         logger.warning("Managed RAG search for analysis chat failed: %s", exc)
@@ -279,7 +290,7 @@ def _format_history(history: list[dict]) -> str:
 
 def _run_extract_requirements(run_id: str, uploads: list[dict], settings: dict | None) -> None:
     try:
-        apply_runtime_settings(settings)
+        runtime_settings = build_runtime_settings(settings)
         update_run(
             run_id,
             status="extracting",
@@ -291,10 +302,12 @@ def _run_extract_requirements(run_id: str, uploads: list[dict], settings: dict |
 
         all_requirements = []
         parsed_files = []
+        extraction_files = []
         for index, item in enumerate(uploads, start=1):
             path = Path(item["path"])
             parsed = parse_document(path)
-            requirements = extract_requirements(parsed)
+            requirements = extract_requirements(parsed, settings=runtime_settings)
+            extraction_summary = parsed.metadata.get("requirements_extraction", {})
             all_requirements.extend(requirements)
             parsed_files.append(
                 {
@@ -302,11 +315,14 @@ def _run_extract_requirements(run_id: str, uploads: list[dict], settings: dict |
                     "text_chars": len(parsed.text),
                     "table_count": len(parsed.tables),
                     "requirements_found": len(requirements),
+                    "extraction_summary": extraction_summary,
                 }
             )
+            extraction_files.append({"filename": item.get("filename") or path.name, **extraction_summary})
             update_run(
                 run_id,
                 parsed_files=parsed_files,
+                extraction_summary={"files": extraction_files},
                 requirements=[req.to_dict() for req in all_requirements],
                 progress_done=index,
             )
@@ -316,6 +332,7 @@ def _run_extract_requirements(run_id: str, uploads: list[dict], settings: dict |
             status="extracted",
             stage="requirements_ready",
             parsed_files=parsed_files,
+            extraction_summary={"files": extraction_files},
             requirements=[req.to_dict() for req in all_requirements],
             progress_done=len(uploads),
             progress_total=len(uploads),
@@ -328,7 +345,7 @@ def _run_extract_requirements(run_id: str, uploads: list[dict], settings: dict |
 
 def _run_analyze_requirements(run_id: str, settings: dict | None) -> None:
     try:
-        apply_runtime_settings(settings)
+        runtime_settings = build_runtime_settings(settings)
         run = get_run(run_id)
         if not run:
             return
@@ -350,6 +367,8 @@ def _run_analyze_requirements(run_id: str, settings: dict | None) -> None:
             document_name=str(run.get("document_name", "document")),
             search_mode="managed_rag",
             progress_callback=progress,
+            extraction_summary=run.get("extraction_summary", {}) if isinstance(run.get("extraction_summary"), dict) else {},
+            settings=runtime_settings,
         )
         update_run(
             run_id,
@@ -367,13 +386,14 @@ def _run_analyze_requirements(run_id: str, settings: dict | None) -> None:
 
 @app.get("/health")
 async def healthcheck():
+    runtime_settings = build_runtime_settings(load_ui_settings().get("settings", {}))
     return {
         "status": "ok",
         "provider": "foundation_models",
         "rag_provider": "managed_rag",
-        "llm_model": cfg.OPENAI_MODEL,
-        "llm_temperature": cfg.OPENAI_TEMPERATURE,
-        "managed_rag_kb_version": cfg.MANAGED_RAG_KB_VERSION,
+        "llm_model": runtime_settings.openai_model,
+        "llm_temperature": runtime_settings.openai_temperature,
+        "managed_rag_kb_version": runtime_settings.managed_rag_kb_version,
     }
 
 
@@ -396,7 +416,6 @@ def settings_get():
 def settings_save(payload: dict = Body(...)):
     settings = payload.get("settings", payload)
     saved = save_ui_settings(settings)
-    apply_runtime_settings(saved.get("settings", {}))
     return {
         "ok": True,
         **saved,
@@ -454,6 +473,8 @@ def runs_get(run_id: str):
     run = get_run(run_id)
     if not run:
         raise HTTPException(status_code=404, detail=f"Run not found: {run_id}")
+    run = dict(run)
+    run["settings"] = sanitize_settings(run.get("settings", {}))
     return run
 
 
@@ -463,7 +484,7 @@ async def runs_start_extract(
     files: list[UploadFile] = File(...),
     llm_settings_json: str | None = Form(default=None),
 ):
-    settings = _parse_settings_json(llm_settings_json) or {}
+    settings = _effective_settings(_parse_settings_json(llm_settings_json) or {})
     saved_files = []
     for upload in files:
         tmp_path = await _save_upload(upload, cfg.UPLOAD_DIR)
@@ -476,7 +497,7 @@ async def runs_start_extract(
         )
 
     document_name = saved_files[0]["filename"] if saved_files else "document"
-    run = create_run(document_name=document_name, files=saved_files, settings=settings)
+    run = create_run(document_name=document_name, files=saved_files, settings=sanitize_settings(settings))
     update_run(
         run["id"],
         status="queued",
@@ -498,12 +519,12 @@ def runs_start_analysis(run_id: str, background_tasks: BackgroundTasks, payload:
     if run.get("status") in {"extracting", "analyzing", "queued"}:
         return run
 
-    settings = payload.get("llm_settings") or run.get("settings") or {}
+    settings = _effective_settings(payload.get("llm_settings") or run.get("settings") or {})
     update_run(
         run_id,
         status="queued",
         stage="analysis_queued",
-        settings=settings,
+        settings=sanitize_settings(settings),
         progress_done=0,
         progress_total=len(run.get("requirements", [])),
         error="",
@@ -517,15 +538,17 @@ async def extract_requirements_endpoint(
     files: list[UploadFile] = File(...),
     llm_settings_json: str | None = Form(default=None),
 ):
-    apply_runtime_settings(_parse_settings_json(llm_settings_json))
+    runtime_settings = build_runtime_settings(_effective_settings(_parse_settings_json(llm_settings_json) or {}))
 
     all_requirements = []
     parsed_files = []
+    extraction_files = []
 
     for upload in files:
         tmp_path = await _save_upload(upload, cfg.UPLOAD_DIR)
         parsed = parse_document(tmp_path)
-        requirements = extract_requirements(parsed)
+        requirements = extract_requirements(parsed, settings=runtime_settings)
+        extraction_summary = parsed.metadata.get("requirements_extraction", {})
         all_requirements.extend(requirements)
         parsed_files.append(
             {
@@ -533,11 +556,14 @@ async def extract_requirements_endpoint(
                 "text_chars": len(parsed.text),
                 "table_count": len(parsed.tables),
                 "requirements_found": len(requirements),
+                "extraction_summary": extraction_summary,
             }
         )
+        extraction_files.append({"filename": upload.filename or tmp_path.name, **extraction_summary})
 
     return {
         "files": parsed_files,
+        "extraction_summary": {"files": extraction_files},
         "requirements": [req.to_dict() for req in all_requirements],
         "total_requirements": len(all_requirements),
     }
@@ -545,7 +571,7 @@ async def extract_requirements_endpoint(
 
 @app.post("/analysis/report")
 def analysis_report(payload: dict = Body(...)):
-    apply_runtime_settings(payload.get("llm_settings"))
+    runtime_settings = build_runtime_settings(_effective_settings(payload.get("llm_settings")))
 
     requirements = [_requirement_from_dict(item) for item in payload.get("requirements", [])]
     if not requirements:
@@ -555,13 +581,15 @@ def analysis_report(payload: dict = Body(...)):
         requirements=requirements,
         document_name=str(payload.get("document_name", "document")),
         search_mode=str(payload.get("search_mode", "managed_rag")),
+        extraction_summary=payload.get("extraction_summary", {}) if isinstance(payload.get("extraction_summary"), dict) else {},
+        settings=runtime_settings,
     )
     return report.to_dict()
 
 
 @app.post("/analysis/ask")
 def analysis_ask(payload: dict = Body(...)):
-    apply_runtime_settings(payload.get("llm_settings"))
+    runtime_settings = build_runtime_settings(_effective_settings(payload.get("llm_settings")))
 
     question = str(payload.get("question", "")).strip()
     if not question:
@@ -583,6 +611,7 @@ def analysis_ask(payload: dict = Body(...)):
         report=report,
         requirements=requirements,
         search_mode=search_mode,
+        settings=runtime_settings,
     )
 
     prompt = f"""Вопрос пользователя:
@@ -606,6 +635,7 @@ def analysis_ask(payload: dict = Body(...)):
         prompt,
         system_prompt=ANALYSIS_CHAT_SYSTEM,
         max_tokens=1800,
+        settings=runtime_settings,
     )
 
     return {

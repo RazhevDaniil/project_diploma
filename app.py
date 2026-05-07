@@ -75,7 +75,7 @@ def init_state():
         "parser_chunk_size": int(os.getenv("PARSER_CHUNK_SIZE", "6000")),
         "parser_concurrency": int(os.getenv("PARSER_CONCURRENCY", "4")),
         "parser_fast_min_requirements": int(os.getenv("PARSER_FAST_MIN_REQUIREMENTS", "20")),
-        "parser_fast_max_requirements": int(os.getenv("PARSER_FAST_MAX_REQUIREMENTS", "220")),
+        "parser_fast_max_requirements": int(os.getenv("PARSER_FAST_MAX_REQUIREMENTS", "1000")),
         "max_requirements_per_batch": int(os.getenv("MAX_REQUIREMENTS_PER_BATCH", "12")),
         "analysis_rag_mode": os.getenv("ANALYSIS_RAG_MODE", "grouped").lower(),
         "analysis_batch_concurrency": int(os.getenv("ANALYSIS_BATCH_CONCURRENCY", "2")),

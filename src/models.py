@@ -102,6 +102,7 @@ class AnalysisReport:
     document_name: str
     verdicts: list[RequirementVerdict] = field(default_factory=list)
     summary: str = ""
+    extraction_summary: dict = field(default_factory=dict)
 
     @property
     def total(self) -> int:
@@ -218,6 +219,7 @@ class AnalysisReport:
         return {
             "document_name": self.document_name,
             "summary": self.summary,
+            "extraction_summary": self.extraction_summary,
             "verdicts": [v.to_dict() for v in self.verdicts],
             "total": self.total,
             "match_count": self.match_count,

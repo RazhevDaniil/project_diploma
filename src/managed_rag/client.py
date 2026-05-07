@@ -11,6 +11,7 @@ from typing import Any
 import requests
 
 import config as cfg
+from src.runtime_config import RuntimeSettings, build_runtime_settings
 
 logger = logging.getLogger(__name__)
 
@@ -70,24 +71,24 @@ def _source_labels(results: list[dict[str, Any]]) -> list[str]:
     return labels
 
 
-def _cache_key(query: str, number_of_results: int) -> str:
+def _cache_key(query: str, number_of_results: int, settings: RuntimeSettings) -> str:
     payload = {
-        "url": cfg.MANAGED_RAG_URL,
-        "knowledge_base_version": cfg.MANAGED_RAG_KB_VERSION,
-        "model": cfg.OPENAI_MODEL,
+        "url": settings.managed_rag_url,
+        "knowledge_base_version": settings.managed_rag_kb_version,
+        "model": settings.openai_model,
         "number_of_results": number_of_results,
-        "context_chunks": cfg.MANAGED_RAG_CONTEXT_CHUNKS,
-        "max_tokens": cfg.MANAGED_RAG_MAX_TOKENS,
-        "temperature": cfg.MANAGED_RAG_TEMPERATURE,
-        "retrieval_type": cfg.MANAGED_RAG_RETRIEVAL_TYPE,
+        "context_chunks": settings.managed_rag_context_chunks,
+        "max_tokens": settings.managed_rag_max_tokens,
+        "temperature": settings.managed_rag_temperature,
+        "retrieval_type": settings.managed_rag_retrieval_type,
         "query": query,
     }
     raw = json.dumps(payload, ensure_ascii=False, sort_keys=True)
     return hashlib.sha256(raw.encode("utf-8")).hexdigest()
 
 
-def _load_cached_result(key: str) -> ManagedRagResult | None:
-    if not cfg.MANAGED_RAG_CACHE_ENABLED:
+def _load_cached_result(key: str, settings: RuntimeSettings) -> ManagedRagResult | None:
+    if not settings.managed_rag_cache_enabled:
         return None
     path = cfg.MANAGED_RAG_CACHE_DIR / f"{key}.json"
     if not path.exists():
@@ -105,8 +106,8 @@ def _load_cached_result(key: str) -> ManagedRagResult | None:
         return None
 
 
-def _save_cached_result(key: str, result: ManagedRagResult) -> None:
-    if not cfg.MANAGED_RAG_CACHE_ENABLED:
+def _save_cached_result(key: str, result: ManagedRagResult, settings: RuntimeSettings) -> None:
+    if not settings.managed_rag_cache_enabled:
         return
     cfg.MANAGED_RAG_CACHE_DIR.mkdir(exist_ok=True)
     path = cfg.MANAGED_RAG_CACHE_DIR / f"{key}.json"
@@ -122,41 +123,46 @@ def _save_cached_result(key: str, result: ManagedRagResult) -> None:
         logger.warning("Failed to write Managed RAG cache %s: %s", path.name, exc)
 
 
-def retrieve_generate(query: str, number_of_results: int | None = None) -> ManagedRagResult:
+def retrieve_generate(
+    query: str,
+    number_of_results: int | None = None,
+    settings: RuntimeSettings | dict | None = None,
+) -> ManagedRagResult:
     """Ask Managed RAG for Cloud.ru capability context."""
-    if not cfg.MANAGED_RAG_URL:
+    runtime_settings = build_runtime_settings(settings)
+    if not runtime_settings.managed_rag_url:
         raise RuntimeError("MANAGED_RAG_URL is not configured")
-    if not cfg.MANAGED_RAG_KB_VERSION:
+    if not runtime_settings.managed_rag_kb_version:
         raise RuntimeError("MANAGED_RAG_KB_VERSION is not configured")
 
-    result_count = number_of_results or cfg.MANAGED_RAG_RESULTS
-    cache_key = _cache_key(query, result_count)
-    cached = _load_cached_result(cache_key)
+    result_count = number_of_results or runtime_settings.managed_rag_results
+    cache_key = _cache_key(query, result_count, runtime_settings)
+    cached = _load_cached_result(cache_key, runtime_settings)
     if cached is not None:
         logger.info("Managed RAG cache hit: %s", cache_key[:12])
         return cached
 
     payload = {
-        "knowledge_base_version": cfg.MANAGED_RAG_KB_VERSION,
+        "knowledge_base_version": runtime_settings.managed_rag_kb_version,
         "query": query,
         "retrieval_configuration": {
             "number_of_results": result_count,
-            "retrieval_type": cfg.MANAGED_RAG_RETRIEVAL_TYPE,
+            "retrieval_type": runtime_settings.managed_rag_retrieval_type,
         },
         "generation_configuration": {
-            "model_name": cfg.OPENAI_MODEL,
+            "model_name": runtime_settings.openai_model,
             "model_source": "FOUNDATION_MODELS",
-            "max_completion_tokens": cfg.MANAGED_RAG_MAX_TOKENS,
-            "number_of_chunks_in_context": cfg.MANAGED_RAG_CONTEXT_CHUNKS,
-            "temperature": cfg.MANAGED_RAG_TEMPERATURE,
+            "max_completion_tokens": runtime_settings.managed_rag_max_tokens,
+            "number_of_chunks_in_context": runtime_settings.managed_rag_context_chunks,
+            "temperature": runtime_settings.managed_rag_temperature,
             "system_prompt": MANAGED_RAG_SYSTEM_PROMPT,
         },
     }
     headers = {"Content-Type": "application/json"}
-    if cfg.MANAGED_RAG_API_KEY:
-        headers["Authorization"] = f"Bearer {cfg.MANAGED_RAG_API_KEY}"
+    if runtime_settings.managed_rag_api_key:
+        headers["Authorization"] = f"Bearer {runtime_settings.managed_rag_api_key}"
 
-    response = requests.post(cfg.MANAGED_RAG_URL, json=payload, headers=headers, timeout=120)
+    response = requests.post(runtime_settings.managed_rag_url, json=payload, headers=headers, timeout=120)
     response.raise_for_status()
     data = response.json()
 
@@ -170,5 +176,5 @@ def retrieve_generate(query: str, number_of_results: int | None = None) -> Manag
         reasoning_content=str(data.get("reasoning_content", "") or ""),
         source_labels=_source_labels(results),
     )
-    _save_cached_result(cache_key, result)
+    _save_cached_result(cache_key, result, runtime_settings)
     return result

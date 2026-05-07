@@ -237,6 +237,9 @@ def _reference_title_from_key(key: str) -> str:
 
 
 def _decision_summary(report: AnalysisReport) -> str:
+    coverage_warnings = _extraction_warning_lines(report)
+    if coverage_warnings:
+        return "Есть риск неполного анализа ТЗ: " + coverage_warnings[0]
     if report.mismatch_count > 0:
         return "Обнаружены несоответствия. Начните проверку отчёта с блокеров ниже."
     if report.clarification_count > 0:
@@ -244,6 +247,95 @@ def _decision_summary(report: AnalysisReport) -> str:
     if report.partial_count > 0:
         return "Явных блокеров не найдено, но есть частичные соответствия, требующие доработки."
     return "Явных блокеров не найдено. Достаточно выборочно перепроверить подтверждённые ключевые требования."
+
+
+def _extraction_files(report: AnalysisReport) -> list[dict]:
+    summary = report.extraction_summary if isinstance(report.extraction_summary, dict) else {}
+    files = summary.get("files")
+    if isinstance(files, list):
+        return [item for item in files if isinstance(item, dict)]
+    return [summary] if summary else []
+
+
+def _extraction_warning_lines(report: AnalysisReport) -> list[str]:
+    warnings = []
+    for item in _extraction_files(report):
+        filename = item.get("filename") or report.document_name
+        if item.get("cap_applied"):
+            warnings.append(
+                f"{filename}: найдено {item.get('requirements_detected_before_cap', '?')} требований, "
+                f"в анализ передано {item.get('requirements_returned', '?')}; "
+                f"{item.get('requirements_omitted_by_cap', '?')} отброшено лимитом."
+            )
+        missing = item.get("missing_key_signals_after_extraction") or []
+        if missing:
+            warnings.append(
+                f"{filename}: ключевые сигналы не попали в извлеченные требования: {', '.join(missing[:8])}."
+            )
+    return warnings
+
+
+def _extraction_coverage_rows(report: AnalysisReport) -> list[dict]:
+    rows = []
+    for item in _extraction_files(report):
+        filename = item.get("filename") or report.document_name
+        rows.append(
+            {
+                "Файл": filename,
+                "Показатель": "Требований найдено парсером",
+                "Значение": item.get("requirements_detected_before_cap", ""),
+            }
+        )
+        rows.append(
+            {
+                "Файл": filename,
+                "Показатель": "Передано в анализ",
+                "Значение": item.get("requirements_returned", ""),
+            }
+        )
+        rows.append(
+            {
+                "Файл": filename,
+                "Показатель": "Лимит применен",
+                "Значение": "да" if item.get("cap_applied") else "нет",
+            }
+        )
+        category_counts = item.get("category_counts_returned") or {}
+        if isinstance(category_counts, dict) and category_counts:
+            rows.append(
+                {
+                    "Файл": filename,
+                    "Показатель": "Категории в анализе",
+                    "Значение": ", ".join(f"{CATEGORY_LABELS.get(k, k)}: {v}" for k, v in category_counts.items()),
+                }
+            )
+        missing = item.get("missing_key_signals_after_extraction") or []
+        rows.append(
+            {
+                "Файл": filename,
+                "Показатель": "Ключевые сигналы вне анализа",
+                "Значение": ", ".join(missing) if missing else "нет",
+            }
+        )
+    return rows
+
+
+def _key_signal_rows(report: AnalysisReport) -> list[dict]:
+    rows = []
+    for item in _extraction_files(report):
+        filename = item.get("filename") or report.document_name
+        for signal in item.get("key_signal_coverage", []) or []:
+            if not isinstance(signal, dict) or not signal.get("present_in_document"):
+                continue
+            rows.append(
+                {
+                    "Файл": filename,
+                    "Сигнал": signal.get("label", ""),
+                    "Критичный": "да" if signal.get("critical") else "нет",
+                    "В извлечении": "да" if signal.get("present_in_extracted") else "нет",
+                }
+            )
+    return rows
 
 
 def _top_key_matches(report: AnalysisReport, limit: int = KEY_MATCHES_LIMIT) -> list[RequirementVerdict]:
@@ -357,6 +449,33 @@ def generate_markdown(report: AnalysisReport) -> str:
     lines.append(f"| **Баллы** | **{report.score} / {report.max_score}** |")
     lines.append(f"| **Общее соответствие** | **{pct}%** |")
     lines.append("")
+
+    coverage_rows = _extraction_coverage_rows(report)
+    signal_rows = _key_signal_rows(report)
+    if coverage_rows:
+        lines.append("## Покрытие извлечения\n")
+        warning_lines = _extraction_warning_lines(report)
+        if warning_lines:
+            lines.append("**Внимание:**")
+            for warning in warning_lines:
+                lines.append(f"- {warning}")
+            lines.append("")
+        lines.append("| Файл | Показатель | Значение |")
+        lines.append("|---|---|---|")
+        for row in coverage_rows:
+            lines.append(
+                f"| {_md_cell(row.get('Файл'))} | {_md_cell(row.get('Показатель'))} | {_md_cell(row.get('Значение'))} |"
+            )
+        lines.append("")
+        if signal_rows:
+            lines.append("| Файл | Ключевой сигнал | Критичный | Попал в извлечение |")
+            lines.append("|---|---|---|---|")
+            for row in signal_rows:
+                lines.append(
+                    f"| {_md_cell(row.get('Файл'))} | {_md_cell(row.get('Сигнал'))} | "
+                    f"{_md_cell(row.get('Критичный'))} | {_md_cell(row.get('В извлечении'))} |"
+                )
+            lines.append("")
 
     if report.summary:
         lines.append("### Резюме\n")
@@ -606,6 +725,33 @@ def save_docx(report: AnalysisReport, output_dir: Path | None = None) -> Path:
         table.rows[i].cells[0].text = k
         table.rows[i].cells[1].text = v
 
+    coverage_rows = _extraction_coverage_rows(report)
+    signal_rows = _key_signal_rows(report)
+    if coverage_rows:
+        doc.add_heading("Покрытие извлечения", level=1)
+        for warning in _extraction_warning_lines(report):
+            doc.add_paragraph(f"Внимание: {warning}")
+        coverage_table = doc.add_table(rows=1, cols=3)
+        coverage_table.style = "Table Grid"
+        for j, h in enumerate(["Файл", "Показатель", "Значение"]):
+            coverage_table.rows[0].cells[j].text = h
+        for item in coverage_rows:
+            row = coverage_table.add_row()
+            row.cells[0].text = str(item.get("Файл", ""))
+            row.cells[1].text = str(item.get("Показатель", ""))
+            row.cells[2].text = str(item.get("Значение", ""))
+        if signal_rows:
+            signals_table = doc.add_table(rows=1, cols=4)
+            signals_table.style = "Table Grid"
+            for j, h in enumerate(["Файл", "Ключевой сигнал", "Критичный", "Попал в извлечение"]):
+                signals_table.rows[0].cells[j].text = h
+            for item in signal_rows:
+                row = signals_table.add_row()
+                row.cells[0].text = str(item.get("Файл", ""))
+                row.cells[1].text = str(item.get("Сигнал", ""))
+                row.cells[2].text = str(item.get("Критичный", ""))
+                row.cells[3].text = str(item.get("В извлечении", ""))
+
     if report.summary:
         doc.add_heading("Резюме", level=2)
         doc.add_paragraph(report.summary)
@@ -830,6 +976,8 @@ def save_excel(report: AnalysisReport, output_dir: Path | None = None) -> Path:
         ]
     )
     df_trace = pd.DataFrame(_trace_rows(report))
+    df_extraction = pd.DataFrame(_extraction_coverage_rows(report))
+    df_signals = pd.DataFrame(_key_signal_rows(report))
 
     pct = report.compliance_percentage
 
@@ -862,6 +1010,10 @@ def save_excel(report: AnalysisReport, output_dir: Path | None = None) -> Path:
             df_suspicious.to_excel(writer, sheet_name="Сомнительные места", index=False)
         if not df_trace.empty:
             df_trace.to_excel(writer, sheet_name="Трассировка RAG", index=False)
+        if not df_extraction.empty:
+            df_extraction.to_excel(writer, sheet_name="Покрытие извлечения", index=False)
+        if not df_signals.empty:
+            df_signals.to_excel(writer, sheet_name="Ключевые сигналы", index=False)
         df.to_excel(writer, sheet_name="Все требования", index=False)
 
         # Separate sheets by verdict
@@ -994,6 +1146,37 @@ def save_pdf(report: AnalysisReport, output_dir: Path | None = None) -> Path:
     for line in summary_lines:
         pdf.cell(0, 6, _safe(line), new_x="LMARGIN", new_y="NEXT")
     pdf.ln(5)
+
+    coverage_rows = _extraction_coverage_rows(report)
+    if coverage_rows:
+        pdf.set_font(font_name, "", 12)
+        pdf.cell(0, 8, _safe("Покрытие извлечения"), new_x="LMARGIN", new_y="NEXT")
+        pdf.set_font(font_name, "", 9)
+        for warning in _extraction_warning_lines(report):
+            pdf.multi_cell(0, 5, _safe(f"Внимание: {warning}"), new_x=XPos.LMARGIN, new_y=YPos.NEXT)
+        for row in coverage_rows[:20]:
+            pdf.multi_cell(
+                0,
+                5,
+                _safe(f"{row.get('Файл', '')}: {row.get('Показатель', '')} — {_cut(row.get('Значение', ''), 220)}"),
+                new_x=XPos.LMARGIN,
+                new_y=YPos.NEXT,
+            )
+        signal_rows = _key_signal_rows(report)
+        if signal_rows:
+            pdf.set_font(font_name, "", 8)
+            for row in signal_rows[:30]:
+                pdf.multi_cell(
+                    0,
+                    4,
+                    _safe(
+                        f"Сигнал: {row.get('Сигнал', '')}; критичный: {row.get('Критичный', '')}; "
+                        f"в извлечении: {row.get('В извлечении', '')}"
+                    ),
+                    new_x=XPos.LMARGIN,
+                    new_y=YPos.NEXT,
+                )
+        pdf.ln(3)
 
     if report.summary:
         pdf.set_font(font_name, "", 11)
