@@ -48,16 +48,16 @@ PARSER_CHUNK_SIZE=6000
 PARSER_CONCURRENCY=4
 PARSER_FAST_MIN_REQUIREMENTS=20
 PARSER_FAST_MAX_REQUIREMENTS=220
-MAX_REQUIREMENTS_PER_BATCH=20
+MAX_REQUIREMENTS_PER_BATCH=12
 ANALYSIS_RAG_MODE=grouped
 ANALYSIS_BATCH_CONCURRENCY=2
 
 MANAGED_RAG_URL=https://e424a162-618c-4862-b789-b089abd81b46.managed-rag.inference.cloud.ru/api/v2/retrieve_generate
 MANAGED_RAG_KB_VERSION=eb73eb63-ec91-47c9-851e-1c14949b7a14
 MANAGED_RAG_API_KEY=your_managed_rag_api_key_here
-MANAGED_RAG_RESULTS=2
-MANAGED_RAG_CONTEXT_CHUNKS=3
-MANAGED_RAG_MAX_TOKENS=256
+MANAGED_RAG_RESULTS=5
+MANAGED_RAG_CONTEXT_CHUNKS=6
+MANAGED_RAG_MAX_TOKENS=768
 MANAGED_RAG_TEMPERATURE=0.01
 MANAGED_RAG_CONCURRENCY=4
 MANAGED_RAG_CACHE_ENABLED=true
@@ -74,6 +74,8 @@ MANAGED_RAG_CACHE_ENABLED=true
 5. На вкладке «Отчёт» посмотрите оценку и summary, затем скачайте полный отчет.
 
 Состояние обработки сохраняется в `runs/`: после обновления страницы UI подхватит текущий запуск, а на вкладке «История» можно открыть прошлые результаты.
+
+Параметры сайдбара для версии базы знаний, скорости обработки и RAG сохраняются backend-ом в `settings/ui_settings.json` и применяются к новым запускам. API-ключи не сохраняются в этом файле — для постоянной конфигурации задавайте их через `.env`.
 
 ## Промпты
 
@@ -115,6 +117,7 @@ project_diploma/
 ├── prompt_versions/
 ├── runs/
 ├── rag_cache/
+├── settings/
 ├── uploads/
 └── reports/
 ```

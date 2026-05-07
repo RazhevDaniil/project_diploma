@@ -18,6 +18,28 @@ MODEL_OPTIONS = {
     "Qwen3-Next-80B-A3B-Instruct": "Qwen/Qwen3-Next-80B-A3B-Instruct",
 }
 PREFERRED_PLATFORM_ORDER = ["ГосОблако", "Evolution", "Advanced", "Облако VMware"]
+PERSISTED_SETTINGS_KEYS = [
+    "openai_api_base",
+    "openai_model",
+    "openai_temperature",
+    "llm_request_delay",
+    "parser_mode",
+    "parser_chunk_size",
+    "parser_concurrency",
+    "parser_fast_min_requirements",
+    "parser_fast_max_requirements",
+    "max_requirements_per_batch",
+    "analysis_rag_mode",
+    "analysis_batch_concurrency",
+    "managed_rag_url",
+    "managed_rag_kb_version",
+    "managed_rag_results",
+    "managed_rag_context_chunks",
+    "managed_rag_max_tokens",
+    "managed_rag_temperature",
+    "managed_rag_concurrency",
+    "managed_rag_cache_enabled",
+]
 
 
 def init_state():
@@ -39,6 +61,10 @@ def init_state():
         "auto_refresh_run": True,
         "last_backend_health": None,
         "last_prompts_payload": None,
+        "settings_loaded_for_backend": "",
+        "last_persisted_settings_payload": None,
+        "last_settings_save_error": "",
+        "last_settings_saved_at": "",
         "backend_api_url": DEFAULT_BACKEND_API_URL,
         "openai_api_base": os.getenv("OPENAI_API_BASE", "https://foundation-models.api.cloud.ru/v1"),
         "openai_api_key": os.getenv("OPENAI_API_KEY", ""),
@@ -50,7 +76,7 @@ def init_state():
         "parser_concurrency": int(os.getenv("PARSER_CONCURRENCY", "4")),
         "parser_fast_min_requirements": int(os.getenv("PARSER_FAST_MIN_REQUIREMENTS", "20")),
         "parser_fast_max_requirements": int(os.getenv("PARSER_FAST_MAX_REQUIREMENTS", "220")),
-        "max_requirements_per_batch": int(os.getenv("MAX_REQUIREMENTS_PER_BATCH", "20")),
+        "max_requirements_per_batch": int(os.getenv("MAX_REQUIREMENTS_PER_BATCH", "12")),
         "analysis_rag_mode": os.getenv("ANALYSIS_RAG_MODE", "grouped").lower(),
         "analysis_batch_concurrency": int(os.getenv("ANALYSIS_BATCH_CONCURRENCY", "2")),
         "managed_rag_url": os.getenv(
@@ -59,9 +85,9 @@ def init_state():
         ),
         "managed_rag_kb_version": os.getenv("MANAGED_RAG_KB_VERSION", "eb73eb63-ec91-47c9-851e-1c14949b7a14"),
         "managed_rag_api_key": os.getenv("MANAGED_RAG_API_KEY", os.getenv("OPENAI_API_KEY", "")),
-        "managed_rag_results": int(os.getenv("MANAGED_RAG_RESULTS", "2")),
-        "managed_rag_context_chunks": int(os.getenv("MANAGED_RAG_CONTEXT_CHUNKS", "3")),
-        "managed_rag_max_tokens": int(os.getenv("MANAGED_RAG_MAX_TOKENS", "256")),
+        "managed_rag_results": int(os.getenv("MANAGED_RAG_RESULTS", "5")),
+        "managed_rag_context_chunks": int(os.getenv("MANAGED_RAG_CONTEXT_CHUNKS", "6")),
+        "managed_rag_max_tokens": int(os.getenv("MANAGED_RAG_MAX_TOKENS", "768")),
         "managed_rag_temperature": float(os.getenv("MANAGED_RAG_TEMPERATURE", "0.01")),
         "managed_rag_concurrency": int(os.getenv("MANAGED_RAG_CONCURRENCY", "4")),
         "managed_rag_cache_enabled": os.getenv("MANAGED_RAG_CACHE_ENABLED", "true").lower() in {"1", "true", "yes", "on"},
@@ -96,6 +122,47 @@ def llm_settings_payload() -> dict:
         "managed_rag_concurrency": st.session_state.managed_rag_concurrency,
         "managed_rag_cache_enabled": st.session_state.managed_rag_cache_enabled,
     }
+
+
+def persisted_settings_payload() -> dict:
+    return {key: st.session_state.get(key) for key in PERSISTED_SETTINGS_KEYS}
+
+
+def apply_settings_to_state(settings: dict):
+    if not isinstance(settings, dict):
+        return
+    for key in PERSISTED_SETTINGS_KEYS:
+        if key in settings and settings[key] not in (None, ""):
+            st.session_state[key] = settings[key]
+
+
+def load_persisted_settings_once():
+    base_url = st.session_state.backend_api_url
+    if st.session_state.settings_loaded_for_backend == base_url:
+        return
+    response = requests.get(f"{base_url}/settings", timeout=10)
+    response.raise_for_status()
+    payload = response.json()
+    settings = payload.get("settings", {})
+    apply_settings_to_state(settings)
+    st.session_state.last_persisted_settings_payload = persisted_settings_payload()
+    st.session_state.settings_loaded_for_backend = base_url
+    st.session_state.last_settings_save_error = ""
+
+
+def save_persisted_settings():
+    payload = persisted_settings_payload()
+    response = requests.post(
+        f"{st.session_state.backend_api_url}/settings",
+        json={"settings": payload},
+        timeout=20,
+    )
+    response.raise_for_status()
+    data = response.json()
+    st.session_state.last_persisted_settings_payload = persisted_settings_payload()
+    st.session_state.last_settings_saved_at = data.get("updated_at", "")
+    st.session_state.last_settings_save_error = ""
+    return data
 
 
 def api_get(path: str, timeout: int = 10) -> dict:
@@ -640,6 +707,12 @@ except Exception as exc:
     backend_health = st.session_state.last_backend_health
     backend_health_stale = backend_health is not None
 
+if backend_health and not backend_health_stale:
+    try:
+        load_persisted_settings_once()
+    except Exception as exc:
+        st.session_state.last_settings_save_error = f"Не удалось загрузить сохранённые настройки: {exc}"
+
 with st.sidebar:
     st.title("☁️ Cloud.ru TZ Analyzer")
     st.markdown("UI работает через отдельный backend API")
@@ -666,6 +739,7 @@ with st.sidebar:
     st.subheader("Foundation Models API")
     st.text_input("API Base URL", key="openai_api_base")
     st.text_input("API Key", type="password", key="openai_api_key")
+    st.caption("Ключи используются для текущей обработки, но не сохраняются в настройках UI.")
     model_values = list(MODEL_OPTIONS.values())
     if st.session_state.openai_model not in model_values:
         st.session_state.openai_model = MODEL_OPTIONS["gpt-oss-120b"]
@@ -719,8 +793,33 @@ with st.sidebar:
     st.number_input("Кол-во результатов", min_value=1, max_value=10, key="managed_rag_results")
     st.number_input("Чанков в контексте", min_value=1, max_value=20, key="managed_rag_context_chunks")
     st.number_input("Макс. токенов RAG", min_value=128, max_value=4096, step=128, key="managed_rag_max_tokens")
+    st.number_input("Температура RAG", min_value=0.0, max_value=1.0, step=0.01, key="managed_rag_temperature")
     st.number_input("Параллельность RAG", min_value=1, max_value=10, key="managed_rag_concurrency")
     st.checkbox("Кэшировать RAG-ответы", key="managed_rag_cache_enabled")
+
+    st.divider()
+    st.subheader("Настройки")
+    st.caption("Версия базы знаний, параметры скорости и RAG сохраняются на backend и применяются к новым запускам.")
+    if backend_health and not backend_health_stale:
+        current_settings_payload = persisted_settings_payload()
+        settings_loaded = st.session_state.settings_loaded_for_backend == st.session_state.backend_api_url
+        if settings_loaded and current_settings_payload != st.session_state.last_persisted_settings_payload:
+            try:
+                save_persisted_settings()
+            except Exception as exc:
+                st.session_state.last_settings_save_error = str(exc)
+        if st.button("Сохранить сейчас", use_container_width=True):
+            try:
+                save_persisted_settings()
+                st.success("Настройки сохранены")
+            except Exception as exc:
+                show_request_error(exc)
+        if st.session_state.last_settings_saved_at:
+            st.caption(f"Последнее сохранение: {st.session_state.last_settings_saved_at}")
+        if st.session_state.last_settings_save_error:
+            st.warning(st.session_state.last_settings_save_error)
+    else:
+        st.info("Настройки сохранятся, когда backend будет доступен.")
 
 if backend_health:
     try:

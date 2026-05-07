@@ -9,6 +9,7 @@ reports/
 runs/
 prompt_versions/
 rag_cache/
+settings/
 *.egg-info/
 .DS_Store
 *.log

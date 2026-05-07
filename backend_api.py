@@ -22,6 +22,7 @@ from src.prompt_store import activate_prompt_version, create_prompt_version, lis
 from src.report.generator import generate_markdown, save_docx, save_excel, save_markdown, save_pdf
 from src.runtime_config import apply_runtime_settings
 from src.run_store import create_run, get_run, list_runs, summarize_run, update_run
+from src.settings_store import load_ui_settings, save_ui_settings
 from src.llm.client import call_llm
 
 logger = logging.getLogger(__name__)
@@ -376,6 +377,29 @@ async def healthcheck():
 @app.get("/prompts")
 def prompts_list():
     return list_prompts()
+
+
+@app.get("/settings")
+def settings_get():
+    payload = load_ui_settings()
+    return {
+        **payload,
+        "has_openai_api_key": bool(cfg.OPENAI_API_KEY),
+        "has_managed_rag_api_key": bool(cfg.MANAGED_RAG_API_KEY),
+    }
+
+
+@app.post("/settings")
+def settings_save(payload: dict = Body(...)):
+    settings = payload.get("settings", payload)
+    saved = save_ui_settings(settings)
+    apply_runtime_settings(saved.get("settings", {}))
+    return {
+        "ok": True,
+        **saved,
+        "has_openai_api_key": bool(cfg.OPENAI_API_KEY),
+        "has_managed_rag_api_key": bool(cfg.MANAGED_RAG_API_KEY),
+    }
 
 
 @app.post("/prompts/version")
