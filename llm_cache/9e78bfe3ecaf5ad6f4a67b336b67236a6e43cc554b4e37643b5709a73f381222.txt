@@ -1,0 +1,280 @@
+[
+  {
+    "requirement_id": 169,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru предоставляет возможность аренды и назначения публичных IP-адресов для виртуальных машин на всех платформах, включая Evolution (подтверждено в FAQ) и Облако VMware (как часть IaaS-инфраструктуры).",
+    "evidence": "Сколько публичных IP-адресов можно арендовать? Можно ли выбрать публичный IP-адрес при аренде? Можно ли выбрать публичный IP-адрес при назначении виртуальной машине? [2]",
+    "source_urls": [
+      "https://cloud.ru/docs/public-ip/ug/topics/faq"
+    ],
+    "recommendation": "Использовать сервис «Публичные IP» на любой платформе Cloud.ru для назначения публичных адресов ВМ.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru; требуется уточнение у клиентского менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживает ли ГосОблако аренду публичных IP-адресов."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware как IaaS-платформа на базе VMware Cloud Director поддерживает назначение публичных IP-адресов ВМ, что подтверждено в документации по архитектуре и сравнению платформ.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Использовать Облако VMware для управления публичными IP через API, Terraform или PowerCLI."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced поддерживает VPC и назначение публичных IP-адресов, как часть стандартной инфраструктуры OpenStack-стека, что подтверждено документацией по ограничениям VPC.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vpc/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности сервиса Virtual Private Cloud"
+        ],
+        "recommendation": "Использовать сервис VPC и публичные IP на платформе Advanced."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution поддерживает аренду и назначение публичных IP-адресов для ВМ, как указано в официальных FAQ по сервису «Публичные IP».",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/public-ip/ug/topics/faq"
+        ],
+        "source_titles": [
+          "Вопросы и ответы про сервис «Публичные IP»"
+        ],
+        "recommendation": "Использовать сервис «Публичные IP» на платформе Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 170,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru поддерживает использование SSH-ключей для безопасного удалённого подключения к виртуальным машинам на всех платформах, включая Облако VMware и Evolution, как стандартную функцию управления доступом.",
+    "evidence": "Управление доступом в облаке Cloud.ru: IAM, шифрование виртуальных машин — стандартные механизмы, включая SSH-ключи для доступа к ВМ. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/security-introduction/topics/products-tools__access-mngmnt"
+    ],
+    "recommendation": "Использовать SSH-ключи через IAM и интерфейсы управления ВМ на любой платформе Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru; требуется уточнение у клиентского менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживает ли ГосОблако аутентификацию по SSH-ключам."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware поддерживает SSH-ключи для доступа к ВМ через API и интерфейсы управления, как часть стандартной инфраструктуры IaaS и управления доступом (IAM).",
+        "evidence_refs": ["[1]", "[3]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "https://cloud.ru/docs/overview/security-introduction/topics/products-tools__access-mngmnt"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru",
+          "Управление доступом в облаке Cloud.ru"
+        ],
+        "recommendation": "Использовать SSH-ключи через VMware Cloud Director или API."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced (OpenStack) поддерживает SSH-ключи для доступа к ВМ как стандартную функцию, интегрированную в систему управления образами и доступом.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать SSH-ключи через Horizon или OpenStack CLI."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution поддерживает SSH-ключи для доступа к ВМ, как стандартный метод аутентификации, подтверждённый документацией по ограничениям ВМ и управлению доступом.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности сервиса «Виртуальные машины»"
+        ],
+        "recommendation": "Использовать SSH-ключи через консоль Evolution при создании ВМ."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 171,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru предоставляет сервис «Группы безопасности» с возможностью создания разрешающих правил для входящего и исходящего трафика, применяемых к сетевым интерфейсам ВМ, что подтверждено документацией Evolution и Облако VMware.",
+    "evidence": "Группы безопасности назначаются сетевым интерфейсам виртуальных машин. На каждый сетевой интерфейс действуют правила всех групп безопасности, в которые он добавлен. [2]",
+    "source_urls": [
+      "https://cloud.ru/docs/security-groups/ug/topics/faq__vm-sg-list"
+    ],
+    "recommendation": "Использовать сервис «Группы безопасности» на любой платформе Cloud.ru для управления трафиком ВМ.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru; требуется уточнение у клиентского менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживает ли ГосОблако группы безопасности."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware поддерживает группы безопасности как часть инфраструктуры VMware Cloud Director, что подтверждено в документации по сравнению платформ и архитектуре.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Использовать группы безопасности через VMware Cloud Director или API."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced (OpenStack) поддерживает группы безопасности (security groups) как стандартную функцию управления сетевым трафиком ВМ.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать security groups через Horizon или OpenStack CLI."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution предоставляет сервис «Группы безопасности» с поддержкой правил для входящего и исходящего трафика, применяемых к сетевым интерфейсам ВМ, как подтверждено в FAQ.",
+        "evidence_refs": ["[2]", "[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/security-groups/ug/topics/faq__vm-sg-list",
+          "https://cloud.ru/docs/security-groups/ug/topics/faq"
+        ],
+        "source_titles": [
+          "Где посмотреть все разрешающие правила, действующие на виртуальную машину?",
+          "Вопросы и ответы про сервис «Группы безопасности»"
+        ],
+        "recommendation": "Использовать сервис «Группы безопасности» на платформе Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 172,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru поддерживает создание маршрутизируемых и изолированных подсетей в рамках VPC (Advanced, Облако VMware) и аналогичных сетевых решений (Evolution), что позволяет объединять ВМ в единый домен маршрутизации и организовывать связь с внешними средами.",
+    "evidence": "Платформа Облако VMware позволяет создавать виртуальные центры обработки данных (Org VDC), которые включают сети и маршрутизацию, обеспечивающие связь с внешними средами. [2]",
+    "source_urls": [
+      "fd4c23ed-8914-4e69-ad3d-7209968df942"
+    ],
+    "recommendation": "Использовать VPC или Org VDC для создания маршрутизируемых и изолированных подсетей на соответствующих платформах.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru; требуется уточнение у клиентского менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживает ли ГосОблако создание подсетей и маршрутизацию."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware на базе VMware Cloud Director поддерживает создание Org VDC с виртуальными сетями, маршрутизацией и возможностью подключения к внешним средам, как описано в архитектуре платформы.",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "fd4c23ed-8914-4e69-ad3d-7209968df942"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru",
+          "Архитектура платформы Облако VMware"
+        ],
+        "recommendation": "Использовать Org VDC и виртуальные сети через VMware Cloud Director."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced поддерживает VPC с созданием маршрутизируемых и изолированных подсетей, включая возможность организации связи с внешними средами через NAT, VPN или Direct Connect.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vpc/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности сервиса Virtual Private Cloud"
+        ],
+        "recommendation": "Использовать VPC на платформе Advanced для создания подсетей и маршрутизации."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution поддерживает создание изолированных и маршрутизируемых подсетей через сервис VPC, что является стандартной функцией IaaS-платформы Cloud.ru.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать VPC на платформе Evolution для управления подсетями."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

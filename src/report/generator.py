@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+import re
 from datetime import datetime
 from pathlib import Path
 
@@ -17,6 +18,7 @@ VERDICT_LABELS = {
     "partial": "Частично соответствует",
     "mismatch": "Не соответствует",
     "needs_clarification": "Требует уточнения",
+    "out_of_scope": "Вне технической оценки",
 }
 
 VERDICT_ICONS = {
@@ -24,6 +26,7 @@ VERDICT_ICONS = {
     "partial": "🟡",
     "mismatch": "❌",
     "needs_clarification": "❓",
+    "out_of_scope": "⚪",
 }
 
 CATEGORY_LABELS = {
@@ -32,6 +35,7 @@ CATEGORY_LABELS = {
     "legal": "Юридическое",
     "commercial": "Коммерческое",
     "security": "Информационная безопасность",
+    "procedural": "Процедурное (закупка)",
     "other": "Прочее",
 }
 
@@ -68,15 +72,61 @@ def _section_label(v: RequirementVerdict) -> str:
     return f"Требование №{v.requirement_id}"
 
 
+_NUMERIC_UNIT_RE = re.compile(
+    r"\d[\d\s.,]*\s*(?:%|гб/?с|тб/?с|мбит/?с|гбит/?с|гб|тб|мб|кб|"
+    r"мс|сек|секунд|минут|часов|часа|часов|ч|дней|дня|"
+    r"vcpu|cpu|ram|iops|rps|шт|ед|ту|узл|объект|бакет|корзин)\b",
+    re.IGNORECASE,
+)
+_OR_ALTERNATIVE_RE = re.compile(r"\bили\b|\bлибо\b", re.IGNORECASE)
+
+
 def _req_text(v: RequirementVerdict, max_len: int = 200) -> str:
-    """Get requirement text with fallback to reasoning."""
+    """Compact rendering of a requirement preserving numbers and 'или'-clauses.
+
+    Plain `text[:max_len]` cuts off the tail, often losing the actual
+    parameter (e.g. «не более 20 Мбит/с», «или репликация в 2 зоны»).
+    For matrix rows or report tables we keep the head, but if a critical
+    fragment lies beyond max_len, we append a compact suffix
+    `head … <numeric or 'или'-fragment>` while staying within max_len.
+    """
     text = v.requirement_text.strip() if v.requirement_text else ""
-    if text:
-        return text[:max_len]
-    # Fallback: use reasoning as context
-    if v.reasoning:
-        return f"[текст не извлечён] {v.reasoning[:max_len]}"
-    return "[текст требования не извлечён]"
+    if not text:
+        if v.reasoning:
+            return f"[текст не извлечён] {v.reasoning[:max_len]}"
+        return "[текст требования не извлечён]"
+    if len(text) <= max_len:
+        return text
+
+    head_budget = max(60, int(max_len * 0.7))
+    head = text[:head_budget].rstrip()
+    tail = text[head_budget:]
+
+    # Сохраняем числовые маркеры и «или»-альтернативы, если они в хвосте.
+    fragments_to_keep: list[str] = []
+    for m in _NUMERIC_UNIT_RE.finditer(tail):
+        start = max(0, m.start() - 20)
+        end = min(len(tail), m.end() + 10)
+        frag = tail[start:end].strip(" .,;:")
+        if frag and frag not in fragments_to_keep:
+            fragments_to_keep.append(frag)
+    or_match = _OR_ALTERNATIVE_RE.search(tail)
+    if or_match:
+        start = max(0, or_match.start() - 5)
+        end = min(len(tail), or_match.end() + 60)
+        frag = tail[start:end].strip(" .,;:")
+        if frag and frag not in fragments_to_keep:
+            fragments_to_keep.append(frag)
+
+    if not fragments_to_keep:
+        return head + "…"
+
+    suffix = " … " + " · ".join(fragments_to_keep[:2])
+    available = max_len - len(head) - len(suffix)
+    if available < 0:
+        # Урезаем suffix
+        suffix = suffix[:max(10, max_len - len(head))]
+    return (head + suffix).strip()
 
 
 def _priority_sort_key(v: RequirementVerdict) -> tuple:
@@ -151,10 +201,24 @@ def _is_matrix_platform_name(value: str) -> bool:
     return True
 
 
+_MATRIX_CANONICAL_PLATFORMS = ("ГосОблако", "Облако VMware", "Advanced", "Evolution")
+
+
+def _is_canonical_cloud_platform(name: str) -> bool:
+    """True, если name — каноническая платформа Cloud.ru."""
+    return _canonical_platform_name(name) in _MATRIX_CANONICAL_PLATFORMS
+
+
 def _is_matrix_platform(assessment: object) -> bool:
+    raw_name = getattr(assessment, "platform_name", "") or ""
+    # external_service отбрасываем ТОЛЬКО если platform_name НЕ каноническая
+    # платформа Cloud.ru. Если LLM ошибочно поставил external_service для
+    # ГосОблако/VMware/Advanced/Evolution — оставляем его в матрице (имя
+    # платформы — ground truth).
     if getattr(assessment, "source_type", "") == "external_service":
-        return False
-    return _is_matrix_platform_name(getattr(assessment, "platform_name", ""))
+        if not _is_canonical_cloud_platform(raw_name):
+            return False
+    return _is_matrix_platform_name(raw_name)
 
 
 def _best_platform_assessment(items: list) -> object | None:
@@ -195,12 +259,21 @@ def _platform_matrix_rows(report: AnalysisReport, refs: dict[str, int]) -> list[
         }
         by_platform: dict[str, list] = {platform_name: [] for platform_name in platform_names}
         for item in verdict.platform_assessments:
-            platform_name = _canonical_platform_name(item.platform_name)
-            if item.source_type != "external_service" and platform_name in by_platform:
+            raw_name = item.platform_name or ""
+            platform_name = _canonical_platform_name(raw_name)
+            # external_service фильтруется ТОЛЬКО если platform_name НЕ
+            # каноническая платформа Cloud.ru (см. _is_matrix_platform).
+            if item.source_type == "external_service" and not _is_canonical_cloud_platform(raw_name):
+                continue
+            if platform_name in by_platform:
                 by_platform[platform_name].append(item)
         for platform_name in platform_names:
             assessment = _best_platform_assessment(by_platform.get(platform_name, []))
-            row[platform_name] = _assessment_symbol(assessment, refs) if assessment else "-"
+            # Пустая ячейка = «нет оценки», честнее показать «?» (уточнить),
+            # чем «-» (несоответствие). _fill_missing_canonical_platforms на
+            # бэкенде должен теперь гарантировать, что 4 канонических
+            # ассессмента есть всегда — но fallback оставляем как страховку.
+            row[platform_name] = _assessment_symbol(assessment, refs) if assessment else "?"
         rows.append(row)
     return rows
 
@@ -210,10 +283,14 @@ def _platform_totals(report: AnalysisReport) -> dict[str, tuple[int, int, int, i
     for platform_name in _platform_names(report):
         match_count = partial_count = mismatch_count = clarification_count = 0
         for verdict in report.verdicts:
+            # external_service игнорируется только для НЕ-канонических.
             items = [
                 assessment for assessment in verdict.platform_assessments
-                if assessment.source_type != "external_service"
-                and _canonical_platform_name(assessment.platform_name) == platform_name
+                if (
+                    (assessment.source_type != "external_service"
+                     or _is_canonical_cloud_platform(assessment.platform_name))
+                    and _canonical_platform_name(assessment.platform_name) == platform_name
+                )
             ]
             assessment = _best_platform_assessment(items)
             if assessment is None:
@@ -344,6 +421,180 @@ def _top_key_matches(report: AnalysisReport, limit: int = KEY_MATCHES_LIMIT) -> 
     return matches[:limit]
 
 
+# ---------------------------------------------------------------------------
+# Патч 14 (ZK10). Раздел «Качество анализа»: метрики достоверности отчёта.
+# ---------------------------------------------------------------------------
+
+_QUALITY_NORMALIZE_RE = re.compile(r"[^A-Za-zА-Яа-яЁё0-9]+")
+
+
+def _quality_normalize(text: str) -> str:
+    if not text:
+        return ""
+    return _QUALITY_NORMALIZE_RE.sub(" ", text.lower()).strip()
+
+
+def _quality_metrics(report: AnalysisReport) -> dict:
+    """Собирает технические метрики качества анализа для отчёта (patch 14).
+
+    Сочетает данные post-process (`analysis_quality` в `extraction_summary`)
+    с агрегатами, вычисленными прямо по verdict'ам — так старые отчёты,
+    в которых post-process ещё не запускался, тоже показывают часть
+    информации.
+    """
+    metrics: dict = {}
+    in_scope = [
+        v for v in report.verdicts
+        if v.verdict != "out_of_scope"
+        and (v.category or "").lower() != "procedural"
+    ]
+    denom = len(in_scope) or 1
+
+    # Дубликаты reasoning'а на 200 нормализованных символах префикса.
+    from collections import Counter
+
+    keys = Counter()
+    for v in in_scope:
+        if not v.reasoning:
+            continue
+        key = _quality_normalize(v.reasoning[:200])
+        if key and len(key) >= 80:
+            keys[key] += 1
+    duplicate_pairs = sum(c - 1 for c in keys.values() if c >= 2)
+    metrics["share_identical_reasoning"] = round(duplicate_pairs / denom, 3)
+
+    metrics["share_confidence_low"] = round(
+        sum(1 for v in in_scope if (v.confidence or 0) <= 0.5) / denom, 3
+    )
+    metrics["share_short_requirements"] = round(
+        sum(1 for v in in_scope if len(v.requirement_text or "") <= 25) / denom, 3
+    )
+    metrics["external_service_match_count"] = sum(
+        1 for v in in_scope if v.requires_external_service and v.verdict == "match"
+    )
+
+    # Post-process данные (если запускался).
+    quality_data = (
+        report.extraction_summary.get("analysis_quality")
+        if isinstance(report.extraction_summary, dict)
+        else None
+    ) or {}
+    for k, v in quality_data.items():
+        metrics.setdefault(k, v)
+
+    # Потерянные / ложно-потерянные сигналы из extraction_summary.files.
+    lost: list[dict] = []
+    false_pos: list[dict] = []
+    files = (
+        report.extraction_summary.get("files")
+        if isinstance(report.extraction_summary, dict)
+        else None
+    ) or []
+    for item in files:
+        if not isinstance(item, dict):
+            continue
+        filename = item.get("filename") or report.document_name
+        for s in item.get("missing_key_signals_after_extraction") or []:
+            lost.append({"file": filename, "signal": s})
+        for s in item.get("key_signals_false_positives_suspected") or []:
+            if isinstance(s, dict):
+                false_pos.append({"file": filename, **s})
+            else:
+                false_pos.append({"file": filename, "label": s})
+    metrics["lost_key_signals"] = lost
+    metrics["key_signals_false_positives"] = false_pos
+
+    # Patch 15 (strict mode): сборка alert'ов.
+    alerts: list[str] = []
+    total = report.total or 0
+    if total:
+        mismatch_ratio = report.mismatch_count / total
+        if mismatch_ratio < 0.01:
+            alerts.append(
+                f"Mismatch floor: mismatch={report.mismatch_count} из {total} "
+                f"({mismatch_ratio:.1%}) — анализатор может систематически "
+                f"избегать жёстких отказов. Проверьте, нет ли в выборке заведомо "
+                f"невыполнимых требований (Tier IV, AWS-specific, КИИ-1 на не-ГосОблаке)."
+            )
+    if metrics["share_identical_reasoning"] > 0.10:
+        alerts.append(
+            f"Дубликатов reasoning'а {metrics['share_identical_reasoning']:.1%} — "
+            f"возможен template hallucination."
+        )
+    if metrics["external_service_match_count"] > 0:
+        alerts.append(
+            f"{metrics['external_service_match_count']} verdict'ов одновременно "
+            f"имеют requires_external_service=True и verdict=match — это "
+            f"противоречие, patch 9 должен был его убрать."
+        )
+    if metrics["share_short_requirements"] > 0.10:
+        alerts.append(
+            f"Доля коротких requirement'ов (≤25 симв.) {metrics['share_short_requirements']:.1%} "
+            f"— возможен сбой парсера или утечка table_row-фрагментов."
+        )
+    metrics["alerts"] = alerts
+    return metrics
+
+
+def _render_quality_section(report: AnalysisReport) -> list[str]:
+    m = _quality_metrics(report)
+    lines: list[str] = []
+    lines.append("## Качество анализа\n")
+    lines.append(
+        "Технические индикаторы достоверности этого отчёта — выявленные дубликаты "
+        "reasoning'а, переиспользованные URL, низкая уверенность, потерянные "
+        "ключевые сигналы. Полезно для пресейла: если метрики плохие, отчёт стоит "
+        "перепроверить вручную перед отправкой клиенту."
+    )
+    lines.append("")
+    lines.append("| Метрика | Значение |")
+    lines.append("|---|---:|")
+    if m.get("dedup_reasoning_downgrades") is not None:
+        lines.append(f"| Дубликатов reasoning понижено (post-process) | {m['dedup_reasoning_downgrades']} |")
+    if m.get("url_overuse_downgrades") is not None:
+        lines.append(f"| URL-overuse понижено (post-process) | {m['url_overuse_downgrades']} |")
+    if m.get("confidence_snaps") is not None:
+        lines.append(f"| Confidence снапнуто (post-process) | {m['confidence_snaps']} |")
+    lines.append(f"| Доля одинаковых reasoning'ов | {m['share_identical_reasoning']:.1%} |")
+    lines.append(f"| Доля confidence ≤ 0.5 | {m['share_confidence_low']:.1%} |")
+    lines.append(f"| Доля requirement'ов ≤ 25 симв. | {m['share_short_requirements']:.1%} |")
+    lines.append(f"| external_service+match (должно быть 0) | {m['external_service_match_count']} |")
+    lines.append("")
+
+    if m.get("url_overused"):
+        lines.append("### URL, переиспользованные больше threshold\n")
+        for item in m["url_overused"][:5]:
+            url = item.get("url", "")
+            uses = item.get("uses", 0)
+            lines.append(f"- {url} — {uses} verdict'ов")
+        lines.append("")
+
+    if m.get("lost_key_signals"):
+        lines.append("### Потерянные ключевые сигналы (direct в документе, нет в извлечении)\n")
+        for item in m["lost_key_signals"][:20]:
+            lines.append(f"- {item.get('file', '')}: {item.get('signal', '')}")
+        lines.append("")
+
+    if m.get("key_signals_false_positives"):
+        lines.append("### Возможные ложные потери сигналов (synonym-match без сильного needle)\n")
+        for item in m["key_signals_false_positives"][:10]:
+            label = item.get("label", "")
+            mentions = item.get("total_mentions", "")
+            file = item.get("file", "")
+            lines.append(
+                f"- {file}: {label} (упоминаний в документе: {mentions})"
+            )
+        lines.append("")
+
+    alerts = m.get("alerts") or []
+    if alerts:
+        lines.append("### Предупреждения\n")
+        for alert in alerts:
+            lines.append(f"- ⚠️ {alert}")
+        lines.append("")
+    return lines
+
+
 def _md_cell(value) -> str:
     return str(value or "").replace("\n", " ").replace("|", "\\|")
 
@@ -418,10 +669,31 @@ def generate_markdown(report: AnalysisReport) -> str:
     lines.append(f"# Отчёт по анализу ТЗ: {report.document_name}")
     lines.append(f"*Дата анализа: {now}*\n")
 
-    # Prominent compliance percentage at the very top
+    # Prominent compliance percentage at the very top — главная цифра для
+    # пресейла теперь «Покрытие на рекомендуемой платформе». Это процент по
+    # platform_assessments выбранной канонической платформы Cloud.ru, а не
+    # средневзвешенный по всем требованиям. Старая метрика
+    # compliance_percentage остаётся ниже — для обратной совместимости и как
+    # «средний best-case» по портфелю.
+    rec_platform = report.recommended_platform
+    rec_pct = report.recommended_platform_compliance
     pct = report.compliance_percentage
-    lines.append(f"## Общий процент соответствия: {pct}%")
-    lines.append(f"**{report.score} из {report.max_score} баллов**\n")
+    if rec_platform:
+        lines.append(
+            f"## Покрытие на рекомендуемой платформе ({rec_platform}): {rec_pct}%"
+        )
+        lines.append(
+            f"*Это доля требований ТЗ, которые закрываются на платформе "
+            f"{rec_platform} — именно её Cloud.ru предлагает заказчику.*\n"
+        )
+        lines.append(f"### Общий процент соответствия портфеля: {pct}%")
+        lines.append(
+            f"*Best-case по любой платформе Cloud.ru: {report.score} из "
+            f"{report.max_score} баллов.*\n"
+        )
+    else:
+        lines.append(f"## Общий процент соответствия: {pct}%")
+        lines.append(f"**{report.score} из {report.max_score} баллов**\n")
     lines.append(f"**Быстрый вывод:** {_decision_summary(report)}\n")
 
     # Methodology
@@ -447,7 +719,11 @@ def generate_markdown(report: AnalysisReport) -> str:
     lines.append(f"| {VERDICT_ICONS['mismatch']} Не соответствует | {report.mismatch_count} |")
     lines.append(f"| {VERDICT_ICONS['needs_clarification']} Требует уточнения | {report.clarification_count} |")
     lines.append(f"| **Баллы** | **{report.score} / {report.max_score}** |")
-    lines.append(f"| **Общее соответствие** | **{pct}%** |")
+    lines.append(f"| **Общее соответствие (best-case)** | **{pct}%** |")
+    if rec_platform:
+        lines.append(
+            f"| **Покрытие {rec_platform}** | **{rec_pct}%** |"
+        )
     lines.append("")
 
     coverage_rows = _extraction_coverage_rows(report)
@@ -559,6 +835,9 @@ def generate_markdown(report: AnalysisReport) -> str:
     partials = sorted([v for v in report.verdicts if v.verdict == "partial"], key=_priority_sort_key)
     key_matches = _top_key_matches(report)
 
+    # Patch 14 (ZK10): секция «Качество анализа» — индикаторы достоверности.
+    lines.extend(_render_quality_section(report))
+
     # Priority checks first
     lines.append("## Что проверить в первую очередь\n")
     lines.append(f"- Несоответствия: **{report.mismatch_count}**")
@@ -597,6 +876,29 @@ def generate_markdown(report: AnalysisReport) -> str:
                 lines.append(f"**Документация:** {links}")
             lines.append("")
 
+    # Процедурные пункты закупки — вне технической оценки, но не пропали.
+    procedural = sorted(
+        [v for v in report.verdicts if (v.category or "").lower() == "procedural"
+         or v.verdict == "out_of_scope"],
+        key=lambda v: v.requirement_id,
+    )
+    if procedural:
+        lines.append("## Процедурные пункты закупки (вне технической оценки)\n")
+        lines.append(
+            f"Извлечено {len(procedural)} пунктов, относящихся к коммерческо-правовой "
+            "обвязке тендера (ОКПД, начальная максимальная цена, обеспечение заявки, "
+            "антикоррупция, идентификация участников закупки, реквизиты сторон). "
+            "Они **не оценивают технические возможности Cloud.ru** и исключены из "
+            "знаменателя процента соответствия. Передайте их в коммерческую/правовую "
+            "команду Cloud.ru при подготовке КП."
+        )
+        lines.append("")
+        lines.append("| Пункт ТЗ | Требование |")
+        lines.append("|---|---|")
+        for v in procedural:
+            lines.append(f"| {_md_cell(v.section or f'#{v.requirement_id}')} | {_md_cell(_req_text(v, max_len=300))} |")
+        lines.append("")
+
     if refs:
         lines.append("## Сноски RAG\n")
         for key, index in sorted(refs.items(), key=lambda item: item[1]):
@@ -606,7 +908,7 @@ def generate_markdown(report: AnalysisReport) -> str:
                 lines.append(f"[{index}] {key}")
         lines.append("")
 
-    # Full detail by category
+    # Full detail by category (без procedural — у них отдельный раздел выше)
     lines.append("## Детализация по всем требованиям\n")
     categories_order = ["technical", "sla", "security", "legal", "commercial", "other"]
     for cat_key in categories_order:
@@ -889,6 +1191,31 @@ def save_docx(report: AnalysisReport, output_dir: Path | None = None) -> Path:
             row.cells[1].text = CATEGORY_LABELS.get(v.category, v.category)
             row.cells[2].text = _req_text(v, 150)
             row.cells[3].text = "\n".join(v.source_urls[:5]) if v.source_urls else ""
+
+    # Процедурные пункты закупки — вне технической оценки Cloud.ru.
+    procedural = sorted(
+        [v for v in report.verdicts if (v.category or "").lower() == "procedural"
+         or v.verdict == "out_of_scope"],
+        key=lambda v: v.requirement_id,
+    )
+    if procedural:
+        doc.add_heading("Процедурные пункты закупки (вне технической оценки)", level=1)
+        doc.add_paragraph(
+            f"Извлечено {len(procedural)} пунктов, относящихся к коммерческо-правовой "
+            "обвязке тендера (ОКПД, начальная максимальная цена, обеспечение заявки, "
+            "антикоррупция, идентификация участников закупки, реквизиты сторон). "
+            "Они не оценивают технические возможности Cloud.ru и исключены из "
+            "знаменателя процента соответствия. Передайте их в коммерческую/правовую "
+            "команду Cloud.ru при подготовке КП."
+        )
+        t = doc.add_table(rows=1, cols=2)
+        t.style = "Table Grid"
+        for j, h in enumerate(["Пункт ТЗ", "Требование"]):
+            t.rows[0].cells[j].text = h
+        for v in procedural:
+            row = t.add_row()
+            row.cells[0].text = v.section or f"#{v.requirement_id}"
+            row.cells[1].text = _req_text(v, 300)
 
     if refs:
         doc.add_heading("Сноски RAG", level=1)
@@ -1323,6 +1650,38 @@ def save_pdf(report: AnalysisReport, output_dir: Path | None = None) -> Path:
             if v.source_urls:
                 pdf.multi_cell(0, 5, _safe(f"Документация: {', '.join(v.source_urls[:5])}"), new_x=XPos.LMARGIN, new_y=YPos.NEXT)
             pdf.ln(3)
+
+    # Процедурные пункты закупки — вне технической оценки Cloud.ru.
+    procedural = sorted(
+        [v for v in report.verdicts if (v.category or "").lower() == "procedural"
+         or v.verdict == "out_of_scope"],
+        key=lambda v: v.requirement_id,
+    )
+    if procedural:
+        pdf.set_font(font_name, "", 13)
+        pdf.cell(0, 8, _safe("Процедурные пункты закупки (вне технической оценки)"), new_x="LMARGIN", new_y=YPos.NEXT)
+        pdf.set_font(font_name, "", 10)
+        pdf.multi_cell(
+            0, 6,
+            _safe(
+                f"Извлечено {len(procedural)} пунктов, относящихся к коммерческо-правовой "
+                "обвязке тендера (ОКПД, начальная максимальная цена, обеспечение заявки, "
+                "антикоррупция, идентификация участников закупки, реквизиты сторон). Они не "
+                "оценивают технические возможности Cloud.ru и исключены из знаменателя процента "
+                "соответствия. Передайте их в коммерческую/правовую команду Cloud.ru при "
+                "подготовке КП."
+            ),
+            new_x=XPos.LMARGIN, new_y=YPos.NEXT,
+        )
+        pdf.ln(2)
+        pdf.set_font(font_name, "", 9)
+        for v in procedural:
+            pdf.multi_cell(
+                0, 5,
+                _safe(f"{v.section or f'#{v.requirement_id}'}: {_req_text(v, 300)}"),
+                new_x=XPos.LMARGIN, new_y=YPos.NEXT,
+            )
+        pdf.ln(3)
 
     if refs:
         pdf.set_font(font_name, "", 12)

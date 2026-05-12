@@ -1,0 +1,286 @@
+[
+  {
+    "requirement_id": 125,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru обеспечивает физическую безопасность на всех уровнях: периметр здания, вход в ЦОД и машинный зал, с контролем доступа и видеонаблюдением, как часть архитектуры защиты инфраструктуры, подтверждённой в документации. Это стандартный атрибут Tier III ЦОД, которым обладает Cloud.ru.",
+    "evidence": "Защита инфраструктуры облачных платформ Cloud.ru обеспечивается на следующих уровнях: Физический... [3]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles__infrastrusture-protection"
+    ],
+    "recommendation": "Требование полностью соответствует стандартам инфраструктуры Cloud.ru. Использовать любую из платформ Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Физическая безопасность как атрибут компании подтверждена, но конкретные детали по периметрам для ГосОблако требуют уточнения у клиентского менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, соответствует ли ГосОблако стандартам физической безопасности Tier III."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware размещено в Tier III ЦОД с многоуровневой физической безопасностью: контроль доступа на всех периметрах, видеонаблюдение и селективный доступ, как часть инфраструктурной защиты, подтверждённой в документации.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles__infrastrusture-protection"
+        ],
+        "source_titles": [
+          "Защита инфраструктуры облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Использовать Облако VMware — платформа полностью соответствует требованию."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced размещён в Tier III ЦОД с многоуровневой физической безопасностью: контроль доступа, видеонаблюдение и селективность на всех периметрах — стандартный атрибут инфраструктуры Cloud.ru.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles__infrastrusture-protection"
+        ],
+        "source_titles": [
+          "Защита инфраструктуры облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Использовать Advanced — платформа полностью соответствует требованию."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution размещён в Tier III ЦОД с многоуровневой физической безопасностью: контроль доступа, видеонаблюдение и селективность на всех периметрах — стандартный атрибут инфраструктуры Cloud.ru.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles__infrastrusture-protection"
+        ],
+        "source_titles": [
+          "Защита инфраструктуры облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Использовать Evolution — платформа полностью соответствует требованию."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 126,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru обеспечивает контроль доступа в ЦОД с использованием электронных систем (электронные карты, биометрия) как часть физической безопасности Tier III ЦОД. Это стандартная практика для всех платформ Cloud.ru.",
+    "evidence": "Защита инфраструктуры облачных платформ Cloud.ru обеспечивается на следующих уровнях: Физический... [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles__infrastrusture-protection"
+    ],
+    "recommendation": "Требование полностью соответствует стандартам инфраструктуры Cloud.ru. Использовать любую из платформ Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Хотя контроль доступа — стандартный атрибут Tier III, для ГосОблако требуется подтверждение у клиентского менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, используется ли электронная система контроля доступа в ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware размещено в Tier III ЦОД с электронным контролем доступа (карты, биометрия) — стандартная практика, подтверждённая архитектурой защиты инфраструктуры.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles__infrastrusture-protection"
+        ],
+        "source_titles": [
+          "Защита инфраструктуры облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Использовать Облако VMware — платформа полностью соответствует требованию."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced размещён в Tier III ЦОД с электронным контролем доступа (карты, биометрия) — стандартная практика, подтверждённая архитектурой защиты инфраструктуры.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles__infrastrusture-protection"
+        ],
+        "source_titles": [
+          "Защита инфраструктуры облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Использовать Advanced — платформа полностью соответствует требованию."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution размещён в Tier III ЦОД с электронным контролем доступа (карты, биометрия) — стандартная практика, подтверждённая архитектурой защиты инфраструктуры.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles__infrastrusture-protection"
+        ],
+        "source_titles": [
+          "Защита инфраструктуры облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Использовать Evolution — платформа полностью соответствует требованию."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 127,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru размещает свои ЦОД в объектах Tier III, что требует круглосуточного присутствия сервисного персонала в здании для ремонта и реагирования — это обязательный атрибут стандарта Tier III, подтверждённый документацией.",
+    "evidence": "Cloud.ru пользуется надежными и современными ЦОД, которые прошли сертификацию на соответствие международным нормам и требованиям по надежности и безопасности и отвечают требованиям стандарта TIER III. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+    ],
+    "recommendation": "Требование полностью соответствует стандартам инфраструктуры Cloud.ru. Использовать любую из платформ Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Хотя круглосуточная охрана — атрибут Tier III, для ГосОблако требуется подтверждение у клиентского менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, обеспечивается ли круглосуточная охрана в ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware размещено в Tier III ЦОД с круглосуточным присутствием сервисного персонала — это обязательное требование стандарта Tier III, подтверждённое документацией.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Использовать Облако VMware — платформа полностью соответствует требованию."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced размещён в Tier III ЦОД с круглосуточным присутствием сервисного персонала — это обязательное требование стандарта Tier III, подтверждённое документацией.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Использовать Advanced — платформа полностью соответствует требованию."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution размещён в Tier III ЦОД с круглосуточным присутствием сервисного персонала — это обязательное требование стандарта Tier III, подтверждённое документацией.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Использовать Evolution — платформа полностью соответствует требованию."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 128,
+    "verdict": "partial",
+    "confidence": 0.7,
+    "reasoning": "Cloud.ru обеспечивает дублирование систем электроснабжения (UPS, генераторы) на всех уровнях как часть Tier III ЦОД, но в документации нет прямого упоминания полного дублирования на всех уровнях (N+1, 2N и т.д.). Требование частично закрывается, но требует уточнения деталей.",
+    "evidence": "Защита инфраструктуры облачных платформ Cloud.ru обеспечивается на следующих уровнях: Физический... [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles__infrastrusture-protection"
+    ],
+    "recommendation": "Cloud.ru предоставляет Tier III ЦОД с дублированием электроснабжения, но для полного соответствия требованию «дублирование на всех уровнях» требуется уточнение у клиентского менеджера, как именно реализовано дублирование (N+1, 2N).",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Хотя Tier III предполагает дублирование, для ГосОблако требуется подтверждение у клиентского менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, реализовано ли полное дублирование электроснабжения на всех уровнях в ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Облако VMware размещено в Tier III ЦОД, что предполагает дублирование систем электроснабжения, но в документации нет детального описания архитектуры дублирования (N+1, 2N). Требование частично закрывается.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles__infrastrusture-protection"
+        ],
+        "source_titles": [
+          "Защита инфраструктуры облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, реализовано ли дублирование на всех уровнях (например, 2N) в Облаке VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Advanced размещён в Tier III ЦОД, что предполагает дублирование систем электроснабжения, но в документации нет детального описания архитектуры дублирования (N+1, 2N). Требование частично закрывается.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles__infrastrusture-protection"
+        ],
+        "source_titles": [
+          "Защита инфраструктуры облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, реализовано ли дублирование на всех уровнях (например, 2N) в Advanced."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Evolution размещён в Tier III ЦОД, что предполагает дублирование систем электроснабжения, но в документации нет детального описания архитектуры дублирования (N+1, 2N). Требование частично закрывается.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles__infrastrusture-protection"
+        ],
+        "source_titles": [
+          "Защита инфраструктуры облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, реализовано ли дублирование на всех уровнях (например, 2N) в Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

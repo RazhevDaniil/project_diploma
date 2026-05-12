@@ -1,0 +1,299 @@
+[
+  {
+    "requirement_id": "105",
+    "verdict": "needs_clarification",
+    "confidence": 0.5,
+    "reasoning": "Требование указывает на необходимость 'сертифицированной операционной системы', но не уточняет конкретную ОС (например, Astra Linux, RED OS). Cloud.ru поддерживает развёртывание сертифицированных образов ОС через BYOI (Bring Your Own Image), однако сертификат ФСТЭК выдается вендору ПО, а не Cloud.ru. Необходимо уточнить, требуется ли конкретный образ из реестра отечественного ПО и доступен ли он в каталоге Cloud.ru.",
+    "evidence": "Cloud.ru поддерживает развёртывание сертифицированных образов ОС (BYOI), но сертификат ФСТЭК выдан вендору ПО, не Cloud.ru.",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/security-introduction/topics/compliance",
+      "https://cloud.ru/docs/advanced/overview/index",
+      "https://cloud.ru/docs/vmware/overview/index"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера, какая именно сертифицированная ОС требуется, и подтверждена ли её доступность в каталоге BYOI Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Нет данных о поддержке BYOI-образов ОС или аттестации на уровне платформы.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, существует ли продукт ГосОблако в текущем портфеле и поддерживает ли он BYOI-образы ОС."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.6,
+        "reasoning": "Облако VMware поддерживает развёртывание пользовательских образов ОС (BYOI), включая отечественные. Однако сертификат ФСТЭК на ОС — вендорский, не Cloud.ru. Необходимо подтвердить наличие требуемого образа в каталоге.",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru",
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Проверить наличие требуемой сертифицированной ОС в каталоге BYOI Облака VMware через клиентского менеджера."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.6,
+        "reasoning": "Advanced поддерживает BYOI-образы ОС, включая отечественные. Сертификат ФСТЭК на ОС — вендорский. Необходимо подтвердить наличие конкретного образа в каталоге.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, доступна ли требуемая сертифицированная ОС в каталоге BYOI платформы Advanced."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Evolution поддерживает развёртывание виртуальных машин с пользовательскими образами. Однако в документации не указано, поддерживается ли BYOI-развёртывание сертифицированных ОС. Требуется подтверждение.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/services__list"
+        ],
+        "source_titles": [
+          "Список сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли развёртывание сертифицированных образов ОС в Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": "106",
+    "verdict": "needs_clarification",
+    "confidence": 0.5,
+    "reasoning": "Требование указывает на 'систему управления базами данных' и 'лицензию', но не уточняет конкретную СУБД (например, Postgres Pro Certified, ALT Server). Cloud.ru позволяет развернуть СУБД через BYOI, однако сертификат ФСТЭК на СУБД выдается вендору, а не Cloud.ru. Необходимо уточнить, какая СУБД требуется и доступна ли она в каталоге.",
+    "evidence": "Cloud.ru поддерживает развёртывание сертифицированных образов СУБД через BYOI, но сертификат ФСТЭК выдан вендору ПО, не Cloud.ru.",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/security-introduction/topics/compliance",
+      "https://cloud.ru/docs/advanced/overview/index",
+      "https://cloud.ru/docs/vmware/overview/index"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера, какая именно сертифицированная СУБД требуется, и подтверждена ли её доступность в каталоге BYOI Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Нет данных о поддержке BYOI-образов СУБД или аттестации на уровне платформы.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, существует ли продукт ГосОблако в текущем портфеле и поддерживает ли он BYOI-образы СУБД."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.6,
+        "reasoning": "Облако VMware поддерживает развёртывание пользовательских образов СУБД (BYOI). Сертификат ФСТЭК на СУБД — вендорский. Необходимо подтвердить наличие требуемого образа в каталоге.",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru",
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Проверить наличие требуемой сертифицированной СУБД в каталоге BYOI Облака VMware через клиентского менеджера."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.6,
+        "reasoning": "Advanced поддерживает BYOI-образы СУБД, включая отечественные. Сертификат ФСТЭК на СУБД — вендорский. Необходимо подтвердить наличие конкретного образа в каталоге.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, доступна ли требуемая сертифицированная СУБД в каталоге BYOI платформы Advanced."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Evolution поддерживает развёртывание виртуальных машин с пользовательскими образами. Однако в документации не указано, поддерживается ли BYOI-развёртывание сертифицированных СУБД. Требуется подтверждение.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/services__list"
+        ],
+        "source_titles": [
+          "Список сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли развёртывание сертифицированных образов СУБД в Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": "107",
+    "verdict": "needs_clarification",
+    "confidence": 0.5,
+    "reasoning": "Требование указывает на 'сертифицированную систему управления базами данных' и 'лицензию'. Cloud.ru позволяет развернуть сертифицированные СУБД (например, Postgres Pro Certified) через BYOI, но сертификат ФСТЭК выдается вендору ПО, а не Cloud.ru. Необходимо уточнить, какая именно СУБД требуется и доступна ли она в каталоге BYOI.",
+    "evidence": "Cloud.ru поддерживает развёртывание сертифицированных образов СУБД через BYOI, но сертификат ФСТЭК выдан вендору ПО, не Cloud.ru.",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/security-introduction/topics/compliance",
+      "https://cloud.ru/docs/architecture-center/topics/typical-solutions/typical-solutions__adv_1c"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера, какая именно сертифицированная СУБД требуется, и подтверждена ли её доступность в каталоге BYOI Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Нет данных о поддержке BYOI-образов СУБД или аттестации на уровне платформы.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, существует ли продукт ГосОблако в текущем портфеле и поддерживает ли он BYOI-образы СУБД."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.6,
+        "reasoning": "Облако VMware поддерживает развёртывание пользовательских образов СУБД (BYOI). Сертификат ФСТЭК на СУБД — вендорский. Необходимо подтвердить наличие требуемого образа в каталоге. Пример: размещение 1С подтверждает поддержку СУБД в BYOI.",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/typical-solutions/typical-solutions__adv_1c",
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Размещение 1С в облаке Cloud.ru",
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Проверить наличие требуемой сертифицированной СУБД в каталоге BYOI Облака VMware через клиентского менеджера."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.6,
+        "reasoning": "Advanced поддерживает BYOI-образы СУБД, включая отечественные. Сертификат ФСТЭК на СУБД — вендорский. Необходимо подтвердить наличие конкретного образа в каталоге.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, доступна ли требуемая сертифицированная СУБД в каталоге BYOI платформы Advanced."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Evolution поддерживает развёртывание виртуальных машин с пользовательскими образами. Однако в документации не указано, поддерживается ли BYOI-развёртывание сертифицированных СУБД. Требуется подтверждение.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/services__list"
+        ],
+        "source_titles": [
+          "Список сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли развёртывание сертифицированных образов СУБД в Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": "108",
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требование указывает на 100% доступность услуги. Cloud.ru Облако VMware предоставляет SLA 99.982%, Advanced — 99.95%, Evolution — 99.9%. Требование 100% недостижимо на любой платформе, однако формулировка 'ВСЕГ' (вероятно, опечатка) и '100%' в контексте таблицы может означать целевую метрику, а не техническое требование. Поскольку 100% недостижимо ни на одной платформе, а Cloud.ru не предоставляет SLA выше 99.982%, это требование не может быть выполнено — ставится mismatch. Однако, если это определение термина (например, '100% — это идеал'), то по правилу определений — match. Но в требовании присутствует числовая метрика '100%', что делает его измеримым, а не определением. Следовательно, это требование к SLA, и поскольку 100% > 99.982%, это mismatch.",
+    "evidence": "Облако VMware имеет SLA 99.982% (источник [1]), Advanced — 99.95% (источник [2]), Evolution — 99.9% (источник [3]). 100% недостижимо.",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/advanced/overview/index",
+      "https://cloud.ru/docs/evolution/overview/topics/services__list"
+    ],
+    "recommendation": "Рекомендуется скорректировать требование на достижимый уровень — например, 99.982% (Облако VMware) или 99.95% (Advanced).",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 0.8,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru, но поскольку 100% SLA недостижимо на любой платформе, а Cloud.ru не предоставляет SLA выше 99.982%, требование не может быть выполнено.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Рекомендуется скорректировать требование на достижимый уровень SLA, например, 99.982%."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 0.9,
+        "reasoning": "Облако VMware имеет SLA 99.982%, что ниже требуемого 100%. 100% SLA недостижимо в реальных облачных системах, и Cloud.ru не предоставляет такой уровень.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Рекомендуется скорректировать требование на 99.982% — максимальный SLA, предоставляемый Облаком VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 0.9,
+        "reasoning": "Advanced имеет SLA 99.95%, что ниже требуемого 100%. 100% SLA недостижимо, и Cloud.ru не предоставляет такой уровень.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Рекомендуется скорректировать требование на 99.95% — максимальный SLA, предоставляемый Advanced."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 0.9,
+        "reasoning": "Evolution имеет SLA 99.9% для Compute, что ниже требуемого 100%. 100% SLA недостижимо, и Cloud.ru не предоставляет такой уровень.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/services__list"
+        ],
+        "source_titles": [
+          "Список сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Рекомендуется скорректировать требование на 99.9% — максимальный SLA, предоставляемый Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

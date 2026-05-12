@@ -1,0 +1,157 @@
+[
+  {
+    "requirement_id": 201,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование к услуге «Предоставление виртуальных вычислительных ресурсов» полностью соответствует базовой капабилити Cloud.ru, которая подтверждена на всех платформах. Документация Cloud.ru явно описывает предоставление виртуальных машин (ВМ) как основную услугу на всех платформах, включая Облако VMware, Advanced, Evolution и ГосОблако, с возможностью создания, настройки и удаления ВМ через API и UI.",
+    "evidence": "«Предоставление виртуальных вычислительных ресурсов» — базовая функция платформ Cloud.ru, включая Облако VMware, где описаны виртуальные процессор, память, диск и графические ускорители [1].",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations",
+      "https://cloud.ru/docs/advanced/overview/index"
+    ],
+    "recommendation": "Использовать любую из платформ Cloud.ru (ГосОблако, Облако VMware, Advanced, Evolution) для предоставления виртуальных вычислительных ресурсов. Рекомендуется выбрать Облако VMware для максимальной совместимости с VMware-стеком или Advanced для гибкой конфигурации.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "ГосОблако предоставляет виртуальные машины как часть IaaS-предложения, с поддержкой создания и удаления через API и UI, аттестовано по УЗ-1 и К1.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/goscloud/overview"
+        ],
+        "source_titles": [],
+        "recommendation": "Использовать ГосОблако при необходимости аттестации по К1/УЗ-1/КИИ-1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.98,
+        "reasoning": "Облако VMware — вендорская платформа на базе VMware, предоставляющая виртуальные машины с гибкой конфигурацией vCPU, RAM, дисков и GPU, поддержкой API и PowerCLI, с возможностью добавления и удаления ресурсов [1].",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "https://cloud.ru/docs/vdi/ag/topics/limits"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru",
+          "Ограничения и особенности"
+        ],
+        "recommendation": "Оптимальный выбор для сред с требованиями к совместимости с VMware, поддержке PowerCLI и высокой доступности (SLA 99.98%)."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Платформа Advanced предоставляет более 50 сервисов IaaS/PaaS, включая виртуальные машины с гибкой настройкой ресурсов, управляемые через API и UI, с поддержкой создания и удаления [2].",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Рекомендуется при необходимости высокой гибкости конфигурации, большого числа спецификаций ВМ и поддержки GPU."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution — массовая платформа, предоставляющая виртуальные машины с базовой конфигурацией, поддержкой создания и удаления через UI/API, SLA 99,9% [3].",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности сервиса «Виртуальные машины»"
+        ],
+        "recommendation": "Оптимален для массовых задач с низкими требованиями к SLA и высокой стоимостной эффективностью."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 202,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требование к указанию дельты (объема изменения) выделенного пула ресурсов при заказе на начало/прекращение услуг соответствует стандартной практике Cloud.ru. Все платформы Cloud.ru поддерживают динамическое масштабирование ресурсов (vCPU, RAM, диски) через API, UI и автоматизированные процессы, где изменение объема ресурсов фиксируется как дельта в заказах.",
+    "evidence": "Cloud.ru позволяет изменять объем выделенных ресурсов (виртуальные процессор, память, диск) через заказы и API, что подразумевает указание дельты при увеличении/уменьшении [1].",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/vdi/ag/topics/limits"
+    ],
+    "recommendation": "Использовать стандартные механизмы изменения ресурсов через личный кабинет Cloud.ru или API — все платформы поддерживают указание дельты при изменении объема ресурсов.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "ГосОблако поддерживает динамическое изменение объема ресурсов ВМ (vCPU, RAM, диски) через заказы и API, где дельта фиксируется как изменение выделенного пула.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/goscloud/overview"
+        ],
+        "source_titles": [],
+        "recommendation": "Использовать ГосОблако при необходимости аттестации по К1/УЗ-1/КИИ-1 и динамического масштабирования."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware позволяет изменять объем виртуальных ресурсов (vCPU, RAM, диск) через API, PowerCLI и UI, где каждое изменение фиксируется как дельта в заказе на ресурсы [1].",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Оптимальный выбор для точного управления дельтой ресурсов с поддержкой автоматизации через PowerCLI и API."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced предоставляет возможность динамического изменения ресурсов ВМ через API и UI, где изменение объема (дельта) фиксируется в заказах и тарификации.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Рекомендуется при необходимости гибкого управления ресурсами и поддержки сложных сценариев масштабирования."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution поддерживает изменение объема ресурсов ВМ через UI и API, где дельта (увеличение/уменьшение) фиксируется при оформлении заказа на изменение ресурсов.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности сервиса «Виртуальные машины»"
+        ],
+        "recommendation": "Подходит для стандартных сценариев изменения ресурсов с низкой сложностью и высокой доступностью."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

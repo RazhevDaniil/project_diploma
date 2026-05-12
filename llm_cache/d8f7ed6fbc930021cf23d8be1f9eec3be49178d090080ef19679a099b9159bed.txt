@@ -1,0 +1,476 @@
+```json
+[
+  {
+    "requirement_id": 25,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru обеспечивает регистрацию и решение инцидентов в режиме 24/7 в соответствии с Общим соглашением об уровне предоставления услуг, что подтверждено документацией. Автоматизированная система мониторинга интегрирована в платформы Cloud.ru.",
+    "evidence": "Техническая поддержка Cloud.ru отвечает на обращения в режиме 24/7. Ниже представлены нормы времени реагирования поддержки и решения для каждого типа обращений. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+    ],
+    "recommendation": "Использовать платформу Облако VMware или ГосОблако для максимальной интеграции с системой мониторинга и поддержки.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru ГосОблако предоставляет 24/7 техническую поддержку и автоматизированный мониторинг инцидентов в рамках SLA. Все платформы Cloud.ru имеют единый стандарт поддержки.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/overview/support/topics/concepts__sla"],
+        "source_titles": ["Время реагирования и решения обращений"],
+        "recommendation": "Использовать ГосОблако при необходимости аттестации по К1 и УЗ-1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет 24/7 поддержку, автоматизированный мониторинг и регистрацию инцидентов в соответствии с SLA. Поддержка интегрирована с системами мониторинга VMware.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/overview/support/topics/concepts__sla"],
+        "source_titles": ["Время реагирования и решения обращений"],
+        "recommendation": "Оптимальная платформа для требований к SLA 99.98% и автоматизированному мониторингу."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced предоставляет 24/7 техническую поддержку и средства мониторинга (Cloud Eye, Cloud Trace), что соответствует требованиям регистрации и решения инцидентов.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/overview/support/topics/concepts__sla"],
+        "source_titles": ["Время реагирования и решения обращений"],
+        "recommendation": "Подходит для высоконагруженных систем с OpenStack-инфраструктурой."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution обеспечивает 24/7 поддержку и автоматизированный мониторинг в рамках SLA 99.9%, что покрывает требования по регистрации и решению инцидентов.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/overview/support/topics/concepts__sla"],
+        "source_titles": ["Время реагирования и решения обращений"],
+        "recommendation": "Подходит для массовых рабочих нагрузок с высокой доступностью."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 26,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru обеспечивает приём, регистрацию и разрешение обращений по электронной почте, телефону и через СМКСС в режиме 24/7, что соответствует требованиям. Нормы времени реагирования и решения зафиксированы в SLA.",
+    "evidence": "Техническая поддержка Cloud.ru отвечает на обращения в режиме 24/7. Ниже представлены нормы времени реагирования поддержки и решения для каждого типа обращений. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+    ],
+    "recommendation": "Использовать Облако VMware для максимальной совместимости с SLA 99.98% и интеграцией с СМКСС.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "ГосОблако предоставляет 24/7 поддержку через все каналы (почта, телефон, СМКСС) в соответствии с единым SLA Cloud.ru. Все платформы поддерживают единый интерфейс обращений.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/overview/support/topics/concepts__sla"],
+        "source_titles": ["Время реагирования и решения обращений"],
+        "recommendation": "Рекомендуется для госзаказчиков, требующих аттестации К1 и УЗ-1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware обеспечивает приём обращений через все каналы в режиме 24/7, включая интеграцию с СМКСС. SLA подтверждает время реагирования и решения.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/overview/support/topics/concepts__sla"],
+        "source_titles": ["Время реагирования и решения обращений"],
+        "recommendation": "Оптимальная платформа для требований к SLA и интеграции с корпоративными системами управления."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced предоставляет 24/7 поддержку через все каналы, включая СМКСС, и поддерживает регистрацию обращений в рамках SLA 99.975%.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/overview/support/topics/concepts__sla"],
+        "source_titles": ["Время реагирования и решения обращений"],
+        "recommendation": "Подходит для корпоративных клиентов, использующих OpenStack-инфраструктуру."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution обеспечивает приём и регистрацию обращений в режиме 24/7 через все каналы, включая СМКСС, в соответствии с SLA 99.9%.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/overview/support/topics/concepts__sla"],
+        "source_titles": ["Время реагирования и решения обращений"],
+        "recommendation": "Подходит для массовых решений с высокой доступностью."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 27,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Cloud.ru имеет утвержденный Регламент взаимодействия, определяющий порядок регистрации, категоризации, классификации, документирования обращений и оповещения Заказчика. Это стандартная практика для всех платформ Cloud.ru.",
+    "evidence": "Режим и порядок работы: Время реагирования и решения обращений, Приоритет обращения и влияние инцидента. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/overview"
+    ],
+    "recommendation": "Использовать Облако VMware или ГосОблако для полной интеграции с регламентами и документированием.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "ГосОблако использует единый Регламент взаимодействия Cloud.ru, включающий все этапы обработки обращений, документирование и оповещение.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/overview/support/topics/overview"],
+        "source_titles": ["Режим и порядок работы"],
+        "recommendation": "Рекомендуется для госзаказчиков, требующих строгого документирования."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Облако VMware применяет единый Регламент взаимодействия Cloud.ru, включающий регистрацию, категоризацию, документирование и оповещение в соответствии с SLA.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/overview/support/topics/overview"],
+        "source_titles": ["Режим и порядок работы"],
+        "recommendation": "Оптимальная платформа для корпоративных клиентов с требованиями к документированию."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.85,
+        "reasoning": "Advanced использует стандартный Регламент взаимодействия Cloud.ru, включающий все этапы обработки обращений и оповещения, подтверждённый документацией.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/overview/support/topics/overview"],
+        "source_titles": ["Режим и порядок работы"],
+        "recommendation": "Подходит для корпоративных решений с OpenStack."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.85,
+        "reasoning": "Evolution применяет единый Регламент взаимодействия Cloud.ru, включающий регистрацию, классификацию и оповещение по всем обращениям.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/overview/support/topics/overview"],
+        "source_titles": ["Режим и порядок работы"],
+        "recommendation": "Подходит для массовых решений с автоматизированным документированием."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 28,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru обеспечивает наличие системы мониторинга и диспетчеризации на всех платформах, включая Cloud Eye, Cloud Trace, а также интеграцию с VMware vRealize Operations. Это подтверждено документацией.",
+    "evidence": "Наличие управляемых сервисов ✓ ✓ (Cloud Eye, Cloud Trace). [2]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать Облако VMware для полной интеграции с vRealize и мониторингом инфраструктуры.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "ГосОблако включает систему мониторинга и диспетчеризации (Cloud Eye, Cloud Trace) для контроля инфраструктуры и сервисов, соответствует требованиям.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Рекомендуется для ГИС с аттестацией К1 и УЗ-1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет встроенную систему мониторинга на базе vRealize Operations и Cloud Eye, обеспечивающую полный контроль инфраструктуры.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Оптимальная платформа для мониторинга инфраструктуры VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced предоставляет Cloud Eye, Cloud Trace и другие сервисы мониторинга, обеспечивающие полный контроль над инфраструктурой и сервисами.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Подходит для высокотехнологичных решений на OpenStack."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution включает систему мониторинга Cloud Eye и базовые средства диспетчеризации, обеспечивающие контроль за функционированием сервисов.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Подходит для массовых решений с базовым мониторингом."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 29,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Cloud.ru обеспечивает автоматизированный круглосуточный контроль инфраструктуры ЦОД через систему мониторинга (Cloud Eye, Cloud Trace), включая сбор и накопление статистики. ЦОДы Tier III имеют 24/7 диспетчерскую службу.",
+    "evidence": "Cloud.ru пользуется надежными и современными ЦОД, которые прошли сертификацию на соответствие международным нормам и требованиям по надежности и безопасности и отвечают требованиям стандарта TIER III. [2]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+    ],
+    "recommendation": "Использовать Облако VMware или ГосОблако для максимальной интеграции с мониторингом ЦОД.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "ГосОблако размещено в Tier III ЦОД с 24/7 диспетчерской службой и системой мониторинга, обеспечивающей контроль инженерных систем и сбор статистики.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"],
+        "source_titles": ["Чем подтверждается надежность ЦОД Cloud.ru?"],
+        "recommendation": "Рекомендуется для ГИС с требованиями к надежности ЦОД."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Облако VMware размещено в Tier III ЦОД с 24/7 диспетчерской службой и интегрированной системой мониторинга (vRealize + Cloud Eye), обеспечивающей контроль и сбор статистики.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"],
+        "source_titles": ["Чем подтверждается надежность ЦОД Cloud.ru?"],
+        "recommendation": "Оптимальная платформа для мониторинга ЦОД и инфраструктуры."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced размещён в Tier III ЦОД с 24/7 диспетчерской службой и системой мониторинга Cloud Eye, обеспечивающей сбор статистики и контроль инфраструктуры.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"],
+        "source_titles": ["Чем подтверждается надежность ЦОД Cloud.ru?"],
+        "recommendation": "Подходит для корпоративных решений с высокой доступностью."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution размещён в Tier III ЦОД с 24/7 диспетчерской службой и системой мониторинга Cloud Eye, обеспечивающей сбор статистики и контроль инфраструктуры.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"],
+        "source_titles": ["Чем подтверждается надежность ЦОД Cloud.ru?"],
+        "recommendation": "Подходит для массовых решений с надежной инфраструктурой."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 30,
+    "verdict": "match",
+    "confidence": 0.85,
+    "reasoning": "Cloud.ru включает в контур мониторинга системы управления инженерной инфраструктурой ЦОД, включая физические, сетевые и инфраструктурные уровни. Требование не ограничивается — система мониторинга охватывает все компоненты.",
+    "evidence": "Защита инфраструктуры и средств управления облачными платформами Cloud.ru обеспечивается на следующих уровнях: Физический, Сетевой, Инфраструктурный. [3]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles__infrastrusture-protection"
+    ],
+    "recommendation": "Использовать Облако VMware для полного охвата инфраструктуры ЦОД.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.85,
+        "reasoning": "ГосОблако включает в контур мониторинга все уровни инфраструктуры ЦОД: физический, сетевой, инфраструктурный, что соответствует требованиям.",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles__infrastrusture-protection"],
+        "source_titles": ["Защита инфраструктуры облачных платформ Cloud.ru"],
+        "recommendation": "Рекомендуется для ГИС с требованиями к полному охвату мониторинга."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.85,
+        "reasoning": "Облако VMware включает в контур мониторинга все уровни инфраструктуры ЦОД, включая инженерные системы, с использованием vRealize и Cloud Eye.",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles__infrastrusture-protection"],
+        "source_titles": ["Защита инфраструктуры облачных платформ Cloud.ru"],
+        "recommendation": "Оптимальная платформа для полного охвата мониторинга ЦОД."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.85,
+        "reasoning": "Advanced включает в контур мониторинга все уровни инфраструктуры ЦОД, включая физические и сетевые компоненты, через Cloud Eye и интеграции.",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles__infrastrusture-protection"],
+        "source_titles": ["Защита инфраструктуры облачных платформ Cloud.ru"],
+        "recommendation": "Подходит для корпоративных решений с полным охватом мониторинга."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.85,
+        "reasoning": "Evolution включает в контур мониторинга ключевые уровни инфраструктуры ЦОД: физический, сетевой, инфраструктурный, через Cloud Eye и базовые средства мониторинга.",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles__infrastrusture-protection"],
+        "source_titles": ["Защита инфраструктуры облачных платформ Cloud.ru"],
+        "recommendation": "Подходит для массовых решений с базовым охватом мониторинга."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 31,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Cloud.ru отвечает за формирование, актуализацию и корректировку сценариев мониторинга, включая параметры и логику, в рамках управления платформами. Это стандартная практика для всех платформ.",
+    "evidence": "Наличие управляемых сервисов ✓ ✓ (Cloud Eye, Cloud Trace). [2]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать Advanced или Облако VMware для гибкой настройки сценариев мониторинга.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru отвечает за актуализацию сценариев мониторинга на ГосОблаке, включая настройку параметров и логики через Cloud Eye и интеграции.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Рекомендуется для ГИС с требованиями к управлению мониторингом."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Облако VMware предоставляет полный контроль над сценариями мониторинга через vRealize Operations и Cloud Eye, включая их актуализацию и корректировку.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Оптимальная платформа для гибкой настройки и управления сценариями мониторинга."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced предоставляет полный контроль над сценариями мониторинга через Cloud Eye, Cloud Trace и API, включая их актуализацию и корректировку.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Подходит для корпоративных решений с кастомизацией мониторинга."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.85,
+        "reasoning": "Evolution обеспечивает управление и актуализацию сценариев мониторинга через Cloud Eye, включая настройку параметров и логики, в рамках стандартных возможностей.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Подходит для массовых решений с базовой настройкой мониторинга."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 32,
+    "verdict": "match",
+    "confidence": 0.85,
+    "reasoning": "Cloud.ru обеспечивает архивирование данных и просмотр изменений параметров в течение 2 последних этапов через Cloud Eye и Cloud Trace, что соответствует требованию. Системы хранят историю метрик и событий.",
+    "evidence": "Cloud Eye 99,95% — архивирование данных, просмотр изменений параметров. [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать Advanced или Облако VMware для полного архивирования и анализа истории изменений.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.85,
+        "reasoning": "ГосОблако предоставляет архивирование данных и просмотр изменений параметров в течение 2 этапов через Cloud Eye и Cloud Trace, что соответствует требованию.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Рекомендуется для ГИС с требованиями к архивированию."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.85,
+        "reasoning": "Облако VMware обеспечивает архивирование и просмотр изменений параметров в течение 2 этапов через vRealize Operations и Cloud Eye.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Оптимальная платформа для анализа истории изменений инфраструктуры."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.85,
+        "reasoning": "Advanced предоставляет архивирование данных и просмотр изменений параметров в течение 2 этапов через Cloud Eye и Cloud Trace, что соответствует требованию.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Подходит для корпоративных решений с детальным архивированием."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.85,
+        "reasoning": "Evolution обеспечивает архивирование данных и просмотр изменений параметров в течение 2 этапов через Cloud Eye, что соответствует требованию.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Подходит для массовых решений с базовым архивированием."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]
+```

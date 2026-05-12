@@ -1,0 +1,490 @@
+```json
+[
+  {
+    "requirement_id": 56,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование описывает юридический режим ответственности Исполнителя при KPI ниже 0.65 — это договорное условие, не техническая капабилити. Cloud.ru готов работать по индивидуальным SLA и условиям ответственности через проектный договор.",
+    "evidence": "",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla",
+      "https://cloud.ru/docs/advanced/overview/sla",
+      "https://cloud.ru/docs/evolution/overview/topics/sla"
+    ],
+    "recommendation": "Условия ответственности при KPI ниже 0.65 фиксируются в индивидуальном проектном договоре с Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Требование относится к договорным условиям, а не к техническим характеристикам платформы. Cloud.ru готов согласовывать такие условия на всех платформах.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условия ответственности при KPI ниже 0.65 фиксируются в индивидуальном проектном договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Требование относится к договорным условиям, а не к техническим характеристикам платформы. Cloud.ru готов согласовывать такие условия на всех платформах.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условия ответственности при KPI ниже 0.65 фиксируются в индивидуальном проектном договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Требование относится к договорным условиям, а не к техническим характеристикам платформы. Cloud.ru готов согласовывать такие условия на всех платформах.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условия ответственности при KPI ниже 0.65 фиксируются в индивидуальном проектном договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Требование относится к договорным условиям, а не к техническим характеристикам платформы. Cloud.ru готов согласовывать такие условия на всех платформах.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условия ответственности при KPI ниже 0.65 фиксируются в индивидуальном проектном договоре с Cloud.ru."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 57,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование описывает юридическую ответственность Исполнителя за устранение недостатков в гарантийный период — это договорное условие, не техническая капабилити. Cloud.ru готов фиксировать такие условия в проектном SLA.",
+    "evidence": "",
+    "source_urls": [
+      "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas",
+      "https://cloud.ru/docs/overview/support/index",
+      "https://cloud.ru/docs/overview/security-introduction/index"
+    ],
+    "recommendation": "Условия устранения недостатков в гарантийный период фиксируются в индивидуальном проектном договоре с Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Требование относится к договорным условиям, а не к техническим характеристикам платформы. Cloud.ru готов согласовывать такие условия на всех платформах.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условия устранения недостатков в гарантийный период фиксируются в индивидуальном проектном договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Требование относится к договорным условиям, а не к техническим характеристикам платформы. Cloud.ru готов согласовывать такие условия на всех платформах.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условия устранения недостатков в гарантийный период фиксируются в индивидуальном проектном договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Требование относится к договорным условиям, а не к техническим характеристикам платформы. Cloud.ru готов согласовывать такие условия на всех платформах.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условия устранения недостатков в гарантийный период фиксируются в индивидуальном проектном договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Требование относится к договорным условиям, а не к техническим характеристикам платформы. Cloud.ru готов согласовывать такие условия на всех платформах.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условия устранения недостатков в гарантийный период фиксируются в индивидуальном проектном договоре с Cloud.ru."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 58,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование описывает общие требования к безопасности оказания услуг — это стандартная часть договорных обязательств. Cloud.ru обеспечивает безопасность на всех платформах в соответствии с 152-ФЗ, УЗ-1, К1 и ISO 27001.",
+    "evidence": "",
+    "source_urls": [
+      "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas",
+      "https://cloud.ru/docs/overview/security-introduction/index"
+    ],
+    "recommendation": "Требования к безопасности реализуются через стандартные меры защиты Cloud.ru, подтверждённые аттестациями УЗ-1, 152-ФЗ, К1. Дополнительные условия фиксируются в договоре.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru ГосОблако аттестовано по УЗ-1, К1, КИИ-1, 152-ФЗ — обеспечивает максимальный уровень безопасности, соответствующий требованиям.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Требования к безопасности реализуются через стандартные меры защиты Cloud.ru, подтверждённые аттестациями УЗ-1, 152-ФЗ, К1. Дополнительные условия фиксируются в договоре."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru Облако VMware аттестовано по УЗ-1, К1, 152-ФЗ — обеспечивает максимальный уровень безопасности, соответствующий требованиям.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Требования к безопасности реализуются через стандартные меры защиты Cloud.ru, подтверждённые аттестациями УЗ-1, 152-ФЗ, К1. Дополнительные условия фиксируются в договоре."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru Advanced аттестован по УЗ-1 и 152-ФЗ — обеспечивает высокий уровень безопасности, соответствующий требованиям.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Требования к безопасности реализуются через стандартные меры защиты Cloud.ru, подтверждённые аттестациями УЗ-1, 152-ФЗ. Дополнительные условия фиксируются в договоре."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru Evolution аттестован по УЗ-1 и 152-ФЗ — обеспечивает высокий уровень безопасности, соответствующий требованиям.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Требования к безопасности реализуются через стандартные меры защиты Cloud.ru, подтверждённые аттестациями УЗ-1, 152-ФЗ. Дополнительные условия фиксируются в договоре."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 59,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование описывает ответственность за распространение информации, полученной в рамках услуг — это юридический аспект, не техническая капабилити. Cloud.ru обеспечивает защиту данных по 152-ФЗ и фиксирует ответственность в договоре.",
+    "evidence": "",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+    ],
+    "recommendation": "Ответственность за распространение информации фиксируется в индивидуальном договоре. Cloud.ru обеспечивает защиту данных по 152-ФЗ и УЗ-1 на всех платформах.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru ГосОблако аттестовано по 152-ФЗ и УЗ-1 — обеспечивает защиту персональных данных. Ответственность за распространение фиксируется в договоре.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Ответственность за распространение информации фиксируется в индивидуальном договоре. Cloud.ru обеспечивает защиту данных по 152-ФЗ и УЗ-1 на всех платформах."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru Облако VMware аттестовано по 152-ФЗ и УЗ-1 — обеспечивает защиту персональных данных. Ответственность за распространение фиксируется в договоре.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Ответственность за распространение информации фиксируется в индивидуальном договоре. Cloud.ru обеспечивает защиту данных по 152-ФЗ и УЗ-1 на всех платформах."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru Advanced аттестован по 152-ФЗ и УЗ-1 — обеспечивает защиту персональных данных. Ответственность за распространение фиксируется в договоре.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Ответственность за распространение информации фиксируется в индивидуальном договоре. Cloud.ru обеспечивает защиту данных по 152-ФЗ и УЗ-1 на всех платформах."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru Evolution аттестован по 152-ФЗ и УЗ-1 — обеспечивает защиту персональных данных. Ответственность за распространение фиксируется в договоре.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Ответственность за распространение информации фиксируется в индивидуальном договоре. Cloud.ru обеспечивает защиту данных по 152-ФЗ и УЗ-1 на всех платформах."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 60,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование описывает обязательство привлекать квалифицированных специалистов и соблюдать технику безопасности — это стандартная договорная обязанность Исполнителя. Cloud.ru имеет лицензии ФСТЭК и Роскомнадзора, штат сертифицированных специалистов и соблюдает все нормы безопасности.",
+    "evidence": "",
+    "source_urls": [
+      "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas",
+      "https://cloud.ru/docs/overview/security-introduction/index",
+      "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles"
+    ],
+    "recommendation": "Cloud.ru обеспечивает привлечение квалифицированных специалистов и соблюдение техники безопасности в рамках лицензий ФСТЭК и Роскомнадзора. Условия фиксируются в договоре.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru имеет лицензию ФСТЭК на ТЗКИ и Роскомнадзора, штат сертифицированных специалистов, соблюдает технику безопасности на всех платформах.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Cloud.ru обеспечивает привлечение квалифицированных специалистов и соблюдение техники безопасности в рамках лицензий ФСТЭК и Роскомнадзора. Условия фиксируются в договоре."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru имеет лицензию ФСТЭК на ТЗКИ и Роскомнадзора, штат сертифицированных специалистов, соблюдает технику безопасности на всех платформах.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Cloud.ru обеспечивает привлечение квалифицированных специалистов и соблюдение техники безопасности в рамках лицензий ФСТЭК и Роскомнадзора. Условия фиксируются в договоре."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru имеет лицензию ФСТЭК на ТЗКИ и Роскомнадзора, штат сертифицированных специалистов, соблюдает технику безопасности на всех платформах.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Cloud.ru обеспечивает привлечение квалифицированных специалистов и соблюдение техники безопасности в рамках лицензий ФСТЭК и Роскомнадзора. Условия фиксируются в договоре."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru имеет лицензию ФСТЭК на ТЗКИ и Роскомнадзора, штат сертифицированных специалистов, соблюдает технику безопасности на всех платформах.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Cloud.ru обеспечивает привлечение квалифицированных специалистов и соблюдение техники безопасности в рамках лицензий ФСТЭК и Роскомнадзора. Условия фиксируются в договоре."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 61,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование описывает обязательство оказывать услуги в соответствии с актами и нормативами — это юридическая формулировка, не техническая капабилити. Cloud.ru соответствует всем упомянутым нормативам (152-ФЗ, К1, 187-ФЗ, ISO 27001 и др.) на соответствующих платформах.",
+    "evidence": "Облачная платформа Cloud.ru, предназначенная для размещения государственных информационных систем, аттестована на соответствие требованиям безопасности информации, предъявляемым к государственным информационным системам (ГИС) при обеспечении первого класса защищенности (К1). 187-ФЗ (безопасность критической инфраструктуры) ... Все платформы Cloud.ru имеют уровень защиты 152-ФЗ УЗ-1",
+    "source_urls": [
+      "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas",
+      "https://cloud.ru/docs/overview/support/index",
+      "26127171-5f8d-4006-a989-bcb6ff142835"
+    ],
+    "recommendation": "Cloud.ru соответствует всем нормативам, упомянутым в ТЗ (152-ФЗ, К1, 187-ФЗ, ISO 27001). Условия соответствия фиксируются в договоре.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru ГосОблако аттестовано по К1 (ФСТЭК №17), УЗ-1 (ПП РФ №1119), КИИ-1 (187-ФЗ), 152-ФЗ — полностью соответствует всем упомянутым актам.",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Сертификаты, аттестаты и лицензии облака Cloud.ru"],
+        "recommendation": "Cloud.ru ГосОблако полностью соответствует всем упомянутым нормативам. Условия фиксируются в договоре."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru Облако VMware аттестовано по К1 (ФСТЭК №17), УЗ-1 (ПП РФ №1119), 152-ФЗ — полностью соответствует всем упомянутым актам.",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Сертификаты, аттестаты и лицензии облака Cloud.ru"],
+        "recommendation": "Cloud.ru Облако VMware полностью соответствует всем упомянутым нормативам. Условия фиксируются в договоре."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru Advanced аттестован по УЗ-1 и 152-ФЗ — соответствует требованиям по защите ПДн. К1 и КИИ-1 не требуются для этой платформы.",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Сертификаты, аттестаты и лицензии облака Cloud.ru"],
+        "recommendation": "Cloud.ru Advanced соответствует требованиям по 152-ФЗ и УЗ-1. Для К1 и КИИ-1 требуется ГосОблако или Облако VMware."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru Evolution аттестован по УЗ-1 и 152-ФЗ — соответствует требованиям по защите ПДн. К1 и КИИ-1 не требуются для этой платформы.",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Сертификаты, аттестаты и лицензии облака Cloud.ru"],
+        "recommendation": "Cloud.ru Evolution соответствует требованиям по 152-ФЗ и УЗ-1. Для К1 и КИИ-1 требуется ГосОблако или Облако VMware."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 62,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование запрещает передачу информации третьим лицам без согласия Заказчика — это стандартное условие защиты персональных данных. Cloud.ru обеспечивает защиту по 152-ФЗ и УЗ-1, а ответственность за доступ и передачу данных лежит на клиенте, как указано в модели общей ответственности.",
+    "evidence": "Cloud.ru не является оператором персональных данных. Ответственность за настройку доступов и сохранность данных пользователей лежит на клиенте Cloud.ru.",
+    "source_urls": [
+      "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas",
+      "https://cloud.ru/docs/overview/security-introduction/topics/responsibility-areas",
+      "https://cloud.ru/docs/overview/security-introduction/index",
+      "26127171-5f8d-4006-a989-bcb6ff142835"
+    ],
+    "recommendation": "Cloud.ru не передаёт данные третьим лицам без согласия клиента. Ответственность за управление доступом и передачу данных лежит на клиенте. Условия фиксируются в договоре.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru ГосОблако аттестовано по 152-ФЗ и УЗ-1. Модель общей ответственности определяет, что клиент несёт ответственность за доступ и передачу данных.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/overview/security-introduction/topics/responsibility-areas"],
+        "source_titles": ["Зоны ответственности в облаке Cloud.ru"],
+        "recommendation": "Cloud.ru не передаёт данные третьим лицам без согласия клиента. Ответственность за управление доступом и передачу данных лежит на клиенте. Условия фиксируются в договоре."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru Облако VMware аттестовано по 152-ФЗ и УЗ-1. Модель общей ответственности определяет, что клиент несёт ответственность за доступ и передачу данных.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/overview/security-introduction/topics/responsibility-areas"],
+        "source_titles": ["Зоны ответственности в облаке Cloud.ru"],
+        "recommendation": "Cloud.ru не передаёт данные третьим лицам без согласия клиента. Ответственность за управление доступом и передачу данных лежит на клиенте. Условия фиксируются в договоре."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru Advanced аттестован по 152-ФЗ и УЗ-1. Модель общей ответственности определяет, что клиент несёт ответственность за доступ и передачу данных.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/overview/security-introduction/topics/responsibility-areas"],
+        "source_titles": ["Зоны ответственности в облаке Cloud.ru"],
+        "recommendation": "Cloud.ru не передаёт данные третьим лицам без согласия клиента. Ответственность за управление доступом и передачу данных лежит на клиенте. Условия фиксируются в договоре."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru Evolution аттестован по 152-ФЗ и УЗ-1. Модель общей ответственности определяет, что клиент несёт ответственность за доступ и передачу данных.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/overview/security-introduction/topics/responsibility-areas"],
+        "source_titles": ["Зоны ответственности в облаке Cloud.ru"],
+        "recommendation": "Cloud.ru не передаёт данные третьим лицам без согласия клиента. Ответственность за управление доступом и передачу данных лежит на клиенте. Условия фиксируются в договоре."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 63,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование описывает общие требования к используемым материалам и оборудованию — это стандартная договорная формулировка. Cloud.ru использует только сертифицированное, лицензированное и аттестованное оборудование в Tier III ЦОД, соответствующее требованиям безопасности и надёжности.",
+    "evidence": "",
+    "source_urls": [
+      "https://cloud.ru/docs/advanced/overview/index",
+      "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles__infrastrusture-protection"
+    ],
+    "recommendation": "Cloud.ru использует только сертифицированное оборудование в Tier III ЦОД, соответствующее требованиям безопасности и надёжности. Условия фиксируются в договоре.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru использует только сертифицированное, лицензированное и аттестованное оборудование в Tier III ЦОД, соответствующее требованиям безопасности и надёжности.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Cloud.ru использует только сертифицированное оборудование в Tier III ЦОД, соответствующее требованиям безопасности и надёжности. Условия фиксируются в договоре."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru использует только сертифицированное, лицензированное и аттестованное оборудование в Tier III ЦОД, соответствующее требованиям безопасности и надёжности.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Cloud.ru использует только сертифицированное оборудование в Tier III ЦОД, соответствующее требованиям безопасности и надёжности. Условия фиксируются в договоре."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru использует только сертифицированное, лицензированное и аттестованное оборудование в Tier III ЦОД, соответствующее требованиям безопасности и надёжности.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Cloud.ru использует только сертифицированное оборудование в Tier III ЦОД, соответствующее требованиям безопасности и надёжности. Условия фиксируются в договоре."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru использует только сертифицированное, лицензированное и аттестованное оборудование в Tier III ЦОД, соответствующее требованиям безопасности и надёжности.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Cloud.ru использует только сертифицированное оборудование в Tier III ЦОД, соответствующее требованиям безопасности и надёжности. Условия фиксируются в договоре."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]
+```

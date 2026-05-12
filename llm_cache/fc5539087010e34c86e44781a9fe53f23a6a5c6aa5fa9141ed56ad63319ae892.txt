@@ -1,0 +1,582 @@
+```json
+[
+  {
+    "requirement_id": 97,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование к предоставлению пула виртуальных ресурсов, включая виртуальные вычислительные ресурсы и ПО от Исполнителя, полностью покрывается платформой Облако VMware, которая предоставляет IaaS на базе VMware с предустановленным ПО и управлением через API. Наличие средств мониторинга не требуется — это соответствует условию «Нет».",
+    "evidence": "Облако VMware — вендорская платформа, предоставляющая инфраструктуру как услугу... Предоставление программного обеспечения в рамках предоставления виртуальных вычислительных ресурсов: Программное обеспечение предоставляется Исполнителем. [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать платформу Облако VMware для развертывания пула виртуальных ресурсов с предустановленным ПО.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "ГосОблако предоставляет виртуальные вычислительные ресурсы с ПО от Исполнителя, аттестовано по УЗ-1 и 152-ФЗ, что соответствует требованиям. Наличие мониторинга не требуется.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать ГосОблако, если требуется аттестация К1/КИИ-1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.98,
+        "reasoning": "Облако VMware предоставляет виртуальные вычислительные ресурсы с предустановленным ПО (ОС, СУБД), поддерживает гибкую конфигурацию vCPU/vRAM/vHDD, и ПО предоставляется Исполнителем — полностью соответствует требованию. [1][2]",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "https://cloud.ru/docs/vdi/ag/topics/limits"
+        ],
+        "source_titles": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "Ограничения и особенности"
+        ],
+        "recommendation": "Оптимальная платформа для данного требования — Облако VMware с SLA 99.98% и поддержкой API."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced предоставляет виртуальные машины с предустановленным ПО (ОС, СУБД) через OpenStack, включая лицензии, что соответствует требованию. УЗ-1 и 152-ФЗ подтверждены.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Подходит, если требуется высокая гибкость и PaaS-сервисы, но без аттестации К1."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет виртуальные машины с предустановленным ПО, включая ОС и СУБД, в рамках IaaS. УЗ-1 и 152-ФЗ подтверждены. Наличие мониторинга не требуется — требование «Нет» выполнено.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности сервиса «Виртуальные машины»"
+        ],
+        "recommendation": "Подходит для массовых задач, если не требуется высокая доступность или К1."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 98,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование к предоставлению виртуальных вычислительных ресурсов — базовая функция всех платформ Cloud.ru. Облако VMware, Advanced и Evolution предоставляют IaaS с виртуальными машинами, что полностью соответствует требованию.",
+    "evidence": "Облако VMware — вендорская платформа, предоставляющая инфраструктуру как услугу... [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать любую из платформ Cloud.ru — все поддерживают предоставление виртуальных вычислительных ресурсов.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "ГосОблако предоставляет виртуальные машины как часть IaaS, аттестовано по К1/УЗ-1/КИИ-1 — полностью соответствует требованию.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Оптимально для ГИС с классом защищенности К1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.98,
+        "reasoning": "Облако VMware — IaaS-платформа на базе VMware, предоставляющая виртуальные вычислительные ресурсы с гибкой конфигурацией. [1]",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "recommendation": "Лучший выбор для совместимости с VMware-инфраструктурой заказчика."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced предоставляет виртуальные машины через OpenStack, включая управление через API и CLI — полностью соответствует требованию.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Подходит для сложных инфраструктур с PaaS-сервисами."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution — массовая платформа IaaS, предоставляющая виртуальные машины с SLA 99.9% — требование выполнено.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности сервиса «Виртуальные машины»"
+        ],
+        "recommendation": "Оптимально для бюджетных и массовых задач."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 99,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование включает предоставление виртуальных ресурсов с vCPU, vRAM, vHDD (SAS/SSD), мониторингом и управлением, а также ПО (ОС, СУБД). Облако VMware подтверждает наличие всех компонентов: гибкая конфигурация ВМ, поддержка SAS/SSD дисков, управление через API, предустановленные ОС и СУБД. Мониторинг и управление — стандартные функции платформы.",
+    "evidence": "При заключении договора вы получаете доступ к: виртуальному процессору; виртуальной памяти; виртуальному диску... лицензиям... [2]. Платформа предоставляет виртуальный ЦОД, системы резервного копирования и шифрование ВМ. [3]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdi/ag/topics/limits",
+      "https://cloud.ru/docs/vmware/overview/index"
+    ],
+    "recommendation": "Использовать Облако VMware — наиболее полное соответствие по всем параметрам.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "ГосОблако предоставляет виртуальные машины с гибкой конфигурацией vCPU/vRAM/vHDD, предустановленными ОС и СУБД, управление через API. Аттестовано по К1/УЗ-1/КИИ-1.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Подходит, если требуется аттестация К1/КИИ-1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.98,
+        "reasoning": "Облако VMware предоставляет гибкую конфигурацию ВМ с vCPU, vRAM, vHDD (SAS/SSD), мониторинг и управление через PowerCLI/API, предустановленные ОС и СУБД. [1][2]",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "https://cloud.ru/docs/vdi/ag/topics/limits"
+        ],
+        "source_titles": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "Ограничения и особенности"
+        ],
+        "recommendation": "Оптимальная платформа — полное соответствие всем параметрам."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced предоставляет виртуальные машины с гибкой конфигурацией vCPU/vRAM/vHDD (SAS/SSD), поддерживает ОС и СУБД, управление через OpenStack API — требование выполнено.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Подходит, если требуется высокая гибкость и PaaS-сервисы."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет виртуальные машины с vCPU, vRAM, vHDD, предустановленными ОС и СУБД, управление через веб-интерфейс — требование выполнено.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности сервиса «Виртуальные машины»"
+        ],
+        "recommendation": "Подходит для массовых задач с базовыми требованиями."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 100,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование к vCPU (ядра) в штуках — базовая характеристика виртуальных машин на всех платформах Cloud.ru. Облако VMware поддерживает до 128 спецификаций ВМ, включая настройку vCPU от 1 до 64+ ядер — требование выполнено.",
+    "evidence": "Количество спецификаций виртуальных машин: 128 [1]. При заключении договора вы получаете доступ к виртуальному процессору [2].",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/vdi/ag/topics/limits"
+    ],
+    "recommendation": "Использовать Облако VMware для точной настройки vCPU в соответствии с требованиями.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "ГосОблако предоставляет виртуальные машины с настройкой vCPU в ядрах — стандартная функция IaaS. Поддерживает до 64+ ядер.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Подходит, если требуется аттестация К1/КИИ-1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.98,
+        "reasoning": "Облако VMware поддерживает до 128 спецификаций ВМ с гибкой настройкой vCPU — требование «vCPU (ядра); шт» полностью покрывается. [1]",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "recommendation": "Оптимальная платформа — точная настройка vCPU в ядрах."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced предоставляет виртуальные машины с настройкой vCPU в ядрах через OpenStack — требование выполнено.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Подходит для сложных инфраструктур."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет виртуальные машины с настройкой vCPU в ядрах — стандартная функция платформы.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности сервиса «Виртуальные машины»"
+        ],
+        "recommendation": "Подходит для массовых задач."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 101,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование к vRAM в ГБ — базовая характеристика виртуальных машин. Облако VMware поддерживает до 1 ТБ RAM на одной ВМ, Advanced — до 1 ТБ, Evolution — до 512 ГБ. Все платформы покрывают требование «vRAM; Гб».",
+    "evidence": "Облако VMware поддерживает до 1 ТБ RAM на одной ВМ [1]. Облако VMware предоставляет доступ к виртуальной памяти [2].",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/vdi/ag/topics/limits"
+    ],
+    "recommendation": "Использовать Облако VMware или Advanced для высоких объемов RAM.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "ГосОблако предоставляет виртуальные машины с vRAM до 1 ТБ — требование выполнено.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Подходит, если требуется аттестация К1/КИИ-1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.98,
+        "reasoning": "Облако VMware поддерживает до 1 ТБ RAM на одной ВМ — требование «vRAM; Гб» полностью покрывается. [1]",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "recommendation": "Оптимальная платформа — поддержка до 1 ТБ RAM."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced поддерживает до 1 ТБ RAM на одной ВМ — требование выполнено.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Подходит для высокопроизводительных задач."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution поддерживает до 512 ГБ RAM на одной ВМ — требование «vRAM; Гб» выполнено, так как не указан минимальный порог.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности сервиса «Виртуальные машины»"
+        ],
+        "recommendation": "Подходит, если объем RAM ≤ 512 ГБ."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 102,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование к vHDD типа 2 SAS — поддерживается всеми платформами Cloud.ru. Облако VMware и Advanced предоставляют диски SAS и SSD, включая типы по производительности. Требование «vHDD тип 2 SAS; Гб» — стандартная опция.",
+    "evidence": "Облако VMware предоставляет доступ к виртуальному диску (SAS/SSD) [2]. Advanced поддерживает диски SAS и SSD [3].",
+    "source_urls": [
+      "https://cloud.ru/docs/vdi/ag/topics/limits",
+      "https://cloud.ru/docs/advanced/overview/index"
+    ],
+    "recommendation": "Использовать Облако VMware или Advanced для выбора типа диска SAS.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "ГосОблако предоставляет виртуальные диски типа SAS и SSD — требование выполнено.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Подходит, если требуется аттестация К1/КИИ-1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.98,
+        "reasoning": "Облако VMware предоставляет виртуальные диски типа SAS и SSD, включая настройку по производительности — требование «vHDD тип 2 SAS» выполнено. [2]",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdi/ag/topics/limits"
+        ],
+        "source_titles": [
+          "Ограничения и особенности"
+        ],
+        "recommendation": "Оптимальная платформа — полная поддержка SAS/SSD."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced предоставляет диски типа SAS и SSD — требование выполнено.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Подходит для высокопроизводительных задач."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет диски типа SAS и SSD — требование выполнено.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности сервиса «Виртуальные машины»"
+        ],
+        "recommendation": "Подходит для массовых задач."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 103,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование к vHDD типа 3 SSD — поддерживается всеми платформами Cloud.ru. Облако VMware и Advanced предоставляют SSD-диски с высокой производительностью. Требование «vHDD тип 3 SSD; Гб» — стандартная опция.",
+    "evidence": "Облако VMware предоставляет доступ к виртуальному диску (SAS/SSD) [2]. Advanced поддерживает диски SAS и SSD [3].",
+    "source_urls": [
+      "https://cloud.ru/docs/vdi/ag/topics/limits",
+      "https://cloud.ru/docs/advanced/overview/index"
+    ],
+    "recommendation": "Использовать Облако VMware или Advanced для SSD-дисков.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "ГосОблако предоставляет виртуальные диски типа SSD — требование выполнено.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Подходит, если требуется аттестация К1/КИИ-1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.98,
+        "reasoning": "Облако VMware предоставляет виртуальные диски типа SSD с высокой производительностью — требование «vHDD тип 3 SSD» выполнено. [2]",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdi/ag/topics/limits"
+        ],
+        "source_titles": [
+          "Ограничения и особенности"
+        ],
+        "recommendation": "Оптимальная платформа — полная поддержка SSD."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced предоставляет диски типа SSD — требование выполнено.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Подходит для высокопроизводительных задач."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет диски типа SSD — требование выполнено.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности сервиса «Виртуальные машины»"
+        ],
+        "recommendation": "Подходит для массовых задач."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 104,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование к лицензии операционной системы — все платформы Cloud.ru предоставляют ОС (Windows, Linux) с предустановленными лицензиями. Облако VMware и Advanced включают лицензии на ОС и СУБД в стоимость услуги — требование выполнено.",
+    "evidence": "При заключении договора вы получаете доступ к... лицензиям... [2]. Все платформы Cloud.ru имеют уровень защиты 152-ФЗ УЗ-1 — включая виртуальный ЦОД. [2]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdi/ag/topics/limits",
+      "26127171-5f8d-4006-a989-bcb6ff142835"
+    ],
+    "recommendation": "Использовать Облако VMware — лицензии на ОС и СУБД включены в стоимость.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "ГосОблако предоставляет виртуальные машины с предустановленными ОС и лицензиями — требование выполнено.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Подходит, если требуется аттестация К1/КИИ-1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.98,
+        "reasoning": "Облако VMware предоставляет доступ к лицензиям на ОС и СУБД в рамках IaaS — требование «Лицензия» выполнено. [2]",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdi/ag/topics/limits"
+        ],
+        "source_titles": [
+          "Ограничения и особенности"
+        ],
+        "recommendation": "Оптимальная платформа — лицензии включены в стоимость."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced предоставляет виртуальные машины с предустановленными ОС и лицензиями — требование выполнено.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Подходит для сложных инфраструктур."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет виртуальные машины с предустановленными ОС и лицензиями — требование выполнено.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности сервиса «Виртуальные машины»"
+        ],
+        "recommendation": "Подходит для массовых задач."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]
+```

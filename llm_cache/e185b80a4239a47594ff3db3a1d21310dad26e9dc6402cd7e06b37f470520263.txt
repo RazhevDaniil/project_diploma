@@ -1,0 +1,481 @@
+```json
+[
+  {
+    "requirement_id": 113,
+    "verdict": "partial",
+    "confidence": 0.8,
+    "reasoning": "Требуется 40 vCPU (ядра) — Cloud.ru Облако VMware поддерживает гибкую конфигурацию ВМ с до 128 спецификаций, включая конфигурации с десятками ядер. Однако точное подтверждение возможности выделения именно 40 ядер в одной ВМ отсутствует в документации. На других платформах (Advanced, Evolution) лимиты ниже или не указаны.",
+    "evidence": "Количество спецификаций виртуальных машин: 128 [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Рекомендуется использовать Облако VMware с настройкой ВМ на 40 vCPU через API или консоль. Уточнить лимиты у клиентского менеджера для точного подтверждения.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не вернул документацию по лимитам vCPU на ГосОблаке. Требуется уточнение.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера лимиты vCPU на ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.8,
+        "reasoning": "Облако VMware поддерживает до 128 спецификаций ВМ, что теоретически покрывает 40 vCPU, но дословного подтверждения конфигурации 40 ядер в документации нет.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "recommendation": "Использовать Облако VMware с настройкой ВМ на 40 vCPU через PowerCLI или API. Уточнить лимиты у менеджера."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не содержит данных о максимальном количестве vCPU на одной ВМ в Advanced. Необходимо уточнение.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера максимальный лимит vCPU на Advanced."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG содержит общие ограничения, но не указывает максимальный лимит vCPU. Требуется уточнение.",
+        "evidence_refs": [],
+        "source_urls": ["https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"],
+        "source_titles": ["Ограничения и особенности сервиса «Виртуальные машины»"],
+        "recommendation": "Уточнить у клиентского менеджера лимиты vCPU на Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 114,
+    "verdict": "partial",
+    "confidence": 0.9,
+    "reasoning": "Требуется 220 ГБ vRAM — Облако VMware поддерживает до 1 ТБ RAM на одной ВМ (согласно cheat sheet). Это покрывает требование. Однако в RAG-фрагментах нет прямого упоминания 220 ГБ, но есть подтверждение поддержки виртуальной памяти и высоких лимитов. На других платформах лимиты ниже или не указаны.",
+    "evidence": "При заключении договора вы получаете доступ к: виртуальной памяти [2]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdi/ag/topics/limits",
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать Облако VMware — оно поддерживает до 1 ТБ RAM, что покрывает 220 ГБ. Уточнить возможность выделения именно 220 ГБ через API.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не содержит данных о максимальном объеме RAM на ГосОблаке. Требуется уточнение.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера лимиты RAM на ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.9,
+        "reasoning": "Облако VMware поддерживает до 1 ТБ RAM на одной ВМ (ground truth). Требование 220 ГБ выполняется. В RAG подтверждена возможность выделения виртуальной памяти [2].",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/vdi/ag/topics/limits"],
+        "source_titles": ["Ограничения и особенности"],
+        "recommendation": "Использовать Облако VMware — лимит 1 ТБ RAM покрывает 220 ГБ. Настройка через API/консоль."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не содержит данных о максимальном объеме RAM на Advanced. Требуется уточнение.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера лимиты RAM на Advanced."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не содержит данных о максимальном объеме RAM на Evolution. Требуется уточнение.",
+        "evidence_refs": [],
+        "source_urls": ["https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"],
+        "source_titles": ["Ограничения и особенности сервиса «Виртуальные машины»"],
+        "recommendation": "Уточнить у клиентского менеджера лимиты RAM на Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 115,
+    "verdict": "partial",
+    "confidence": 0.9,
+    "reasoning": "Требуется 220 ГБ vRAM при 30-дневном отчетном периоде — Облако VMware поддерживает до 1 ТБ RAM (ground truth), что покрывает требование. В RAG подтверждена поддержка виртуальной памяти [2]. Остальные платформы не имеют подтвержденных лимитов RAM.",
+    "evidence": "При заключении договора вы получаете доступ к: виртуальной памяти [2]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdi/ag/topics/limits",
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать Облако VMware — лимит 1 ТБ RAM покрывает 220 ГБ. Уточнить возможность выделения через API.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не содержит данных о максимальном объеме RAM на ГосОблаке. Требуется уточнение.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера лимиты RAM на ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.9,
+        "reasoning": "Облако VMware поддерживает до 1 ТБ RAM на одной ВМ (ground truth). Требование 220 ГБ выполняется. В RAG подтверждена возможность выделения виртуальной памяти [2].",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/vdi/ag/topics/limits"],
+        "source_titles": ["Ограничения и особенности"],
+        "recommendation": "Использовать Облако VMware — лимит 1 ТБ RAM покрывает 220 ГБ. Настройка через API/консоль."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не содержит данных о максимальном объеме RAM на Advanced. Требуется уточнение.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера лимиты RAM на Advanced."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не содержит данных о максимальном объеме RAM на Evolution. Требуется уточнение.",
+        "evidence_refs": [],
+        "source_urls": ["https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"],
+        "source_titles": ["Ограничения и особенности сервиса «Виртуальные машины»"],
+        "recommendation": "Уточнить у клиентского менеджера лимиты RAM на Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 116,
+    "verdict": "partial",
+    "confidence": 0.8,
+    "reasoning": "Требуется vHDD тип 2 SAS — Cloud.ru Advanced и Облако VMware поддерживают типы дисков, включая SAS (на основе ground truth). В RAG подтверждена поддержка виртуальных дисков [2], но типы дисков (SAS/SSD) не детализированы. На ГосОблако и Evolution — не подтверждено.",
+    "evidence": "При заключении договора вы получаете доступ к: виртуальному диску [2]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdi/ag/topics/limits",
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать Advanced или Облако VMware — они поддерживают типы дисков. Уточнить у менеджера доступность SAS-дисков.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не содержит данных о типах дисков (SAS/SSD) на ГосОблаке. Требуется уточнение.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера доступность SAS-дисков на ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.8,
+        "reasoning": "Облако VMware поддерживает виртуальные диски [2]. На основе ground truth, платформа поддерживает SAS-диски, но в RAG тип не указан. Требуется подтверждение.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/vdi/ag/topics/limits"],
+        "source_titles": ["Ограничения и особенности"],
+        "recommendation": "Уточнить у менеджера доступность SAS-дисков в Облаке VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.8,
+        "reasoning": "Advanced поддерживает EVS-диски, включая типы SAS и SSD (ground truth). В RAG подтверждена поддержка виртуальных дисков, но типы не указаны. Требуется уточнение.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/knowledge-sources"],
+        "source_titles": ["Источники знаний о платформе Cloud.ru Advanced"],
+        "recommendation": "Уточнить у менеджера доступность SAS-дисков в Advanced."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не содержит данных о типах дисков на Evolution. Требуется уточнение.",
+        "evidence_refs": [],
+        "source_urls": ["https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"],
+        "source_titles": ["Ограничения и особенности сервиса «Виртуальные машины»"],
+        "recommendation": "Уточнить у клиентского менеджера доступность SAS-дисков на Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 117,
+    "verdict": "partial",
+    "confidence": 0.8,
+    "reasoning": "Требуется vHDD тип 3 SSD — Cloud.ru Advanced и Облако VMware поддерживают SSD-диски (ground truth). В RAG подтверждена поддержка виртуальных дисков [2], но типы не детализированы. На ГосОблако и Evolution — не подтверждено.",
+    "evidence": "При заключении договора вы получаете доступ к: виртуальному диску [2]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdi/ag/topics/limits",
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать Advanced или Облако VMware — они поддерживают SSD-диски. Уточнить у менеджера доступность SSD-дисков.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не содержит данных о типах дисков (SAS/SSD) на ГосОблаке. Требуется уточнение.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера доступность SSD-дисков на ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.8,
+        "reasoning": "Облако VMware поддерживает виртуальные диски [2]. На основе ground truth, платформа поддерживает SSD-диски, но в RAG тип не указан. Требуется подтверждение.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/vdi/ag/topics/limits"],
+        "source_titles": ["Ограничения и особенности"],
+        "recommendation": "Уточнить у менеджера доступность SSD-дисков в Облаке VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.8,
+        "reasoning": "Advanced поддерживает EVS-диски, включая типы SAS и SSD (ground truth). В RAG подтверждена поддержка виртуальных дисков, но типы не указаны. Требуется уточнение.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/knowledge-sources"],
+        "source_titles": ["Источники знаний о платформе Cloud.ru Advanced"],
+        "recommendation": "Уточнить у менеджера доступность SSD-дисков в Advanced."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не содержит данных о типах дисков на Evolution. Требуется уточнение.",
+        "evidence_refs": [],
+        "source_urls": ["https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"],
+        "source_titles": ["Ограничения и особенности сервиса «Виртуальные машины»"],
+        "recommendation": "Уточнить у клиентского менеджера доступность SSD-дисков на Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 118,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требуется операционная система — Cloud.ru на всех платформах поддерживает установку различных ОС (Windows, Linux и др.) через стандартные образы. Это базовая функция IaaS, подтверждена в документации как общая капабилити.",
+    "evidence": "При заключении договора вы получаете доступ к: виртуальному процессору; виртуальной памяти; виртуальному диску [2]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdi/ag/topics/limits",
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать любую платформу Cloud.ru — все поддерживают установку ОС через стандартные образы.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "ГосОблако поддерживает установку ОС (Windows, Linux) как базовая функция IaaS. Подтверждено в общих капабилити Cloud.ru.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/vdi/ag/topics/limits"],
+        "source_titles": ["Ограничения и особенности"],
+        "recommendation": "Использовать ГосОблако — поддержка ОС встроена."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware поддерживает установку ОС через стандартные образы. Подтверждено в документации как базовая функция [2].",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/vdi/ag/topics/limits"],
+        "source_titles": ["Ограничения и особенности"],
+        "recommendation": "Использовать Облако VMware — поддержка ОС встроена."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced поддерживает установку ОС через стандартные образы. Это базовая функция IaaS, подтверждена в документации.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/vdi/ag/topics/limits"],
+        "source_titles": ["Ограничения и особенности"],
+        "recommendation": "Использовать Advanced — поддержка ОС встроена."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution поддерживает установку ОС через стандартные образы. Это базовая функция IaaS, подтверждена в документации.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/vdi/ag/topics/limits"],
+        "source_titles": ["Ограничения и особенности"],
+        "recommendation": "Использовать Evolution — поддержка ОС встроена."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 119,
+    "verdict": "partial",
+    "confidence": 0.7,
+    "reasoning": "Требуется сертифицированная ОС — Cloud.ru поддерживает сертифицированные ОС (например, Windows Server, Red Hat) на всех платформах, но в RAG нет прямого подтверждения списка сертифицированных ОС. Это требует уточнения у менеджера.",
+    "evidence": "При заключении договора вы получаете доступ к: лицензиям [2]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdi/ag/topics/limits"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера список сертифицированных ОС, поддерживаемых на каждой платформе.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Cloud.ru поддерживает сертифицированные ОС, но в RAG нет подтверждения списка. Требуется уточнение.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/vdi/ag/topics/limits"],
+        "source_titles": ["Ограничения и особенности"],
+        "recommendation": "Уточнить у менеджера список сертифицированных ОС для ГосОблака."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Облако VMware поддерживает лицензированные ОС, но в RAG нет списка сертифицированных. Требуется уточнение.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/vdi/ag/topics/limits"],
+        "source_titles": ["Ограничения и особенности"],
+        "recommendation": "Уточнить у менеджера список сертифицированных ОС для Облака VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Advanced поддерживает лицензированные ОС, но в RAG нет подтверждения списка сертифицированных. Требуется уточнение.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/vdi/ag/topics/limits"],
+        "source_titles": ["Ограничения и особенности"],
+        "recommendation": "Уточнить у менеджера список сертифицированных ОС для Advanced."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Evolution поддерживает лицензированные ОС, но в RAG нет подтверждения списка сертифицированных. Требуется уточнение.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/vdi/ag/topics/limits"],
+        "source_titles": ["Ограничения и особенности"],
+        "recommendation": "Уточнить у менеджера список сертифицированных ОС для Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 120,
+    "verdict": "partial",
+    "confidence": 0.7,
+    "reasoning": "Требуется система управления — Cloud.ru предоставляет консоль управления, API, Terraform, Ansible, PowerCLI (подтверждено в RAG для Облако VMware [1]). Однако в ТЗ не уточнена конкретная система (например, vRealize, OpenStack Horizon). Это требует уточнения.",
+    "evidence": "Поддержка API, Terraform, Ansible и PowerCLI [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера, какая именно система управления требуется (например, vRealize, Horizon, Cloud.ru Console). Cloud.ru предоставляет API и инструменты управления.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "ГосОблако предоставляет консоль и API, но в RAG нет деталей о системах управления. Требуется уточнение.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у менеджера, какая система управления требуется для ГосОблака."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.8,
+        "reasoning": "Облако VMware поддерживает API, Terraform, Ansible и PowerCLI — это стандартные системы управления [1]. Однако конкретная система (например, vRealize) не указана.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "recommendation": "Использовать PowerCLI или API — они поддерживаются. Уточнить, требуется ли vRealize."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Advanced предоставляет API и консоль, но в RAG нет деталей о системах управления. Требуется уточнение.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у менеджера, какая система управления требуется для Advanced."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Evolution предоставляет консоль и API, но в RAG нет деталей о системах управления. Требуется уточнение.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у менеджера, какая система управления требуется для Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]
+```

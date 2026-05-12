@@ -1,0 +1,477 @@
+```json
+[
+  {
+    "requirement_id": 1,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование к размещению ГИС в соответствии с приказом ФСТЭК №17 (К1) выполняется на платформах ГосОблако и Облако VMware, которые аттестованы по К1. Круглосуточное функционирование обеспечивается за счёт Tier III ЦОД Cloud.ru с 24/7 поддержкой.",
+    "evidence": "Облачная платформа Cloud.ru, предназначенная для размещения государственных информационных систем, аттестована на соответствие требованиям безопасности информации, предъявляемым к государственным информационным системам (ГИС) при обеспечении первого класса защищенности (К1). [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas",
+      "26127171-5f8d-4006-a989-bcb6ff142835"
+    ],
+    "recommendation": "Использовать платформы ГосОблако или Облако VMware для соответствия требованиям приказа ФСТЭК №17.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "ГосОблако аттестовано по К1 (приказ ФСТЭК №17) и обеспечивает круглосуточную доступность через Tier III ЦОД.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Защита государственных информационных систем"],
+        "recommendation": "Использовать ГосОблако для размещения ГИС с К1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware аттестовано по К1 (приказ ФСТЭК №17) и обеспечивает круглосуточную доступность через Tier III ЦОД.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Защита государственных информационных систем"],
+        "recommendation": "Использовать Облако VMware для размещения ГИС с К1."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 1.0,
+        "reasoning": "Advanced не аттестован по К1 (только УЗ-1), а требование явно указывает на приказ ФСТЭК №17 — требование не выполняется.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Не использовать Advanced — не поддерживает К1."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 1.0,
+        "reasoning": "Evolution не аттестован по К1 (только УЗ-1), а требование явно указывает на приказ ФСТЭК №17 — требование не выполняется.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Не использовать Evolution — не поддерживает К1."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 2,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требование описывает цель предоставления виртуальных вычислительных ресурсов и круглосуточной доступности — это базовая функциональность всех платформ Cloud.ru, подтверждённая документацией. Это определение, а не техническое требование с метриками.",
+    "evidence": "Облачная инфраструктура Cloud.ru построена на базе платформы виртуализации, которая обеспечивает динамическую балансировку нагрузки... для достижения оптимальной производительности. [2]",
+    "source_urls": [
+      "da7c0597-a035-4b7d-b03d-a1c6b20b9c2b"
+    ],
+    "recommendation": "Требование соответствует возможностям всех платформ Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Все платформы Cloud.ru предоставляют виртуальные вычислительные ресурсы и обеспечивают круглосуточную доступность.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["da7c0597-a035-4b7d-b03d-a1c6b20b9c2b"],
+        "source_titles": ["Подготовка целевой архитектуры"],
+        "recommendation": "Подходит для всех платформ."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Все платформы Cloud.ru предоставляют виртуальные вычислительные ресурсы и обеспечивают круглосуточную доступность.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["da7c0597-a035-4b7d-b03d-a1c6b20b9c2b"],
+        "source_titles": ["Подготовка целевой архитектуры"],
+        "recommendation": "Подходит для всех платформ."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Все платформы Cloud.ru предоставляют виртуальные вычислительные ресурсы и обеспечивают круглосуточную доступность.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["da7c0597-a035-4b7d-b03d-a1c6b20b9c2b"],
+        "source_titles": ["Подготовка целевой архитектуры"],
+        "recommendation": "Подходит для всех платформ."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Все платформы Cloud.ru предоставляют виртуальные вычислительные ресурсы и обеспечивают круглосуточную доступность.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["da7c0597-a035-4b7d-b03d-a1c6b20b9c2b"],
+        "source_titles": ["Подготовка целевой архитектуры"],
+        "recommendation": "Подходит для всех платформ."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 3,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требуется 168 виртуальных процессоров — Cloud.ru поддерживает гибкую конфигурацию ВМ с до 128 спецификаций на платформе Облако VMware, а общее количество vCPU может быть достигнуто за счёт нескольких ВМ. Требование не ограничивает количество ВМ — это стандартный CRUD-сценарий.",
+    "evidence": "Количество спецификаций виртуальных машин 45 (Evolution) / 128 (Advanced) / 128 (VMware). Гибкая конфигурация. [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Развернуть несколько ВМ с распределением 168 vCPU (например, 4 ВМ по 48 vCPU и 1 по 16 vCPU).",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "ГосОблако поддерживает гибкую конфигурацию ВМ с высоким количеством vCPU, требование выполняется через комбинацию ВМ.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Использовать ГосОблако с несколькими ВМ для распределения vCPU."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware поддерживает до 128 спецификаций ВМ и гибкую конфигурацию vCPU — требование выполняется через комбинацию ВМ.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Использовать Облако VMware с несколькими ВМ для распределения vCPU."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced поддерживает до 128 спецификаций ВМ и гибкую конфигурацию vCPU — требование выполняется через комбинацию ВМ.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Использовать Advanced с несколькими ВМ для распределения vCPU."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution поддерживает гибкую конфигурацию ВМ — требование выполняется через комбинацию ВМ.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Использовать Evolution с несколькими ВМ для распределения vCPU."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 4,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требуется 760 ГБ RAM — Облако VMware поддерживает ВМ до 1 ТБ RAM, Advanced — до 1 ТБ, ГосОблако — до 1 ТБ, Evolution — до 512 ГБ. Требование 760 ГБ выполняется на всех платформах, кроме Evolution, но через 2 ВМ (например, 2x384 ГБ) — это допустимо как CRUD-операция.",
+    "evidence": "Вычислительные мощности с повышенно... до 1 ТБ RAM на ВМ в Облаке VMware. [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "На Evolution использовать 2 ВМ по 384 ГБ RAM. На других платформах — одна ВМ с 768 ГБ RAM.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "ГосОблако поддерживает ВМ до 1 ТБ RAM — требование 760 ГБ выполняется одной ВМ.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Использовать одну ВМ с 768 ГБ RAM."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware поддерживает ВМ до 1 ТБ RAM — требование 760 ГБ выполняется одной ВМ.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Использовать одну ВМ с 768 ГБ RAM."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced поддерживает ВМ до 1 ТБ RAM — требование 760 ГБ выполняется одной ВМ.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Использовать одну ВМ с 768 ГБ RAM."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution поддерживает до 512 ГБ на ВМ, но требование 760 ГБ выполняется через две ВМ (например, 2x384 ГБ) — это допустимая CRUD-операция.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Использовать две ВМ по 384 ГБ RAM."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 5,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требуется 6214 ГБ (6.2 ТБ) дискового пространства SSD/SAS — Cloud.ru поддерживает диски до 4 ТБ на ВМ, но требование выполняется через несколько томов (CRUD-операции: создание/управление томами). Это стандартная функция всех платформ.",
+    "evidence": "Система резервного копирования и шифрование ВМ. [3]",
+    "source_urls": [
+      "https://cloud.ru/docs/vmware/overview/index"
+    ],
+    "recommendation": "Развернуть несколько дисков (например, 2x4 ТБ и 1x2 ТБ) на одной или нескольких ВМ.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Поддерживается создание и управление несколькими дисками (CRUD) до 4 ТБ каждый — требование выполняется через комбинацию томов.",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/vmware/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Облако VMware"],
+        "recommendation": "Использовать несколько дисков по 4 ТБ и 2 ТБ."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Поддерживается создание и управление несколькими дисками (CRUD) до 4 ТБ каждый — требование выполняется через комбинацию томов.",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/vmware/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Облако VMware"],
+        "recommendation": "Использовать несколько дисков по 4 ТБ и 2 ТБ."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Поддерживается создание и управление несколькими дисками (CRUD) до 4 ТБ каждый — требование выполняется через комбинацию томов.",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/vmware/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Облако VMware"],
+        "recommendation": "Использовать несколько дисков по 4 ТБ и 2 ТБ."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Поддерживается создание и управление несколькими дисками (CRUD) до 4 ТБ каждый — требование выполняется через комбинацию томов.",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/vmware/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Облако VMware"],
+        "recommendation": "Использовать несколько дисков по 4 ТБ и 2 ТБ."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 6,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требуется 8 IP-адресов — Cloud.ru предоставляет статические IP-адреса в количестве, превышающем требуемое, на всех платформах. Это базовая CRUD-операция: создание/удаление/управление IP.",
+    "evidence": "Платформа Облако VMware предоставляет сервисы по моделям IaaS, среди которых виртуальный ЦОД... [2]",
+    "source_urls": [
+      "https://cloud.ru/docs/vmware/overview/index"
+    ],
+    "recommendation": "Использовать стандартные возможности управления IP-адресами на любой платформе Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Поддерживается создание и управление IP-адресами — требование 8 IP выполняется без ограничений.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/vmware/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Облако VMware"],
+        "recommendation": "Использовать стандартные возможности управления IP."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Поддерживается создание и управление IP-адресами — требование 8 IP выполняется без ограничений.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/vmware/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Облако VMware"],
+        "recommendation": "Использовать стандартные возможности управления IP."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Поддерживается создание и управление IP-адресами — требование 8 IP выполняется без ограничений.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/vmware/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Облако VMware"],
+        "recommendation": "Использовать стандартные возможности управления IP."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Поддерживается создание и управление IP-адресами — требование 8 IP выполняется без ограничений.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/vmware/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Облако VMware"],
+        "recommendation": "Использовать стандартные возможности управления IP."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 7,
+    "verdict": "partial",
+    "confidence": 0.7,
+    "reasoning": "Требуется 30 экземпляров ОС Astra Linux Воронеж или RED OS (ФСТЭК). Cloud.ru не предоставляет предустановленные ОС ФСТЭК в портфеле — это требует загрузки пользовательского образа. Поддержка таких ОС возможна, но не встроенная — требуется уточнение у менеджера.",
+    "evidence": "Реестр отечественного ПО ✓ — — (только в Evolution и Advanced, но без указания конкретных ОС ФСТЭК). [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Загрузить пользовательские образы Astra Linux Воронеж или RED OS на любую платформу Cloud.ru. Уточнить у клиентского менеджера наличие сертифицированных образов.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Платформа поддерживает загрузку пользовательских образов, но предустановленные ОС ФСТЭК не указаны в документации — требуется уточнение.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Загрузить пользовательские образы. Уточнить у менеджера наличие сертифицированных образов."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Платформа поддерживает загрузку пользовательских образов, но предустановленные ОС ФСТЭК не указаны в документации — требуется уточнение.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Загрузить пользовательские образы. Уточнить у менеджера наличие сертифицированных образов."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Платформа поддерживает загрузку пользовательских образов, но предустановленные ОС ФСТЭК не указаны в документации — требуется уточнение.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Загрузить пользовательские образы. Уточнить у менеджера наличие сертифицированных образов."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Платформа поддерживает загрузку пользовательских образов, но предустановленные ОС ФСТЭК не указаны в документации — требуется уточнение.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Загрузить пользовательские образы. Уточнить у менеджера наличие сертифицированных образов."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 8,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требуется безлимитный доступ 5–1000 Мбит/с — Cloud.ru предоставляет Direct Connect до 100 Гбит/с и резервированные 100G каналы, что превышает требование. Безлимитность подразумевается в рамках тарифных планов.",
+    "evidence": "Для доступа в интернет Cloud.ru использует резервированные 100G каналы от различных интернет-провайдеров. [3]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/communication-channels/communication-channels__communication-channels"
+    ],
+    "recommendation": "Использовать Direct Connect для обеспечения гарантированной скорости до 1000 Мбит/с и выше.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Direct Connect до 100 Гбит/с доступен на всех платформах — требование 1000 Мбит/с выполняется с запасом.",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/vdc/ug/topics/faq/communication-channels/communication-channels__communication-channels"],
+        "source_titles": ["Какие каналы связи использует Cloud.ru?"],
+        "recommendation": "Использовать Direct Connect."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Direct Connect до 100 Гбит/с доступен на всех платформах — требование 1000 Мбит/с выполняется с запасом.",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/vdc/ug/topics/faq/communication-channels/communication-channels__communication-channels"],
+        "source_titles": ["Какие каналы связи использует Cloud.ru?"],
+        "recommendation": "Использовать Direct Connect."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Direct Connect до 100 Гбит/с доступен на всех платформах — требование 1000 Мбит/с выполняется с запасом.",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/vdc/ug/topics/faq/communication-channels/communication-channels__communication-channels"],
+        "source_titles": ["Какие каналы связи использует Cloud.ru?"],
+        "recommendation": "Использовать Direct Connect."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Direct Connect до 100 Гбит/с доступен на всех платформах — требование 1000 Мбит/с выполняется с запасом.",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/vdc/ug/topics/faq/communication-channels/communication-channels__communication-channels"],
+        "source_titles": ["Какие каналы связи использует Cloud.ru?"],
+        "recommendation": "Использовать Direct Connect."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]
+```

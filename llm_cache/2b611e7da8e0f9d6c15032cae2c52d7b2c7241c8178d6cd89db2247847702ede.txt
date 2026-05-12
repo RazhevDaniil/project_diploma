@@ -1,0 +1,294 @@
+[
+  {
+    "requirement_id": 95,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование к коэффициенту доступности Объектного Хранилища A ≥ 99,95% выполняется платформой Advanced, где SLA для Object Storage Service (OBS) составляет 99,95% [1]. Размер неустойки 0% — это договорное условие, которое Cloud.ru готов зафиксировать в индивидуальном SLA.",
+    "evidence": "Object Storage Service 99,95% Общее соглашение об уровне предоставления услуг [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/advanced/overview/sla"
+    ],
+    "recommendation": "Использовать платформу Advanced для размещения Объектного Хранилища. Условия неустойки фиксируются в проектном SLA.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основной документации Cloud.ru. Атрибуты SLA требуют уточнения у клиентского менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера доступность SLA для ГосОблака."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "В документации по Облаку VMware не указан SLA для Объектного Хранилища. SLA приведён для вычислительных ресурсов (99.982%), но не для OBS.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/vmware/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Облако VMware"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, предоставляется ли SLA для OBS на платформе Облако VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "external_service",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "SLA для Object Storage Service (OBS) на платформе Advanced составляет 99,95%, что соответствует требованию A ≥ 99,95%. Неустойка 0% — договорная возможность.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Использовать платформу Advanced. Условия неустойки фиксируются в проектном SLA."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "В документации Evolution указано, что SLA зафиксирован, но конкретные значения для Объектного Хранилища не приведены. Требуется уточнение.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера SLA для OBS на платформе Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 96,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование к коэффициенту доступности 99,95% > A ≥ 99,4% выполняется платформой Advanced, где OBS имеет SLA 99,95% [1]. Это значение попадает в диапазон и обеспечивает соответствие. Размер неустойки 5% — договорное условие, которое Cloud.ru готов принять.",
+    "evidence": "Object Storage Service 99,95% Общее соглашение об уровне предоставления услуг [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/advanced/overview/sla"
+    ],
+    "recommendation": "Использовать платформу Advanced. Условия неустойки фиксируются в проектном SLA.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основной документации Cloud.ru. Атрибуты SLA требуют уточнения у клиентского менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера доступность SLA для ГосОблака."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "В документации по Облаку VMware не указан SLA для Объектного Хранилища. SLA приведён для вычислительных ресурсов (99.982%), но не для OBS.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/vmware/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Облако VMware"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, предоставляется ли SLA для OBS на платформе Облако VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "external_service",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "SLA для Object Storage Service (OBS) на платформе Advanced составляет 99,95%, что попадает в диапазон 99,95% > A ≥ 99,4%. Неустойка 5% — договорная возможность.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Использовать платформу Advanced. Условия неустойки фиксируются в проектном SLA."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "В документации Evolution указано, что SLA зафиксирован, но конкретные значения для Объектного Хранилища не приведены. Требуется уточнение.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера SLA для OBS на платформе Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 97,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование к коэффициенту доступности 99,4% > A ≥ 99% выполняется платформой Advanced, где OBS имеет SLA 99,95% [1], что выше нижней границы 99%. Размер неустойки 10% — договорное условие, которое Cloud.ru готов принять.",
+    "evidence": "Object Storage Service 99,95% Общее соглашение об уровне предоставления услуг [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/advanced/overview/sla"
+    ],
+    "recommendation": "Использовать платформу Advanced. Условия неустойки фиксируются в проектном SLA.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основной документации Cloud.ru. Атрибуты SLA требуют уточнения у клиентского менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера доступность SLA для ГосОблака."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "В документации по Облаку VMware не указан SLA для Объектного Хранилища. SLA приведён для вычислительных ресурсов (99.982%), но не для OBS.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/vmware/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Облако VMware"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, предоставляется ли SLA для OBS на платформе Облако VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "external_service",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "SLA для Object Storage Service (OBS) на платформе Advanced составляет 99,95%, что выше нижней границы 99% в требовании. Неустойка 10% — договорная возможность.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Использовать платформу Advanced. Условия неустойки фиксируются в проектном SLA."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "В документации Evolution указано, что SLA зафиксирован, но конкретные значения для Объектного Хранилища не приведены. Требуется уточнение.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера SLA для OBS на платформе Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 98,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование к коэффициенту доступности 99% > A ≥ 95% выполняется платформой Advanced, где OBS имеет SLA 99,95% [1], что выше нижней границы 95%. Размер неустойки 20% — договорное условие, которое Cloud.ru готов принять.",
+    "evidence": "Object Storage Service 99,95% Общее соглашение об уровне предоставления услуг [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/advanced/overview/sla"
+    ],
+    "recommendation": "Использовать платформу Advanced. Условия неустойки фиксируются в проектном SLA.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основной документации Cloud.ru. Атрибуты SLA требуют уточнения у клиентского менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера доступность SLA для ГосОблака."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "В документации по Облаку VMware не указан SLA для Объектного Хранилища. SLA приведён для вычислительных ресурсов (99.982%), но не для OBS.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/vmware/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Облако VMware"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, предоставляется ли SLA для OBS на платформе Облако VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "external_service",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "SLA для Object Storage Service (OBS) на платформе Advanced составляет 99,95%, что выше нижней границы 95% в требовании. Неустойка 20% — договорная возможность.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Использовать платформу Advanced. Условия неустойки фиксируются в проектном SLA."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "В документации Evolution указано, что SLA зафиксирован, но конкретные значения для Объектного Хранилища не приведены. Требуется уточнение.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера SLA для OBS на платформе Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

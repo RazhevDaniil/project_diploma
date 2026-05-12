@@ -1,0 +1,249 @@
+[
+  {
+    "requirement_id": 109,
+    "verdict": "needs_clarification",
+    "confidence": 0.4,
+    "reasoning": "Требование представляет собой обрывок таблицы без конкретных значений параметров (наименования услуг, единицы измерения, количества). Не указано, какие именно услуги требуются, поэтому невозможно оценить соответствие возможностям Cloud.ru. Требуется уточнение содержания таблицы 10.",
+    "evidence": "",
+    "source_urls": [
+      "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas",
+      "https://cloud.ru/docs/advanced/overview/index",
+      "https://cloud.ru/docs/overview/support/index"
+    ],
+    "recommendation": "Уточнить у заказчика содержание таблицы 10: какие именно услуги и параметры (наименования, единицы измерения, лимиты) требуются. Cloud.ru предоставляет широкий спектр IaaS/PaaS-услуг, но без конкретики оценка невозможна.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru, а требование не содержит конкретных параметров для оценки.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, является ли ГосОблако целевой платформой, и предоставить детализацию требований."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Облако VMware поддерживает IaaS-услуги, но требование не содержит конкретных наименований или параметров услуг для сопоставления.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"],
+        "source_titles": ["Зоны ответственности Cloud.ru и потребителей услуг"],
+        "recommendation": "Уточнить, какие именно услуги (например, ВМ, сети, хранилища) требуются, и их параметры. Cloud.ru VMware поддерживает гибкую настройку виртуальных ресурсов."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Advanced предоставляет более 50 сервисов IaaS/PaaS, но требование не указывает, какие именно услуги и параметры требуются.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Advanced"],
+        "recommendation": "Уточнить перечень требуемых услуг. Advanced поддерживает широкий набор сервисов, включая вычисления, хранилища, сети, базы данных."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Evolution предоставляет базовые IaaS-услуги (ВМ, сети, диски), но требование не содержит конкретных параметров для оценки соответствия.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить, какие именно услуги и лимиты требуются. Evolution поддерживает вычислительные ресурсы с SLA 99,9%."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 110,
+    "verdict": "needs_clarification",
+    "confidence": 0.4,
+    "reasoning": "Требование содержит только заголовки столбцов таблицы («Тестовая зона», «Этапы», «Максимальное количество единичных услуг по этапам по Договору»), но не указывает конкретные значения, лимиты или параметры. Без данных невозможно оценить соответствие.",
+    "evidence": "",
+    "source_urls": [
+      "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas",
+      "https://cloud.ru/docs/advanced/overview/index"
+    ],
+    "recommendation": "Уточнить у заказчика конкретные значения для «Тестовой зоны», «Этапов» и «Максимального количества единичных услуг». Cloud.ru может настроить индивидуальные SLA и лимиты через договор.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации, а требование не содержит конкретных параметров для оценки.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, является ли ГосОблако целевой платформой, и предоставить детализацию требований."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Облако VMware поддерживает создание тестовых зон и этапов развертывания, но требование не содержит конкретных значений лимитов или этапов для сопоставления.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"],
+        "source_titles": ["Зоны ответственности Cloud.ru и потребителей услуг"],
+        "recommendation": "Уточнить, какие именно этапы и лимиты требуются. Cloud.ru VMware позволяет настраивать тестовые среды и лимиты через договор и UI."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Advanced поддерживает создание тестовых сред и этапов развертывания, но требование не содержит конкретных значений для оценки соответствия.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Advanced"],
+        "recommendation": "Уточнить параметры тестовых зон и этапов. Advanced позволяет настраивать сложные рабочие процессы и лимиты через API и UI."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Evolution поддерживает базовые тестовые среды, но требование не содержит конкретных значений для оценки соответствия.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить, какие именно этапы и лимиты требуются. Evolution поддерживает создание тестовых ВМ и сетей с SLA 99,9%."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 111,
+    "verdict": "needs_clarification",
+    "confidence": 0.4,
+    "reasoning": "Требование состоит исключительно из повторяющихся фраз «Услуга 1: Услуга 1» без каких-либо конкретных параметров, значений или смысловой нагрузки. Это обрывок таблицы, не содержащий информации для оценки. Необходимо уточнение содержания.",
+    "evidence": "",
+    "source_urls": [
+      "https://cloud.ru/docs/advanced/overview/index",
+      "https://cloud.ru/docs/advanced/overview/knowledge-sources"
+    ],
+    "recommendation": "Уточнить у заказчика, что именно подразумевается под «Услуга 1: Услуга 1». Требование не содержит информации для оценки соответствия.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации, а требование не содержит конкретных параметров для оценки.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, является ли ГосОблако целевой платформой, и предоставить детализацию требований."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Требование не содержит конкретных параметров услуг, поэтому невозможно оценить соответствие.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить содержание требуемой услуги. Cloud.ru VMware поддерживает широкий спектр IaaS-услуг."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Требование не содержит конкретных параметров, поэтому невозможно оценить соответствие.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Advanced"],
+        "recommendation": "Уточнить, какие именно услуги и параметры требуются. Advanced предоставляет более 50 сервисов."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Требование не содержит конкретных параметров, поэтому невозможно оценить соответствие.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить содержание требуемой услуги. Evolution поддерживает базовые IaaS-услуги."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 112,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование указывает на необходимость предоставления 40 виртуальных машин (vCPU) на этапе отчетного периода (31 день). В документации Cloud.ru (источник [1]) подтверждено, что Облако VMware поддерживает до 128 спецификаций виртуальных машин, а в источнике [2] указано, что лимиты на виртуальные ресурсы (vCPU, RAM) настраиваются при заключении договора. Значение 40 шт. укладывается в возможности платформы.",
+    "evidence": "«Количество спецификаций виртуальных машин 45 128» [1]; «При заключении договора вы получаете доступ к: виртуальному процессору; виртуальной памяти» [2]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/vdi/ag/topics/limits"
+    ],
+    "recommendation": "Cloud.ru Облако VMware поддерживает развертывание до 128 спецификаций ВМ, включая 40 виртуальных машин. Рекомендуется использовать платформу Облако VMware для реализации требования. Дополнительно можно настроить SLA 99,98% и гибкую конфигурацию vCPU.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru, поэтому невозможно подтвердить поддержку 40 ВМ.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживает ли ГосОблако развертывание 40 ВМ."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware поддерживает до 128 спецификаций виртуальных машин (источник [1]), а лимиты на vCPU настраиваются при заключении договора (источник [2]). Требование 40 шт. укладывается в возможности платформы.",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "https://cloud.ru/docs/vdi/ag/topics/limits"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru",
+          "Ограничения и особенности"
+        ],
+        "recommendation": "Использовать Облако VMware — платформа поддерживает до 128 спецификаций ВМ, SLA 99,98%, гибкая настройка vCPU и RAM."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced поддерживает более 128 спецификаций виртуальных машин и позволяет настраивать лимиты vCPU. Требование 40 ВМ легко покрывается.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Advanced"],
+        "recommendation": "Использовать Advanced — платформа поддерживает до 128+ спецификаций ВМ, гибкая конфигурация, SLA 99,95%."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution поддерживает создание виртуальных машин с лимитами, определяемыми договором. Хотя в документации нет точного числа спецификаций, 40 ВМ — типичный объем для массовой платформы.",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"],
+        "source_titles": ["Ограничения и особенности сервиса «Виртуальные машины»"],
+        "recommendation": "Использовать Evolution — платформа поддерживает создание до сотен ВМ, SLA 99,9%, подходит для массового развертывания."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

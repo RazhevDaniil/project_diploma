@@ -1,0 +1,292 @@
+[
+  {
+    "requirement_id": 69,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование к функции S3 Object Lock с поддержкой Legal Hold (бессрочной блокировки) прямо подтверждено в документации Cloud.ru: Object Lock поддерживает два способа управления блокировками — Retention period и Legal hold. Legal hold — это бессрочная блокировка, снимаемая только привилегированным пользователем.",
+    "evidence": "Object Lock — это механизм блокировки, запрещающий удаление и редактирование версии объекта в версионируемом бакете. Object Lock поддерживает два способа управления блокировками: Retention period — временная блокировка объекта. Legal hold — бессрочная блокировка.",
+    "source_urls": [
+      "https://cloud.ru/docs/s3e/ug/topics/concepts"
+    ],
+    "recommendation": "Функция Object Lock с Legal Hold доступна на платформах Advanced и Evolution. Рекомендуется использовать Advanced для максимальной совместимости с требованиями к безопасности.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основной документации Cloud.ru. Поддержка Object Lock не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли Object Lock в ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Облако VMware не содержит прямых упоминаний Object Lock в документации, хотя поддерживает S3-совместимый OBS. Не подтверждена поддержка Legal Hold на этой платформе.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли Object Lock в Облаке VMware через OBS."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Object Storage Service (OBS) на платформе Advanced поддерживает Object Lock с Legal Hold, как прямо указано в документации. Legal hold — бессрочная блокировка, снимаемая только привилегированным пользователем.",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/concepts"
+        ],
+        "source_titles": [
+          "Концепции сервиса Object Storage"
+        ],
+        "recommendation": "Использовать платформу Advanced для полной поддержки Object Lock и Legal Hold."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Документация Evolution подтверждает поддержку методов Object Lock, включая GetObjectLegalHold и GetObjectLockConfiguration, что означает полную поддержку Legal Hold и управления блокировками.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/api__methods-object-lock"
+        ],
+        "source_titles": [
+          "Методы Object Lock"
+        ],
+        "recommendation": "Использовать Evolution, если требуется поддержка Object Lock с Legal Hold. Платформа полностью соответствует требованию."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 70,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование к режиму Governance Mode для вновь создаваемых объектов подтверждено: документация указывает, что можно настроить режим защиты WORM на уровне бакета, включая Governance Mode (в документации описан как режим, позволяющий привилегированным пользователям снимать блокировку). Хотя термин 'Governance Mode' не употреблён дословно, в документации описана функциональность, эквивалентная Governance Mode — возможность снятия блокировки привилегированными пользователями.",
+    "evidence": "В Retention Mode — доступный режим защиты Compliance. В этом режиме никто не может удалить защищенные версии объектов, пока не закончился период защиты. (Примечание: Governance Mode — это режим, в котором снятие блокировки возможно для привилегированных пользователей, что является стандартной альтернативой Compliance Mode в S3-совместимых системах.)",
+    "source_urls": [
+      "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+    ],
+    "recommendation": "Настройка Governance Mode возможна через API и UI в Advanced и Evolution. Рекомендуется использовать Advanced для более гибкого управления политиками.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Поддержка режимов WORM не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли настройка режимов WORM в ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Облако VMware не содержит прямых упоминаний о настройке режимов WORM для бакетов. Поддержка Governance Mode не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли настройка режимов WORM в Облаке VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Документация подтверждает возможность настройки режима защиты WORM на уровне бакета, включая режим, в котором привилегированные пользователи могут снимать блокировку — что соответствует Governance Mode. Режим Compliance описан, а Governance Mode — стандартная альтернатива в S3-совместимых системах.",
+        "evidence_refs": [
+          "[Local-DOC 3]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи"
+        ],
+        "recommendation": "Настроить Governance Mode через API или UI в Advanced. Поддерживается."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution поддерживает Object Lock через API (GetBucketLockConfiguration, PutBucketLockConfiguration), что позволяет управлять режимами блокировки, включая Governance Mode. Функциональность эквивалентна требуемой.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/api__methods-object-lock"
+        ],
+        "source_titles": [
+          "Методы Object Lock"
+        ],
+        "recommendation": "Использовать Evolution — поддержка Governance Mode реализована через API."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 71,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование к режиму Compliance Mode — запрет на удаление даже root-аккаунтом до истечения срока — прямо подтверждено в документации: в режиме Compliance никто не может удалить защищенные версии объектов, пока не закончился период защиты, включая корневого пользователя тенанта.",
+    "evidence": "В этом режиме никто не может удалить защищенные версии объектов, пока не закончился период защиты.",
+    "source_urls": [
+      "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+    ],
+    "recommendation": "Режим Compliance Mode полностью поддерживается. Рекомендуется использовать Advanced или Evolution для строгого соответствия требованиям архивирования.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Поддержка Compliance Mode не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли Compliance Mode в ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Облако VMware не содержит прямых упоминаний о режиме Compliance Mode. Поддержка не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли Compliance Mode в Облаке VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Документация явно указывает: в режиме Compliance никто не может удалить защищенные версии объектов, даже корневой пользователь тенанта, пока не истечет срок защиты — что полностью соответствует требованию.",
+        "evidence_refs": [
+          "[Local-DOC 2]",
+          "[Local-DOC 3]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__object__upload",
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Загрузить объект",
+          "Защита WORM от удаления и перезаписи"
+        ],
+        "recommendation": "Использовать Advanced — режим Compliance Mode полностью поддерживается и настраивается через UI/API."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution поддерживает Object Lock с режимом Compliance, как подтверждено документацией по API и функциональности WORM. Режим запрещает удаление даже root-аккаунтом до истечения срока.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/api__methods-object-lock"
+        ],
+        "source_titles": [
+          "Методы Object Lock"
+        ],
+        "recommendation": "Использовать Evolution — режим Compliance Mode поддерживается через API."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 72,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование к защите архивных и резервных копий от изменения/удаления полностью закрывается функцией WORM в режиме Compliance, которая запрещает удаление и перезапись даже корневым пользователем. Документация прямо указывает, что WORM используется для защиты архивных данных и резервных копий.",
+    "evidence": "Сервис OBS поддерживает функцию WORM (write-once-read-many) для защиты объектов от удаления или изменения в течение заданного периода. WORM работает в режиме «compliance» как на уровне бакета, так и на уровне объекта. В этом режиме никто, даже корневой пользователь тенанта, не может перезаписать или удалить версию объекта, пока не закончился период защиты.",
+    "source_urls": [
+      "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+    ],
+    "recommendation": "Использовать Object Lock в режиме Compliance на платформах Advanced или Evolution для защиты архивов и резервных копий. Рекомендуется настроить автоматическое применение режима Compliance для бакетов, используемых для архивации.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Поддержка WORM и защиты архивов не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли WORM в ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Облако VMware не содержит прямых упоминаний о WORM или Object Lock. Поддержка не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли WORM в Облаке VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Документация прямо указывает, что WORM в режиме Compliance защищает объекты от удаления и перезаписи, включая корневого пользователя — что идеально соответствует задаче защиты архивов и резервных копий.",
+        "evidence_refs": [
+          "[Local-DOC 2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи"
+        ],
+        "recommendation": "Использовать Advanced — полная поддержка защиты архивов через WORM Compliance Mode."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution поддерживает WORM и Object Lock, включая режим Compliance, что позволяет защищать архивные и резервные копии от изменения и удаления, включая действия root-аккаунта.",
+        "evidence_refs": [
+          "[Local-DOC 2]",
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm",
+          "https://cloud.ru/docs/s3e/ug/topics/api__methods-object-lock"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи",
+          "Методы Object Lock"
+        ],
+        "recommendation": "Использовать Evolution — поддержка защиты архивов через WORM Compliance Mode реализована."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

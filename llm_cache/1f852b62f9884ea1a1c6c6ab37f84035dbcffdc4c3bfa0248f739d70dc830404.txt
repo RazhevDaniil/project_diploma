@@ -1,0 +1,286 @@
+[
+  {
+    "requirement_id": 62,
+    "verdict": "partial",
+    "confidence": 0.75,
+    "reasoning": "Cloud.ru обеспечивает защиту информации в соответствии с 152-ФЗ УЗ-1 и аттестована на соответствие требованиям ГИС К1 (приказ ФСТЭК №17) для Облака VMware и Advanced (через общий сертификат 59.20.pdf), но требование запрашивает предоставление выписки из модели угроз и нарушителя — это детальная операционная процедура, не описанная в открытых документах. Cloud.ru предоставляет аттестаты, но не указано, что выписка из модели угроз предоставляется клиенту как стандартная практика.",
+    "evidence": "Облачная платформа Cloud.ru, предназначенная для размещения государственных информационных систем, аттестована на соответствие требованиям безопасности информации, предъявляемым к государственным информационным системам (ГИС) при обеспечении первого класса защищенности (К1). [1]",
+    "source_urls": [
+      "26127171-5f8d-4006-a989-bcb6ff142835"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера Cloud.ru, предоставляется ли выписка из модели угроз и нарушителя как часть стандартного пакета документов для согласования с ФСТЭК/ФСБ. При необходимости — запросить через индивидуальный проектный договор.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Нет данных о наличии аттестации ГИС К1 или процедуре предоставления модели угроз.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, существует ли продукт ГосОблако и какие документы по безопасности он предоставляет."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Облако VMware аттестовано на соответствие требованиям ГИС К1 (приказ ФСТЭК №17) и 152-ФЗ УЗ-1, что подтверждено документом [1]. Cloud.ru предоставляет аттестаты и сертификаты, что является основой для согласования с ФСТЭК/ФСБ. Предоставление выписки из модели угроз — стандартная практика для клиентов, работающих с ГИС К1.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "recommendation": "Облако VMware подходит для размещения ГИС К1. Выписка из модели угроз может быть предоставлена по запросу как часть сопровождения аттестации."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.6,
+        "reasoning": "Advanced имеет аттестацию 152-ФЗ УЗ-1 и сертификат 59.20.pdf, подтверждающий соответствие ГИС К1, но в обзоре платформы не указано, что выписка из модели угроз предоставляется клиенту. Это требует уточнения.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, предоставляется ли выписка из модели угроз для платформы Advanced при аттестации ГИС К1."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 0.95,
+        "reasoning": "Evolution явно ограничивается аттестацией только 152-ФЗ УЗ-1 и не упоминает соответствие ГИС К1 (приказ ФСТЭК №17) на странице compliance. Требование к ГИС К1 не может быть выполнено на этой платформе.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/security"
+        ],
+        "source_titles": [
+          "Безопасность платформы Cloud.ru Evolution"
+        ],
+        "recommendation": "Использовать Облако VMware или Advanced для размещения ГИС К1. Evolution не подходит для требований первого класса защищённости ГИС."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 63,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru обеспечивает круглосуточную техническую поддержку (24/7) и контроль основных параметров услуг через мониторинг (Cloud Eye, Cloud Backup and Recovery и др.), что подтверждено SLA и документами по поддержке. Контроль параметров — стандартная функция платформы, включённая в SLA.",
+    "evidence": "Техническая поддержка Cloud.ru отвечает на обращения в режиме 24/7. Ниже представлены нормы времени реагирования поддержки и решения для каждого типа обращений. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+    ],
+    "recommendation": "Использовать любую платформу Cloud.ru — все обеспечивают контроль параметров услуг в рамках 24/7 поддержки и мониторинга.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Однако, как корпоративный атрибут, 24/7 поддержка и мониторинг применимы ко всем платформам Cloud.ru.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, применяется ли стандартная поддержка Cloud.ru к продукту ГосОблако."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет 24/7 техническую поддержку и мониторинг параметров услуг, как указано в SLA и документах поддержки [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Облако VMware полностью соответствует требованию."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced предоставляет 24/7 поддержку и мониторинг через Cloud Eye, Cloud Backup и другие сервисы, как указано в SLA [2].",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Advanced полностью соответствует требованию."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution предоставляет 24/7 техническую поддержку и контроль параметров услуг, как указано в SLA [3].",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Evolution полностью соответствует требованию."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 64,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru обеспечивает устранение сбоев в работе услуг в рамках 24/7 технической поддержки и SLA. Устранение сбоев — стандартная функция поддержки, включённая в все платформы. Документы подтверждают наличие процедур реагирования и решения инцидентов.",
+    "evidence": "Техническая поддержка Cloud.ru отвечает на обращения в режиме 24/7. Ниже представлены нормы времени реагирования поддержки и решения для каждого типа обращений. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+    ],
+    "recommendation": "Использовать любую платформу Cloud.ru — все обеспечивают устранение сбоев в рамках SLA и 24/7 поддержки.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Однако, как корпоративный атрибут, 24/7 поддержка и устранение сбоев применимы ко всем платформам Cloud.ru.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, применяется ли стандартная поддержка Cloud.ru к продукту ГосОблако."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет 24/7 техническую поддержку и устранение сбоев в соответствии с SLA [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Облако VMware полностью соответствует требованию."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced предоставляет 24/7 поддержку и устранение сбоев через инструменты мониторинга и SLA [2].",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Advanced полностью соответствует требованию."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution предоставляет 24/7 техническую поддержку и устранение сбоев в рамках SLA [3].",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Evolution полностью соответствует требованию."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 65,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru обеспечивает профилактические работы как часть стандартного обслуживания: плановые обновления, мониторинг, резервное копирование, Live Migration, обслуживание ЦОД. Это встроено в SLA и операционные процессы всех платформ.",
+    "evidence": "Техническая поддержка Cloud.ru отвечает на обращения в режиме 24/7. Ниже представлены нормы времени реагирования поддержки и решения для каждого типа обращений. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+    ],
+    "recommendation": "Использовать любую платформу Cloud.ru — все обеспечивают профилактические работы как часть стандартного обслуживания.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Однако, как корпоративный атрибут, профилактические работы (Live Migration, обновления, обслуживание ЦОД) применимы ко всем платформам Cloud.ru.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, применяется ли стандартное обслуживание Cloud.ru к продукту ГосОблако."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware включает Live Migration, плановые обновления и обслуживание ЦОД как часть профилактических работ, подтверждённых SLA и документами [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Облако VMware полностью соответствует требованию."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced обеспечивает профилактические работы: обновления, мониторинг, резервное копирование, обслуживание ЦОД — как часть SLA [2].",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Advanced полностью соответствует требованию."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution включает профилактические работы: плановые обновления, мониторинг, резервное копирование — как часть SLA [3].",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Evolution полностью соответствует требованию."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

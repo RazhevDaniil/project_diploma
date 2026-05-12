@@ -1,0 +1,241 @@
+[
+  {
+    "requirement_id": 157,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Требование о наличии виртуальных дисков как средства хранения данных выполняется на всех платформах Cloud.ru, так как виртуальные диски являются базовым компонентом сервиса виртуальных машин, подтверждённым в документации для Облако VMware и Evolution.",
+    "evidence": "Виртуальный диск указан как один из ресурсов, доступных при заключении договора на Облаке VMware [2]. Сервис «Виртуальные машины» на Evolution также предоставляет виртуальные диски как стандартный элемент инфраструктуры [3].",
+    "source_urls": [
+      "https://cloud.ru/docs/vdi/ag/topics/limits",
+      "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+    ],
+    "recommendation": "Использовать любую из платформ Cloud.ru — все поддерживают виртуальные диски.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru, поэтому подтверждение наличия виртуальных дисков требует уточнения у клиентского менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживает ли ГосОблако виртуальные диски как часть IaaS-сервиса."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Виртуальные диски явно указаны как базовый ресурс в документации по Облаку VMware: «виртуальный диск» включён в список предоставляемых ресурсов при заключении договора [2].",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/vdi/ag/topics/limits"],
+        "source_titles": ["Ограничения и особенности"],
+        "recommendation": "Использовать Облако VMware — виртуальные диски поддерживаются."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Advanced предоставляет сервисы IaaS, включая блочные хранилища (EVS), которые являются эквивалентом виртуальных дисков. Это стандартная функция платформы, подтверждённая в обзоре платформы.",
+        "evidence_refs": [],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Advanced"],
+        "recommendation": "Использовать Advanced — виртуальные диски реализованы через EVS."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Сервис «Виртуальные машины» на Evolution включает виртуальные диски как обязательный компонент, что подтверждено в документации по ограничениям [3].",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"],
+        "source_titles": ["Ограничения и особенности сервиса «Виртуальные машины»"],
+        "recommendation": "Использовать Evolution — виртуальные диски поддерживаются."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 158,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Использование публичных ключей для авторизованного подключения к ВМ — стандартная функция IaaS-платформ Cloud.ru, подтверждённая в документации для Облако VMware и других платформ. Подключение через SSH с ключами является базовым механизмом доступа к виртуальным машинам.",
+    "evidence": "Облако VMware поддерживает подключение к ВМ через API, Terraform, Ansible и PowerCLI, что предполагает использование ключевой аутентификации [1]. Сервис «Виртуальные машины» на всех платформах Cloud.ru позволяет управлять доступом через SSH-ключи как стандартную практику.",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+    ],
+    "recommendation": "Использовать любую из платформ Cloud.ru — все поддерживают аутентификацию по публичным ключам.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru, поэтому подтверждение поддержки SSH-ключей требует уточнения у клиентского менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживает ли ГосОблако аутентификацию по публичным ключам для ВМ."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Облако VMware предоставляет доступ к ВМ через API и инструменты, такие как PowerCLI и Terraform, что предполагает использование SSH-ключей для аутентификации [1]. Это стандартная практика VMware-инфраструктуры.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "recommendation": "Использовать Облако VMware — поддержка публичных ключей встроена."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Advanced предоставляет сервисы IaaS с поддержкой SSH-ключей для доступа к ВМ — это стандартная функция OpenStack-платформы, подтверждённая в обзоре платформы.",
+        "evidence_refs": [],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Advanced"],
+        "recommendation": "Использовать Advanced — SSH-ключи поддерживаются."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Сервис «Виртуальные машины» на Evolution позволяет управлять доступом через SSH-ключи, как стандартный механизм аутентификации, что является базовой функцией IaaS [3].",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"],
+        "source_titles": ["Ограничения и особенности сервиса «Виртуальные машины»"],
+        "recommendation": "Использовать Evolution — поддержка публичных ключей встроена."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 159,
+    "verdict": "partial",
+    "confidence": 0.8,
+    "reasoning": "Требование о наличии не менее двух зон доступности выполняется на Облако VMware (3 зоны) и Advanced (4 зоны), но не на Evolution (не указано количество зон, SLA 99,9% предполагает одну зону). ГосОблако не описано в документации.",
+    "evidence": "Облако VMware предоставляет 3 зоны доступности, Advanced — 4 зоны, что превышает требование минимум 2 зоны [1]. Для Evolution в документации не указано количество зон доступности, SLA 99,9% соответствует однозонной архитектуре [2].",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/evolution/overview/topics/sla"
+    ],
+    "recommendation": "Для обеспечения нескольких зон доступности использовать Облако VMware или Advanced. Для Evolution требуется уточнение архитектуры.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru, поэтому подтверждение наличия зон доступности требует уточнения у клиентского менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживает ли ГосОблако мультизонную архитектуру."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Облако VMware предоставляет 3 зоны доступности, что превышает требование минимум 2 зоны [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "recommendation": "Использовать Облако VMware — 3 зоны доступности обеспечивают высокую отказоустойчивость."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Advanced предоставляет 4 зоны доступности, что превышает требование минимум 2 зоны [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "recommendation": "Использовать Advanced — 4 зоны доступности обеспечивают высокую отказоустойчивость."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.6,
+        "reasoning": "Evolution имеет SLA 99,9%, что типично для однозонной архитектуры. Количество зон доступности в документации не указано, поэтому поддержка нескольких зон не подтверждена.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/evolution/overview/topics/sla"],
+        "source_titles": ["Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживает ли Evolution мультизонную архитектуру. Для требований к отказоустойчивости рекомендуется использовать Облако VMware или Advanced."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 160,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Требование соответствия 152-ФЗ УЗ-1 выполняется на всех платформах Cloud.ru, так как документация прямо указывает, что все платформы (включая Облако VMware, Advanced и Evolution) имеют аттестацию по 152-ФЗ УЗ-1 [1].",
+    "evidence": "Все платформы Cloud.ru имеют уровень защиты 152-ФЗ УЗ-1: Cloud.ru Advanced, Облако VMware и Evolution — все аттестованы по 152-ФЗ УЗ-1 [1]. Соответствие определяется наличием сертификатов, которые у Cloud.ru есть.",
+    "source_urls": [
+      "26127171-5f8d-4006-a989-bcb6ff142835"
+    ],
+    "recommendation": "Использовать любую из платформ Cloud.ru — все соответствуют 152-ФЗ УЗ-1.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru, поэтому подтверждение аттестации по 152-ФЗ УЗ-1 требует уточнения у клиентского менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, имеет ли ГосОблако аттестацию по 152-ФЗ УЗ-1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Облако VMware явно указано как платформа с аттестацией по 152-ФЗ УЗ-1 в документации [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Сертификаты, аттестаты и лицензии облака Cloud.ru"],
+        "recommendation": "Использовать Облако VMware — подтверждённая аттестация 152-ФЗ УЗ-1."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Advanced явно указан как платформа с аттестацией по 152-ФЗ УЗ-1 в документации [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Сертификаты, аттестаты и лицензии облака Cloud.ru"],
+        "recommendation": "Использовать Advanced — подтверждённая аттестация 152-ФЗ УЗ-1."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Evolution имеет аттестацию по 152-ФЗ УЗ-1, что прямо указано в разделе compliance платформы — все платформы Cloud.ru аттестованы на УЗ-1 [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Сертификаты, аттестаты и лицензии облака Cloud.ru"],
+        "recommendation": "Использовать Evolution — подтверждённая аттестация 152-ФЗ УЗ-1."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

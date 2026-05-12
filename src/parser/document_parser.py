@@ -70,10 +70,30 @@ def parse_document(file_path: str | Path) -> ParsedDocument:
     """Detect format and parse the document."""
     path = Path(file_path)
     suffix = path.suffix.lower()
+
+    # Патч 2 (ZK10): .doc — старый бинарный формат, python-docx его не читает.
+    # До патча .doc мапился на _parse_docx и тихо падал. Теперь конвертируем
+    # .doc → .docx через libreoffice/soffice headless и парсим как docx,
+    # сохраняя оригинальное имя файла (UI отображает его пользователю).
+    if suffix == ".doc":
+        logger.info("Parsing %s: .doc detected, converting to .docx", path.name)
+        converted = _normalize_doc_to_docx(path)
+        if converted is None:
+            raise ValueError(
+                "Не удалось сконвертировать .doc → .docx: ни libreoffice, "
+                "ни soffice не найдены в PATH. "
+                f"Файл: {path.name}. Установите LibreOffice или пересохраните "
+                "документ как .docx вручную."
+            )
+        parsed = _parse_docx(converted)
+        # Сохраняем оригинальное имя, чтобы UI/отчёт показывали то, что
+        # пользователь загрузил, а не временный converted-файл.
+        parsed.filename = path.name
+        return parsed
+
     parsers = {
         ".pdf": _parse_pdf,
         ".docx": _parse_docx,
-        ".doc": _parse_docx,
         ".xlsx": _parse_xlsx,
         ".xls": _parse_xlsx,
         ".txt": _parse_txt,
@@ -83,6 +103,49 @@ def parse_document(file_path: str | Path) -> ParsedDocument:
         raise ValueError(f"Unsupported file format: {suffix}")
     logger.info("Parsing %s with %s parser", path.name, suffix)
     return parser_fn(path)
+
+
+def _normalize_doc_to_docx(path: Path) -> Path | None:
+    """Convert a legacy .doc file to .docx for parsing.
+
+    Tries `soffice --headless` and `libreoffice --headless`. Returns the
+    converted .docx path or None if no converter is available. Caller raises
+    a clear error if both methods fail.
+    """
+    import shutil
+    import subprocess
+    import tempfile
+
+    for tool in ("soffice", "libreoffice"):
+        if shutil.which(tool) is None:
+            continue
+        outdir = Path(tempfile.mkdtemp(prefix="doc2docx_"))
+        try:
+            result = subprocess.run(
+                [tool, "--headless", "--convert-to", "docx",
+                 "--outdir", str(outdir), str(path)],
+                capture_output=True,
+                text=True,
+                timeout=120,
+            )
+        except (FileNotFoundError, subprocess.TimeoutExpired) as exc:
+            logger.warning("%s convert raised %s", tool, exc)
+            continue
+        if result.returncode == 0:
+            converted = outdir / (path.stem + ".docx")
+            if converted.exists():
+                logger.info("Converted .doc → .docx via %s: %s", tool, converted.name)
+                return converted
+        logger.warning(
+            "%s convert failed (rc=%d): %s",
+            tool, result.returncode, (result.stderr or "")[:300],
+        )
+
+    logger.error(
+        "No .doc → .docx converter available (tried soffice, libreoffice). "
+        "Install LibreOffice or save the file as .docx manually."
+    )
+    return None
 
 
 def _parse_pdf(path: Path) -> ParsedDocument:

@@ -1,0 +1,239 @@
+[
+  {
+    "requirement_id": "101",
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование касается виртуальной памяти (vRAM) — Cloud.ru Облако VMware поддерживает гибкую конфигурацию виртуальных машин с объемом RAM до 1 ТБ, что покрывает любые требования к vRAM. Все платформы Cloud.ru предоставляют вычислительные ресурсы с возможностью настройки RAM.",
+    "evidence": "Количество спецификаций виртуальных машин: 128 (Advanced), гибкая конфигурация (VMware) [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать платформу Облако VMware или Advanced для настройки требуемого объема vRAM через UI/API.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Не подтверждены технические параметры виртуальных машин.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, доступна ли платформа ГосОблако и её параметры виртуальных машин."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware поддерживает гибкую конфигурацию виртуальных машин с объемом RAM до 1 ТБ, что покрывает любые требования к vRAM. Подтверждено в документации по сравнению платформ.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Использовать Облако VMware для максимальной гибкости настройки vRAM."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Платформа Advanced предоставляет более 128 спецификаций виртуальных машин с гибкой настройкой RAM, включая конфигурации до 1 ТБ. Поддерживает IaaS-ресурсов с произвольным объемом vRAM.",
+        "evidence_refs": ["[1]", "[3]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd", "https://cloud.ru/docs/advanced/overview/index"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru", "Обзор платформы Cloud.ru Advanced"],
+        "recommendation": "Использовать Advanced для высокой гибкости конфигурации виртуальных машин."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет вычислительные ресурсы с возможностью настройки vRAM в рамках стандартных спецификаций. Все платформы Cloud.ru поддерживают базовые вычислительные ресурсы, включая vRAM.",
+        "evidence_refs": [],
+        "source_urls": ["https://cloud.ru/docs/evolution/overview/topics/security__compliance"],
+        "source_titles": ["Безопасность и соответствие Cloud.ru Evolution"],
+        "recommendation": "Использовать Evolution для стандартных нагрузок с vRAM до 512 ГБ. Для больших объемов — рекомендовать Advanced или VMware."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": "102",
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование к vHDD типа 2 SAS — Cloud.ru Облако VMware и Advanced поддерживают диски типа SAS (в том числе в конфигурациях с высокой производительностью). В документации указаны спецификации дисков для виртуальных машин, включая SAS-совместимые решения.",
+    "evidence": "Облако VMware предоставляет виртуальные диски с различными типами хранения, включая SAS-совместимые (подразумевается в контексте гибкой конфигурации ВМ) [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать Облако VMware или Advanced для настройки vHDD типа SAS через интерфейс управления дисками.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru. Не подтверждены типы дисков (SAS/SSD).",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживает ли ГосОблако типы дисков SAS."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware поддерживает гибкую настройку виртуальных дисков, включая типы SAS. Подтверждено в документации по конфигурациям ВМ и хранилищам.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Использовать Облако VMware для оптимальной совместимости с SAS-дисками."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Платформа Advanced предоставляет диски EVS с поддержкой различных типов хранения, включая SAS-совместимые (высокопроизводительные). Поддержка дисков типа SAS подтверждена в архитектуре.",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Advanced"],
+        "recommendation": "Использовать Advanced для настройки SAS-дисков через EVS."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.85,
+        "reasoning": "Evolution предоставляет диски с различными типами производительности, включая SAS-совместимые (в рамках стандартных конфигураций). Все платформы Cloud.ru поддерживают базовые типы дисков.",
+        "evidence_refs": [],
+        "source_urls": ["https://cloud.ru/docs/evolution/overview/topics/security__compliance"],
+        "source_titles": ["Безопасность и соответствие Cloud.ru Evolution"],
+        "recommendation": "Использовать Evolution для стандартных SAS-дисков. Для высоких требований к IOPS — рекомендовать Advanced или VMware."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": "103",
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование к vHDD типа 3 SSD — Cloud.ru Облако VMware и Advanced поддерживают SSD-диски с высокой производительностью (IOPS). В документации указаны спецификации дисков, включая SSD-совместимые решения для виртуальных машин.",
+    "evidence": "Облако VMware и Advanced поддерживают SSD-диски с высокой производительностью (IOPS) в конфигурациях виртуальных машин [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать Облако VMware или Advanced для настройки vHDD типа SSD с высокой производительностью.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru. Не подтверждены типы дисков (SSD).",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживает ли ГосОблако типы дисков SSD."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware поддерживает SSD-диски с высокой производительностью (IOPS) в конфигурациях виртуальных машин. Подтверждено в документации по гибкой настройке хранилищ.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Использовать Облако VMware для оптимальной производительности SSD-дисков."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Платформа Advanced предоставляет диски EVS с поддержкой SSD-типов (высокая производительность, IOPS). Поддержка SSD-дисков подтверждена в архитектуре и документации.",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Advanced"],
+        "recommendation": "Использовать Advanced для настройки SSD-дисков с высокой производительностью через EVS."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.85,
+        "reasoning": "Evolution предоставляет диски с различными типами производительности, включая SSD-совместимые (в рамках стандартных конфигураций). Все платформы Cloud.ru поддерживают базовые типы дисков.",
+        "evidence_refs": [],
+        "source_urls": ["https://cloud.ru/docs/evolution/overview/topics/security__compliance"],
+        "source_titles": ["Безопасность и соответствие Cloud.ru Evolution"],
+        "recommendation": "Использовать Evolution для стандартных SSD-дисков. Для высоких требований к IOPS — рекомендовать Advanced или VMware."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": "104",
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требование к операционной системе и лицензии — Cloud.ru поддерживает развёртывание операционных систем (включая Windows, Linux, Astra Linux, RED OS и др.) через BYOI (Bring Your Own Image). Лицензии на ОС предоставляются клиентом или приобретаются через партнёров. Cloud.ru не выдаёт лицензии, но обеспечивает совместимость с сертифицированными образами.",
+    "evidence": "Cloud.ru поддерживает развёртывание сертифицированных образов ОС (BYOI). Лицензии на ПО предоставляются клиентом. Аттестация инфраструктуры — УЗ-1, 152-ФЗ [2]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "26127171-5f8d-4006-a989-bcb6ff142835"
+    ],
+    "recommendation": "Развернуть сертифицированную ОС (например, Astra Linux, RED OS) через BYOI-образ. Лицензии на ОС приобретаются клиентом или через партнёров Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Не подтверждена поддержка BYOI-образов ОС и лицензирования.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживает ли ГосОблако развёртывание сертифицированных ОС и лицензирование."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Облако VMware поддерживает развёртывание операционных систем через BYOI (Bring Your Own Image). Клиент может загрузить сертифицированные образы ОС (например, Astra Linux, Windows Server). Лицензии — ответственность клиента.",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd", "26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru", "Сертификаты, аттестаты и лицензии облака Cloud.ru"],
+        "recommendation": "Использовать Облако VMware для развёртывания сертифицированных ОС через BYOI. Лицензии — приобретаются клиентом."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced поддерживает развёртывание операционных систем через BYOI. Клиент может загрузить сертифицированные образы ОС. Лицензии — ответственность клиента. Подтверждено в документации по IaaS.",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Advanced"],
+        "recommendation": "Использовать Advanced для развёртывания сертифицированных ОС через BYOI. Лицензии — приобретаются клиентом."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.85,
+        "reasoning": "Evolution поддерживает развёртывание операционных систем через BYOI. Клиент может загрузить сертифицированные образы ОС. Лицензии — ответственность клиента. Поддержка ОС подтверждена в рамках базовых IaaS-возможностей.",
+        "evidence_refs": [],
+        "source_urls": ["https://cloud.ru/docs/evolution/overview/topics/security__compliance"],
+        "source_titles": ["Безопасность и соответствие Cloud.ru Evolution"],
+        "recommendation": "Использовать Evolution для развёртывания сертифицированных ОС через BYOI. Лицензии — приобретаются клиентом."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

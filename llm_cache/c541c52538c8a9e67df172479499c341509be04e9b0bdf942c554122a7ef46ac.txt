@@ -1,0 +1,316 @@
+[
+  {
+    "requirement_id": "58",
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru как компания имеет лицензии Роскомнадзора на оказание услуг по передаче данных (№171946), каналам связи (№171948) и телематическим услугам (№171949), что подтверждено в атрибутах компании и применимо ко всем платформам. Требование к лицензии Роскомнадзора выполнено.",
+    "evidence": "Лицензии Роскомнадзора № 171948, № 171946, № 171949 — корпоративные атрибуты Cloud.ru, действующие на всех платформах.",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/security-introduction/topics/compliance"
+    ],
+    "recommendation": "Использовать любую из платформ Cloud.ru — все они имеют необходимые лицензии Роскомнадзора.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Лицензии Роскомнадзора — атрибуты компании Cloud.ru, действуют на всех платформах, включая ГосОблако, несмотря на отсутствие детальной документации по продукту.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/topics/compliance"
+        ],
+        "source_titles": [
+          "Обзор подходов и средств безопасности Cloud.ru"
+        ],
+        "recommendation": "Использовать ГосОблако при подтверждении атрибутов у клиентского менеджера."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Cloud.ru имеет лицензии Роскомнадзора №171948, №171946, №171949 — корпоративные атрибуты, подтверждённые в документации и применимые ко всем платформам, включая Облако VMware.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/topics/compliance"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Облако VMware — подходящая платформа, соответствует всем требованиям."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Лицензии Роскомнадзора — корпоративные атрибуты Cloud.ru, подтверждены в документации и действуют на платформе Advanced.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/topics/compliance"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Advanced — подходящая платформа, соответствует всем требованиям."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Лицензии Роскомнадзора — атрибуты компании Cloud.ru, действуют на всех платформах, включая Evolution, даже если не указаны явно на странице Evolution-compliance.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/topics/compliance"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Evolution — подходящая платформа, соответствует всем требованиям."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": "59",
+    "verdict": "partial",
+    "confidence": 0.85,
+    "reasoning": "Требование к ГИС К1 (приказ ФСТЭК №17) выполняется для Облака VMware (аттестация платформы Cloud.ru для размещения ГИС по К1 подтверждена Certificate_of_conformity_59.20.pdf). Для Advanced — косвенно возможно, но не указано явно. Для Evolution — явный mismatch (страница compliance ограничивается только 152-ФЗ УЗ-1). Для ГосОблако — данные отсутствуют.",
+    "evidence": "«Облачная платформа Cloud.ru, предназначенная для размещения государственных информационных систем, аттестована на соответствие требованиям... первого класса защищенности (К1)» [1].",
+    "source_urls": [
+      "26127171-5f8d-4006-a989-bcb6ff142835"
+    ],
+    "recommendation": "Для соответствия требованию ГИС К1 использовать Облако VMware. Для Advanced — уточнить у менеджера, подтверждена ли аттестация К1 в рамках сертификата 59.20. Evolution не подходит.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Аттестация К1 не подтверждена, требуется уточнение у клиентского менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, аттестовано ли ГосОблако по приказу ФСТЭК №17 для К1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Облако VMware аттестовано как облачная платформа Cloud.ru для размещения ГИС по первому классу защищённости (К1) — подтверждено Certificate_of_conformity_59.20.pdf и фрагментом [1].",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Облако VMware — оптимальный выбор для ГИС К1."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Общая аттестация Cloud.ru на К1 (Certificate_of_conformity_59.20.pdf) применима, но в обзоре платформы Advanced К1 не упомянут явно. Требуется юридическое подтверждение.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, подтверждена ли аттестация К1 для платформы Advanced."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 1.0,
+        "reasoning": "Страница evolution-compliance явно ограничивается только 152-ФЗ УЗ-1 и не упоминает ГИС К1. Согласно cheat sheet, Evolution не поддерживает К1 — mismatch.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/security"
+        ],
+        "source_titles": [
+          "Безопасность платформы Cloud.ru Evolution"
+        ],
+        "recommendation": "Evolution не подходит для ГИС К1. Использовать Облако VMware."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": "60",
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Все платформы Cloud.ru (ГосОблако, Облако VMware, Advanced, Evolution) имеют аттестацию по 152-ФЗ УЗ-1 — самый высокий уровень защиты ПДн, который покрывает требование УЗ-1. Это подтверждено в документации и является общим атрибутом всех платформ.",
+    "evidence": "«Все платформы Cloud.ru имеют уровень защиты 152-ФЗ УЗ-1: Cloud.ru Advanced, Облако VMware» [1].",
+    "source_urls": [
+      "26127171-5f8d-4006-a989-bcb6ff142835"
+    ],
+    "recommendation": "Любая платформа Cloud.ru соответствует требованию УЗ-1. Рекомендуется использовать Облако VMware или Advanced для максимальной совместимости с другими требованиями.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "152-ФЗ УЗ-1 — атрибут компании Cloud.ru, применим ко всем платформам, включая ГосОблако, даже при отсутствии детальной документации.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "ГосОблако подходит, но требуется подтверждение у менеджера."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Облако VMware явно имеет аттестацию 152-ФЗ УЗ-1, подтверждённую в документации.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Облако VMware — подходящая платформа."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Advanced имеет аттестацию 152-ФЗ УЗ-1, подтверждённую в документации.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Advanced — подходящая платформа."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Evolution имеет аттестацию 152-ФЗ УЗ-1, прямо указанную на странице evolution-compliance.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/security"
+        ],
+        "source_titles": [
+          "Безопасность платформы Cloud.ru Evolution"
+        ],
+        "recommendation": "Evolution — подходящая платформа."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": "61",
+    "verdict": "partial",
+    "confidence": 0.8,
+    "reasoning": "Требование запрашивает аттестат соответствия платформы виртуализации для К1 и УЗ-1. Cloud.ru имеет УЗ-1 на всех платформах и К1 — только на Облако VMware (через Certificate_of_conformity_59.20). Однако аттестат выдается на инфраструктуру Cloud.ru, а не на платформу виртуализации как отдельный продукт. Требование «аттестат платформы виртуализации» требует уточнения: Cloud.ru предоставляет аттестат на инфраструктуру, а не на виртуализационную платформу как продукт.",
+    "evidence": "«Облачная платформа Cloud.ru, предназначенная для размещения государственных информационных систем, аттестована на соответствие требованиям... К1» [1]. Все платформы имеют УЗ-1 [1].",
+    "source_urls": [
+      "26127171-5f8d-4006-a989-bcb6ff142835"
+    ],
+    "recommendation": "Использовать Облако VMware для покрытия К1 и УЗ-1. Уточнить у клиентского менеджера, может ли аттестат на инфраструктуру Cloud.ru быть представлен как аттестат «платформы виртуализации».",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Аттестат на виртуализационную платформу не подтверждён. Требуется уточнение у менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, аттестовано ли ГосОблако и может ли быть предоставлен аттестат на виртуализационную платформу."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.85,
+        "reasoning": "Облако VMware имеет аттестацию по К1 и УЗ-1, но аттестат выдан на инфраструктуру Cloud.ru, а не на виртуализационную платформу как отдельный продукт. Требуется юридическое подтверждение, что аттестат инфраструктуры удовлетворяет требованию «аттестат платформы виртуализации».",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Облако VMware — лучший выбор, но требуется уточнение у менеджера, подходит ли аттестат инфраструктуры как аттестат виртуализационной платформы."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Advanced имеет УЗ-1, но К1 не указан явно в обзоре платформы. Аттестат на виртуализационную платформу не подтверждён как отдельный продукт. Требуется уточнение.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Уточнить у менеджера, подтверждена ли аттестация К1 для Advanced и может ли быть предоставлен аттестат на виртуализационную платформу."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.75,
+        "reasoning": "Evolution имеет УЗ-1, но не имеет К1 (явный mismatch по ГИС К1). Аттестат на виртуализационную платформу не подтверждён для К1. Требование не выполнено полностью.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/security"
+        ],
+        "source_titles": [
+          "Безопасность платформы Cloud.ru Evolution"
+        ],
+        "recommendation": "Evolution не подходит для К1. Использовать Облако VMware. Уточнить, может ли аттестат УЗ-1 быть представлен как аттестат платформы виртуализации."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

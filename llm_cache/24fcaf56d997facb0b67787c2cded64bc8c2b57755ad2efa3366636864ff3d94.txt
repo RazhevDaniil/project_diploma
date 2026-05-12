@@ -1,0 +1,497 @@
+```json
+[
+  {
+    "requirement_id": 9,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru предоставляет полный объем услуг, включая IaaS/PaaS-сервисы на всех платформах, что подтверждается документацией по SLA для Advanced, Evolution и Облако VMware. Объем услуг в Приложении 3 покрывается стандартным портфелем Cloud.ru.",
+    "evidence": "Cloud.ru предоставляет более 50 высокотехнологичных сервисов по моделям IaaS и PaaS [3]",
+    "source_urls": [
+      "https://cloud.ru/docs/advanced/overview/index",
+      "https://cloud.ru/docs/evolution/overview/topics/sla",
+      "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+    ],
+    "recommendation": "Использовать любую из платформ Cloud.ru в зависимости от требований к аттестации (ГИС К1 — ГосОблако/VMware, УЗ-1 — все платформы).",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "ГосОблако предоставляет полный спектр IaaS/PaaS-услуг, аттестованных по К1, УЗ-1, КИИ-1, что покрывает любой объем услуг из Приложения 3.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/goscloud/overview/index"
+        ],
+        "source_titles": [],
+        "recommendation": "Использовать ГосОблако, если требуется аттестация по К1 или КИИ-1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет IaaS-услуги (виртуальный ЦОД, ВМ, резервное копирование) с SLA 99.982%, что соответствует любому объему услуг из Приложения 3.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/vmware/overview/index"
+        ],
+        "source_titles": [],
+        "recommendation": "Использовать Облако VMware для высокой доступности и совместимости с VMware-инфраструктурой."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced предоставляет более 50 сервисов IaaS/PaaS, включая ECS, OBS, CCE, Backup, с подтвержденными SLA, что покрывает любой объем услуг из Приложения 3.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Использовать Advanced для гибкого управления ресурсами и высокой масштабируемости."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution предоставляет базовые IaaS-услуги с SLA 99.9%, что соответствует требованиям к объему услуг, если не требуются специфические сервисы Advanced.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Использовать Evolution для массовых задач с оптимизацией стоимости."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 10,
+    "verdict": "partial",
+    "confidence": 0.7,
+    "reasoning": "Cloud.ru владеет и эксплуатирует ЦОДы в Москве и Химках, но документы о праве собственности или договорах аренды не публикуются в открытых источниках. Это юридические документы, предоставляемые по запросу в рамках договора.",
+    "evidence": "Cloud.ru использует ЦОД DataPro в Москве и Химках [3]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc",
+      "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__where-is-dc"
+    ],
+    "recommendation": "Cloud.ru предоставит копии документов о праве на ЦОД (договор аренды/собственность) в рамках индивидуального договора с заказчиком.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Cloud.ru является владельцем/арендатором ЦОДов, но публичные документы о праве собственности не размещены. Копии предоставляются по договору.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Запросить документы у менеджера Cloud.ru при подписании договора."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Cloud.ru использует ЦОДы DataPro, но юридические документы о праве собственности не публикуются — предоставляются по запросу в рамках договора.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Запросить документы у менеджера Cloud.ru при подписании договора."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Cloud.ru владеет/арендует ЦОДы, но документы о праве собственности не публикуются — предоставляются по запросу в рамках договора.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Запросить документы у менеджера Cloud.ru при подписании договора."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Cloud.ru владеет/арендует ЦОДы, но документы о праве собственности не публикуются — предоставляются по запросу в рамках договора.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Запросить документы у менеджера Cloud.ru при подписании договора."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 11,
+    "verdict": "partial",
+    "confidence": 0.7,
+    "reasoning": "Cloud.ru использует ЦОДы, прошедшие сертификацию TIER III, но акт ввода в промышленную эксплуатацию — это внутренний документ заказчика или регулятора, который не публикуется. Cloud.ru может предоставить сертификаты TIER III и аттестаты как подтверждение соответствия.",
+    "evidence": "Cloud.ru пользуется ЦОД, прошедшими сертификацию на соответствие стандарту TIER III [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+    ],
+    "recommendation": "Cloud.ru предоставит сертификаты TIER III и аттестаты соответствия как подтверждение ввода ЦОД в эксплуатацию. Акт ввода в промышленную эксплуатацию — документ, формируемый по запросу в рамках договора.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "ЦОД ГосОблако проходит сертификацию TIER III и имеет аттестаты, но акт ввода в промышленную эксплуатацию — внутренний документ, предоставляемый по договору.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Запросить сертификаты TIER III и аттестаты у менеджера Cloud.ru."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "ЦОД Облако VMware проходит сертификацию TIER III, но акт ввода в эксплуатацию — документ, предоставляемый по запросу в рамках договора.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Запросить сертификаты TIER III и аттестаты у менеджера Cloud.ru."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "ЦОД Advanced проходит сертификацию TIER III, но акт ввода в эксплуатацию — внутренний документ, предоставляемый по запросу в рамках договора.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Запросить сертификаты TIER III и аттестаты у менеджера Cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "ЦОД Evolution проходит сертификацию TIER III, но акт ввода в эксплуатацию — внутренний документ, предоставляемый по запросу в рамках договора.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Запросить сертификаты TIER III и аттестаты у менеджера Cloud.ru."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 12,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru предоставляет единую круглосуточную службу технической поддержки (24/7) на всех платформах, что подтверждено документацией по SLA и поддержке. Это стандартный атрибут компании, не зависящий от платформы.",
+    "evidence": "Техническая поддержка Cloud.ru отвечает на обращения в режиме 24/7 [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+    ],
+    "recommendation": "Использовать любую платформу Cloud.ru — все обеспечивают 24/7 техподдержку.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru предоставляет круглосуточную техническую поддержку на всех платформах, включая ГосОблако, как часть корпоративного сервиса.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать ГосОблако при необходимости аттестации К1/КИИ-1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru предоставляет круглосуточную техническую поддержку на всех платформах, включая Облако VMware, как часть корпоративного сервиса.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать Облако VMware при необходимости высокой доступности (SLA 99.982%)."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru предоставляет круглосуточную техническую поддержку на всех платформах, включая Advanced, как часть корпоративного сервиса.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать Advanced для гибкого управления ресурсами."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru предоставляет круглосуточную техническую поддержку на всех платформах, включая Evolution, как часть корпоративного сервиса.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать Evolution для массовых задач с оптимизацией стоимости."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 13,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Cloud.ru управляет операционным обслуживанием инженерной инфраструктуры ЦОД в рамках своей модели ответственности (Infrastructure-as-a-Service). Заказчик управляет ОС и приложениями, Cloud.ru — физической и виртуальной инфраструктурой.",
+    "evidence": "Модель общей ответственности определяет, что Cloud.ru отвечает за инфраструктуру ЦОД, а клиент — за приложения [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+    ],
+    "recommendation": "Использовать любую платформу Cloud.ru — управление инфраструктурой ЦОД выполняется Cloud.ru в рамках модели общей ответственности.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru управляет инженерной инфраструктурой ЦОД на всех платформах, включая ГосОблако, в рамках модели общей ответственности.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать ГосОблако при необходимости аттестации К1/КИИ-1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru управляет инженерной инфраструктурой ЦОД на всех платформах, включая Облако VMware, в рамках модели общей ответственности.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать Облако VMware при необходимости высокой доступности (SLA 99.982%)."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru управляет инженерной инфраструктурой ЦОД на всех платформах, включая Advanced, в рамках модели общей ответственности.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать Advanced для гибкого управления ресурсами."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru управляет инженерной инфраструктурой ЦОД на всех платформах, включая Evolution, в рамках модели общей ответственности.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать Evolution для массовых задач с оптимизацией стоимости."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 14,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru обеспечивает соответствие услуг требованиям законодательства РФ (152-ФЗ, 187-ФЗ, ГИС К1, УЗ-1), что подтверждено аттестациями на всех платформах. Результат услуг соответствует ТЗ по умолчанию.",
+    "evidence": "Все платформы Cloud.ru имеют уровень защиты 152-ФЗ УЗ-1 и аттестованы по ГИС К1 и 187-ФЗ [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc",
+      "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles__infrastrusture-protection"
+    ],
+    "recommendation": "Использовать любую платформу Cloud.ru — все обеспечивают соответствие законодательству РФ.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "ГосОблако аттестовано по К1, УЗ-1, КИИ-1, 152-ФЗ — полностью соответствует требованиям законодательства РФ.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать ГосОблако для госзаказов с требованиями К1/КИИ-1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware аттестовано по К1, УЗ-1, 152-ФЗ — полностью соответствует требованиям законодательства РФ.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать Облако VMware для высокой доступности и совместимости с VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced имеет УЗ-1 и 152-ФЗ — соответствует требованиям законодательства РФ, хотя не имеет К1.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать Advanced для коммерческих задач с УЗ-1."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution имеет УЗ-1 и 152-ФЗ — соответствует требованиям законодательства РФ, хотя не имеет К1.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать Evolution для массовых задач с УЗ-1."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 15,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru обеспечивает непрерывное круглосуточное предоставление услуг (штатный режим) на всех платформах, включая плановые работы без отключения (Live Migration на VMware, автоматическое масштабирование).",
+    "evidence": "Cloud.ru предоставляет услуги в режиме 24/7 с возможностью плановых работ без отключения нагрузки [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla",
+      "https://cloud.ru/docs/vmware/overview/index"
+    ],
+    "recommendation": "Использовать любую платформу Cloud.ru — все обеспечивают круглосуточный режим работы.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "ГосОблако обеспечивает круглосуточное предоставление услуг с плановыми работами без отключения, как часть Tier III ЦОД.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать ГосОблако при необходимости аттестации К1/КИИ-1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware обеспечивает круглосуточное предоставление услуг с Live Migration — плановые работы без отключения нагрузки.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать Облако VMware для высокой доступности и бесперебойной работы."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced обеспечивает круглосуточное предоставление услуг с автоматическим масштабированием и 24/7 поддержкой.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать Advanced для гибкого управления ресурсами."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution обеспечивает круглосуточное предоставление услуг с 24/7 поддержкой и SLA 99.9%.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать Evolution для массовых задач с оптимизацией стоимости."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 16,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru обеспечивает сервисный режим (плановые работы, обслуживание) с возможностью временных инцидентов, что подтверждено SLA и политиками обслуживания. Плановые работы проводятся с уведомлением и минимальным влиянием.",
+    "evidence": "Техническая поддержка Cloud.ru обеспечивает плановые работы и обслуживание с уведомлением клиентов [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+    ],
+    "recommendation": "Использовать любую платформу Cloud.ru — все обеспечивают сервисный режим с плановыми работами и уведомлениями.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "ГосОблако проводит плановые работы с уведомлением и минимальным влиянием, как часть Tier III ЦОД и SLA.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать ГосОблако при необходимости аттестации К1/КИИ-1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware обеспечивает плановые работы с Live Migration — без отключения нагрузки, с уведомлением клиентов.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать Облако VMware для высокой доступности и бесперебойной работы."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced обеспечивает плановые работы с уведомлением и минимальным влиянием на сервисы, как часть SLA 24/7.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать Advanced для гибкого управления ресурсами."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution обеспечивает плановые работы с уведомлением и минимальным влиянием, как часть SLA 99.9% и 24/7 поддержки.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать Evolution для массовых задач с оптимизацией стоимости."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]
+```

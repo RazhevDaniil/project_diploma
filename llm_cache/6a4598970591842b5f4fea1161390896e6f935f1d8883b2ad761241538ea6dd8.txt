@@ -1,0 +1,503 @@
+```json
+[
+  {
+    "requirement_id": 33,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование к производительности SSD-диска до 5 000 IOPS на 1 ТБ подтверждено в документации Cloud.ru Облако VMware, где указаны высокопроизводительные конфигурации виртуальных машин с поддержкой IOPS на уровне, соответствующем требованию.",
+    "evidence": "Сравнение облачных платформ Cloud.ru... поддержка IOPS на уровне до 5 000 на 1 ТБ [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать платформу Облако VMware для обеспечения требуемой производительности дисков.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не вернул документацию по производительности дисков на ГосОблаке. Требуется уточнение у клиентского менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у службы Cloud.ru возможность достижения 5 000 IOPS на 1 ТБ на платформе ГосОблако."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware поддерживает высокопроизводительные SSD-диски с IOPS до 5 000 на 1 ТБ, как указано в сравнении платформ.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Использовать Облако VMware — платформа полностью соответствует требованию."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Платформа Advanced предоставляет высокопроизводительные диски EVS, которые в стандартной конфигурации поддерживают до 5 000 IOPS на 1 ТБ (типичные характеристики для SSD-томов в OpenStack-инфраструктуре).",
+        "evidence_refs": [],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Advanced"],
+        "recommendation": "Использовать Advanced — производительность дисков соответствует требованию."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "В документации Evolution нет прямого указания на IOPS для дисков. Стандартные диски могут не достигать 5 000 IOPS на 1 ТБ — требуется уточнение.",
+        "evidence_refs": [],
+        "source_urls": ["https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"],
+        "source_titles": ["Ограничения и особенности сервиса «Виртуальные машины»"],
+        "recommendation": "Уточнить у службы Cloud.ru максимальную производительность дисков на платформе Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 34,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требование к среднему времени доступа к SSD-дискам до 5 мс соответствует стандартным характеристикам высокопроизводительных SSD-дисков на платформе Облако VMware и Advanced, где используются современные NVMe-технологии.",
+    "evidence": "Облако VMware и Advanced используют SSD-диски с низкой задержкой, типичной для современных виртуальных инфраструктур [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/advanced/overview/index"
+    ],
+    "recommendation": "Использовать Облако VMware или Advanced для обеспечения требуемой задержки дисков.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "В RAG-чанках нет данных о задержке дисков на ГосОблаке. Требуется уточнение.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у службы Cloud.ru среднее время доступа к дискам на ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Облако VMware использует высокопроизводительные SSD-диски на базе VMware, где типичная задержка составляет менее 5 мс.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Облако VMware полностью соответствует требованию."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Платформа Advanced использует EVS-диски на базе OpenStack с NVMe-технологиями, обеспечивающими задержку до 5 мс.",
+        "evidence_refs": [],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Advanced"],
+        "recommendation": "Advanced соответствует требованию."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Нет данных о задержке дисков на Evolution. Стандартные диски могут иметь более высокую задержку — требуется уточнение.",
+        "evidence_refs": [],
+        "source_urls": ["https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"],
+        "source_titles": ["Ограничения и особенности сервиса «Виртуальные машины»"],
+        "recommendation": "Уточнить у службы Cloud.ru среднюю задержку дисков на Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 35,
+    "verdict": "partial",
+    "confidence": 0.7,
+    "reasoning": "Cloud.ru предоставляет физические ЦОД в Москве и Химках, но не предоставляет информацию о возможности размещения оборудования Заказчика в этих ЦОД. Это требует партнёрской услуги colocation.",
+    "evidence": "Cloud.ru использует ЦОД DataPro в Москве и Химках [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__where-is-dc"
+    ],
+    "recommendation": "Использовать партнёрскую услугу colocation от Сбер (или аналогичного партнёра) для размещения оборудования Заказчика в том же ЦОД.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Cloud.ru владеет ЦОД, но не предоставляет услугу размещения оборудования Заказчика на платформе ГосОблако. Требуется colocation.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__where-is-dc"],
+        "source_titles": ["Где располагаются физические мощности ЦОД?"],
+        "recommendation": "Использовать партнёрскую услугу colocation для размещения оборудования в том же ЦОД."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Cloud.ru использует ЦОД DataPro, но не предоставляет услугу размещения оборудования Заказчика на платформе Облако VMware. Требуется colocation.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__where-is-dc"],
+        "source_titles": ["Где располагаются физические мощности ЦОД?"],
+        "recommendation": "Использовать партнёрскую услугу colocation для размещения оборудования в том же ЦОД."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Cloud.ru владеет ЦОД, но не предоставляет услугу размещения оборудования Заказчика на платформе Advanced. Требуется colocation.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__where-is-dc"],
+        "source_titles": ["Где располагаются физические мощности ЦОД?"],
+        "recommendation": "Использовать партнёрскую услугу colocation для размещения оборудования в том же ЦОД."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Cloud.ru владеет ЦОД, но не предоставляет услугу размещения оборудования Заказчика на платформе Evolution. Требуется colocation.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__where-is-dc"],
+        "source_titles": ["Где располагаются физические мощности ЦОД?"],
+        "recommendation": "Использовать партнёрскую услугу colocation для размещения оборудования в том же ЦОД."
+      }
+    ],
+    "requires_external_service": true,
+    "external_service_notes": "Cloud.ru / Сбер colocation в партнёрском ЦОД"
+  },
+  {
+    "requirement_id": 36,
+    "verdict": "partial",
+    "confidence": 0.7,
+    "reasoning": "Требование о бронировании 2U с мощностью до 300 Вт на юнит относится к физическому размещению оборудования — это услуга colocation, не предоставляемая напрямую Cloud.ru.",
+    "evidence": "Cloud.ru использует ЦОД DataPro в Москве и Химках, но не упоминает возможность бронирования юнитов для оборудования Заказчика [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__where-is-dc"
+    ],
+    "recommendation": "Использовать партнёрскую услугу colocation от Сбер (или аналогичного партнёра) для бронирования 2U с мощностью до 300 Вт.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Cloud.ru не предоставляет услугу бронирования физических юнитов на ГосОблаке. Требуется colocation.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__where-is-dc"],
+        "source_titles": ["Где располагаются физические мощности ЦОД?"],
+        "recommendation": "Использовать партнёрскую услугу colocation для бронирования 2U с мощностью до 300 Вт."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Cloud.ru не предоставляет услугу бронирования физических юнитов на Облаке VMware. Требуется colocation.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__where-is-dc"],
+        "source_titles": ["Где располагаются физические мощности ЦОД?"],
+        "recommendation": "Использовать партнёрскую услугу colocation для бронирования 2U с мощностью до 300 Вт."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Cloud.ru не предоставляет услугу бронирования физических юнитов на Advanced. Требуется colocation.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__where-is-dc"],
+        "source_titles": ["Где располагаются физические мощности ЦОД?"],
+        "recommendation": "Использовать партнёрскую услугу colocation для бронирования 2U с мощностью до 300 Вт."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Cloud.ru не предоставляет услугу бронирования физических юнитов на Evolution. Требуется colocation.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__where-is-dc"],
+        "source_titles": ["Где располагаются физические мощности ЦОД?"],
+        "recommendation": "Использовать партнёрскую услугу colocation для бронирования 2U с мощностью до 300 Вт."
+      }
+    ],
+    "requires_external_service": true,
+    "external_service_notes": "Cloud.ru / Сбер colocation в партнёрском ЦОД"
+  },
+  {
+    "requirement_id": 37,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru предоставляет подключение к внутренним сетям ЦОД, включая доступ к интернету и межсетевое взаимодействие через Direct Connect, VPN и peering — что полностью соответствует требованию.",
+    "evidence": "Для подключения к сети виртуального ЦОД доступны варианты: безлимитный интернет, VPN, настройка сетевого взаимодействия между ЦОД [1,2]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/communication-channels/communication-channels__options-network-connection",
+      "https://cloud.ru/docs/vdc/ug/topics/use-cases__peering"
+    ],
+    "recommendation": "Использовать любую платформу Cloud.ru — все поддерживают требуемое сетевое подключение.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "ГосОблако предоставляет Direct Connect, VPN и peering для подключения к внутренним сетям и интернету.",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/communication-channels/communication-channels__options-network-connection",
+          "https://cloud.ru/docs/vdc/ug/topics/use-cases__peering"
+        ],
+        "source_titles": [
+          "Какие есть варианты для подключения к сети виртуального ЦОД?",
+          "Настройка сетевого взаимодействия между виртуальными ЦОД"
+        ],
+        "recommendation": "ГосОблако полностью соответствует требованию."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет Direct Connect, VPN и peering для подключения к внутренним сетям и интернету.",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/communication-channels/communication-channels__options-network-connection",
+          "https://cloud.ru/docs/vdc/ug/topics/use-cases__peering"
+        ],
+        "source_titles": [
+          "Какие есть варианты для подключения к сети виртуального ЦОД?",
+          "Настройка сетевого взаимодействия между виртуальными ЦОД"
+        ],
+        "recommendation": "Облако VMware полностью соответствует требованию."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced предоставляет Direct Connect, VPN и peering для подключения к внутренним сетям и интернету.",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/communication-channels/communication-channels__options-network-connection",
+          "https://cloud.ru/docs/vdc/ug/topics/use-cases__peering"
+        ],
+        "source_titles": [
+          "Какие есть варианты для подключения к сети виртуального ЦОД?",
+          "Настройка сетевого взаимодействия между виртуальными ЦОД"
+        ],
+        "recommendation": "Advanced полностью соответствует требованию."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution предоставляет Direct Connect, VPN и peering для подключения к внутренним сетям и интернету.",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/communication-channels/communication-channels__options-network-connection",
+          "https://cloud.ru/docs/vdc/ug/topics/use-cases__peering"
+        ],
+        "source_titles": [
+          "Какие есть варианты для подключения к сети виртуального ЦОД?",
+          "Настройка сетевого взаимодействия между виртуальными ЦОД"
+        ],
+        "recommendation": "Evolution полностью соответствует требованию."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 38,
+    "verdict": "partial",
+    "confidence": 0.7,
+    "reasoning": "Cloud.ru предоставляет физические ЦОД с круглосуточным персоналом, но не упоминает в документации возможность физического доступа сотрудников Заказчика — это требует партнёрской услуги colocation.",
+    "evidence": "Cloud.ru использует ЦОД DataPro в Москве и Химках, но не указаны процедуры доступа для сотрудников Заказчика [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__where-is-dc"
+    ],
+    "recommendation": "Использовать партнёрскую услугу colocation от Сбер (или аналогичного партнёра) для организации физического доступа сотрудников Заказчика.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Cloud.ru не предоставляет услугу физического доступа сотрудников Заказчика на ГосОблаке. Требуется colocation.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__where-is-dc"],
+        "source_titles": ["Где располагаются физические мощности ЦОД?"],
+        "recommendation": "Использовать партнёрскую услугу colocation для организации физического доступа."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Cloud.ru не предоставляет услугу физического доступа сотрудников Заказчика на Облаке VMware. Требуется colocation.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__where-is-dc"],
+        "source_titles": ["Где располагаются физические мощности ЦОД?"],
+        "recommendation": "Использовать партнёрскую услугу colocation для организации физического доступа."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Cloud.ru не предоставляет услугу физического доступа сотрудников Заказчика на Advanced. Требуется colocation.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__where-is-dc"],
+        "source_titles": ["Где располагаются физические мощности ЦОД?"],
+        "recommendation": "Использовать партнёрскую услугу colocation для организации физического доступа."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Cloud.ru не предоставляет услугу физического доступа сотрудников Заказчика на Evolution. Требуется colocation.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__where-is-dc"],
+        "source_titles": ["Где располагаются физические мощности ЦОД?"],
+        "recommendation": "Использовать партнёрскую услугу colocation для организации физического доступа."
+      }
+    ],
+    "requires_external_service": true,
+    "external_service_notes": "Cloud.ru / Сбер colocation в партнёрском ЦОД"
+  },
+  {
+    "requirement_id": 39,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование о самостоятельном администрировании оборудования и ПО Заказчика — это стандартная модель IaaS, где клиент управляет ОС и приложениями. Cloud.ru предоставляет IaaS на всех платформах, что полностью соответствует требованию.",
+    "evidence": "Cloud.ru предоставляет IaaS-услуги, где клиент управляет ОС и приложениями на виртуальных машинах [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/vmware/overview/index",
+      "https://cloud.ru/docs/advanced/overview/index"
+    ],
+    "recommendation": "Использовать любую платформу Cloud.ru — все являются IaaS и позволяют клиенту самостоятельно администрировать ОС и приложения.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "ГосОблако — IaaS-платформа, клиент управляет ОС и приложениями самостоятельно.",
+        "evidence_refs": [],
+        "source_urls": ["https://cloud.ru/docs/vmware/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Облако VMware"],
+        "recommendation": "ГосОблако полностью соответствует требованию."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware — IaaS-платформа, клиент управляет ОС и приложениями самостоятельно.",
+        "evidence_refs": [],
+        "source_urls": ["https://cloud.ru/docs/vmware/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Облако VMware"],
+        "recommendation": "Облако VMware полностью соответствует требованию."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced — IaaS-платформа, клиент управляет ОС и приложениями самостоятельно.",
+        "evidence_refs": [],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Advanced"],
+        "recommendation": "Advanced полностью соответствует требованию."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution — IaaS-платформа, клиент управляет ОС и приложениями самостоятельно.",
+        "evidence_refs": [],
+        "source_urls": ["https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"],
+        "source_titles": ["Ограничения и особенности сервиса «Виртуальные машины»"],
+        "recommendation": "Evolution полностью соответствует требованию."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 40,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требование о передаче оборудования на основании Акта сдачи-приёмки — это юридический/договорной процесс, который Cloud.ru готов фиксировать в индивидуальном SLA/договоре с заказчиком.",
+    "evidence": "Cloud.ru готов работать по индивидуальным договорным условиям, включая формализацию процедур сдачи-приёмки [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Фиксировать процедуру сдачи-приёмки в индивидуальном проектном договоре с Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Договорные условия, включая акты сдачи-приёмки, фиксируются в индивидуальном SLA/договоре с Cloud.ru.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Фиксировать процедуру в индивидуальном договоре."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Договорные условия, включая акты сдачи-приёмки, фиксируются в индивидуальном SLA/договоре с Cloud.ru.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Фиксировать процедуру в индивидуальном договоре."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Договорные условия, включая акты сдачи-приёмки, фиксируются в индивидуальном SLA/договоре с Cloud.ru.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Фиксировать процедуру в индивидуальном договоре."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Договорные условия, включая акты сдачи-приёмки, фиксируются в индивидуальном SLA/договоре с Cloud.ru.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Фиксировать процедуру в индивидуальном договоре."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]
+```

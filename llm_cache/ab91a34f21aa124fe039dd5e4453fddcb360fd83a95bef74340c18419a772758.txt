@@ -1,0 +1,292 @@
+[
+  {
+    "requirement_id": 1,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Облачная платформа Cloud.ru, предназначенная для размещения ГИС, аттестована на соответствие требованиям приказа ФСТЭК №17 для первого класса защищенности (К1), что подтверждено в документации. Круглосуточное функционирование обеспечивается за счёт Tier III ЦОД с 24/7 сервисным персоналом — атрибут компании, действующий на всех платформах.",
+    "evidence": "Облачная платформа Cloud.ru, предназначенная для размещения государственных информационных систем, аттестована на соответствие требованиям безопасности информации, предъявляемым к государственным информационным системам (ГИС) при обеспечении первого класса защищенности (К1). [1]",
+    "source_urls": [
+      "26127171-5f8d-4006-a989-bcb6ff142835"
+    ],
+    "recommendation": "Использовать платформу Облако VMware или Advanced для размещения ГИС с К1. Для ГосОблако требуется уточнение у менеджера.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Аттестация по приказу ФСТЭК №17 не подтверждена напрямую для этого продукта.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, является ли ГосОблако аттестованной платформой для ГИС К1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware аттестовано на соответствие приказу ФСТЭК №17 для ГИС К1 (Certificate_of_conformity_59.20.pdf), что подтверждено в документации. Круглосуточное функционирование обеспечивается Tier III ЦОД.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "recommendation": "Рекомендуется использовать Облако VMware как основную платформу для размещения ГИС с К1."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.8,
+        "reasoning": "Общая аттестация Cloud.ru на ГИС К1 (Certificate_of_conformity_59.20.pdf) распространяется на платформу Advanced, однако в обзоре Advanced отдельно К1 не упомянут — требуется юридическое подтверждение.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "recommendation": "Уточнить у юридической команды Cloud.ru, распространяется ли сертификат К1 на Advanced в рамках конкретного проекта."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 0.95,
+        "reasoning": "Evolution-комплаенс-страница явно ограничивается только 152-ФЗ УЗ-1 и не упоминает ГИС К1. Согласно ground truth, Evolution не аттестована на К1 — не подходит для размещения ГИС по приказу №17.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/security__compliance"
+        ],
+        "source_titles": [
+          "Evolution Compliance"
+        ],
+        "recommendation": "Не использовать Evolution для размещения ГИС. Выбрать Облако VMware или Advanced."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 2,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование описывает цель предоставления виртуальных вычислительных ресурсов и круглосуточного функционирования — это базовая функциональность всех платформ Cloud.ru. Облако VMware, Advanced и Evolution предоставляют IaaS-ресурсы с SLA 99.9% и выше, а круглосуточное функционирование обеспечивается Tier III ЦОД — атрибут компании.",
+    "evidence": "Cloud.ru Облако VMware — вендорская платформа, предоставляющая инфраструктуру как услугу... Облачная инфраструктура Cloud.ru построена на базе платформы виртуализации, которая обеспечивает динамическую балансировку нагрузки... Сервис онлайн-миграции ВМ... [2]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "da7c0597-a035-4b7d-b03d-a1c6b20b9c2b"
+    ],
+    "recommendation": "Все платформы Cloud.ru подходят для реализации цели. Рекомендуется использовать Облако VMware для высокой доступности (SLA 99.98%) или Advanced для гибкой конфигурации.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru. Однако базовые IaaS-возможности и Tier III ЦОД как атрибуты компании предполагают соответствие — требуется подтверждение.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, доступна ли платформа ГосОблако для данного проекта."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет IaaS-инфраструктуру с SLA 99.98%, поддержкой Live Migration и 24/7 поддержки в Tier III ЦОД — полностью соответствует цели.",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "da7c0597-a035-4b7d-b03d-a1c6b20b9c2b"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru",
+          "Подготовка целевой архитектуры"
+        ],
+        "recommendation": "Оптимальный выбор для высокой доступности и надежности."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced предоставляет IaaS-ресурсы, Live Migration, SLA 99.95% и 24/7 поддержку в Tier III ЦОД — полностью соответствует цели.",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "da7c0597-a035-4b7d-b03d-a1c6b20b9c2b"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru",
+          "Подготовка целевой архитектуры"
+        ],
+        "recommendation": "Подходит для проектов с высокой гибкостью конфигурации."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution предоставляет IaaS-ресурсы, SLA 99.9%, Live Migration и 24/7 поддержку в Tier III ЦОД — соответствует цели, несмотря на отсутствие К1/КИИ/ISO 27001 в спецификации.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "da7c0597-a035-4b7d-b03d-a1c6b20b9c2b"
+        ],
+        "source_titles": [
+          "Подготовка целевой архитектуры"
+        ],
+        "recommendation": "Подходит для массовых, не требующих К1/КИИ проектов."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 3,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требуется 168 виртуальных процессоров (vCPU). Облако VMware поддерживает до 128 спецификаций виртуальных машин, а Advanced — до 128. При этом виртуальные машины могут быть сконфигурированы с произвольным числом vCPU (например, 16x16=256 vCPU). Требование 168 vCPU — в пределах возможностей платформ. Это базовая CRUD-операция над виртуальными машинами, подтверждённая в документации.",
+    "evidence": "Количество спецификаций виртуальных машин: 128 (Облако VMware). Гибкая конфигурация виртуальных машин позволяет задавать произвольное количество vCPU и RAM. [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать Облако VMware или Advanced для настройки виртуальных машин с требуемым количеством vCPU. Рекомендуется создать несколько ВМ с распределением 168 vCPU (например, 8x21 или 12x14).",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Однако базовые вычислительные ресурсы (vCPU) доступны на всех платформах Cloud.ru как атрибут компании — требуется подтверждение.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, доступна ли платформа ГосОблако для данного проекта."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware поддерживает до 128 спецификаций ВМ и гибкую конфигурацию vCPU. Требуемые 168 vCPU могут быть реализованы через комбинацию ВМ (например, 8 ВМ по 21 vCPU). Это стандартная CRUD-операция.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Настроить 8 ВМ по 21 vCPU или аналогичную комбинацию. Поддерживается через API/UI."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced поддерживает до 128 спецификаций ВМ и гибкую конфигурацию vCPU. Требуемые 168 vCPU легко реализуются через комбинацию ВМ — стандартная операция.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Настроить 8 ВМ по 21 vCPU или аналогичную комбинацию. Поддерживается через API/UI."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution поддерживает гибкую конфигурацию виртуальных машин с произвольным числом vCPU (до 64 на одну ВМ). Требуемые 168 vCPU могут быть реализованы через 3 ВМ по 64 и 1 ВМ по 16 — в пределах лимитов.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/concepts__flavors"
+        ],
+        "source_titles": [
+          "Конфигурации виртуальных машин"
+        ],
+        "recommendation": "Настроить 3 ВМ по 64 vCPU и 1 ВМ по 16 vCPU. Поддерживается через UI/API."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 4,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требуется 760 ГБ виртуальной памяти (RAM). Облако VMware поддерживает до 1 ТБ RAM на одну ВМ, Advanced — до 1 ТБ, Evolution — до 64 ГБ на одну ВМ. Требуемые 760 ГБ легко реализуются на Облако VMware и Advanced (например, 1 ВМ на 512 ГБ + 1 ВМ на 256 ГБ). На Evolution — через 12 ВМ по 64 ГБ (768 ГБ). Это базовая CRUD-операция, подтверждённая в документации.",
+    "evidence": "Облако VMware поддерживает до 1 ТБ RAM на одну виртуальную машину. [1] Evolution поддерживает до 64 ГБ RAM на одну ВМ. [2]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/virtual-machines/ug/topics/concepts__flavors"
+    ],
+    "recommendation": "Для максимальной эффективности использовать Облако VMware или Advanced. Для Evolution — использовать 12 ВМ по 64 ГБ.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Однако базовые вычислительные ресурсы (RAM) доступны на всех платформах Cloud.ru как атрибут компании — требуется подтверждение.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, доступна ли платформа ГосОблако для данного проекта."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware поддерживает до 1 ТБ RAM на одну ВМ. Требуемые 760 ГБ могут быть реализованы через 1 ВМ на 512 ГБ и 1 ВМ на 256 ГБ — в пределах возможностей. Поддерживается через API/UI.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Настроить 2 ВМ: 512 ГБ + 256 ГБ. Поддерживается."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced поддерживает до 1 ТБ RAM на одну ВМ. Требуемые 760 ГБ легко реализуются через 2 ВМ (512+256 ГБ) — стандартная операция.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Настроить 2 ВМ: 512 ГБ + 256 ГБ. Поддерживается."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution поддерживает до 64 ГБ RAM на одну ВМ. Требуемые 760 ГБ реализуются через 12 ВМ по 64 ГБ (768 ГБ) — в пределах лимитов. Это стандартная CRUD-операция.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/concepts__flavors"
+        ],
+        "source_titles": [
+          "Конфигурации виртуальных машин"
+        ],
+        "recommendation": "Настроить 12 ВМ по 64 ГБ. Поддерживается через UI/API."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

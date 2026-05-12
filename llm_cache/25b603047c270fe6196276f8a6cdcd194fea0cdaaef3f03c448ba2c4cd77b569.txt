@@ -1,0 +1,243 @@
+[
+  {
+    "requirement_id": 52,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование описывает юридический/договорной режим ответственности Исполнителя при KPI ниже 0,65 — анализ корневой причины и уведомление Заказчика. Cloud.ru готов работать по индивидуальным SLA и договорным условиям, включая процедуры реагирования на несоответствия KPI, что фиксируется в проектном договоре.",
+    "evidence": "",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla",
+      "https://cloud.ru/docs/advanced/overview/sla",
+      "https://cloud.ru/docs/evolution/overview/topics/sla"
+    ],
+    "recommendation": "Условия ответственности и сроки уведомления фиксируются в индивидуальном проектном SLA/договоре с Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru как компания готова работать по индивидуальным договорным условиям, включая процедуры реагирования на KPI, независимо от платформы. ГосОблако не описано в документации, но атрибуты компании применимы.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условия фиксируются в проектном договоре."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru предоставляет 24/7 техподдержку и SLA-механизмы (см. [1]), а договорные условия по KPI и корректирующим действиям фиксируются в индивидуальном SLA. Требование не требует технической реализации — это юридический режим.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/overview/support/topics/concepts__sla"],
+        "source_titles": ["Время реагирования и решения обращений"],
+        "recommendation": "Условия фиксируются в проектном договоре."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru Advanced имеет документированные SLA (см. [2]), а требования к KPI и корректирующим действиям относятся к договорным условиям, которые Cloud.ru готов согласовать индивидуально.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/sla"],
+        "source_titles": ["Соглашение об уровне предоставления услуг Advanced"],
+        "recommendation": "Условия фиксируются в проектном договоре."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution предоставляет SLA-механизмы (см. [3]), а требования к KPI и корректирующим действиям — это договорные условия, которые Cloud.ru готов реализовать через индивидуальный проектный договор.",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/evolution/overview/topics/sla"],
+        "source_titles": ["Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"],
+        "recommendation": "Условия фиксируются в проектном договоре."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 53,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование описывает юридический/договорной режим ответственности — проведение анализа причин при KPI ниже 0,65. Это не техническая функция, а процесс управления качеством, который Cloud.ru готов интегрировать в проектный SLA.",
+    "evidence": "",
+    "source_urls": [
+      "https://cloud.ru/docs/advanced/overview/index",
+      "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles__infrastrusture-protection",
+      "https://cloud.ru/docs/marketplace/ug/topics/overview__features"
+    ],
+    "recommendation": "Условия анализа причин при KPI ниже 0,65 фиксируются в индивидуальном проектном SLA/договоре с Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru как компания готова работать по индивидуальным договорным условиям, включая процедуры анализа причин при несоответствии KPI. ГосОблако не описано в документации, но атрибуты компании применимы.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условия фиксируются в проектном договоре."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru имеет установленные процессы техподдержки и управления качеством (см. [2]), а требование к анализу причин — это стандартная часть договорного SLA, который Cloud.ru готов адаптировать.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/overview/support/index"],
+        "source_titles": ["Обзор технической поддержки Cloud.ru"],
+        "recommendation": "Условия фиксируются в проектном договоре."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru Advanced предоставляет SLA-механизмы и процессы управления качеством (см. [1]), а требование к анализу причин — это договорная процедура, не требующая технической реализации на платформе.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Advanced"],
+        "recommendation": "Условия фиксируются в проектном договоре."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution имеет SLA-механизмы (см. [3]), а требование к анализу причин — это процесс управления качеством, который Cloud.ru интегрирует в проектный договор.",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/marketplace/ug/topics/overview__features"],
+        "source_titles": ["Возможности Маркетплейс Cloud.ru"],
+        "recommendation": "Условия фиксируются в проектном договоре."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 54,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование описывает юридический/договорной режим — составление, согласование и реализация плана контрмер в течение 30 дней при KPI ниже 0,65. Это не техническая функция, а процесс управления качеством, который Cloud.ru готов включить в индивидуальный проектный SLA.",
+    "evidence": "",
+    "source_urls": [
+      "https://cloud.ru/docs/advanced/overview/index",
+      "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles__infrastrusture-protection"
+    ],
+    "recommendation": "Условия по плану контрмер фиксируются в индивидуальном проектном SLA/договоре с Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru как компания готова работать по индивидуальным договорным условиям, включая процедуры разработки и реализации планов контрмер. ГосОблако не описано в документации, но атрибуты компании применимы.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условия фиксируются в проектном договоре."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru имеет процессы управления качеством и SLA (см. [2]), а требование к плану контрмер — это стандартная договорная процедура, которую Cloud.ru готов адаптировать под заказчика.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles__infrastrusture-protection"],
+        "source_titles": ["Защита инфраструктуры облачных платформ Cloud.ru"],
+        "recommendation": "Условия фиксируются в проектном договоре."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru Advanced предоставляет SLA-механизмы и процессы управления качеством (см. [1]), а требование к плану контрмер — это договорная процедура, не требующая технической реализации на платформе.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Advanced"],
+        "recommendation": "Условия фиксируются в проектном договоре."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution имеет SLA-механизмы (см. [3]), а требование к плану контрмер — это процесс управления качеством, который Cloud.ru интегрирует в проектный договор.",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/marketplace/ug/topics/overview__features"],
+        "source_titles": ["Возможности Маркетплейс Cloud.ru"],
+        "recommendation": "Условия фиксируются в проектном договоре."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 55,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование описывает юридический/договорной режим — определение объема и сроков гарантий качества. Это не техническая характеристика, а условие договора, которое Cloud.ru готов согласовать индивидуально в рамках проектного SLA.",
+    "evidence": "",
+    "source_urls": [
+      "https://cloud.ru/docs/advanced/overview/index"
+    ],
+    "recommendation": "Объем и сроки гарантий качества фиксируются в индивидуальном проектном SLA/договоре с Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru как компания готова работать по индивидуальным договорным условиям, включая определение гарантий качества. ГосОблако не описано в документации, но атрибуты компании применимы.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условия фиксируются в проектном договоре."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru предоставляет SLA и гарантии качества (см. [1]), а требование к объему и срокам гарантий — это договорная процедура, которую Cloud.ru готов адаптировать под заказчика.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/overview/support/index"],
+        "source_titles": ["Обзор технической поддержки Cloud.ru"],
+        "recommendation": "Условия фиксируются в проектном договоре."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru Advanced имеет документированные SLA и гарантии качества (см. [1]), а требование к объему и срокам гарантий — это договорное условие, не требующее технической реализации на платформе.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Advanced"],
+        "recommendation": "Условия фиксируются в проектном договоре."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution предоставляет SLA и гарантии качества (см. [2]), а требование к объему и срокам гарантий — это договорная процедура, которую Cloud.ru готов согласовать индивидуально.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/evolution/overview/topics/sla"],
+        "source_titles": ["Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"],
+        "recommendation": "Условия фиксируются в проектном договоре."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

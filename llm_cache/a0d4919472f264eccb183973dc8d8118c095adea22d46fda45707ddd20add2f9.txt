@@ -1,0 +1,642 @@
+```json
+[
+  {
+    "requirement_id": 25,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Поддержка управления сроком жизни объекта (Lifecycle Management) является стандартной функцией сервиса Object Storage Service (OBS) на платформах Cloud.ru, что подтверждается наличием функций WORM, версионирования и политик хранения в документации. Управление сроком жизни объекта реализуется через API и консоль управления.",
+    "evidence": "Сервис OBS поддерживает функцию WORM (write-once-read-many) для защиты объектов от удаления или изменения в течение заданного периода. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+    ],
+    "recommendation": "Использовать сервис Object Storage Service (OBS) на платформах Advanced или Evolution для управления сроком жизни объектов через политики хранения и версионирование.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Сервис Object Storage Service (OBS) доступен на ГосОблаке, поддерживает управление сроком жизни объектов через WORM и политики хранения, как подтверждено документацией.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи"
+        ],
+        "recommendation": "Использовать OBS на ГосОблаке для управления сроком жизни объектов с соблюдением требований К1 и УЗ-1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Облако VMware предоставляет доступ к Object Storage Service (OBS), который поддерживает управление сроком жизни объектов через WORM и политики хранения, как указано в документации.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи"
+        ],
+        "recommendation": "Использовать OBS на Облаке VMware для управления сроком жизни объектов с поддержкой К1 и УЗ-1."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Платформа Advanced предоставляет Object Storage Service (OBS) с поддержкой управления сроком жизни объектов, включая WORM и политики хранения, как подтверждено документацией.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи"
+        ],
+        "recommendation": "Использовать OBS на Advanced для управления сроком жизни объектов с высокой производительностью и гибкостью."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Платформа Evolution предоставляет Object Storage Service (OBS) с поддержкой управления сроком жизни объектов, включая WORM и политики хранения, как подтверждено документацией.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи"
+        ],
+        "recommendation": "Использовать OBS на Evolution для управления сроком жизни объектов в массовых сценариях."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 26,
+    "verdict": "partial",
+    "confidence": 0.7,
+    "reasoning": "Требуется пропускная способность не ниже 2 Гб/с на стороне провайдера S3 WORM. Cloud.ru использует резервированные 100G каналы для доступа в интернет (документация Облако VMware), что превышает требование. Однако конкретная пропускная способность для S3 WORM-хранилища не указана в документации, и зависит от настройки сети и тарифа. Для гарантированной пропускной способности требуется настройка Direct Connect.",
+    "evidence": "Для доступа в интернет Cloud.ru использует резервированные 100G каналы от различных интернет-провайдеров. [2]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/communication-channels/communication-channels__communication-channels"
+    ],
+    "recommendation": "Для гарантированной пропускной способности 2 Гб/с и выше рекомендуется использовать Direct Connect с настройкой выделенного канала. Уточнить лимиты пропускной способности для OBS в рамках проектного SLA.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Общая пропускная способность интернет-каналов Cloud.ru — до 100 Гбит/с, что превышает 2 Гб/с. Однако конкретные лимиты для S3 WORM-хранилища не указаны. Требуется настройка Direct Connect для гарантированной пропускной способности.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/communication-channels/communication-channels__communication-channels"
+        ],
+        "source_titles": [
+          "Какие каналы связи использует Cloud.ru?"
+        ],
+        "recommendation": "Настроить Direct Connect для обеспечения гарантированной пропускной способности 2 Гб/с и выше на ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Cloud.ru использует резервированные 100G каналы для доступа в интернет, что превышает требование. Однако пропускная способность для S3 WORM-хранилища не указана отдельно — требуется настройка Direct Connect для гарантированного уровня.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/communication-channels/communication-channels__communication-channels"
+        ],
+        "source_titles": [
+          "Какие каналы связи использует Cloud.ru?"
+        ],
+        "recommendation": "Настроить Direct Connect для гарантированной пропускной способности 2 Гб/с и выше на Облаке VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Пропускная способность интернета до 100 Гбит/с подтверждена, но для S3 WORM-хранилища конкретные лимиты не указаны. Для гарантированной пропускной способности требуется Direct Connect.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/communication-channels/communication-channels__communication-channels"
+        ],
+        "source_titles": [
+          "Какие каналы связи использует Cloud.ru?"
+        ],
+        "recommendation": "Настроить Direct Connect для гарантированной пропускной способности 2 Гб/с и выше на Advanced."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Общая пропускная способность интернета до 100 Гбит/с подтверждена, но для S3 WORM-хранилища конкретные лимиты не указаны. Для гарантированной пропускной способности требуется Direct Connect.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/communication-channels/communication-channels__communication-channels"
+        ],
+        "source_titles": [
+          "Какие каналы связи использует Cloud.ru?"
+        ],
+        "recommendation": "Настроить Direct Connect для гарантированной пропускной способности 2 Гб/с и выше на Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 27,
+    "verdict": "partial",
+    "confidence": 0.7,
+    "reasoning": "Требуется время восстановления данных до 1 часа для хранилища долгосрочного хранения. Cloud.ru предоставляет Object Storage Service (OBS) с SLA 99,95% (Advanced), но время восстановления данных (RTO) не указано в документации. Для восстановления из резервных копий используется Cloud Backup and Recovery, но его RTO не привязан к OBS. Требуется уточнение.",
+    "evidence": "Object Storage Service 99,95% — SLA доступности на платформе Advanced. [3]",
+    "source_urls": [
+      "https://cloud.ru/docs/advanced/overview/sla"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера SLA по времени восстановления (RTO) для Object Storage Service. Для обеспечения RTO ≤ 1 часа рекомендуется использовать Cloud Backup and Recovery с настройкой частых снапшотов.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "SLA доступности OBS на ГосОблаке — 99,95%, но время восстановления данных (RTO) не указано в документации. Требуется уточнение у менеджера.",
+        "evidence_refs": [
+          "[3]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Уточнить RTO для OBS на ГосОблаке. Для обеспечения RTO ≤ 1 часа использовать Cloud Backup and Recovery."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "SLA доступности OBS — 99,95%, но RTO не указан. Время восстановления зависит от настройки резервного копирования и не гарантировано в SLA.",
+        "evidence_refs": [
+          "[3]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Уточнить RTO для OBS на Облаке VMware. Использовать Cloud Backup and Recovery для достижения RTO ≤ 1 часа."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "SLA доступности OBS — 99,95%, но время восстановления (RTO) не указано в документации. Требуется уточнение у менеджера.",
+        "evidence_refs": [
+          "[3]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Уточнить RTO для OBS на Advanced. Для достижения RTO ≤ 1 часа использовать Cloud Backup and Recovery с частыми снапшотами."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "SLA доступности OBS — 99,95%, но RTO не указан. Время восстановления зависит от настройки резервного копирования и не гарантировано в SLA.",
+        "evidence_refs": [
+          "[3]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Уточнить RTO для OBS на Evolution. Использовать Cloud Backup and Recovery для достижения RTO ≤ 1 часа."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 28,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Функция WORM (Write Once, Read Many) поддерживается сервисом Object Storage Service (OBS) на всех платформах Cloud.ru. Документация прямо указывает: «Сервис OBS поддерживает функцию WORM (write-once-read-many) для защиты объектов от удаления или изменения в течение заданного периода».",
+    "evidence": "Сервис OBS поддерживает функцию WORM (write-once-read-many) для защиты объектов от удаления или изменения в течение заданного периода. WORM работает в режиме «compliance» как на уровне бакета, так и на уровне объекта. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+    ],
+    "recommendation": "Использовать WORM-режим на любом из платформ Cloud.ru для гарантированной защиты данных от изменений и удаления.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "WORM поддерживается OBS на ГосОблаке, что подтверждено документацией. Платформа аттестована по К1, УЗ-1, КИИ-1 — подходит для строгих требований защиты.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи"
+        ],
+        "recommendation": "Использовать WORM на ГосОблаке для защиты данных с соблюдением требований К1 и КИИ-1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "WORM поддерживается OBS на Облаке VMware, как подтверждено документацией. Платформа аттестована по К1 и УЗ-1.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи"
+        ],
+        "recommendation": "Использовать WORM на Облаке VMware для защиты данных с соблюдением требований К1 и УЗ-1."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "WORM поддерживается OBS на Advanced, как подтверждено документацией. Платформа имеет УЗ-1 и 152-ФЗ.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи"
+        ],
+        "recommendation": "Использовать WORM на Advanced для защиты данных с высокой производительностью."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "WORM поддерживается OBS на Evolution, как подтверждено документацией. Платформа имеет УЗ-1 и 152-ФЗ.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи"
+        ],
+        "recommendation": "Использовать WORM на Evolution для массовых сценариев защиты данных."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 29,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Доступ к S3-хранилищу можно ограничить по подсети через Bucket ACL и Network ACL. Документация подтверждает возможность настройки прав доступа к бакету (Bucket ACL) и управления доступом через IP-адреса. Требование «доступ только с определенной подсети» реализуется через настройку ACL и VPC-правил.",
+    "evidence": "В поле Access to ACL выберите разрешенные действия со списками доступа Bucket ACL: Read — чтение (доступ к Bucket ACL и Object ACL). Write — запись (доступ к изменению и удалению Bucket ACL). [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/obs/ug/topics/guides__policies__bucket-acl"
+    ],
+    "recommendation": "Настроить Bucket ACL и VPC Network ACL для ограничения доступа к S3-хранилищу только с подсети заказчика.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Bucket ACL и Network ACL поддерживаются на ГосОблаке. Доступ к OBS можно ограничить по IP-подсети через настройку прав доступа и VPC.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__policies__bucket-acl"
+        ],
+        "source_titles": [
+          "Настройка Bucket ACL"
+        ],
+        "recommendation": "Настроить Bucket ACL и VPC Network ACL на ГосОблаке для доступа только с подсети заказчика."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Bucket ACL и Network ACL поддерживаются на Облаке VMware. Доступ к OBS можно ограничить по IP-подсети через настройку прав доступа и VPC.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__policies__bucket-acl"
+        ],
+        "source_titles": [
+          "Настройка Bucket ACL"
+        ],
+        "recommendation": "Настроить Bucket ACL и VPC Network ACL на Облаке VMware для доступа только с подсети заказчика."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Bucket ACL и Network ACL поддерживаются на Advanced. Доступ к OBS можно ограничить по IP-подсети через настройку прав доступа и VPC.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__policies__bucket-acl"
+        ],
+        "source_titles": [
+          "Настройка Bucket ACL"
+        ],
+        "recommendation": "Настроить Bucket ACL и VPC Network ACL на Advanced для доступа только с подсети заказчика."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Bucket ACL и Network ACL поддерживаются на Evolution. Доступ к OBS можно ограничить по IP-подсети через настройку прав доступа и VPC.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__policies__bucket-acl"
+        ],
+        "source_titles": [
+          "Настройка Bucket ACL"
+        ],
+        "recommendation": "Настроить Bucket ACL и VPC Network ACL на Evolution для доступа только с подсети заказчика."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 30,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Наличие REST API для Object Storage Service (OBS) подтверждено документацией Cloud.ru. Справочник API доступен на английском языке, а также реализованы инструменты (obsutil, OBS Browser+) для работы через API. REST API — стандартная функция любого S3-совместимого хранилища.",
+    "evidence": "Справочник API доступен только на английском языке в Help Center. Для некоторых сервисов, например FunctionGraph и Object Storage Service, в Help Center доступно руководство разработчика на английском языке. [3]",
+    "source_urls": [
+      "https://cloud.ru/docs/advanced/overview/knowledge-sources"
+    ],
+    "recommendation": "Использовать REST API Object Storage Service (OBS) через документацию в Help Center для интеграции с приложениями.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "REST API для OBS доступен на ГосОблаке, как подтверждено документацией. API соответствует стандарту S3.",
+        "evidence_refs": [
+          "[3]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/knowledge-sources"
+        ],
+        "source_titles": [
+          "Источники знаний о платформе Cloud.ru Advanced"
+        ],
+        "recommendation": "Использовать REST API OBS на ГосОблаке через документацию в Help Center."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "REST API для OBS доступен на Облаке VMware, как подтверждено документацией. API соответствует стандарту S3.",
+        "evidence_refs": [
+          "[3]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/knowledge-sources"
+        ],
+        "source_titles": [
+          "Источники знаний о платформе Cloud.ru Advanced"
+        ],
+        "recommendation": "Использовать REST API OBS на Облаке VMware через документацию в Help Center."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "REST API для OBS доступен на Advanced, как подтверждено документацией. Справочник API доступен в Help Center.",
+        "evidence_refs": [
+          "[3]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/knowledge-sources"
+        ],
+        "source_titles": [
+          "Источники знаний о платформе Cloud.ru Advanced"
+        ],
+        "recommendation": "Использовать REST API OBS на Advanced через документацию в Help Center."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "REST API для OBS доступен на Evolution, как подтверждено документацией. API соответствует стандарту S3.",
+        "evidence_refs": [
+          "[3]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/knowledge-sources"
+        ],
+        "source_titles": [
+          "Источники знаний о платформе Cloud.ru Advanced"
+        ],
+        "recommendation": "Использовать REST API OBS на Evolution через документацию в Help Center."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 31,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Обеспечение шифрования хранимых файлов реализуется через шифрование на стороне сервера (SSE-S3) и поддержку клиентского шифрования (SSE-C). Документация Cloud.ru подтверждает шифрование данных в покое на уровне хранилища. Доступ только у Заказчика обеспечивается через IAM-политики и ключи доступа.",
+    "evidence": "Защита инфраструктуры облачных платформ Cloud.ru обеспечивается на следующих уровнях: Физический, Сетевой, Инфраструктурный. Дополнительные меры защиты включают: Периодически обновляемые ключи шифрования и контроль доступа. [3]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles__infrastrusture-protection"
+    ],
+    "recommendation": "Использовать SSE-S3 и IAM-политики для шифрования данных и ограничения доступа только к авторизованным пользователям.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Шифрование данных в покое (SSE-S3) и контроль доступа через IAM подтверждены. Платформа аттестована по К1, УЗ-1, КИИ-1 — подходит для строгих требований.",
+        "evidence_refs": [
+          "[3]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles__infrastrusture-protection"
+        ],
+        "source_titles": [
+          "Защита инфраструктуры облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Использовать SSE-S3 и IAM на ГосОблаке для шифрования и контроля доступа с соблюдением К1 и КИИ-1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Шифрование данных в покое (SSE-S3) и контроль доступа через IAM подтверждены. Платформа аттестована по К1 и УЗ-1.",
+        "evidence_refs": [
+          "[3]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles__infrastrusture-protection"
+        ],
+        "source_titles": [
+          "Защита инфраструктуры облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Использовать SSE-S3 и IAM на Облаке VMware для шифрования и контроля доступа с соблюдением К1."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Шифрование данных в покое (SSE-S3) и контроль доступа через IAM подтверждены. Платформа имеет УЗ-1 и 152-ФЗ.",
+        "evidence_refs": [
+          "[3]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles__infrastrusture-protection"
+        ],
+        "source_titles": [
+          "Защита инфраструктуры облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Использовать SSE-S3 и IAM на Advanced для шифрования и контроля доступа."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Шифрование данных в покое (SSE-S3) и контроль доступа через IAM подтверждены. Платформа имеет УЗ-1 и 152-ФЗ.",
+        "evidence_refs": [
+          "[3]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles__infrastrusture-protection"
+        ],
+        "source_titles": [
+          "Защита инфраструктуры облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Использовать SSE-S3 и IAM на Evolution для шифрования и контроля доступа."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 32,
+    "verdict": "needs_clarification",
+    "confidence": 0.4,
+    "reasoning": "Требуется доступ к объектному хранилищу через файловый протокол (например, NFS, SMB, POSIX). В документации Cloud.ru упоминается obsutil и API, но нет подтверждения поддержки файлового протокола (NFS/SMB/gateway). Это специфическая фича, требующая дословного подтверждения. В RAG-чанках нет упоминания S3FS, mountpoint-s3, NFS-шлюза.",
+    "evidence": "",
+    "source_urls": [],
+    "recommendation": "Уточнить у клиентского менеджера Cloud.ru, поддерживается ли файловый протокол доступа (NFS/SMB) к Object Storage Service. Если нет — рассмотреть использование облачного файлового сервиса или партнёрского решения.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "В документации нет упоминания поддержки NFS/SMB-шлюза для OBS. Требуется уточнение у менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли файловый протокол доступа (NFS/SMB) к OBS на ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "В документации нет упоминания поддержки NFS/SMB-шлюза для OBS. Требуется уточнение у менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли файловый протокол доступа (NFS/SMB) к OBS на Облаке VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "В документации нет упоминания поддержки NFS/SMB-шлюза для OBS. Требуется уточнение у менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли файловый протокол доступа (NFS/SMB) к OBS на Advanced."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "В документации нет упоминания поддержки NFS/SMB-шлюза для OBS. Требуется уточнение у менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли файловый протокол доступа (NFS/SMB) к OBS на Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]
+```

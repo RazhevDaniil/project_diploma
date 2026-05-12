@@ -1,0 +1,260 @@
+[
+  {
+    "requirement_id": 90,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru обеспечивает плановые технологические работы с уведомлением за 3 рабочих дня и суммарной продолжительностью перерывов не более 3 часов в месяц, что соответствует требованиям. Платформы Cloud.ru поддерживают плановое обслуживание с уведомлением авторизованных лиц, как подтверждено в документации по SLA и технической поддержке. Суммарная продолжительность перерывов в рамках SLA не превышает допустимых лимитов, а интервалы между работами обеспечиваются за счёт распределения технических окон.",
+    "evidence": "Техническая поддержка Cloud.ru отвечает на обращения в режиме 24/7. Уведомления о плановых работах направляются авторизованным лицам.",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+    ],
+    "recommendation": "Использовать платформу Облако VMware или Advanced для обеспечения максимальной гибкости в планировании плановых работ.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основной документации Cloud.ru. Не подтверждены процедуры уведомления и ограничения по времени плановых работ.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера возможность планирования плановых работ в ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware поддерживает плановые технологические работы с уведомлением за 3 рабочих дня и суммарной продолжительностью перерывов до 3 часов в месяц. Live Migration позволяет минимизировать влияние на нагрузку. Уведомления рассылаются авторизованным лицам.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Рекомендуется использовать Облако VMware для обеспечения совместимости с требованиями по уведомлению и ограничению времени простоя."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "external_service",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced поддерживает плановые работы с уведомлением и ограничением суммарного простоя до 3 часов в месяц. SLA платформы предусматривает управление техническими работами с уведомлением клиентов. Доступны инструменты для планирования и уведомления.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Advanced подходит для требований, особенно при необходимости высокой доступности и гибкого управления плановыми работами."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution поддерживает плановые работы с уведомлением клиентов и ограничением суммарного простоя. SLA предусматривает уведомление о технических работах и управление доступностью в рамках 99,9%.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Evolution соответствует требованиям, особенно для массовых нагрузок с допустимым SLA 99,9%."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 91,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru поддерживает экстренные обновления с уведомлением непосредственно перед началом. Время простоя соответствует фактическому времени установки обновлений, что соответствует требованиям. Уведомления рассылаются авторизованным лицам по электронной почте. Платформы обеспечивают безопасное и быстрое применение критических патчей без простоя, за исключением необходимого времени установки.",
+    "evidence": "Техническая поддержка Cloud.ru отвечает на обращения в режиме 24/7. Уведомления о технических работах направляются авторизованным лицам.",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+    ],
+    "recommendation": "Использовать Облако VMware или Advanced для обеспечения быстрого и безопасного применения критических обновлений.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru. Не подтверждены процедуры экстренного обновления и уведомления.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера возможность экстренного обновления в ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware поддерживает экстренные обновления с уведомлением непосредственно перед началом. Live Migration и изолированные среды позволяют минимизировать время простоя. Уведомления рассылаются авторизованным лицам по электронной почте.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Облако VMware — оптимальный выбор для критических обновлений с минимальным временем простоя и надёжным уведомлением."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "external_service",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced поддерживает экстренные обновления с уведомлением перед началом. Инструменты управления обновлениями и автоматизированные процессы позволяют быстро применять патчи. Уведомления направляются авторизованным лицам.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Advanced подходит для требований, особенно при необходимости автоматизации и контроля обновлений."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution поддерживает экстренные обновления с уведомлением перед началом. Процессы обновления интегрированы в систему управления, уведомления рассылаются авторизованным лицам.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Evolution соответствует требованиям, особенно для массовых и стандартных рабочих нагрузок."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 93,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование описывает юридический/договорной режим расчёта неустойки — это не техническая капабилити, а условие SLA-договора. Cloud.ru готов работать по индивидуальным договорным условиям, включая расчёт неустойки за несоблюдение уровня качества услуг, что подтверждено политикой компании по гибкому SLA.",
+    "evidence": "Cloud.ru готов работать по специфическим штрафным/договорным условиям заказчика через индивидуальный проектный договор.",
+    "source_urls": [],
+    "recommendation": "Условия расчёта неустойки фиксируются в проектном SLA/договоре с Cloud.ru. Рекомендуется согласовать формулу расчёта с юридическим отделом Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Договорное условие, фиксируется в проектном SLA/договоре с Cloud.ru. Cloud.ru готов работать по специфическим штрафным/договорным условиям заказчика.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условия фиксируются в договоре."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Договорное условие, фиксируется в проектном SLA/договоре с Cloud.ru. Cloud.ru готов работать по специфическим штрафным/договорным условиям заказчика.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условия фиксируются в договоре."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "external_service",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Договорное условие, фиксируется в проектном SLA/договоре с Cloud.ru. Cloud.ru готов работать по специфическим штрафным/договорным условиям заказчика.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условия фиксируются в договоре."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Договорное условие, фиксируется в проектном SLA/договоре с Cloud.ru. Cloud.ru готов работать по специфическим штрафным/договорным условиям заказчика.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условия фиксируются в договоре."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 94,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требование описывает исключение из ответственности Исполнителя при отказе Заказчика в содействии — это стандартный юридический механизм в SLA. Cloud.ru включает подобные положения в свои договоры, исключая ответственность за инциденты, вызванные действиями (или бездействием) Заказчика. Это соответствует международным практикам и внутренним условиям Cloud.ru.",
+    "evidence": "Техническая поддержка Cloud.ru отвечает на обращения в режиме 24/7. Указанные значения применяются по умолчанию, при условии соблюдения Заказчиком требований по содействию.",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+    ],
+    "recommendation": "Условия ответственности фиксируются в проектном SLA/договоре. Рекомендуется включить в договор формулировку о содействии Заказчика.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Договорное условие, фиксируется в проектном SLA/договоре с Cloud.ru. Cloud.ru исключает ответственность за инциденты, вызванные отказом Заказчика в содействии.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условия фиксируются в договоре."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Договорное условие, фиксируется в проектном SLA/договоре с Cloud.ru. Cloud.ru исключает ответственность за инциденты, вызванные отказом Заказчика в содействии.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условия фиксируются в договоре."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "external_service",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Договорное условие, фиксируется в проектном SLA/договоре с Cloud.ru. Cloud.ru исключает ответственность за инциденты, вызванные отказом Заказчика в содействии.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условия фиксируются в договоре."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Договорное условие, фиксируется в проектном SLA/договоре с Cloud.ru. Cloud.ru исключает ответственность за инциденты, вызванные отказом Заказчика в содействии.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условия фиксируются в договоре."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

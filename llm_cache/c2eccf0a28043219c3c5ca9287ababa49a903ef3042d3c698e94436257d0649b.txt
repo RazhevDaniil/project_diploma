@@ -1,0 +1,277 @@
+```json
+[
+  {
+    "requirement_id": 38,
+    "verdict": "partial",
+    "confidence": 0.7,
+    "reasoning": "Требование содержит детальные метрики SLA (CPU Ready >31%, RAM Swapped >10%, IOPS снижение >20%, время доступа к диску >41мс/16мс, потеря пакетов >1%, задержка >20мс, восстановление >15 мин). Cloud.ru Облако VMware подтверждает SLA 99.98% и поддержку мониторинга виртуальных машин, но конкретные пороговые значения для этих метрик в документации не указаны. Остальные платформы не имеют документированной поддержки таких детализированных SLA-порогов.",
+    "evidence": "Уровень SLA Облака VMware — 99,98% [1], поддержка мониторинга виртуальных машин подтверждена [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/vmware/overview/topics/sla"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера возможность настройки индивидуальных SLA-порогов для метрик виртуальных машин через индивидуальный договор. Для критических нагрузок рекомендуется использовать Облако VMware.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Данные по SLA и метрикам виртуальных машин отсутствуют.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера наличие и параметры SLA для ГосОблака."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.75,
+        "reasoning": "Облако VMware имеет SLA 99.98% и поддерживает мониторинг виртуальных машин, но конкретные пороговые значения метрик (CPU Ready, RAM Swapped, IOPS, задержка диска и т.д.) в документации не указаны. Возможна настройка через индивидуальный SLA.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "https://cloud.ru/docs/vmware/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru",
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Облако VMware"
+        ],
+        "recommendation": "Настроить индивидуальные SLA-пороги для указанных метрик через проектный договор. Облако VMware — оптимальная платформа для таких требований."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Advanced имеет SLA 99.95% и поддерживает виртуальные машины, но документация не содержит детализированных SLA-порогов для указанных метрик (CPU Ready, IOPS, задержка диска и т.д.).",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера возможность настройки детализированных SLA-метрик на платформе Advanced."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.45,
+        "reasoning": "Evolution имеет SLA 99.9% для Compute, но документация evolution-compliance явно ограничивается только 152-ФЗ и УЗ-1. Детальные SLA-метрики виртуальных машин не упомянуты.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности сервиса «Виртуальные машины»"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживает ли Evolution детализированные SLA-метрики, указанные в требовании. Для критических SLA рекомендуется использовать Облако VMware."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 39,
+    "verdict": "partial",
+    "confidence": 0.7,
+    "reasoning": "Требование описывает средний приоритет инцидентов с порогами метрик (CPU Ready 5-30%, RAM Swapped 5-10%, IOPS 11-20%, задержка диска 31-40мс/11-15мс, потеря пакетов 0.5-1%, задержка 10-20мс). Cloud.ru Облако VMware подтверждает SLA 99.98% и поддержку мониторинга, но конкретные диапазоны метрик в документации не указаны. Остальные платформы не имеют документированной поддержки таких SLA-порогов.",
+    "evidence": "Уровень SLA Облака VMware — 99,98% [1], поддержка мониторинга виртуальных машин подтверждена [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/vmware/overview/topics/sla"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера возможность настройки индивидуальных SLA-порогов для метрик виртуальных машин через индивидуальный договор. Для средних нагрузок рекомендуется использовать Облако VMware.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Данные по SLA и метрикам виртуальных машин отсутствуют.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера наличие и параметры SLA для ГосОблака."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.75,
+        "reasoning": "Облако VMware имеет SLA 99.98% и поддерживает мониторинг виртуальных машин, но конкретные пороговые значения метрик (CPU Ready, RAM Swapped, IOPS, задержка диска и т.д.) в документации не указаны. Возможна настройка через индивидуальный SLA.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "https://cloud.ru/docs/vmware/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru",
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Облако VMware"
+        ],
+        "recommendation": "Настроить индивидуальные SLA-пороги для указанных метрик через проектный договор. Облако VMware — оптимальная платформа для таких требований."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Advanced имеет SLA 99.95% и поддерживает виртуальные машины, но документация не содержит детализированных SLA-порогов для указанных метрик (CPU Ready, IOPS, задержка диска и т.д.).",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера возможность настройки детализированных SLA-метрик на платформе Advanced."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.45,
+        "reasoning": "Evolution имеет SLA 99.9% для Compute, но документация evolution-compliance явно ограничивается только 152-ФЗ и УЗ-1. Детальные SLA-метрики виртуальных машин не упомянуты.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности сервиса «Виртуальные машины»"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживает ли Evolution детализированные SLA-метрики, указанные в требовании. Для средних нагрузок рекомендуется использовать Облако VMware."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 40,
+    "verdict": "needs_clarification",
+    "confidence": 0.5,
+    "reasoning": "Требование описывает методику расчёта коэффициента мониторинга «Rмониторинга» через «обработку обращений», но не содержит конкретных метрик, формул или SLA. Cloud.ru поддерживает 24/7 обработку обращений и имеет SLA по времени реагирования, но термин «Rмониторинга» и его расчётная формула не упомянуты в документации.",
+    "evidence": "Техническая поддержка Cloud.ru отвечает на обращения в режиме 24/7 [1], нормы времени реагирования и решения обращений зафиксированы [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla",
+      "https://cloud.ru/docs/overview/support/topics/overview"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера, что подразумевается под «Rмониторинга» и какая метрика используется для его расчёта. Cloud.ru готов предоставить данные по времени обработки обращений в рамках SLA.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Данные по системе мониторинга и обработке обращений отсутствуют.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера наличие системы мониторинга и обработки обращений в ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.6,
+        "reasoning": "Облако VMware поддерживает 24/7 обработку обращений и имеет SLA по времени реагирования, но термин «Rмониторинга» и его расчётная формула не указаны в документации.",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla",
+          "https://cloud.ru/docs/overview/support/topics/overview"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений",
+          "Режим и порядок работы"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, какая система мониторинга используется и как рассчитывается коэффициент «Rмониторинга»."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.6,
+        "reasoning": "Advanced поддерживает 24/7 обработку обращений и имеет SLA по времени реагирования, но термин «Rмониторинга» и его расчётная формула не указаны в документации.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, какая система мониторинга используется и как рассчитывается коэффициент «Rмониторинга»."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.6,
+        "reasoning": "Evolution поддерживает 24/7 обработку обращений и имеет SLA по времени реагирования, но термин «Rмониторинга» и его расчётная формула не указаны в документации.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, какая система мониторинга используется и как рассчитывается коэффициент «Rмониторинга»."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 41,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование описывает юридический/договорной режим уплаты штрафа при KPI < 0.65 за два последовательных этапа. Это не техническая метрика, а условие договора. Cloud.ru готов работать по индивидуальным SLA и штрафным условиям заказчика через проектный договор.",
+    "evidence": "Cloud.ru готов работать по специфическим штрафным/договорным условиям заказчика через индивидуальный проектный договор",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+    ],
+    "recommendation": "Условия штрафа за KPI < 0.65 фиксируются в проектном SLA/договоре с Cloud.ru. Cloud.ru готов согласовать и подписать такие условия.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Договорное условие о штрафах за KPI не зависит от платформы. Cloud.ru готов работать по индивидуальным договорным условиям на всех платформах.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условия штрафа фиксируются в проектном договоре. Cloud.ru готов согласовать."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Договорное условие о штрафах за KPI не зависит от платформы. Cloud.ru готов работать по индивидуальным договорным условиям на всех платформах.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условия штрафа фиксируются в проектном договоре. Cloud.ru готов согласовать."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Договорное условие о штрафах за KPI не зависит от платформы. Cloud.ru готов работать по индивидуальным договорным условиям на всех платформах.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условия штрафа фиксируются в проектном договоре. Cloud.ru готов согласовать."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Договорное условие о штрафах за KPI не зависит от платформы. Cloud.ru готов работать по индивидуальным договорным условиям на всех платформах.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условия штрафа фиксируются в проектном договоре. Cloud.ru готов согласовать."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]
+```

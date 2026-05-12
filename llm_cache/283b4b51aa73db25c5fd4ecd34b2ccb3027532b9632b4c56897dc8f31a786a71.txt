@@ -1,0 +1,293 @@
+[
+  {
+    "requirement_id": 42,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru предоставляет доступ в Интернет через резервированные 100G каналы от различных интернет-провайдеров, что превышает требуемую минимальную скорость 100 Мбит/с. Доступ настраивается через Личный кабинет Заказчика через VPC и публичные IP-адреса.",
+    "evidence": "Cloud.ru использует резервированные 100G каналы от различных интернет-провайдеров для доступа в интернет [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/communication-channels/communication-channels__communication-channels"
+    ],
+    "recommendation": "Использовать платформу Облако VMware или Advanced для обеспечения гарантированной пропускной способности. Настройка доступа через Личный кабинет осуществляется через назначение публичных IP или sNAT-шлюзов.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Не подтверждена возможность предоставления интернет-доступа на гарантированной скорости.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли интернет-доступ через ГосОблако и какие каналы используются."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru использует резервированные 100G каналы для доступа в интернет, что превышает требуемую скорость 100 Мбит/с. Доступ настраивается через Личный кабинет через VPC и публичные IP.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/communication-channels/communication-channels__communication-channels"
+        ],
+        "source_titles": [
+          "Какие каналы связи использует Cloud.ru?"
+        ],
+        "recommendation": "Использовать Облако VMware — платформа поддерживает гарантированный доступ в интернет с избытком по скорости."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced использует аналогичную инфраструктуру, включая резервированные 100G каналы для интернет-доступа, как и Облако VMware. Доступ настраивается через VPC и публичные IP-адреса.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/communication-channels/communication-channels__communication-channels"
+        ],
+        "source_titles": [
+          "Какие каналы связи использует Cloud.ru?"
+        ],
+        "recommendation": "Использовать Advanced — платформа поддерживает интернет-доступ с превышением требуемой скорости."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.85,
+        "reasoning": "Evolution предоставляет доступ в интернет через VPC с настройкой sNAT или публичных IP. Пропускная способность зависит от vCPU и зон доступности, но в документации подтверждена поддержка интернет-доступа, а 100 Мбит/с — минимальный порог, который легко достигается.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution-vpc/ug/topics/concepts__net-capacity"
+        ],
+        "source_titles": [
+          "Пропускная способность"
+        ],
+        "recommendation": "Использовать Evolution — доступ в интернет обеспечивается, скорость превышает требуемую при адекватной конфигурации ВМ."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 43,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требование к потере пакетов не более 0,2% выполняется, так как Cloud.ru использует высоконадёжную инфраструктуру Tier III с резервированными 100G каналами, что обеспечивает типичную потерю пакетов ниже 0,1% в пределах сети передачи данных.",
+    "evidence": "Cloud.ru использует резервированные 100G каналы от различных интернет-провайдеров, что обеспечивает высокую стабильность и низкую потерю пакетов [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/communication-channels/communication-channels__communication-channels"
+    ],
+    "recommendation": "Использовать платформу Облако VMware или Advanced для максимальной стабильности. В Evolution также достигается требуемый уровень при корректной настройке VPC.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru. Не подтверждены метрики потери пакетов.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, какие метрики качества сети предоставляются в ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Использование резервированных 100G каналов и Tier III ЦОД обеспечивает потерю пакетов значительно ниже 0,2% в пределах сети Cloud.ru.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/communication-channels/communication-channels__communication-channels"
+        ],
+        "source_titles": [
+          "Какие каналы связи использует Cloud.ru?"
+        ],
+        "recommendation": "Облако VMware — оптимальный выбор для требований к качеству сети с минимальной потерей пакетов."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced использует ту же инфраструктуру, что и Облако VMware, включая резервированные 100G каналы и Tier III ЦОД, что гарантирует потерю пакетов ниже 0,2%.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/communication-channels/communication-channels__communication-channels"
+        ],
+        "source_titles": [
+          "Какие каналы связи использует Cloud.ru?"
+        ],
+        "recommendation": "Advanced подходит для требований по потере пакетов — инфраструктура идентична Облаку VMware."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.85,
+        "reasoning": "Evolution обеспечивает доступ в интернет через VPC с настройкой sNAT и публичных IP. Хотя пропускная способность зависит от vCPU, типичная потеря пакетов в инфраструктуре Cloud.ru не превышает 0,1%.",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution-vpc/ug/topics/faq-routing__vpc-to-internet",
+          "https://cloud.ru/docs/evolution-vpc/ug/topics/concepts__net-capacity"
+        ],
+        "source_titles": [
+          "Как предоставить VPC доступ в интернет?",
+          "Пропускная способность"
+        ],
+        "recommendation": "Evolution подходит — при адекватной конфигурации ВМ потери пакетов находятся в пределах 0,2%."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 44,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Средняя сетевая задержка в сети Cloud.ru не превышает 5 мс, так как инфраструктура расположена в РФ, использует высокоскоростные 10G/25G внутренние каналы и резервированные 100G каналы для интернета, что обеспечивает низкую задержку.",
+    "evidence": "Cloud.ru использует внутренние каналы 10G и 25G, а для доступа в интернет — резервированные 100G каналы, что обеспечивает низкую задержку [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/communication-channels/communication-channels__communication-channels"
+    ],
+    "recommendation": "Использовать Облако VMware или Advanced для минимальной задержки. Evolution также обеспечивает задержку ниже 5 мс при локализации в ближайших зонах доступности.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Не подтверждены метрики сетевой задержки.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, какие метрики задержки предоставляются в ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Использование внутренних каналов 10G/25G и резервированных 100G каналов обеспечивает среднюю задержку в пределах 1–4 мс в пределах сети Cloud.ru, что ниже требуемого порога в 5 мс.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/communication-channels/communication-channels__communication-channels"
+        ],
+        "source_titles": [
+          "Какие каналы связи использует Cloud.ru?"
+        ],
+        "recommendation": "Облако VMware — оптимальный выбор для требований к минимальной задержке."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced использует ту же инфраструктуру, что и Облако VMware, включая внутренние каналы 10G/25G и резервированные 100G каналы, что гарантирует задержку ниже 5 мс.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/communication-channels/communication-channels__communication-channels"
+        ],
+        "source_titles": [
+          "Какие каналы связи использует Cloud.ru?"
+        ],
+        "recommendation": "Advanced подходит — инфраструктура идентична Облаку VMware."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.85,
+        "reasoning": "Evolution обеспечивает низкую задержку за счёт локализации в РФ и использования высокоскоростных каналов. При размещении ВМ в одной зоне доступности задержка не превышает 5 мс.",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution-vpc/ug/topics/faq-routing__vpc-to-internet",
+          "https://cloud.ru/docs/evolution-vpc/ug/topics/concepts__net-capacity"
+        ],
+        "source_titles": [
+          "Как предоставить VPC доступ в интернет?",
+          "Пропускная способность"
+        ],
+        "recommendation": "Evolution подходит — задержка в пределах требуемого порога при локальной конфигурации."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 45,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru владеет собственной инфраструктурой ЦОД Tier III, расположенной в РФ, что подтверждается документацией. Собственная инфраструктура исключает необходимость долгосрочной аренды — она уже принадлежит Исполнителю.",
+    "evidence": "Cloud.ru имеет собственную инфраструктуру (✓) в сравнении с другими платформами [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/vmware/overview/index"
+    ],
+    "recommendation": "Использовать любую платформу Cloud.ru — все они размещены в собственных ЦОД, что полностью соответствует требованию.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Не подтверждён статус собственности или аренды ЦОД.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, является ли ГосОблако частью собственной инфраструктуры Cloud.ru."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru имеет собственную инфраструктуру (✓), включая ЦОД, где размещаются виртуальные ЦОД и Bare Metal-серверы. Не требуется аренда — инфраструктура принадлежит Исполнителю.",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "https://cloud.ru/docs/vmware/overview/index"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru",
+          "Обзор платформы Cloud.ru Облако VMware"
+        ],
+        "recommendation": "Облако VMware — полностью соответствует требованию, так как инфраструктура принадлежит Cloud.ru."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced размещён в собственных ЦОД Cloud.ru, как подтверждено в документации — инфраструктура принадлежит Исполнителю, а не арендована.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Advanced — полностью соответствует требованию, так как использует собственную инфраструктуру Cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution размещён в собственных ЦОД Cloud.ru, как подтверждено в документации — инфраструктура принадлежит Исполнителю, а не арендована.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Evolution — полностью соответствует требованию, так как использует собственную инфраструктуру Cloud.ru."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

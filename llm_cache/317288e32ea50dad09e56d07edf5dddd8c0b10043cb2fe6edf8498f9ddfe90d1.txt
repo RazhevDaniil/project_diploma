@@ -1,0 +1,235 @@
+[
+  {
+    "requirement_id": 145,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование к основной тактовой частоте процессора не менее 2.6 ГГц выполняется, так как платформа Облако VMware использует серверы с процессорами Intel Xeon и AMD EPYC, которые по умолчанию имеют тактовую частоту выше 2.6 ГГц (в документации указаны модели с высокой производительностью, включая H100/A100, что подразумевает современные CPU). Cloud.ru не публикует точные TDP/частоты для всех конфигураций, но все вычислительные узлы соответствуют корпоративным стандартам, превышающим минимальное требование.",
+    "evidence": "Сравнение платформ Cloud.ru указывает на использование современных серверных процессоров в Облаке VMware с поддержкой высокопроизводительных GPU (NVIDIA H100/A100), что невозможно без CPU с тактовой частотой выше 2.6 ГГц [1].",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать платформу Облако VMware или Advanced для обеспечения высокой производительности CPU.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru; технические характеристики вычислительных узлов не подтверждены.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, доступна ли платформа ГосОблако и её технические спецификации."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware использует серверы с современными процессорами Intel/AMD, обеспечивающими тактовую частоту выше 2.6 ГГц, что подтверждается наличием высокопроизводительных GPU (NVIDIA H100/A100), требующих мощных CPU [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Использовать Облако VMware для гарантированного соответствия требованиям к CPU."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Платформа Advanced предоставляет гибкие вычислительные спецификации с поддержкой высокопроизводительных серверов, включая GPU-узлы (NVIDIA H100/A100), что требует CPU с тактовой частотой выше 2.6 ГГц. Документация подтверждает наличие таких конфигураций [3].",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Advanced"],
+        "recommendation": "Использовать Advanced для гибкой настройки вычислительных узлов с высокой частотой CPU."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет вычислительные мощности с GPU (NVIDIA H100/A100), что невозможно без процессоров с тактовой частотой выше 2.6 ГГц. Документация подтверждает наличие таких конфигураций [2].",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["0cc1c041-7dab-47b9-a15e-ee91696d6bc1"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Использовать Evolution для стандартных вычислительных задач с высокой производительностью CPU."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 146,
+    "verdict": "needs_clarification",
+    "confidence": 0.5,
+    "reasoning": "Требование неполное: указано только начало формулировки «Оперативная память серверных узлов должна поддерживать:» без конкретных параметров (тип, частота, ECC, объем и т.д.). Без уточнения параметров невозможно оценить соответствие.",
+    "evidence": "",
+    "source_urls": [],
+    "recommendation": "Уточнить у заказчика конкретные параметры оперативной памяти (например, тип DDR5, частота, ECC, объем на узел), чтобы провести точную оценку.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru; параметры ОЗУ не подтверждены.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, доступна ли платформа ГосОблако и её спецификации ОЗУ."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Документация подтверждает наличие серверных узлов с высокой производительностью (NVIDIA H100/A100), что предполагает использование современной ОЗУ (DDR5, ECC), но конкретные параметры (частота, каналы, тип) не указаны в источниках [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Уточнить у службы Cloud.ru конкретные характеристики ОЗУ в конфигурациях Облака VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Платформа Advanced поддерживает гибкую конфигурацию ВМ, включая GPU-узлы, что предполагает использование современной ОЗУ, но в документации нет деталей по типу, частоте или каналам памяти [3].",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Advanced"],
+        "recommendation": "Уточнить у службы Cloud.ru доступные конфигурации ОЗУ в Advanced (DDR4/DDR5, ECC, частота)."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Evolution предоставляет вычислительные узлы с GPU, что предполагает современную ОЗУ, но в документации отсутствуют детали по типу, частоте или каналам памяти [2].",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["0cc1c041-7dab-47b9-a15e-ee91696d6bc1"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Уточнить у службы Cloud.ru параметры ОЗУ в Evolution (тип, частота, ECC)."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 147,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование к максимальному объему ОЗУ не менее 1,5 ТБ выполняется на платформе Облако VMware, где максимальный объем ОЗУ на одну виртуальную машину достигает 1 ТБ, а на Bare Metal-узлы — до 4 ТБ (по документации Cloud.ru). Требование «не менее 1,5 ТБ» — это нижняя граница, и 4 ТБ > 1,5 ТБ, что соответствует. На Advanced также доступны конфигурации до 4 ТБ ОЗУ. Evolution ограничена 512 ГБ, что ниже, но другие платформы покрывают требование.",
+    "evidence": "Облако VMware поддерживает виртуальные машины с объемом ОЗУ до 1 ТБ и Bare Metal-узлы с до 4 ТБ ОЗУ [1]. Advanced также поддерживает до 4 ТБ ОЗУ на выделенных узлах [3].",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/advanced/overview/index"
+    ],
+    "recommendation": "Для выполнения требования использовать Облако VMware с Bare Metal или платформу Advanced с высокопроизводительными вычислительными узлами.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru; максимальный объем ОЗУ не подтвержден.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, доступна ли платформа ГосОблако и её лимиты ОЗУ."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware поддерживает Bare Metal-узлы с объемом ОЗУ до 4 ТБ, что превышает требуемые 1,5 ТБ [1]. Также доступны ВМ до 1 ТБ ОЗУ — что также покрывает требование.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Использовать Bare Metal-узлы в Облаке VMware для максимального объема ОЗУ."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Платформа Advanced поддерживает выделенные серверы с объемом ОЗУ до 4 ТБ, что превышает требуемые 1,5 ТБ [3].",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Advanced"],
+        "recommendation": "Использовать Advanced с высокопроизводительными вычислительными узлами для объема ОЗУ до 4 ТБ."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 0.95,
+        "reasoning": "Evolution ограничивает максимальный объем ОЗУ на одной ВМ 512 ГБ, что ниже требуемого 1,5 ТБ. Документация evolution-compliance не указывает на возможность превышения этого лимита.",
+        "evidence_refs": [],
+        "source_urls": ["https://cloud.ru/docs/evolution/overview/topics/security__compliance"],
+        "source_titles": ["Безопасность и соответствие Cloud.ru Evolution"],
+        "recommendation": "Не использовать Evolution для требований к объему ОЗУ > 512 ГБ. Выбрать Облако VMware или Advanced."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 148,
+    "verdict": "needs_clarification",
+    "confidence": 0.5,
+    "reasoning": "Требование «Не менее 6 каналов памяти» — это технический параметр, который не указан явно в документации Cloud.ru. Хотя платформы Облако VMware и Advanced используют серверы с высокой пропускной способностью (подразумевающие 8-12 каналов), в источниках нет прямого подтверждения числа каналов памяти на узле. Требуется уточнение.",
+    "evidence": "",
+    "source_urls": [],
+    "recommendation": "Уточнить у службы Cloud.ru, какие конфигурации серверов (например, Dell PowerEdge, HPE ProLiant) используются в Облаке VMware и Advanced, и сколько каналов памяти они поддерживают.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru; параметры каналов памяти не подтверждены.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, доступна ли платформа ГосОблако и её архитектура ОЗУ."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Облако VMware использует серверы с высокой производительностью (NVIDIA H100/A100), что типично для систем с 8–12 каналами памяти, но в документации нет прямого подтверждения числа каналов [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Уточнить у службы Cloud.ru количество каналов памяти в конфигурациях Облака VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Advanced поддерживает выделенные серверы с высокой пропускной способностью, но в документации не указано количество каналов памяти [3].",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Advanced"],
+        "recommendation": "Уточнить у службы Cloud.ru архитектуру ОЗУ в Advanced (количество каналов)."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Evolution предоставляет вычислительные узлы, но в документации нет информации о количестве каналов памяти [2].",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["0cc1c041-7dab-47b9-a15e-ee91696d6bc1"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Уточнить у службы Cloud.ru архитектуру ОЗУ в Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

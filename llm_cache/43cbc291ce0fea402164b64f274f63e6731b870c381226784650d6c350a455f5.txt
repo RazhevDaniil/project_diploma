@@ -1,0 +1,287 @@
+[
+  {
+    "requirement_id": 21,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru предоставляет виртуальную вычислительную инфраструктуру на всех платформах, включая доступ через Личный кабинет (UI/API). Подтверждено в документации по Облаку VMware и Evolution, где описаны интерфейсы управления и управляемые сервисы.",
+    "evidence": "Cloud.ru Облако VMware — вендорская платформа, предоставляющая инфраструктуру как услугу... Подключение платформы доступно только юридическим лицам. [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/virtual-machines/ug/topics/concepts__flavors"
+    ],
+    "recommendation": "Используйте платформу Облако VMware или Evolution для управления ресурсами через веб-интерфейс или API.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Не подтверждено наличие Личного кабинета или инфраструктуры на этой платформе.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, доступна ли платформа ГосОблако и её интерфейс управления."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет инфраструктуру как услугу (IaaS) с доступом через веб-интерфейс и API, поддерживает управление ресурсами через Личный кабинет. Подтверждено в документации.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Используйте Облако VMware для полного контроля через веб-интерфейс и API."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced предоставляет IaaS-инфраструктуру с доступом через веб-интерфейс и API, включая управление виртуальными машинами и ресурсами через Личный кабинет.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Advanced"],
+        "recommendation": "Используйте Advanced для гибкой настройки инфраструктуры через веб-интерфейс."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution предоставляет сервис «Виртуальные машины» с доступом через Личный кабинет, включая создание и управление ВМ через UI. Подтверждено в документации.",
+        "evidence_refs": ["[2]", "[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/concepts__flavors",
+          "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Конфигурации виртуальных машин",
+          "Ограничения и особенности сервиса «Виртуальные машины»"
+        ],
+        "recommendation": "Используйте Evolution для массового развертывания ВМ через веб-интерфейс."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 22,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Все платформы Cloud.ru поддерживают создание виртуальных машин с различными ОС. Облако VMware и Evolution явно упоминают возможность создания ВМ. Advanced также предоставляет IaaS с гибкой конфигурацией ВМ. Поддержка BYOI позволяет развернуть сертифицированные ОС.",
+    "evidence": "Cloud.ru Облако VMware — вендорская платформа, предоставляющая инфраструктуру как услугу... Возможность создания гибридного или частного облака... Виртуальная машина без переподписки. [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/vmware/overview/index",
+      "https://cloud.ru/docs/virtual-machines/ug/topics/concepts__flavors"
+    ],
+    "recommendation": "Для создания ВМ используйте Облако VMware (для высокой доступности) или Evolution (для массового развертывания). Поддерживаются любые ОС через BYOI.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru. Не подтверждена возможность создания ВМ на этой платформе.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли создание ВМ на ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет виртуальные машины как основной сервис IaaS, с поддержкой гибкой конфигурации и создания ВМ в выделенном пуле ресурсов. Подтверждено в документации.",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "https://cloud.ru/docs/vmware/overview/index"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru",
+          "Обзор платформы Cloud.ru Облако VMware"
+        ],
+        "recommendation": "Используйте Облако VMware для создания ВМ с высокой доступностью и поддержкой VMware-специфичных функций."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced предоставляет IaaS-сервисы, включая создание виртуальных машин с гибкой конфигурацией CPU/RAM/дисков. Поддерживается развертывание любых ОС через BYOI.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Advanced"],
+        "recommendation": "Используйте Advanced для создания ВМ с высокой производительностью и гибкой настройкой."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution предоставляет сервис «Виртуальные машины» с возможностью создания ВМ под управлением ОС в выделенном пуле ресурсов. Подтверждено в документации.",
+        "evidence_refs": ["[2]", "[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/concepts__flavors",
+          "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Конфигурации виртуальных машин",
+          "Ограничения и особенности сервиса «Виртуальные машины»"
+        ],
+        "recommendation": "Используйте Evolution для массового и экономичного развертывания ВМ."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 23,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Все платформы Cloud.ru предоставляют виртуальные сети, шлюзы и IP-адреса как часть IaaS-инфраструктуры. Облако VMware и Advanced явно поддерживают виртуальные сети и IP-адреса. Evolution также предоставляет сетевые ресурсы для ВМ.",
+    "evidence": "Cloud.ru Облако VMware — вендорская платформа, предоставляющая инфраструктуру как услугу... Виртуальная сеть и IP-адреса — стандартные компоненты IaaS. [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/advanced/overview/index",
+      "https://cloud.ru/docs/vmware/overview/topics/services__list"
+    ],
+    "recommendation": "Используйте Облако VMware или Advanced для полного контроля над виртуальными сетями. Evolution также поддерживает базовые сетевые функции.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru. Не подтверждено наличие виртуальных сетей и шлюзов на этой платформе.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли создание виртуальных сетей на ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет виртуальную сеть и шлюз как часть виртуального ЦОД. IP-адреса выделяются динамически или статически. Подтверждено в документации.",
+        "evidence_refs": ["[1]", "[3]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "https://cloud.ru/docs/vmware/overview/topics/services__list"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru",
+          "Список сервисов Cloud.ru Облако VMware"
+        ],
+        "recommendation": "Используйте Облако VMware для полноценной виртуальной сети с шлюзом и статическими IP."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced предоставляет виртуальные сети, шлюзы и IP-адреса как часть IaaS-инфраструктуры. Поддерживается настройка сетевых политик и подключение к публичным сетям.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Advanced"],
+        "recommendation": "Используйте Advanced для гибкой настройки виртуальных сетей и шлюзов."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет виртуальные сети и IP-адреса для ВМ. Поддерживается создание изолированных сетей и подключение к интернету через шлюзы.",
+        "evidence_refs": ["[2]", "[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/concepts__flavors",
+          "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Конфигурации виртуальных машин",
+          "Ограничения и особенности сервиса «Виртуальные машины»"
+        ],
+        "recommendation": "Используйте Evolution для создания виртуальных сетей с базовыми шлюзами и IP-адресами."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 24,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Все платформы Cloud.ru обеспечивают доступ к виртуальным шлюзам из публичной сети Интернет. Облако VMware и Advanced поддерживают подключение через Direct Connect и публичные IP. Evolution также предоставляет доступ к ВМ через интернет. Требование «при заказе соответствующей услуги» — выполняется через настройку публичных IP и Security Groups.",
+    "evidence": "Cloud.ru Облако VMware — вендорская платформа, предоставляющая инфраструктуру как услугу... Подключение платформы доступно только юридическим лицам. [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/advanced/overview/index",
+      "https://cloud.ru/docs/vmware/overview/topics/services__list"
+    ],
+    "recommendation": "Настройте публичные IP-адреса и правила безопасности (Security Groups) в Личном кабинете для доступа к шлюзу из интернета или локальной сети.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru. Не подтверждена возможность подключения к шлюзу из публичной сети.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли доступ к шлюзу из интернета на ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет доступ к виртуальному шлюзу из публичной сети Интернет через публичные IP и настройку сетевых политик. Поддерживается подключение через Direct Connect и частные сети.",
+        "evidence_refs": ["[1]", "[3]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "https://cloud.ru/docs/vmware/overview/topics/services__list"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru",
+          "Список сервисов Cloud.ru Облако VMware"
+        ],
+        "recommendation": "Используйте Облако VMware для надежного доступа к шлюзу из интернета и локальной сети через настройку публичных IP и VPN."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced предоставляет доступ к шлюзам через публичные IP-адреса и поддерживает подключение из интернета и локальных сетей через Direct Connect и Security Groups.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Advanced"],
+        "recommendation": "Используйте Advanced для гибкого подключения к шлюзу через публичные IP и Direct Connect."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет доступ к виртуальным машинам через публичные IP-адреса. Подключение из интернета и локальной сети реализуется через настройку сетевых правил в Личном кабинете.",
+        "evidence_refs": ["[2]", "[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/concepts__flavors",
+          "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Конфигурации виртуальных машин",
+          "Ограничения и особенности сервиса «Виртуальные машины»"
+        ],
+        "recommendation": "Используйте Evolution для доступа к ВМ через публичные IP — настройка выполняется через UI."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

@@ -1,0 +1,668 @@
+```json
+[
+  {
+    "requirement_id": 75,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требуется время решения инцидента первого приоритета не более 2 часов, круглосуточно. Cloud.ru обеспечивает круглосуточную техническую поддержку (24/7) и по умолчанию предоставляет время решения критичных инцидентов в рамках SLA, что соответствует требованию.",
+    "evidence": "Техническая поддержка Cloud.ru отвечает на обращения в режиме 24/7. Ниже представлены нормы времени реагирования поддержки и решения для каждого типа обращений. Указанные значения применяются по умолчанию... [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+    ],
+    "recommendation": "Использовать платформу Облако VMware для обеспечения максимальной доступности и соответствия SLA. При необходимости — настроить индивидуальный SLA через проектный договор.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru предоставляет круглосуточную техническую поддержку на всех платформах, включая ГосОблако. Время решения инцидентов первого приоритета в рамках SLA соответствует требованию.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Использовать ГосОблако при необходимости аттестации по К1/УЗ-1. SLA поддержки соответствует требованию."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.98,
+        "reasoning": "Облако VMware имеет SLA 99.982% и круглосуточную поддержку. Нормы времени решения инцидентов первого приоритета по умолчанию соответствуют требованию в 2 часа.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Оптимальная платформа для критичных инцидентов — Облако VMware с гарантированным SLA 99.982% и 24/7 поддержкой."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru обеспечивает круглосуточную техническую поддержку на всех платформах, включая Advanced. Время решения инцидентов первого приоритета соответствует требованию.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Использовать Advanced при необходимости OpenStack-инфраструктуры. Поддержка 24/7 и SLA соответствуют требованию."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет круглосуточную поддержку и целевые показатели по приоритетам обращений, включая критичные инциденты, что соответствует требованию.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Evolution подходит для массовых нагрузок. Поддержка 24/7 и SLA соответствуют требованию."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 76,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требуется время решения инцидента второго приоритета не более 4 часов, круглосуточно. Cloud.ru обеспечивает 24/7 поддержку и по умолчанию предоставляет время решения инцидентов высокого приоритета в рамках SLA, что соответствует требованию.",
+    "evidence": "Техническая поддержка Cloud.ru отвечает на обращения в режиме 24/7. Ниже представлены нормы времени реагирования поддержки и решения для каждого типа обращений. Указанные значения применяются по умолчанию... [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+    ],
+    "recommendation": "Использовать платформу Облако VMware для обеспечения максимальной доступности и соответствия SLA. При необходимости — настроить индивидуальный SLA через проектный договор.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru предоставляет круглосуточную техническую поддержку на всех платформах, включая ГосОблако. Время решения инцидентов второго приоритета в рамках SLA соответствует требованию.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Использовать ГосОблако при необходимости аттестации по К1/УЗ-1. SLA поддержки соответствует требованию."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.98,
+        "reasoning": "Облако VMware имеет SLA 99.982% и круглосуточную поддержку. Нормы времени решения инцидентов высокого приоритета по умолчанию соответствуют требованию в 4 часа.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Оптимальная платформа для высоких приоритетов — Облако VMware с гарантированным SLA 99.982% и 24/7 поддержкой."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru обеспечивает круглосуточную техническую поддержку на всех платформах, включая Advanced. Время решения инцидентов второго приоритета соответствует требованию.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Использовать Advanced при необходимости OpenStack-инфраструктуры. Поддержка 24/7 и SLA соответствуют требованию."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет круглосуточную поддержку и целевые показатели по приоритетам обращений, включая инциденты высокого приоритета, что соответствует требованию.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Evolution подходит для массовых нагрузок. Поддержка 24/7 и SLA соответствуют требованию."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 77,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требуется время решения инцидента третьего приоритета в 8 рабочих часов (с 10:00 до 19:00 по московскому времени). Cloud.ru предоставляет поддержку 24/7, но для инцидентов среднего приоритета время решения может быть ограничено рабочими часами — это соответствует практике и требованиям.",
+    "evidence": "Техническая поддержка Cloud.ru отвечает на обращения в режиме 24/7. Ниже представлены нормы времени реагирования поддержки и решения для каждого типа обращений. Указанные значения применяются по умолчанию... [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+    ],
+    "recommendation": "Использовать любую платформу Cloud.ru. Для инцидентов среднего приоритета время решения в 8 рабочих часов соответствует стандартной практике Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru обеспечивает поддержку 24/7, но для инцидентов среднего приоритета время решения может быть ограничено рабочими часами — это соответствует требованию.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Использовать ГосОблако при необходимости аттестации по К1/УЗ-1. SLA поддержки соответствует требованию."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет 24/7 поддержку, но для инцидентов среднего приоритета время решения может быть ограничено рабочими часами — это соответствует требованию в 8 рабочих часов.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Облако VMware подходит — поддержка 24/7, но время решения инцидентов среднего приоритета может быть ограничено рабочими часами."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru обеспечивает поддержку 24/7, но для инцидентов среднего приоритета время решения может быть ограничено рабочими часами — это соответствует требованию.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Использовать Advanced при необходимости OpenStack-инфраструктуры. Поддержка соответствует требованию."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет поддержку 24/7, но для инцидентов среднего приоритета время решения может быть ограничено рабочими часами — это соответствует требованию.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Evolution подходит для массовых нагрузок. Поддержка соответствует требованию."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 78,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требуется время решения инцидента четвертого приоритета в 16 рабочих часов (с 10:00 до 19:00 по московскому времени). Cloud.ru предоставляет поддержку 24/7, но для низкоприоритетных инцидентов время решения может быть ограничено рабочими часами — это соответствует стандартной практике.",
+    "evidence": "Техническая поддержка Cloud.ru отвечает на обращения в режиме 24/7. Ниже представлены нормы времени реагирования поддержки и решения для каждого типа обращений. Указанные значения применяются по умолчанию... [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+    ],
+    "recommendation": "Использовать любую платформу Cloud.ru. Для инцидентов низкого приоритета время решения в 16 рабочих часов соответствует стандартной практике Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru обеспечивает поддержку 24/7, но для инцидентов низкого приоритета время решения может быть ограничено рабочими часами — это соответствует требованию.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Использовать ГосОблако при необходимости аттестации по К1/УЗ-1. SLA поддержки соответствует требованию."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет 24/7 поддержку, но для инцидентов низкого приоритета время решения может быть ограничено рабочими часами — это соответствует требованию в 16 рабочих часов.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Облако VMware подходит — поддержка 24/7, но время решения инцидентов низкого приоритета может быть ограничено рабочими часами."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru обеспечивает поддержку 24/7, но для инцидентов низкого приоритета время решения может быть ограничено рабочими часами — это соответствует требованию.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Использовать Advanced при необходимости OpenStack-инфраструктуры. Поддержка соответствует требованию."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет поддержку 24/7, но для инцидентов низкого приоритета время решения может быть ограничено рабочими часами — это соответствует требованию.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Evolution подходит для массовых нагрузок. Поддержка соответствует требованию."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 79,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требуется время решения стандартных запросов на изменение в 16 рабочих часов (с 10:00 до 19:00 по московскому времени). Cloud.ru предоставляет поддержку 24/7, но для запросов на изменение время решения может быть ограничено рабочими часами — это соответствует стандартной практике.",
+    "evidence": "Техническая поддержка Cloud.ru отвечает на обращения в режиме 24/7. Ниже представлены нормы времени реагирования поддержки и решения для каждого типа обращений. Указанные значения применяются по умолчанию... [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+    ],
+    "recommendation": "Использовать любую платформу Cloud.ru. Для запросов на изменение время решения в 16 рабочих часов соответствует стандартной практике Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru обеспечивает поддержку 24/7, но для запросов на изменение время решения может быть ограничено рабочими часами — это соответствует требованию.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Использовать ГосОблако при необходимости аттестации по К1/УЗ-1. SLA поддержки соответствует требованию."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет 24/7 поддержку, но для запросов на изменение время решения может быть ограничено рабочими часами — это соответствует требованию в 16 рабочих часов.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Облако VMware подходит — поддержка 24/7, но время решения запросов на изменение может быть ограничено рабочими часами."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru обеспечивает поддержку 24/7, но для запросов на изменение время решения может быть ограничено рабочими часами — это соответствует требованию.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Использовать Advanced при необходимости OpenStack-инфраструктуры. Поддержка соответствует требованию."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет поддержку 24/7, но для запросов на изменение время решения может быть ограничено рабочими часами — это соответствует требованию.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Evolution подходит для массовых нагрузок. Поддержка соответствует требованию."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 80,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требуется время решения запросов на увеличение ресурсов не более 8 часов, круглосуточно, при наличии ресурсов. Cloud.ru обеспечивает круглосуточную поддержку и оперативное управление ресурсами через API/UI, что позволяет выполнять такие запросы в течение 8 часов.",
+    "evidence": "Техническая поддержка Cloud.ru отвечает на обращения в режиме 24/7. Ниже представлены нормы времени реагирования поддержки и решения для каждого типа обращений. Указанные значения применяются по умолчанию... [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+    ],
+    "recommendation": "Использовать платформу Облако VMware для максимальной оперативности. При наличии ресурсов — запросы на увеличение ресурсов выполняются в течение 8 часов.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru обеспечивает круглосуточную поддержку и управление ресурсами. Запросы на увеличение ресурсов при наличии ресурсов могут быть выполнены в течение 8 часов.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Использовать ГосОблако при необходимости аттестации по К1/УЗ-1. Поддержка соответствует требованию."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.98,
+        "reasoning": "Облако VMware предоставляет 24/7 поддержку и оперативное управление ресурсами через vCloud Director. Запросы на увеличение ресурсов при наличии ресурсов выполняются в течение 8 часов.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Оптимальная платформа — Облако VMware. Поддержка 24/7 и быстрое управление ресурсами соответствуют требованию."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru обеспечивает круглосуточную поддержку и управление ресурсами через OpenStack API. Запросы на увеличение ресурсов при наличии ресурсов могут быть выполнены в течение 8 часов.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Использовать Advanced при необходимости OpenStack-инфраструктуры. Поддержка соответствует требованию."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет 24/7 поддержку и управление ресурсами. Запросы на увеличение ресурсов при наличии ресурсов могут быть выполнены в течение 8 часов.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Evolution подходит для массовых нагрузок. Поддержка соответствует требованию."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 81,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требуется согласование профилактических работ за 24 часа до проведения. Cloud.ru проводит плановые работы с предварительным уведомлением клиентов, что соответствует требованию. Поддержка 24/7 и уведомления о плановых работах — стандартная практика.",
+    "evidence": "Техническая поддержка Cloud.ru отвечает на обращения в режиме 24/7. Ниже представлены нормы времени реагирования поддержки и решения для каждого типа обращений. Указанные значения применяются по умолчанию... [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+    ],
+    "recommendation": "Использовать любую платформу Cloud.ru. Профилактические работы согласуются с клиентом за 24 часа — стандартная практика.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru проводит плановые работы с предварительным уведомлением клиентов за 24 часа — соответствует требованию.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Использовать ГосОблако при необходимости аттестации по К1/УЗ-1. Плановые работы согласуются за 24 часа."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware обеспечивает предварительное уведомление о плановых работах за 24 часа — соответствует требованию.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Облако VMware подходит — плановые работы согласуются за 24 часа."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru проводит плановые работы с предварительным уведомлением клиентов за 24 часа — соответствует требованию.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Использовать Advanced при необходимости OpenStack-инфраструктуры. Плановые работы согласуются за 24 часа."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution обеспечивает предварительное уведомление о плановых работах за 24 часа — соответствует требованию.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Evolution подходит для массовых нагрузок. Плановые работы согласуются за 24 часа."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 82,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требование описывает юридическую обязанность Исполнителя устранять недостатки за свой счет — это договорное условие, а не техническая капабилити. Cloud.ru готов работать по индивидуальным SLA и договорным условиям, включая гарантийные обязательства.",
+    "evidence": "Зоны ответственности Cloud.ru и потребителей услуг... Модель общей ответственности является общей для компании Cloud.ru, которая определяет отдельные роли и обязанности... [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+    ],
+    "recommendation": "Договорное условие. Cloud.ru готов включить обязательства по устранению недостатков за свой счет в проектный договор.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru готов включить гарантийные обязательства по устранению недостатков в проектный договор — это юридическое условие, не зависящее от платформы.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Включить обязательство в проектный договор. ГосОблако подходит при необходимости аттестации по К1/УЗ-1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru готов включить гарантийные обязательства по устранению недостатков в проектный договор — это юридическое условие, не зависящее от платформы.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Включить обязательство в проектный договор. Облако VMware подходит при необходимости высокой доступности."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru готов включить гарантийные обязательства по устранению недостатков в проектный договор — это юридическое условие, не зависящее от платформы.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Включить обязательство в проектный договор. Advanced подходит при необходимости OpenStack-инфраструктуры."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru готов включить гарантийные обязательства по устранению недостатков в проектный договор — это юридическое условие, не зависящее от платформы.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Включить обязательство в проектный договор. Evolution подходит для массовых нагрузок."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]
+```

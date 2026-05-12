@@ -1,0 +1,485 @@
+```json
+[
+  {
+    "requirement_id": 72,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование ссылается на ПП РФ №1119, который регулирует защиту ПДн. Cloud.ru имеет аттестацию УЗ-1 по 152-ФЗ на всех платформах, что покрывает требования ПП РФ №1119. УЗ-1 — максимальный уровень защиты, покрывающий все нижние уровни.",
+    "evidence": "Все платформы Cloud.ru имеют уровень защиты 152-ФЗ УЗ-1",
+    "source_urls": [
+      "26127171-5f8d-4006-a989-bcb6ff142835"
+    ],
+    "recommendation": "Использовать любую платформу Cloud.ru — все покрывают требования ПП РФ №1119.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru ГосОблако аттестовано по УЗ-1 (ПП РФ №1119) и 152-ФЗ, что полностью покрывает требование.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Сертификаты, аттестаты и лицензии облака Cloud.ru"],
+        "recommendation": "Использовать ГосОблако для максимальной совместимости с госсистемами."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware аттестовано по УЗ-1 и 152-ФЗ, что полностью покрывает требования ПП РФ №1119.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Сертификаты, аттестаты и лицензии облака Cloud.ru"],
+        "recommendation": "Использовать Облако VMware для высокой доступности (99.982%) и совместимости с VMware-средами."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced имеет УЗ-1 и аттестацию по 152-ФЗ, что покрывает требования ПП РФ №1119.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Сертификаты, аттестаты и лицензии облака Cloud.ru"],
+        "recommendation": "Использовать Advanced для гибкости OpenStack и высоких ресурсов."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution имеет УЗ-1 и аттестацию по 152-ФЗ, что покрывает требования ПП РФ №1119.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Сертификаты, аттестаты и лицензии облака Cloud.ru"],
+        "recommendation": "Использовать Evolution для массовых нагрузок с SLA 99.9%."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 73,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование ссылается на приказ ФСТЭК №17 (ГИС К1). Cloud.ru ГосОблако и Облако VMware аттестованы по К1, что покрывает требование. УЗ-1 и К1 — аттестованы на этих платформах.",
+    "evidence": "Облачная платформа Cloud.ru, предназначенная для размещения государственных информационных систем, аттестована на соответствие требованиям безопасности информации, предъявляемым к государственным информационным системам (ГИС) при обеспечении первого класса защищенности (К1).",
+    "source_urls": [
+      "26127171-5f8d-4006-a989-bcb6ff142835"
+    ],
+    "recommendation": "Использовать ГосОблако или Облако VMware — только они аттестованы по ГИС К1.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "ГосОблако аттестовано по приказу ФСТЭК №17 (К1) — прямое соответствие.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Сертификаты, аттестаты и лицензии облака Cloud.ru"],
+        "recommendation": "Оптимальный выбор для ГИС, требующих К1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware аттестовано по приказу ФСТЭК №17 (К1) — прямое соответствие.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Сертификаты, аттестаты и лицензии облака Cloud.ru"],
+        "recommendation": "Подходит для ГИС с высокой доступностью (99.982%)."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 1.0,
+        "reasoning": "Advanced не аттестован по ГИС К1 — только по УЗ-1. Требование К1 на Advanced — несоответствие.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Не использовать Advanced для ГИС, требующих К1. Выбрать ГосОблако или Облако VMware."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 1.0,
+        "reasoning": "Evolution не аттестован по ГИС К1 — только по УЗ-1. Требование К1 на Evolution — несоответствие.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Не использовать Evolution для ГИС, требующих К1. Выбрать ГосОблако или Облако VMware."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 74,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование ссылается на приказ ФСТЭК №21 — это внутренний регламент по мерам защиты ПДн, который полностью покрывается аттестацией УЗ-1 по 152-ФЗ. Cloud.ru имеет УЗ-1 на всех платформах — соответствие обеспечено.",
+    "evidence": "Все платформы Cloud.ru имеют уровень защиты 152-ФЗ УЗ-1",
+    "source_urls": [
+      "26127171-5f8d-4006-a989-bcb6ff142835"
+    ],
+    "recommendation": "Использовать любую платформу Cloud.ru — УЗ-1 покрывает требования приказа ФСТЭК №21.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "УЗ-1 на ГосОблако покрывает требования приказа ФСТЭК №21.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Сертификаты, аттестаты и лицензии облака Cloud.ru"],
+        "recommendation": "Оптимальный выбор для госсистем с повышенными требованиями."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "УЗ-1 на Облаке VMware покрывает требования приказа ФСТЭК №21.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Сертификаты, аттестаты и лицензии облака Cloud.ru"],
+        "recommendation": "Подходит для ГИС с высокой доступностью."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced имеет УЗ-1 — покрывает требования приказа ФСТЭК №21.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Сертификаты, аттестаты и лицензии облака Cloud.ru"],
+        "recommendation": "Подходит для гибких корпоративных решений."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution имеет УЗ-1 — покрывает требования приказа ФСТЭК №21.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Сертификаты, аттестаты и лицензии облака Cloud.ru"],
+        "recommendation": "Подходит для массовых нагрузок."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 75,
+    "verdict": "needs_clarification",
+    "confidence": 0.6,
+    "reasoning": "Требование ссылается на приказ ФСБ №378, который регулирует СКЗИ (средства криптографической защиты). Cloud.ru использует СКЗИ, но в документации не подтверждено соответствие КА/КС-3. Необходимо уточнить у клиентского менеджера, какие СКЗИ используются и их класс.",
+    "evidence": "",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla",
+      "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_sla-agreements",
+      "https://cloud.ru/docs/evolution/overview/topics/sla"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера Cloud.ru, какие СКЗИ используются на платформах и их класс (КС-1/КС-2/КС-3/КА).",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.6,
+        "reasoning": "Конкретные СКЗИ и их класс не указаны в документации. Cloud.ru использует СКЗИ, но аттестация по ФСБ №378 не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Сертификаты, аттестаты и лицензии облака Cloud.ru"],
+        "recommendation": "Уточнить у менеджера Cloud.ru, какие СКЗИ используются в ГосОблаке и их класс."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.6,
+        "reasoning": "Конкретные СКЗИ и их класс не указаны в документации. Cloud.ru использует СКЗИ, но аттестация по ФСБ №378 не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Сертификаты, аттестаты и лицензии облака Cloud.ru"],
+        "recommendation": "Уточнить у менеджера Cloud.ru, какие СКЗИ используются в Облаке VMware и их класс."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.6,
+        "reasoning": "Конкретные СКЗИ и их класс не указаны в документации. Cloud.ru использует СКЗИ, но аттестация по ФСБ №378 не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Сертификаты, аттестаты и лицензии облака Cloud.ru"],
+        "recommendation": "Уточнить у менеджера Cloud.ru, какие СКЗИ используются в Advanced и их класс."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.6,
+        "reasoning": "Конкретные СКЗИ и их класс не указаны в документации. Cloud.ru использует СКЗИ, но аттестация по ФСБ №378 не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Сертификаты, аттестаты и лицензии облака Cloud.ru"],
+        "recommendation": "Уточнить у менеджера Cloud.ru, какие СКЗИ используются в Evolution и их класс."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 76,
+    "verdict": "needs_clarification",
+    "confidence": 0.5,
+    "reasoning": "Требование ссылается на приказ Минцифры №1229 — регулирует устойчивость сети связи. Cloud.ru имеет лицензию Роскомнадзора на услуги связи (№171948), но в документации нет подтверждения соответствия именно приказу №1229. Требуется уточнение.",
+    "evidence": "",
+    "source_urls": [
+      "https://cloud.ru/docs/evolution/overview/topics/sla",
+      "https://cloud.ru/docs/advanced/overview/sla",
+      "https://cloud.ru/docs/overview/support/index"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера Cloud.ru, подтверждено ли соответствие приказу Минцифры №1229 на платформах.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Лицензия Роскомнадзора есть, но соответствие приказу Минцифры №1229 не подтверждено в документации.",
+        "evidence_refs": [],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Сертификаты, аттестаты и лицензии облака Cloud.ru"],
+        "recommendation": "Уточнить у менеджера, есть ли аттестация по приказу Минцифры №1229."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Лицензия Роскомнадзора есть, но соответствие приказу Минцифры №1229 не подтверждено в документации.",
+        "evidence_refs": [],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Сертификаты, аттестаты и лицензии облака Cloud.ru"],
+        "recommendation": "Уточнить у менеджера, есть ли аттестация по приказу Минцифры №1229."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Лицензия Роскомнадзора есть, но соответствие приказу Минцифры №1229 не подтверждено в документации.",
+        "evidence_refs": [],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Сертификаты, аттестаты и лицензии облака Cloud.ru"],
+        "recommendation": "Уточнить у менеджера, есть ли аттестация по приказу Минцифры №1229."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Лицензия Роскомнадзора есть, но соответствие приказу Минцифры №1229 не подтверждено в документации.",
+        "evidence_refs": [],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Сертификаты, аттестаты и лицензии облака Cloud.ru"],
+        "recommendation": "Уточнить у менеджера, есть ли аттестация по приказу Минцифры №1229."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 77,
+    "verdict": "needs_clarification",
+    "confidence": 0.5,
+    "reasoning": "Требование ссылается на ГОСТ Р ИСО 14644-5-2005 — стандарт чистых помещений. Cloud.ru размещён в Tier III ЦОД, но в документации нет подтверждения соответствия именно этому ГОСТу. Требуется уточнение.",
+    "evidence": "",
+    "source_urls": [
+      "26127171-5f8d-4006-a989-bcb6ff142835",
+      "dd5d3df6-0c24-4707-ae7c-c3b15b1e87ce"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера Cloud.ru, подтверждено ли соответствие ГОСТ Р ИСО 14644-5-2005 для ЦОДов.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Tier III ЦОД есть, но соответствие ГОСТ Р ИСО 14644-5-2005 не подтверждено в документации.",
+        "evidence_refs": [],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Сертификаты, аттестаты и лицензии облака Cloud.ru"],
+        "recommendation": "Уточнить у менеджера, есть ли аттестация по ГОСТ Р ИСО 14644-5-2005."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Tier III ЦОД есть, но соответствие ГОСТ Р ИСО 14644-5-2005 не подтверждено в документации.",
+        "evidence_refs": [],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Сертификаты, аттестаты и лицензии облака Cloud.ru"],
+        "recommendation": "Уточнить у менеджера, есть ли аттестация по ГОСТ Р ИСО 14644-5-2005."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Tier III ЦОД есть, но соответствие ГОСТ Р ИСО 14644-5-2005 не подтверждено в документации.",
+        "evidence_refs": [],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Сертификаты, аттестаты и лицензии облака Cloud.ru"],
+        "recommendation": "Уточнить у менеджера, есть ли аттестация по ГОСТ Р ИСО 14644-5-2005."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Tier III ЦОД есть, но соответствие ГОСТ Р ИСО 14644-5-2005 не подтверждено в документации.",
+        "evidence_refs": [],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Сертификаты, аттестаты и лицензии облака Cloud.ru"],
+        "recommendation": "Уточнить у менеджера, есть ли аттестация по ГОСТ Р ИСО 14644-5-2005."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 78,
+    "verdict": "needs_clarification",
+    "confidence": 0.5,
+    "reasoning": "Требование ссылается на ГОСТ Р 56103-2014 — защита от электромагнитных воздействий. Cloud.ru имеет физическую защиту ЦОД (Tier III), но в документации нет подтверждения соответствия именно этому ГОСТу. Требуется уточнение.",
+    "evidence": "",
+    "source_urls": [
+      "26127171-5f8d-4006-a989-bcb6ff142835",
+      "https://cloud.ru/docs/overview/support/topics/concepts__support_lines",
+      "https://cloud.ru/docs/overview/support/index"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера Cloud.ru, подтверждено ли соответствие ГОСТ Р 56103-2014 для ЦОДов.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Физическая защита ЦОД есть, но соответствие ГОСТ Р 56103-2014 не подтверждено в документации.",
+        "evidence_refs": [],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Сертификаты, аттестаты и лицензии облака Cloud.ru"],
+        "recommendation": "Уточнить у менеджера, есть ли аттестация по ГОСТ Р 56103-2014."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Физическая защита ЦОД есть, но соответствие ГОСТ Р 56103-2014 не подтверждено в документации.",
+        "evidence_refs": [],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Сертификаты, аттестаты и лицензии облака Cloud.ru"],
+        "recommendation": "Уточнить у менеджера, есть ли аттестация по ГОСТ Р 56103-2014."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Физическая защита ЦОД есть, но соответствие ГОСТ Р 56103-2014 не подтверждено в документации.",
+        "evidence_refs": [],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Сертификаты, аттестаты и лицензии облака Cloud.ru"],
+        "recommendation": "Уточнить у менеджера, есть ли аттестация по ГОСТ Р 56103-2014."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Физическая защита ЦОД есть, но соответствие ГОСТ Р 56103-2014 не подтверждено в документации.",
+        "evidence_refs": [],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Сертификаты, аттестаты и лицензии облака Cloud.ru"],
+        "recommendation": "Уточнить у менеджера, есть ли аттестация по ГОСТ Р 56103-2014."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 79,
+    "verdict": "needs_clarification",
+    "confidence": 0.5,
+    "reasoning": "Требование ссылается на ГОСТ Р 27.303-2021 — анализ видов и последствий отказов (FMEA). Cloud.ru имеет SLA и механизмы отказоустойчивости, но в документации нет подтверждения применения именно методики FMEA по этому ГОСТу. Требуется уточнение.",
+    "evidence": "",
+    "source_urls": [
+      "26127171-5f8d-4006-a989-bcb6ff142835",
+      "https://cloud.ru/docs/overview/security-introduction/index",
+      "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles__infrastrusture-protection"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера Cloud.ru, применяется ли методика FMEA по ГОСТ Р 27.303-2021 в процессах обеспечения надежности.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Отказоустойчивость есть, но применение FMEA по ГОСТ Р 27.303-2021 не подтверждено в документации.",
+        "evidence_refs": [],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Сертификаты, аттестаты и лицензии облака Cloud.ru"],
+        "recommendation": "Уточнить у менеджера, применяется ли FMEA по ГОСТ Р 27.303-2021."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Отказоустойчивость есть, но применение FMEA по ГОСТ Р 27.303-2021 не подтверждено в документации.",
+        "evidence_refs": [],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Сертификаты, аттестаты и лицензии облака Cloud.ru"],
+        "recommendation": "Уточнить у менеджера, применяется ли FMEA по ГОСТ Р 27.303-2021."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Отказоустойчивость есть, но применение FMEA по ГОСТ Р 27.303-2021 не подтверждено в документации.",
+        "evidence_refs": [],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Сертификаты, аттестаты и лицензии облака Cloud.ru"],
+        "recommendation": "Уточнить у менеджера, применяется ли FMEA по ГОСТ Р 27.303-2021."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Отказоустойчивость есть, но применение FMEA по ГОСТ Р 27.303-2021 не подтверждено в документации.",
+        "evidence_refs": [],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Сертификаты, аттестаты и лицензии облака Cloud.ru"],
+        "recommendation": "Уточнить у менеджера, применяется ли FMEA по ГОСТ Р 27.303-2021."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]
+```

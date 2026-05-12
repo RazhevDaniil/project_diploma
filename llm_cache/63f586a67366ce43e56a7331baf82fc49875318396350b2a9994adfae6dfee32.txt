@@ -1,0 +1,289 @@
+[
+  {
+    "requirement_id": 93,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование связано с юридическим/договорным режимом ответственности при KPI ниже 0.65, а не с технической реализацией норматива. Cloud.ru готов фиксировать такие условия в индивидуальном SLA/договоре. Норматив 'Руководящий документ... 1997' — это ссылка на устаревший документ, не требующий прямого технического соответствия от платформы, так как Cloud.ru обеспечивает защиту на уровне современных аттестаций (152-ФЗ, ISO 27001, КИИ-3).",
+    "evidence": "Cloud.ru имеет аттестацию по 152-ФЗ УЗ-1, ISO 27001:2013, КИИ-3 и обеспечивает защиту инфраструктуры на всех платформах [1].",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles__infrastrusture-protection",
+      "https://cloud.ru/docs/overview/security-introduction/index"
+    ],
+    "recommendation": "Условия ответственности по KPI фиксируются в проектном SLA/договоре с Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru; требуется уточнение у клиентского менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли ГосОблако для данного типа договорных условий."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware аттестовано по 152-ФЗ УЗ-1, ISO 27001:2013, КИИ-3 и обеспечивает защиту инфраструктуры, что соответствует общим требованиям безопасности. Договорные условия по KPI фиксируются индивидуально.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "recommendation": "Условия ответственности по KPI фиксируются в проектном SLA/договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced аттестован по 152-ФЗ УЗ-1, ISO 27001:2013, PCI DSS, ГОСТ 57580 — все атрибуты безопасности соответствуют требованиям. Договорные условия по KPI — предмет индивидуального соглашения.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Условия ответственности по KPI фиксируются в проектном SLA/договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution аттестован по 152-ФЗ УЗ-1 и обеспечивает Tier III ЦОД, 24/7 поддержку — базовые атрибуты безопасности выполнены. Договорные условия по KPI — предмет индивидуального соглашения.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Условия ответственности по KPI фиксируются в проектном SLA/договоре с Cloud.ru."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 94,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование относится к договорному условию ответственности при KPI ниже 0.65, а не к технической реализации специфических мер защиты. Cloud.ru имеет аттестации по 152-ФЗ УЗ-1, ISO 27001:2013, КИИ-3 и обеспечивает защиту инфраструктуры на всех платформах. Конкретные рекомендации по технической защите — предмет индивидуального SLA.",
+    "evidence": "Cloud.ru обеспечивает защиту инфраструктуры на всех платформах, включая физический, сетевой и инфраструктурный уровни, в соответствии с 152-ФЗ и ISO 27001:2013 [1].",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles__infrastrusture-protection",
+      "26127171-5f8d-4006-a989-bcb6ff142835"
+    ],
+    "recommendation": "Условия ответственности по KPI фиксируются в проектном SLA/договоре с Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru; требуется уточнение у клиентского менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли ГосОблако для данного типа договорных условий."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware аттестовано по 152-ФЗ УЗ-1, ISO 27001:2013, КИИ-3 и обеспечивает защиту инфраструктуры. Договорные условия по KPI — предмет индивидуального соглашения.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Условия ответственности по KPI фиксируются в проектном SLA/договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced аттестован по 152-ФЗ УЗ-1, ISO 27001:2013, PCI DSS, ГОСТ 57580 — все атрибуты безопасности выполнены. Договорные условия по KPI — предмет индивидуального соглашения.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Условия ответственности по KPI фиксируются в проектном SLA/договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution аттестован по 152-ФЗ УЗ-1 и обеспечивает Tier III ЦОД, 24/7 поддержку — базовые атрибуты безопасности выполнены. Договорные условия по KPI — предмет индивидуального соглашения.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Условия ответственности по KPI фиксируются в проектном SLA/договоре с Cloud.ru."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 95,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование относится к договорному условию ответственности при KPI ниже 0.65, а не к технической реализации СТР-К. Cloud.ru имеет аттестацию по 152-ФЗ УЗ-1 и обеспечивает защиту персональных данных в соответствии с законодательством РФ. СТР-К — устаревший документ, не требующий прямого технического соответствия от платформы, так как Cloud.ru покрывает требования современных нормативов.",
+    "evidence": "Cloud.ru имеет уровень защиты 152-ФЗ УЗ-1 на всех платформах, включая Облако VMware и Advanced, что подтверждает соответствие требованиям защиты информации [1].",
+    "source_urls": [
+      "26127171-5f8d-4006-a989-bcb6ff142835"
+    ],
+    "recommendation": "Условия ответственности по KPI фиксируются в проектном SLA/договоре с Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru; требуется уточнение у клиентского менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли ГосОблако для данного типа договорных условий."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware аттестовано по 152-ФЗ УЗ-1 и обеспечивает защиту персональных данных в соответствии с законодательством РФ. Договорные условия по KPI — предмет индивидуального соглашения.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Условия ответственности по KPI фиксируются в проектном SLA/договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced аттестован по 152-ФЗ УЗ-1 и обеспечивает защиту персональных данных в соответствии с законодательством РФ. Договорные условия по KPI — предмет индивидуального соглашения.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Условия ответственности по KPI фиксируются в проектном SLA/договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution аттестован по 152-ФЗ УЗ-1 и обеспечивает защиту персональных данных в соответствии с законодательством РФ. Договорные условия по KPI — предмет индивидуального соглашения.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Условия ответственности по KPI фиксируются в проектном SLA/договоре с Cloud.ru."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 96,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование относится к договорному условию ответственности при KPI ниже 0.65, а не к технической реализации Положения о мультисервисной транспортной сети Москвы. Cloud.ru не обязан соответствовать внутренним регламентам городских структур — это юридический/договорной аспект, который фиксируется в индивидуальном SLA. Cloud.ru обеспечивает безопасность инфраструктуры по 152-ФЗ, ISO 27001, КИИ-3 — что является достаточным основанием для договорной работы.",
+    "evidence": "Cloud.ru имеет аттестацию по 152-ФЗ УЗ-1, ISO 27001:2013, КИИ-3 и обеспечивает защиту инфраструктуры на всех платформах [1].",
+    "source_urls": [
+      "26127171-5f8d-4006-a989-bcb6ff142835"
+    ],
+    "recommendation": "Условия ответственности по KPI фиксируются в проектном SLA/договоре с Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru; требуется уточнение у клиентского менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли ГосОблако для данного типа договорных условий."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware аттестовано по 152-ФЗ УЗ-1, ISO 27001:2013, КИИ-3 и обеспечивает защиту инфраструктуры. Договорные условия по KPI — предмет индивидуального соглашения.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Условия ответственности по KPI фиксируются в проектном SLA/договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced аттестован по 152-ФЗ УЗ-1, ISO 27001:2013, PCI DSS, ГОСТ 57580 — все атрибуты безопасности выполнены. Договорные условия по KPI — предмет индивидуального соглашения.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Условия ответственности по KPI фиксируются в проектном SLA/договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution аттестован по 152-ФЗ УЗ-1 и обеспечивает Tier III ЦОД, 24/7 поддержку — базовые атрибуты безопасности выполнены. Договорные условия по KPI — предмет индивидуального соглашения.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Условия ответственности по KPI фиксируются в проектном SLA/договоре с Cloud.ru."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

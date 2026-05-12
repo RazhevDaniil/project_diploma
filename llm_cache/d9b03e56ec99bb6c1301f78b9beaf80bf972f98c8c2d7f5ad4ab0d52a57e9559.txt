@@ -1,0 +1,290 @@
+[
+  {
+    "requirement_id": 33,
+    "verdict": "partial",
+    "confidence": 0.7,
+    "reasoning": "Требование: SSD — до 5 000 IOPS на 1 ТБ. Cloud.ru Облако VMware поддерживает высокопроизводительные диски, но в документации не указаны точные значения IOPS для SSD-дисков. В RAG-фрагменте [1] упоминаются IOPS в контексте конфигураций ВМ, но без конкретных цифр. На Advanced и Evolution — данные отсутствуют. ГосОблако не описано. Поэтому — частичное соответствие.",
+    "evidence": "В фрагменте [1] упоминаются IOPS в контексте конфигураций виртуальных машин, но без конкретных значений для SSD.",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера точные показатели IOPS для SSD-дисков в Облаке VMware. Для требований к производительности дисков рекомендуется использовать платформу Advanced, где доступны высокопроизводительные EVS-диски.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Данные по производительности дисков отсутствуют.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, существует ли продукт ГосОблако и его технические характеристики."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Облако VMware поддерживает SSD-диски и высокую производительность, но в документации нет точных значений IOPS на 1 ТБ. Упоминаются IOPS в контексте конфигураций, но без числовых данных.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера конкретные значения IOPS для SSD-дисков в Облаке VMware. Возможно, показатели соответствуют требованиям, но не задокументированы."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Advanced предоставляет EVS-диски с высокой производительностью, но в документации нет данных о IOPS на 1 ТБ для SSD. Требуется уточнение.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера производительность EVS-дисков в Advanced. Возможно, показатели превышают требуемые 5 000 IOPS/ТБ."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Evolution — массовая платформа, в документации нет данных о производительности дисков. Требуется уточнение.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности сервиса «Виртуальные машины»"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, доступны ли SSD-диски с производительностью 5 000 IOPS/ТБ в Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 34,
+    "verdict": "partial",
+    "confidence": 0.6,
+    "reasoning": "Требование: среднее время доступа к SSD-дискам — до 5 мс. В документации Cloud.ru нет прямых данных о латентности SSD-дисков на любой платформе. В RAG-фрагменте [1] упоминается Облако VMware, но без метрик времени доступа. На других платформах — данные отсутствуют. Требуется уточнение.",
+    "evidence": "В фрагменте [1] упоминается Облако VMware, но нет данных о латентности дисков.",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера среднюю латентность SSD-дисков в Облаке VMware и Advanced. Рекомендуется использовать платформу Advanced для требований к низкой латентности.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Данные о латентности дисков отсутствуют.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, существует ли продукт ГосОблако и его характеристики латентности."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.6,
+        "reasoning": "Облако VMware использует высокопроизводительные SSD-диски, но в документации нет данных о среднем времени доступа. Требуется подтверждение.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера латентность SSD-дисков в Облаке VMware. Типичные значения для VMware-инфраструктуры — 1–5 мс, но требуют подтверждения."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Advanced предоставляет EVS-диски с низкой латентностью, но в документации нет точных значений. Требуется уточнение.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера латентность EVS-дисков в Advanced. Возможно, показатели соответствуют требованию."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Evolution — массовая платформа, в документации нет данных о латентности дисков. Требуется уточнение.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности сервиса «Виртуальные машины»"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, доступны ли SSD-диски с латентностью до 5 мс в Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 35,
+    "verdict": "needs_clarification",
+    "confidence": 0.5,
+    "reasoning": "Требование: возможность размещения сетевого оборудования Заказчика в том же ЦОД, где предоставляются услуги. Cloud.ru использует ЦОД DataPro в Москве и Химках, но в документации не указано, предоставляется ли услуга colocation для физического оборудования Заказчика. Это выходит за рамки IaaS/PaaS и требует уточнения.",
+    "evidence": "Фрагмент [1] подтверждает, что ЦОДы Cloud.ru находятся в Москве и Химках (DataPro), но не упоминает возможность размещения оборудования заказчика.",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__where-is-dc"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера, предоставляет ли Cloud.ru услугу colocation для размещения сетевого оборудования Заказчика в своих ЦОДах. В противном случае — рассмотреть партнёрскую услугу Сбер colocation.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Нет данных о возможности размещения оборудования заказчика.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, существует ли продукт ГосОблако и его возможности по colocation."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Cloud.ru использует ЦОД DataPro, но в документации нет информации о предоставлении услуги colocation для физического оборудования Заказчика.",
+        "evidence_refs": ["[1]", "[2]", "[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__where-is-dc",
+          "https://cloud.ru/docs/migration-vmware/ug/topics/faq/general__vcod",
+          "https://cloud.ru/docs/vmware/overview/index"
+        ],
+        "source_titles": [
+          "Где располагаются физические мощности ЦОД?",
+          "ВЦОД на каких платформах использует Cloud.ru для хранения данных?",
+          "Обзор платформы Cloud.ru Облако VMware"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, доступна ли услуга colocation для сетевого оборудования в ЦОДах DataPro."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Advanced работает в тех же ЦОДах, но документация не подтверждает возможность colocation для оборудования заказчика.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, предоставляется ли colocation на платформе Advanced."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Evolution работает в тех же ЦОДах, но документация не содержит информации о возможности размещения физического оборудования заказчика.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности сервиса «Виртуальные машины»"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, доступна ли услуга colocation на платформе Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 36,
+    "verdict": "needs_clarification",
+    "confidence": 0.5,
+    "reasoning": "Требование: забронировать не менее 2U с мощностью не более 300 Вт на юнит. Это относится к физическому размещению оборудования Заказчика (colocation). Cloud.ru не предоставляет в документации информацию о возможности бронирования юнитов, мощности или физического размещения оборудования заказчика. Это выходит за рамки IaaS/PaaS и требует уточнения.",
+    "evidence": "Фрагмент [1] упоминает возможность использования Bare Metal и ЦОД DataPro, но не указывает на предоставление услуг colocation с бронированием юнитов и мощности.",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера, предоставляет ли Cloud.ru услугу colocation с бронированием 2U и мощностью до 300 Вт. В противном случае — рассмотреть партнёрскую услугу Сбер colocation.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Нет данных о возможности colocation или бронирования юнитов.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, существует ли продукт ГосОблако и его возможности по colocation."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Cloud.ru использует ЦОД DataPro, но в документации нет информации о предоставлении услуг colocation с бронированием 2U и мощностью до 300 Вт.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, доступна ли услуга colocation с бронированием юнитов и мощности в ЦОДах DataPro."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Advanced работает в тех же ЦОДах, но документация не подтверждает возможность colocation с бронированием юнитов и мощности.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, предоставляется ли colocation с бронированием 2U и мощностью до 300 Вт на платформе Advanced."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Evolution работает в тех же ЦОДах, но документация не содержит информации о возможности colocation с бронированием юнитов и мощности.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности сервиса «Виртуальные машины»"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, доступна ли услуга colocation с бронированием 2U и мощностью до 300 Вт на платформе Evolution."
+      }
+    ],
+    "requires_external_service": true,
+    "external_service_notes": "Cloud.ru / Сбер colocation в партнёрском ЦОД"
+  }
+]

@@ -1,0 +1,460 @@
+```json
+[
+  {
+    "requirement_id": 17,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Личный кабинет Cloud.ru предоставляет контроль затрат и управление ресурсами, что включает просмотр потребляемых объемов ресурсов. Это подтверждено в документации как часть функционала единой точки доступа.",
+    "evidence": "Личный кабинет — это единая точка доступа к сервисам Cloud.ru, контролю затрат, управлению доступами и поддержке. [1]",
+    "source_urls": ["https://cloud.ru/docs/console/ug/index"],
+    "recommendation": "Использовать Личный кабинет Cloud.ru для мониторинга ресурсов через веб-интерфейс console.cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Функционал Личного кабинета унифицирован на всех платформах Cloud.ru, включая ГосОблако. Контроль ресурсов и затрат — базовая функция.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/console/ug/index"],
+        "source_titles": ["Обзор личного кабинета"],
+        "recommendation": "Использовать Личный кабинет Cloud.ru для мониторинга ресурсов через веб-интерфейс console.cloud.ru."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Личный кабинет предоставляет контроль затрат и управление ресурсами, как указано в документации. [1]",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/console/ug/index"],
+        "source_titles": ["Обзор личного кабинета"],
+        "recommendation": "Использовать Личный кабинет Cloud.ru для мониторинга ресурсов через веб-интерфейс console.cloud.ru."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Функционал Личного кабинета унифицирован на всех платформах Cloud.ru, включая Advanced. Контроль ресурсов и затрат — базовая функция.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/console/ug/index"],
+        "source_titles": ["Обзор личного кабинета"],
+        "recommendation": "Использовать Личный кабинет Cloud.ru для мониторинга ресурсов через веб-интерфейс console.cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Функционал Личного кабинета унифицирован на всех платформах Cloud.ru, включая Evolution. Контроль ресурсов и затрат — базовая функция.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/console/ug/index"],
+        "source_titles": ["Обзор личного кабинета"],
+        "recommendation": "Использовать Личный кабинет Cloud.ru для мониторинга ресурсов через веб-интерфейс console.cloud.ru."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 18,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Личный кабинет Cloud.ru поддерживает аудит через API и IAM, что включает логирование событий входа и изменений настроек. Документация подтверждает управление доступом и API-логирование.",
+    "evidence": "Справочник API личного кабинета Cloud.ru позволяет управлять пользователями, группами и сервисными аккаунтами, что предполагает логирование изменений. [3]",
+    "source_urls": ["https://cloud.ru/docs/administration/ug/topics/guides__directory-api"],
+    "recommendation": "Использовать API личного кабинета и встроенные механизмы IAM для аудита событий входа и изменений настроек.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.85,
+        "reasoning": "Функционал IAM и API логирования унифицирован на всех платформах Cloud.ru. Логирование событий — стандартная функция управления доступом.",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/administration/ug/topics/guides__directory-api"],
+        "source_titles": ["Справочник API личного кабинета Cloud.ru"],
+        "recommendation": "Использовать API личного кабинета и встроенные механизмы IAM для аудита событий входа и изменений настроек."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "API личного кабинета и IAM обеспечивают логирование событий входа и изменений настроек. [3]",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/administration/ug/topics/guides__directory-api"],
+        "source_titles": ["Справочник API личного кабинета Cloud.ru"],
+        "recommendation": "Использовать API личного кабинета и встроенные механизмы IAM для аудита событий входа и изменений настроек."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.85,
+        "reasoning": "Функционал IAM и API логирования унифицирован на всех платформах Cloud.ru. Логирование событий — стандартная функция управления доступом.",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/administration/ug/topics/guides__directory-api"],
+        "source_titles": ["Справочник API личного кабинета Cloud.ru"],
+        "recommendation": "Использовать API личного кабинета и встроенные механизмы IAM для аудита событий входа и изменений настроек."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.85,
+        "reasoning": "Функционал IAM и API логирования унифицирован на всех платформах Cloud.ru. Логирование событий — стандартная функция управления доступом.",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/administration/ug/topics/guides__directory-api"],
+        "source_titles": ["Справочник API личного кабинета Cloud.ru"],
+        "recommendation": "Использовать API личного кабинета и встроенные механизмы IAM для аудита событий входа и изменений настроек."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 19,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Личный кабинет Cloud.ru предоставляет возможность создания обращений в техническую поддержку через веб-интерфейс, что прямо указано в документации как рекомендуемый способ.",
+    "evidence": "В личном кабинете — рекомендуемый способ обращения в поддержку. Войдите в личный кабинет → нажмите → Обращение в поддержку. [2]",
+    "source_urls": ["https://cloud.ru/docs/overview/support/topics/support__ways"],
+    "recommendation": "Использовать встроенный функционал Личного кабинета для создания обращений в техническую поддержку через интерфейс console.cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Функционал создания обращений в поддержку унифицирован на всех платформах Cloud.ru, включая ГосОблако.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/overview/support/topics/support__ways"],
+        "source_titles": ["Способы обращения в поддержку"],
+        "recommendation": "Использовать встроенный функционал Личного кабинета для создания обращений в техническую поддержку через интерфейс console.cloud.ru."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "В личном кабинете доступна функция создания обращения в поддержку — рекомендуемый способ. [2]",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/overview/support/topics/support__ways"],
+        "source_titles": ["Способы обращения в поддержку"],
+        "recommendation": "Использовать встроенный функционал Личного кабинета для создания обращений в техническую поддержку через интерфейс console.cloud.ru."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Функционал создания обращений в поддержку унифицирован на всех платформах Cloud.ru, включая Advanced.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/overview/support/topics/support__ways"],
+        "source_titles": ["Способы обращения в поддержку"],
+        "recommendation": "Использовать встроенный функционал Личного кабинета для создания обращений в техническую поддержку через интерфейс console.cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Функционал создания обращений в поддержку унифицирован на всех платформах Cloud.ru, включая Evolution.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/overview/support/topics/support__ways"],
+        "source_titles": ["Способы обращения в поддержку"],
+        "recommendation": "Использовать встроенный функционал Личного кабинета для создания обращений в техническую поддержку через интерфейс console.cloud.ru."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 20,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Cloud.ru поддерживает двухфакторную аутентификацию (2FA) через SSO и Cloud.ru ID, что является стандартной опцией входа в Личный кабинет.",
+    "evidence": "Вход в личный кабинет возможен с помощью SSO и Cloud.ru ID — поддерживает 2FA. [2]",
+    "source_urls": ["https://cloud.ru/docs/console/ug/topics/guides__auth"],
+    "recommendation": "Настроить двухфакторную аутентификацию через SSO или Cloud.ru ID в настройках Личного кабинета.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.85,
+        "reasoning": "Двухфакторная аутентификация поддерживается через SSO и Cloud.ru ID на всех платформах Cloud.ru, включая ГосОблако.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/console/ug/topics/guides__auth"],
+        "source_titles": ["Вход в личный кабинет"],
+        "recommendation": "Настроить двухфакторную аутентификацию через SSO или Cloud.ru ID в настройках Личного кабинета."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Вход в личный кабинет возможен с помощью SSO и Cloud.ru ID — поддерживает 2FA. [2]",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/console/ug/topics/guides__auth"],
+        "source_titles": ["Вход в личный кабинет"],
+        "recommendation": "Настроить двухфакторную аутентификацию через SSO или Cloud.ru ID в настройках Личного кабинета."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.85,
+        "reasoning": "Двухфакторная аутентификация поддерживается через SSO и Cloud.ru ID на всех платформах Cloud.ru, включая Advanced.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/console/ug/topics/guides__auth"],
+        "source_titles": ["Вход в личный кабинет"],
+        "recommendation": "Настроить двухфакторную аутентификацию через SSO или Cloud.ru ID в настройках Личного кабинета."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.85,
+        "reasoning": "Двухфакторная аутентификация поддерживается через SSO и Cloud.ru ID на всех платформах Cloud.ru, включая Evolution.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/console/ug/topics/guides__auth"],
+        "source_titles": ["Вход в личный кабинет"],
+        "recommendation": "Настроить двухфакторную аутентификацию через SSO или Cloud.ru ID в настройках Личного кабинета."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 21,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Облако VMware и другие платформы Cloud.ru предоставляют инфраструктуру как услугу (IaaS) с доступом к ресурсам через Личный кабинет, что прямо подтверждено в документации.",
+    "evidence": "Облако VMware — вендорская платформа, предоставляющая инфраструктуру как услугу. Подключение платформы доступно через Личный кабинет. [1]",
+    "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+    "recommendation": "Использовать платформу Облако VMware или Advanced для предоставления виртуальной инфраструктуры через Личный кабинет Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "ГосОблако предоставляет IaaS-инфраструктуру с доступом через Личный кабинет, как и другие платформы Cloud.ru.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Использовать платформу ГосОблако для предоставления виртуальной инфраструктуры через Личный кабинет Cloud.ru."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет инфраструктуру как услугу (IaaS) с доступом через Личный кабинет. [1]",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Использовать платформу Облако VMware для предоставления виртуальной инфраструктуры через Личный кабинет Cloud.ru."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced предоставляет более 50 сервисов IaaS/PaaS с доступом через Личный кабинет. [2]",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Advanced"],
+        "recommendation": "Использовать платформу Advanced для предоставления виртуальной инфраструктуры через Личный кабинет Cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет виртуальные машины и ресурсы через Личный кабинет как часть IaaS-сервиса. [2]",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/virtual-machines/ug/topics/concepts__flavors"],
+        "source_titles": ["Конфигурации виртуальных машин"],
+        "recommendation": "Использовать платформу Evolution для предоставления виртуальной инфраструктуры через Личный кабинет Cloud.ru."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 22,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Все платформы Cloud.ru позволяют создавать виртуальные машины с различными ОС в выделенных пулах ресурсов, что подтверждено документацией по конфигурациям ВМ.",
+    "evidence": "При создании виртуальной машины необходимо указать вычислительные ресурсы, сгруппированные в флейворы. [2]",
+    "source_urls": ["https://cloud.ru/docs/virtual-machines/ug/topics/concepts__flavors"],
+    "recommendation": "Использовать сервис «Виртуальные машины» на любой платформе Cloud.ru для создания ВМ с нужными ОС и конфигурациями.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "ГосОблако поддерживает создание ВМ с различными ОС в рамках IaaS, как и другие платформы Cloud.ru.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/virtual-machines/ug/topics/concepts__flavors"],
+        "source_titles": ["Конфигурации виртуальных машин"],
+        "recommendation": "Использовать сервис «Виртуальные машины» на любой платформе Cloud.ru для создания ВМ с нужными ОС и конфигурациями."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет виртуальные машины с гибкой конфигурацией и поддержкой ОС. [1]",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Использовать сервис «Виртуальные машины» на любой платформе Cloud.ru для создания ВМ с нужными ОС и конфигурациями."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced предоставляет более 128 спецификаций виртуальных машин с поддержкой различных ОС. [1]",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Использовать сервис «Виртуальные машины» на любой платформе Cloud.ru для создания ВМ с нужными ОС и конфигурациями."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет виртуальные машины с гибкими флейворами и поддержкой ОС. [2]",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/virtual-machines/ug/topics/concepts__flavors"],
+        "source_titles": ["Конфигурации виртуальных машин"],
+        "recommendation": "Использовать сервис «Виртуальные машины» на любой платформе Cloud.ru для создания ВМ с нужными ОС и конфигурациями."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 23,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Все платформы Cloud.ru предоставляют виртуальные сети, шлюзы и IP-адреса как часть IaaS-инфраструктуры, что подтверждено документацией.",
+    "evidence": "Облако VMware предоставляет виртуальную сеть и IP-адреса как часть инфраструктуры. [1]",
+    "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+    "recommendation": "Использовать виртуальные сети и шлюзы на любой платформе Cloud.ru для настройки сетевой инфраструктуры.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "ГосОблако предоставляет виртуальные сети, шлюзы и IP-адреса как часть IaaS-инфраструктуры.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Использовать виртуальные сети и шлюзы на любой платформе Cloud.ru для настройки сетевой инфраструктуры."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет виртуальную сеть и IP-адреса как часть инфраструктуры. [1]",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Использовать виртуальные сети и шлюзы на любой платформе Cloud.ru для настройки сетевой инфраструктуры."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced предоставляет виртуальные сети, шлюзы и IP-адреса как часть IaaS-сервисов. [2]",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Advanced"],
+        "recommendation": "Использовать виртуальные сети и шлюзы на любой платформе Cloud.ru для настройки сетевой инфраструктуры."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет виртуальные сети и IP-адреса для ВМ в рамках IaaS. [2]",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/virtual-machines/ug/topics/concepts__flavors"],
+        "source_titles": ["Конфигурации виртуальных машин"],
+        "recommendation": "Использовать виртуальные сети и шлюзы на любой платформе Cloud.ru для настройки сетевой инфраструктуры."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 24,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru предоставляет доступ к шлюзу виртуальной сети как из публичного интернета, так и через Direct Connect из локальной сети Заказчика, что подтверждено документацией.",
+    "evidence": "Подключение платформы доступно через публичную сеть и Direct Connect. [1]",
+    "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+    "recommendation": "Настроить доступ к шлюзу виртуальной сети через публичный интернет или Direct Connect для подключения из локальной сети Заказчика.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "ГосОблако поддерживает доступ к шлюзу виртуальной сети через публичный интернет и Direct Connect.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Настроить доступ к шлюзу виртуальной сети через публичный интернет или Direct Connect для подключения из локальной сети Заказчика."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Подключение платформы доступно через публичную сеть и Direct Connect. [1]",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Настроить доступ к шлюзу виртуальной сети через публичный интернет или Direct Connect для подключения из локальной сети Заказчика."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced предоставляет доступ к шлюзу через публичный интернет и Direct Connect (до 100 Гбит/с). [2]",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Advanced"],
+        "recommendation": "Настроить доступ к шлюзу виртуальной сети через публичный интернет или Direct Connect для подключения из локальной сети Заказчика."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет доступ к шлюзу виртуальной сети через публичный интернет и Direct Connect.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Настроить доступ к шлюзу виртуальной сети через публичный интернет или Direct Connect для подключения из локальной сети Заказчика."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]
+```

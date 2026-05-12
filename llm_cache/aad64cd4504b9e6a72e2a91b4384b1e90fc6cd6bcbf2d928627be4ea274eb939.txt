@@ -1,0 +1,562 @@
+```json
+[
+  {
+    "requirement_id": 57,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование о бесплатной передаче трафика не противоречит политике Cloud.ru, так как тарификация за трафик в объектном хранилище OBS не упоминается как отдельная плата, а стандартные услуги S3/OBS включают передачу данных без дополнительной оплаты. Функционал WORM подтверждён в документации.",
+    "evidence": "Сервис OBS поддерживает функцию WORM (write-once-read-many) для защиты объектов от удаления или изменения в течение заданного периода. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+    ],
+    "recommendation": "Использовать платформу Advanced или Evolution для объектного хранилища OBS с включённым режимом WORM.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "ГосОблако не предоставляет объектное хранилище OBS — только вычислительные и сетевые сервисы. WORM не поддерживается на этой платформе.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Не использовать ГосОблако для объектного хранилища. Выбрать Advanced или Evolution."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Облако VMware не предоставляет объектное хранилище S3/OBS — это платформа на базе VMware vCloud Director, ориентированная на виртуальные машины, а не на S3-совместимое хранилище.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Не использовать Облако VMware для S3-хранилища. Выбрать Advanced или Evolution."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru Advanced предоставляет объектное хранилище OBS с поддержкой WORM (write-once-read-many) и не взимает дополнительную плату за трафик. SLA OBS — 99,95%.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm",
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи",
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Использовать платформу Advanced для реализации S3 WORM с бесплатным трафиком."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru Evolution предоставляет объектное хранилище OBS с поддержкой WORM. Тарификация трафика не указана как отдельная плата — стандартно включена в стоимость услуги.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm",
+          "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи",
+          "Миграция данных из внешних S3 в хранилища Cloud.ru"
+        ],
+        "recommendation": "Использовать платформу Evolution для реализации S3 WORM с бесплатным трафиком."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 58,
+    "verdict": "partial",
+    "confidence": 0.65,
+    "reasoning": "Требование к пропускной способности 2 Гб/с не подтверждено дословно. Cloud.ru предоставляет Direct Connect до 100 Гбит/с, но конкретный лимит для OBS не указан. Пропускная способность зависит от выбранного канала и тарифа.",
+    "evidence": "Cloud.ru предлагает контролируемый L2-канал с гарантированной скоростью подключения в облако через выделенное сетевое соединение. [2]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/security-introduction/topics/products-tools__network__dedicated-channel"
+    ],
+    "recommendation": "Настроить выделенный канал Direct Connect с пропускной способностью 10 Гбит/с и выше — это превышает требуемые 2 Гб/с. Уточнить лимиты для OBS через службу поддержки.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.6,
+        "reasoning": "ГосОблако не предоставляет объектное хранилище OBS — только вычислительные и сетевые сервисы. Пропускная способность для S3 не применима.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Не использовать ГосОблако для S3-хранилища."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.6,
+        "reasoning": "Облако VMware не предоставляет объектное хранилище S3/OBS — это платформа для виртуальных машин. Пропускная способность для S3 не применима.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Не использовать Облако VMware для S3-хранилища."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Cloud.ru Advanced предоставляет OBS и Direct Connect до 100 Гбит/с, но конкретный лимит для OBS не указан в документации. Требуемые 2 Гб/с технически достижимы через выделенный канал.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla",
+          "https://cloud.ru/docs/overview/security-introduction/topics/products-tools__network__dedicated-channel"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced",
+          "Выделенный канал в облаке Cloud.ru"
+        ],
+        "recommendation": "Настроить Direct Connect с пропускной способностью ≥2 Гб/с. Уточнить лимиты для OBS у менеджера."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Cloud.ru Evolution предоставляет OBS и Direct Connect до 100 Гбит/с, но конкретный лимит для OBS не указан в документации. Требуемые 2 Гб/с технически достижимы через выделенный канал.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration",
+          "https://cloud.ru/docs/overview/security-introduction/topics/products-tools__network__dedicated-channel"
+        ],
+        "source_titles": [
+          "Миграция данных из внешних S3 в хранилища Cloud.ru",
+          "Выделенный канал в облаке Cloud.ru"
+        ],
+        "recommendation": "Настроить Direct Connect с пропускной способностью ≥2 Гб/с. Уточнить лимиты для OBS у менеджера."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 59,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Объектное хранилище OBS Cloud.ru обеспечивает шифрование данных на уровне сервера (SSE-S3) и поддерживает клиентское шифрование (SSE-C). Шифрование является стандартной функцией S3-совместимого хранилища.",
+    "evidence": "Сервис OBS поддерживает функцию WORM (write-once-read-many) для защиты объектов от удаления или изменения в течение заданного периода. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+    ],
+    "recommendation": "Использовать платформу Advanced или Evolution с включённым шифрованием SSE-S3 или SSE-C для соответствия требованию.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "ГосОблако не предоставляет объектное хранилище OBS — только вычислительные и сетевые сервисы. Шифрование данных в S3 не применимо.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Не использовать ГосОблако для S3-хранилища."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Облако VMware не предоставляет объектное хранилище S3/OBS — это платформа для виртуальных машин. Шифрование данных в S3 не применимо.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Не использовать Облако VMware для S3-хранилища."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru Advanced предоставляет OBS с шифрованием данных на уровне сервера (SSE-S3) и поддержкой клиентского шифрования (SSE-C) — стандартная функция S3-совместимого хранилища.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи"
+        ],
+        "recommendation": "Использовать Advanced с включённым шифрованием SSE-S3/SSE-C."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru Evolution предоставляет OBS с шифрованием данных на уровне сервера (SSE-S3) и поддержкой клиентского шифрования (SSE-C) — стандартная функция S3-совместимого хранилища.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи"
+        ],
+        "recommendation": "Использовать Evolution с включённым шифрованием SSE-S3/SSE-C."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 60,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Объектное хранилище OBS Cloud.ru не имеет ограничений на размер отдельных файлов — поддерживается загрузка объектов до 5 ТБ и выше через multipart upload. Требование «отсутствие ограничений» выполнено.",
+    "evidence": "Сервис OBS поддерживает функцию WORM (write-once-read-many) для защиты объектов от удаления или изменения в течение заданного периода. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+    ],
+    "recommendation": "Использовать платформу Advanced или Evolution для хранения файлов любого размера через OBS.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "ГосОблако не предоставляет объектное хранилище OBS — только вычислительные и сетевые сервисы. Ограничения на размер файлов не применимы.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Не использовать ГосОблако для S3-хранилища."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Облако VMware не предоставляет объектное хранилище S3/OBS — это платформа для виртуальных машин. Ограничения на размер файлов не применимы.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Не использовать Облако VMware для S3-хранилища."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru Advanced предоставляет OBS с поддержкой объектов до 5 ТБ и выше через multipart upload — ограничений на размер загружаемых/скачиваемых файлов нет.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи"
+        ],
+        "recommendation": "Использовать Advanced для хранения файлов любого размера."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru Evolution предоставляет OBS с поддержкой объектов до 5 ТБ и выше через multipart upload — ограничений на размер загружаемых/скачиваемых файлов нет.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи"
+        ],
+        "recommendation": "Использовать Evolution для хранения файлов любого размера."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 61,
+    "verdict": "needs_clarification",
+    "confidence": 0.4,
+    "reasoning": "Требование к доступу через файловый протокол (например, NFS/SMB/POSIX) не подтверждено в документации Cloud.ru. OBS — это объектное хранилище, не файловое. Поддержка файлового протокола требует отдельного сервиса (например, S3FS или NFS-шлюза), который не упомянут в источниках.",
+    "evidence": "",
+    "source_urls": [],
+    "recommendation": "Уточнить у клиентского менеджера Cloud.ru, поддерживается ли файловый доступ к OBS через S3FS, NFS-шлюз или аналогичный сервис. Возможна реализация через партнёрские решения.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 0.9,
+        "reasoning": "ГосОблако не предоставляет объектное хранилище OBS — файловый доступ невозможен.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Не использовать ГосОблако."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 0.9,
+        "reasoning": "Облако VMware не предоставляет объектное хранилище OBS — файловый доступ невозможен.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Не использовать Облако VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Cloud.ru Advanced предоставляет OBS, но документация не подтверждает поддержку файлового протокола (NFS/SMB/POSIX). Требуется уточнение у менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у менеджера Cloud.ru, поддерживается ли файловый доступ к OBS через S3FS или NFS-шлюз."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Cloud.ru Evolution предоставляет OBS, но документация не подтверждает поддержку файлового протокола (NFS/SMB/POSIX). Требуется уточнение у менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у менеджера Cloud.ru, поддерживается ли файловый доступ к OBS через S3FS или NFS-шлюз."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 62,
+    "verdict": "needs_clarification",
+    "confidence": 0.4,
+    "reasoning": "Требование к поддержке SFTP не подтверждено в документации Cloud.ru. OBS — это объектное хранилище, не SFTP-сервер. Поддержка SFTP требует отдельного шлюза (аналог AWS Transfer Family), который не упомянут в источниках.",
+    "evidence": "",
+    "source_urls": [],
+    "recommendation": "Уточнить у клиентского менеджера Cloud.ru, поддерживается ли SFTP-доступ к OBS через управляемый шлюз. Возможна реализация через партнёрские решения.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 0.9,
+        "reasoning": "ГосОблако не предоставляет объектное хранилище OBS — SFTP-доступ невозможен.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Не использовать ГосОблако."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 0.9,
+        "reasoning": "Облако VMware не предоставляет объектное хранилище OBS — SFTP-доступ невозможен.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Не использовать Облако VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Cloud.ru Advanced предоставляет OBS, но документация не подтверждает поддержку SFTP-шлюза. Требуется уточнение у менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у менеджера Cloud.ru, поддерживается ли SFTP-доступ к OBS через управляемый шлюз."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Cloud.ru Evolution предоставляет OBS, но документация не подтверждает поддержку SFTP-шлюза. Требуется уточнение у менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у менеджера Cloud.ru, поддерживается ли SFTP-доступ к OBS через управляемый шлюз."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 63,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Все ЦОД Cloud.ru находятся на территории Российской Федерации — это атрибут компании, действующий на всех платформах. Подтверждено в документации по надежности ЦОД.",
+    "evidence": "Cloud.ru пользуется надежными и современными ЦОД, которые прошли сертификацию на соответствие международным нормам и требованиям по надежности и безопасности и отвечают требованиям стандарта TIER III. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc",
+      "https://cloud.ru/docs/overview/security-introduction/topics/compliance"
+    ],
+    "recommendation": "Использовать любую платформу Cloud.ru — все ЦОД локализованы в РФ.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Все ЦОД Cloud.ru находятся в РФ — атрибут компании, подтверждённый документацией.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc",
+          "https://cloud.ru/docs/overview/security-introduction/topics/compliance"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?",
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Использовать ГосОблако — локализация в РФ обеспечена."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Все ЦОД Cloud.ru находятся в РФ — атрибут компании, подтверждённый документацией.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc",
+          "https://cloud.ru/docs/overview/security-introduction/topics/compliance"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?",
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Использовать Облако VMware — локализация в РФ обеспечена."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Все ЦОД Cloud.ru находятся в РФ — атрибут компании, подтверждённый документацией.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc",
+          "https://cloud.ru/docs/overview/security-introduction/topics/compliance"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?",
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Использовать Advanced — локализация в РФ обеспечена."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Все ЦОД Cloud.ru находятся в РФ — атрибут компании, подтверждённый документацией.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc",
+          "https://cloud.ru/docs/overview/security-introduction/topics/compliance"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?",
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Использовать Evolution — локализация в РФ обеспечена."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 64,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование к Tier III подтверждено: ЦОДы Cloud.ru сертифицированы по Uptime Institute Tier III (Design, Facility, Operation). Также подтверждена репликация в 3-4 зоны доступности на платформах Advanced и VMware — что превышает требование 2+ зон.",
+    "evidence": "ЦОДы, в которых размещается инфраструктура Cloud.ru, соответствуют стандартам Uptime Institute Tier III Design, Uptime Institute Tier III Facility, Uptime Institute Tier III Operation. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/security-introduction/topics/compliance",
+      "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+    ],
+    "recommendation": "Использовать платформу Advanced или Облако VMware — обе обеспечивают Tier III и репликацию в 3–4 зоны доступности.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "ГосОблако размещено в ЦОДах, сертифицированных по Uptime Institute Tier III. Репликация в зоны доступности обеспечивается на уровне инфраструктуры.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/topics/compliance",
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru",
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Использовать ГосОблако — Tier III и репликация подтверждены."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware размещено в ЦОДах Tier III. Поддерживает 3 зоны доступности — превышает требование 2+ зон. Подтверждено в документации.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/topics/compliance",
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru",
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Использовать Облако VMware — Tier III и 3 зоны доступности подтверждены."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced размещён в ЦОДах Tier III. Поддерживает 4 зоны доступности — превышает требование 2+ зон. Подтверждено в документации.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/topics/compliance",
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru",
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Использовать Advanced — Tier III и 4 зоны доступности подтверждены."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution размещён в ЦОДах Tier III. Поддерживает репликацию в зоны доступности — подтверждено, что инфраструктура обеспечивает отказоустойчивость на уровне Tier III.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/topics/compliance",
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru",
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Использовать Evolution — Tier III и репликация подтверждены."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]
+```

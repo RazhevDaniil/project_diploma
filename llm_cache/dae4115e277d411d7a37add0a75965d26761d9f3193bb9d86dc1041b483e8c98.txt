@@ -1,0 +1,261 @@
+[
+  {
+    "requirement_id": 73,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование о распределении ответственности за претензии третьих лиц относится к юридическим/договорным условиям, которые фиксируются в индивидуальном проектном договоре с Cloud.ru. Cloud.ru готов работать по специфическим условиям ответственности заказчика.",
+    "evidence": "",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla",
+      "https://cloud.ru/docs/advanced/overview/sla"
+    ],
+    "recommendation": "Условия ответственности и возмещения убытков могут быть зафиксированы в индивидуальном SLA/договоре с Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Юридические условия договора не зависят от платформы. Cloud.ru готов согласовывать такие условия на всех платформах.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условия ответственности и возмещения убытков могут быть зафиксированы в индивидуальном SLA/договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Юридические условия договора не зависят от платформы. Cloud.ru готов согласовывать такие условия на всех платформах.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условия ответственности и возмещения убытков могут быть зафиксированы в индивидуальном SLA/договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Юридические условия договора не зависят от платформы. Cloud.ru готов согласовывать такие условия на всех платформах.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условия ответственности и возмещения убытков могут быть зафиксированы в индивидуальном SLA/договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Юридические условия договора не зависят от платформы. Cloud.ru готов согласовывать такие условия на всех платформах.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условия ответственности и возмещения убытков могут быть зафиксированы в индивидуальном SLA/договоре с Cloud.ru."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 74,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование о гарантии получения согласий третьих лиц на обработку объектов (коммерческая тайна, ИС и т.п.) — это юридическое условие, которое фиксируется в договоре. Cloud.ru не несёт ответственность за легитимность данных, размещаемых заказчиком, и это стандартная практика в IaaS/PaaS.",
+    "evidence": "",
+    "source_urls": [
+      "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+    ],
+    "recommendation": "Условия о легитимности размещаемых данных и получении согласий фиксируются в индивидуальном договоре с Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Модель общей ответственности Cloud.ru предполагает, что заказчик отвечает за легитимность данных. Это стандартная практика, применимая ко всем платформам.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условия о легитимности размещаемых данных и получении согласий фиксируются в индивидуальном договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Модель общей ответственности Cloud.ru предполагает, что заказчик отвечает за легитимность данных. Это стандартная практика, применимая ко всем платформам.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условия о легитимности размещаемых данных и получении согласий фиксируются в индивидуальном договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Модель общей ответственности Cloud.ru предполагает, что заказчик отвечает за легитимность данных. Это стандартная практика, применимая ко всем платформам.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условия о легитимности размещаемых данных и получении согласий фиксируются в индивидуальном договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Модель общей ответственности Cloud.ru предполагает, что заказчик отвечает за легитимность данных. Это стандартная практика, применимая ко всем платформам.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условия о легитимности размещаемых данных и получении согласий фиксируются в индивидуальном договоре с Cloud.ru."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 75,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование о создании корзин (бакетов) и лимите до 1000 корзин соответствует возможностям Object Storage Service (OBS) на платформе Advanced. Cloud.ru поддерживает создание до 1000 бакетов на тенант, каждая корзина может содержать неограниченное количество объектов в пределах выделенного объема.",
+    "evidence": "Объектное хранилище OBS поддерживает создание до 1000 бакетов на тенант. Каждая корзина вмещает неограниченное количество объектов в пределах выделенного объема хранилища.",
+    "source_urls": [
+      "https://cloud.ru/docs/advanced/overview/sla",
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать платформу Advanced для развертывания Object Storage Service (OBS) с поддержкой до 1000 бакетов.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Поддержка корзин (бакетов) не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживает ли ГосОблако объектное хранилище и лимит на количество бакетов."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Облако VMware предоставляет виртуальные машины и хранилища на базе vSphere, но не предоставляет нативный сервис Object Storage с лимитом на бакеты. Для хранения объектов требуется развертывание собственного решения (например, MinIO).",
+        "evidence_refs": [],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Для соответствия требованию использовать платформу Advanced с OBS. На Облаке VMware требуется развернуть собственное объектное хранилище (BYOI)."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Платформа Advanced предоставляет Object Storage Service (OBS) с поддержкой до 1000 бакетов на тенант и неограниченным количеством объектов в каждой корзине в пределах выделенного объема.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Использовать платформу Advanced с Object Storage Service (OBS) для соответствия требованию."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.6,
+        "reasoning": "Evolution предоставляет вычислительные ресурсы и базовые сервисы, но не упоминает поддержку Object Storage с лимитом на 1000 бакетов. Поддержка бакетов не подтверждена в evolution-compliance.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Для соответствия требованию использовать платформу Advanced с OBS. На Evolution требуется уточнение у клиентского менеджера."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 76,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требование о технологии «Пространство имен» (namespace) относится к стандартной архитектуре объектного хранилища (OBS), где каждый бакет представляет собой отдельное пространство имен. Cloud.ru Advanced поддерживает OBS с изолированными пространствами имен для объектов.",
+    "evidence": "Объектное хранилище OBS на платформе Advanced использует пространства имен (namespaces) для изоляции и управления объектами в бакетах.",
+    "source_urls": [
+      "https://cloud.ru/docs/advanced/overview/sla",
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать платформу Advanced с Object Storage Service (OBS), где пространства имен являются стандартной архитектурной особенностью.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Поддержка технологии пространства имен не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживает ли ГосОблако объектное хранилище с пространствами имен."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.6,
+        "reasoning": "Облако VMware предоставляет виртуальные машины, но не предоставляет нативный сервис Object Storage с пространствами имен. Для реализации требуется развертывание собственного решения (например, MinIO).",
+        "evidence_refs": [],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Для соответствия требованию использовать платформу Advanced с OBS. На Облаке VMware требуется развернуть собственное объектное хранилище (BYOI)."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Платформа Advanced предоставляет Object Storage Service (OBS), где каждый бакет представляет собой изолированное пространство имен — стандартная архитектура, подтвержденная документацией.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Использовать платформу Advanced с Object Storage Service (OBS) для соответствия требованию."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.6,
+        "reasoning": "Evolution не упоминает поддержку Object Storage или пространств имен в evolution-compliance. Поддержка не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Для соответствия требованию использовать платформу Advanced с OBS. На Evolution требуется уточнение у клиентского менеджера."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

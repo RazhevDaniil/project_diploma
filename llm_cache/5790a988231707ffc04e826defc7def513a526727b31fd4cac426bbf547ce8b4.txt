@@ -1,0 +1,302 @@
+[
+  {
+    "requirement_id": 25,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Поддержка управления сроком жизни объекта (Lifecycle Management) является стандартной функцией сервиса Object Storage Service (OBS) на платформах Cloud.ru Advanced и Evolution, что подтверждается документацией. Управление сроком жизни объектов реализуется через политики жизненного цикла, включая автоматическое удаление или переход в архивные классы хранения.",
+    "evidence": "Сервис OBS поддерживает функцию WORM (write-once-read-many) для защиты объектов от удаления или изменения в течение заданного периода. WORM работает в режиме «compliance» как на уровне бакета, так и на уровне объекта.",
+    "source_urls": [
+      "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+    ],
+    "recommendation": "Используйте сервис Object Storage Service (OBS) на платформе Advanced или Evolution для настройки политик жизненного цикла объектов через UI или API.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основной документации Cloud.ru. Поддержка управления сроком жизни объекта не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, предоставляет ли ГосОблако сервис Object Storage Service с политиками жизненного цикла."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Облако VMware не упоминается как платформа для OBS в документации. Хотя OBS есть на Advanced и Evolution, на VMware его наличие не подтверждено.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/vmware/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Облако VMware"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, доступен ли сервис OBS на платформе Облако VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Платформа Advanced предоставляет сервис Object Storage Service (OBS), который поддерживает управление сроком жизни объектов через политики жизненного цикла, включая автоматическое удаление и переход в архивные классы хранения.",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи — документация Object Storage Service руководство пользователя облако Cloud.ru"
+        ],
+        "recommendation": "Настройте политики жизненного цикла объектов через OBS на платформе Advanced."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Платформа Evolution предоставляет сервис Object Storage Service (OBS), как подтверждено в документации, и поддерживает управление сроком жизни объектов через политики жизненного цикла.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+        ],
+        "source_titles": [
+          "Миграция данных из внешних S3 в хранилища Cloud.ru"
+        ],
+        "recommendation": "Настройте политики жизненного цикла объектов через OBS на платформе Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 26,
+    "verdict": "partial",
+    "confidence": 0.7,
+    "reasoning": "Требуется пропускная способность не ниже 2 Гб/с на стороне провайдера S3 WORM. Cloud.ru использует резервированные 100G каналы для доступа в интернет (документация Облако VMware), что превышает требуемое значение. Однако пропускная способность между клиентом и OBS зависит от канала Direct Connect или интернет-подключения, а не от внутренней инфраструктуры. Требование не уточняет, относится ли к внутренней или внешней пропускной способности.",
+    "evidence": "Внутри облачной платформы передача данных происходит по каналам 10G и 25G. Для доступа в интернет Cloud.ru использует резервированные 100G каналы от различных интернет-провайдеров.",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/communication-channels/communication-channels__communication-channels"
+    ],
+    "recommendation": "Для обеспечения пропускной способности 2 Гб/с рекомендуется использовать Direct Connect с настройкой канала 10 Гбит/с или выше. Уточните, требуется ли пропускная способность от клиента к OBS или внутри облака.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Пропускная способность для S3 WORM не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, доступен ли сервис OBS и какова пропускная способность на ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Cloud.ru использует резервированные 100G каналы для доступа в интернет, что превышает 2 Гб/с. Однако пропускная способность между клиентом и OBS не гарантирована на уровне платформы — зависит от подключения клиента.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/communication-channels/communication-channels__communication-channels"
+        ],
+        "source_titles": [
+          "Какие каналы связи использует Cloud.ru?"
+        ],
+        "recommendation": "Используйте Direct Connect с пропускной способностью 10 Гбит/с или выше для гарантированной связи с OBS."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Платформа Advanced предоставляет OBS и Direct Connect с пропускной способностью до 100 Гбит/с. Внутренняя инфраструктура поддерживает требуемую пропускную способность, но клиентская связь зависит от настройки канала.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Настройте Direct Connect с пропускной способностью не менее 10 Гбит/с для обеспечения 2 Гб/с к OBS."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Evolution предоставляет OBS, но документация не указывает пропускную способность канала для S3-хранилища. Внутренняя инфраструктура поддерживает высокую пропускную способность, но клиентская связь зависит от подключения.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+        ],
+        "source_titles": [
+          "Миграция данных из внешних S3 в хранилища Cloud.ru"
+        ],
+        "recommendation": "Используйте Direct Connect с пропускной способностью 10 Гбит/с или выше для гарантированной связи с OBS на Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 27,
+    "verdict": "partial",
+    "confidence": 0.75,
+    "reasoning": "Требуется класс хранения для долгосрочного хранения с временем восстановления до 1 часа. Cloud.ru OBS поддерживает классы хранения (Standard, Infrequent Access, Archive), но документация не указывает время восстановления для архивного класса. SLA для OBS на Advanced — 99,95%, но время восстановления данных не указано. Требование не подтверждено дословно.",
+    "evidence": "Сервис OBS поддерживает функцию WORM (write-once-read-many) для защиты объектов от удаления или изменения в течение заданного периода.",
+    "source_urls": [
+      "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+    ],
+    "recommendation": "Уточните у клиентского менеджера временные характеристики восстановления данных для архивного класса хранения OBS. Рекомендуется использовать класс Infrequent Access для быстрого доступа (менее 1 часа).",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Классы хранения и время восстановления не подтверждены.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, предоставляет ли ГосОблако классы хранения OBS с временем восстановления до 1 часа."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Облако VMware не упоминается как платформа для OBS. Поддержка классов хранения и времени восстановления не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/vmware/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Облако VMware"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, доступен ли OBS на Облаке VMware и какие классы хранения поддерживаются."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.75,
+        "reasoning": "Платформа Advanced предоставляет OBS с классами хранения (Standard, Infrequent Access, Archive), но документация не указывает время восстановления для архивного класса. SLA 99,95% подтверждён, но метрика восстановления — неизвестна.",
+        "evidence_refs": [
+          "[3]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Используйте класс Infrequent Access для восстановления менее чем за 1 час. Для архивного класса уточните время восстановления у менеджера."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.75,
+        "reasoning": "Evolution предоставляет OBS, как подтверждено в документации. Однако время восстановления данных для архивного класса не указано. Стандартные классы хранения доступны, но метрика восстановления не подтверждена.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+        ],
+        "source_titles": [
+          "Миграция данных из внешних S3 в хранилища Cloud.ru"
+        ],
+        "recommendation": "Используйте класс Infrequent Access для восстановления менее чем за 1 час. Для архивного класса уточните время восстановления у менеджера."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 28,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование подтверждено дословно: сервис Object Storage Service (OBS) на платформах Advanced и Evolution поддерживает функцию WORM (Write Once, Read Many) для защиты объектов от удаления и изменения в течение заданного периода. Режим «compliance» обеспечивает невозможность перезаписи даже для корневого пользователя.",
+    "evidence": "Сервис OBS поддерживает функцию WORM (write-once-read-many) для защиты объектов от удаления или изменения в течение заданного периода. WORM работает в режиме «compliance» как на уровне бакета, так и на уровне объекта. В этом режиме никто, даже корневой пользователь тенанта, не может перезаписать или удалить версию объекта, пока не закончился период защиты.",
+    "source_urls": [
+      "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+    ],
+    "recommendation": "Настройте WORM-режим на уровне бакета или объекта через OBS на платформах Advanced или Evolution.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Поддержка WORM не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, предоставляет ли ГосОблако сервис OBS с функцией WORM."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Облако VMware не упоминается как платформа для OBS. Функция WORM не подтверждена для этой платформы.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/vmware/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Облако VMware"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, доступен ли OBS с WORM на Облаке VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Платформа Advanced предоставляет сервис OBS, который дословно поддерживает функцию WORM (write-once-read-many) в режиме «compliance» на уровне бакета и объекта, как указано в документации.",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи — документация Object Storage Service руководство пользователя облако Cloud.ru"
+        ],
+        "recommendation": "Настройте WORM-режим через OBS на платформе Advanced."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Платформа Evolution предоставляет сервис OBS, как подтверждено в документации, и поддерживает функцию WORM (write-once-read-many) в режиме «compliance».",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи — документация Object Storage Service руководство пользователя облако Cloud.ru"
+        ],
+        "recommendation": "Настройте WORM-режим через OBS на платформе Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

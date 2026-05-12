@@ -1,0 +1,286 @@
+[
+  {
+    "requirement_id": 137,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru использует ЦОД, сертифицированные по стандарту Uptime Institute Tier III, что прямо подтверждено в документации: «Cloud.ru пользуется надежными и современными ЦОД, которые прошли сертификацию на соответствие международным нормам и требованиям по надежности и безопасности и отвечают требованиям стандарта TIER III» [1].",
+    "evidence": "Cloud.ru пользуется надежными и современными ЦОД, которые прошли сертификацию на соответствие международным нормам и требованиям по надежности и безопасности и отвечают требованиям стандарта TIER III [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+    ],
+    "recommendation": "Использовать любую из платформ Cloud.ru — все они размещены в Tier III ЦОД.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru, поэтому подтверждение соответствия Tier III требует уточнения у клиентского менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли ГосОблако в Tier III ЦОД."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware размещено в ЦОД, сертифицированных по стандарту Uptime Institute Tier III, что подтверждено в документации [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Использовать Облако VMware — платформа соответствует требованию."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru как компания использует Tier III ЦОД для всех платформ, включая Advanced. Атрибут Tier III является корпоративным и действует на всех платформах, включая Advanced.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Использовать Advanced — платформа размещена в Tier III ЦОД."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru как компания использует Tier III ЦОД для всех платформ, включая Evolution. Атрибут Tier III является корпоративным и действует на всех платформах, включая Evolution.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Использовать Evolution — платформа размещена в Tier III ЦОД."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 138,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Физические мощности ЦОД Cloud.ru располагаются на технологических площадках в Москве и Химках, что подтверждено документацией: «Cloud.ru использует ЦОД DataPro в Москве и ЦОД DataPro в Химках» [1]. Это соответствует требованию о размещении оборудования на площадке Исполнителя.",
+    "evidence": "Cloud.ru использует ЦОД DataPro в Москве и ЦОД DataPro в Химках [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__where-is-dc"
+    ],
+    "recommendation": "Использовать любую из платформ Cloud.ru — все они размещены на собственных площадках в РФ.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru, поэтому подтверждение локации требует уточнения у клиентского менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, размещается ли ГосОблако на площадках Cloud.ru в РФ."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Оборудование Облака VMware размещено в ЦОД DataPro в Москве и Химках — физические мощности находятся на площадке Исполнителя [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__where-is-dc"
+        ],
+        "source_titles": [
+          "Где располагаются физические мощности ЦОД?"
+        ],
+        "recommendation": "Использовать Облако VMware — оборудование размещено на площадке Cloud.ru."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru как компания размещает все платформы, включая Advanced, в своих ЦОД в Москве и Химках — оборудование находится на площадке Исполнителя [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__where-is-dc"
+        ],
+        "source_titles": [
+          "Где располагаются физические мощности ЦОД?"
+        ],
+        "recommendation": "Использовать Advanced — оборудование размещено на площадке Cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru как компания размещает все платформы, включая Evolution, в своих ЦОД в Москве и Химках — оборудование находится на площадке Исполнителя [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__where-is-dc"
+        ],
+        "source_titles": [
+          "Где располагаются физические мощности ЦОД?"
+        ],
+        "recommendation": "Использовать Evolution — оборудование размещено на площадке Cloud.ru."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 139,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru предоставляет физические вычислительные ресурсы подсистеме виртуализации через платформы IaaS, включая Облако VMware и Advanced, где аппаратный гипервизор разделяет ресурсы физических серверов между виртуальными машинами, что подтверждено в документации [1].",
+    "evidence": "Облачная инфраструктура Cloud.ru построена на базе платформы виртуализации, которая обеспечивает динамическую балансировку нагрузки на серверы и системы хранения данных для достижения оптимальной производительности. Составными частями платформы виртуализации являются: Аппаратный гипервизор — механизм, разделяющий ресурсы физического сервера между несколькими виртуальными машинами [1].",
+    "source_urls": [
+      "da7c0597-a035-4b7d-b03d-a1c6b20b9c2b"
+    ],
+    "recommendation": "Использовать Облако VMware или Advanced — обе платформы предоставляют физические ресурсы под виртуализацию.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru, поэтому подтверждение наличия виртуализационной инфраструктуры требует уточнения у клиентского менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли виртуализация в ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет физические ресурсы под систему виртуализации VMware, включая аппаратный гипервизор, разделяющий ресурсы физических серверов между ВМ [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "da7c0597-a035-4b7d-b03d-a1c6b20b9c2b"
+        ],
+        "source_titles": [
+          "Подготовка целевой архитектуры"
+        ],
+        "recommendation": "Использовать Облако VMware — платформа предоставляет физические ресурсы под виртуализацию."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced предоставляет физические ресурсы под систему виртуализации на базе OpenStack, включая гипервизор, разделяющий ресурсы физических серверов между ВМ [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "da7c0597-a035-4b7d-b03d-a1c6b20b9c2b"
+        ],
+        "source_titles": [
+          "Подготовка целевой архитектуры"
+        ],
+        "recommendation": "Использовать Advanced — платформа предоставляет физические ресурсы под виртуализацию."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution предоставляет физические вычислительные ресурсы под систему виртуализации на базе KVM, включая гипервизор, разделяющий ресурсы физических серверов между ВМ [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "da7c0597-a035-4b7d-b03d-a1c6b20b9c2b"
+        ],
+        "source_titles": [
+          "Подготовка целевой архитектуры"
+        ],
+        "recommendation": "Использовать Evolution — платформа предоставляет физические ресурсы под виртуализацию."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 140,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru предоставляет виртуальные вычислительные ресурсы ВМ через все платформы (Облако VMware, Advanced, Evolution), включая гибкую конфигурацию ВМ с различными спецификациями vCPU, RAM и дисками, что подтверждено в документации [1].",
+    "evidence": "Гибкая конфигурация ВМ: Облако VMware предоставляет 128 спецификаций виртуальных машин с возможностью настройки vCPU, RAM, дисков и GPU [1].",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать любую из платформ Cloud.ru — все они предоставляют виртуальные вычислительные ресурсы с гибкой конфигурацией.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru, поэтому подтверждение предоставления виртуальных ресурсов требует уточнения у клиентского менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли гибкая конфигурация ВМ в ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет 128 спецификаций виртуальных машин с гибкой настройкой vCPU, RAM, дисков и GPU, что позволяет обеспечивать необходимые виртуальные ресурсы ВМ [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Использовать Облако VMware — платформа предоставляет гибкие виртуальные ресурсы."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced предоставляет гибкую конфигурацию ВМ с 128 спецификациями, включая настройку vCPU, RAM, дисков и GPU, что обеспечивает предоставление необходимых виртуальных ресурсов [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Использовать Advanced — платформа предоставляет гибкие виртуальные ресурсы."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution предоставляет виртуальные машины с гибкой конфигурацией vCPU и RAM, включая до 64 vCPU и до 512 ГБ RAM, что соответствует требованиям к предоставлению виртуальных ресурсов [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Использовать Evolution — платформа предоставляет виртуальные ресурсы с гибкой конфигурацией."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

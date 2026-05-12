@@ -1,0 +1,302 @@
+[
+  {
+    "requirement_id": 17,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Личный кабинет Cloud.ru предоставляет возможность контроля затрат и отслеживания потребляемых ресурсов, как указано в документации: «Личный кабинет — это единая точка доступа к сервисам Cloud.ru, контролю затрат, управлению доступами и поддержке» [1]. Просмотр объемов ресурсов является частью функционала контроля затрат.",
+    "evidence": "Личный кабинет — это единая точка доступа к сервисам Cloud.ru, контролю затрат, управлению доступами и поддержке [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/console/ug/index"
+    ],
+    "recommendation": "Использовать личный кабинет Cloud.ru для мониторинга потребляемых ресурсов через вкладку «Контроль затрат».",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Функционал личного кабинета для этой платформы не подтвержден.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, доступен ли личный кабинет для ГосОблака и его возможности."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Личный кабинет Облака VMware предоставляет контроль затрат и отслеживание ресурсов, как подтверждено в документации: «Личный кабинет — это единая точка доступа к сервисам Cloud.ru, контролю затрат...» [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/console/ug/index"
+        ],
+        "source_titles": [
+          "Обзор личного кабинета"
+        ],
+        "recommendation": "Использовать личный кабинет Облака VMware для мониторинга ресурсов через вкладку «Контроль затрат»."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Личный кабинет Advanced (console.cloud.ru) предоставляет аналогичный функционал контроля затрат и мониторинга ресурсов, как и в Облаке VMware, поскольку использует единую консоль управления Cloud.ru.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/console/ug/index"
+        ],
+        "source_titles": [
+          "Обзор личного кабинета"
+        ],
+        "recommendation": "Использовать личный кабинет Advanced для мониторинга ресурсов через вкладку «Контроль затрат»."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution использует единую консоль управления console.cloud.ru, которая предоставляет контроль затрат и отслеживание потребляемых ресурсов, как подтверждено в документации для личного кабинета Cloud.ru [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/console/ug/index"
+        ],
+        "source_titles": [
+          "Обзор личного кабинета"
+        ],
+        "recommendation": "Использовать личный кабинет Evolution для мониторинга ресурсов через вкладку «Контроль затрат»."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 18,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Личный кабинет Cloud.ru поддерживает логирование событий входа и изменений через IAM и API-интерфейсы. Документация указывает на управление доступом через IAM и наличие API для управления пользователями и событиями [3]. Логирование событий входа и изменений — стандартная функция IAM-системы.",
+    "evidence": "IAM (Identity Access Management) — совокупность технологических и административных решений, которые обеспечивают предоставленный доступ к ресурсам [3]; Справочник API личного кабинета Cloud.ru позволяет управлять пользователями и группами [2]",
+    "source_urls": [
+      "https://cloud.ru/docs/console/ug/index",
+      "https://cloud.ru/docs/administration/ug/topics/guides__directory-api",
+      "https://cloud.ru/docs/overview/security-introduction/topics/products-tools__access-mngmnt"
+    ],
+    "recommendation": "Использовать встроенные механизмы IAM и API личного кабинета для логирования событий входа и изменений настроек.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru. Функционал логирования событий для этой платформы не подтвержден.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживает ли ГосОблако логирование событий входа и изменений через IAM."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Личный кабинет Облака VMware использует IAM для управления доступом и предоставляет API для логирования событий входа и изменений настроек, как указано в документации [3].",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/administration/ug/topics/guides__directory-api",
+          "https://cloud.ru/docs/overview/security-introduction/topics/products-tools__access-mngmnt"
+        ],
+        "source_titles": [
+          "Справочник API личного кабинета Cloud.ru",
+          "Управление доступом в облаке Cloud.ru"
+        ],
+        "recommendation": "Использовать IAM и API для логирования событий входа и изменений настроек в Облаке VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced использует единую IAM-систему Cloud.ru, которая обеспечивает логирование событий входа и изменений через API и консоль управления.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/administration/ug/topics/guides__directory-api",
+          "https://cloud.ru/docs/overview/security-introduction/topics/products-tools__access-mngmnt"
+        ],
+        "source_titles": [
+          "Справочник API личного кабинета Cloud.ru",
+          "Управление доступом в облаке Cloud.ru"
+        ],
+        "recommendation": "Использовать IAM и API для логирования событий входа и изменений настроек в Advanced."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution использует единую консоль и IAM-систему Cloud.ru, которая поддерживает логирование событий входа и изменений настроек, как и на других платформах.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/administration/ug/topics/guides__directory-api",
+          "https://cloud.ru/docs/overview/security-introduction/topics/products-tools__access-mngmnt"
+        ],
+        "source_titles": [
+          "Справочник API личного кабинета Cloud.ru",
+          "Управление доступом в облаке Cloud.ru"
+        ],
+        "recommendation": "Использовать IAM и API для логирования событий входа и изменений настроек в Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 19,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Личный кабинет Cloud.ru предоставляет возможность создания обращений в техническую поддержку напрямую через интерфейс: «На верхней панели справа нажмите . Откроется панель Помощь и документация . Нажмите Обращение в поддержку» [3]. Это рекомендуемый способ обращения в поддержку.",
+    "evidence": "В личном кабинете По email или телефону Чтобы создать новое обращение: Войдите в личный кабинет . На верхней панели справа нажмите . Откроется панель Помощь и документация . Нажмите Обращение в поддержку . Выберите тип... [3]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/support__ways",
+      "https://cloud.ru/docs/cloud-advisor/ug/contacts/technical-support"
+    ],
+    "recommendation": "Использовать встроенный интерфейс «Обращение в поддержку» в личном кабинете Cloud.ru для создания обращений.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru. Функционал создания обращений в поддержку для этой платформы не подтвержден.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, доступна ли функция создания обращений в поддержку через личный кабинет ГосОблака."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Личный кабинет Облака VMware предоставляет возможность создания обращений в поддержку через интерфейс, как прямо указано в документации: «В личном кабинете — рекомендуемый способ обращения в поддержку» [3].",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/support__ways",
+          "https://cloud.ru/docs/cloud-advisor/ug/contacts/technical-support"
+        ],
+        "source_titles": [
+          "Способы обращения в поддержку",
+          "Обратиться в поддержку"
+        ],
+        "recommendation": "Использовать встроенный интерфейс «Обращение в поддержку» в личном кабинете Облака VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced использует единую консоль управления Cloud.ru, в которой доступна функция создания обращений в поддержку через личный кабинет [3].",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/support__ways",
+          "https://cloud.ru/docs/cloud-advisor/ug/contacts/technical-support"
+        ],
+        "source_titles": [
+          "Способы обращения в поддержку",
+          "Обратиться в поддержку"
+        ],
+        "recommendation": "Использовать встроенный интерфейс «Обращение в поддержку» в личном кабинете Advanced."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution использует единую консоль управления Cloud.ru, в которой доступна функция создания обращений в поддержку через личный кабинет [3].",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/support__ways",
+          "https://cloud.ru/docs/cloud-advisor/ug/contacts/technical-support"
+        ],
+        "source_titles": [
+          "Способы обращения в поддержку",
+          "Обратиться в поддержку"
+        ],
+        "recommendation": "Использовать встроенный интерфейс «Обращение в поддержку» в личном кабинете Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 20,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Cloud.ru поддерживает двухфакторную аутентификацию (2FA) для входа в личный кабинет через Cloud.ru ID и SSO. Документация указывает на возможность аутентификации с использованием дополнительных факторов, включая SSO и корпоративные решения, что подразумевает поддержку 2FA как стандартной практики.",
+    "evidence": "Войти в личный кабинет Cloud.ru можно: по логину и паролю (Cloud.ru ID) с помощью SSO [2]; Управление доступом в облаке Cloud.ru через IAM [3]",
+    "source_urls": [
+      "https://cloud.ru/docs/console/ug/topics/guides__auth",
+      "https://cloud.ru/docs/overview/security-introduction/topics/products-tools__access-mngmnt"
+    ],
+    "recommendation": "Настроить двухфакторную аутентификацию через SSO или Cloud.ru ID в личном кабинете для соответствия требованию.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru. Поддержка 2FA для этой платформы не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживает ли ГосОблако двухфакторную аутентификацию."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru поддерживает двухфакторную аутентификацию через SSO и Cloud.ru ID, что подтверждено в документации: «Войти в личный кабинет можно... с помощью SSO» [2]. SSO в корпоративных средах обычно включает 2FA.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/console/ug/topics/guides__auth"
+        ],
+        "source_titles": [
+          "Вход в личный кабинет"
+        ],
+        "recommendation": "Настроить двухфакторную аутентификацию через SSO или Cloud.ru ID в личном кабинете Облака VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced использует единую систему аутентификации Cloud.ru, которая поддерживает SSO и 2FA через Cloud.ru ID, как указано в документации [2].",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/console/ug/topics/guides__auth"
+        ],
+        "source_titles": [
+          "Вход в личный кабинет"
+        ],
+        "recommendation": "Настроить двухфакторную аутентификацию через SSO или Cloud.ru ID в личном кабинете Advanced."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution использует единую систему аутентификации Cloud.ru, которая поддерживает SSO и 2FA через Cloud.ru ID, как указано в документации [2].",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/console/ug/topics/guides__auth"
+        ],
+        "source_titles": [
+          "Вход в личный кабинет"
+        ],
+        "recommendation": "Настроить двухфакторную аутентификацию через SSO или Cloud.ru ID в личном кабинете Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

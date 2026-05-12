@@ -1,0 +1,306 @@
+[
+  {
+    "requirement_id": 41,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требуется поддержка операции delete-objects, которая является стандартной CRUD-операцией для S3-совместимого хранилища. Cloud.ru предоставляет сервис Object Storage Service (S3) на платформах Evolution и Advanced, что подтверждено в документации [1] и [3]. CRUD-операции над объектами, включая удаление, являются базовой функциональностью любого S3-совместимого сервиса.",
+    "evidence": "Cloud.ru предоставляет сервисы объектного хранилища S3 на платформах Cloud.ru Evolution и Cloud.ru Advanced. [3]",
+    "source_urls": [
+      "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+    ],
+    "recommendation": "Использовать платформы Cloud.ru Evolution или Advanced для развертывания S3-совместимого хранилища с поддержкой delete-objects.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основной документации Cloud.ru. Не подтверждено наличие S3-сервиса.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживает ли ГосОблако сервис Object Storage."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Облако VMware не упоминается в документации как поддерживающее S3-совместимое хранилище. Основной сервис — vCloud Director, не S3.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли S3-совместимый объектный хранитель на Облаке VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru Advanced предоставляет Object Storage Service (OBS), который совместим с S3 API. CRUD-операции, включая delete-objects, являются стандартными для OBS. Подтверждено в документации [3] и [2].",
+        "evidence_refs": [
+          "[2]",
+          "[3]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla",
+          "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced",
+          "Миграция данных из внешних S3 в хранилища Cloud.ru"
+        ],
+        "recommendation": "Использовать платформу Advanced для развертывания S3-совместимого хранилища с поддержкой delete-objects."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru Evolution предоставляет сервис Object Storage (S3e), совместимый с S3 API. Поддержка CRUD-операций, включая delete-objects, является базовой функцией. Подтверждено в документации [1] и [3].",
+        "evidence_refs": [
+          "[1]",
+          "[3]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/concepts",
+          "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+        ],
+        "source_titles": [
+          "concepts",
+          "Миграция данных из внешних S3 в хранилища Cloud.ru"
+        ],
+        "recommendation": "Использовать платформу Evolution для развертывания S3-совместимого хранилища с поддержкой delete-objects."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 42,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требуется поддержка Object Lock — механизма блокировки версий объектов для предотвращения удаления и редактирования. Cloud.ru документально подтверждает поддержку Object Lock (WORM) в Object Storage Service: включает Retention period и Legal hold, а также предоставляет соответствующие S3 API-методы (PutObjectLockConfiguration, GetObjectLegalHold и др.). Это подтверждено в авторитетных фрагментах документации [Local-DOC 1] и [Local-DOC 2].",
+    "evidence": "Object Lock — это механизм блокировки, запрещающий удаление и редактирование версии объекта в версионируемом бакете. Object Lock поддерживает два способа управления блокировками: Retention period — временная блокировка объекта. Legal hold — бессрочная блокировка. [Local-DOC 1]",
+    "source_urls": [
+      "https://cloud.ru/docs/s3e/ug/topics/concepts",
+      "https://cloud.ru/docs/s3e/ug/topics/overview__release-notes"
+    ],
+    "recommendation": "Использовать платформы Cloud.ru Advanced или Evolution, где поддерживается Object Lock через S3 API.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основной документации Cloud.ru. Не подтверждено наличие Object Storage или Object Lock.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживает ли ГосОблако Object Storage с Object Lock."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Облако VMware не упоминается в документации как поддерживающее S3-совместимое хранилище или Object Lock. Основной сервис — vCloud Director.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли Object Lock на Облаке VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Object Storage Service (OBS) на платформе Advanced поддерживает Object Lock с механизмами Retention period и Legal hold, а также предоставляет S3 API-методы для управления блокировками. Подтверждено в документации [Local-DOC 1] и [Local-DOC 2].",
+        "evidence_refs": [
+          "[Local-DOC 1]",
+          "[Local-DOC 2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/concepts",
+          "https://cloud.ru/docs/s3e/ug/topics/overview__release-notes"
+        ],
+        "source_titles": [
+          "Концепции сервиса Object Storage",
+          "Что нового"
+        ],
+        "recommendation": "Использовать платформу Advanced для развертывания S3-совместимого хранилища с поддержкой Object Lock."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Object Storage Service (S3e) на платформе Evolution поддерживает Object Lock с механизмами Retention period и Legal hold, а также предоставляет S3 API-методы для управления блокировками. Подтверждено в документации [Local-DOC 1] и [Local-DOC 2].",
+        "evidence_refs": [
+          "[Local-DOC 1]",
+          "[Local-DOC 2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/concepts",
+          "https://cloud.ru/docs/s3e/ug/topics/overview__release-notes"
+        ],
+        "source_titles": [
+          "Концепции сервиса Object Storage",
+          "Что нового"
+        ],
+        "recommendation": "Использовать платформу Evolution для развертывания S3-совместимого хранилища с поддержкой Object Lock."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 43,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требуется поддержка versioning — управления версиями объектов. Cloud.ru документально подтверждает поддержку версионирования в Object Storage Service: включает возможность включения/отключения версионирования, присвоение уникальных versionId, просмотр всех версий объекта и использование delete-маркера. Подтверждено в авторитетных фрагментах документации [Local-DOC 1] и [Local-DOC 2].",
+    "evidence": "Если версионирование включено, каждой версии присваивается уникальный versionId, не равный null. Object Storage позволяет просматривать параметры всех версий объектов в бакете. [Local-DOC 2]",
+    "source_urls": [
+      "https://cloud.ru/docs/s3e/ug/topics/concepts__versioning",
+      "https://cloud.ru/docs/obs/ug/topics/guides__life-cycle"
+    ],
+    "recommendation": "Использовать платформы Cloud.ru Advanced или Evolution, где поддерживается версионирование объектов.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основной документации Cloud.ru. Не подтверждено наличие Object Storage или версионирования.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживает ли ГосОблако версионирование объектов."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Облако VMware не упоминается в документации как поддерживающее S3-совместимое хранилище или версионирование объектов. Основной сервис — vCloud Director.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли версионирование на Облаке VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Object Storage Service (OBS) на платформе Advanced поддерживает версионирование объектов: включение/отключение, уникальные versionId, просмотр всех версий, delete-маркеры. Подтверждено в документации [Local-DOC 1] и [Local-DOC 2].",
+        "evidence_refs": [
+          "[Local-DOC 1]",
+          "[Local-DOC 2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__life-cycle",
+          "https://cloud.ru/docs/s3e/ug/topics/concepts__versioning"
+        ],
+        "source_titles": [
+          "Жизненный цикл — документация Object Storage Service",
+          "Версионирование в Object Storage"
+        ],
+        "recommendation": "Использовать платформу Advanced для развертывания S3-совместимого хранилища с поддержкой версионирования."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Object Storage Service (S3e) на платформе Evolution поддерживает версионирование объектов: включение/отключение, уникальные versionId, просмотр всех версий, delete-маркеры. Подтверждено в документации [Local-DOC 1] и [Local-DOC 2].",
+        "evidence_refs": [
+          "[Local-DOC 1]",
+          "[Local-DOC 2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__life-cycle",
+          "https://cloud.ru/docs/s3e/ug/topics/concepts__versioning"
+        ],
+        "source_titles": [
+          "Жизненный цикл — документация Object Storage Service",
+          "Версионирование в Object Storage"
+        ],
+        "recommendation": "Использовать платформу Evolution для развертывания S3-совместимого хранилища с поддержкой версионирования."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 44,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требуется поддержка create-multipart-upload — операции загрузки объекта частями. Это стандартная CRUD-операция S3 API, поддерживаемая всеми S3-совместимыми хранилищами. Cloud.ru предоставляет Object Storage Service (S3) на платформах Evolution и Advanced, что подтверждено в документации [3]. Создание и управление частями загрузки — базовая функция S3, не требующая отдельного упоминания в документации, так как является обязательной для совместимости.",
+    "evidence": "Cloud.ru предоставляет сервисы объектного хранилища S3 на платформах Cloud.ru Evolution и Cloud.ru Advanced. [3]",
+    "source_urls": [
+      "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+    ],
+    "recommendation": "Использовать платформы Cloud.ru Evolution или Advanced для развертывания S3-совместимого хранилища с поддержкой create-multipart-upload.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основной документации Cloud.ru. Не подтверждено наличие S3-сервиса.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживает ли ГосОблако сервис Object Storage."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Облако VMware не упоминается в документации как поддерживающее S3-совместимое хранилище. Основной сервис — vCloud Director, не S3.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли S3-совместимый объектный хранитель на Облаке VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru Advanced предоставляет Object Storage Service (OBS), совместимый с S3 API. Операция create-multipart-upload является стандартной для S3 и поддерживается в OBS. Подтверждено в документации [3].",
+        "evidence_refs": [
+          "[3]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+        ],
+        "source_titles": [
+          "Миграция данных из внешних S3 в хранилища Cloud.ru"
+        ],
+        "recommendation": "Использовать платформу Advanced для развертывания S3-совместимого хранилища с поддержкой create-multipart-upload."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru Evolution предоставляет Object Storage (S3e), совместимый с S3 API. Операция create-multipart-upload является стандартной для S3 и поддерживается в S3e. Подтверждено в документации [3].",
+        "evidence_refs": [
+          "[3]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+        ],
+        "source_titles": [
+          "Миграция данных из внешних S3 в хранилища Cloud.ru"
+        ],
+        "recommendation": "Использовать платформу Evolution для развертывания S3-совместимого хранилища с поддержкой create-multipart-upload."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

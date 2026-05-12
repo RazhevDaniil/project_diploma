@@ -1,0 +1,289 @@
+[
+  {
+    "requirement_id": 5,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требуется дисковое пространство SSD/SAS 1 ГБ, объем 6214 ГБ. Cloud.ru Облако VMware поддерживает гибкую конфигурацию виртуальных машин с дисками на SSD/SAS, включая объемы до 1 ТБ на ВМ и более через расширение. Объем 6214 ГБ может быть реализован через несколько дисков или томов, что соответствует возможностям платформы.",
+    "evidence": "Гибкая конфигурация виртуальных машин, поддержка SSD/SAS дисков [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать платформу Облако VMware для развертывания виртуальных машин с требуемым объемом дискового пространства.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Не подтверждены технические параметры дискового пространства.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера возможность развертывания в ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware поддерживает гибкую конфигурацию виртуальных машин с дисками на SSD/SAS, включая объемы, превышающие 6214 ГБ. Документация подтверждает возможность настройки дискового пространства.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "recommendation": "Использовать Облако VMware — платформа полностью соответствует требованию."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced поддерживает EVS-диски (Elastic Volume Service) с типами SSD и SAS, объемом до 32 ТБ на один том. Требуемый объем 6214 ГБ легко укладывается в лимиты.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/topics/evs"
+        ],
+        "source_titles": [
+          "Elastic Volume Service (EVS) — Cloud.ru Advanced"
+        ],
+        "recommendation": "Использовать Advanced — платформа поддерживает требуемый объем и тип дисков."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution поддерживает диски типа SSD и SAS через сервис Виртуальные машины. Лимиты на объем дисков не ограничены ниже 6214 ГБ — требование выполнимо.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности сервиса «Виртуальные машины» — Evolution"
+        ],
+        "recommendation": "Использовать Evolution — платформа поддерживает требуемый объем дискового пространства."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 6,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требуется 8 IP-адресов. Cloud.ru на всех платформах предоставляет статические публичные и приватные IP-адреса в количестве, превышающем 8. В документации подтверждена возможность назначения нескольких IP-адресов на ВМ и использование IP-пулов.",
+    "evidence": "Поддержка IP-адресов в рамках IaaS-сервисов, включая виртуальные машины [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать любую из платформ Cloud.ru — все поддерживают требуемое количество IP-адресов.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru. Не подтверждены возможности по выделению IP-адресов.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера возможность выделения IP-адресов в ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет возможность назначения нескольких публичных и приватных IP-адресов на виртуальные машины. Поддержка до 10+ IP на одну ВМ подтверждена в документации.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "recommendation": "Использовать Облако VMware — платформа полностью соответствует требованию."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced предоставляет до 100 IP-адресов на проект и поддерживает назначение нескольких IP на одну ВМ через VPC и Elastic IP. Требуемые 8 адресов легко покрываются.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/topics/vpc"
+        ],
+        "source_titles": [
+          "Virtual Private Cloud (VPC) — Cloud.ru Advanced"
+        ],
+        "recommendation": "Использовать Advanced — платформа поддерживает требуемое количество IP-адресов."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution предоставляет статические IP-адреса для виртуальных машин. Лимиты на количество IP-адресов на проект не ниже 100, что покрывает требование 8 адресов.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности сервиса «Виртуальные машины» — Evolution"
+        ],
+        "recommendation": "Использовать Evolution — платформа поддерживает требуемое количество IP-адресов."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 7,
+    "verdict": "needs_clarification",
+    "confidence": 0.6,
+    "reasoning": "Требуется ОС Astra Linux Воронеж или RED OS с сертификатом ФСТЭК. Cloud.ru поддерживает развёртывание образов ОС из каталога BYOI (Bring Your Own Image), включая отечественные ОС. Однако сертификат ФСТЭК на ОС выдан вендору, а не Cloud.ru. Не подтверждено наличие конкретных образов Astra Linux Воронеж или RED OS в каталоге BYOI.",
+    "evidence": "Поддержка BYOI (Bring Your Own Image) для виртуальных машин [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/vmware/overview/index"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера, есть ли в каталоге BYOI образы Astra Linux Воронеж или RED OS, сертифицированные ФСТЭК.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Неизвестно, поддерживается ли BYOI и наличие сертифицированных образов.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера возможность развертывания сертифицированных ОС в ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.6,
+        "reasoning": "Облако VMware поддерживает BYOI, но в документации не указано наличие образов Astra Linux Воронеж или RED OS. Сертификат ФСТЭК на ОС принадлежит вендору, а не Cloud.ru.",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "https://cloud.ru/docs/vmware/overview/index"
+        ],
+        "source_titles": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "Обзор платформы Cloud.ru Облако VMware"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера наличие образов Astra Linux Воронеж или RED OS в каталоге BYOI для Облако VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.6,
+        "reasoning": "Advanced поддерживает BYOI, но в документации не указано наличие образов Astra Linux Воронеж или RED OS. Сертификат ФСТЭК на ОС — вендорский, Cloud.ru не подтверждает его.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/topics/evs"
+        ],
+        "source_titles": [
+          "Elastic Volume Service (EVS) — Cloud.ru Advanced"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера наличие образов Astra Linux Воронеж или RED OS в каталоге BYOI для Advanced."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.6,
+        "reasoning": "Evolution поддерживает BYOI, но в документации не указано наличие образов Astra Linux Воронеж или RED OS. Сертификат ФСТЭК на ОС — вендорский, Cloud.ru не подтверждает его.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности сервиса «Виртуальные машины» — Evolution"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера наличие образов Astra Linux Воронеж или RED OS в каталоге BYOI для Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 8,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требуется безлимитный доступ с пропускной способностью 5–1000 Мбит/с, объем 100. Cloud.ru предоставляет Direct Connect с пропускной способностью до 100 Гбит/с и безлимитный трафик. Требуемый диапазон 5–1000 Мбит/с полностью покрывается. Объем 100 — вероятно, количество подключений — Cloud.ru поддерживает до 100+ подключений Direct Connect.",
+    "evidence": "Cloud.ru использует резервированные 100G каналы от различных интернет-провайдеров [3]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/communication-channels/communication-channels__communication-channels"
+    ],
+    "recommendation": "Использовать платформу Advanced или Облако VMware с услугой Direct Connect для обеспечения требуемой пропускной способности и безлимитного доступа.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Не подтверждены возможности по предоставлению интернет-каналов.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера возможность предоставления интернет-каналов в ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware поддерживает Direct Connect с пропускной способностью до 100 Гбит/с и безлимитный трафик. Требуемый диапазон 5–1000 Мбит/с полностью покрывается. Поддерживается до 100+ подключений.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/communication-channels/communication-channels__communication-channels"
+        ],
+        "source_titles": [
+          "Какие каналы связи использует Cloud.ru?"
+        ],
+        "recommendation": "Использовать Облако VMware с Direct Connect — платформа полностью соответствует требованию."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced предоставляет Direct Connect с пропускной способностью до 100 Гбит/с, безлимитный трафик и поддержку до 100+ подключений. Требуемый диапазон 5–1000 Мбит/с и объем 100 полностью покрываются.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Использовать Advanced с Direct Connect — платформа полностью соответствует требованию."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution предоставляет доступ в интернет через Direct Connect с пропускной способностью до 100 Гбит/с и безлимитным трафиком. Поддерживается до 100+ подключений. Требование полностью покрывается.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/networking"
+        ],
+        "source_titles": [
+          "Сетевые возможности — Cloud.ru Evolution"
+        ],
+        "recommendation": "Использовать Evolution с Direct Connect — платформа полностью соответствует требованию."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

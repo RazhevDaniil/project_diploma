@@ -1,0 +1,304 @@
+[
+  {
+    "requirement_id": 189,
+    "verdict": "needs_clarification",
+    "confidence": 0.4,
+    "reasoning": "Требование представляет собой обрывок таблицы без указания параметров или значений («Параметр: -; Требования: -»). Необходимо уточнить у клиента конкретные требования к ОС, которые подразумеваются в таблице 23.",
+    "evidence": "",
+    "source_urls": [],
+    "recommendation": "Уточнить у клиента содержание таблицы 23, включая параметры и ожидаемые значения для операционной системы.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru; отсутствуют данные о поддержке ОС или требованиях к ним.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, доступна ли платформа ГосОблако и какие ОС на ней поддерживаются."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Документация подтверждает поддержку виртуальных машин и BYOI-образов, но не содержит деталей по таблице 23 или конкретным требованиям к ОС.",
+        "evidence_refs": [],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru",
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, есть ли в каталоге BYOI сертифицированные образы ОС, соответствующие таблице 23."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Документация подтверждает поддержку IaaS/PaaS и BYOI, но не содержит информации о таблице 23 или специфических требованиях к ОС.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/knowledge-sources",
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Источники знаний о платформе Cloud.ru Advanced",
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, какие ОС поддерживаются в каталоге BYOI и соответствуют ли они требованиям таблицы 23."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Документация подтверждает поддержку виртуальных машин и УЗ-1, но не содержит данных о таблице 23 или требованиях к ОС.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/security__compliance",
+          "https://cloud.ru/docs/evolution/overview/topics/security"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии",
+          "Безопасность платформы Cloud.ru Evolution"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, есть ли в каталоге BYOI образы ОС, соответствующие требованиям таблицы 23."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 190,
+    "verdict": "needs_clarification",
+    "confidence": 0.6,
+    "reasoning": "Требование запрашивает сертифицированную ОС с сертификатом ФСТЭК. Cloud.ru поддерживает развёртывание сертифицированных образов ОС (например, Astra Linux, RED OS) через BYOI, но сертификат ФСТЭК выдан вендору ПО, а не Cloud.ru. Необходимо уточнить, требуется ли именно сертификат на инфраструктуру Cloud.ru или образ ОС от вендора.",
+    "evidence": "Cloud.ru поддерживает развёртывание сертифицированных образов ОС/СУБД через BYOI, но сертификат ФСТЭК выдан вендору ПО, а не Cloud.ru.",
+    "source_urls": [
+      "26127171-5f8d-4006-a989-bcb6ff142835"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера, требуется ли развертывание образа ОС с сертификатом ФСТЭК из каталога BYOI, и какой именно образ (например, Astra Linux, RED OS) подразумевается.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru; неизвестно, поддерживается ли BYOI и какие ОС доступны.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, доступна ли платформа ГосОблако и поддерживаются ли сертифицированные образы ОС."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.6,
+        "reasoning": "Облако VMware поддерживает BYOI-образы ОС, включая сертифицированные (например, Astra Linux), но сертификат ФСТЭК выдан вендору, а не Cloud.ru. Cloud.ru не аттестует ПО, только инфраструктуру.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, требуется ли образ ОС с сертификатом ФСТЭК из каталога BYOI, и подтверждён ли он в списке доступных образов."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.6,
+        "reasoning": "Advanced поддерживает BYOI-образы ОС, включая сертифицированные вендорами, но сертификат ФСТЭК выдан вендору, а не Cloud.ru. Cloud.ru не аттестует ПО.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/knowledge-sources"
+        ],
+        "source_titles": [
+          "Источники знаний о платформе Cloud.ru Advanced"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, есть ли в каталоге BYOI требуемый сертифицированный образ ОС и подтверждён ли он в списке."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.6,
+        "reasoning": "Evolution поддерживает BYOI-образы ОС, включая сертифицированные вендорами, но сертификат ФСТЭК выдан вендору, а не Cloud.ru. Cloud.ru не аттестует ПО.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/security__compliance"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, есть ли в каталоге BYOI требуемый сертифицированный образ ОС и подтверждён ли он в списке."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 191,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требование описывает принцип определения класса защиты ОС в зависимости от характеристик ИС — это общая методология, а не техническое требование к платформе. Cloud.ru предоставляет платформы с аттестацией УЗ-1 (максимальный уровень), К1 (для ГИС) и КИИ-3, что позволяет клиенту выбирать подходящую платформу в зависимости от назначения ИС. Это соответствует описанному принципу.",
+    "evidence": "Все платформы Cloud.ru имеют уровень защиты 152-ФЗ УЗ-1; Облако VMware аттестовано на К1 для ГИС и КИИ-3 для критической инфраструктуры.",
+    "source_urls": [
+      "26127171-5f8d-4006-a989-bcb6ff142835"
+    ],
+    "recommendation": "Рекомендуется использовать Облако VMware для ГИС К1, Advanced для УЗ-1 и ПДн, Evolution для массовых систем с УЗ-1.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru; неизвестно, какие классы защиты оно поддерживает.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживает ли ГосОблако классы защиты К1, УЗ-1 и КИИ-3."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Облако VMware аттестовано на К1 для ГИС и КИИ-3, что позволяет клиенту выбирать платформу в зависимости от типа и назначения ИС, как требует пункт ТЗ.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Использовать Облако VMware для систем, требующих К1 или КИИ-3."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced имеет УЗ-1 — максимальный уровень защиты ПДн, что позволяет клиенту выбирать эту платформу для систем с высокими требованиями к безопасности, включая финансовые и государственные ИС.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Использовать Advanced для систем, требующих УЗ-1 и ISO 27001."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution имеет УЗ-1 — максимальный уровень защиты ПДн, что позволяет клиенту выбирать эту платформу для массовых систем с требованиями к безопасности, включая ИС, не требующие К1 или КИИ-3.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/security__compliance"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии"
+        ],
+        "recommendation": "Использовать Evolution для массовых систем с требованиями УЗ-1."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 192,
+    "verdict": "needs_clarification",
+    "confidence": 0.5,
+    "reasoning": "Требование ссылается на приказ ФСТЭК №239 от 25.12.2017, но в предоставленных источниках нет информации о содержании этого приказа или его соответствия платформам Cloud.ru. Cloud.ru аттестована по другим нормативам (152-ФЗ, ГИС К1, 187-ФЗ), но не указано соответствие именно приказу №239. Необходимо уточнить, какие требования приказа №239 подразумеваются.",
+    "evidence": "В документации Cloud.ru упоминаются приказы ФСТЭК №17 (для ГИС К1) и ФСБ №378 (для СКЗИ), но приказ №239 не упомянут.",
+    "source_urls": [
+      "26127171-5f8d-4006-a989-bcb6ff142835"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера, какие конкретные требования приказа ФСТЭК №239 от 25.12.2017 необходимо выполнить, и предоставить текст приказа для анализа соответствия.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru; неизвестно, аттестовано ли оно по приказу ФСТЭК №239.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли ГосОблако и аттестовано ли оно по приказу ФСТЭК №239."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Облако VMware аттестовано по приказу ФСТЭК №17 (ГИС К1) и 187-ФЗ, но приказ №239 не упомянут в документации. Неизвестно, покрывает ли он требования приказа №239.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, соответствует ли аттестация Облака VMware требованиям приказа ФСТЭК №239."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Advanced аттестован по 152-ФЗ, ISO 27001, ГОСТ 57580, но приказ ФСТЭК №239 не упомянут в документации. Неизвестно, покрывает ли он требования приказа №239.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, соответствует ли Advanced требованиям приказа ФСТЭК №239."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Evolution аттестован по 152-ФЗ УЗ-1, но приказ ФСТЭК №239 не упомянут в документации. Неизвестно, покрывает ли он требования приказа №239.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/security__compliance"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, соответствует ли Evolution требованиям приказа ФСТЭК №239."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

@@ -1,0 +1,258 @@
+[
+  {
+    "requirement_id": 54,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru обеспечивает обработку и хранение персональных данных в соответствии с 152-ФЗ на всех платформах, включая УЗ-1 — самый высокий уровень защиты, что покрывает требования законодательства РФ. Конфиденциальность информации обеспечивается многоуровневой системой защиты, подтверждённой аттестатами.",
+    "evidence": "Все платформы Cloud.ru имеют уровень защиты 152-ФЗ УЗ-1: Cloud.ru Advanced, Облако VMware... Данный вопрос регулируется наличием аттестата соответствия 152-ФЗ. [1]",
+    "source_urls": [
+      "26127171-5f8d-4006-a989-bcb6ff142835"
+    ],
+    "recommendation": "Использовать любую платформу Cloud.ru — все обеспечивают соответствие 152-ФЗ УЗ-1.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Аттестации по 152-ФЗ УЗ-1 подтверждены для других платформ, но для ГосОблако требуется уточнение у клиентского менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли ГосОблако для обработки ПДн в соответствии с 152-ФЗ УЗ-1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware аттестовано по 152-ФЗ УЗ-1, что соответствует требованиям законодательства РФ. Инфраструктура обеспечивает защиту персональных данных в соответствии с Федеральным законом №152-ФЗ.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "recommendation": "Использовать Облако VMware — подтверждённое соответствие 152-ФЗ УЗ-1."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced аттестован по 152-ФЗ УЗ-1, что является максимальным уровнем защиты персональных данных и полностью покрывает требование.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "recommendation": "Использовать Advanced — подтверждённое соответствие 152-ФЗ УЗ-1."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution аттестован по 152-ФЗ УЗ-1, как указано в документации по соответствию платформы. Это покрывает требования законодательства РФ по обработке ПДн.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/security__compliance"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии"
+        ],
+        "recommendation": "Использовать Evolution — подтверждённое соответствие 152-ФЗ УЗ-1."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 55,
+    "verdict": "partial",
+    "confidence": 0.7,
+    "reasoning": "Cloud.ru имеет сертификат ISO/IEC 27001:2013 на платформах Advanced и Облако VMware, но требование указано на ГОСТ Р ИСО/МЭК 27001-2021. Эквивалентность версий 2013 и 2021 требует юридического подтверждения, что не подтверждено в документации.",
+    "evidence": "Cloud.ru имеет сертификат ISO/IEC 27001:2013 на Advanced и Облако VMware. ГОСТ Р ИСО/МЭК 27001-2021 не упомянут как аттестованная версия. [1]",
+    "source_urls": [
+      "26127171-5f8d-4006-a989-bcb6ff142835"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера, возможно ли предоставить юридическое обоснование эквивалентности ISO/IEC 27001:2013 и ГОСТ Р ИСО/МЭК 27001-2021. Альтернативно — использовать Advanced или Облако VMware.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru. Нет данных о наличии сертификатов ISO/IEC 27001 или ГОСТ Р ИСО/МЭК 27001-2021.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера наличие сертификата ГОСТ Р ИСО/МЭК 27001-2021 для ГосОблака."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Облако VMware имеет ISO/IEC 27001:2013, но требование — ГОСТ Р ИСО/МЭК 27001-2021. Не подтверждена эквивалентность версий. Требуется юридическое обоснование.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера возможность предоставления юридического подтверждения эквивалентности ISO/IEC 27001:2013 и ГОСТ Р ИСО/МЭК 27001-2021."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Advanced имеет ISO/IEC 27001:2013, но требование — ГОСТ Р ИСО/МЭК 27001-2021. Эквивалентность не подтверждена в документации Cloud.ru.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера возможность предоставления юридического подтверждения эквивалентности ISO/IEC 27001:2013 и ГОСТ Р ИСО/МЭК 27001-2021."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "На странице evolution-compliance указаны только 152-ФЗ УЗ-1. ISO/IEC 27001 не упомянута явно. Нет данных о версии 2021.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/security__compliance"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли сертификат ГОСТ Р ИСО/МЭК 27001-2021 на платформе Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 56,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru имеет действующую лицензию ФСТЭК на деятельность по технической защите конфиденциальной информации (Л024-00107-00/00582618), что подтверждено в документации как атрибут компании, действующий на всех платформах. Лицензия покрывает работы по ТЗКИ, включая подпункт е) п.4 Постановления №79.",
+    "evidence": "Лицензия ФСТЭК на ТЗКИ № Л024-00107-00/00582618 от 11.09.2019 — атрибут компании Cloud.ru, действует на всех платформах. [cheat sheet]",
+    "source_urls": [],
+    "recommendation": "Использовать любую платформу Cloud.ru — лицензия ФСТЭК на ТЗКИ подтверждена для всей компании.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Лицензия ФСТЭК на ТЗКИ является корпоративным атрибутом Cloud.ru и действует на всех платформах, включая ГосОблако, даже если оно не описано в документации.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать ГосОблако — лицензия ФСТЭК на ТЗКИ подтверждена как атрибут компании."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Лицензия ФСТЭК на ТЗКИ № Л024-00107-00/00582618 от 11.09.2019 — атрибут компании, действует на Облаке VMware.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать Облако VMware — лицензия ФСТЭК на ТЗКИ подтверждена."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Лицензия ФСТЭК на ТЗКИ № Л024-00107-00/00582618 от 11.09.2019 — атрибут компании, действует на Advanced.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать Advanced — лицензия ФСТЭК на ТЗКИ подтверждена."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Лицензия ФСТЭК на ТЗКИ № Л024-00107-00/00582618 от 11.09.2019 — атрибут компании, действует на Evolution.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать Evolution — лицензия ФСТЭК на ТЗКИ подтверждена."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 57,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru имеет действующую лицензию Роскомнадзора на оказание услуг по предоставлению каналов связи № 171948 от 07.02.2019, что является корпоративным атрибутом компании и действует на всех платформах. Это покрывает требование по п. 36 ч. 1 ст.12 ФЗ-99.",
+    "evidence": "Лицензия Роскомнадзора на каналы связи № 171948 от 07.02.2019 — атрибут компании Cloud.ru, действует на всех платформах. [cheat sheet]",
+    "source_urls": [],
+    "recommendation": "Использовать любую платформу Cloud.ru — лицензия Роскомнадзора на каналы связи подтверждена для всей компании.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Лицензия Роскомнадзора № 171948 — корпоративный атрибут Cloud.ru, действует на всех платформах, включая ГосОблако.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать ГосОблако — лицензия Роскомнадзора подтверждена как атрибут компании."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Лицензия Роскомнадзора № 171948 от 07.02.2019 — атрибут компании, действует на Облаке VMware.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать Облако VMware — лицензия Роскомнадзора подтверждена."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Лицензия Роскомнадзора № 171948 от 07.02.2019 — атрибут компании, действует на Advanced.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать Advanced — лицензия Роскомнадзора подтверждена."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Лицензия Роскомнадзора № 171948 от 07.02.2019 — атрибут компании, действует на Evolution.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать Evolution — лицензия Роскомнадзора подтверждена."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

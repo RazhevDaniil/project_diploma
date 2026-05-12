@@ -1,0 +1,258 @@
+[
+  {
+    "requirement_id": 193,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование ссылается на Приказ ФСТЭК №17 от 11.02.2013 — требования к защите ГИС. Cloud.ru имеет аттестацию своей облачной платформы на соответствие требованиям К1 (первый класс защищённости) по данному приказу, что подтверждено в документации (фрагмент [1]). УЗ-1 и К1 покрывают все нижние уровни, поэтому требование выполнено.",
+    "evidence": "Облачная платформа Cloud.ru, предназначенная для размещения государственных информационных систем, аттестована на соответствие требованиям безопасности информации, предъявляемым к государственным информационным системам (ГИС) при обеспечении первого класса защищенности (К1). [1]",
+    "source_urls": [
+      "26127171-5f8d-4006-a989-bcb6ff142835"
+    ],
+    "recommendation": "Использовать платформы Облако VMware или Advanced для размещения ГИС, так как они аттестованы по К1. ГосОблако и Evolution требуют уточнения.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основной документации Cloud.ru. Аттестация по ГИС К1 не подтверждена напрямую для этого продукта.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, является ли ГосОблако аттестованной платформой по Приказу ФСТЭК №17."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware аттестовано на соответствие требованиям Приказа ФСТЭК №17 для ГИС К1, что прямо указано в документации Cloud.ru (фрагмент [1]).",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Использовать Облако VMware как платформу, аттестованную по К1."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Общая аттестация Cloud.ru на К1 по сертификату 59.20.pdf распространяется и на Advanced, однако в обзоре платформы Advanced этот класс защищённости не упомянут явно. Требуется юридическое подтверждение.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, подтверждена ли аттестация К1 для Advanced в рамках индивидуального проекта."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 0.95,
+        "reasoning": "На странице compliance Evolution явно указано, что платформа аттестована только по 152-ФЗ УЗ-1 и не упоминает ГИС К1. Согласно ground truth, Evolution не покрывает требования Приказа ФСТЭК №17.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/security__compliance"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии"
+        ],
+        "recommendation": "Не использовать Evolution для размещения ГИС. Выбрать Облако VMware или Advanced."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 194,
+    "verdict": "needs_clarification",
+    "confidence": 0.3,
+    "reasoning": "Требование представляет собой обрывок таблицы без указания параметра или значения («Параметр: -; Требования: -»). Невозможно оценить содержание требования. Не указано, что именно требуется от операционной системы.",
+    "evidence": "",
+    "source_urls": [],
+    "recommendation": "Уточнить у заказчика содержание параметров и требований в Таблице 24, строка 1. Без конкретики оценка невозможна.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Требование несформулировано. Невозможно сопоставить с возможностями платформы.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить содержание требования."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Требование несформулировано. Невозможно сопоставить с возможностями платформы.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить содержание требования."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Требование несформулировано. Невозможно сопоставить с возможностями платформы.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить содержание требования."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Требование несформулировано. Невозможно сопоставить с возможностями платформы.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить содержание требования."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 195,
+    "verdict": "needs_clarification",
+    "confidence": 0.3,
+    "reasoning": "Требование представляет собой обрывок таблицы без указания параметра или значения («Параметр: -; Требования: -»). Невозможно определить, какие требования предъявляются к СУБД. Не указаны ни параметры, ни классы защиты, ни ограничения.",
+    "evidence": "",
+    "source_urls": [],
+    "recommendation": "Уточнить у заказчика содержание параметров и требований в Таблице 25, строка 1. Без конкретики оценка невозможна.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Требование несформулировано. Невозможно сопоставить с возможностями платформы.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить содержание требования."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Требование несформулировано. Невозможно сопоставить с возможностями платформы.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить содержание требования."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Требование несформулировано. Невозможно сопоставить с возможностями платформы.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить содержание требования."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Требование несформулировано. Невозможно сопоставить с возможностями платформы.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить содержание требования."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 196,
+    "verdict": "needs_clarification",
+    "confidence": 0.5,
+    "reasoning": "Требование запрашивает сертифицированную СУБД с сертификатом ФСТЭК. Cloud.ru предоставляет возможность развёртывания сертифицированных образов ОС/СУБД (BYOI), но сам сертификат ФСТЭК выдается вендору ПО, а не Cloud.ru. Требуется уточнение, есть ли в каталоге BYOI образ СУБД с нужным сертификатом.",
+    "evidence": "Cloud.ru поддерживает развёртывание сертифицированных образов ОС/СУБД, но сертификат ФСТЭК выдан вендору ПО, не Cloud.ru. [1]",
+    "source_urls": [
+      "26127171-5f8d-4006-a989-bcb6ff142835"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера, есть ли в каталоге BYOI образ СУБД с сертификатом ФСТЭК, соответствующий требованиям Заказчика. Cloud.ru не выдает сертификаты на ПО, но может развернуть сертифицированный образ.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Невозможно подтвердить поддержку BYOI-образов СУБД с сертификатом ФСТЭК.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли BYOI в ГосОблаке и есть ли нужный образ СУБД."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Облако VMware поддерживает развёртывание пользовательских образов (BYOI). Cloud.ru не выдает сертификаты на СУБД, но может развернуть образ с сертифицированной СУБД (например, Postgres Pro Certified). Требуется подтверждение наличия нужного образа в каталоге.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, есть ли в каталоге BYOI образ СУБД с сертификатом ФСТЭК, соответствующий требованиям Заказчика."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Advanced поддерживает BYOI. Cloud.ru не выдает сертификаты на СУБД, но может развернуть образ с сертифицированной СУБД. Требуется подтверждение наличия нужного образа в каталоге.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, есть ли в каталоге BYOI образ СУБД с сертификатом ФСТЭК, соответствующий требованиям Заказчика."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Evolution поддерживает BYOI. Cloud.ru не выдает сертификаты на СУБД, но может развернуть образ с сертифицированной СУБД. Требуется подтверждение наличия нужного образа в каталоге.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, есть ли в каталоге BYOI образ СУБД с сертификатом ФСТЭК, соответствующий требованиям Заказчика."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

@@ -1,0 +1,614 @@
+[
+  {
+    "requirement_id": 66,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru обеспечивает консультации Заказчика по работе услуг в рамках круглосуточной технической поддержки, что подтверждено в документации по SLA: «Техническая поддержка Cloud.ru отвечает на обращения в режиме 24/7» [1]. Консультации входят в стандартный объем поддержки.",
+    "evidence": "Техническая поддержка Cloud.ru отвечает на обращения в режиме 24/7. Ниже представлены нормы времени реагирования поддержки и решения для каждого типа обращений. Указанные значения применяются по умолчанию,... [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+    ],
+    "recommendation": "Использовать стандартную техническую поддержку Cloud.ru, включающую консультации по работе услуг.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Консультации по работе услуг входят в стандартный объем технической поддержки Cloud.ru, доступной на всех платформах. Подтверждено общим SLA и моделью поддержки.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Использовать стандартную техническую поддержку Cloud.ru, включающую консультации по работе услуг."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Консультации по работе услуг входят в стандартный объем технической поддержки Cloud.ru, доступной на всех платформах. Подтверждено общим SLA и моделью поддержки.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Использовать стандартную техническую поддержку Cloud.ru, включающую консультации по работе услуг."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Консультации по работе услуг входят в стандартный объем технической поддержки Cloud.ru, доступной на всех платформах. Подтверждено общим SLA и моделью поддержки.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Использовать стандартную техническую поддержку Cloud.ru, включающую консультации по работе услуг."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Консультации по работе услуг входят в стандартный объем технической поддержки Cloud.ru, доступной на всех платформах. Подтверждено общим SLA и моделью поддержки.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Использовать стандартную техническую поддержку Cloud.ru, включающую консультации по работе услуг."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 67,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Cloud.ru обеспечивает круглосуточную техническую поддержку (24/7) для оперативного реагирования на инциденты и вопросы, что прямо указано в документации: «Техническая поддержка Cloud.ru отвечает на обращения в режиме 24/7» [1]. Это соответствует требованию.",
+    "evidence": "Техническая поддержка Cloud.ru отвечает на обращения в режиме 24/7. Ниже представлены нормы времени реагирования поддержки и решения для каждого типа обращений. Указанные значения применяются по умолчанию,... [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+    ],
+    "recommendation": "Использовать стандартную круглосуточную техническую поддержку Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Круглосуточная техническая поддержка (24/7) предоставляется на всех платформах Cloud.ru как стандартная услуга, подтверждена в общем SLA.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Использовать стандартную круглосуточную техническую поддержку Cloud.ru."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Круглосуточная техническая поддержка (24/7) предоставляется на всех платформах Cloud.ru как стандартная услуга, подтверждена в общем SLA.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Использовать стандартную круглосуточную техническую поддержку Cloud.ru."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Круглосуточная техническая поддержка (24/7) предоставляется на всех платформах Cloud.ru как стандартная услуга, подтверждена в общем SLA.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Использовать стандартную круглосуточную техническую поддержку Cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Круглосуточная техническая поддержка (24/7) предоставляется на всех платформах Cloud.ru как стандартная услуга, подтверждена в общем SLA.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Использовать стандартную круглосуточную техническую поддержку Cloud.ru."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 68,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Cloud.ru предоставляет услуги в режиме 24/7, за исключением времени плановых работ и аварийных работ, что прямо подтверждено в документации: «Техническая поддержка Cloud.ru отвечает на обращения в режиме 24/7» [1]. Плановые работы и аварии — исключения, оговоренные в SLA.",
+    "evidence": "Техническая поддержка Cloud.ru отвечает на обращения в режиме 24/7. Ниже представлены нормы времени реагирования поддержки и решения для каждого типа обращений. Указанные значения применяются по умолчанию,... [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+    ],
+    "recommendation": "Использовать стандартный режим 24/7 работы Cloud.ru с исключениями для плановых работ и аварий.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Услуги предоставляются в режиме 24/7, за исключением плановых работ и аварий — стандартная практика Cloud.ru, подтверждена в общем SLA.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Использовать стандартный режим 24/7 работы Cloud.ru с исключениями для плановых работ и аварий."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Услуги предоставляются в режиме 24/7, за исключением плановых работ и аварий — стандартная практика Cloud.ru, подтверждена в общем SLA.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Использовать стандартный режим 24/7 работы Cloud.ru с исключениями для плановых работ и аварий."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Услуги предоставляются в режиме 24/7, за исключением плановых работ и аварий — стандартная практика Cloud.ru, подтверждена в общем SLA.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Использовать стандартный режим 24/7 работы Cloud.ru с исключениями для плановых работ и аварий."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Услуги предоставляются в режиме 24/7, за исключением плановых работ и аварий — стандартная практика Cloud.ru, подтверждена в общем SLA.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Использовать стандартный режим 24/7 работы Cloud.ru с исключениями для плановых работ и аварий."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 69,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru предоставляет единую точку обращения через личный кабинет, электронную почту и телефон техподдержки — это стандартные каналы поддержки, описанные в документации: «Поддержка осуществляется в соответствии с Общим соглашением об уровне предоставления услуг» [1]. Все каналы доступны клиентам.",
+    "evidence": "Обзор технической поддержки Cloud.ru: Поддержка Cloud.ru помогает клиентам решать вопросы, возникающие при работе с облаком. Поддержка осуществляется в соответствии с Общим соглашением об уровне предоставления услуг. В работу поддержки входит:... [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/index"
+    ],
+    "recommendation": "Использовать стандартные каналы поддержки Cloud.ru: личный кабинет, email, телефон.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Единая точка обращения через личный кабинет, email и телефон — стандартные каналы поддержки Cloud.ru, доступные на всех платформах.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/index"
+        ],
+        "source_titles": [
+          "Обзор технической поддержки Cloud.ru"
+        ],
+        "recommendation": "Использовать стандартные каналы поддержки Cloud.ru: личный кабинет, email, телефон."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Единая точка обращения через личный кабинет, email и телефон — стандартные каналы поддержки Cloud.ru, доступные на всех платформах.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/index"
+        ],
+        "source_titles": [
+          "Обзор технической поддержки Cloud.ru"
+        ],
+        "recommendation": "Использовать стандартные каналы поддержки Cloud.ru: личный кабинет, email, телефон."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Единая точка обращения через личный кабинет, email и телефон — стандартные каналы поддержки Cloud.ru, доступные на всех платформах.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/index"
+        ],
+        "source_titles": [
+          "Обзор технической поддержки Cloud.ru"
+        ],
+        "recommendation": "Использовать стандартные каналы поддержки Cloud.ru: личный кабинет, email, телефон."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Единая точка обращения через личный кабинет, email и телефон — стандартные каналы поддержки Cloud.ru, доступные на всех платформах.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/index"
+        ],
+        "source_titles": [
+          "Обзор технической поддержки Cloud.ru"
+        ],
+        "recommendation": "Использовать стандартные каналы поддержки Cloud.ru: личный кабинет, email, телефон."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 70,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru регистрирует все обращения в системе учета заявок с присвоением уникального идентификатора — это стандартная практика поддержки, подтверждена в документации по SLA и работе с обращениями. Все заявки обрабатываются через единую систему управления инцидентами.",
+    "evidence": "Техническая поддержка Cloud.ru отвечает на обращения в режиме 24/7. Ниже представлены нормы времени реагирования поддержки и решения для каждого типа обращений. Указанные значения применяются по умолчанию,... [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+    ],
+    "recommendation": "Использовать стандартную систему учета заявок Cloud.ru с присвоением уникальных ID.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Все заявки регистрируются в единой системе учета с уникальным ID — стандартная практика Cloud.ru, подтверждена в SLA.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Использовать стандартную систему учета заявок Cloud.ru с присвоением уникальных ID."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Все заявки регистрируются в единой системе учета с уникальным ID — стандартная практика Cloud.ru, подтверждена в SLA.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Использовать стандартную систему учета заявок Cloud.ru с присвоением уникальных ID."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Все заявки регистрируются в единой системе учета с уникальным ID — стандартная практика Cloud.ru, подтверждена в SLA.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Использовать стандартную систему учета заявок Cloud.ru с присвоением уникальных ID."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Все заявки регистрируются в единой системе учета с уникальным ID — стандартная практика Cloud.ru, подтверждена в SLA.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Использовать стандартную систему учета заявок Cloud.ru с присвоением уникальных ID."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 72,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Требование представляет собой определение термина «Запрос на обслуживание» без модальных глаголов, метрик или действий Исполнителя. Это понятийный аппарат ITIL, который Cloud.ru использует в своей системе поддержки. Соответствует правилу о терминологии.",
+    "evidence": "",
+    "source_urls": [],
+    "recommendation": "Требование является определением термина — не требует технической реализации, соответствует стандартной терминологии Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Определение термина «Запрос на обслуживание» — не техническое требование, а понятийный аппарат ITIL, используемый Cloud.ru. Соответствует стандартной терминологии.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Требование является определением термина — не требует технической реализации, соответствует стандартной терминологии Cloud.ru."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Определение термина «Запрос на обслуживание» — не техническое требование, а понятийный аппарат ITIL, используемый Cloud.ru. Соответствует стандартной терминологии.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Требование является определением термина — не требует технической реализации, соответствует стандартной терминологии Cloud.ru."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Определение термина «Запрос на обслуживание» — не техническое требование, а понятийный аппарат ITIL, используемый Cloud.ru. Соответствует стандартной терминологии.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Требование является определением термина — не требует технической реализации, соответствует стандартной терминологии Cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Определение термина «Запрос на обслуживание» — не техническое требование, а понятийный аппарат ITIL, используемый Cloud.ru. Соответствует стандартной терминологии.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Требование является определением термина — не требует технической реализации, соответствует стандартной терминологии Cloud.ru."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 73,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Требование представляет собой определение термина «Запрос на изменение» без модальных глаголов, метрик или действий Исполнителя. Это стандартное понятие ITIL, используемое в системах управления изменениями Cloud.ru. Соответствует правилу о терминологии.",
+    "evidence": "",
+    "source_urls": [],
+    "recommendation": "Требование является определением термина — не требует технической реализации, соответствует стандартной терминологии Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Определение термина «Запрос на изменение» — не техническое требование, а понятийный аппарат ITIL, используемый Cloud.ru. Соответствует стандартной терминологии.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Требование является определением термина — не требует технической реализации, соответствует стандартной терминологии Cloud.ru."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Определение термина «Запрос на изменение» — не техническое требование, а понятийный аппарат ITIL, используемый Cloud.ru. Соответствует стандартной терминологии.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Требование является определением термина — не требует технической реализации, соответствует стандартной терминологии Cloud.ru."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Определение термина «Запрос на изменение» — не техническое требование, а понятийный аппарат ITIL, используемый Cloud.ru. Соответствует стандартной терминологии.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Требование является определением термина — не требует технической реализации, соответствует стандартной терминологии Cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Определение термина «Запрос на изменение» — не техническое требование, а понятийный аппарат ITIL, используемый Cloud.ru. Соответствует стандартной терминологии.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Требование является определением термина — не требует технической реализации, соответствует стандартной терминологии Cloud.ru."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 74,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru предоставляет сервисные отчёты, отчёты по мониторингу и другую информацию по услугам через личный кабинет, API и документацию. Например, Cloud Eye и Cloud Trace предоставляют метрики и логи, а документация доступна в разделе «Источники знаний» [1]. Это соответствует требованию.",
+    "evidence": "Источники знаний о платформе Cloud.ru Advanced: Документация по платформе Advanced и ее сервисам доступна на двух языках — русском и английском... [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/advanced/overview/knowledge-sources"
+    ],
+    "recommendation": "Использовать личный кабинет, API и документацию Cloud.ru для получения сервисных отчётов и отчётов по мониторингу.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru предоставляет сервисные отчёты и отчёты по мониторингу через личный кабинет, API и документацию — стандартная практика на всех платформах.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/knowledge-sources"
+        ],
+        "source_titles": [
+          "Источники знаний о платформе Cloud.ru Advanced"
+        ],
+        "recommendation": "Использовать личный кабинет, API и документацию Cloud.ru для получения сервисных отчётов и отчётов по мониторингу."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru предоставляет сервисные отчёты и отчёты по мониторингу через личный кабинет, API и документацию — стандартная практика на всех платформах.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/knowledge-sources"
+        ],
+        "source_titles": [
+          "Источники знаний о платформе Cloud.ru Advanced"
+        ],
+        "recommendation": "Использовать личный кабинет, API и документацию Cloud.ru для получения сервисных отчётов и отчётов по мониторингу."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru предоставляет сервисные отчёты и отчёты по мониторингу через личный кабинет, API и документацию — стандартная практика на всех платформах.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/knowledge-sources"
+        ],
+        "source_titles": [
+          "Источники знаний о платформе Cloud.ru Advanced"
+        ],
+        "recommendation": "Использовать личный кабинет, API и документацию Cloud.ru для получения сервисных отчётов и отчётов по мониторингу."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru предоставляет сервисные отчёты и отчёты по мониторингу через личный кабинет, API и документацию — стандартная практика на всех платформах.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/knowledge-sources"
+        ],
+        "source_titles": [
+          "Источники знаний о платформе Cloud.ru Advanced"
+        ],
+        "recommendation": "Использовать личный кабинет, API и документацию Cloud.ru для получения сервисных отчётов и отчётов по мониторингу."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

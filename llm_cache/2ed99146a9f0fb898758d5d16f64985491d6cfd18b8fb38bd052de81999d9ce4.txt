@@ -1,0 +1,224 @@
+[
+  {
+    "requirement_id": 200,
+    "verdict": "needs_clarification",
+    "confidence": 0.4,
+    "reasoning": "Требование ссылается на таблицу 27, строка 1, но не содержит конкретного параметра для оценки — это обрывок структуры документа без указания содержания. Неясно, что именно требуется в таблице (SLA, аттестация, лимиты и т.п.).",
+    "evidence": "",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla",
+      "https://cloud.ru/docs/advanced/overview/sla",
+      "https://cloud.ru/docs/overview/support/index"
+    ],
+    "recommendation": "Уточнить у заказчика содержание таблицы 27, строка 1: какие параметры или метрики указаны в ней для оценки соответствия.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Содержание таблицы 27 неизвестно, невозможно оценить соответствие. Документация ГосОблако подтверждает УЗ-1, К1, КИИ-1, но без конкретики требования — оценка невозможна.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить содержание таблицы 27, строка 1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Содержание таблицы 27 неизвестно. Хотя Облако VMware имеет SLA 99.982% и 24/7 поддержку, отсутствует конкретика требуемого параметра в таблице.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla",
+          "https://cloud.ru/docs/vdi/ag/topics/limits"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений",
+          "Ограничения и особенности"
+        ],
+        "recommendation": "Уточнить содержание таблицы 27, строка 1."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Содержание таблицы 27 неизвестно. Advanced имеет SLA 99.95% и УЗ-1, но без конкретики параметра в таблице — оценка невозможна.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Уточнить содержание таблицы 27, строка 1."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Содержание таблицы 27 неизвестно. Evolution имеет УЗ-1 и SLA 99.9%, но отсутствует конкретика требуемого параметра.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить содержание таблицы 27, строка 1."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 201,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование описывает услугу «Предоставление виртуальных вычислительных ресурсов» с возможностью добавления/удаления — это базовая функция IaaS, подтверждённая для Облака VMware: платформа предоставляет виртуальные машины с гибкой конфигурацией, управляемыми через API, Terraform, PowerCLI, и поддерживает изменение ресурсов (vCPU, RAM, диски).",
+    "evidence": "Облако VMware — вендорская платформа, предоставляющая инфраструктуру как услугу, основанную на технологиях VMware... Подключение платформы доступно только юридическим лицам. Ниже представлено сравнение платформы Облако VMware... Виртуальная машина без переподписки ✓ ✓ В рамках частного облака [2b5b1443-429a-4247-9989-c2714e90acfd]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/vdi/ag/topics/limits"
+    ],
+    "recommendation": "Использовать платформу Облако VMware для предоставления виртуальных вычислительных ресурсов с возможностью динамического изменения через API или веб-интерфейс.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "ГосОблако предоставляет виртуальные машины (ECS) с возможностью создания, изменения и удаления через API и веб-интерфейс, включая настройку vCPU, RAM, дисков — соответствует требованию «Предоставление виртуальных вычислительных ресурсов».",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать ГосОблако для предоставления виртуальных машин с аттестацией К1/УЗ-1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет виртуальные машины с гибкой конфигурацией (до 1 ТБ RAM, 128 спецификаций), управляемые через API, PowerCLI, Terraform — поддерживает добавление/удаление ресурсов в рамках договора.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "https://cloud.ru/docs/vdi/ag/topics/limits"
+        ],
+        "source_titles": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "Ограничения и особенности"
+        ],
+        "recommendation": "Использовать Облако VMware для максимальной совместимости с VMware-инфраструктурой заказчика."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced предоставляет Elastic Cloud Server (ECS) с возможностью создания, изменения и удаления виртуальных машин через API, включая настройку vCPU, RAM, дисков — соответствует требованию.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Использовать Advanced для высокой гибкости и PaaS-сервисов."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution предоставляет виртуальные машины с управлением через API и веб-интерфейс, включая изменение конфигурации (vCPU, RAM) — соответствует требованию «Предоставление виртуальных вычислительных ресурсов».",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности сервиса «Виртуальные машины»"
+        ],
+        "recommendation": "Использовать Evolution для массовых сценариев с высокой доступностью (SLA 99.9%)."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 202,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требование запрашивает указание дельты (объёма изменения) выделенного пула ресурсов — это стандартная операция управления ресурсами в IaaS. Cloud.ru на всех платформах поддерживает изменение ресурсов ВМ (vCPU, RAM, диски) через API, веб-интерфейс и заказы на изменение — дельта указывается при масштабировании.",
+    "evidence": "Облако VMware позволяет изменять конфигурацию виртуальных машин (vCPU, RAM, диски) через API, PowerCLI и веб-интерфейс [2b5b1443-429a-4247-9989-c2714e90acfd]; Advanced и Evolution поддерживают масштабирование ECS через API и UI [https://cloud.ru/docs/advanced/overview/sla, https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations].",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/advanced/overview/sla",
+      "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+    ],
+    "recommendation": "Использовать любой из платформ Cloud.ru (рекомендуется Облако VMware или Advanced) для изменения объёма ресурсов через API, веб-интерфейс или форму заказа на изменение.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "ГосОблако поддерживает изменение объёма ресурсов ВМ (vCPU, RAM, диски) через API и веб-интерфейс — дельта указывается при масштабировании, соответствует требованию.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать ГосОблако для аттестованных сценариев с К1/УЗ-1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Облако VMware позволяет изменять ресурсы ВМ (vCPU, RAM, диски) через PowerCLI, API, Terraform — дельта указывается при изменении конфигурации, что соответствует требованию.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "recommendation": "Использовать Облако VMware для максимальной совместимости с VMware-инструментами."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced поддерживает масштабирование Elastic Cloud Server (ECS) через API и веб-интерфейс — пользователь указывает дельту изменения vCPU, RAM, дисков при изменении конфигурации.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Использовать Advanced для высокой гибкости и PaaS-сервисов."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution поддерживает изменение конфигурации виртуальных машин (vCPU, RAM, диски) через API и веб-интерфейс — дельта указывается при изменении ресурсов, что соответствует требованию.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности сервиса «Виртуальные машины»"
+        ],
+        "recommendation": "Использовать Evolution для массовых сценариев с высокой доступностью (SLA 99.9%)."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

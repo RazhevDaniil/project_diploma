@@ -1,0 +1,242 @@
+[
+  {
+    "requirement_id": 29,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование к одному белому IP-адресу на ВМ выполняется, так как Cloud.ru предоставляет возможность назначения публичных IP-адресов на виртуальные машины на всех платформах, включая Облако VMware, где это подтверждено в документации по конфигурации ВМ.",
+    "evidence": "Сравнение платформ в документации подтверждает наличие публичных IP-адресов для ВМ в Облаке VMware [1].",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать Облако VMware или Advanced для назначения публичных IP-адресов. На Evolution и ГосОблако также доступна функция, но требуется уточнение через менеджера.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru; требуется уточнение у клиентского менеджера о возможности назначения публичных IP-адресов.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли назначение публичных IP-адресов на ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware поддерживает назначение публичных IP-адресов на ВМ, как подтверждено в документации по сравнению платформ [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "recommendation": "Использовать Облако VMware — платформа поддерживает требуемую конфигурацию."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced поддерживает назначение публичных IP-адресов через сервис VPC, что подтверждено в документации по ограничениям VPC [3].",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/vpc/ug/topics/overview__limitations"],
+        "source_titles": ["Ограничения и особенности сервиса Virtual Private Cloud"],
+        "recommendation": "Использовать Advanced — платформа поддерживает назначение публичных IP-адресов."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.85,
+        "reasoning": "Evolution поддерживает назначение публичных IP-адресов на ВМ как часть базовой инфраструктуры IaaS, что соответствует стандартным возможностям платформы.",
+        "evidence_refs": [],
+        "source_urls": ["https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"],
+        "source_titles": ["Ограничения и особенности сервиса «Виртуальные машины»"],
+        "recommendation": "Использовать Evolution — публичные IP-адреса доступны по умолчанию."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 30,
+    "verdict": "partial",
+    "confidence": 0.8,
+    "reasoning": "Требование к дискам до 4 ТБ выполняется на Advanced и Облако VMware, но в документации не указано точное максимальное значение для Облако VMware. На Evolution максимальный размер диска не превышает 4 ТБ, но не подтверждено явно. ГосОблако не описано.",
+    "evidence": "В документации по Облаку VMware упоминается виртуальный диск как ресурс, но максимальный размер не указан [2]. На Advanced поддерживается до 4 ТБ и более [1].",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/vdi/ag/topics/limits",
+      "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+    ],
+    "recommendation": "Для дисков до 4 ТБ рекомендуется использовать Advanced. На Облако VMware и Evolution — требуется уточнение у менеджера, но вероятно поддерживается.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru; требуется уточнение у клиентского менеджера о максимальном размере диска.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли размер диска до 4 ТБ на ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.75,
+        "reasoning": "Облако VMware поддерживает виртуальные диски, но максимальный размер не указан явно в документации. По аналогии с VMware vSphere — до 62 ТБ, но для Cloud.ru требуется подтверждение [2].",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/vdi/ag/topics/limits"],
+        "source_titles": ["Ограничения и особенности"],
+        "recommendation": "Уточнить у клиентского менеджера максимальный размер диска в Облаке VMware. Вероятно, поддерживается до 4 ТБ."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced поддерживает диски до 4 ТБ и более (EVS), что соответствует требованию. Документация подтверждает гибкость конфигурации дисков.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "recommendation": "Использовать Advanced — поддерживает диски до 4 ТБ и выше."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Evolution поддерживает диски, но максимальный размер не указан в документации. По стандартам IaaS — обычно до 4 ТБ, но требуется подтверждение [3].",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"],
+        "source_titles": ["Ограничения и особенности сервиса «Виртуальные машины»"],
+        "recommendation": "Уточнить у клиентского менеджера максимальный размер диска в Evolution. Вероятно, поддерживается до 4 ТБ."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 31,
+    "verdict": "mismatch",
+    "confidence": 0.95,
+    "reasoning": "Требование «CPU Ready time — не менее 5%» некорректно с технической точки зрения: CPU Ready Time — это время ожидания ВМ в очереди на процессор, и его следует минимизировать (идеально — <1%). Требование «не менее 5%» означает высокую нагрузку и деградацию производительности, что противоречит стандартам облачных платформ. Cloud.ru гарантирует низкий CPU Ready Time, а не его высокое значение.",
+    "evidence": "В документации Cloud.ru нет упоминания о требовании «CPU Ready time ≥ 5%» — это противоречит инженерным практикам и SLA платформ.",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+    ],
+    "recommendation": "Требование некорректно. Рекомендуется изменить на «CPU Ready Time не более 1%» — это соответствует стандартам Cloud.ru и обеспечивает высокую производительность.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 0.95,
+        "reasoning": "Требование «CPU Ready time не менее 5%» технически неверно и противоречит принципам производительности облачных платформ. Cloud.ru не обеспечивает высокий CPU Ready Time — он минимизирует его.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Требование некорректно. Рекомендуется изменить на «CPU Ready Time не более 1%»."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware, как и все платформы Cloud.ru, оптимизировано для минимизации CPU Ready Time. Требование «не менее 5%» противоречит SLA и архитектуре платформы.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "recommendation": "Требование некорректно. Рекомендуется изменить на «CPU Ready Time не более 1%»."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 0.95,
+        "reasoning": "Advanced не обеспечивает высокий CPU Ready Time — он минимизирует его для обеспечения производительности. Требование «не менее 5%» противоречит инженерным стандартам.",
+        "evidence_refs": [],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Advanced"],
+        "recommendation": "Требование некорректно. Рекомендуется изменить на «CPU Ready Time не более 1%»."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 0.95,
+        "reasoning": "Evolution, как массовая платформа, оптимизирована для низкого CPU Ready Time. Требование «не менее 5%» — это нарушение SLA и производительности, что невозможно на Cloud.ru.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"],
+        "source_titles": ["Ограничения и особенности сервиса «Виртуальные машины»"],
+        "recommendation": "Требование некорректно. Рекомендуется изменить на «CPU Ready Time не более 1%»."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 32,
+    "verdict": "partial",
+    "confidence": 0.85,
+    "reasoning": "Требование к BPS до 10 000 Мбит/с на ВМ (10 Гбит/с) частично выполняется на Облако VMware и Advanced, где поддерживается высокая пропускная способность сети. На Evolution — максимальная пропускная способность не превышает 10 Гбит/с, но не подтверждена явно. ГосОблако не описано.",
+    "evidence": "В документации по Облаку VMware упоминается высокая производительность сети, включая 10 Гбит/с, как часть инфраструктуры VMware [1].",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/virtual-machines/ug/topics/concepts__flavors"
+    ],
+    "recommendation": "Для пропускной способности до 10 Гбит/с рекомендуется использовать Облако VMware или Advanced. На Evolution — требуется уточнение у менеджера.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru; требуется уточнение у клиентского менеджера о пропускной способности сети между ВМ.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли пропускная способность до 10 Гбит/с на ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Облако VMware поддерживает пропускную способность до 10 Гбит/с на ВМ, как подтверждено в документации по сравнению платформ [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "recommendation": "Использовать Облако VMware — платформа поддерживает до 10 Гбит/с."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced поддерживает высокую пропускную способность сети (до 10 Гбит/с и выше) через инфраструктуру OpenStack и Direct Connect.",
+        "evidence_refs": [],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Advanced"],
+        "recommendation": "Использовать Advanced — поддерживает до 10 Гбит/с и выше."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.75,
+        "reasoning": "Evolution поддерживает до 10 Гбит/с в рамках стандартных флейворов, но в документации не указано явное ограничение [2]. Требуется подтверждение.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/virtual-machines/ug/topics/concepts__flavors"],
+        "source_titles": ["Конфигурации виртуальных машин"],
+        "recommendation": "Уточнить у клиентского менеджера максимальную пропускную способность сети в Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

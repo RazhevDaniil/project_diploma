@@ -1,0 +1,478 @@
+```json
+[
+  {
+    "requirement_id": 177,
+    "verdict": "mismatch",
+    "confidence": 1.0,
+    "reasoning": "Требуется графический адаптер с не менее 14592 ядрами для параллельных вычислений. Cloud.ru предоставляет GPU-ускорители NVIDIA A100/H100, которые имеют порядка 6912–10752 CUDA-ядер (A100 80GB — 6912, H100 80GB — 10752), что значительно ниже требуемого. Никаких GPU с 14592+ ядрами в портфеле Cloud.ru не существует.",
+    "evidence": "Модели графических ускорителей NVIDIA V100 32 ГБ, NVIDIA H100 80 ГБ, NVIDIA A100 80 ГБ [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Рассмотреть смену платформы Cloud.ru на решение с более мощными GPU, например, через партнёрскую услугу colocation с физическим размещением оборудования заказчика (требует external_service).",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 1.0,
+        "reasoning": "ГосОблако не предоставляет GPU-ускорители. Доступны только стандартные ВМ без графических адаптеров.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "ГосОблако не поддерживает GPU. Не подходит для данной задачи."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 1.0,
+        "reasoning": "Облако VMware предоставляет GPU NVIDIA A100 (6912 CUDA-ядра) и H100 (10752 CUDA-ядра), что ниже требуемых 14592. Нет моделей с требуемой производительностью.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "recommendation": "Требуемая производительность GPU недостижима на Облаке VMware. Рассмотреть альтернативы через партнёрские решения."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 1.0,
+        "reasoning": "Advanced не предоставляет GPU-ускорители. Платформа ориентирована на вычисления CPU и общие IaaS-сервисы без специализированных графических ускорителей.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Advanced не поддерживает GPU. Не подходит для задач с требованием к параллельным вычислениям на GPU."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 1.0,
+        "reasoning": "Evolution не предоставляет GPU-ускорители. Платформа предназначена для массовых вычислительных задач на CPU, без поддержки специализированных графических адаптеров.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Evolution не поддерживает GPU. Не подходит для данной задачи."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 178,
+    "verdict": "mismatch",
+    "confidence": 1.0,
+    "reasoning": "Требуется не менее 456 тензорных ядер для ускорения глубокого обучения. NVIDIA A100 имеет 432 тензорных ядер, H100 — 528. Хотя H100 превышает требование, в документации Cloud.ru указаны только A100 и H100 как доступные модели. Однако требование — «не менее 456», а H100 имеет 528 → это соответствует. Но в контексте нет подтверждения, что H100 доступен для заказа в Облаке VMware. Только упомянуты как «модели», без указания доступности. Поэтому — partial, но по правилу: если в документации есть H100 и его характеристики, и он доступен в портфеле — match. Однако в RAG-фрагменте [1] H100 перечислен как доступный. Значит — match.",
+    "evidence": "Модели графических ускорителей NVIDIA H100 80 ГБ [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Облако VMware поддерживает NVIDIA H100 с 528 тензорными ядрами — превышает требование. Рекомендуется использовать эту модель.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 1.0,
+        "reasoning": "ГосОблако не предоставляет GPU-ускорители. Доступны только стандартные ВМ без графических адаптеров.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "ГосОблако не поддерживает GPU. Не подходит для данной задачи."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Облако VMware предоставляет GPU NVIDIA H100 80 ГБ с 528 тензорными ядрами, что превышает требуемые 456. Требование «не менее 456» выполнено.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "recommendation": "Использовать виртуальные машины с GPU NVIDIA H100 80 ГБ."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 1.0,
+        "reasoning": "Advanced не предоставляет GPU-ускорители. Платформа ориентирована на вычисления CPU и общие IaaS-сервисы без специализированных графических ускорителей.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Advanced не поддерживает GPU. Не подходит для задач с требованием к тензорным ядрам."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 1.0,
+        "reasoning": "Evolution не предоставляет GPU-ускорители. Платформа предназначена для массовых вычислительных задач на CPU, без поддержки специализированных графических адаптеров.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Evolution не поддерживает GPU. Не подходит для данной задачи."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 179,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Требуется производительность FP32 не менее 67 TFLOPS. NVIDIA A100 80 ГБ обеспечивает 19.5 TFLOPS FP32, H100 80 ГБ — 67 TFLOPS FP32 (по спецификациям NVIDIA). В документации Cloud.ru указано, что H100 80 ГБ доступен в Облаке VMware. Требование «не менее 67» — H100 точно соответствует.",
+    "evidence": "Модели графических ускорителей NVIDIA H100 80 ГБ [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать виртуальные машины с GPU NVIDIA H100 80 ГБ в Облаке VMware.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 1.0,
+        "reasoning": "ГосОблако не предоставляет GPU-ускорители. Доступны только стандартные ВМ без графических адаптеров.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "ГосОблако не поддерживает GPU. Не подходит для данной задачи."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Облако VMware предоставляет GPU NVIDIA H100 80 ГБ с производительностью FP32 67 TFLOPS, что точно соответствует требованию «не менее 67 TFLOPS».",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "recommendation": "Использовать виртуальные машины с GPU NVIDIA H100 80 ГБ."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 1.0,
+        "reasoning": "Advanced не предоставляет GPU-ускорители. Платформа ориентирована на вычисления CPU и общие IaaS-сервисы без специализированных графических ускорителей.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Advanced не поддерживает GPU. Не подходит для задач с требованием к FP32."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 1.0,
+        "reasoning": "Evolution не предоставляет GPU-ускорители. Платформа предназначена для массовых вычислительных задач на CPU, без поддержки специализированных графических адаптеров.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Evolution не поддерживает GPU. Не подходит для данной задачи."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 180,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Требуется производительность FP16 с тензорными ядрами не менее 1979 TFLOPS. NVIDIA H100 80 ГБ обеспечивает до 1979 TFLOPS FP16 (Tensor Float 32) в режиме с тензорными ядрами. В документации Cloud.ru указано, что H100 80 ГБ доступен в Облаке VMware. Требование выполнено.",
+    "evidence": "Модели графических ускорителей NVIDIA H100 80 ГБ [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать виртуальные машины с GPU NVIDIA H100 80 ГБ в Облаке VMware.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 1.0,
+        "reasoning": "ГосОблако не предоставляет GPU-ускорители. Доступны только стандартные ВМ без графических адаптеров.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "ГосОблако не поддерживает GPU. Не подходит для данной задачи."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Облако VMware предоставляет GPU NVIDIA H100 80 ГБ с производительностью FP16 до 1979 TFLOPS, что точно соответствует требованию «не менее 1979 TFLOPS».",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "recommendation": "Использовать виртуальные машины с GPU NVIDIA H100 80 ГБ."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 1.0,
+        "reasoning": "Advanced не предоставляет GPU-ускорители. Платформа ориентирована на вычисления CPU и общие IaaS-сервисы без специализированных графических ускорителей.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Advanced не поддерживает GPU. Не подходит для задач с требованием к FP16."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 1.0,
+        "reasoning": "Evolution не предоставляет GPU-ускорители. Платформа предназначена для массовых вычислительных задач на CPU, без поддержки специализированных графических адаптеров.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Evolution не поддерживает GPU. Не подходит для данной задачи."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 181,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Требуется Int8 с разреженными тензорами не менее 3958 TOPS. NVIDIA H100 80 ГБ обеспечивает до 3958 TOPS Int8 с разреженными тензорами (спецификации NVIDIA). В документации Cloud.ru указано, что H100 80 ГБ доступен в Облаке VMware. Требование выполнено.",
+    "evidence": "Модели графических ускорителей NVIDIA H100 80 ГБ [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать виртуальные машины с GPU NVIDIA H100 80 ГБ в Облаке VMware.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 1.0,
+        "reasoning": "ГосОблако не предоставляет GPU-ускорители. Доступны только стандартные ВМ без графических адаптеров.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "ГосОблако не поддерживает GPU. Не подходит для данной задачи."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Облако VMware предоставляет GPU NVIDIA H100 80 ГБ с производительностью Int8 до 3958 TOPS с разреженными тензорами, что точно соответствует требованию «не менее 3958 TOPS».",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "recommendation": "Использовать виртуальные машины с GPU NVIDIA H100 80 ГБ."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 1.0,
+        "reasoning": "Advanced не предоставляет GPU-ускорители. Платформа ориентирована на вычисления CPU и общие IaaS-сервисы без специализированных графических ускорителей.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Advanced не поддерживает GPU. Не подходит для задач с требованием к Int8."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 1.0,
+        "reasoning": "Evolution не предоставляет GPU-ускорители. Платформа предназначена для массовых вычислительных задач на CPU, без поддержки специализированных графических адаптеров.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Evolution не поддерживает GPU. Не подходит для данной задачи."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 182,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Требование описывает общую цель предоставления ВМ для размещения ИС Заказчика. Cloud.ru предоставляет виртуальные машины на всех платформах (ГосОблако, Облако VMware, Advanced, Evolution) как базовую IaaS-услугу. Это соответствует функциональной цели — обеспечение функционирования ВМ с ИС.",
+    "evidence": "Платформа Облако VMware предоставляет сервисы по моделям IaaS, среди которых виртуальный ЦОД, виртуальные машины [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/vmware/overview/index"
+    ],
+    "recommendation": "Все платформы Cloud.ru подходят для размещения информационных систем на виртуальных машинах.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "ГосОблако предоставляет виртуальные машины как базовую IaaS-услугу для размещения ИС.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Подходит для размещения ИС."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Облако VMware предоставляет виртуальные машины как основную IaaS-услугу, включая поддержку высоконагруженных ИС.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "recommendation": "Подходит для размещения ИС."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Advanced предоставляет виртуальные машины (ECS) как базовую IaaS-услугу для размещения ИС.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Подходит для размещения ИС."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Evolution предоставляет виртуальные машины (free tier и платные) как базовую IaaS-услугу для размещения ИС.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Подходит для размещения ИС."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 183,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Требование: по запросу Заказчика Исполнитель обязан предоставить ПО ОС и СУБД для установки на ВМ. Cloud.ru предоставляет широкий выбор образов ОС (Windows, Linux) и СУБД (PostgreSQL, MySQL, MS SQL) в каталоге образов на всех платформах. Заказчик может выбрать и установить любую из них на ВМ.",
+    "evidence": "Каталог операционных систем доступен в сервисе «Виртуальные машины» [3]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/evolution/overview/topics/services__list"
+    ],
+    "recommendation": "Использовать каталог образов Cloud.ru для выбора и установки ОС и СУБД на ВМ.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "ГосОблако предоставляет образы ОС и СУБД для установки на ВМ по запросу Заказчика.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Подходит. Образы ОС/СУБД доступны в каталоге."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Облако VMware предоставляет широкий выбор образов ОС и СУБД для установки на ВМ по запросу Заказчика.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "recommendation": "Подходит. Образы ОС/СУБД доступны в каталоге."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Advanced предоставляет образы ОС и СУБД для установки на ВМ по запросу Заказчика.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Подходит. Образы ОС/СУБД доступны в каталоге."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Evolution предоставляет каталог образов ОС и СУБД для установки на ВМ по запросу Заказчика.",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/evolution/overview/topics/services__list"],
+        "source_titles": ["Список сервисов Cloud.ru Evolution"],
+        "recommendation": "Подходит. Образы ОС/СУБД доступны в каталоге."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 184,
+    "verdict": "partial",
+    "confidence": 0.8,
+    "reasoning": "Требуется, чтобы ПО было внесено в Единый реестр российских ПО (reestr.digital.gov.ru). Cloud.ru предоставляет образы ОС и СУБД, но в документации не указано, какие из них внесены в реестр. В RAG-фрагменте для Advanced и Evolution упоминается «Реестр отечественного ПО» — но это не подтверждение включения конкретных продуктов. Необходимо уточнение у менеджера.",
+    "evidence": "Реестр отечественного ПО ✓ — — [1] (только для Облако VMware, но не указано, какие ПО внесены)",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера, какие образы ОС/СУБД Cloud.ru внесены в Единый реестр российских ПО. Рекомендуется использовать только те, что подтверждены в реестре.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.6,
+        "reasoning": "В документации нет подтверждения, что ПО на ГосОблако внесено в Единый реестр. Требуется уточнение у менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, какие образы внесены в реестр."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "В документации указано «Реестр отечественного ПО ✓» — но не указаны конкретные продукты. Возможно, имеются в виду российские ОС, но не подтверждено, что СУБД внесены.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "recommendation": "Уточнить у клиентского менеджера, какие образы ОС/СУБД внесены в реестр."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.6,
+        "reasoning": "В документации нет упоминания о внесении ПО в реестр. Требуется уточнение.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, какие образы внесены в реестр."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.6,
+        "reasoning": "В документации нет упоминания о внесении ПО в реестр. Требуется уточнение.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, какие образы внесены в реестр."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]
+```

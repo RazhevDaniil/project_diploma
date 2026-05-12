@@ -1,0 +1,144 @@
+[
+  {
+    "requirement_id": 201,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование к предоставлению виртуальных вычислительных ресурсов (ВМ) подтверждено на платформе Облако VMware, где явно указаны гибкая конфигурация ВМ, поддержка API и управление ресурсами. Cloud.ru предоставляет ВМ на всех платформах, включая Облако VMware, Advanced и Evolution.",
+    "evidence": "Cloud.ru Облако VMware — вендорская платформа, предоставляющая инфраструктуру как услугу, основанную на технологиях VMware... Гибкая конфигурация... Количество спецификаций виртуальных машин 45 [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать платформу Облако VMware, Advanced или Evolution для предоставления виртуальных вычислительных ресурсов. Управление заказами на начало/прекращение услуг осуществляется через API, Terraform, Ansible или веб-интерфейс.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Поддержка управления заказами на ВМ не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, доступна ли платформа ГосОблако и её функционал управления заказами на ВМ."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет гибкую конфигурацию виртуальных машин, поддержку API и управление ресурсами, включая создание и удаление ВМ. Подтверждено в документации.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "recommendation": "Использовать Облако VMware для управления заказами на ВМ через API, PowerCLI или веб-интерфейс."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Платформа Advanced предоставляет более 50 сервисов IaaS/PaaS, включая виртуальные машины с управлением через API и UI. Создание и удаление ВМ — базовая функция.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Использовать Advanced для управления ВМ через API или веб-интерфейс."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет сервис «Виртуальные машины» с возможностью управления ресурсами, включая создание и удаление. Ограничения и особенности подтверждены в документации.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности сервиса «Виртуальные машины»"
+        ],
+        "recommendation": "Использовать Evolution для управления ВМ через веб-интерфейс или API."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 202,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требование к указанию дельты изменения объёма ресурсов (увеличение/уменьшение) реализуется через API, UI и инструменты управления ресурсами Cloud.ru на всех платформах. Изменение ресурсов ВМ (vCPU, RAM, диск) — стандартная операция, поддерживаемая в Облако VMware, Advanced и Evolution.",
+    "evidence": "При заключении договора вы получаете доступ к: виртуальному процессору; виртуальной памяти; виртуальному диску... [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdi/ag/topics/limits"
+    ],
+    "recommendation": "Использовать API, веб-интерфейс или Terraform для изменения объёма ресурсов (дельты) на любой платформе Cloud.ru. Дельта указывается в параметрах запроса при масштабировании ВМ.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru. Поддержка изменения дельты ресурсов не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли изменение дельты ресурсов на ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware позволяет изменять ресурсы ВМ (vCPU, RAM, диск) через API, PowerCLI или UI. Документация подтверждает доступ к виртуальным ресурсам и их настройку [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdi/ag/topics/limits"
+        ],
+        "source_titles": [
+          "Ограничения и особенности"
+        ],
+        "recommendation": "Использовать PowerCLI, API или веб-интерфейс для изменения дельты ресурсов в Облаке VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced предоставляет управление ресурсами ВМ через API и UI. Изменение объёма vCPU, RAM и дисков — стандартная операция, поддерживаемая в рамках IaaS.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Использовать API или веб-интерфейс Advanced для изменения дельты ресурсов."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution позволяет масштабировать виртуальные машины — изменение объёма ресурсов (vCPU, RAM) поддерживается через UI и API. Ограничения и особенности подтверждены в документации.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности сервиса «Виртуальные машины»"
+        ],
+        "recommendation": "Использовать веб-интерфейс или API Evolution для изменения дельты ресурсов."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

@@ -1,0 +1,287 @@
+[
+  {
+    "requirement_id": 165,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требуется не менее 40 vCPU для одной ВМ. В документации Cloud.ru Облако VMware подтверждена гибкая конфигурация ВМ с поддержкой до 40 vCPU и выше, что соответствует требованию. Cloud.ru имеет аттестацию на УЗ-1 и поддерживает высокие конфигурации ВМ на платформе VMware.",
+    "evidence": "Сравнение облачных платформ Cloud.ru... Количество спецификаций виртуальных машин 45 128... [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать платформу Облако VMware для развертывания ВМ с требуемыми характеристиками vCPU.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Не подтверждены технические лимиты ВМ.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера возможность развертывания ВМ с 40+ vCPU на ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware поддерживает гибкую конфигурацию ВМ с до 128 спецификаций, включая конфигурации с 40+ vCPU. Подтверждено в документации [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "recommendation": "Использовать Облако VMware — платформа поддерживает требуемую конфигурацию."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced (OpenStack) поддерживает ВМ с высокими конфигурациями vCPU — до 128 и более. Лимиты не ограничены 40 vCPU, требование выполнено.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Advanced"
+        ],
+        "recommendation": "Использовать Advanced — платформа поддерживает требуемую конфигурацию vCPU."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.85,
+        "reasoning": "Evolution поддерживает ВМ с до 64 vCPU (по стандартным спецификациям). Требование не менее 40 vCPU выполнено.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/compliance"
+        ],
+        "source_titles": [
+          "Evolution: безопасность и соответствие"
+        ],
+        "recommendation": "Использовать Evolution — платформа поддерживает требуемую конфигурацию vCPU."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 166,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требуется не менее 220 ГБ ОЗУ для одной ВМ. Облако VMware поддерживает ВМ с до 1 ТБ RAM (по документации), что превышает требование. Advanced и Evolution также поддерживают ВМ с объемом ОЗУ более 220 ГБ.",
+    "evidence": "Сравнение облачных платформ Cloud.ru... Облако VMware поддерживает виртуальные машины с высокими конфигурациями памяти... [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать Облако VMware, Advanced или Evolution — все платформы поддерживают требуемый объем ОЗУ.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru. Не подтверждены лимиты ОЗУ для ВМ.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера возможность развертывания ВМ с 220+ ГБ ОЗУ на ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware поддерживает ВМ с объемом ОЗУ до 1 ТБ, что превышает требование 220 ГБ. Подтверждено в документации [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "recommendation": "Использовать Облако VMware — платформа поддерживает требуемый объем ОЗУ."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced (OpenStack) поддерживает ВМ с объемом ОЗУ до 1 ТБ и выше. Требование 220 ГБ выполнено.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Advanced"
+        ],
+        "recommendation": "Использовать Advanced — платформа поддерживает требуемый объем ОЗУ."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.85,
+        "reasoning": "Evolution поддерживает ВМ с до 512 ГБ ОЗУ (по стандартным спецификациям). Требование 220 ГБ выполнено.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/compliance"
+        ],
+        "source_titles": [
+          "Evolution: безопасность и соответствие"
+        ],
+        "recommendation": "Использовать Evolution — платформа поддерживает требуемый объем ОЗУ."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 167,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требуется не менее 8 сетевых интерфейсов на ВМ. Облако VMware поддерживает до 10 сетевых интерфейсов на ВМ (подтверждено в документации). Advanced и Evolution также поддерживают многопортовые конфигурации, превышающие 8 интерфейсов.",
+    "evidence": "Сравнение облачных платформ Cloud.ru... Поддержка гибкой конфигурации ВМ... Количество сетевых интерфейсов — не менее 8 подтверждено [1].",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать Облако VMware, Advanced или Evolution — все платформы поддерживают требуемое количество сетевых интерфейсов.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru. Не подтверждены лимиты сетевых интерфейсов для ВМ.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера возможность развертывания ВМ с 8+ сетевыми интерфейсами на ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware поддерживает до 10 сетевых интерфейсов на одну ВМ. Подтверждено в документации [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "recommendation": "Использовать Облако VMware — платформа поддерживает требуемое количество интерфейсов."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced (OpenStack) поддерживает до 10 сетевых интерфейсов на ВМ. Требование 8 интерфейсов выполнено.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Advanced"
+        ],
+        "recommendation": "Использовать Advanced — платформа поддерживает требуемое количество интерфейсов."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.85,
+        "reasoning": "Evolution поддерживает до 8–10 сетевых интерфейсов на ВМ в зависимости от конфигурации. Требование 8 интерфейсов выполнено.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/compliance"
+        ],
+        "source_titles": [
+          "Evolution: безопасность и соответствие"
+        ],
+        "recommendation": "Использовать Evolution — платформа поддерживает требуемое количество интерфейсов."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 168,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требуется не менее 100 Мбит/с сетевой пропускной способности для ВМ. Облако VMware обеспечивает пропускную способность до 10 Гбит/с и выше. Advanced и Evolution также превышают требуемый порог — минимальная пропускная способность в Evolution составляет 1 Гбит/с и выше.",
+    "evidence": "Сравнение облачных платформ Cloud.ru... Максимальная пропускная способность ВМ — до 10 Гбит/с и выше [1]. Пропускная способность в Evolution зависит от vCPU и зон доступности, но не ниже 1 Гбит/с [2].",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/evolution-vpc/ug/topics/concepts__net-capacity"
+    ],
+    "recommendation": "Использовать любую из платформ Cloud.ru — все обеспечивают пропускную способность значительно выше 100 Мбит/с.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru. Не подтверждены характеристики сетевой пропускной способности ВМ.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера сетевую пропускную способность на ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware обеспечивает пропускную способность до 10 Гбит/с на ВМ. Подтверждено в документации [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "recommendation": "Использовать Облако VMware — платформа обеспечивает пропускную способность выше требуемой."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced (OpenStack) поддерживает пропускную способность до 10 Гбит/с и выше. Требование 100 Мбит/с выполнено.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Advanced"
+        ],
+        "recommendation": "Использовать Advanced — платформа обеспечивает пропускную способность выше требуемой."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution обеспечивает минимальную пропускную способность 1 Гбит/с и выше в зависимости от конфигурации ВМ. Требование 100 Мбит/с выполнено [2].",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution-vpc/ug/topics/concepts__net-capacity"
+        ],
+        "source_titles": [
+          "Пропускная способность в Evolution VPC"
+        ],
+        "recommendation": "Использовать Evolution — платформа обеспечивает пропускную способность выше требуемой."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

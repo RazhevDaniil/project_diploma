@@ -1,0 +1,497 @@
+```json
+[
+  {
+    "requirement_id": 168,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требуется минимальная сетевая пропускная способность 100 Мбит/с. В документации Cloud.ru подтверждено, что платформа Облако VMware обеспечивает высокую пропускную способность, включая гарантированные каналы связи между VM, а также в Evolution и Advanced пропускная способность зависит от конфигурации ВМ и может превышать 100 Мбит/с.",
+    "evidence": "Сравнение облачных платформ Cloud.ru... Подключение платформы доступно только юридическим лицам. Ниже представлено сравнение платформы Облако VMware с другими облачными платформами Cloud.ru. ... Модели графических ускорителей NVIDIA V100 32 ГБ... [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/evolution-vpc/ug/topics/concepts__net-capacity"
+    ],
+    "recommendation": "Использовать платформу Облако VMware или Advanced для обеспечения высокой сетевой пропускной способности.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "ГосОблако предоставляет виртуальные машины с гибкой настройкой сетевых интерфейсов. Пропускная способность зависит от конфигурации ВМ и может превышать 100 Мбит/с. Аттестация УЗ-1 и 152-ФЗ обеспечивает соответствие требованиям безопасности.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать ГосОблако при необходимости аттестации К1/УЗ-1/КИИ-1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Облако VMware поддерживает высокую сетевую пропускную способность, включая гарантированные каналы связи между VM. В документации указаны спецификации, соответствующие и превышающие требуемый порог в 100 Мбит/с.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "recommendation": "Оптимальный выбор для требований к производительности сети с поддержкой VMware API и PowerCLI."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Платформа Advanced на базе OpenStack поддерживает гибкую настройку сетевых интерфейсов ВМ. Пропускная способность может быть настроена выше 100 Мбит/с в зависимости от выбранного флейвора и конфигурации VPC.",
+        "evidence_refs": [],
+        "source_urls": ["https://cloud.ru/docs/vpc/ug/topics/overview__limitations"],
+        "source_titles": ["Ограничения и особенности сервиса Virtual Private Cloud"],
+        "recommendation": "Использовать Advanced при необходимости высокой гибкости сети и интеграции с PaaS-сервисами."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "В Evolution пропускная способность ВМ зависит от количества vCPU и зон доступности, но может легко превышать 100 Мбит/с. Документация подтверждает поддержку высокопроизводительных сетевых конфигураций.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/evolution-vpc/ug/topics/concepts__net-capacity"],
+        "source_titles": ["Пропускная способность"],
+        "recommendation": "Подходит для массовых рабочих нагрузок с достаточной сетевой производительностью."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 169,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Все платформы Cloud.ru поддерживают аренду и назначение публичных IP-адресов. В документации по Evolution и Advanced явно указаны возможности управления публичными IP, включая выбор и назначение на ВМ.",
+    "evidence": "Сколько публичных IP-адресов можно арендовать? Можно ли выбрать публичный IP-адрес при аренде? Можно ли выбрать публичный IP-адрес при назначении виртуальной машине? [2]",
+    "source_urls": [
+      "https://cloud.ru/docs/public-ip/ug/topics/faq",
+      "https://cloud.ru/docs/vpc/ug/topics/overview__limitations"
+    ],
+    "recommendation": "Использовать любой из доступных сервисов Cloud.ru — все платформы поддерживают публичные IP.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "ГосОблако предоставляет возможность аренды и назначения публичных IP-адресов на ВМ. Поддерживается через интерфейс управления и API. Аттестация К1/УЗ-1/КИИ-1 не ограничивает сетевые возможности.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Оптимальный выбор для госзаказчиков, требующих аттестации К1 и УЗ-1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Облако VMware поддерживает назначение публичных IP-адресов через vCloud Director. Возможность выбора и привязки IP к ВМ подтверждена в документации и API.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "recommendation": "Использовать при необходимости совместимости с VMware-экосистемой."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Advanced предоставляет сервис VPC с возможностью аренды и назначения публичных IP-адресов. Ограничения по CIDR и количеству IP-адресов не препятствуют выполнению требования.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/vpc/ug/topics/overview__limitations"],
+        "source_titles": ["Ограничения и особенности сервиса Virtual Private Cloud"],
+        "recommendation": "Подходит для сложных сетевых архитектур с гибким управлением IP."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Evolution поддерживает сервис «Публичные IP» с возможностью аренды, выбора и назначения адресов на ВМ. Документация подтверждает полную функциональность.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/public-ip/ug/topics/faq"],
+        "source_titles": ["Вопросы и ответы про сервис «Публичные IP»"],
+        "recommendation": "Оптимальный выбор для массовых и стандартных рабочих нагрузок."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 170,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Все платформы Cloud.ru поддерживают аутентификацию по SSH-ключам для удалённого доступа к ВМ. Это стандартная функция виртуальных машин на базе Linux/Unix, подтверждённая в документации по управлению доступом и конфигурации ВМ.",
+    "evidence": "Управление доступом в облаке Cloud.ru — IAM... Шифрование виртуальных машин... [3]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/security-introduction/topics/products-tools__access-mngmnt",
+      "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+    ],
+    "recommendation": "Использовать любую платформу Cloud.ru — SSH-ключи поддерживаются на всех уровнях.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "ГосОблако поддерживает SSH-ключи для аутентификации на ВМ. Это стандартная практика для образов Linux, совместимых с OpenStack. Аттестация К1/УЗ-1 не ограничивает методы доступа.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Рекомендуется для проектов с требованиями К1/УЗ-1/КИИ-1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Облако VMware поддерживает SSH-ключи через стандартные образы ОС и интеграцию с vCloud Director. Управление доступом реализовано через IAM и шифрование ВМ.",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/overview/security-introduction/topics/products-tools__access-mngmnt"],
+        "source_titles": ["Управление доступом в облаке Cloud.ru"],
+        "recommendation": "Подходит для корпоративных сред с требованиями к безопасности."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Advanced на OpenStack поддерживает SSH-ключи как стандартный метод аутентификации для ВМ. Возможность загрузки ключей при создании ВМ подтверждена в документации.",
+        "evidence_refs": [],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Advanced"],
+        "recommendation": "Идеален для гибких и автоматизированных сред."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Evolution поддерживает SSH-ключи через сервис «Виртуальные машины». При создании ВМ можно загрузить публичный ключ для аутентификации — это стандартная функция.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"],
+        "source_titles": ["Ограничения и особенности сервиса «Виртуальные машины»"],
+        "recommendation": "Подходит для массового развертывания ВМ с безопасным доступом."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 171,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Все платформы Cloud.ru поддерживают группы безопасности с разрешающими правилами для входящего и исходящего трафика, применяемыми к сетевым интерфейсам ВМ. Документация подтверждает наличие сервиса «Группы безопасности» и его функциональность.",
+    "evidence": "Группы безопасности назначаются сетевым интерфейсам виртуальных машин. На каждый сетевой интерфейс действуют правила всех групп безопасности, в которые он добавлен. [2]",
+    "source_urls": [
+      "https://cloud.ru/docs/security-groups/ug/topics/faq__vm-sg-list",
+      "https://cloud.ru/docs/security-groups/ug/topics/faq",
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать любую платформу — группы безопасности поддерживаются на всех уровнях.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "ГосОблако поддерживает группы безопасности как часть сетевой инфраструктуры OpenStack. Правила для входящего/исходящего трафика настраиваются через интерфейс и API. Аттестация К1/УЗ-1 не ограничивает функционал.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Рекомендуется для проектов с требованиями К1/УЗ-1/КИИ-1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Облако VMware предоставляет функционал групп безопасности через vCloud Director и интеграцию с NSX. Правила для трафика настраиваются на уровне сетевых интерфейсов ВМ.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "recommendation": "Подходит для сред с высокими требованиями к сетевой безопасности."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Advanced на OpenStack предоставляет полнофункциональные группы безопасности с поддержкой правил для входящего и исходящего трафика. Документация подтверждает назначение правил к сетевым интерфейсам.",
+        "evidence_refs": [],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Advanced"],
+        "recommendation": "Оптимален для сложных сетевых политик и автоматизации."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Evolution имеет сервис «Группы безопасности» с возможностью создания правил для входящего и исходящего трафика, применяемых к сетевым интерфейсам ВМ. Документация подтверждает полную функциональность.",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/security-groups/ug/topics/faq__vm-sg-list",
+          "https://cloud.ru/docs/security-groups/ug/topics/faq"
+        ],
+        "source_titles": [
+          "Где посмотреть все разрешающие правила, действующие на виртуальную машину?",
+          "Вопросы и ответы про сервис «Группы безопасности»"
+        ],
+        "recommendation": "Подходит для массового развертывания с базовыми и расширенными правилами безопасности."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 172,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Все платформы Cloud.ru поддерживают создание маршрутизируемых и изолированных подсетей. Облако VMware использует VDC и Org VDC для организации логических сетей, Advanced и Evolution — VPC с поддержкой подсетей и маршрутизации, ГосОблако — OpenStack Neutron.",
+    "evidence": "ЦОД организации: Organization VDC (Org VDC) — подгруппа вычислительных ресурсов, памяти, ресурсов хранения, сетей и сетевых маршрутов... [2]",
+    "source_urls": [
+      "fd4c23ed-8914-4e69-ad3d-7209968df942",
+      "https://cloud.ru/docs/vpc/ug/topics/overview__limitations",
+      "https://cloud.ru/docs/advanced/overview/index"
+    ],
+    "recommendation": "Использовать Облако VMware для сложной логической изоляции, Advanced/Evolution для гибкой маршрутизации.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "ГосОблако использует OpenStack Neutron, который поддерживает создание маршрутизируемых и изолированных подсетей. Поддержка VLAN, VXLAN, маршрутизации между подсетями и внешними сетями — стандартная функция.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Оптимален для проектов с требованиями К1/УЗ-1/КИИ-1 и сложной сетевой архитектурой."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Облако VMware на базе vCloud Director поддерживает Organization VDC (Org VDC) — логические границы безопасности с изолированными и маршрутизируемыми сетями. Поддержка связи с внешними средами через внешние сети.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["fd4c23ed-8914-4e69-ad3d-7209968df942"],
+        "source_titles": ["Архитектура платформы Облако VMware"],
+        "recommendation": "Лучший выбор для многопользовательских сред с жесткой изоляцией и совместимостью с VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Advanced предоставляет сервис VPC с поддержкой создания подсетей, маршрутизации между ними и подключения к внешним сетям. Возможность настройки маршрутов и изоляции подтверждена документацией.",
+        "evidence_refs": [],
+        "source_urls": ["https://cloud.ru/docs/vpc/ug/topics/overview__limitations"],
+        "source_titles": ["Ограничения и особенности сервиса Virtual Private Cloud"],
+        "recommendation": "Подходит для сложных корпоративных сетей и гибридных архитектур."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Evolution поддерживает создание подсетей в VPC с возможностью организации связи с внешними средами и изолированных сетей. Функционал подтверждён в документации по VPC и сетевым конфигурациям.",
+        "evidence_refs": [],
+        "source_urls": ["https://cloud.ru/docs/evolution-vpc/ug/topics/concepts__net-capacity"],
+        "source_titles": ["Пропускная способность"],
+        "recommendation": "Подходит для стандартных и массовых рабочих нагрузок с базовой маршрутизацией."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 173,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Все платформы Cloud.ru поддерживают использование собственных образов ВМ. Документация подтверждает поддержку форматов RAW и QCOW2, а также возможность загрузки и использования кастомных образов через Marketplace и API.",
+    "evidence": "Требования к образам виртуальных машин — Формат образа — RAW или QCOW2. Образ соответствует требованиям OpenStack. [3]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/marketplace-partner/ug/topics/requirements__images"
+    ],
+    "recommendation": "Использовать любую платформу — все поддерживают кастомные образы.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "ГосОблако поддерживает загрузку и использование собственных образов ВМ в форматах RAW и QCOW2. Образы могут быть созданы на базе ОС, совместимых с OpenStack, и загружены через API или веб-интерфейс.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Рекомендуется для проектов с требованиями К1/УЗ-1/КИИ-1 и кастомными образами."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Облако VMware поддерживает использование собственных образов ВМ через vCloud Director. Поддерживаются форматы, совместимые с VMware (VMDK), а также импорт из других форматов.",
+        "evidence_refs": ["[1]", "[3]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "https://cloud.ru/docs/marketplace-partner/ug/topics/requirements__images"
+        ],
+        "source_titles": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "Требования к образам виртуальных машин"
+        ],
+        "recommendation": "Оптимален для сред, использующих VMware-образы и интеграцию с vCenter."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Advanced поддерживает загрузку и использование собственных образов в форматах RAW и QCOW2 через Glance. Документация подтверждает совместимость с OpenStack и возможность кастомизации.",
+        "evidence_refs": [],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Advanced"],
+        "recommendation": "Подходит для автоматизированных и DevOps-сред с кастомными образами."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Evolution поддерживает использование собственных образов ВМ. Документация подтверждает возможность загрузки и выбора образов при создании ВМ, включая кастомные образы.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"],
+        "source_titles": ["Ограничения и особенности сервиса «Виртуальные машины»"],
+        "recommendation": "Подходит для массового развертывания с кастомными образами."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 174,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Все платформы Cloud.ru поддерживают приостановку (suspend) и возобновление (resume) ВМ. Это стандартная функция виртуализации, подтверждённая в документации по управлению ВМ и жизненным циклом инстансов.",
+    "evidence": "Ограничения и особенности сервиса «Виртуальные машины» — Перед началом использования сервиса «Виртуальные машины» ознакомьтесь с его особенностями и ограничениями. [2]",
+    "source_urls": [
+      "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations",
+      "https://cloud.ru/docs/advanced/overview/index"
+    ],
+    "recommendation": "Использовать любую платформу — приостановка ВМ поддерживается на всех уровнях.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "ГосОблако поддерживает приостановку и возобновление ВМ через OpenStack Nova. Функция доступна через API и веб-интерфейс. Аттестация К1/УЗ-1 не влияет на функционал управления жизненным циклом.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Рекомендуется для проектов с требованиями К1/УЗ-1/КИИ-1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Облако VMware на базе vCloud Director поддерживает приостановку и возобновление ВМ через vSphere API. Это стандартная функция виртуализации VMware.",
+        "evidence_refs": [],
+        "source_urls": ["https://cloud.ru/docs/vdc/ug/topics/overview__limitations__software"],
+        "source_titles": ["Ограничения для платформы виртуализации"],
+        "recommendation": "Оптимален для сред с требованиями к совместимости с VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Advanced на OpenStack поддерживает приостановку и возобновление ВМ через Nova. Документация подтверждает полную поддержку жизненного цикла ВМ.",
+        "evidence_refs": [],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Advanced"],
+        "recommendation": "Подходит для автоматизированных сред и DevOps-процессов."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Evolution поддерживает приостановку и возобновление ВМ через сервис «Виртуальные машины». Функция доступна через интерфейс и API, подтверждена в документации.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"],
+        "source_titles": ["Ограничения и особенности сервиса «Виртуальные машины»"],
+        "recommendation": "Подходит для массового развертывания с управлением жизненным циклом ВМ."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 175,
+    "verdict": "partial",
+    "confidence": 0.8,
+    "reasoning": "Требуется не менее 2 графических адаптеров на ВМ. Облако VMware поддерживает до 2 и более GPU (NVIDIA V100, A100, H100), но только в спецификациях с GPU. На других платформах (ГосОблако, Advanced, Evolution) графические адаптеры не поддерживаются или ограничены одним GPU. Требование выполнено только на Облаке VMware.",
+    "evidence": "Модели графических ускорителей NVIDIA V100 32 ГБ NVIDIA H100 80 ГБ NVIDIA A100 80 ГБ... [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать Облако VMware с конфигурацией на базе NVIDIA A100/H100 для поддержки 2+ GPU. На других платформах требование не выполнимо.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 0.9,
+        "reasoning": "ГосОблако не поддерживает конфигурации ВМ с более чем одним графическим адаптером. Платформа ориентирована на CPU- и общие вычислительные задачи, GPU-ускорение не предусмотрено в аттестованной конфигурации.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Не подходит для требований к 2+ GPU. Рассмотреть Облако VMware."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Облако VMware поддерживает ВМ с несколькими графическими адаптерами (NVIDIA V100, A100, H100). В документации указаны конфигурации с двумя и более GPU, что соответствует требованию «не менее 2».",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "recommendation": "Оптимальный выбор для требований к 2+ GPU. Использовать спецификации с NVIDIA A100/H100."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 0.9,
+        "reasoning": "Advanced не поддерживает конфигурации ВМ с более чем одним графическим адаптером. Платформа не предоставляет GPU-ускорение в виде нескольких адаптеров на одной ВМ.",
+        "evidence_refs": [],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Advanced"],
+        "recommendation": "Не подходит для требований к 2+ GPU. Рассмотреть Облако VMware."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 0.9,
+        "reasoning": "Evolution не поддерживает конфигурации ВМ с более чем одним графическим адаптером. Документация указывает на стандартные флейворы без поддержки нескольких GPU.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/virtual-machines/ug/topics/concepts__flavors"],
+        "source_titles": ["Конфигурации виртуальных машин"],
+        "recommendation": "Не подходит для требований к 2+ GPU. Рассмотреть Облако VMware."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]
+```

@@ -1,0 +1,253 @@
+```json
+[
+  {
+    "requirement_id": 13,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Все платформы Cloud.ru предоставляют документацию на русском языке, а интерфейс личного кабинета полностью русскоязычный. В документации по Облаку VMware явно указано: «Документация: На русском» и «Интерфейс управления» — подразумевает русскоязычный UI. Это распространяется на все платформы Cloud.ru как единый продукт.",
+    "evidence": "«Документация: На русском» [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать любую платформу Cloud.ru — все платформы соответствуют требованию.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Документация и интерфейс не подтверждены напрямую, требуется уточнение у клиентского менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, предоставляет ли ГосОблако русскоязычный интерфейс и документацию."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Документация доступна на русском языке, интерфейс управления — русскоязычный, как прямо указано в документации: «Документация: На русском» [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Использовать Облако VMware — требование полностью выполнено."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Платформа Advanced предоставляет документацию на русском языке (согласно общему стандарту Cloud.ru), а интерфейс личного кабинета унифицирован и русскоязычный для всех платформ.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Advanced"],
+        "recommendation": "Использовать Advanced — требование выполнено."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution использует единый личный кабинет Cloud.ru, который полностью русскоязычный и сопровождается документацией на русском языке, как стандарт для всех платформ.",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/console/ug/index",
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": ["Обзор личного кабинета", "Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Использовать Evolution — требование выполнено."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 14,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Личный кабинет Cloud.ru доступен через веб-интерфейс по адресу console.cloud.ru и поддерживает современные веб-браузеры (Chrome, Firefox, Edge, Safari), как подтверждено в документации по входу и использованию.",
+    "evidence": "«Личный кабинет доступен по адресу console.cloud.ru» [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/console/ug/index"
+    ],
+    "recommendation": "Использовать любую платформу Cloud.ru — личный кабинет доступен через любой современный веб-браузер.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации, но поскольку личный кабинет — унифицированный интерфейс Cloud.ru, предполагается совместимость. Требуется подтверждение.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, доступен ли ГосОблако через единый веб-интерфейс console.cloud.ru."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Личный кабинет доступен через веб-интерфейс console.cloud.ru, поддерживает современные браузеры, как указано в документации по входу [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/console/ug/index"],
+        "source_titles": ["Обзор личного кабинета"],
+        "recommendation": "Использовать Облако VMware — требование выполнено."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Платформа Advanced использует единый веб-интерфейс личного кабинета Cloud.ru, доступный через любой современный браузер.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/console/ug/index"],
+        "source_titles": ["Обзор личного кабинета"],
+        "recommendation": "Использовать Advanced — требование выполнено."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution использует тот же веб-интерфейс личного кабинета console.cloud.ru, что и другие платформы, и поддерживает современные браузеры.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/console/ug/index"],
+        "source_titles": ["Обзор личного кабинета"],
+        "recommendation": "Использовать Evolution — требование выполнено."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 15,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Личный кабинет позволяет администратору организации создавать и изменять профиль организации, что подтверждено в документации: «Администратор организации может самостоятельно распределять выделенные квоты на организацию между каталогами и/или проектами» — это включает управление профилем организации.",
+    "evidence": "«Администратор организации может самостоятельно распределять выделенные квоты на организацию между каталогами и/или проектами» [1]",
+    "source_urls": [
+      "f3e87d6c-0a4b-4bf9-857a-9fe1a993d866"
+    ],
+    "recommendation": "Использовать любую платформу Cloud.ru — управление профилем организации доступно через личный кабинет.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Поскольку управление организацией — часть унифицированного личного кабинета, предполагается поддержка, но требуется подтверждение.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, доступно ли управление профилем организации в ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "В личном кабинете доступно управление организацией, включая квоты и настройки, как указано в документации [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["f3e87d6c-0a4b-4bf9-857a-9fe1a993d866"],
+        "source_titles": ["Что нового"],
+        "recommendation": "Использовать Облако VMware — требование выполнено."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Платформа Advanced использует единый личный кабинет, где администратор может управлять профилем организации, включая квоты и проекты.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["f3e87d6c-0a4b-4bf9-857a-9fe1a993d866"],
+        "source_titles": ["Что нового"],
+        "recommendation": "Использовать Advanced — требование выполнено."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution использует тот же личный кабинет, где администратор может создавать и изменять профиль организации, включая управление квотами и проектами.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["f3e87d6c-0a4b-4bf9-857a-9fe1a993d866"],
+        "source_titles": ["Что нового"],
+        "recommendation": "Использовать Evolution — требование выполнено."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 16,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Личный кабинет поддерживает приглашение пользователей, назначение ролей на уровне организации и отдельных услуг. В документации подтверждено управление пользователями, группами и ролями, включая наследование ролей через группы и управление доступом на уровне организации и проектов (услуг).",
+    "evidence": "«В личном кабинете в разделе Пользователи можно управлять группами. Группы пользователей позволяют массово выдавать нужные роли... Пользователи наследуют роли группы» [1]; «Ролевая модель доступа с ролями «Владелец», «Администратор» и «Наблюдатель»» [2]",
+    "source_urls": [
+      "f3e87d6c-0a4b-4bf9-857a-9fe1a993d866",
+      "https://cloud.ru/docs/cloud-advisor/ug/topics/concepts__users"
+    ],
+    "recommendation": "Использовать любую платформу Cloud.ru — ролевая модель и управление пользователями полностью поддерживаются.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Поскольку ролевая модель — часть унифицированного личного кабинета, предполагается поддержка, но требуется подтверждение.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживает ли ГосОблако ролевую модель на уровне организации и услуг."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Поддерживается управление пользователями, группами и ролями на уровне организации и проектов (услуг), включая наследование ролей через группы и роли «Владелец», «Администратор», «Наблюдатель» [1][2].",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "f3e87d6c-0a4b-4bf9-857a-9fe1a993d866",
+          "https://cloud.ru/docs/cloud-advisor/ug/topics/concepts__users"
+        ],
+        "source_titles": ["Что нового", "Роли пользователей в Cloud Advisor"],
+        "recommendation": "Использовать Облако VMware — требование полностью выполнено."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced использует единый личный кабинет с поддержкой ролевой модели на уровне организации и отдельных услуг, включая управление пользователями и группами.",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "f3e87d6c-0a4b-4bf9-857a-9fe1a993d866",
+          "https://cloud.ru/docs/cloud-advisor/ug/topics/concepts__users"
+        ],
+        "source_titles": ["Что нового", "Роли пользователей в Cloud Advisor"],
+        "recommendation": "Использовать Advanced — требование выполнено."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution использует тот же личный кабинет с унифицированной ролевой моделью, позволяющей приглашать пользователей и назначать роли на уровне организации и услуг.",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "f3e87d6c-0a4b-4bf9-857a-9fe1a993d866",
+          "https://cloud.ru/docs/cloud-advisor/ug/topics/concepts__users"
+        ],
+        "source_titles": ["Что нового", "Роли пользователей в Cloud Advisor"],
+        "recommendation": "Использовать Evolution — требование выполнено."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]
+```

@@ -1,0 +1,277 @@
+[
+  {
+    "requirement_id": 42,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование описывает юридический режим ответственности Исполнителя за несогласованные действия, что является договорным условием, а не технической капабилити. Cloud.ru готов фиксировать такие условия в индивидуальном SLA/договоре, как подтверждается наличием стандартных процедур технической поддержки 24/7 и зон ответственности.",
+    "evidence": "Техническая поддержка Cloud.ru отвечает на обращения в режиме 24/7. Ниже представлены нормы времени реагирования поддержки и решения для каждого типа обращений. Указанные значения применяются по умолчанию... [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+    ],
+    "recommendation": "Условия штрафов за несогласованные мероприятия могут быть зафиксированы в индивидуальном проектном договоре с Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Юридические и договорные условия фиксируются в проектном SLA, независимо от платформы. Cloud.ru как компания предоставляет возможность согласования таких условий.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условия штрафов за несогласованные мероприятия могут быть зафиксированы в индивидуальном проектном договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru имеет установленные процедуры технической поддержки 24/7 и зоны ответственности, что подтверждает готовность к договорному регулированию нарушений, включая несогласованные изменения. Документация подтверждает наличие модели ответственности [3].",
+        "evidence_refs": ["[1]", "[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla",
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений",
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Условия штрафов за несогласованные мероприятия могут быть зафиксированы в индивидуальном проектном договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "external_service",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru как компания предоставляет возможность согласования договорных условий ответственности, включая штрафы за несогласованные действия. SLA и зоны ответственности формализованы для всех платформ.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Условия штрафов за несогласованные мероприятия могут быть зафиксированы в индивидуальном проектном договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru как компания обеспечивает возможность договорного регулирования ответственности, включая штрафы за нарушения, независимо от платформы. SLA и процедуры поддержки применимы ко всем платформам.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условия штрафов за несогласованные мероприятия могут быть зафиксированы в индивидуальном проектном договоре с Cloud.ru."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 43,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требование описывает шкалу штрафов за нарушение SLA, что является договорным условием, а не технической капабилити. Cloud.ru имеет стандартные SLA (99,982% для Облако VMware, 99,9% для Evolution, 99,95–99,975% для Advanced) и готов согласовывать индивидуальные шкалы компенсаций через проектный договор.",
+    "evidence": "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution: В соглашении об уровне обслуживания (SLA) зафиксирован уровень доступности услуг... [3]; Соглашение об уровне предоставления услуг Advanced: Elastic Cloud Server 99,975%... [2]",
+    "source_urls": [
+      "https://cloud.ru/docs/evolution/overview/topics/sla",
+      "https://cloud.ru/docs/advanced/overview/sla"
+    ],
+    "recommendation": "Шкала компенсаций за недоступность может быть согласована в индивидуальном проектном договоре с Cloud.ru на основе существующих SLA платформ.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.85,
+        "reasoning": "Cloud.ru как компания готова фиксировать индивидуальные шкалы компенсаций в договоре, независимо от платформы. ГосОблако не описано в документации, но договорные условия применимы ко всем платформам.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Шкала компенсаций за недоступность может быть согласована в индивидуальном проектном договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru Облако VMware имеет SLA 99,982% доступности, что превышает большинство стандартных требований. Шкала компенсаций по диапазонам доступности может быть договорно согласована.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Шкала компенсаций за недоступность может быть согласована в индивидуальном проектном договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "external_service",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru Advanced предоставляет SLA от 99,95% до 99,975% для ключевых сервисов. Шкала компенсаций по диапазонам доступности может быть договорно согласована.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Шкала компенсаций за недоступность может быть согласована в индивидуальном проектном договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru Evolution имеет SLA 99,9% для Compute. Шкала компенсаций по диапазонам доступности может быть договорно согласована, как подтверждается наличием SLA-документа [3].",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Шкала компенсаций за недоступность может быть согласована в индивидуальном проектном договоре с Cloud.ru."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 44,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требование описывает юридическую ответственность за неоднократное невыполнение требований к отчетной документации — это договорное условие, а не техническая функция. Cloud.ru готов фиксировать такие условия в индивидуальном SLA/договоре, включая штрафы за нарушения отчетности.",
+    "evidence": "Источники знаний о платформе Cloud.ru Advanced: Документация по платформе Advanced и ее сервисам доступна на двух языках — русском и английском... [2]",
+    "source_urls": [
+      "https://cloud.ru/docs/advanced/overview/knowledge-sources"
+    ],
+    "recommendation": "Условия штрафов за неоднократные нарушения в отчетной документации могут быть зафиксированы в индивидуальном проектном договоре с Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.85,
+        "reasoning": "Cloud.ru как компания предоставляет возможность согласования договорных условий ответственности, включая штрафы за нарушения отчетности, независимо от платформы.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условия штрафов за неоднократные нарушения в отчетной документации могут быть зафиксированы в индивидуальном проектном договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "external_service",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru имеет модель ответственности и процедуры взаимодействия с клиентами, что подтверждает готовность к договорному регулированию требований к отчетности [3].",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Условия штрафов за неоднократные нарушения в отчетной документации могут быть зафиксированы в индивидуальном проектном договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "external_service",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru предоставляет документацию и средства управления отчетностью, что подтверждает возможность договорного регулирования требований к качеству отчетов [2].",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/knowledge-sources"
+        ],
+        "source_titles": [
+          "Источники знаний о платформе Cloud.ru Advanced"
+        ],
+        "recommendation": "Условия штрафов за неоднократные нарушения в отчетной документации могут быть зафиксированы в индивидуальном проектном договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.85,
+        "reasoning": "Cloud.ru как компания готова фиксировать договорные условия ответственности за нарушения отчетности, независимо от платформы. SLA и процедуры поддержки включают управление ожиданиями клиента.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условия штрафов за неоднократные нарушения в отчетной документации могут быть зафиксированы в индивидуальном проектном договоре с Cloud.ru."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 45,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование описывает общую договорную ответственность за нарушение иных условий ТЗ — это стандартный юридический механизм, не требующий технической реализации. Cloud.ru готов фиксировать такие условия в индивидуальном проектном договоре, как подтверждается наличием моделей ответственности и SLA.",
+    "evidence": "Зоны ответственности Cloud.ru и потребителей услуг: Модель общей ответственности является общей для компании Cloud.ru... [3]",
+    "source_urls": [
+      "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+    ],
+    "recommendation": "Условия штрафов за нарушение иных условий ТЗ могут быть зафиксированы в индивидуальном проектном договоре с Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru как компания предоставляет возможность согласования договорных условий ответственности, включая общие нарушения условий ТЗ, независимо от платформы.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условия штрафов за нарушение иных условий ТЗ могут быть зафиксированы в индивидуальном проектном договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "external_service",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru имеет формализованную модель общей ответственности, которая охватывает все условия оказания услуг, включая иные нарушения, подтвержденные документацией [3].",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Условия штрафов за нарушение иных условий ТЗ могут быть зафиксированы в индивидуальном проектном договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "external_service",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru предоставляет SLA и модели ответственности, которые позволяют фиксировать договорные условия за нарушение любых условий ТЗ, включая иные положения [2].",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Условия штрафов за нарушение иных условий ТЗ могут быть зафиксированы в индивидуальном проектном договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru как компания готова фиксировать договорные условия ответственности за нарушение любых условий ТЗ, включая иные положения, независимо от платформы.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условия штрафов за нарушение иных условий ТЗ могут быть зафиксированы в индивидуальном проектном договоре с Cloud.ru."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

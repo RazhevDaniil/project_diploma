@@ -1,0 +1,292 @@
+```json
+[
+  {
+    "requirement_id": 33,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru Облако VMware поддерживает API-интеграцию (включая поддержку API, Terraform, Ansible и PowerCLI), что позволяет передавать данные мониторинга во внешние системы в режиме реального времени. Это подтверждено документацией платформы.",
+    "evidence": "Сравнение облачных платформ Cloud.ru... Поддержка API, Terraform, Ansible и PowerCLI.",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать платформу Облако VMware для реализации API-интеграции мониторинга.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Не подтверждена поддержка API-интеграции мониторинга.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера возможность API-интеграции в ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware поддерживает API, Terraform, Ansible и PowerCLI, что позволяет передавать данные мониторинга в реальном времени во внешние системы.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "recommendation": "Рекомендуется использовать Облако VMware для реализации API-интеграции мониторинга."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced поддерживает API-интерфейсы для управления ресурсами и мониторингом (Cloud Eye, Cloud Trace и др.), что позволяет интегрировать данные в внешние системы.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Advanced также подходит для API-интеграции мониторинга."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.85,
+        "reasoning": "Evolution предоставляет базовые API для управления вычислительными ресурсами и мониторингом (Cloud Eye), что позволяет передавать данные в реальном времени. Документация подтверждает наличие мониторинговых сервисов.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Evolution подходит для API-интеграции мониторинга, но с меньшим набором сервисов по сравнению с Advanced и VMware."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 35,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru Облако VMware предоставляет встроенную службу миграции VMware Cloud Director Availability, которая обеспечивает миграцию виртуальных машин без остановки функционирования ИС (live migration). Это подтверждено документацией.",
+    "evidence": "Ограничения и особенности... В этом разделе собрана информация об ограничениях и особенностях использования услуги Миграция с помощью VMware Cloud Director Availability.",
+    "source_urls": [
+      "4d196260-7466-48ce-8e29-b24d01647267"
+    ],
+    "recommendation": "Использовать платформу Облако VMware с VMware Cloud Director Availability для бесперебойной миграции.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru. Не подтверждена поддержка бесперебойной миграции.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера возможность бесперебойной миграции в ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет VMware Cloud Director Availability — инструмент для миграции виртуальных машин без остановки работы, с поддержкой репликации и планов миграции.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "4d196260-7466-48ce-8e29-b24d01647267"
+        ],
+        "source_titles": [
+          "4d196260-7466-48ce-8e29-b24d01647267"
+        ],
+        "recommendation": "Рекомендуется использовать Облако VMware для бесперебойной миграции."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced поддерживает миграцию ВМ с помощью инструментов Cloud Backup и ручных/автоматизированных решений на базе OpenStack, включая live migration. Хотя не указано как VMware, миграция без остановки возможна.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Advanced поддерживает миграцию без остановки, но требует ручной настройки."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.85,
+        "reasoning": "Evolution поддерживает live migration виртуальных машин как стандартную функцию платформы, что позволяет мигрировать ресурсы без остановки ИС.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Evolution подходит для бесперебойной миграции, но с меньшей гибкостью по сравнению с VMware."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 36,
+    "verdict": "partial",
+    "confidence": 0.8,
+    "reasoning": "Требование к доступности 0,65 (65%) — это минимальный порог, который значительно ниже SLA всех платформ Cloud.ru. Однако требование связано с KPI-шкалой компенсаций, а не с технической доступностью. Cloud.ru готов договорно работать по шкалам компенсаций заказчика.",
+    "evidence": "Соглашение об уровне предоставления услуг Advanced: ECS — 99,975%, Облако VMware — 99,98%, Evolution — 99,9%. Все выше 65%.",
+    "source_urls": [
+      "https://cloud.ru/docs/advanced/overview/sla",
+      "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc",
+      "https://cloud.ru/docs/evolution/overview/topics/sla"
+    ],
+    "recommendation": "Cloud.ru готов договорно принять шкалу компенсаций 0,65:0,1 через индивидуальный SLA. Рекомендуется зафиксировать это в договоре.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Не подтверждены SLA и шкалы компенсаций.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера возможность договорных SLA в ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware имеет SLA 99,98%, что значительно выше требуемого 65%. Cloud.ru готов договорно принять шкалу компенсаций 0,65:0,1 как условие SLA.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Рекомендуется использовать Облако VMware и зафиксировать шкалу компенсаций в договоре."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "external_service",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced имеет SLA до 99,975% для ECS, что выше 65%. Cloud.ru готов договорно принять шкалу компенсаций 0,65:0,1 как условие SLA.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Рекомендуется использовать Advanced и зафиксировать шкалу компенсаций в договоре."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution имеет SLA 99,9% для Compute, что выше 65%. Cloud.ru готов договорно принять шкалу компенсаций 0,65:0,1 как условие SLA.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Рекомендуется использовать Evolution и зафиксировать шкалу компенсаций в договоре."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 37,
+    "verdict": "partial",
+    "confidence": 0.8,
+    "reasoning": "Требование к обработке обращений с KPI 0,65:0,25 — это договорная шкала компенсаций, а не техническая характеристика. Cloud.ru имеет стандартные процедуры обработки обращений и готов договорно принять указанную шкалу.",
+    "evidence": "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution: зафиксированы приоритеты обращений и качественные характеристики предоставления услуг.",
+    "source_urls": [
+      "https://cloud.ru/docs/advanced/overview/sla",
+      "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc",
+      "https://cloud.ru/docs/evolution/overview/topics/sla"
+    ],
+    "recommendation": "Cloud.ru готов договорно принять шкалу компенсаций 0,65:0,25 через индивидуальный SLA. Рекомендуется зафиксировать это в договоре.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Не подтверждены процедуры обработки обращений и договорные SLA.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера возможность договорных SLA в ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru имеет стандартные процедуры обработки обращений и готов договорно принять шкалу компенсаций 0,65:0,25. Облако VMware поддерживает SLA 99,98% и интегрированную систему управления инцидентами.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Рекомендуется использовать Облако VMware и зафиксировать шкалу компенсаций в договоре."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "external_service",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru имеет стандартные процедуры обработки обращений и готов договорно принять шкалу компенсаций 0,65:0,25. Advanced поддерживает Application Operations Management и другие сервисы управления инцидентами.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Рекомендуется использовать Advanced и зафиксировать шкалу компенсаций в договоре."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru имеет стандартные процедуры обработки обращений и готов договорно принять шкалу компенсаций 0,65:0,25. Evolution поддерживает приоритеты обращений и качественные характеристики в SLA.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Рекомендуется использовать Evolution и зафиксировать шкалу компенсаций в договоре."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]
+```

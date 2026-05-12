@@ -50,6 +50,66 @@ def _call_foundation_models(
     return content
 
 
+def _llm_cache_key(
+    system_prompt: Optional[str],
+    prompt: str,
+    model: str,
+    temperature: float,
+    max_tokens: int,
+) -> str:
+    import hashlib
+    h = hashlib.sha256()
+    h.update((system_prompt or "").encode("utf-8"))
+    h.update(b"\x1f")
+    h.update(prompt.encode("utf-8"))
+    h.update(b"\x1f")
+    h.update(model.encode("utf-8"))
+    h.update(b"\x1f")
+    h.update(f"{temperature:.4f}".encode("utf-8"))
+    h.update(b"\x1f")
+    h.update(str(max_tokens).encode("utf-8"))
+    return h.hexdigest()
+
+
+def _llm_cache_dir() -> "Path":
+    import os
+    from pathlib import Path
+    base = os.getenv("LLM_CACHE_DIR")
+    if base:
+        return Path(base)
+    # default: <project_root>/llm_cache, with project_root = .../project_diploma
+    here = Path(__file__).resolve().parents[2]
+    return here / "llm_cache"
+
+
+def _llm_cache_enabled() -> bool:
+    import os
+    return os.getenv("LLM_CACHE_ENABLED", "false").lower() in {"1", "true", "yes", "on"}
+
+
+def _llm_cache_get(key: str) -> Optional[str]:
+    if not _llm_cache_enabled():
+        return None
+    try:
+        p = _llm_cache_dir() / f"{key}.txt"
+        if p.exists():
+            return p.read_text(encoding="utf-8")
+    except Exception as exc:
+        logger.debug("LLM cache get failed: %s", exc)
+    return None
+
+
+def _llm_cache_put(key: str, value: str) -> None:
+    if not _llm_cache_enabled():
+        return
+    try:
+        d = _llm_cache_dir()
+        d.mkdir(parents=True, exist_ok=True)
+        (d / f"{key}.txt").write_text(value, encoding="utf-8")
+    except Exception as exc:
+        logger.debug("LLM cache put failed: %s", exc)
+
+
 def call_llm(
     prompt: str,
     system_prompt: Optional[str] = None,
@@ -58,13 +118,31 @@ def call_llm(
     max_retries: int = 3,
     settings: RuntimeSettings | dict | None = None,
 ) -> str:
-    """Simple helper: send a prompt, get a string back. Retries on timeout."""
+    """Simple helper: send a prompt, get a string back. Retries on timeout.
+
+    Опциональный файловый кеш ответов: включается LLM_CACHE_ENABLED=true.
+    Назначение — детерминированные итерации в разработке/eval: ключ
+    хеширует (system_prompt, prompt, model, temperature, max_tokens), так
+    что повторный запуск с тем же кодом и теми же требованиями даёт
+    идентичный verdict. В production кеш по умолчанию выключен."""
     import time
 
     runtime_settings = build_runtime_settings(settings)
+    effective_temperature = runtime_settings.openai_temperature if temperature is None else temperature
+
+    cache_key = _llm_cache_key(
+        system_prompt=system_prompt,
+        prompt=prompt,
+        model=runtime_settings.openai_model,
+        temperature=effective_temperature,
+        max_tokens=max_tokens,
+    )
+    cached = _llm_cache_get(cache_key)
+    if cached is not None:
+        return cached
+
     for attempt in range(1, max_retries + 1):
         try:
-            effective_temperature = runtime_settings.openai_temperature if temperature is None else temperature
             response = _call_foundation_models(
                 prompt=prompt,
                 system_prompt=system_prompt,
@@ -74,6 +152,7 @@ def call_llm(
             )
             if runtime_settings.llm_request_delay > 0:
                 time.sleep(runtime_settings.llm_request_delay)
+            _llm_cache_put(cache_key, response)
             return response
         except Exception as e:
             if attempt == max_retries:

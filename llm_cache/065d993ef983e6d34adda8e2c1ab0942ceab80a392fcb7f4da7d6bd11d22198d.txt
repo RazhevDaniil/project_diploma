@@ -1,0 +1,602 @@
+[
+  {
+    "requirement_id": 64,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование описывает юридический/договорной режим ответственности Исполнителя за предоставление оборудования — это не техническая капабилити, а условие SLA/договора. Cloud.ru готов работать по индивидуальным договорным условиям, включая обязательства по предоставлению оборудования за свой счет.",
+    "evidence": "",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/index"
+    ],
+    "recommendation": "Условие фиксируется в проектном SLA/договоре с Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Требование относится к договорным условиям, а не к технической реализации. Cloud.ru готов согласовывать такие условия в индивидуальном договоре.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/index"
+        ],
+        "source_titles": [
+          "Обзор технической поддержки Cloud.ru"
+        ],
+        "recommendation": "Условие фиксируется в проектном SLA/договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Требование относится к договорным условиям, а не к технической реализации. Cloud.ru готов согласовывать такие условия в индивидуальном договоре.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/index"
+        ],
+        "source_titles": [
+          "Обзор технической поддержки Cloud.ru"
+        ],
+        "recommendation": "Условие фиксируется в проектном SLA/договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Требование относится к договорным условиям, а не к технической реализации. Cloud.ru готов согласовывать такие условия в индивидуальном договоре.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/index"
+        ],
+        "source_titles": [
+          "Обзор технической поддержки Cloud.ru"
+        ],
+        "recommendation": "Условие фиксируется в проектном SLA/договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Требование относится к договорным условиям, а не к технической реализации. Cloud.ru готов согласовывать такие условия в индивидуальном договоре.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/index"
+        ],
+        "source_titles": [
+          "Обзор технической поддержки Cloud.ru"
+        ],
+        "recommendation": "Условие фиксируется в проектном SLA/договоре с Cloud.ru."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 65,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование описывает юридический/договорной режим ответственности Исполнителя за обеспечение инструментов и материалов — это не техническая капабилити, а условие SLA/договора. Cloud.ru готов работать по индивидуальным договорным условиям, включая обязательства по предоставлению инструментов.",
+    "evidence": "",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla",
+      "https://cloud.ru/docs/evolution/overview/topics/sla",
+      "https://cloud.ru/docs/advanced/overview/sla"
+    ],
+    "recommendation": "Условие фиксируется в проектном SLA/договоре с Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Требование относится к договорным условиям, а не к технической реализации. Cloud.ru готов согласовывать такие условия в индивидуальном договоре.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Условие фиксируется в проектном SLA/договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Требование относится к договорным условиям, а не к технической реализации. Cloud.ru готов согласовывать такие условия в индивидуальном договоре.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Условие фиксируется в проектном SLA/договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Требование относится к договорным условиям, а не к технической реализации. Cloud.ru готов согласовывать такие условия в индивидуальном договоре.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Условие фиксируется в проектном SLA/договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Требование относится к договорным условиям, а не к технической реализации. Cloud.ru готов согласовывать такие условия в индивидуальном договоре.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Условие фиксируется в проектном SLA/договоре с Cloud.ru."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 66,
+    "verdict": "needs_clarification",
+    "confidence": 0.5,
+    "reasoning": "Требование запрашивает перечень нормативных правовых и технических актов — это не техническая капабилити, а список документов, который должен быть предоставлен в рамках договора. Cloud.ru не публикует такой перечень в открытых документах, и в RAG-чанках нет подтверждения наличия или предоставления такого перечня.",
+    "evidence": "",
+    "source_urls": [],
+    "recommendation": "Уточнить у клиентского менеджера, предоставляет ли Cloud.ru формализованный перечень нормативных актов, соответствующих требованиям заказчика, в рамках проектного договора.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "В открытых документах Cloud.ru нет перечня нормативных актов, соответствующих требованию. Необходимо уточнить у менеджера, предоставляется ли такой перечень в рамках договора.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, предоставляет ли Cloud.ru формализованный перечень нормативных актов, соответствующих требованиям заказчика, в рамках проектного договора."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "В открытых документах Cloud.ru нет перечня нормативных актов, соответствующих требованию. Необходимо уточнить у менеджера, предоставляется ли такой перечень в рамках договора.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, предоставляет ли Cloud.ru формализованный перечень нормативных актов, соответствующих требованиям заказчика, в рамках проектного договора."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "В открытых документах Cloud.ru нет перечня нормативных актов, соответствующих требованию. Необходимо уточнить у менеджера, предоставляется ли такой перечень в рамках договора.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, предоставляет ли Cloud.ru формализованный перечень нормативных актов, соответствующих требованиям заказчика, в рамках проектного договора."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "В открытых документах Cloud.ru нет перечня нормативных актов, соответствующих требованию. Необходимо уточнить у менеджера, предоставляется ли такой перечень в рамках договора.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, предоставляет ли Cloud.ru формализованный перечень нормативных актов, соответствующих требованиям заказчика, в рамках проектного договора."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 67,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требование ссылается на Федеральный закон №115-ФЗ — это юридический акт, не техническое требование. Cloud.ru размещает инфраструктуру в РФ, соблюдает российское законодательство, и его лицензии (Роскомнадзор, ФСТЭК) подтверждают соответствие законодательству РФ. Договорное требование о соблюдении закона — стандартное и выполняется.",
+    "evidence": "Cloud.ru размещает инфраструктуру в РФ и имеет лицензии Роскомнадзора и ФСТЭК, подтверждающие соответствие российскому законодательству.",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/index"
+    ],
+    "recommendation": "Условие фиксируется в проектном SLA/договоре с Cloud.ru как стандартное требование соблюдения законодательства РФ.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru размещает инфраструктуру в РФ и имеет лицензии Роскомнадзора и ФСТЭК, подтверждающие соответствие российскому законодательству. Требование о соблюдении закона №115-ФЗ — договорное, выполняется.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/index"
+        ],
+        "source_titles": [
+          "Обзор технической поддержки Cloud.ru"
+        ],
+        "recommendation": "Условие фиксируется в проектном SLA/договоре с Cloud.ru как стандартное требование соблюдения законодательства РФ."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru размещает инфраструктуру в РФ и имеет лицензии Роскомнадзора и ФСТЭК, подтверждающие соответствие российскому законодательству. Требование о соблюдении закона №115-ФЗ — договорное, выполняется.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/index"
+        ],
+        "source_titles": [
+          "Обзор технической поддержки Cloud.ru"
+        ],
+        "recommendation": "Условие фиксируется в проектном SLA/договоре с Cloud.ru как стандартное требование соблюдения законодательства РФ."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru размещает инфраструктуру в РФ и имеет лицензии Роскомнадзора и ФСТЭК, подтверждающие соответствие российскому законодательству. Требование о соблюдении закона №115-ФЗ — договорное, выполняется.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/index"
+        ],
+        "source_titles": [
+          "Обзор технической поддержки Cloud.ru"
+        ],
+        "recommendation": "Условие фиксируется в проектном SLA/договоре с Cloud.ru как стандартное требование соблюдения законодательства РФ."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru размещает инфраструктуру в РФ и имеет лицензии Роскомнадзора и ФСТЭК, подтверждающие соответствие российскому законодательству. Требование о соблюдении закона №115-ФЗ — договорное, выполняется.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/index"
+        ],
+        "source_titles": [
+          "Обзор технической поддержки Cloud.ru"
+        ],
+        "recommendation": "Условие фиксируется в проектном SLA/договоре с Cloud.ru как стандартное требование соблюдения законодательства РФ."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 68,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требование ссылается на Федеральный закон №109-ФЗ — это юридический акт, не техническое требование. Cloud.ru размещает инфраструктуру в РФ, соблюдает российское законодательство, и его лицензии (Роскомнадзор, ФСТЭК) подтверждают соответствие законодательству РФ. Договорное требование о соблюдении закона — стандартное и выполняется.",
+    "evidence": "Cloud.ru размещает инфраструктуру в РФ, имеет лицензии Роскомнадзора и ФСТЭК, подтверждающие соответствие российскому законодательству.",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/index"
+    ],
+    "recommendation": "Условие фиксируется в проектном SLA/договоре с Cloud.ru как стандартное требование соблюдения законодательства РФ.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru размещает инфраструктуру в РФ, имеет лицензии Роскомнадзора и ФСТЭК, подтверждающие соответствие российскому законодательству. Требование о соблюдении закона №109-ФЗ — договорное, выполняется.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/index"
+        ],
+        "source_titles": [
+          "Обзор технической поддержки Cloud.ru"
+        ],
+        "recommendation": "Условие фиксируется в проектном SLA/договоре с Cloud.ru как стандартное требование соблюдения законодательства РФ."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru размещает инфраструктуру в РФ, имеет лицензии Роскомнадзора и ФСТЭК, подтверждающие соответствие российскому законодательству. Требование о соблюдении закона №109-ФЗ — договорное, выполняется.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/index"
+        ],
+        "source_titles": [
+          "Обзор технической поддержки Cloud.ru"
+        ],
+        "recommendation": "Условие фиксируется в проектном SLA/договоре с Cloud.ru как стандартное требование соблюдения законодательства РФ."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru размещает инфраструктуру в РФ, имеет лицензии Роскомнадзора и ФСТЭК, подтверждающие соответствие российскому законодательству. Требование о соблюдении закона №109-ФЗ — договорное, выполняется.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/index"
+        ],
+        "source_titles": [
+          "Обзор технической поддержки Cloud.ru"
+        ],
+        "recommendation": "Условие фиксируется в проектном SLA/договоре с Cloud.ru как стандартное требование соблюдения законодательства РФ."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru размещает инфраструктуру в РФ, имеет лицензии Роскомнадзора и ФСТЭК, подтверждающие соответствие российскому законодательству. Требование о соблюдении закона №109-ФЗ — договорное, выполняется.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/index"
+        ],
+        "source_titles": [
+          "Обзор технической поддержки Cloud.ru"
+        ],
+        "recommendation": "Условие фиксируется в проектном SLA/договоре с Cloud.ru как стандартное требование соблюдения законодательства РФ."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 69,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование ссылается на Федеральный закон №149-ФЗ — это юридический акт, не техническое требование. Cloud.ru размещает инфраструктуру в РФ, соблюдает российское законодательство, и его аттестации (УЗ-1, 152-ФЗ, К1) подтверждают соответствие требованиям информационной безопасности, включая 149-ФЗ. Договорное требование о соблюдении закона — стандартное и выполняется.",
+    "evidence": "Cloud.ru имеет уровень защиты 152-ФЗ УЗ-1 и аттестацию ГИС К1, что подтверждает соответствие требованиям законодательства РФ, включая 149-ФЗ.",
+    "source_urls": [
+      "26127171-5f8d-4006-a989-bcb6ff142835"
+    ],
+    "recommendation": "Условие фиксируется в проектном SLA/договоре с Cloud.ru как стандартное требование соблюдения законодательства РФ.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru имеет аттестацию ГИС К1 и УЗ-1, что подтверждает соответствие требованиям законодательства РФ, включая 149-ФЗ. Требование о соблюдении закона — договорное, выполняется.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Условие фиксируется в проектном SLA/договоре с Cloud.ru как стандартное требование соблюдения законодательства РФ."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru имеет аттестацию ГИС К1 и УЗ-1, что подтверждает соответствие требованиям законодательства РФ, включая 149-ФЗ. Требование о соблюдении закона — договорное, выполняется.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Условие фиксируется в проектном SLA/договоре с Cloud.ru как стандартное требование соблюдения законодательства РФ."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru имеет уровень защиты 152-ФЗ УЗ-1, что подтверждает соответствие требованиям законодательства РФ, включая 149-ФЗ. Требование о соблюдении закона — договорное, выполняется.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Условие фиксируется в проектном SLA/договоре с Cloud.ru как стандартное требование соблюдения законодательства РФ."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru имеет уровень защиты 152-ФЗ УЗ-1, что подтверждает соответствие требованиям законодательства РФ, включая 149-ФЗ. Требование о соблюдении закона — договорное, выполняется.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Условие фиксируется в проектном SLA/договоре с Cloud.ru как стандартное требование соблюдения законодательства РФ."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 70,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование ссылается на Федеральный закон №152-ФЗ — это юридический акт, не техническое требование. Cloud.ru имеет аттестацию УЗ-1 по 152-ФЗ на всех платформах, что подтверждает соответствие требованиям закона. Договорное требование о соблюдении закона — стандартное и выполняется.",
+    "evidence": "Все платформы Cloud.ru имеют уровень защиты 152-ФЗ УЗ-1: Cloud.ru Advanced, Облако VMware.",
+    "source_urls": [
+      "26127171-5f8d-4006-a989-bcb6ff142835"
+    ],
+    "recommendation": "Условие фиксируется в проектном SLA/договоре с Cloud.ru как стандартное требование соблюдения законодательства РФ.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru имеет аттестацию УЗ-1 по 152-ФЗ, что подтверждает соответствие требованиям закона. Требование о соблюдении закона — договорное, выполняется.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Условие фиксируется в проектном SLA/договоре с Cloud.ru как стандартное требование соблюдения законодательства РФ."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru имеет аттестацию УЗ-1 по 152-ФЗ, что подтверждает соответствие требованиям закона. Требование о соблюдении закона — договорное, выполняется.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Условие фиксируется в проектном SLA/договоре с Cloud.ru как стандартное требование соблюдения законодательства РФ."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru имеет аттестацию УЗ-1 по 152-ФЗ, что подтверждает соответствие требованиям закона. Требование о соблюдении закона — договорное, выполняется.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Условие фиксируется в проектном SLA/договоре с Cloud.ru как стандартное требование соблюдения законодательства РФ."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru имеет аттестацию УЗ-1 по 152-ФЗ, что подтверждает соответствие требованиям закона. Требование о соблюдении закона — договорное, выполняется.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Условие фиксируется в проектном SLA/договоре с Cloud.ru как стандартное требование соблюдения законодательства РФ."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 71,
+    "verdict": "needs_clarification",
+    "confidence": 0.5,
+    "reasoning": "Требование ссылается на Указ Президента РФ №188 — это юридический акт, не техническое требование. Cloud.ru не публикует в открытых документах перечень нормативных актов, соответствующих этому указу. В RAG-чанках нет подтверждения, что Cloud.ru формализованно предоставляет такой перечень в рамках договора.",
+    "evidence": "",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/security-introduction/index"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера, предоставляет ли Cloud.ru формализованный перечень нормативных актов, соответствующих Указу Президента РФ №188, в рамках проектного договора.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "В открытых документах Cloud.ru нет перечня нормативных актов, соответствующих Указу Президента РФ №188. Необходимо уточнить у менеджера, предоставляется ли такой перечень в рамках договора.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/index"
+        ],
+        "source_titles": [
+          "Обзор подходов и средств безопасности Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, предоставляет ли Cloud.ru формализованный перечень нормативных актов, соответствующих Указу Президента РФ №188, в рамках проектного договора."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "В открытых документах Cloud.ru нет перечня нормативных актов, соответствующих Указу Президента РФ №188. Необходимо уточнить у менеджера, предоставляется ли такой перечень в рамках договора.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/index"
+        ],
+        "source_titles": [
+          "Обзор подходов и средств безопасности Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, предоставляет ли Cloud.ru формализованный перечень нормативных актов, соответствующих Указу Президента РФ №188, в рамках проектного договора."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "В открытых документах Cloud.ru нет перечня нормативных актов, соответствующих Указу Президента РФ №188. Необходимо уточнить у менеджера, предоставляется ли такой перечень в рамках договора.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/index"
+        ],
+        "source_titles": [
+          "Обзор подходов и средств безопасности Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, предоставляет ли Cloud.ru формализованный перечень нормативных актов, соответствующих Указу Президента РФ №188, в рамках проектного договора."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "В открытых документах Cloud.ru нет перечня нормативных актов, соответствующих Указу Президента РФ №188. Необходимо уточнить у менеджера, предоставляется ли такой перечень в рамках договора.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/index"
+        ],
+        "source_titles": [
+          "Обзор подходов и средств безопасности Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, предоставляет ли Cloud.ru формализованный перечень нормативных актов, соответствующих Указу Президента РФ №188, в рамках проектного договора."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

@@ -1,0 +1,242 @@
+[
+  {
+    "requirement_id": 149,
+    "verdict": "partial",
+    "confidence": 0.7,
+    "reasoning": "Требуется пропускная способность памяти не менее 140.8 ГБ/с. В документации Cloud.ru Облако VMware указаны конфигурации ВМ с GPU NVIDIA A100/V100, но конкретные значения пропускной способности оперативной памяти не приведены. На других платформах (Advanced, Evolution) данные о пропускной способности памяти отсутствуют. Cloud.ru предоставляет высокопроизводительные конфигурации, но точное значение не подтверждено.",
+    "evidence": "В документации указаны модели GPU (NVIDIA A100, V100), но пропускная способность ОЗУ не указана [1].",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера конкретные характеристики пропускной способности ОЗУ для конфигураций ВМ в Облаке VMware или рассмотреть использование платформы Advanced с высокопроизводительными конфигурациями.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основной документации Cloud.ru. Данные о характеристиках памяти отсутствуют.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера возможность предоставления требуемой пропускной способности памяти в ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Облако VMware поддерживает высокопроизводительные ВМ с GPU NVIDIA A100/V100, что косвенно указывает на высокую пропускную способность памяти, но конкретное значение 140.8 ГБ/с не подтверждено в документации.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Уточнить у клиентского менеджера точные параметры пропускной способности ОЗУ для доступных конфигураций ВМ в Облаке VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Платформа Advanced предоставляет гибкие конфигурации ВМ, но в документации не указаны параметры пропускной способности оперативной памяти.",
+        "evidence_refs": [],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Advanced"],
+        "recommendation": "Уточнить у клиентского менеджера доступные конфигурации ВМ с указанием пропускной способности ОЗУ на платформе Advanced."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Evolution предоставляет виртуальные машины, но в документации (evolution-compliance) не указаны технические характеристики оперативной памяти, включая пропускную способность.",
+        "evidence_refs": [],
+        "source_urls": ["https://cloud.ru/docs/virtual-machines/ug/topics/concepts__flavors"],
+        "source_titles": ["Конфигурации виртуальных машин"],
+        "recommendation": "Уточнить у клиентского менеджера технические характеристики ОЗУ для ВМ на платформе Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 150,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требуется использование SSD-дисков и систем хранения на базе SDS. Cloud.ru Облако VMware и Advanced используют программно-определяемое хранилище (SDS) на базе VMware vSAN и OpenStack Cinder, соответственно, с поддержкой SSD-дисков. В документации подтверждено использование SSD для виртуальных дисков и SDS-архитектура.",
+    "evidence": "Облако VMware использует систему хранения на базе VMware vSAN, которая является SDS, и поддерживает SSD-диски для виртуальных машин [1]. Advanced использует EVS (Elastic Volume Service) на базе OpenStack, что является SDS-решением с поддержкой SSD [2].",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/advanced/overview/index"
+    ],
+    "recommendation": "Использовать платформы Облако VMware или Advanced для соответствия требованию. Обе платформы поддерживают SSD и SDS.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru. Не подтверждено, использует ли оно SSD и SDS.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, использует ли ГосОблако SSD и SDS-архитектуру."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware использует VMware vSAN — программно-определяемое хранилище на базе SSD-дисков для виртуальных дисков. Это подтверждено в документации как часть инфраструктуры IaaS [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Использовать Облако VMware — платформа полностью соответствует требованию."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced использует EVS (Elastic Volume Service) — SDS-решение на базе OpenStack, поддерживающее SSD-диски для виртуальных томов. Это стандартная архитектура платформы [2].",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Advanced"],
+        "recommendation": "Использовать Advanced — платформа полностью соответствует требованию."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет виртуальные машины с дисками на базе SSD и использует SDS-архитектуру (EVS) для хранения данных, как указано в документации по конфигурациям ВМ [3].",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/virtual-machines/ug/topics/concepts__flavors"],
+        "source_titles": ["Конфигурации виртуальных машин"],
+        "recommendation": "Использовать Evolution — платформа поддерживает SSD и SDS-хранилище."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 151,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требуется модуль управления платформой виртуализации. Облако VMware предоставляет виртуальный ЦОД на базе VMware vCloud Director — полнофункциональный модуль управления виртуализацией. Advanced также предоставляет управление виртуальными машинами через OpenStack Horizon и API. Обе платформы полностью соответствуют требованию.",
+    "evidence": "Облако VMware предоставляет сервис виртуального ЦОД на базе VMware, включающий модуль управления виртуализацией [2]. Advanced предоставляет управление ВМ через OpenStack [3].",
+    "source_urls": [
+      "https://cloud.ru/docs/vmware/overview/index",
+      "https://cloud.ru/docs/advanced/overview/index"
+    ],
+    "recommendation": "Использовать Облако VMware или Advanced — обе платформы предоставляют полноценный модуль управления виртуализацией.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru. Не подтверждено наличие модуля управления виртуализацией.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, предоставляет ли ГосОблако модуль управления виртуализацией."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет виртуальный ЦОД на базе VMware vCloud Director — это полноценный модуль управления платформой виртуализации, включая создание, управление и мониторинг ВМ [2].",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/vmware/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Облако VMware"],
+        "recommendation": "Использовать Облако VMware — платформа полностью соответствует требованию."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced предоставляет управление виртуальными машинами через OpenStack Horizon и API, что является полноценным модулем управления платформой виртуализации [3].",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Advanced"],
+        "recommendation": "Использовать Advanced — платформа полностью соответствует требованию."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет сервис «Виртуальные машины» с управлением через веб-интерфейс и API, что соответствует модулю управления виртуализацией [3].",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/virtual-machines/ug/topics/concepts__flavors"],
+        "source_titles": ["Конфигурации виртуальных машин"],
+        "recommendation": "Использовать Evolution — платформа предоставляет управление ВМ как часть базового сервиса."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 152,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требуется возможность создавать собственную виртуальную инфраструктуру на базе виртуализированных вычислительных мощностей, включая vCPU. Все платформы Cloud.ru (Облако VMware, Advanced, Evolution) предоставляют создание ВМ с настраиваемыми vCPU. В документации подтверждено наличие гибкой конфигурации ВМ с указанием vCPU на всех платформах.",
+    "evidence": "Облако VMware позволяет создавать ВМ с виртуальными процессорами (vCPU) [1]. Evolution предоставляет флейворы с разным количеством vCPU [2]. Advanced также поддерживает настройку vCPU через конфигурации ВМ [3].",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/virtual-machines/ug/topics/concepts__flavors",
+      "https://cloud.ru/docs/vdc/ug/topics/overview__limitations__vm"
+    ],
+    "recommendation": "Использовать любую из платформ Cloud.ru — все они поддерживают создание ВМ с настраиваемыми vCPU.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru. Не подтверждена возможность создания ВМ с vCPU.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживает ли ГосОблако создание ВМ с настраиваемыми vCPU."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware позволяет создавать виртуальные машины с настраиваемыми виртуальными процессорами (vCPU) в рамках частного облака. Это подтверждено в документации как базовая функция [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Использовать Облако VMware — платформа полностью соответствует требованию."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced предоставляет гибкие конфигурации виртуальных машин с настраиваемым количеством vCPU через OpenStack. Это стандартная функция платформы [3].",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/vdc/ug/topics/overview__limitations__vm"],
+        "source_titles": ["Ограничения и особенности"],
+        "recommendation": "Использовать Advanced — платформа полностью соответствует требованию."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution предоставляет флейворы (конфигурации) виртуальных машин с различным количеством vCPU, что позволяет создавать собственную виртуальную инфраструктуру [2].",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/virtual-machines/ug/topics/concepts__flavors"],
+        "source_titles": ["Конфигурации виртуальных машин"],
+        "recommendation": "Использовать Evolution — платформа полностью соответствует требованию."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

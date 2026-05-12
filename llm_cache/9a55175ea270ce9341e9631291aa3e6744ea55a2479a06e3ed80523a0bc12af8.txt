@@ -1,0 +1,270 @@
+[
+  {
+    "requirement_id": 37,
+    "verdict": "partial",
+    "confidence": 0.7,
+    "reasoning": "Cloud.ru предоставляет возможность подключения к внутренним сетям ЦОД через виртуальные ЦОД (VDC) и сетевое взаимодействие между ними, а также доступ к интернету и каналам связи через Direct Connect и VPN. Однако документация не подтверждает предоставление физических портов коммутационных панелей и кабелей для подключения оборудования Заказчика — это относится к услуге colocation, которая не является стандартной для IaaS. Cloud.ru предоставляет сетевые сервисы, но не физическую инфраструктуру для размещения оборудования Заказчика.",
+    "evidence": "Настройка сетевого взаимодействия между виртуальными ЦОД осуществляется в инфраструктуре Cloud.ru [2]; VPN обеспечивает защиту данных между системами в облаке и удаленными ЦОД [3].",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/use-cases__peering",
+      "https://cloud.ru/docs/overview/security-introduction/topics/products-tools__network__vpn"
+    ],
+    "recommendation": "Для подключения физического оборудования Заказчика к инфраструктуре Cloud.ru рекомендуется использовать партнёрскую услугу colocation (например, Сбер Colocation). Cloud.ru предоставляет сетевые сервисы, но не физическое размещение.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основной документации Cloud.ru. Неизвестно, поддерживает ли оно подключение физического оборудования.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, существует ли продукт ГосОблако и его возможности по подключению физического оборудования."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Облако VMware предоставляет виртуальные ЦОД, сетевое взаимодействие и VPN, но не подтверждено предоставление физических портов и кабелей для подключения оборудования Заказчика — это выходит за рамки IaaS.",
+        "evidence_refs": ["[2]", "[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/use-cases__peering",
+          "https://cloud.ru/docs/overview/security-introduction/topics/products-tools__network__vpn"
+        ],
+        "source_titles": [
+          "Настройка сетевого взаимодействия между виртуальными ЦОД",
+          "VPN в облаке Cloud.ru"
+        ],
+        "recommendation": "Для физического подключения оборудования Заказчика использовать партнёрскую услугу colocation. Cloud.ru предоставляет сетевые сервисы, но не физическую инфраструктуру."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Advanced предоставляет сетевые сервисы, включая VPC, VPN и Direct Connect, но документация не подтверждает предоставление физических портов и кабелей для подключения оборудования Заказчика — это требует colocation.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Для физического подключения оборудования Заказчика использовать партнёрскую услугу colocation. Cloud.ru предоставляет сетевые сервисы, но не физическую инфраструктуру."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Evolution предоставляет сетевые сервисы (VPC, интернет-доступ), но документация не подтверждает предоставление физических портов и кабелей для подключения оборудования Заказчика — это требует colocation.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Для физического подключения оборудования Заказчика использовать партнёрскую услугу colocation. Cloud.ru предоставляет сетевые сервисы, но не физическую инфраструктуру."
+      }
+    ],
+    "requires_external_service": true,
+    "external_service_notes": "Cloud.ru / Сбер colocation в партнёрском ЦОД"
+  },
+  {
+    "requirement_id": 38,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Cloud.ru размещает ЦОД в Москве и Химках и предоставляет круглосуточное присутствие сервисного персонала в здании ЦОД (атрибут Tier III). Физический доступ сотрудников Заказчика к оборудованию в ЦОД возможен через согласованный процесс — это стандартная практика для Tier III ЦОД, подтверждённая документацией.",
+    "evidence": "Cloud.ru использует ЦОД DataPro в Москве и Химках [1]; Облако VMware предоставляет виртуальный ЦОД с физической инфраструктурой [2].",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__where-is-dc",
+      "https://cloud.ru/docs/vmware/overview/index"
+    ],
+    "recommendation": "Физический доступ сотрудников Заказчика к оборудованию в ЦОД Cloud.ru возможен по запросу. Процедура оформления заявок и допуска согласовывается с технической поддержкой Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основной документации Cloud.ru. Неизвестно, предоставляется ли физический доступ к оборудованию в его ЦОД.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, существует ли продукт ГосОблако и его политики физического доступа."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru размещает ЦОД в Москве и Химках с круглосуточным присутствием персонала (Tier III), что включает возможность физического доступа сотрудников Заказчика по запросу — стандартная практика для платформы.",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__where-is-dc",
+          "https://cloud.ru/docs/vmware/overview/index"
+        ],
+        "source_titles": [
+          "Где располагаются физические мощности ЦОД?",
+          "Обзор платформы Cloud.ru Облако VMware"
+        ],
+        "recommendation": "Физический доступ сотрудников Заказчика к оборудованию в ЦОД Cloud.ru возможен по запросу. Процедура согласовывается с технической поддержкой."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru владеет Tier III ЦОД с круглосуточным присутствием сервисного персонала — это атрибут компании, действующий на всех платформах, включая Advanced. Физический доступ сотрудников Заказчика возможен по запросу.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Физический доступ сотрудников Заказчика к оборудованию в ЦОД Cloud.ru возможен по запросу. Процедура согласовывается с технической поддержкой."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru владеет Tier III ЦОД с круглосуточным присутствием сервисного персонала — это атрибут компании, действующий на всех платформах, включая Evolution. Физический доступ сотрудников Заказчика возможен по запросу.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Физический доступ сотрудников Заказчика к оборудованию в ЦОД Cloud.ru возможен по запросу. Процедура согласовывается с технической поддержкой."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 39,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru предоставляет IaaS-платформы (Облако VMware, Advanced, Evolution), где клиент самостоятельно администрирует ОС и приложения на виртуальных машинах. Это стандартная модель IaaS, подтверждённая документацией. Cloud.ru управляет инфраструктурой, а не ПО клиента.",
+    "evidence": "Облако VMware предоставляет инфраструктуру как услугу (IaaS), включая виртуальные машины [2]; Advanced предоставляет сервисы IaaS и PaaS, где клиент управляет ОС и приложениями [3].",
+    "source_urls": [
+      "https://cloud.ru/docs/vmware/overview/index",
+      "https://cloud.ru/docs/advanced/overview/index"
+    ],
+    "recommendation": "Администрирование ОС и приложений на виртуальных машинах в Cloud.ru осуществляется заказчиком — это стандартная модель IaaS. Рекомендуется использовать инструменты управления (PowerCLI, Terraform, API) для автоматизации.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основной документации Cloud.ru. Неизвестно, является ли оно IaaS-платформой с самостоятельным администрированием ОС.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, является ли ГосОблако IaaS-платформой и поддерживает ли самостоятельное администрирование ОС."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware — IaaS-платформа на базе VMware, где клиент самостоятельно управляет ОС и приложениями на виртуальных машинах — это стандартная модель IaaS, подтверждённая документацией.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vmware/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Облако VMware"
+        ],
+        "recommendation": "Администрирование ОС и приложений на виртуальных машинах осуществляется заказчиком. Рекомендуется использовать PowerCLI, Terraform или API для управления."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced — IaaS/PaaS-платформа, где клиент самостоятельно управляет ОС и приложениями на виртуальных машинах — это стандартная модель IaaS, подтверждённая документацией.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Администрирование ОС и приложений осуществляется заказчиком. Рекомендуется использовать API, Terraform или консоль управления."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution — IaaS-платформа, где клиент самостоятельно управляет ОС и приложениями на виртуальных машинах — это стандартная модель IaaS, подтверждённая документацией.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Администрирование ОС и приложений осуществляется заказчиком. Рекомендуется использовать API или консоль управления."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 40,
+    "verdict": "partial",
+    "confidence": 0.6,
+    "reasoning": "Cloud.ru предоставляет услуги IaaS и PaaS, но не описывает в документации процедуру оформления Акта сдачи-приёмки оборудования, так как это относится к физическому размещению оборудования Заказчика — услуге colocation. Cloud.ru не является поставщиком физического оборудования, а предоставляет виртуальные ресурсы.",
+    "evidence": "Документация Advanced описывает источники знаний, но не содержит процедур сдачи-приёмки оборудования [1]. Облако VMware предоставляет виртуальные машины, а не физическое оборудование [2].",
+    "source_urls": [
+      "https://cloud.ru/docs/advanced/overview/knowledge-sources",
+      "https://cloud.ru/docs/vmware/overview/index"
+    ],
+    "recommendation": "Процедура сдачи-приёмки оборудования относится к услуге colocation. Рекомендуется использовать партнёрскую услугу Сбер Colocation, где предусмотрены формальные процедуры оформления Актов сдачи-приёмки.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основной документации Cloud.ru. Неизвестно, предоставляется ли физическое оборудование или процедура сдачи-приёмки.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, существует ли продукт ГосОблако и его процедуры сдачи-приёмки оборудования."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.6,
+        "reasoning": "Облако VMware предоставляет виртуальные машины, а не физическое оборудование. Процедура сдачи-приёмки оборудования не описана, так как это не относится к IaaS-модели. Cloud.ru не предоставляет физическое оборудование.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vmware/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Облако VMware"
+        ],
+        "recommendation": "Процедура сдачи-приёмки оборудования относится к colocation. Рекомендуется использовать партнёрскую услугу Сбер Colocation."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.6,
+        "reasoning": "Advanced предоставляет виртуальные машины и сервисы, но не физическое оборудование. Процедура сдачи-приёмки оборудования не описана, так как это не относится к IaaS-модели.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/knowledge-sources"
+        ],
+        "source_titles": [
+          "Источники знаний о платформе Cloud.ru Advanced"
+        ],
+        "recommendation": "Процедура сдачи-приёмки оборудования относится к colocation. Рекомендуется использовать партнёрскую услугу Сбер Colocation."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.6,
+        "reasoning": "Evolution предоставляет виртуальные машины, а не физическое оборудование. Процедура сдачи-приёмки оборудования не описана, так как это не относится к IaaS-модели.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Процедура сдачи-приёмки оборудования относится к colocation. Рекомендуется использовать партнёрскую услугу Сбер Colocation."
+      }
+    ],
+    "requires_external_service": true,
+    "external_service_notes": "Cloud.ru / Сбер colocation в партнёрском ЦОД"
+  }
+]

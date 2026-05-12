@@ -1,0 +1,309 @@
+```json
+[
+  {
+    "requirement_id": 38,
+    "verdict": "partial",
+    "confidence": 0.7,
+    "reasoning": "Требование содержит детальные метрики производительности ВМ (CPU Ready >31%, RAM Swapped >10%, IOPS снижение >20%, задержка диска >41мс/16мс, потеря пакетов >1%, задержка >20мс, восстановление >15 мин). Cloud.ru Облако VMware подтверждает наличие SLA с метриками для виртуальных машин и приоритетов инцидентов, но конкретные пороговые значения (например, 31%, 41мс) в документации не указаны. Поддержка мониторинга и оповещения по инцидентам есть, но точные пороги требуют уточнения.",
+    "evidence": "Облако VMware поддерживает SLA с целевыми количественными характеристиками, включая приоритет обращений и метрики производительности ВМ [1].",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla",
+      "https://cloud.ru/docs/vmware/overview/topics/sla",
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера Cloud.ru, возможно ли настроить индивидуальные пороги мониторинга и оповещения для указанных метрик в рамках SLA.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Нет данных о SLA, мониторинге или метриках производительности.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, существует ли ГосОблако как продукт и какие SLA-метрики на нём поддерживаются."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.8,
+        "reasoning": "Облако VMware имеет SLA 99.98% и поддерживает мониторинг производительности ВМ, приоритеты инцидентов и оповещения. Однако конкретные пороговые значения (например, CPU Ready >31%, задержка диска >41мс) в документации не указаны, хотя метрики в целом поддерживаются.",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "https://cloud.ru/docs/vmware/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru",
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Облако VMware"
+        ],
+        "recommendation": "Настроить индивидуальные пороги мониторинга через API/UI Cloud.ru или договорно в SLA."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.6,
+        "reasoning": "Advanced поддерживает виртуальные машины, мониторинг и SLA 99.95%, но документация не содержит детализации по метрикам CPU Ready, RAM Swapped, IOPS, задержке диска. Поддержка метрик есть, но точные пороги не подтверждены.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, возможно ли настроить детальный мониторинг указанных метрик на платформе Advanced."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.6,
+        "reasoning": "Evolution имеет SLA 99.9% и поддерживает виртуальные машины, но документация не содержит детализации по метрикам CPU Ready, RAM Swapped, IOPS, задержке диска. Поддержка мониторинга есть, но пороги не указаны.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla",
+          "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution",
+          "Ограничения и особенности сервиса «Виртуальные машины»"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживаются ли указанные метрики в мониторинге Evolution и можно ли настроить пороги оповещения."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 39,
+    "verdict": "partial",
+    "confidence": 0.7,
+    "reasoning": "Требование описывает средний приоритет инцидентов с порогами (CPU Ready 5-30%, RAM Swapped 5-10%, IOPS 11-20%, задержка диска 31-40мс/11-15мс, потеря пакетов 0.5-1%, задержка 10-20мс). Cloud.ru Облако VMware поддерживает SLA с приоритетами и метриками, но конкретные диапазоны не указаны в документации. Оповещение по email и отображение в СМКСС/онлайн-чате — стандартные функции.",
+    "evidence": "Облако VMware поддерживает SLA с целевыми количественными характеристиками, включая приоритет обращений и метрики производительности ВМ [1].",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla",
+      "https://cloud.ru/docs/vmware/overview/topics/sla",
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера Cloud.ru, возможно ли настроить индивидуальные диапазоны метрик для среднего приоритета в рамках SLA.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Нет данных о SLA, мониторинге или приоритетах инцидентов.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, существует ли ГосОблако как продукт и какие SLA-метрики на нём поддерживаются."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.8,
+        "reasoning": "Облако VMware имеет SLA 99.98% и поддерживает приоритеты инцидентов, оповещения и мониторинг производительности. Конкретные диапазоны метрик (например, CPU Ready 5-30%) не указаны в документации, но платформа позволяет настраивать пороги.",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "https://cloud.ru/docs/vmware/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru",
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Облако VMware"
+        ],
+        "recommendation": "Настроить индивидуальные диапазоны метрик через API/UI Cloud.ru или договорно в SLA."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.6,
+        "reasoning": "Advanced поддерживает виртуальные машины, мониторинг и SLA 99.95%, но документация не содержит детализации по диапазонам метрик для среднего приоритета. Поддержка мониторинга есть, но пороги не подтверждены.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, возможно ли настроить детальный мониторинг указанных метрик на платформе Advanced."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.6,
+        "reasoning": "Evolution имеет SLA 99.9% и поддерживает виртуальные машины, но документация не содержит детализации по диапазонам метрик для среднего приоритета. Поддержка мониторинга есть, но пороги не указаны.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla",
+          "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution",
+          "Ограничения и особенности сервиса «Виртуальные машины»"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживаются ли указанные метрики в мониторинге Evolution и можно ли настроить пороги оповещения."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 40,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требование описывает определение термина «Коэффициент значения показателя работы системы мониторинга» через формулировку «Обработка обращений» — это понятийный аппарат, не техническое требование. Cloud.ru использует совместимые ITIL-понятия для обработки обращений, что соответствует стандартам.",
+    "evidence": "",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla",
+      "https://cloud.ru/docs/overview/support/topics/overview"
+    ],
+    "recommendation": "Требование соответствует стандартной терминологии Cloud.ru. Дополнительных действий не требуется.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Определение терминологии ТЗ. Cloud.ru использует совместимые ITIL/ITSM-понятия. ГосОблако, как продукт Cloud.ru, следует общей терминологии.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Требование соответствует стандартной терминологии Cloud.ru. Дополнительных действий не требуется."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Определение терминологии ТЗ. Cloud.ru использует совместимые ITIL/ITSM-понятия. Облако VMware поддерживает обработку обращений в соответствии с ITIL.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla",
+          "https://cloud.ru/docs/overview/support/topics/overview"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений",
+          "Режим и порядок работы"
+        ],
+        "recommendation": "Требование соответствует стандартной терминологии Cloud.ru. Дополнительных действий не требуется."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Определение терминологии ТЗ. Cloud.ru использует совместимые ITIL/ITSM-понятия. Advanced поддерживает обработку обращений в соответствии с ITIL.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla",
+          "https://cloud.ru/docs/overview/support/topics/overview"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений",
+          "Режим и порядок работы"
+        ],
+        "recommendation": "Требование соответствует стандартной терминологии Cloud.ru. Дополнительных действий не требуется."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Определение терминологии ТЗ. Cloud.ru использует совместимые ITIL/ITSM-понятия. Evolution поддерживает обработку обращений в соответствии с ITIL.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla",
+          "https://cloud.ru/docs/overview/support/topics/overview"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений",
+          "Режим и порядок работы"
+        ],
+        "recommendation": "Требование соответствует стандартной терминологии Cloud.ru. Дополнительных действий не требуется."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 41,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование описывает юридический/договорной режим — уплату штрафа при KPI < 0.65 за два этапа. Это не техническая капабилити, а условие SLA-договора. Cloud.ru готов работать по индивидуальным штрафным условиям через проектный договор.",
+    "evidence": "",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla",
+      "https://cloud.ru/docs/advanced/overview/sla",
+      "https://cloud.ru/docs/evolution/overview/topics/sla"
+    ],
+    "recommendation": "Cloud.ru готов зафиксировать условия штрафа за KPI < 0.65 в индивидуальном проектном договоре.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Договорное условие, фиксируется в проектном SLA/договоре с Cloud.ru. Cloud.ru готов работать по специфическим штрафным/договорным условиям заказчика через индивидуальный проектный договор.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Cloud.ru готов зафиксировать условия штрафа за KPI < 0.65 в индивидуальном проектном договоре."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Договорное условие, фиксируется в проектном SLA/договоре с Cloud.ru. Cloud.ru готов работать по специфическим штрафным/договорным условиям заказчика через индивидуальный проектный договор.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Cloud.ru готов зафиксировать условия штрафа за KPI < 0.65 в индивидуальном проектном договоре."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Договорное условие, фиксируется в проектном SLA/договоре с Cloud.ru. Cloud.ru готов работать по специфическим штрафным/договорным условиям заказчика через индивидуальный проектный договор.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Cloud.ru готов зафиксировать условия штрафа за KPI < 0.65 в индивидуальном проектном договоре."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Договорное условие, фиксируется в проектном SLA/договоре с Cloud.ru. Cloud.ru готов работать по специфическим штрафным/договорным условиям заказчика через индивидуальный проектный договор.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Cloud.ru готов зафиксировать условия штрафа за KPI < 0.65 в индивидуальном проектном договоре."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]
+```

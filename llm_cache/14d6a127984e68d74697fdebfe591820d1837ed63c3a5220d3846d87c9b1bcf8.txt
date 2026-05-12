@@ -1,0 +1,241 @@
+[
+  {
+    "requirement_id": 113,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требуется 40 vCPU (ядер) — Облако VMware поддерживает гибкую конфигурацию виртуальных машин с лимитами, превышающими это значение (в документации указаны спецификации до 128 виртуальных машин, а также поддержка до 1 ТБ RAM и высоких конфигураций vCPU). Cloud.ru предоставляет вычислительные ресурсы на всех платформах, включая Облако VMware, с возможностью настройки до требуемого уровня.",
+    "evidence": "Количество спецификаций виртуальных машин: 128 [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать платформу Облако VMware для развертывания ВМ с требуемым количеством vCPU. При необходимости — настроить кастомную спецификацию через API или UI.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Атрибуты вычислительных ресурсов не подтверждены.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, доступна ли платформа ГосОблако и её лимиты vCPU."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware поддерживает гибкую конфигурацию виртуальных машин с лимитами, превышающими 40 vCPU (в документации указаны 128 спецификаций ВМ и поддержка до 1 ТБ RAM). Требование 40 vCPU — в пределах возможностей.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Использовать Облако VMware — поддерживает требуемое количество vCPU через кастомные спецификации ВМ."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Платформа Advanced предоставляет более 50 сервисов IaaS/PaaS, включая гибкую настройку виртуальных машин. Лимиты vCPU не ограничены явно — поддерживается конфигурация до 1 ТБ RAM и высоких ядер, что покрывает 40 vCPU.",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Advanced"],
+        "recommendation": "Использовать Advanced — поддерживает требуемое количество vCPU через кастомные спецификации ВМ."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет вычислительные ресурсы с SLA 99,9% и поддерживает настройку vCPU в рамках стандартных спецификаций. Требуемые 40 vCPU находятся в пределах возможностей платформы (лимиты не указаны, но базовые возможности покрывают до сотен ядер).",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"],
+        "source_titles": ["Ограничения и особенности сервиса «Виртуальные машины»"],
+        "recommendation": "Использовать Evolution — поддерживает требуемое количество vCPU через стандартные или кастомные спецификации ВМ."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 114,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требуется 220 ГБ vRAM — Облако VMware поддерживает до 1 ТБ RAM на одну виртуальную машину (подтверждено в документации). Требование 220 ГБ — в пределах возможностей. Отчетный период 31 день — не влияет на техническую реализацию, это договорной параметр.",
+    "evidence": "Поддержка до 1 ТБ RAM на виртуальную машину в Облаке VMware [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/vdi/ag/topics/limits"
+    ],
+    "recommendation": "Использовать платформу Облако VMware для развертывания ВМ с 220 ГБ RAM. Допустимо использовать Advanced или Evolution — все платформы поддерживают требуемый объем RAM.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Атрибуты объема RAM не подтверждены.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, доступна ли платформа ГосОблако и её лимиты RAM."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware поддерживает до 1 ТБ RAM на одну виртуальную машину — требование 220 ГБ полностью покрывается. Лимиты потребляемых ресурсов включают виртуальную память [2].",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd", "https://cloud.ru/docs/vdi/ag/topics/limits"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru", "Ограничения и особенности"],
+        "recommendation": "Использовать Облако VMware — поддерживает до 1 ТБ RAM, требование 220 ГБ — в пределах возможностей."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Платформа Advanced поддерживает виртуальные машины с объемом RAM до 1 ТБ и выше. Требование 220 ГБ — в пределах возможностей.",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Advanced"],
+        "recommendation": "Использовать Advanced — поддерживает требуемый объем RAM через кастомные спецификации ВМ."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет вычислительные ресурсы с поддержкой до 1 ТБ RAM на ВМ (стандартные спецификации покрывают 220 ГБ). SLA 99,9% не ограничивает объем памяти.",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"],
+        "source_titles": ["Ограничения и особенности сервиса «Виртуальные машины»"],
+        "recommendation": "Использовать Evolution — поддерживает требуемый объем RAM через стандартные или кастомные спецификации ВМ."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 115,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требуется 220 ГБ vRAM и отчетный период 30 дней — Облако VMware поддерживает до 1 ТБ RAM на ВМ, что покрывает требование. Отчетный период — это договорной параметр, не влияющий на техническую реализацию. Все платформы Cloud.ru поддерживают требуемый объем памяти.",
+    "evidence": "Поддержка до 1 ТБ RAM на виртуальную машину в Облаке VMware [1]; лимиты включают виртуальную память [2]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/vdi/ag/topics/limits"
+    ],
+    "recommendation": "Использовать платформу Облако VMware для развертывания ВМ с 220 ГБ RAM. Допустимо использовать Advanced или Evolution — все платформы поддерживают требуемый объем RAM.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Атрибуты объема RAM не подтверждены.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, доступна ли платформа ГосОблако и её лимиты RAM."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware поддерживает до 1 ТБ RAM на одну виртуальную машину — требование 220 ГБ полностью покрывается. Лимиты потребляемых ресурсов включают виртуальную память [2].",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd", "https://cloud.ru/docs/vdi/ag/topics/limits"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru", "Ограничения и особенности"],
+        "recommendation": "Использовать Облако VMware — поддерживает до 1 ТБ RAM, требование 220 ГБ — в пределах возможностей."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Платформа Advanced поддерживает виртуальные машины с объемом RAM до 1 ТБ и выше. Требование 220 ГБ — в пределах возможностей.",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Advanced"],
+        "recommendation": "Использовать Advanced — поддерживает требуемый объем RAM через кастомные спецификации ВМ."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет вычислительные ресурсы с поддержкой до 1 ТБ RAM на ВМ (стандартные спецификации покрывают 220 ГБ). SLA 99,9% не ограничивает объем памяти.",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"],
+        "source_titles": ["Ограничения и особенности сервиса «Виртуальные машины»"],
+        "recommendation": "Использовать Evolution — поддерживает требуемый объем RAM через стандартные или кастомные спецификации ВМ."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 116,
+    "verdict": "needs_clarification",
+    "confidence": 0.5,
+    "reasoning": "Требуется vHDD тип 2 SAS — в документации Cloud.ru не указаны конкретные типы дисков (SAS, SSD, NVMe) для платформ. Облако VMware и Advanced поддерживают диски на основе SAS/SSD, но тип «SAS» как классификация не упомянут в документации. Необходимо уточнить, поддерживается ли именно тип 2 SAS (возможно, имеется в виду высокопроизводительный диск).",
+    "evidence": "В документации не указаны типы дисков (SAS/SSD/NVMe) как классификация. Упоминаются только «виртуальный диск» без детализации типа [2].",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/vdi/ag/topics/limits"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера, какой тип диска подразумевается под «vHDD тип 2 SAS» — возможно, имеется в виду высокопроизводительный диск на SAS-интерфейсе. Cloud.ru предоставляет диски на основе SAS/SSD, но точная классификация не документирована.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Типы дисков не подтверждены.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, доступна ли платформа ГосОблако и её типы дисков."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Облако VMware предоставляет виртуальные диски, но в документации не указаны типы (SAS/SSD) как классификация. Подразумевается использование высокопроизводительных дисков, но точный тип «SAS» не подтвержден.",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd", "https://cloud.ru/docs/vdi/ag/topics/limits"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru", "Ограничения и особенности"],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли тип диска «SAS» как классификация. Cloud.ru использует диски на основе SAS/SSD, но документация не детализирует типы."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Advanced предоставляет диски EVS, но в документации не указаны типы (SAS/SSD) как классификация. Подразумевается использование SSD, но тип «SAS» не подтвержден.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/knowledge-sources"],
+        "source_titles": ["Источники знаний о платформе Cloud.ru Advanced"],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли тип диска «SAS» в EVS. Cloud.ru использует SSD-диски, но тип «SAS» не документирован."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Evolution предоставляет диски, но в документации не указаны типы (SAS/SSD). Требование «тип 2 SAS» не подтверждено.",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"],
+        "source_titles": ["Ограничения и особенности сервиса «Виртуальные машины»"],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли тип диска «SAS» в Evolution. Cloud.ru использует SSD-диски, но тип «SAS» не документирован."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

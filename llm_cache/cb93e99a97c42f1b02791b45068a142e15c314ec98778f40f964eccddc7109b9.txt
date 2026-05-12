@@ -1,0 +1,288 @@
+```json
+[
+  {
+    "requirement_id": 177,
+    "verdict": "mismatch",
+    "confidence": 0.95,
+    "reasoning": "Требуется не менее 14592 ядер для параллельных вычислений — это эквивалентно более чем 1000 физических CPU-ядер, что превышает максимальные возможности облачных ВМ Cloud.ru. Облако VMware поддерживает до 128 спецификаций ВМ, но не упоминает конфигурации с таким количеством vCPU. Даже в случае использования нескольких GPU-ускорителей, количество vCPU в одной ВМ не превышает 128 (по документации), что на порядок ниже требуемого.",
+    "evidence": "Количество спецификаций виртуальных машин: 45 (Evolution), 128 (Advanced), — в документации не указаны конфигурации с более чем 128 vCPU [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Рассмотреть использование кластера из нескольких ВМ с распределённой нагрузкой или обратиться в службу Cloud.ru для оценки возможности специальной конфигурации на Bare Metal.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru; отсутствуют данные о возможных конфигурациях ВМ.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, существует ли продукт ГосОблако и его технические характеристики."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware поддерживает до 128 спецификаций ВМ, но максимальное количество vCPU в одной ВМ не превышает 128 (по документации). Требуемые 14592 ядра не достижимы ни на одной из доступных конфигураций.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Использовать распределённую архитектуру на нескольких ВМ или рассмотреть Bare Metal-решения через партнёра."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 0.95,
+        "reasoning": "Advanced поддерживает до 128 спецификаций ВМ, но не предоставляет конфигурации с более чем 128 vCPU. Требуемое количество ядер (14592) не соответствует возможностям платформы.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Использовать распределённую архитектуру на нескольких ВМ или рассмотреть Bare Metal-решения через партнёра."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 0.95,
+        "reasoning": "Evolution поддерживает до 45 спецификаций ВМ, максимальное количество vCPU в одной ВМ не превышает 128. Требуемые 14592 ядра не достижимы.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/concepts__flavors"
+        ],
+        "source_titles": [
+          "Конфигурации виртуальных машин"
+        ],
+        "recommendation": "Использовать распределённую архитектуру на нескольких ВМ или рассмотреть Bare Metal-решения через партнёра."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 178,
+    "verdict": "mismatch",
+    "confidence": 0.95,
+    "reasoning": "Требуется не менее 456 тензорных ядер для ускорения глубокого обучения. В документации Cloud.ru указаны GPU-ускорители NVIDIA A100 (80 ГБ), H100 (80 ГБ), V100 (32 ГБ). Тензорные ядра — это специфические вычислительные блоки в GPU NVIDIA. Например, один A100 имеет 432 тензорных ядра, H100 — 512. Даже одна H100 превышает требуемое значение, но в документации не указано, что ВМ может быть подключена к нескольким GPU одновременно. Однако требование — «подключена к графическому адаптеру» (единственное число), а не к нескольким. Если подразумевается один адаптер — H100 (512) подходит, но если требуется именно 456 — это не точное совпадение. Однако в контексте требований 179 и 180, где указаны FP32/FP16, логично, что речь о GPU. Но в документации нет подтверждения, что одна ВМ может иметь более одного GPU. Поэтому — не подтверждено, что можно получить 456+ тензорных ядер в одной ВМ.",
+    "evidence": "Модели графических ускорителей: NVIDIA H100 80 ГБ (512 тензорных ядер), NVIDIA A100 80 ГБ (432 тензорных ядра) [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера, допускается ли подключение нескольких GPU к одной ВМ. Если нет — использовать одну H100 (512 ядер), что превышает требование. Если требуется именно 456 — возможно, требуется кластер.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru; отсутствуют данные о GPU-ускорителях.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, существует ли продукт ГосОблако и его поддержка GPU."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Облако VMware предоставляет GPU NVIDIA H100 (80 ГБ), который имеет 512 тензорных ядер — превышает требуемые 456. Документация подтверждает наличие H100 [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Использовать ВМ с GPU NVIDIA H100 80 ГБ — характеристики превышают требование."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 0.85,
+        "reasoning": "В документации Advanced не указаны модели GPU-ускорителей. Хотя платформа поддерживает гибкую конфигурацию, отсутствует подтверждение наличия GPU с 456+ тензорными ядрами. Нет данных о H100/A100 в Advanced.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, доступны ли GPU-ускорители на платформе Advanced."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 0.85,
+        "reasoning": "Evolution не поддерживает GPU-ускорители — в документации нет упоминания GPU, только vCPU и RAM. Платформа предназначена для массовых вычислений, не для HPC/ML.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/concepts__flavors"
+        ],
+        "source_titles": [
+          "Конфигурации виртуальных машин"
+        ],
+        "recommendation": "Использовать Облако VMware для задач глубокого обучения."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 179,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требуется производительность FP32 не менее 67 TFLOPS. NVIDIA H100 80 ГБ имеет производительность FP32 до 67 TFLOPS (точное совпадение). NVIDIA A100 80 ГБ — 19.5 TFLOPS. В документации подтверждено наличие H100 80 ГБ в Облаке VMware [1]. Требование «не менее» — H100 (67 TFLOPS) = требуемому значению → match.",
+    "evidence": "Модели графических ускорителей: NVIDIA H100 80 ГБ [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать ВМ с GPU NVIDIA H100 80 ГБ на платформе Облако VMware.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru; отсутствуют данные о производительности GPU.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, существует ли продукт ГосОблако и его поддержка GPU."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет GPU NVIDIA H100 80 ГБ с производительностью FP32 до 67 TFLOPS — точно соответствует требованию «не менее 67 TFLOPS» [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Использовать ВМ с GPU NVIDIA H100 80 ГБ."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.6,
+        "reasoning": "В документации Advanced не указаны модели GPU-ускорителей. Хотя платформа поддерживает гибкую конфигурацию, отсутствует подтверждение наличия H100 или аналогичных GPU с FP32 ≥67 TFLOPS.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, доступны ли GPU H100 на платформе Advanced."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 0.85,
+        "reasoning": "Evolution не поддерживает GPU-ускорители — в документации нет упоминания GPU, только vCPU и RAM. Платформа предназначена для массовых вычислений, не для HPC/ML.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/concepts__flavors"
+        ],
+        "source_titles": [
+          "Конфигурации виртуальных машин"
+        ],
+        "recommendation": "Использовать Облако VMware для задач с высокой производительностью FP32."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 180,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требуется производительность FP16 с тензорными ядрами не менее 1979 TFLOPS. NVIDIA H100 80 ГБ имеет производительность FP16 с тензорными ядрами до 1979 TFLOPS (точное совпадение). В документации подтверждено наличие H100 80 ГБ в Облаке VMware [1]. Требование «не менее» — H100 (1979 TFLOPS) = требуемому значению → match.",
+    "evidence": "Модели графических ускорителей: NVIDIA H100 80 ГБ [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать ВМ с GPU NVIDIA H100 80 ГБ на платформе Облако VMware.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru; отсутствуют данные о производительности GPU.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, существует ли продукт ГосОблако и его поддержка GPU."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет GPU NVIDIA H100 80 ГБ с производительностью FP16 с тензорными ядрами до 1979 TFLOPS — точно соответствует требованию «не менее 1979 TFLOPS» [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Использовать ВМ с GPU NVIDIA H100 80 ГБ."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.6,
+        "reasoning": "В документации Advanced не указаны модели GPU-ускорителей. Хотя платформа поддерживает гибкую конфигурацию, отсутствует подтверждение наличия H100 или аналогичных GPU с FP16 ≥1979 TFLOPS.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, доступны ли GPU H100 на платформе Advanced."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 0.85,
+        "reasoning": "Evolution не поддерживает GPU-ускорители — в документации нет упоминания GPU, только vCPU и RAM. Платформа предназначена для массовых вычислений, не для HPC/ML.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/concepts__flavors"
+        ],
+        "source_titles": [
+          "Конфигурации виртуальных машин"
+        ],
+        "recommendation": "Использовать Облако VMware для задач с высокой производительностью FP16."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]
+```

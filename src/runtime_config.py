@@ -29,9 +29,14 @@ class RuntimeSettings:
     parser_concurrency: int
     parser_fast_min_requirements: int
     parser_fast_max_requirements: int
+    parser_fallback_to_llm: bool
     max_requirements_per_batch: int
     analysis_rag_mode: str
     analysis_batch_concurrency: int
+    analysis_duplicate_reasoning_threshold: int
+    analysis_discrete_confidence: bool
+    analysis_url_overuse_threshold: int
+    analysis_strict_mode: bool
     managed_rag_url: str
     managed_rag_kb_version: str
     managed_rag_api_key: str
@@ -55,9 +60,14 @@ FIELD_MAP = {
     "parser_concurrency": ("PARSER_CONCURRENCY", int),
     "parser_fast_min_requirements": ("PARSER_FAST_MIN_REQUIREMENTS", int),
     "parser_fast_max_requirements": ("PARSER_FAST_MAX_REQUIREMENTS", int),
+    "parser_fallback_to_llm": ("PARSER_FALLBACK_TO_LLM", None),
     "max_requirements_per_batch": ("MAX_REQUIREMENTS_PER_BATCH", int),
     "analysis_rag_mode": ("ANALYSIS_RAG_MODE", lambda value: str(value).lower()),
     "analysis_batch_concurrency": ("ANALYSIS_BATCH_CONCURRENCY", int),
+    "analysis_duplicate_reasoning_threshold": ("ANALYSIS_DUPLICATE_REASONING_THRESHOLD", int),
+    "analysis_discrete_confidence": ("ANALYSIS_DISCRETE_CONFIDENCE", None),
+    "analysis_url_overuse_threshold": ("ANALYSIS_URL_OVERUSE_THRESHOLD", int),
+    "analysis_strict_mode": ("ANALYSIS_STRICT_MODE", None),
     "managed_rag_url": ("MANAGED_RAG_URL", str),
     "managed_rag_kb_version": ("MANAGED_RAG_KB_VERSION", str),
     "managed_rag_api_key": ("MANAGED_RAG_API_KEY", str),
@@ -91,9 +101,14 @@ def default_runtime_settings() -> RuntimeSettings:
         parser_concurrency=cfg.PARSER_CONCURRENCY,
         parser_fast_min_requirements=cfg.PARSER_FAST_MIN_REQUIREMENTS,
         parser_fast_max_requirements=cfg.PARSER_FAST_MAX_REQUIREMENTS,
+        parser_fallback_to_llm=cfg.PARSER_FALLBACK_TO_LLM,
         max_requirements_per_batch=cfg.MAX_REQUIREMENTS_PER_BATCH,
         analysis_rag_mode=cfg.ANALYSIS_RAG_MODE,
         analysis_batch_concurrency=cfg.ANALYSIS_BATCH_CONCURRENCY,
+        analysis_duplicate_reasoning_threshold=cfg.ANALYSIS_DUPLICATE_REASONING_THRESHOLD,
+        analysis_discrete_confidence=cfg.ANALYSIS_DISCRETE_CONFIDENCE,
+        analysis_url_overuse_threshold=cfg.ANALYSIS_URL_OVERUSE_THRESHOLD,
+        analysis_strict_mode=cfg.ANALYSIS_STRICT_MODE,
         managed_rag_url=cfg.MANAGED_RAG_URL,
         managed_rag_kb_version=cfg.MANAGED_RAG_KB_VERSION,
         managed_rag_api_key=cfg.MANAGED_RAG_API_KEY,

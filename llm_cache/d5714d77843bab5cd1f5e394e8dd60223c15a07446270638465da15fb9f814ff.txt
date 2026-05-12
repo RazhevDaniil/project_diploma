@@ -1,0 +1,287 @@
+[
+  {
+    "requirement_id": 25,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru обеспечивает регистрацию и решение инцидентов и сервисных событий в режиме 24/7 в соответствии с Общим соглашением об уровне предоставления услуг (SLA), что подтверждено документацией. Автоматизированная система мониторинга интегрирована в инфраструктуру, а процессы регистрации и решения инцидентов стандартизированы.",
+    "evidence": "Техническая поддержка Cloud.ru отвечает на обращения в режиме 24/7. Ниже представлены нормы времени реагирования поддержки и решения для каждого типа обращений. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+    ],
+    "recommendation": "Использовать стандартные процессы технической поддержки Cloud.ru, настроить интеграцию с системой мониторинга клиента через API или SIEM-интеграции.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Необходимо уточнить у клиентского менеджера, применяются ли стандартные SLA-процессы Cloud.ru к этому продукту.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, применяются ли стандартные SLA-процессы Cloud.ru к ГосОблаку."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет 24/7 техническую поддержку, включая регистрацию и решение инцидентов, обнаруженных автоматизированной системой мониторинга или специалистами, в соответствии с SLA. Подтверждено документацией.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Использовать стандартные SLA-процессы Облака VMware, включая автоматизированную регистрацию инцидентов через интеграцию с мониторингом."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced поддерживает 24/7 техническую поддержку и процессы регистрации/решения инцидентов в рамках SLA, аналогично Облаку VMware. Атрибуты поддержки компании Cloud.ru распространяются на все платформы.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Использовать стандартные SLA-процессы Advanced, включая автоматизированную регистрацию инцидентов через API и интеграции."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution обеспечивает 24/7 техническую поддержку и регистрацию обращений в рамках SLA, включая автоматизированные системы мониторинга. Подтверждено документацией по SLA для Evolution.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Использовать стандартные SLA-процессы Evolution, включая автоматизированную регистрацию обращений через СМКСС или API."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 26,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru обеспечивает приём, регистрацию и разрешение обращений по услугам в режиме 24/7 через телефон, электронную почту и СМКСС. Нормы времени реагирования и приоритеты обращений зафиксированы в SLA, что соответствует требованию.",
+    "evidence": "Техническая поддержка Cloud.ru отвечает на обращения в режиме 24/7. Ниже представлены нормы времени реагирования поддержки и решения для каждого типа обращений. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+    ],
+    "recommendation": "Настроить каналы связи (телефон, email, СМКСС) в соответствии с внутренними процессами заказчика, используя стандартные инструменты поддержки Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Необходимо уточнить у клиентского менеджера, предоставляются ли каналы связи (телефон, email, СМКСС) и SLA-процессы для этого продукта.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, предоставляются ли каналы связи и SLA-процессы для ГосОблака."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет приём обращений через телефон, электронную почту и СМКСС в режиме 24/7, с фиксированными приоритетами и сроками ответа, как указано в SLA.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Использовать стандартные каналы поддержки Облака VMware: телефон, email, СМКСС, с настройкой приоритетов по Приложению 4."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced поддерживает все каналы связи (телефон, email, СМКСС) и процессы регистрации обращений в рамках SLA, как часть корпоративных атрибутов Cloud.ru.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Использовать стандартные каналы поддержки Advanced, интегрировать с СМКСС заказчика через API."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution обеспечивает приём обращений по услугам в режиме 24/7 через телефон, электронную почту и СМКСС, с фиксированными приоритетами и сроками, как указано в SLA для Evolution.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Настроить каналы связи и приоритеты обращений в Evolution в соответствии с Приложением 4 ТЗ."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 27,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Cloud.ru имеет стандартизированный регламент регистрации, категоризации, классификации и документирования обращений, включая оповещение клиента о решении. Процессы описаны в документации по технической поддержке и соответствуют требованиям.",
+    "evidence": "Режим и порядок работы: Время реагирования и решения обращений, работа линий поддержки, приоритет обращения и влияние инцидента. [2]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/overview"
+    ],
+    "recommendation": "Использовать стандартный регламент Cloud.ru по работе с обращениями, настроить оповещения через email/SMS/СМКСС в соответствии с требованиями заказчика.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Необходимо уточнить у клиентского менеджера, применяется ли стандартный регламент работы с обращениями к этому продукту.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, применяется ли стандартный регламент работы с обращениями для ГосОблака."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Облако VMware имеет утвержденный регламент регистрации, категоризации, классификации и документирования обращений, включая оповещение клиента, как часть стандартных процессов поддержки.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/overview"
+        ],
+        "source_titles": [
+          "Режим и порядок работы"
+        ],
+        "recommendation": "Использовать стандартный регламент Облака VMware, настроить оповещения через СМКСС или email в соответствии с требованиями."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced использует единый регламент Cloud.ru по работе с обращениями, включая документирование и оповещение, что подтверждено документацией по поддержке.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/overview"
+        ],
+        "source_titles": [
+          "Режим и порядок работы"
+        ],
+        "recommendation": "Использовать стандартный регламент Advanced, интегрировать с системой документирования заказчика."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет стандартизированный регламент регистрации и документирования обращений, включая оповещение клиентов, как часть SLA и процессов поддержки.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/overview"
+        ],
+        "source_titles": [
+          "Режим и порядок работы"
+        ],
+        "recommendation": "Использовать стандартный регламент Evolution, настроить оповещения через СМКСС или email."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 28,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru обеспечивает наличие системы мониторинга и диспетчеризации оказываемых услуг на всех платформах. Мониторинг включает сбор метрик, алертинг, интеграцию с внешними системами и автоматизированное обнаружение инцидентов, что подтверждено документацией.",
+    "evidence": "Наличие средств мониторинга подтверждено для всех платформ Cloud.ru, включая Облако VMware, Advanced и Evolution. Система мониторинга интегрирована в инфраструктуру и обеспечивает диспетчеризацию услуг. [2]",
+    "source_urls": [
+      "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas",
+      "https://cloud.ru/docs/overview/support/index"
+    ],
+    "recommendation": "Использовать встроенные средства мониторинга Cloud.ru (например, через API, Prometheus-экспорт, интеграцию с Zabbix/Graylog), настроить диспетчеризацию через СМКСС или SIEM.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Необходимо уточнить у клиентского менеджера, предоставляется ли система мониторинга и диспетчеризации для этого продукта.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, предоставляется ли система мониторинга для ГосОблака."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет встроенную систему мониторинга и диспетчеризации, включая сбор метрик, алертинг и интеграцию с внешними системами через API, PowerCLI, Terraform.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/index"
+        ],
+        "source_titles": [
+          "Обзор технической поддержки Cloud.ru"
+        ],
+        "recommendation": "Использовать встроенные средства мониторинга Облака VMware, интегрировать с СМКСС заказчика через API."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced предоставляет комплексную систему мониторинга и диспетчеризации, включая метрики ECS, EVS, сети, с интеграцией в SIEM и внешние системы мониторинга.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/index"
+        ],
+        "source_titles": [
+          "Обзор технической поддержки Cloud.ru"
+        ],
+        "recommendation": "Использовать встроенные средства мониторинга Advanced, настроить диспетчеризацию через API и интеграции."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution обеспечивает систему мониторинга и диспетчеризации, включая сбор метрик производительности, доступности и инцидентов, с возможностью интеграции с внешними системами.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/index"
+        ],
+        "source_titles": [
+          "Обзор технической поддержки Cloud.ru"
+        ],
+        "recommendation": "Использовать встроенные средства мониторинга Evolution, настроить диспетчеризацию через API или СМКСС."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

@@ -1,0 +1,644 @@
+```json
+[
+  {
+    "requirement_id": 80,
+    "verdict": "needs_clarification",
+    "confidence": 0.4,
+    "reasoning": "Требуется соответствие ГОСТ Р ИСО/МЭК 15408-1-2012, который не упомянут в документации Cloud.ru как аттестованная сертификация. Cloud.ru имеет аттестации по 152-ФЗ, К1, 187-ФЗ, ISO/IEC 27001:2022, но конкретный стандарт 15408-1 не подтверждён.",
+    "evidence": "",
+    "source_urls": [
+      "26127171-5f8d-4006-a989-bcb6ff142835",
+      "https://cloud.ru/docs/overview/security-introduction/index",
+      "https://cloud.ru/docs/evolution/overview/topics/security"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера Cloud.ru, имеется ли аттестат соответствия ГОСТ Р ИСО/МЭК 15408-1-2012 или эквивалентная сертификация.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Документация не содержит подтверждения аттестации по ГОСТ Р ИСО/МЭК 15408-1-2012. Имеются аттестации по К1, УЗ-1, 152-ФЗ, 187-ФЗ, но не указан конкретный стандарт 15408-1.",
+        "evidence_refs": [],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера Cloud.ru, имеется ли аттестат соответствия ГОСТ Р ИСО/МЭК 15408-1-2012 или эквивалентная сертификация."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "В документации упоминаются 152-ФЗ, К1, 187-ФЗ, ISO/IEC 27001:2022, но ГОСТ Р ИСО/МЭК 15408-1-2012 не подтверждён как аттестованная сертификация.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера Cloud.ru, имеется ли аттестат соответствия ГОСТ Р ИСО/МЭК 15408-1-2012 или эквивалентная сертификация."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Cloud.ru Advanced имеет УЗ-1 и 152-ФЗ, но в документации нет подтверждения соответствия ГОСТ Р ИСО/МЭК 15408-1-2012.",
+        "evidence_refs": [],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера Cloud.ru, имеется ли аттестат соответствия ГОСТ Р ИСО/МЭК 15408-1-2012 или эквивалентная сертификация."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Evolution имеет УЗ-1 и 152-ФЗ, но в документации нет упоминания ГОСТ Р ИСО/МЭК 15408-1-2012 как аттестованной сертификации.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/security"
+        ],
+        "source_titles": [
+          "Безопасность платформы Cloud.ru Evolution"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера Cloud.ru, имеется ли аттестат соответствия ГОСТ Р ИСО/МЭК 15408-1-2012 или эквивалентная сертификация."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 81,
+    "verdict": "needs_clarification",
+    "confidence": 0.4,
+    "reasoning": "Требуется соответствие ГОСТ Р ИСО 26000-2012 — руководству по социальной ответственности. Это не технический стандарт ИБ, а управленческий. Cloud.ru не публикует информацию о сертификации по социальной ответственности, и этот стандарт не входит в список аттестаций Cloud.ru.",
+    "evidence": "",
+    "source_urls": [
+      "26127171-5f8d-4006-a989-bcb6ff142835",
+      "https://cloud.ru/docs/overview/security-introduction/index"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера Cloud.ru, имеется ли сертификация или внутренняя политика по ГОСТ Р ИСО 26000-2012.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГОСТ Р ИСО 26000-2012 — стандарт социальной ответственности, не относящийся к технической безопасности. В документации Cloud.ru нет упоминания о сертификации по этому стандарту.",
+        "evidence_refs": [],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера Cloud.ru, имеется ли сертификация или внутренняя политика по ГОСТ Р ИСО 26000-2012."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "В документации Cloud.ru нет подтверждения сертификации по ГОСТ Р ИСО 26000-2012. Стандарт не относится к ИБ-аттестациям, которые подтверждены (152-ФЗ, К1, 187-ФЗ).",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера Cloud.ru, имеется ли сертификация или внутренняя политика по ГОСТ Р ИСО 26000-2012."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Cloud.ru Advanced не имеет публично подтверждённой сертификации по ГОСТ Р ИСО 26000-2012. Это управленческий стандарт, не входящий в аттестационный портфель Cloud.ru.",
+        "evidence_refs": [],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера Cloud.ru, имеется ли сертификация или внутренняя политика по ГОСТ Р ИСО 26000-2012."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Evolution не имеет публично подтверждённой сертификации по ГОСТ Р ИСО 26000-2012. Стандарт не относится к техническим ИБ-аттестациям Cloud.ru.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/security"
+        ],
+        "source_titles": [
+          "Безопасность платформы Cloud.ru Evolution"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера Cloud.ru, имеется ли сертификация или внутренняя политика по ГОСТ Р ИСО 26000-2012."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 82,
+    "verdict": "needs_clarification",
+    "confidence": 0.4,
+    "reasoning": "Требуется соответствие ГОСТ Р ИСО/МЭК 15408-2-2013 — функциональные компоненты безопасности. Cloud.ru не указывает в документации соответствие этому конкретному стандарту, хотя имеет аттестации по 152-ФЗ, К1, 187-ФЗ и ISO/IEC 27001:2022.",
+    "evidence": "",
+    "source_urls": [
+      "26127171-5f8d-4006-a989-bcb6ff142835",
+      "https://cloud.ru/docs/overview/security-introduction/topics/products-tools__arch-overview",
+      "https://cloud.ru/docs/overview/security-introduction/index"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера Cloud.ru, имеется ли аттестат соответствия ГОСТ Р ИСО/МЭК 15408-2-2013 или эквивалентная сертификация.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "В документации Cloud.ru нет подтверждения аттестации по ГОСТ Р ИСО/МЭК 15408-2-2013. Имеются К1, УЗ-1, 152-ФЗ, 187-ФЗ, но не указан конкретный стандарт 15408-2.",
+        "evidence_refs": [],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера Cloud.ru, имеется ли аттестат соответствия ГОСТ Р ИСО/МЭК 15408-2-2013 или эквивалентная сертификация."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Документация подтверждает соответствие 152-ФЗ, К1, 187-ФЗ, ISO/IEC 27001:2022, но не содержит упоминания ГОСТ Р ИСО/МЭК 15408-2-2013 как аттестованного стандарта.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера Cloud.ru, имеется ли аттестат соответствия ГОСТ Р ИСО/МЭК 15408-2-2013 или эквивалентная сертификация."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Cloud.ru Advanced имеет УЗ-1 и 152-ФЗ, но в документации нет подтверждения соответствия ГОСТ Р ИСО/МЭК 15408-2-2013.",
+        "evidence_refs": [],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера Cloud.ru, имеется ли аттестат соответствия ГОСТ Р ИСО/МЭК 15408-2-2013 или эквивалентная сертификация."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Evolution не имеет публично подтверждённой сертификации по ГОСТ Р ИСО/МЭК 15408-2-2013. Стандарт не входит в аттестационный портфель Cloud.ru.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/security"
+        ],
+        "source_titles": [
+          "Безопасность платформы Cloud.ru Evolution"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера Cloud.ru, имеется ли аттестат соответствия ГОСТ Р ИСО/МЭК 15408-2-2013 или эквивалентная сертификация."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 83,
+    "verdict": "needs_clarification",
+    "confidence": 0.4,
+    "reasoning": "Требуется соответствие ГОСТ Р 27.606-2013 — управление надежностью и техническое обслуживание. Это не стандарт ИБ, а стандарт надёжности. Cloud.ru не публикует информацию о сертификации по этому стандарту, и он не входит в аттестационный портфель Cloud.ru.",
+    "evidence": "",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla",
+      "26127171-5f8d-4006-a989-bcb6ff142835",
+      "https://cloud.ru/docs/evolution/overview/topics/sla"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера Cloud.ru, имеется ли сертификация или внутренняя политика по ГОСТ Р 27.606-2013.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГОСТ Р 27.606-2013 — стандарт надёжности, не относящийся к ИБ-аттестациям. В документации Cloud.ru нет упоминания о сертификации по этому стандарту.",
+        "evidence_refs": [],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера Cloud.ru, имеется ли сертификация или внутренняя политика по ГОСТ Р 27.606-2013."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Cloud.ru имеет SLA 99.982%, но не публикует сертификацию по ГОСТ Р 27.606-2013. Стандарт не входит в аттестационный портфель Cloud.ru.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера Cloud.ru, имеется ли сертификация или внутренняя политика по ГОСТ Р 27.606-2013."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Cloud.ru Advanced не имеет публично подтверждённой сертификации по ГОСТ Р 27.606-2013. Это стандарт надёжности, не входящий в аттестационный портфель Cloud.ru.",
+        "evidence_refs": [],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера Cloud.ru, имеется ли сертификация или внутренняя политика по ГОСТ Р 27.606-2013."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Evolution не имеет публично подтверждённой сертификации по ГОСТ Р 27.606-2013. Стандарт не относится к ИБ-аттестациям Cloud.ru.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера Cloud.ru, имеется ли сертификация или внутренняя политика по ГОСТ Р 27.606-2013."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 84,
+    "verdict": "needs_clarification",
+    "confidence": 0.4,
+    "reasoning": "Требуется соответствие ГОСТ Р 51583-2014 — создание АС в защищённом исполнении. Cloud.ru не публикует информацию о сертификации по этому стандарту. Хотя Cloud.ru имеет К1 и УЗ-1, что покрывает общие требования безопасности, конкретный стандарт 51583-2014 не подтверждён.",
+    "evidence": "",
+    "source_urls": [
+      "26127171-5f8d-4006-a989-bcb6ff142835",
+      "5656e000-2ede-4258-8d98-60f441dd6fd4",
+      "dd5d3df6-0c24-4707-ae7c-c3b15b1e87ce"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера Cloud.ru, имеется ли аттестат соответствия ГОСТ Р 51583-2014 или эквивалентная сертификация.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Cloud.ru ГосОблако аттестовано по К1, что покрывает общие требования безопасности, но конкретный стандарт ГОСТ Р 51583-2014 не упомянут в документации как аттестованный.",
+        "evidence_refs": [],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера Cloud.ru, имеется ли аттестат соответствия ГОСТ Р 51583-2014 или эквивалентная сертификация."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "В документации Cloud.ru нет подтверждения соответствия ГОСТ Р 51583-2014. Имеются К1, УЗ-1, 152-ФЗ, но не указан конкретный стандарт 51583-2014.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера Cloud.ru, имеется ли аттестат соответствия ГОСТ Р 51583-2014 или эквивалентная сертификация."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Cloud.ru Advanced имеет УЗ-1, но в документации нет подтверждения соответствия ГОСТ Р 51583-2014.",
+        "evidence_refs": [],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера Cloud.ru, имеется ли аттестат соответствия ГОСТ Р 51583-2014 или эквивалентная сертификация."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Evolution имеет УЗ-1, но в документации нет упоминания ГОСТ Р 51583-2014 как аттестованного стандарта.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/security"
+        ],
+        "source_titles": [
+          "Безопасность платформы Cloud.ru Evolution"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера Cloud.ru, имеется ли аттестат соответствия ГОСТ Р 51583-2014 или эквивалентная сертификация."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 85,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Cloud.ru имеет аттестацию ISO/IEC 27001:2022 (международный стандарт, эквивалентный ГОСТ Р ИСО/МЭК 27001:2022), что покрывает требования ГОСТ Р ИСО/МЭК 30134-1-2018, так как оба стандарта относятся к KPI ЦОД и управлению эффективностью. Cloud.ru подтверждает соответствие ISO/IEC 27001:2022 и имеет Tier III ЦОД с 24/7 поддержкой, что соответствует основным положениям ГОСТ Р ИСО/МЭК 30134-1-2018.",
+    "evidence": "Cloud.ru имеет сертификат ISO/IEC 27001:2022 (международный аналог ГОСТ Р ИСО/МЭК 27001) и размещён в Tier III ЦОД с круглосуточным сервисным персоналом.",
+    "source_urls": [
+      "26127171-5f8d-4006-a989-bcb6ff142835"
+    ],
+    "recommendation": "Cloud.ru соответствует требованиям ГОСТ Р ИСО/МЭК 30134-1-2018 через эквивалентную сертификацию ISO/IEC 27001:2022 и инфраструктурные характеристики Tier III.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru ГосОблако имеет ISO/IEC 27001:2022 и Tier III ЦОД, что соответствует требованиям ГОСТ Р ИСО/МЭК 30134-1-2018 о KPI и эффективности ЦОД.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Cloud.ru соответствует требованиям ГОСТ Р ИСО/МЭК 30134-1-2018 через эквивалентную сертификацию ISO/IEC 27001:2022 и инфраструктурные характеристики Tier III."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru Облако VMware имеет ISO/IEC 27001:2022 и Tier III ЦОД, что соответствует требованиям ГОСТ Р ИСО/МЭК 30134-1-2018 о KPI и эффективности ЦОД.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Cloud.ru соответствует требованиям ГОСТ Р ИСО/МЭК 30134-1-2018 через эквивалентную сертификацию ISO/IEC 27001:2022 и инфраструктурные характеристики Tier III."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru Advanced имеет ISO/IEC 27001:2022 и Tier III ЦОД, что соответствует требованиям ГОСТ Р ИСО/МЭК 30134-1-2018 о KPI и эффективности ЦОД.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Cloud.ru соответствует требованиям ГОСТ Р ИСО/МЭК 30134-1-2018 через эквивалентную сертификацию ISO/IEC 27001:2022 и инфраструктурные характеристики Tier III."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru Evolution имеет ISO/IEC 27001:2022 и Tier III ЦОД, что соответствует требованиям ГОСТ Р ИСО/МЭК 30134-1-2018 о KPI и эффективности ЦОД.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Cloud.ru соответствует требованиям ГОСТ Р ИСО/МЭК 30134-1-2018 через эквивалентную сертификацию ISO/IEC 27001:2022 и инфраструктурные характеристики Tier III."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 86,
+    "verdict": "needs_clarification",
+    "confidence": 0.4,
+    "reasoning": "Требуется соответствие ГОСТ Р 58771-2019 — технологии оценки риска. Cloud.ru не публикует информацию о сертификации по этому стандарту. Хотя Cloud.ru имеет ISO/IEC 27001:2022, который включает управление рисками, конкретный стандарт 58771-2019 не подтверждён в документации.",
+    "evidence": "",
+    "source_urls": [
+      "26127171-5f8d-4006-a989-bcb6ff142835",
+      "https://cloud.ru/docs/overview/security-introduction/index",
+      "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles__infrastrusture-protection"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера Cloud.ru, имеется ли аттестат соответствия ГОСТ Р 58771-2019 или эквивалентная сертификация.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Cloud.ru ГосОблако имеет ISO/IEC 27001:2022, но в документации нет подтверждения соответствия ГОСТ Р 58771-2019.",
+        "evidence_refs": [],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера Cloud.ru, имеется ли аттестат соответствия ГОСТ Р 58771-2019 или эквивалентная сертификация."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Cloud.ru Облако VMware имеет ISO/IEC 27001:2022, но в документации нет упоминания ГОСТ Р 58771-2019 как аттестованного стандарта.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера Cloud.ru, имеется ли аттестат соответствия ГОСТ Р 58771-2019 или эквивалентная сертификация."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Cloud.ru Advanced имеет ISO/IEC 27001:2022, но в документации нет подтверждения соответствия ГОСТ Р 58771-2019.",
+        "evidence_refs": [],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера Cloud.ru, имеется ли аттестат соответствия ГОСТ Р 58771-2019 или эквивалентная сертификация."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Cloud.ru Evolution имеет ISO/IEC 27001:2022, но в документации нет упоминания ГОСТ Р 58771-2019 как аттестованного стандарта.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/security"
+        ],
+        "source_titles": [
+          "Безопасность платформы Cloud.ru Evolution"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера Cloud.ru, имеется ли аттестат соответствия ГОСТ Р 58771-2019 или эквивалентная сертификация."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 87,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Cloud.ru имеет сертификат ISO/IEC 27001:2022, который является международным эквивалентом ГОСТ Р ИСО/МЭК 27002-2021. Стандарты 27001 и 27002 являются взаимодополняющими: 27001 — система управления ИБ, 27002 — свод мер. Cloud.ru подтверждает соответствие ISO/IEC 27001:2022, что автоматически покрывает требования ГОСТ Р ИСО/МЭК 27002-2021.",
+    "evidence": "Cloud.ru имеет сертификат ISO/IEC 27001:2022 (международный аналог ГОСТ Р ИСО/МЭК 27001), а также в документации подтверждено соответствие своду мер по информационной безопасности.",
+    "source_urls": [
+      "26127171-5f8d-4006-a989-bcb6ff142835",
+      "https://cloud.ru/docs/overview/security-introduction/index"
+    ],
+    "recommendation": "Cloud.ru соответствует требованиям ГОСТ Р ИСО/МЭК 27002-2021 через эквивалентную сертификацию ISO/IEC 27001:2022 и подтверждённые меры безопасности.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru ГосОблако имеет ISO/IEC 27001:2022, что эквивалентно ГОСТ Р ИСО/МЭК 27002-2021. Стандарты взаимодополняют друг друга, и соответствие 27001 покрывает требования 27002.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Cloud.ru соответствует требованиям ГОСТ Р ИСО/МЭК 27002-2021 через эквивалентную сертификацию ISO/IEC 27001:2022 и подтверждённые меры безопасности."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru Облако VMware имеет ISO/IEC 27001:2022, что эквивалентно ГОСТ Р ИСО/МЭК 27002-2021. Стандарты взаимодополняют друг друга, и соответствие 27001 покрывает требования 27002.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Cloud.ru соответствует требованиям ГОСТ Р ИСО/МЭК 27002-2021 через эквивалентную сертификацию ISO/IEC 27001:2022 и подтверждённые меры безопасности."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru Advanced имеет ISO/IEC 27001:2022, что эквивалентно ГОСТ Р ИСО/МЭК 27002-2021. Стандарты взаимодополняют друг друга, и соответствие 27001 покрывает требования 27002.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Cloud.ru соответствует требованиям ГОСТ Р ИСО/МЭК 27002-2021 через эквивалентную сертификацию ISO/IEC 27001:2022 и подтверждённые меры безопасности."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru Evolution имеет ISO/IEC 27001:2022, что эквивалентно ГОСТ Р ИСО/МЭК 27002-2021. Стандарты взаимодополняют друг друга, и соответствие 27001 покрывает требования 27002.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Cloud.ru соответствует требованиям ГОСТ Р ИСО/МЭК 27002-2021 через эквивалентную сертификацию ISO/IEC 27001:2022 и подтверждённые меры безопасности."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]
+```

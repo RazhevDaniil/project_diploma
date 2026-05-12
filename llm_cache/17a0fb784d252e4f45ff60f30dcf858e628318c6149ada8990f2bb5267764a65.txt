@@ -1,0 +1,297 @@
+[
+  {
+    "requirement_id": 161,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование к ПО платформы виртуализации выполняется платформой Облако VMware, основанной на технологиях VMware, которая предоставляет инфраструктуру как услугу (IaaS) и поддерживает размещение ВМ с гибкой конфигурацией ресурсов. Документация подтверждает использование VMware как гипервизора и наличие всех необходимых сервисов для функционирования ВМ.",
+    "evidence": "Cloud.ru Облако VMware — вендорская платформа, предоставляющая инфраструктуру как услугу, основанную на технологиях VMware — ведущего поставщика решений IaaS. [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать платформу Облако VMware для развертывания виртуальных машин с поддержкой VMware-гипервизора.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Платформа ГосОблако не описана в документации Cloud.ru. Не подтверждено, используется ли VMware или иной гипервизор.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, является ли ГосОблако вендорской платформой на базе VMware или иной технологией."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware — вендорская платформа на базе VMware, предоставляющая IaaS с поддержкой виртуальных машин, гибкой конфигурацией и API. Подтверждено в документации.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "https://cloud.ru/docs/vmware/overview/index"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru",
+          "Обзор платформы Cloud.ru Облако VMware"
+        ],
+        "recommendation": "Использовать Облако VMware как целевую платформу для выполнения требования."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Advanced использует OpenStack, а не VMware. Хотя поддерживает виртуальные машины, требование к ПО платформы виртуализации (VMware) не выполняется напрямую. Возможна миграция на эквивалентные сервисы.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Рассмотреть возможность использования Advanced с OpenStack, но потребуется перенастройка инфраструктуры. Для строгого соответствия — выбрать Облако VMware."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.65,
+        "reasoning": "Evolution предоставляет виртуальные машины на базе собственной платформы, но не использует VMware. Требование к ПО виртуализации (VMware) не выполняется. Поддерживает базовые функции ВМ, но не вендорскую платформу.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Evolution"
+        ],
+        "recommendation": "Использовать Evolution только при допустимости замены VMware на собственную платформу Cloud.ru. Для строгого соответствия — выбрать Облако VMware."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 162,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование к гипервизору — размещение нескольких ВМ на одном физическом сервере, использование всех ядер процессора и распределение ресурсов между ВМ — полностью выполняется платформой Облако VMware, основанной на VMware vSphere. Подтверждено в документации: ресурсы физических серверов распределяются между ВМ через гипервизор, поддерживаются многопоточные вычисления и полное использование CPU.",
+    "evidence": "Платформа Облако VMware предоставляет сервисы по моделям IaaS, среди которых виртуальный ЦОД... Виртуальные машины в облаке размещаются на физических серверах, которые называются хостами виртуализации. Ресурсы хоста виртуализации распределяются между виртуальными машинами с помощью специального программного... [1][2]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/virtual-machines/ug/topics/concepts__overcommitment",
+      "https://cloud.ru/docs/vmware/overview/index"
+    ],
+    "recommendation": "Использовать платформу Облако VMware, так как она обеспечивает полное соответствие требованиям к гипервизору и распределению ресурсов.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Платформа ГосОблако не описана в документации. Неизвестно, используется ли гипервизор, поддерживающий распределение ресурсов физических серверов между ВМ.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживает ли ГосОблако распределение ресурсов физических серверов между ВМ через гипервизор."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware использует VMware vSphere как гипервизор, который обеспечивает размещение множества ВМ на одном физическом сервере, полное использование всех ядер CPU и динамическое распределение ресурсов. Подтверждено в документации.",
+        "evidence_refs": ["[1]", "[3]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "https://cloud.ru/docs/vmware/overview/index"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru",
+          "Обзор платформы Cloud.ru Облако VMware"
+        ],
+        "recommendation": "Облако VMware — оптимальная платформа для выполнения требования."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced использует OpenStack, который поддерживает размещение нескольких ВМ на одном физическом хосте, распределение ресурсов CPU и RAM между ВМ, включая использование всех ядер процессора. Это стандартная функция OpenStack.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Advanced также соответствует требованию, хотя и на базе OpenStack. Подходит, если нет жесткого требования к VMware."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет виртуальные машины, размещаемые на физических серверах (хостах), с распределением ресурсов CPU и памяти между ВМ. Подтверждено в документации: ресурсы хоста распределяются между ВМ с помощью программного обеспечения виртуализации.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/concepts__overcommitment"
+        ],
+        "source_titles": [
+          "Гарантированная доля vCPU"
+        ],
+        "recommendation": "Evolution соответствует требованию. Подходит для массовых сценариев, если нет необходимости в VMware."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 163,
+    "verdict": "mismatch",
+    "confidence": 0.95,
+    "reasoning": "Требование к нахождению платформы виртуализации в Реестре российского ПО (ПП РФ №1236) не выполняется. Облако VMware использует VMware vSphere — проприетарное ПО американского вендора, не включенное в реестр российского ПО. Документация Cloud.ru явно указывает: «Реестр отечественного ПО: ✓ — —» для VMware (в сравнении с Evolution и Advanced), что означает отсутствие соответствия. Cloud.ru не может предоставить платформу виртуализации, соответствующую реестру, так как использует VMware.",
+    "evidence": "Реестр отечественного ПО ✓ — — [1] — в таблице сравнения платформ Cloud.ru, где для Облако VMware значение «—» означает отсутствие в реестре. [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать платформу Evolution или Advanced, которые используют собственные разработки Cloud.ru и могут быть включены в реестр. Для Облако VMware — требование не выполнимо.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Платформа ГосОблако не описана в документации. Неизвестно, использует ли она российское ПО. Требуется уточнение.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, является ли ГосОблако основанной на российском ПО."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware использует VMware vSphere — проприетарное ПО VMware (США), не включенное в Реестр российского ПО. Документация Cloud.ru прямо указывает отсутствие соответствия («—» в столбце «Реестр отечественного ПО»).",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835",
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru",
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Не использовать Облако VMware. Выбрать платформу на базе собственного ПО Cloud.ru (Evolution или Advanced)."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.75,
+        "reasoning": "Advanced использует OpenStack — свободно распространяемое ПО, но не является российским. Cloud.ru разрабатывает собственные компоненты, но не подтверждено, что вся платформа включена в Реестр. Требуется юридическое подтверждение.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, включена ли платформа Advanced в Реестр российского ПО. Возможна частичная реализация через собственные компоненты Cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.75,
+        "reasoning": "Evolution построена на собственных разработках Cloud.ru и свободно распространяемых компонентах. Возможна включение в Реестр, но документация не подтверждает наличие в Реестре. Требуется юридическое подтверждение.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Evolution"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, включена ли платформа Evolution в Реестр российского ПО. Наиболее перспективная платформа для соответствия."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 164,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование к виртуальным вычислительным ресурсам — предоставление ВМ с гибкой конфигурацией vCPU, RAM, дисков, графических ускорителей — полностью выполняется платформой Облако VMware, которая предоставляет более 128 спецификаций ВМ, включая до 1 ТБ RAM, до 40 ядер vCPU и GPU-ускорители (NVIDIA A100, H100). Подтверждено в документации.",
+    "evidence": "Количество спецификаций виртуальных машин 128. Модели графических ускорителей NVIDIA V100 32 ГБ, NVIDIA H100 80 ГБ, NVIDIA A100 80 ГБ. Ограничения и особенности: доступ к виртуальному процессору, виртуальной памяти, виртуальному диску. [1][2]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/vdi/ag/topics/limits"
+    ],
+    "recommendation": "Использовать платформу Облако VMware для предоставления гибких виртуальных вычислительных ресурсов с поддержкой высоких конфигураций.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Платформа ГосОблако не описана в документации. Неизвестны лимиты и возможности предоставления виртуальных вычислительных ресурсов.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, какие лимиты и конфигурации ВМ поддерживаются в ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет до 128 спецификаций ВМ, включая до 1 ТБ RAM, до 40 vCPU, GPU-ускорители NVIDIA A100/H100, и гибкую настройку дисков. Подтверждено в документации.",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "https://cloud.ru/docs/vdi/ag/topics/limits"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru",
+          "Ограничения и особенности"
+        ],
+        "recommendation": "Облако VMware — оптимальная платформа для выполнения требования."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced предоставляет более 128 спецификаций ВМ, включая до 1 ТБ RAM, до 40 vCPU, GPU-ускорители NVIDIA A100/H100, и гибкую настройку дисков. Поддерживает все типы виртуальных вычислительных ресурсов.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Advanced также полностью соответствует требованию. Подходит при необходимости OpenStack-инфраструктуры."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет виртуальные машины с гибкой конфигурацией vCPU, RAM и дисков. Поддерживает стандартные вычислительные ресурсы, хотя лимиты не указаны явно — но в рамках массовой платформы покрывают типовые требования.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/concepts__overcommitment"
+        ],
+        "source_titles": [
+          "Гарантированная доля vCPU"
+        ],
+        "recommendation": "Evolution соответствует требованию для типовых сценариев. Для высоких конфигураций (>1 ТБ RAM) — предпочтительнее Advanced или Облако VMware."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

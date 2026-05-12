@@ -1,0 +1,299 @@
+[
+  {
+    "requirement_id": 17,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru обеспечивает аварийно-восстановительные работы в рамках круглосуточной технической поддержки (24/7), что подтверждено документацией по поддержке. Аварийный режим включён в стандартные процедуры реагирования на инциденты.",
+    "evidence": "Техническая поддержка Cloud.ru отвечает на обращения в режиме 24/7. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/index"
+    ],
+    "recommendation": "Использовать платформу Облако VMware или Advanced для обеспечения высокой доступности и быстрого реагирования на инциденты.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru; требуется уточнение у клиентского менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли аварийный режим на ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет 24/7 техническую поддержку и аварийно-восстановительные работы в рамках SLA и модели ответственности. Подтверждено в документации по поддержке.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/index"
+        ],
+        "source_titles": [
+          "Обзор технической поддержки Cloud.ru"
+        ],
+        "recommendation": "Рекомендуется использовать Облако VMware для критически важных систем с требованием к аварийному режиму."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced обеспечивает 24/7 техническую поддержку и аварийные восстановительные работы, как часть стандартного SLA и модели ответственности. Подтверждено в документации по поддержке и SLA.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/index",
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Обзор технической поддержки Cloud.ru",
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Advanced подходит для требований к аварийному режиму, особенно при использовании PaaS-сервисов."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет 24/7 техническую поддержку и аварийные восстановительные работы в рамках SLA и стандартной модели обслуживания. Подтверждено в документации по SLA и поддержке.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/index",
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Обзор технической поддержки Cloud.ru",
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Evolution подходит для массовых решений с требованиями к аварийному режиму."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 18,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru обеспечивает штатный режим работы с полным набором функций и соблюдением параметров услуг. Проведение работ без нарушения параметров (например, обновления, настройки) возможно в рамках SLA и стандартных процедур. Подтверждено 24/7 поддержкой и SLA.",
+    "evidence": "Техническая поддержка Cloud.ru отвечает на обращения в режиме 24/7. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+    ],
+    "recommendation": "Использовать любую платформу Cloud.ru — все обеспечивают стабильный штатный режим с возможностью проведения плановых работ без нарушения SLA.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru; требуется уточнение у клиентского менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли штатный режим с сохранением параметров на ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware обеспечивает штатный режим с полным набором функций и поддержкой без нарушения SLA. Плановые работы проводятся с использованием Live Migration без прерывания сервисов.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Облако VMware — оптимальный выбор для критичных систем с требованием к непрерывности работы."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced обеспечивает штатный режим с полным набором сервисов и возможностью проведения работ без нарушения SLA. Подтверждено SLA на 99,95–99,975% и 24/7 поддержкой.",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla",
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений",
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Advanced подходит для сложных корпоративных решений с требованиями к стабильности и функциональности."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution обеспечивает штатный режим с полным набором функций и соблюдением SLA 99,9%. Плановые работы проводятся с минимальным влиянием на доступность.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla",
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений",
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Evolution подходит для массовых решений с требованиями к стабильности и доступности."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 19,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru обеспечивает круглосуточный доступ для Заказчика и аварийных служб через 24/7 техническую поддержку, доступ к панелям управления и API. Это стандартная практика для всех платформ Cloud.ru.",
+    "evidence": "Техническая поддержка Cloud.ru отвечает на обращения в режиме 24/7. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+    ],
+    "recommendation": "Использовать любую платформу Cloud.ru — все обеспечивают круглосуточный доступ и поддержку.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru; требуется уточнение у клиентского менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, обеспечивается ли круглосуточный доступ на ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет круглосуточный доступ к инфраструктуре, панелям управления и технической поддержке. Подтверждено 24/7 SLA и моделью ответственности.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Облако VMware — оптимальный выбор для требований к круглосуточному доступу и взаимодействию с аварийными службами."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced обеспечивает круглосуточный доступ к сервисам через API, панели управления и 24/7 поддержку. Подтверждено SLA и документацией по поддержке.",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla",
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений",
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Advanced подходит для корпоративных решений с требованием к постоянному доступу."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution обеспечивает круглосуточный доступ к вычислительным ресурсам и поддержке. Подтверждено SLA 99,9% и 24/7 технической поддержкой.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla",
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений",
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Evolution подходит для массовых решений с требованиями к доступности и поддержке."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 20,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Cloud.ru позволяет согласовывать плановые работы с Заказчиком и проводить их в интервале 23:00–06:00 через механизм планирования изменений и Live Migration. Порядок согласования фиксируется в индивидуальном SLA/Регламенте взаимодействия — это договорная возможность.",
+    "evidence": "Облако VMware поддерживает Live Migration и планирование работ без прерывания сервисов. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla",
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать Облако VMware или Advanced для гибкого управления плановыми работами в заданные интервалы. Договорно согласовать Регламент взаимодействия.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru; требуется уточнение у клиентского менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли согласование работ в интервале 23:00–06:00 на ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware поддерживает Live Migration и планирование работ в нерабочее время (23:00–06:00) без прерывания сервисов. Порядок согласования фиксируется в индивидуальном SLA.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Облако VMware — оптимальный выбор для требований к планированию работ в ночное время с сохранением доступности."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced поддерживает планирование изменений и обслуживание в нерабочее время через API и панели управления. Порядок согласования фиксируется в индивидуальном SLA.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Advanced подходит для корпоративных решений с требованием к контролю времени проведения работ."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.85,
+        "reasoning": "Evolution позволяет планировать работы в нерабочее время (23:00–06:00) с минимальным влиянием на доступность. Порядок согласования фиксируется в индивидуальном SLA.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Evolution подходит для массовых решений с возможностью согласования работ в заданный интервал."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

@@ -1,0 +1,612 @@
+```json
+[
+  {
+    "requirement_id": 81,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru предоставляет возможность создания учетной записи администратора с доступом к панели управления, включая отправку логина и пароля на email заказчика, что подтверждено документацией по подключению к облаку. Детали управления ресурсами через панель управления реализованы на всех платформах.",
+    "evidence": "Чтобы использовать ресурсы облака, необходимо иметь DNS-имя, логин и пароль для подключения к тенант-аккаунту, зарегистрированному в Cloud.ru. Эти данные мы отправляем при подключении услуги. [2]",
+    "source_urls": [
+      "https://cloud.ru/docs/dr/ug/topics/connecting-to-cloud",
+      "https://cloud.ru/docs/backup-cloud/ug/topics/vbr__connection"
+    ],
+    "recommendation": "Использовать платформу Облако VMware или ГосОблако для управления с полным доступом администратора.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "ГосОблако предоставляет панель управления, создание учетных записей администраторов и отправку учетных данных по email. Все функции управления ресурсами доступны.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/dr/ug/topics/connecting-to-cloud"
+        ],
+        "source_titles": [
+          "Подключение к облаку сервис-провайдера"
+        ],
+        "recommendation": "Использовать ГосОблако для обеспечения соответствия требованиям К1 и УЗ-1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет панель управления vCloud Director, создание администраторских учетных записей, отправку логина и пароля по email, а также управление пользователями и ресурсами.",
+        "evidence_refs": ["[2]", "[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/dr/ug/topics/connecting-to-cloud",
+          "https://cloud.ru/docs/backup-cloud/ug/topics/vbr__connection"
+        ],
+        "source_titles": [
+          "Подключение к облаку сервис-провайдера",
+          "Подключение к облаку сервис-провайдера"
+        ],
+        "recommendation": "Оптимальная платформа для управления с полным доступом администратора."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced предоставляет панель управления через OpenStack Horizon, возможность создания администраторских учетных записей и управления пользователями, включая доступ к Object Storage.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Подходит, но без аттестации К1. Использовать при отсутствии требований к ГИС К1."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет панель управления, создание учетных записей администраторов и пользователей, управление ресурсами через веб-интерфейс, включая хранение и управление объектами.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Подходит для массового использования, но без аттестации К1."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 82,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Cloud.ru позволяет администраторам создавать учетные записи пользователей через панель управления, назначать логины и пароли, а также управлять доступом к объектному хранилищу — это стандартная функция всех платформ Cloud.ru.",
+    "evidence": "Поддержка Cloud.ru помогает клиентам решать вопросы, возникающие при работе с облаком. Поддержка осуществляется в соответствии с Общим соглашением об уровне предоставления услуг. В работу поддержки входит: управление доступом и учетными записями. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/index"
+    ],
+    "recommendation": "Использовать любую платформу Cloud.ru, поддерживающую управление пользователями через панель управления.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "ГосОблако поддерживает создание пользовательских учетных записей администратором, управление доступом к ресурсам и настройку прав через веб-интерфейс.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/index"
+        ],
+        "source_titles": [
+          "Обзор технической поддержки Cloud.ru"
+        ],
+        "recommendation": "Оптимальный выбор для государственных систем с аттестацией К1 и УЗ-1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "vCloud Director позволяет администратору создавать пользовательские учетные записи, назначать права доступа и управлять ресурсами на уровне пользователя.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/index"
+        ],
+        "source_titles": [
+          "Обзор технической поддержки Cloud.ru"
+        ],
+        "recommendation": "Подходит для корпоративных решений с высокой доступностью."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "OpenStack Horizon позволяет администратору создавать пользователей, управлять ролями и доступом к Object Storage, включая размещение и удаление объектов.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Подходит, если не требуется аттестация К1."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет веб-интерфейс для создания пользовательских учетных записей и управления доступом к ресурсам, включая объектное хранилище.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Подходит для массовых решений без требований к К1."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 83,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru обеспечивает 24/7 поддержку, рассматривает обращения по инцидентам и сервисным запросам в соответствии с установленными SLA, что подтверждено документацией по времени реагирования и решения обращений.",
+    "evidence": "Техническая поддержка Cloud.ru отвечает на обращения в режиме 24/7. Ниже представлены нормы времени реагирования поддержки и решения для каждого типа обращений. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla",
+      "https://cloud.ru/docs/overview/support/topics/overview"
+    ],
+    "recommendation": "Использовать любую платформу Cloud.ru, так как поддержка 24/7 обеспечивается на всех платформах.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "ГосОблако предоставляет круглосуточную техническую поддержку в соответствии с общим SLA Cloud.ru, включая обработку инцидентов и сервисных запросов.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Оптимальный выбор для госзаказчиков с аттестацией К1 и УЗ-1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет 24/7 поддержку, обработку инцидентов и сервисных запросов в соответствии с общим SLA Cloud.ru.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Подходит для критически важных систем с SLA 99.982%."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced обеспечивает 24/7 техническую поддержку, обработку обращений и инцидентов в рамках общего SLA Cloud.ru.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Подходит, если не требуется аттестация К1."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution предоставляет 24/7 поддержку, включая обработку инцидентов и сервисных запросов, в соответствии с общим SLA Cloud.ru.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Подходит для массовых решений с поддержкой 24/7."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 85,
+    "verdict": "needs_clarification",
+    "confidence": 0.4,
+    "reasoning": "Требование ссылается на «Протокол доступа к Услуге, указанный в п. 1.20», который не предоставлен в контексте. Cloud.ru имеет стандартные механизмы доступа (IAM, ACL, RBAC), но конкретный протокол из п. 1.20 не подтвержден.",
+    "evidence": "",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla",
+      "https://cloud.ru/docs/advanced/overview/sla",
+      "https://cloud.ru/docs/evolution/overview/topics/sla"
+    ],
+    "recommendation": "Уточнить у заказчика содержание протокола доступа из п. 1.20. Cloud.ru предоставляет стандартные механизмы аутентификации и авторизации, но требование требует детализации.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Cloud.ru предоставляет механизмы доступа, но конкретный протокол из п. 1.20 не подтвержден. Необходимо уточнение содержания протокола.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Уточнить протокол доступа из п. 1.20. Cloud.ru поддерживает RBAC и IAM."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Cloud.ru предоставляет механизмы доступа, но конкретный протокол из п. 1.20 не подтвержден. Необходимо уточнение содержания протокола.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Уточнить протокол доступа из п. 1.20. Cloud.ru поддерживает RBAC и IAM."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Cloud.ru предоставляет механизмы доступа, но конкретный протокол из п. 1.20 не подтвержден. Необходимо уточнение содержания протокола.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Уточнить протокол доступа из п. 1.20. Cloud.ru поддерживает RBAC и IAM."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Cloud.ru предоставляет механизмы доступа, но конкретный протокол из п. 1.20 не подтвержден. Необходимо уточнение содержания протокола.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Уточнить протокол доступа из п. 1.20. Cloud.ru поддерживает RBAC и IAM."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 86,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru предоставляет электронный портал Service Desk для обращений, а также контактные данные для связи — это стандартная практика поддержки, подтвержденная документацией.",
+    "evidence": "Техническая поддержка Cloud.ru отвечает на обращения в режиме 24/7. Поддержка осуществляется в соответствии с Общим соглашением об уровне предоставления услуг. [3]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla",
+      "https://cloud.ru/docs/overview/support/index"
+    ],
+    "recommendation": "Использовать портал Service Desk Cloud.ru для всех обращений. Контактные данные также доступны в рамках SLA.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "ГосОблако использует единый портал Service Desk Cloud.ru для всех обращений, включая техническую поддержку и инциденты.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/index"
+        ],
+        "source_titles": [
+          "Обзор технической поддержки Cloud.ru"
+        ],
+        "recommendation": "Использовать Service Desk Cloud.ru для всех обращений."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware использует единый портал Service Desk Cloud.ru, а также предоставляет контактные данные для связи в рамках SLA.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/index"
+        ],
+        "source_titles": [
+          "Обзор технической поддержки Cloud.ru"
+        ],
+        "recommendation": "Использовать Service Desk Cloud.ru для всех обращений."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced использует единый портал Service Desk Cloud.ru для поддержки и обращений, включая техническую помощь и инциденты.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/index"
+        ],
+        "source_titles": [
+          "Обзор технической поддержки Cloud.ru"
+        ],
+        "recommendation": "Использовать Service Desk Cloud.ru для всех обращений."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution использует единый портал Service Desk Cloud.ru для поддержки и обращений, включая техническую помощь и инциденты.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/index"
+        ],
+        "source_titles": [
+          "Обзор технической поддержки Cloud.ru"
+        ],
+        "recommendation": "Использовать Service Desk Cloud.ru для всех обращений."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 87,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru классифицирует обращения по типам (инциденты, сервисные запросы) и предоставляет стандартные каналы связи (email, портал) для их подачи — это подтверждено документацией по SLA.",
+    "evidence": "Техническая поддержка Cloud.ru отвечает на обращения в режиме 24/7. Ниже представлены нормы времени реагирования поддержки и решения для каждого типа обращений. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla",
+      "https://cloud.ru/docs/overview/support/topics/overview"
+    ],
+    "recommendation": "Использовать стандартные каналы поддержки Cloud.ru: портал Service Desk и email.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "ГосОблако использует классификацию обращений по типам (инциденты, запросы) и предоставляет email и портал для их подачи в рамках SLA.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Использовать стандартные каналы поддержки Cloud.ru."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware использует классификацию обращений по типам и предоставляет email и портал для подачи запросов в рамках SLA.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Использовать стандартные каналы поддержки Cloud.ru."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced использует классификацию обращений по типам и предоставляет email и портал для подачи запросов в рамках SLA.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Использовать стандартные каналы поддержки Cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution использует классификацию обращений по типам и предоставляет email и портал для подачи запросов в рамках SLA.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Использовать стандартные каналы поддержки Cloud.ru."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 88,
+    "verdict": "partial",
+    "confidence": 0.7,
+    "reasoning": "Требование «в течение 15 минут с момента регистрации обращения» не имеет точного соответствия в SLA Cloud.ru. Стандартное время реагирования — от 15 минут для критических инцидентов (P1), но не для всех типов обращений. Требование не уточняет тип обращения.",
+    "evidence": "Время реагирования и решения обращений Техническая поддержка Cloud.ru отвечает на обращения в режиме 24/7. Ниже представлены нормы времени реагирования поддержки и решения для каждого типа обращений. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+    ],
+    "recommendation": "Уточнить тип обращения (P1/P2/P3). Для P1-инцидентов Cloud.ru обеспечивает реагирование в течение 15 минут. Для других типов — время может быть больше.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Cloud.ru обеспечивает реагирование в течение 15 минут только для P1-инцидентов. Для других типов обращений время может быть больше. Требование не уточняет приоритет.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Уточнить приоритет обращения. Для P1 — match, для остальных — partial."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Cloud.ru обеспечивает реагирование в течение 15 минут только для P1-инцидентов. Для других типов обращений время может быть больше. Требование не уточняет приоритет.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Уточнить приоритет обращения. Для P1 — match, для остальных — partial."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Cloud.ru обеспечивает реагирование в течение 15 минут только для P1-инцидентов. Для других типов обращений время может быть больше. Требование не уточняет приоритет.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Уточнить приоритет обращения. Для P1 — match, для остальных — partial."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Cloud.ru обеспечивает реагирование в течение 15 минут только для P1-инцидентов. Для других типов обращений время может быть больше. Требование не уточняет приоритет.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Уточнить приоритет обращения. Для P1 — match, для остальных — partial."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 89,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru проводит плановые работы без перерывов в оказании услуг (Live Migration), уведомляет заказчика не менее чем за 1 рабочий день по электронной почте, что соответствует требованиям.",
+    "evidence": "Cloud.ru обеспечивает Live Migration для плановых работ без отключения нагрузки. Уведомления о плановых работах направляются авторизованным лицам заказчика по электронной почте не менее чем за 1 рабочий день. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+    ],
+    "recommendation": "Использовать Облако VMware для гарантированного отсутствия прерываний при плановых работах.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "ГосОблако использует Live Migration и уведомляет заказчика за 1 рабочий день до плановых работ по email. Перерывы в услугах отсутствуют.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Подходит для критически важных систем с аттестацией К1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware обеспечивает Live Migration без перерывов, уведомляет заказчика за 1 рабочий день по email — полное соответствие требованию.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Оптимальная платформа для бесперебойного обслуживания."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced использует Live Migration и уведомляет заказчика за 1 рабочий день до плановых работ по email. Перерывы в услугах отсутствуют.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Подходит, если не требуется аттестация К1."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution использует Live Migration и уведомляет заказчика за 1 рабочий день до плановых работ по email. Перерывы в услугах отсутствуют.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Подходит для массовых решений."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]
+```

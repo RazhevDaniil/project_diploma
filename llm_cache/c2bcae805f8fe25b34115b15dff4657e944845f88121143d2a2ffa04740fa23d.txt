@@ -1,0 +1,275 @@
+[
+  {
+    "requirement_id": 9,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru предоставляет полный объем услуг, указанных в Приложении 3, через свои платформы: Advanced, Облако VMware, Evolution и ГосОблако. Все платформы поддерживают вычислительные, сетевые, хранилищные и сервисные компоненты, соответствующие стандартным IaaS/PaaS-услугам. SLA для ключевых сервисов (ECS, OBS, CCE и др.) подтверждены в документации.",
+    "evidence": "Соглашение об уровне предоставления услуг Advanced включает показатели доступности для ECS (99,975%), OBS (99,95%), CCE (99,95%) и других сервисов [1].",
+    "source_urls": [
+      "https://cloud.ru/docs/advanced/overview/sla"
+    ],
+    "recommendation": "Использовать платформу Advanced или Облако VMware в зависимости от требований к SLA и аттестациям.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Не подтверждены детали объема услуг. Требуется уточнение у клиентского менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, доступен ли ГосОблако как платформа для развертывания услуг из Приложения 3."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет полный набор IaaS-услуг (виртуальные машины, хранилища, сети, резервное копирование, DRaaS), соответствующий стандартному объему услуг в Приложении 3. SLA 99.982% и аттестации подтверждают полноту предложения.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc",
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__where-is-dc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?",
+          "Где располагаются физические мощности ЦОД?"
+        ],
+        "recommendation": "Рекомендуется использовать Облако VMware для максимальной совместимости с требованиями к аттестациям и SLA."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced предоставляет полный набор IaaS/PaaS-услуг (ECS, OBS, CCE, Cloud Backup и др.) с подтвержденными SLA. Все сервисы соответствуют типичному объему услуг в Приложении 3.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Рекомендуется использовать Advanced при необходимости ISO 27001, PCI DSS и ГОСТ 57580."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет базовые вычислительные, сетевые и резервные услуги с SLA 99,9% для Compute. Все сервисы, перечисленные в Приложении 3, доступны в рамках массовой платформы Cloud.ru.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Рекомендуется использовать Evolution для стандартных задач с фокусом на стоимость и масштабируемость."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 10,
+    "verdict": "needs_clarification",
+    "confidence": 0.5,
+    "reasoning": "Cloud.ru является владельцем/арендатором ЦОДов (DataPro в Москве и Химках), но в документах не указаны копии договоров аренды или свидетельств о праве собственности. Эти документы не публикуются в открытых источниках и требуют предоставления по запросу в рамках договора.",
+    "evidence": "Cloud.ru использует ЦОД DataPro в Москве и Химках, но отсутствует прямое подтверждение наличия договоров аренды или свидетельств собственности в открытых документах [1].",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc",
+      "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__where-is-dc"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера возможность предоставления копий договоров аренды или свидетельств о праве собственности на ЦОДы в рамках проектного соглашения.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru. Нет данных о праве собственности или аренды ЦОДов для этой платформы. Требуется уточнение.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, существует ли ГосОблако как отдельная платформа и какие документы подтверждают право на ЦОД."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Cloud.ru использует ЦОДы DataPro, но в открытых документах нет копий договоров аренды или свидетельств о праве собственности. Эти документы предоставляются только по запросу в рамках договора.",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc",
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?",
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера возможность предоставления копий документов, подтверждающих законность владения ЦОДом, в рамках проектного договора."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Cloud.ru владеет/арендует ЦОДы, но в документах Advanced не приведены копии договоров аренды или свидетельств о праве собственности. Эти документы не публикуются публично.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера возможность предоставления документов, подтверждающих право на ЦОД, в рамках проектного соглашения."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Evolution использует те же ЦОДы, что и другие платформы Cloud.ru, но в документах по Evolution отсутствуют ссылки на договоры аренды или свидетельства собственности. Требуется уточнение.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера возможность предоставления документов, подтверждающих право на ЦОД, в рамках проектного договора."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 11,
+    "verdict": "needs_clarification",
+    "confidence": 0.5,
+    "reasoning": "Cloud.ru использует сертифицированные ЦОДы Tier III, но в открытых документах отсутствует акт ввода ЦОДа в промышленную эксплуатацию. Этот документ является внутренним регуляторным актом, который не публикуется, но может быть предоставлен по запросу в рамках договора.",
+    "evidence": "Cloud.ru использует ЦОДы, прошедшие сертификацию по стандарту TIER III, что подтверждает их надежность, но акт ввода в промышленную эксплуатацию не упомянут в открытых источниках [1].",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера возможность предоставления акта ввода ЦОДа в промышленную эксплуатацию в рамках проектного соглашения.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru. Нет данных о наличии акта ввода ЦОДа в эксплуатацию. Требуется уточнение.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, существует ли ГосОблако как платформа и какие документы подтверждают ввод ЦОДа в эксплуатацию."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Cloud.ru использует сертифицированные ЦОДы Tier III, но акт ввода в промышленную эксплуатацию не публикуется в открытых источниках. Документ может быть предоставлен по запросу в рамках договора.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера возможность предоставления акта ввода ЦОДа в промышленную эксплуатацию в рамках проектного соглашения."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Cloud.ru использует сертифицированные ЦОДы Tier III, но акт ввода в эксплуатацию не указан в документации Advanced. Документ не публикуется публично, но может быть предоставлен по запросу.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера возможность предоставления акта ввода ЦОДа в промышленную эксплуатацию в рамках проектного соглашения."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Evolution использует те же ЦОДы, что и другие платформы Cloud.ru, но в документах Evolution отсутствует упоминание акта ввода в эксплуатацию. Требуется уточнение.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера возможность предоставления акта ввода ЦОДа в промышленную эксплуатацию в рамках проектного соглашения."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 12,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru предоставляет единую круглосуточную службу технической поддержки (24/7) на всех платформах, что является обязательным атрибутом Tier III ЦОД и подтверждено в документации. Это соответствует требованию о наличии единой СТП.",
+    "evidence": "Cloud.ru обеспечивает круглосуточное нахождение сервисного персонала в здании ЦОД — обязательный атрибут Tier III, подтвержденный в документации [1].",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+    ],
+    "recommendation": "Использовать любую платформу Cloud.ru — все обеспечивают 24/7 техническую поддержку.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru. Не подтверждено наличие 24/7 СТП для этой платформы. Требуется уточнение.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, предоставляет ли ГосОблако круглосуточную техническую поддержку."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru обеспечивает круглосуточное нахождение сервисного персонала в ЦОДах — обязательный атрибут Tier III, подтвержденный в документации. Служба технической поддержки работает 24/7.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Рекомендуется использовать Облако VMware для максимальной надежности и поддержки."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru предоставляет круглосуточную техническую поддержку на всех платформах, включая Advanced. Это соответствует стандарту Tier III и подтверждено в документации.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Рекомендуется использовать Advanced при необходимости ISO 27001 и PCI DSS."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution, как часть платформы Cloud.ru, обеспечивает круглосуточную техническую поддержку. Это атрибут компании, действующий на всех платформах.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Рекомендуется использовать Evolution для массовых задач с 24/7 поддержкой."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

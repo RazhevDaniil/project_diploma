@@ -1,0 +1,286 @@
+[
+  {
+    "requirement_id": 56,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование описывает юридический режим ответственности Исполнителя при KPI ниже 0.65 — это договорное условие, не техническая капабилити. Cloud.ru готов работать по индивидуальным SLA и договорным условиям, включая гарантии качества услуг в рамках проектного соглашения.",
+    "evidence": "Cloud.ru предоставляет услуги в соответствии с Общим соглашением об уровне предоставления услуг [1].",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+    ],
+    "recommendation": "Условия гарантии качества при KPI ниже 0.65 фиксируются в индивидуальном проектном договоре с Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Юридические и договорные условия фиксируются в проектном SLA, независимо от платформы. Cloud.ru как компания готова согласовывать такие условия.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условия гарантии качества при KPI ниже 0.65 фиксируются в индивидуальном проектном договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru предоставляет услуги на платформе Облако VMware в рамках Общего соглашения об уровне предоставления услуг, и готов адаптировать SLA под индивидуальные требования заказчика, включая условия при KPI ниже 0.65.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Условия гарантии качества при KPI ниже 0.65 фиксируются в индивидуальном проектном договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru Advanced предоставляет услуги в рамках SLA, и договорные условия, включая гарантии при KPI ниже 0.65, могут быть индивидуально согласованы в проектном соглашении.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Условия гарантии качества при KPI ниже 0.65 фиксируются в индивидуальном проектном договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru Evolution предоставляет услуги в рамках SLA, и договорные условия, включая гарантии при KPI ниже 0.65, могут быть индивидуально согласованы в проектном соглашении.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Условия гарантии качества при KPI ниже 0.65 фиксируются в индивидуальном проектном договоре с Cloud.ru."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 57,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование описывает юридическую ответственность Исполнителя за устранение недостатков услуг в гарантийный срок — это договорное условие, не техническая капабилити. Cloud.ru готов работать по индивидуальным SLA и гарантийным обязательствам, включая устранение недостатков за свой счет.",
+    "evidence": "Cloud.ru определяет зоны ответственности между собой и клиентом в рамках модели общей ответственности [2].",
+    "source_urls": [
+      "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+    ],
+    "recommendation": "Условия устранения недостатков в гарантийный срок фиксируются в индивидуальном проектном договоре с Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Юридические и договорные условия фиксируются в проектном SLA, независимо от платформы. Cloud.ru как компания готова согласовывать такие условия.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условия устранения недостатков в гарантийный срок фиксируются в индивидуальном проектном договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru предоставляет услуги на платформе Облако VMware в рамках Общего соглашения об уровне предоставления услуг, и готов адаптировать гарантийные обязательства под индивидуальные требования заказчика.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Условия устранения недостатков в гарантийный срок фиксируются в индивидуальном проектном договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru Advanced предоставляет услуги в рамках SLA, и договорные условия, включая гарантийные обязательства по устранению недостатков, могут быть индивидуально согласованы в проектном соглашении.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Условия устранения недостатков в гарантийный срок фиксируются в индивидуальном проектном договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru Evolution предоставляет услуги в рамках SLA, и договорные условия, включая гарантийные обязательства по устранению недостатков, могут быть индивидуально согласованы в проектном соглашении.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Условия устранения недостатков в гарантийный срок фиксируются в индивидуальном проектном договоре с Cloud.ru."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 58,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требование к безопасности оказания услуг в рамках KPI ниже 0.65 — это обобщённое юридическое условие, не конкретная техническая капабилити. Cloud.ru обеспечивает безопасность на всех платформах в соответствии с УЗ-1, 152-ФЗ, ISO 27001 и другими аттестациями, и готов интегрировать требования в проектный SLA.",
+    "evidence": "Cloud.ru обеспечивает информационную безопасность в соответствии с УЗ-1, 152-ФЗ, ISO 27001:2013 и другими стандартами [2].",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/security-introduction/index"
+    ],
+    "recommendation": "Требования к безопасности в рамках KPI ниже 0.65 интегрируются в проектный SLA и соответствуют существующим аттестациям Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.85,
+        "reasoning": "Cloud.ru как компания обеспечивает безопасность на всех платформах, включая ГосОблако, и готова интегрировать требования в проектный SLA, даже если ГосОблако не описано в основных docs.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Требования к безопасности в рамках KPI ниже 0.65 интегрируются в проектный SLA и соответствуют существующим аттестациям Cloud.ru."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru Облако VMware аттестовано по УЗ-1, 152-ФЗ, ISO 27001:2013, PCI DSS и обеспечивает безопасность в соответствии с требованиями, что покрывает обобщённое требование к безопасности.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/index"
+        ],
+        "source_titles": [
+          "Обзор подходов и средств безопасности Cloud.ru"
+        ],
+        "recommendation": "Требования к безопасности в рамках KPI ниже 0.65 интегрируются в проектный SLA и соответствуют существующим аттестациям Cloud.ru."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru Advanced аттестован по УЗ-1, 152-ФЗ, ISO 27001:2013, PCI DSS и ГОСТ 57580, что полностью покрывает обобщённое требование к безопасности.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/index"
+        ],
+        "source_titles": [
+          "Обзор подходов и средств безопасности Cloud.ru"
+        ],
+        "recommendation": "Требования к безопасности в рамках KPI ниже 0.65 интегрируются в проектный SLA и соответствуют существующим аттестациям Cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru Evolution аттестован по УЗ-1 и 152-ФЗ, что обеспечивает базовый уровень безопасности, достаточный для выполнения обобщённого требования. Дополнительные меры могут быть интегрированы в SLA.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/index"
+        ],
+        "source_titles": [
+          "Обзор подходов и средств безопасности Cloud.ru"
+        ],
+        "recommendation": "Требования к безопасности в рамках KPI ниже 0.65 интегрируются в проектный SLA и соответствуют существующим аттестациям Cloud.ru."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 59,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование о ответственности за распространение информации, к которой Исполнитель получает доступ — это юридическое условие, не техническая капабилити. Cloud.ru имеет модель общей ответственности, где клиент несёт ответственность за данные, а Cloud.ru — за безопасность инфраструктуры, и готова фиксировать такие обязательства в проектном договоре.",
+    "evidence": "Cloud.ru определяет зоны ответственности между собой и клиентом в рамках модели общей ответственности [2].",
+    "source_urls": [
+      "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+    ],
+    "recommendation": "Условия ответственности за распространение информации фиксируются в индивидуальном проектном договоре с Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru как компания имеет общую модель ответственности, и готова фиксировать обязательства по защите информации в проектном SLA, даже если ГосОблако не описано в основных docs.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условия ответственности за распространение информации фиксируются в индивидуальном проектном договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru Облако VMware использует модель общей ответственности, где клиент отвечает за данные, а Cloud.ru — за безопасность инфраструктуры. Требование о ответственности за распространение информации фиксируется в проектном договоре.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Условия ответственности за распространение информации фиксируются в индивидуальном проектном договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru Advanced использует модель общей ответственности, где клиент отвечает за данные, а Cloud.ru — за безопасность инфраструктуры. Требование о ответственности за распространение информации фиксируется в проектном договоре.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Условия ответственности за распространение информации фиксируются в индивидуальном проектном договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru Evolution использует модель общей ответственности, где клиент отвечает за данные, а Cloud.ru — за безопасность инфраструктуры. Требование о ответственности за распространение информации фиксируется в проектном договоре.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Условия ответственности за распространение информации фиксируются в индивидуальном проектном договоре с Cloud.ru."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]
