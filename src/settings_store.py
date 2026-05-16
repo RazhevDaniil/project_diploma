@@ -40,7 +40,7 @@ def _now() -> str:
     return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 
-def _coerce_value(key: str, value):
+def _coerce_value(key: str, value, migrate_legacy: bool = False):
     int_keys = {
         "parser_chunk_size",
         "parser_concurrency",
@@ -56,6 +56,22 @@ def _coerce_value(key: str, value):
     float_keys = {"openai_temperature", "llm_request_delay", "managed_rag_temperature"}
     bool_keys = {"managed_rag_cache_enabled"}
 
+    if key == "managed_rag_kb_version":
+        text = str(value).strip()
+        legacy_versions = getattr(cfg, "LEGACY_DEFAULT_MANAGED_RAG_KB_VERSIONS", set())
+        if migrate_legacy and text in legacy_versions:
+            return cfg.DEFAULT_MANAGED_RAG_KB_VERSION
+        return text
+    if key == "openai_temperature":
+        numeric = float(value)
+        if migrate_legacy and numeric == 0.05:
+            return cfg.OPENAI_TEMPERATURE
+        return numeric
+    if key == "managed_rag_temperature":
+        numeric = float(value)
+        if migrate_legacy and numeric == 0.01:
+            return cfg.MANAGED_RAG_TEMPERATURE
+        return numeric
     if key in int_keys:
         return int(value)
     if key in float_keys:
@@ -67,7 +83,11 @@ def _coerce_value(key: str, value):
     return str(value)
 
 
-def sanitize_settings(settings: dict | None, include_secrets: bool = False) -> dict:
+def sanitize_settings(
+    settings: dict | None,
+    include_secrets: bool = False,
+    migrate_legacy: bool = False,
+) -> dict:
     if not isinstance(settings, dict):
         return {}
 
@@ -79,7 +99,10 @@ def sanitize_settings(settings: dict | None, include_secrets: bool = False) -> d
     for key, value in settings.items():
         if key not in allowed or value in (None, ""):
             continue
-        result[key] = _coerce_value(key, value) if key in ALLOWED_SETTINGS_KEYS else str(value)
+        if key in ALLOWED_SETTINGS_KEYS:
+            result[key] = _coerce_value(key, value, migrate_legacy=migrate_legacy)
+        else:
+            result[key] = str(value)
     return result
 
 
@@ -92,7 +115,7 @@ def load_ui_settings() -> dict:
         return {"settings": {}, "updated_at": ""}
 
     return {
-        "settings": sanitize_settings(payload.get("settings", {})),
+        "settings": sanitize_settings(payload.get("settings", {}), migrate_legacy=True),
         "updated_at": str(payload.get("updated_at", "") or ""),
     }
 

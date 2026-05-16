@@ -1,4 +1,4 @@
-"""Client for Cloud.ru Managed RAG retrieve_generate API."""
+"""Client for Cloud.ru Managed RAG retrieve/retrieve_generate API."""
 
 from __future__ import annotations
 
@@ -402,8 +402,12 @@ def _cache_key(query: str, number_of_results: int, settings: RuntimeSettings) ->
     return hashlib.sha256(raw.encode("utf-8")).hexdigest()
 
 
+def _is_latest_kb_version(settings: RuntimeSettings) -> bool:
+    return (settings.managed_rag_kb_version or "").strip().lower() == "latest"
+
+
 def _load_cached_result(key: str, settings: RuntimeSettings) -> ManagedRagResult | None:
-    if not settings.managed_rag_cache_enabled:
+    if not settings.managed_rag_cache_enabled or _is_latest_kb_version(settings):
         return None
     path = cfg.MANAGED_RAG_CACHE_DIR / f"{key}.json"
     if not path.exists():
@@ -425,7 +429,7 @@ def _load_cached_result(key: str, settings: RuntimeSettings) -> ManagedRagResult
 
 
 def _save_cached_result(key: str, result: ManagedRagResult, settings: RuntimeSettings) -> None:
-    if not settings.managed_rag_cache_enabled:
+    if not settings.managed_rag_cache_enabled or _is_latest_kb_version(settings):
         return
     cfg.MANAGED_RAG_CACHE_DIR.mkdir(exist_ok=True)
     path = cfg.MANAGED_RAG_CACHE_DIR / f"{key}.json"
@@ -441,31 +445,38 @@ def _save_cached_result(key: str, result: ManagedRagResult, settings: RuntimeSet
         logger.warning("Failed to write Managed RAG cache %s: %s", path.name, exc)
 
 
-def _resolve_retrieve_url(configured_url: str) -> str:
-    """Принудительно используем эндпоинт `/api/v2/retrieve` (без `_generate`).
+def _resolve_rag_url(configured_url: str) -> str:
+    """Normalize Managed RAG endpoint URLs.
 
     /api/v2/retrieve возвращает `metadata.jq_metadata` со всей структурой
     исходных полей (title, link, meta_platform, meta_product, slug). Это
     источник истины — он позволяет точно атрибутировать чанк к платформе и
     показывать читаемый title в матрице.
 
-    /api/v2/retrieve_generate, который мы использовали раньше, возвращает
-    `metadata: null` для всех результатов — там «спрятана» только
-    LLM-генерация ответа. Для нашего пайплайна это не нужно: анализатор
-    сам строит ответ через прямой вызов LLM, опираясь на чанки.
-
-    Если в .env настроен старый URL `/retrieve_generate` — переписываем на
-    `/retrieve`. Если уже настроен `/retrieve` — оставляем как есть.
+    /api/v2/retrieve_generate оставляем как есть, если пользователь явно
+    указал его в UI/.env: тогда Managed RAG сам генерирует краткий ответ, а
+    анализатор дополнительно получает этот summary как вспомогательный
+    контекст. Это важно для воспроизводимости ручной проверки RAG.
     """
     url = (configured_url or "").rstrip("/")
-    if url.endswith("/retrieve_generate"):
-        return url[: -len("_generate")]
-    if url.endswith("/retrieve"):
+    if url.endswith("/retrieve") or url.endswith("/retrieve_generate"):
         return url
     # Незнакомый суффикс — пытаемся подменить хвост на `/retrieve`.
     if "/api/v2/" in url:
         return url.split("/api/v2/", 1)[0] + "/api/v2/retrieve"
     return url
+
+
+def _is_retrieve_generate_url(url: str) -> bool:
+    return (url or "").rstrip("/").endswith("/retrieve_generate")
+
+
+def _extract_rag_answer(data: dict[str, Any]) -> str:
+    for key in ("llm_answer", "answer", "generated_answer", "output", "text"):
+        value = data.get(key)
+        if value:
+            return str(value)
+    return ""
 
 
 def retrieve_generate(
@@ -475,10 +486,10 @@ def retrieve_generate(
 ) -> ManagedRagResult:
     """Ask Managed RAG for Cloud.ru capability context.
 
-    Использует эндпоинт `/api/v2/retrieve`, который возвращает чанки с
-    полной structured metadata (`metadata.jq_metadata`). Имя функции
-    оставлено для совместимости со старым кодом, реально генерация LLM
-    больше не запрашивается у RAG — анализатор делает её сам.
+    По умолчанию использует `/api/v2/retrieve`, который возвращает чанки с
+    полной structured metadata (`metadata.jq_metadata`). Если пользователь
+    явно указал `/api/v2/retrieve_generate`, дополнительно запрашивается
+    LLM-summary Managed RAG и добавляется в контекст анализатора.
     """
     runtime_settings = build_runtime_settings(settings)
     if not runtime_settings.managed_rag_url:
@@ -493,9 +504,12 @@ def retrieve_generate(
         logger.info("Managed RAG cache hit: %s", cache_key[:12])
         return cached
 
+    target_url = _resolve_rag_url(runtime_settings.managed_rag_url)
+
     # /api/v2/retrieve принимает только knowledge_base_version + query +
-    # retrieval_configuration. generation_configuration не нужен — LLM на
-    # стороне RAG не вызывается, что ускоряет ответ и убирает шум.
+    # retrieval_configuration. Для /retrieve_generate добавляем
+    # generation_configuration, чтобы UI-вызов можно было сопоставить с прямым
+    # ручным RAG-запросом через выбранную LLM.
     payload = {
         "knowledge_base_version": runtime_settings.managed_rag_kb_version,
         "query": query,
@@ -504,11 +518,16 @@ def retrieve_generate(
             "retrieval_type": runtime_settings.managed_rag_retrieval_type,
         },
     }
+    if _is_retrieve_generate_url(target_url):
+        payload["generation_configuration"] = {
+            "model": runtime_settings.openai_model,
+            "max_tokens": runtime_settings.managed_rag_max_tokens,
+            "temperature": runtime_settings.managed_rag_temperature,
+            "system_prompt": MANAGED_RAG_SYSTEM_PROMPT,
+        }
     headers = {"Content-Type": "application/json"}
     if runtime_settings.managed_rag_api_key:
         headers["Authorization"] = f"Bearer {runtime_settings.managed_rag_api_key}"
-
-    target_url = _resolve_retrieve_url(runtime_settings.managed_rag_url)
 
     # Retry для flaky-ошибок RAG (SSL EOF, connection reset, 5xx). Managed
     # RAG иногда роняет соединение посреди handshake — без retry это даёт
@@ -561,7 +580,7 @@ def retrieve_generate(
         if last_exc is not None:
             raise last_exc
 
-    results = data.get("results", [])
+    results = data.get("results") or data.get("documents") or data.get("chunks") or []
     if not isinstance(results, list):
         results = []
     enriched = _enrich_results(results)
@@ -569,7 +588,7 @@ def retrieve_generate(
     # `/retrieve` не делает LLM-генерацию, поэтому llm_answer/reasoning будут
     # пустыми. Анализатор строит ответ через прямой вызов LLM на чанках.
     result = ManagedRagResult(
-        answer=str(data.get("llm_answer", "") or ""),
+        answer=_extract_rag_answer(data),
         results=enriched,
         reasoning_content=str(data.get("reasoning_content", "") or ""),
         source_labels=_source_labels(enriched),

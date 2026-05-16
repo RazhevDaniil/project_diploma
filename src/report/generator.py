@@ -377,6 +377,45 @@ def _extraction_coverage_rows(report: AnalysisReport) -> list[dict]:
                 "Значение": "да" if item.get("cap_applied") else "нет",
             }
         )
+        if item.get("cap_applied"):
+            rows.append(
+                {
+                    "Файл": filename,
+                    "Показатель": "Отброшено лимитом",
+                    "Значение": item.get("requirements_omitted_by_cap", ""),
+                }
+            )
+            omitted_counts = item.get("category_counts_omitted") or {}
+            if isinstance(omitted_counts, dict) and omitted_counts:
+                rows.append(
+                    {
+                        "Файл": filename,
+                        "Показатель": "Категории вне анализа",
+                        "Значение": ", ".join(f"{CATEGORY_LABELS.get(k, k)}: {v}" for k, v in omitted_counts.items()),
+                    }
+                )
+            cap_rules = item.get("cap_priority_rules") or []
+            if isinstance(cap_rules, list) and cap_rules:
+                rows.append(
+                    {
+                        "Файл": filename,
+                        "Показатель": "Правило приоритезации лимита",
+                        "Значение": " ".join(str(rule) for rule in cap_rules),
+                    }
+                )
+            examples = item.get("cap_omitted_examples") or []
+            if isinstance(examples, list) and examples:
+                rows.append(
+                    {
+                        "Файл": filename,
+                        "Показатель": "Примеры пунктов вне анализа",
+                        "Значение": "; ".join(
+                            f"{ex.get('section', '')}: {ex.get('text', '')}"
+                            for ex in examples[:5]
+                            if isinstance(ex, dict)
+                        ),
+                    }
+                )
         category_counts = item.get("category_counts_returned") or {}
         if isinstance(category_counts, dict) and category_counts:
             rows.append(
@@ -597,6 +636,173 @@ def _render_quality_section(report: AnalysisReport) -> list[str]:
 
 def _md_cell(value) -> str:
     return str(value or "").replace("\n", " ").replace("|", "\\|")
+
+
+_MD_LINK_RE = re.compile(r"\[([^\]]+)\]\(([^)]+)\)")
+def _markdown_link_to_plain(match: re.Match) -> str:
+    label = match.group(1).strip()
+    url = match.group(2).strip()
+    if label and url and label != url:
+        return f"{label} ({url})"
+    return label or url
+
+
+def _is_markdown_table_row(line: str) -> bool:
+    stripped = line.strip()
+    return stripped.startswith("|") and stripped.endswith("|") and stripped.count("|") >= 2
+
+
+def _split_markdown_table_row(line: str) -> list[str]:
+    stripped = line.strip().strip("|")
+    return [_markdown_to_inline_plain(cell.strip()) for cell in stripped.split("|")]
+
+
+def _is_markdown_table_separator(line: str) -> bool:
+    if not _is_markdown_table_row(line):
+        return False
+    cells = [cell.strip() for cell in line.strip().strip("|").split("|")]
+    if not cells:
+        return False
+    return all(re.fullmatch(r":?-{3,}:?", cell or "") for cell in cells)
+
+
+def _markdown_to_inline_plain(value) -> str:
+    text = str(value or "")
+    text = _MD_LINK_RE.sub(_markdown_link_to_plain, text)
+    text = re.sub(r"\*\*(.*?)\*\*", r"\1", text)
+    text = re.sub(r"__(.*?)__", r"\1", text)
+    text = re.sub(r"`([^`]*)`", r"\1", text)
+    text = re.sub(r"(?<!\w)\*(.*?)\*(?!\w)", r"\1", text)
+    text = re.sub(r"(?<!\w)_(.*?)_(?!\w)", r"\1", text)
+    return text.strip()
+
+
+def _markdown_to_plain(value) -> str:
+    """Convert report Markdown fragments into readable plain text.
+
+    Markdown export stays unchanged; this helper is only for DOCX/PDF and
+    table cells where raw `**bold**`, headings and links look noisy.
+    Markdown tables are preserved as pipe-separated plain rows.
+    """
+    text = str(value or "").replace("\r", "")
+    plain_lines: list[str] = []
+    for raw_line in text.splitlines():
+        line = raw_line.rstrip()
+        stripped = line.strip()
+        if not stripped:
+            plain_lines.append("")
+            continue
+        if _is_markdown_table_separator(stripped):
+            continue
+        if stripped.startswith("#"):
+            stripped = stripped.lstrip("#").strip()
+        stripped = re.sub(r"^\s*[-*+]\s+", "- ", stripped)
+        stripped = re.sub(r"^\s*>\s?", "", stripped)
+        if _is_markdown_table_row(stripped):
+            stripped = " | ".join(_split_markdown_table_row(stripped))
+        else:
+            stripped = _markdown_to_inline_plain(stripped)
+        plain_lines.append(stripped)
+    return "\n".join(plain_lines).strip()
+
+
+def _docx_set_cell_text(cell, value, font_size: int = 8, bold: bool = False) -> None:
+    from docx.shared import Pt
+
+    cell.text = ""
+    paragraph = cell.paragraphs[0]
+    run = paragraph.add_run(_markdown_to_plain(value))
+    run.bold = bold
+    run.font.size = Pt(font_size)
+
+
+def _docx_compact_table(table, font_size: int = 8) -> None:
+    from docx.enum.table import WD_CELL_VERTICAL_ALIGNMENT
+    from docx.shared import Pt
+
+    table.autofit = True
+    for row in table.rows:
+        for cell in row.cells:
+            cell.vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.TOP
+            for paragraph in cell.paragraphs:
+                paragraph.paragraph_format.space_after = Pt(0)
+                for run in paragraph.runs:
+                    run.font.size = Pt(font_size)
+
+
+def _add_markdown_to_docx(doc, text: str, heading_base: int = 2) -> None:
+    """Render a small Markdown subset into DOCX paragraphs and real tables."""
+    if not text:
+        return
+
+    lines = str(text).replace("\r", "").splitlines()
+    i = 0
+    while i < len(lines):
+        line = lines[i]
+        stripped = line.strip()
+        if not stripped:
+            i += 1
+            continue
+
+        if (
+            _is_markdown_table_row(stripped)
+            and i + 1 < len(lines)
+            and _is_markdown_table_separator(lines[i + 1].strip())
+        ):
+            table_rows = [_split_markdown_table_row(stripped)]
+            i += 2
+            while i < len(lines) and _is_markdown_table_row(lines[i].strip()):
+                table_rows.append(_split_markdown_table_row(lines[i].strip()))
+                i += 1
+            if table_rows:
+                col_count = max(len(row) for row in table_rows)
+                table = doc.add_table(rows=1, cols=col_count)
+                table.style = "Table Grid"
+                for col_idx in range(col_count):
+                    _docx_set_cell_text(
+                        table.rows[0].cells[col_idx],
+                        table_rows[0][col_idx] if col_idx < len(table_rows[0]) else "",
+                        font_size=8,
+                        bold=True,
+                    )
+                for row_data in table_rows[1:]:
+                    row = table.add_row()
+                    for col_idx in range(col_count):
+                        _docx_set_cell_text(
+                            row.cells[col_idx],
+                            row_data[col_idx] if col_idx < len(row_data) else "",
+                            font_size=8,
+                        )
+                _docx_compact_table(table, font_size=8)
+            continue
+
+        heading_match = re.match(r"^(#{1,6})\s+(.*)$", stripped)
+        if heading_match:
+            level = min(4, heading_base + len(heading_match.group(1)) - 1)
+            doc.add_heading(_markdown_to_inline_plain(heading_match.group(2)), level=level)
+            i += 1
+            continue
+
+        bullet_match = re.match(r"^\s*[-*+]\s+(.*)$", stripped)
+        if bullet_match:
+            doc.add_paragraph(_markdown_to_inline_plain(bullet_match.group(1)), style="List Bullet")
+            i += 1
+            continue
+
+        numbered_match = re.match(r"^\s*\d+\.\s+(.*)$", stripped)
+        if numbered_match:
+            doc.add_paragraph(_markdown_to_inline_plain(numbered_match.group(1)), style="List Number")
+            i += 1
+            continue
+
+        quote_match = re.match(r"^\s*>\s?(.*)$", stripped)
+        if quote_match:
+            doc.add_paragraph(_markdown_to_inline_plain(quote_match.group(1)))
+            i += 1
+            continue
+
+        doc.add_paragraph(_markdown_to_plain(stripped))
+        i += 1
 
 
 def _suspicious_items(report: AnalysisReport) -> list[dict]:
@@ -963,8 +1169,8 @@ def save_markdown(report: AnalysisReport, output_dir: Path | None = None) -> Pat
 def save_docx(report: AnalysisReport, output_dir: Path | None = None) -> Path:
     """Save report as DOCX file."""
     from docx import Document
-    from docx.shared import Inches, Pt, RGBColor
-    from docx.enum.text import WD_ALIGN_PARAGRAPH
+    from docx.enum.section import WD_ORIENT
+    from docx.shared import Inches, Pt
 
     output_dir = output_dir or cfg.REPORTS_DIR
     output_dir.mkdir(exist_ok=True)
@@ -974,6 +1180,13 @@ def save_docx(report: AnalysisReport, output_dir: Path | None = None) -> Path:
     path = output_dir / filename
 
     doc = Document()
+    section = doc.sections[0]
+    section.orientation = WD_ORIENT.LANDSCAPE
+    section.page_width, section.page_height = section.page_height, section.page_width
+    section.left_margin = Inches(0.45)
+    section.right_margin = Inches(0.45)
+    section.top_margin = Inches(0.45)
+    section.bottom_margin = Inches(0.45)
 
     # Title
     doc.add_heading(f"Отчёт по анализу ТЗ: {report.document_name}", level=0)
@@ -1001,8 +1214,9 @@ def save_docx(report: AnalysisReport, output_dir: Path | None = None) -> Path:
         ("Несоответствие / Требует уточнения", "0"),
     ]
     for i, (k, val) in enumerate(meth_data):
-        meth_table.rows[i].cells[0].text = k
-        meth_table.rows[i].cells[1].text = val
+        _docx_set_cell_text(meth_table.rows[i].cells[0], k, font_size=9, bold=(i == 0))
+        _docx_set_cell_text(meth_table.rows[i].cells[1], val, font_size=9, bold=(i == 0))
+    _docx_compact_table(meth_table, font_size=9)
     doc.add_paragraph(
         f"Максимальный балл = {report.total} пунктов × 2 = {report.max_score}. "
         f"Набрано {report.score} баллов. "
@@ -1024,8 +1238,9 @@ def save_docx(report: AnalysisReport, output_dir: Path | None = None) -> Path:
         ("Общее соответствие", f"{pct}%"),
     ]
     for i, (k, v) in enumerate(summary_data):
-        table.rows[i].cells[0].text = k
-        table.rows[i].cells[1].text = v
+        _docx_set_cell_text(table.rows[i].cells[0], k, font_size=9, bold=(i == 0))
+        _docx_set_cell_text(table.rows[i].cells[1], v, font_size=9, bold=(i == 0))
+    _docx_compact_table(table, font_size=9)
 
     coverage_rows = _extraction_coverage_rows(report)
     signal_rows = _key_signal_rows(report)
@@ -1036,27 +1251,29 @@ def save_docx(report: AnalysisReport, output_dir: Path | None = None) -> Path:
         coverage_table = doc.add_table(rows=1, cols=3)
         coverage_table.style = "Table Grid"
         for j, h in enumerate(["Файл", "Показатель", "Значение"]):
-            coverage_table.rows[0].cells[j].text = h
+            _docx_set_cell_text(coverage_table.rows[0].cells[j], h, font_size=8, bold=True)
         for item in coverage_rows:
             row = coverage_table.add_row()
-            row.cells[0].text = str(item.get("Файл", ""))
-            row.cells[1].text = str(item.get("Показатель", ""))
-            row.cells[2].text = str(item.get("Значение", ""))
+            _docx_set_cell_text(row.cells[0], item.get("Файл", ""), font_size=8)
+            _docx_set_cell_text(row.cells[1], item.get("Показатель", ""), font_size=8)
+            _docx_set_cell_text(row.cells[2], item.get("Значение", ""), font_size=8)
+        _docx_compact_table(coverage_table, font_size=8)
         if signal_rows:
             signals_table = doc.add_table(rows=1, cols=4)
             signals_table.style = "Table Grid"
             for j, h in enumerate(["Файл", "Ключевой сигнал", "Критичный", "Попал в извлечение"]):
-                signals_table.rows[0].cells[j].text = h
+                _docx_set_cell_text(signals_table.rows[0].cells[j], h, font_size=8, bold=True)
             for item in signal_rows:
                 row = signals_table.add_row()
-                row.cells[0].text = str(item.get("Файл", ""))
-                row.cells[1].text = str(item.get("Сигнал", ""))
-                row.cells[2].text = str(item.get("Критичный", ""))
-                row.cells[3].text = str(item.get("В извлечении", ""))
+                _docx_set_cell_text(row.cells[0], item.get("Файл", ""), font_size=8)
+                _docx_set_cell_text(row.cells[1], item.get("Сигнал", ""), font_size=8)
+                _docx_set_cell_text(row.cells[2], item.get("Критичный", ""), font_size=8)
+                _docx_set_cell_text(row.cells[3], item.get("В извлечении", ""), font_size=8)
+            _docx_compact_table(signals_table, font_size=8)
 
     if report.summary:
         doc.add_heading("Резюме", level=2)
-        doc.add_paragraph(report.summary)
+        _add_markdown_to_docx(doc, report.summary, heading_base=3)
 
     refs = _collect_reference_map(report)
     matrix_rows = _platform_matrix_rows(report, refs)
@@ -1067,25 +1284,27 @@ def save_docx(report: AnalysisReport, output_dir: Path | None = None) -> Path:
         matrix_table = doc.add_table(rows=1, cols=len(header))
         matrix_table.style = "Table Grid"
         for j, h in enumerate(header):
-            matrix_table.rows[0].cells[j].text = h
+            _docx_set_cell_text(matrix_table.rows[0].cells[j], h, font_size=7, bold=True)
         for item in matrix_rows:
             row = matrix_table.add_row()
             for j, column in enumerate(header):
-                row.cells[j].text = str(item.get(column, ""))
+                _docx_set_cell_text(row.cells[j], item.get(column, ""), font_size=7)
+        _docx_compact_table(matrix_table, font_size=7)
 
         doc.add_heading("Итого по платформам", level=2)
         totals = _platform_totals(report)
         totals_table = doc.add_table(rows=1, cols=5)
         totals_table.style = "Table Grid"
         for j, h in enumerate(["Платформа / услуга", "+", "±", "-", "?"]):
-            totals_table.rows[0].cells[j].text = h
+            _docx_set_cell_text(totals_table.rows[0].cells[j], h, font_size=8, bold=True)
         for platform_name, (match_count, partial_count, mismatch_count, clarification_count) in totals.items():
             row = totals_table.add_row()
-            row.cells[0].text = platform_name
-            row.cells[1].text = str(match_count)
-            row.cells[2].text = str(partial_count)
-            row.cells[3].text = str(mismatch_count)
-            row.cells[4].text = str(clarification_count)
+            _docx_set_cell_text(row.cells[0], platform_name, font_size=8)
+            _docx_set_cell_text(row.cells[1], match_count, font_size=8)
+            _docx_set_cell_text(row.cells[2], partial_count, font_size=8)
+            _docx_set_cell_text(row.cells[3], mismatch_count, font_size=8)
+            _docx_set_cell_text(row.cells[4], clarification_count, font_size=8)
+        _docx_compact_table(totals_table, font_size=8)
 
     external_items = [v for v in report.verdicts if v.requires_external_service]
     if external_items:
@@ -1103,14 +1322,15 @@ def save_docx(report: AnalysisReport, output_dir: Path | None = None) -> Path:
         t = doc.add_table(rows=1, cols=5)
         t.style = "Table Grid"
         for j, h in enumerate(["Пункт ТЗ", "Вердикт", "Уверенность", "Причины", "Требование"]):
-            t.rows[0].cells[j].text = h
+            _docx_set_cell_text(t.rows[0].cells[j], h, font_size=8, bold=True)
         for item in suspicious_items:
             row = t.add_row()
-            row.cells[0].text = str(item.get("section") or f"#{item.get('requirement_id')}")
-            row.cells[1].text = VERDICT_LABELS.get(item.get("verdict", ""), item.get("verdict", ""))
-            row.cells[2].text = f"{float(item.get('confidence') or 0):.0%}"
-            row.cells[3].text = "; ".join(item.get("reasons", []) or [])
-            row.cells[4].text = str(item.get("requirement_text", ""))[:180]
+            _docx_set_cell_text(row.cells[0], item.get("section") or f"#{item.get('requirement_id')}", font_size=8)
+            _docx_set_cell_text(row.cells[1], VERDICT_LABELS.get(item.get("verdict", ""), item.get("verdict", "")), font_size=8)
+            _docx_set_cell_text(row.cells[2], f"{float(item.get('confidence') or 0):.0%}", font_size=8)
+            _docx_set_cell_text(row.cells[3], "; ".join(item.get("reasons", []) or []), font_size=8)
+            _docx_set_cell_text(row.cells[4], str(item.get("requirement_text", ""))[:180], font_size=8)
+        _docx_compact_table(t, font_size=8)
 
     trace_rows = _trace_rows(report)
     if trace_rows:
@@ -1118,15 +1338,16 @@ def save_docx(report: AnalysisReport, output_dir: Path | None = None) -> Path:
         t = doc.add_table(rows=1, cols=6)
         t.style = "Table Grid"
         for j, h in enumerate(["Пункт ТЗ", "Профиль", "Платформа", "Источник", "Score", "Причины выбора"]):
-            t.rows[0].cells[j].text = h
+            _docx_set_cell_text(t.rows[0].cells[j], h, font_size=7, bold=True)
         for item in trace_rows[:120]:
             row = t.add_row()
-            row.cells[0].text = str(item.get("Пункт ТЗ", ""))
-            row.cells[1].text = str(item.get("Профиль", ""))
-            row.cells[2].text = str(item.get("Платформа", ""))
-            row.cells[3].text = str(item.get("Источник", ""))[:180]
-            row.cells[4].text = str(item.get("Score", ""))
-            row.cells[5].text = str(item.get("Причины выбора", ""))[:240]
+            _docx_set_cell_text(row.cells[0], item.get("Пункт ТЗ", ""), font_size=7)
+            _docx_set_cell_text(row.cells[1], item.get("Профиль", ""), font_size=7)
+            _docx_set_cell_text(row.cells[2], item.get("Платформа", ""), font_size=7)
+            _docx_set_cell_text(row.cells[3], str(item.get("Источник", ""))[:180], font_size=7)
+            _docx_set_cell_text(row.cells[4], item.get("Score", ""), font_size=7)
+            _docx_set_cell_text(row.cells[5], str(item.get("Причины выбора", ""))[:240], font_size=7)
+        _docx_compact_table(t, font_size=7)
 
     doc.add_heading("Что проверить в первую очередь", level=1)
     doc.add_paragraph(_decision_summary(report))
@@ -1141,56 +1362,60 @@ def save_docx(report: AnalysisReport, output_dir: Path | None = None) -> Path:
         t = doc.add_table(rows=1, cols=6)
         t.style = "Table Grid"
         for j, h in enumerate(["Пункт ТЗ", "Категория", "Требование", "Причина", "Рекомендация", "Ссылки на документацию"]):
-            t.rows[0].cells[j].text = h
+            _docx_set_cell_text(t.rows[0].cells[j], h, font_size=7, bold=True)
         for v in mismatches:
             row = t.add_row()
-            row.cells[0].text = v.section or f"#{v.requirement_id}"
-            row.cells[1].text = CATEGORY_LABELS.get(v.category, v.category)
-            row.cells[2].text = _req_text(v, 150)
-            row.cells[3].text = v.reasoning
-            row.cells[4].text = v.recommendation
-            row.cells[5].text = "\n".join(v.source_urls[:5]) if v.source_urls else ""
+            _docx_set_cell_text(row.cells[0], v.section or f"#{v.requirement_id}", font_size=7)
+            _docx_set_cell_text(row.cells[1], CATEGORY_LABELS.get(v.category, v.category), font_size=7)
+            _docx_set_cell_text(row.cells[2], _req_text(v, 150), font_size=7)
+            _docx_set_cell_text(row.cells[3], v.reasoning, font_size=7)
+            _docx_set_cell_text(row.cells[4], v.recommendation, font_size=7)
+            _docx_set_cell_text(row.cells[5], "\n".join(v.source_urls[:5]) if v.source_urls else "", font_size=7)
+        _docx_compact_table(t, font_size=7)
 
     if clarifications:
         doc.add_heading("Требуют уточнения", level=1)
         t = doc.add_table(rows=1, cols=4)
         t.style = "Table Grid"
         for j, h in enumerate(["Пункт ТЗ", "Категория", "Требование", "Комментарий"]):
-            t.rows[0].cells[j].text = h
+            _docx_set_cell_text(t.rows[0].cells[j], h, font_size=8, bold=True)
         for v in clarifications:
             row = t.add_row()
-            row.cells[0].text = v.section or f"#{v.requirement_id}"
-            row.cells[1].text = CATEGORY_LABELS.get(v.category, v.category)
-            row.cells[2].text = _req_text(v, 150)
-            row.cells[3].text = v.reasoning
+            _docx_set_cell_text(row.cells[0], v.section or f"#{v.requirement_id}", font_size=8)
+            _docx_set_cell_text(row.cells[1], CATEGORY_LABELS.get(v.category, v.category), font_size=8)
+            _docx_set_cell_text(row.cells[2], _req_text(v, 150), font_size=8)
+            _docx_set_cell_text(row.cells[3], v.reasoning, font_size=8)
+        _docx_compact_table(t, font_size=8)
 
     if partials:
         doc.add_heading("Частичное соответствие", level=1)
         t = doc.add_table(rows=1, cols=6)
         t.style = "Table Grid"
         for j, h in enumerate(["Пункт ТЗ", "Категория", "Требование", "Обоснование", "Рекомендация", "Ссылки на документацию"]):
-            t.rows[0].cells[j].text = h
+            _docx_set_cell_text(t.rows[0].cells[j], h, font_size=7, bold=True)
         for v in partials:
             row = t.add_row()
-            row.cells[0].text = v.section or f"#{v.requirement_id}"
-            row.cells[1].text = CATEGORY_LABELS.get(v.category, v.category)
-            row.cells[2].text = _req_text(v, 150)
-            row.cells[3].text = v.reasoning
-            row.cells[4].text = v.recommendation
-            row.cells[5].text = "\n".join(v.source_urls[:5]) if v.source_urls else ""
+            _docx_set_cell_text(row.cells[0], v.section or f"#{v.requirement_id}", font_size=7)
+            _docx_set_cell_text(row.cells[1], CATEGORY_LABELS.get(v.category, v.category), font_size=7)
+            _docx_set_cell_text(row.cells[2], _req_text(v, 150), font_size=7)
+            _docx_set_cell_text(row.cells[3], v.reasoning, font_size=7)
+            _docx_set_cell_text(row.cells[4], v.recommendation, font_size=7)
+            _docx_set_cell_text(row.cells[5], "\n".join(v.source_urls[:5]) if v.source_urls else "", font_size=7)
+        _docx_compact_table(t, font_size=7)
 
     if key_matches:
         doc.add_heading("Подтверждённые важные соответствия", level=1)
         t = doc.add_table(rows=1, cols=4)
         t.style = "Table Grid"
         for j, h in enumerate(["Пункт ТЗ", "Категория", "Требование", "Документация"]):
-            t.rows[0].cells[j].text = h
+            _docx_set_cell_text(t.rows[0].cells[j], h, font_size=8, bold=True)
         for v in key_matches:
             row = t.add_row()
-            row.cells[0].text = v.section or f"#{v.requirement_id}"
-            row.cells[1].text = CATEGORY_LABELS.get(v.category, v.category)
-            row.cells[2].text = _req_text(v, 150)
-            row.cells[3].text = "\n".join(v.source_urls[:5]) if v.source_urls else ""
+            _docx_set_cell_text(row.cells[0], v.section or f"#{v.requirement_id}", font_size=8)
+            _docx_set_cell_text(row.cells[1], CATEGORY_LABELS.get(v.category, v.category), font_size=8)
+            _docx_set_cell_text(row.cells[2], _req_text(v, 150), font_size=8)
+            _docx_set_cell_text(row.cells[3], "\n".join(v.source_urls[:5]) if v.source_urls else "", font_size=8)
+        _docx_compact_table(t, font_size=8)
 
     # Процедурные пункты закупки — вне технической оценки Cloud.ru.
     procedural = sorted(
@@ -1211,11 +1436,12 @@ def save_docx(report: AnalysisReport, output_dir: Path | None = None) -> Path:
         t = doc.add_table(rows=1, cols=2)
         t.style = "Table Grid"
         for j, h in enumerate(["Пункт ТЗ", "Требование"]):
-            t.rows[0].cells[j].text = h
+            _docx_set_cell_text(t.rows[0].cells[j], h, font_size=8, bold=True)
         for v in procedural:
             row = t.add_row()
-            row.cells[0].text = v.section or f"#{v.requirement_id}"
-            row.cells[1].text = _req_text(v, 300)
+            _docx_set_cell_text(row.cells[0], v.section or f"#{v.requirement_id}", font_size=8)
+            _docx_set_cell_text(row.cells[1], _req_text(v, 300), font_size=8)
+        _docx_compact_table(t, font_size=8)
 
     if refs:
         doc.add_heading("Сноски RAG", level=1)
@@ -1419,7 +1645,7 @@ def save_pdf(report: AnalysisReport, output_dir: Path | None = None) -> Path:
 
     def _safe(text: str) -> str:
         """Clean text for PDF output."""
-        return text.replace("\r", "").strip()
+        return _markdown_to_plain(text).replace("\r", "").strip()
 
     def _cut(text: str, limit: int) -> str:
         text = _safe(str(text or "")).replace("\n", " ")

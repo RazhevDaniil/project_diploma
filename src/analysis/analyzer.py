@@ -3113,6 +3113,7 @@ def _analyze_batch(requirements: list[Requirement], settings: RuntimeSettings) -
     req_rag_results: dict[int, ManagedRagResult] = {}
     req_source_urls: dict[int, list[str]] = {r.id: [] for r in requirements}
     req_traces: dict[int, dict] = {}
+    req_context_parts: dict[int, str] = {}
     req_map = {r.id: r for r in requirements}
 
     if settings.analysis_rag_mode == "grouped":
@@ -3123,7 +3124,9 @@ def _analyze_batch(requirements: list[Requirement], settings: RuntimeSettings) -
             logger.warning("Grouped Managed RAG failed: %s", error)
             for req in requirements:
                 req_traces[req.id] = _build_analysis_trace(req, "grouped", batch_query, None, error)
-                all_context_parts.append(_format_rag_context(req, None))
+                context_part = _format_rag_context(req, None)
+                req_context_parts[req.id] = context_part
+                all_context_parts.append(context_part)
         else:
             for req in requirements:
                 reranked = _rerank_rag_result(req, rag_result)
@@ -3133,7 +3136,9 @@ def _analyze_batch(requirements: list[Requirement], settings: RuntimeSettings) -
                 for idx, source in enumerate((reranked.results if reranked else []), start=1):
                     source_urls.extend(_filter_urls([_result_url(source)]))
                 req_source_urls[req.id].extend(list(dict.fromkeys(source_urls)))
-                all_context_parts.append(_format_rag_context(req, reranked, max_chars_per_result=1800))
+                context_part = _format_rag_context(req, reranked, max_chars_per_result=1800)
+                req_context_parts[req.id] = context_part
+                all_context_parts.append(context_part)
     else:
         max_workers = max(1, min(settings.managed_rag_concurrency, len(requirements)))
         logger.info("Fetching Managed RAG context for %d requirements (parallel=%d)", len(requirements), max_workers)
@@ -3145,7 +3150,9 @@ def _analyze_batch(requirements: list[Requirement], settings: RuntimeSettings) -
                 if error or rag_result is None:
                     logger.warning("Managed RAG failed for requirement %s: %s", req_id, error)
                     req_traces[req_id] = _build_analysis_trace(req, "per_requirement", _managed_rag_query(req), None, error)
-                    all_context_parts.append(_format_rag_context(req, None))
+                    context_part = _format_rag_context(req, None)
+                    req_context_parts[req_id] = context_part
+                    all_context_parts.append(context_part)
                     continue
 
                 reranked = _rerank_rag_result(req, rag_result)
@@ -3153,9 +3160,13 @@ def _analyze_batch(requirements: list[Requirement], settings: RuntimeSettings) -
                 req_traces[req.id] = _build_analysis_trace(req, "per_requirement", _managed_rag_query(req), reranked)
                 for idx, source in enumerate((reranked.results if reranked else []), start=1):
                     req_source_urls[req.id].extend(_filter_urls([_result_url(source)]))
-                all_context_parts.append(_format_rag_context(req, reranked, max_chars_per_result=1800))
+                context_part = _format_rag_context(req, reranked, max_chars_per_result=1800)
+                req_context_parts[req.id] = context_part
+                all_context_parts.append(context_part)
 
-    context = "\n\n---\n\n".join(all_context_parts) if all_context_parts else "Managed RAG не вернул релевантной информации."
+    ordered_context_parts = [req_context_parts.get(req.id, "") for req in requirements]
+    ordered_context_parts = [part for part in ordered_context_parts if part]
+    context = "\n\n---\n\n".join(ordered_context_parts or all_context_parts) if (ordered_context_parts or all_context_parts) else "Managed RAG не вернул релевантной информации."
 
     # v12.1: забираем snapshot local_rag-хитов, собранных в side-channel при
     # вызовах _format_rag_context для каждого требования этого батча.
@@ -3283,16 +3294,16 @@ def _analyze_batch(requirements: list[Requirement], settings: RuntimeSettings) -
     # RETRY ДЛЯ ПРОПУЩЕННЫХ. Если LLM вернула меньше вердиктов чем требований
     # (типичная причина — обрыв JSON на лимите max_tokens или невалидный JSON
     # на одном из объектов), повторяем дозапрос только для тех requirement_id,
-    # которых не оказалось в первом ответе. Делаем суб-батчами по 4 — это
-    # гарантированно укладывается в любой разумный max_tokens.
+    # которых не оказалось в первом ответе. Повторяем по одному требованию с
+    # его собственным RAG-контекстом, чтобы большой batch-context не ломал JSON.
     missing_reqs = [r for r in requirements if r.id not in returned_ids]
     if missing_reqs:
         logger.warning(
-            "LLM не вернула вердикт для %d/%d требований первого батча; делаем retry батчами по 4",
+            "LLM не вернула вердикт для %d/%d требований первого батча; делаем точечный retry по одному",
             len(missing_reqs),
             len(requirements),
         )
-        retry_chunk_size = 4
+        retry_chunk_size = 1
         for chunk_start in range(0, len(missing_reqs), retry_chunk_size):
             chunk = missing_reqs[chunk_start:chunk_start + retry_chunk_size]
             chunk_lines = []
@@ -3303,16 +3314,16 @@ def _analyze_batch(requirements: list[Requirement], settings: RuntimeSettings) -
                 chunk_lines.append(line)
             retry_prompt = analysis_template.format(
                 requirements_block="\n\n".join(chunk_lines),
-                context=context,
-            )
+                context="\n\n---\n\n".join(req_context_parts.get(r.id, "") for r in chunk if req_context_parts.get(r.id)) or context,
+            ) + "\n\nОтветь строго на русском языке. Верни только валидный JSON-массив без markdown."
             try:
                 retry_result = call_llm_json(
                     retry_prompt,
                     system_prompt=analysis_system,
-                    # Retry-чанк = до 4 требований; промпт + local_rag
-                    # фрагменты могут давать тяжёлый контекст. 48K — двойной
-                    # запас, гарантия что reasoning не обрежется.
-                    max_tokens=48000,
+                    # Retry идёт по одному требованию и только с его RAG-
+                    # контекстом. Это устраняет типичный сбой, когда большой
+                    # batch вернул валидный JSON не по всем requirement_id.
+                    max_tokens=16000,
                     settings=settings,
                 )
                 retry_items = retry_result if isinstance(retry_result, list) else [retry_result]

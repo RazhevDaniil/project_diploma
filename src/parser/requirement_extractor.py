@@ -255,6 +255,27 @@ def _category_counts(requirements: list[Requirement]) -> dict[str, int]:
     return dict(Counter(req.category or "other" for req in requirements))
 
 
+CAP_PRIORITY_RULES = [
+    "Сначала сохраняются категории: technical, security, sla, legal, commercial, other.",
+    "Внутри категории выше идут требования с маркерами VMware/vCloud, ИБ/аттестаций, SLA, S3/WORM/API, сетей, ЦОД, личного кабинета/IAM.",
+    "Дополнительный приоритет получают требования с числовыми параметрами и единицами измерения.",
+    "Короткие и похожие на определения/глоссарий строки получают меньший приоритет.",
+    "После отбора исходный порядок ТЗ восстанавливается, чтобы навигация по отчёту оставалась естественной.",
+]
+
+
+def _requirement_identity(req: Requirement) -> str:
+    return _normalize_blob(" ".join([req.section or "", req.text or "", req.tables or ""]))[:1000]
+
+
+def _requirements_omitted_by_cap(
+    detected_requirements: list[Requirement],
+    returned_requirements: list[Requirement],
+) -> list[Requirement]:
+    returned_keys = {_requirement_identity(req) for req in returned_requirements}
+    return [req for req in detected_requirements if _requirement_identity(req) not in returned_keys]
+
+
 def _signal_present(blob: str, needles: tuple[str, ...]) -> bool:
     """Legacy helper — оставлен ради внешних использований/тестов."""
     return any(_normalize_blob(needle) in blob for needle in needles)
@@ -359,6 +380,7 @@ def _set_extraction_summary(
     settings: RuntimeSettings,
 ) -> None:
     coverage = _key_signal_coverage(document.full_text, returned_requirements)
+    omitted_requirements = _requirements_omitted_by_cap(detected_requirements, returned_requirements)
     # Патч 5 (ZK10). Различаем «реально потеряли» (direct в документе, нет в
     # извлечении) от «возможно, шум» (только synonym-match'и). Первое требует
     # внимания пресейла; второе — пометка «уточнить, действительно ли это
@@ -387,8 +409,18 @@ def _set_extraction_summary(
         "cap": settings.parser_fast_max_requirements,
         "cap_applied": len(detected_requirements) > len(returned_requirements),
         "requirements_omitted_by_cap": max(0, len(detected_requirements) - len(returned_requirements)),
+        "cap_priority_rules": CAP_PRIORITY_RULES,
         "category_counts_detected": _category_counts(detected_requirements),
         "category_counts_returned": _category_counts(returned_requirements),
+        "category_counts_omitted": _category_counts(omitted_requirements),
+        "cap_omitted_examples": [
+            {
+                "section": req.section,
+                "category": req.category,
+                "text": req.text[:240],
+            }
+            for req in omitted_requirements[:10]
+        ],
         "key_signal_coverage": coverage,
         "missing_key_signals_after_extraction": missing_signals,
         # Патч 5 (ZK10). Сигналы, помеченные «present_in_document» только

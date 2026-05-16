@@ -15,6 +15,7 @@ DEFAULT_BACKEND_API_URL = os.getenv("BACKEND_API_URL", "http://localhost:8000").
 MODEL_OPTIONS = {
     "gpt-oss-120b": "openai/gpt-oss-120b",
     "GLM-4.6": "zai-org/GLM-4.6",
+    "GLM-4.7": "zai-org/GLM-4.7",
     "Qwen3-235B-A22B-Instruct-2507": "Qwen/Qwen3-235B-A22B-Instruct-2507",
     "Qwen3-Next-80B-A3B-Instruct": "Qwen/Qwen3-Next-80B-A3B-Instruct",
 }
@@ -70,7 +71,7 @@ def init_state():
         "openai_api_base": os.getenv("OPENAI_API_BASE", "https://foundation-models.api.cloud.ru/v1"),
         "openai_api_key": os.getenv("OPENAI_API_KEY", ""),
         "openai_model": os.getenv("OPENAI_MODEL", MODEL_OPTIONS["Qwen3-Next-80B-A3B-Instruct"]),
-        "openai_temperature": float(os.getenv("OPENAI_TEMPERATURE", "0.05")),
+        "openai_temperature": float(os.getenv("OPENAI_TEMPERATURE", "0.2")),
         "llm_request_delay": float(os.getenv("LLM_REQUEST_DELAY", "0")),
         "parser_mode": os.getenv("PARSER_MODE", "fast").lower(),
         "parser_chunk_size": int(os.getenv("PARSER_CHUNK_SIZE", "6000")),
@@ -78,18 +79,18 @@ def init_state():
         "parser_fast_min_requirements": int(os.getenv("PARSER_FAST_MIN_REQUIREMENTS", "20")),
         "parser_fast_max_requirements": int(os.getenv("PARSER_FAST_MAX_REQUIREMENTS", "1000")),
         "max_requirements_per_batch": int(os.getenv("MAX_REQUIREMENTS_PER_BATCH", "8")),
-        "analysis_rag_mode": os.getenv("ANALYSIS_RAG_MODE", "grouped").lower(),
-        "analysis_batch_concurrency": int(os.getenv("ANALYSIS_BATCH_CONCURRENCY", "2")),
+        "analysis_rag_mode": os.getenv("ANALYSIS_RAG_MODE", "per_requirement").lower(),
+        "analysis_batch_concurrency": int(os.getenv("ANALYSIS_BATCH_CONCURRENCY", "4")),
         "managed_rag_url": os.getenv(
             "MANAGED_RAG_URL",
-            "https://e424a162-618c-4862-b789-b089abd81b46.managed-rag.inference.cloud.ru/api/v2/retrieve_generate",
+            "https://e424a162-618c-4862-b789-b089abd81b46.managed-rag.inference.cloud.ru/api/v2/retrieve",
         ),
-        "managed_rag_kb_version": os.getenv("MANAGED_RAG_KB_VERSION", "eb73eb63-ec91-47c9-851e-1c14949b7a14"),
+        "managed_rag_kb_version": os.getenv("MANAGED_RAG_KB_VERSION", "latest"),
         "managed_rag_api_key": os.getenv("MANAGED_RAG_API_KEY", os.getenv("OPENAI_API_KEY", "")),
         "managed_rag_results": int(os.getenv("MANAGED_RAG_RESULTS", "6")),
         "managed_rag_context_chunks": int(os.getenv("MANAGED_RAG_CONTEXT_CHUNKS", "6")),
-        "managed_rag_max_tokens": int(os.getenv("MANAGED_RAG_MAX_TOKENS", "768")),
-        "managed_rag_temperature": float(os.getenv("MANAGED_RAG_TEMPERATURE", "0.01")),
+        "managed_rag_max_tokens": int(os.getenv("MANAGED_RAG_MAX_TOKENS", "2048")),
+        "managed_rag_temperature": float(os.getenv("MANAGED_RAG_TEMPERATURE", "0.2")),
         "managed_rag_concurrency": int(os.getenv("MANAGED_RAG_CONCURRENCY", "4")),
         "managed_rag_cache_enabled": os.getenv("MANAGED_RAG_CACHE_ENABLED", "true").lower() in {"1", "true", "yes", "on"},
         "metrics_mode": "platform",  # «platform» или «portfolio» — Блок 9
@@ -2459,9 +2460,20 @@ if sidebar_view == "⚙️ Настройки":
         max_value=1.0,
         step=0.01,
         key="openai_temperature",
-        help="Ниже — стабильнее и строже, выше — больше вариативности в формулировках.",
+        help=(
+            "Температура прямых вызовов Foundation Models: извлечение через LLM, "
+            "JSON-анализ требований, summary и чат по отчёту. 0.2 — рабочий "
+            "баланс: достаточно детерминированно, но меньше риск пустого или "
+            "слишком шаблонного ответа. Не управляет retrieval-частью RAG."
+        ),
     )
     with st.expander("Скорость обработки"):
+        st.caption(
+            "Эти параметры применяются к новым запускам. Ограничитель требований "
+            "не берёт первые N строк: перед лимитом парсер ранжирует найденные "
+            "пункты по категории, техническим маркерам, числовым параметрам и "
+            "важным Cloud.ru-сигналам, затем восстанавливает порядок исходного ТЗ."
+        )
         parser_modes = ["fast", "hybrid", "llm"]
         if st.session_state.parser_mode not in parser_modes:
             st.session_state.parser_mode = "fast"
@@ -2474,36 +2486,173 @@ if sidebar_view == "⚙️ Настройки":
                 "hybrid": "Локальный + fallback LLM",
                 "llm": "Только LLM",
             }.get(value, value),
+            help=(
+                "fast — локальный структурный парсер DOCX/PDF без LLM; hybrid — "
+                "сначала fast, но при количестве ниже минимума уходит в LLM; "
+                "llm — сразу LLM-извлечение по чанкам. Для больших ТЗ обычно "
+                "быстрее и стабильнее fast/hybrid."
+            ),
         )
-        st.number_input("Размер чанка парсера", min_value=3000, max_value=20000, step=1000, key="parser_chunk_size")
-        st.number_input("Параллельность парсера", min_value=1, max_value=10, key="parser_concurrency")
-        st.number_input("Мин. требований для fast/hybrid", min_value=1, max_value=200, key="parser_fast_min_requirements")
-        st.number_input("Макс. требований для анализа", min_value=20, max_value=1000, step=20, key="parser_fast_max_requirements")
-        st.number_input("Требований в батче анализа", min_value=5, max_value=50, step=5, key="max_requirements_per_batch")
+        st.number_input(
+            "Размер чанка парсера",
+            min_value=3000,
+            max_value=20000,
+            step=1000,
+            key="parser_chunk_size",
+            help=(
+                "Размер текстового куска для LLM-извлечения в режимах llm/fallback. "
+                "На fast-парсер DOCX-блоков почти не влияет. Больше чанки — меньше "
+                "запросов, но выше риск длинного промпта и невалидного JSON."
+            ),
+        )
+        st.number_input(
+            "Параллельность парсера",
+            min_value=1,
+            max_value=10,
+            key="parser_concurrency",
+            help=(
+                "Сколько LLM-чанков извлечения обрабатываются одновременно. "
+                "Ускоряет llm/fallback, но повышает нагрузку и риск rate limit. "
+                "На чистый fast-парсер влияет минимально."
+            ),
+        )
+        st.number_input(
+            "Мин. требований для fast/hybrid",
+            min_value=1,
+            max_value=200,
+            key="parser_fast_min_requirements",
+            help=(
+                "Порог sanity-check для fast/hybrid. Если fast нашёл меньше, "
+                "это считается возможным сбоем структуры документа; при включенном "
+                "fallback backend переходит к LLM-извлечению."
+            ),
+        )
+        st.number_input(
+            "Макс. требований для анализа",
+            min_value=20,
+            max_value=1000,
+            step=20,
+            key="parser_fast_max_requirements",
+            help=(
+                "Жёсткий лимит требований, которые пойдут в RAG/LLM-анализ. "
+                "Нужен для контроля времени, стоимости и размера отчёта. Если "
+                "найдено больше, сохраняются наиболее важные: technical → "
+                "security → SLA → legal → commercial → other; внутри категории "
+                "выше требования с платформенными маркерами, числами, SLA/ИБ/S3/"
+                "сетью/ЦОД/IAM. В отчёте фиксируется сколько и что отброшено."
+            ),
+        )
+        st.number_input(
+            "Требований в батче анализа",
+            min_value=5,
+            max_value=50,
+            step=5,
+            key="max_requirements_per_batch",
+            help=(
+                "Сколько требований отправляется в один JSON-запрос анализатора. "
+                "Меньше — медленнее, но стабильнее JSON и меньше пропусков. "
+                "Больше — быстрее, но выше риск обрыва/неполного ответа."
+            ),
+        )
         rag_modes = ["grouped", "per_requirement"]
         if st.session_state.analysis_rag_mode not in rag_modes:
-            st.session_state.analysis_rag_mode = "grouped"
+            st.session_state.analysis_rag_mode = "per_requirement"
         st.selectbox(
             "RAG для анализа",
             rag_modes,
             key="analysis_rag_mode",
             format_func=lambda value: "1 RAG-запрос на батч" if value == "grouped" else "RAG-запрос на каждое требование",
+            help=(
+                "grouped делает один RAG-поиск на батч требований: быстрее, но "
+                "контекст может быть слишком общим. per_requirement ищет контекст "
+                "для каждого требования отдельно: медленнее, зато лучше recall и "
+                "меньше строк «не удалось получить оценку от LLM»."
+            ),
         )
-        st.number_input("Параллельность батчей анализа", min_value=1, max_value=6, key="analysis_batch_concurrency")
-        st.number_input("Пауза между LLM-запросами, сек", min_value=0.0, max_value=5.0, step=0.1, key="llm_request_delay")
+        st.number_input(
+            "Параллельность батчей анализа",
+            min_value=1,
+            max_value=6,
+            key="analysis_batch_concurrency",
+            help=(
+                "Сколько батчей требований одновременно проходят RAG+LLM. "
+                "Ускоряет большие ТЗ, но умножает число параллельных запросов."
+            ),
+        )
+        st.number_input(
+            "Пауза между LLM-запросами, сек",
+            min_value=0.0,
+            max_value=5.0,
+            step=0.1,
+            key="llm_request_delay",
+            help="Искусственная задержка после прямого LLM-запроса для мягкого прохождения rate limit.",
+        )
 
     st.divider()
 
     st.subheader("Managed RAG")
-    st.text_input("RAG URL", key="managed_rag_url")
-    st.text_input("Knowledge Base Version", key="managed_rag_kb_version")
+    st.text_input(
+        "RAG URL",
+        key="managed_rag_url",
+        help=(
+            "Эндпоинт Managed RAG. /retrieve возвращает только найденные чанки "
+            "и используется по умолчанию; /retrieve_generate дополнительно "
+            "просит Managed RAG сгенерировать answer выбранной LLM и добавляет "
+            "его в контекст анализа."
+        ),
+    )
+    st.text_input(
+        "Knowledge Base Version",
+        key="managed_rag_kb_version",
+        help=(
+            "Версия индексированной базы знаний. Значение latest использует "
+            "актуальную опубликованную версию. Для latest backend не использует "
+            "локальный RAG-кэш, чтобы не вернуть данные от старого индекса."
+        ),
+    )
     st.text_input("RAG API Key", type="password", key="managed_rag_api_key")
-    st.number_input("Кол-во результатов", min_value=1, max_value=10, key="managed_rag_results")
-    st.number_input("Чанков в контексте", min_value=1, max_value=20, key="managed_rag_context_chunks")
-    st.number_input("Макс. токенов RAG", min_value=128, max_value=4096, step=128, key="managed_rag_max_tokens")
-    st.number_input("Температура RAG", min_value=0.0, max_value=1.0, step=0.01, key="managed_rag_temperature")
-    st.number_input("Параллельность RAG", min_value=1, max_value=10, key="managed_rag_concurrency")
-    st.checkbox("Кэшировать RAG-ответы", key="managed_rag_cache_enabled")
+    st.number_input(
+        "Кол-во результатов",
+        min_value=1,
+        max_value=10,
+        key="managed_rag_results",
+        help="Сколько документов просит backend у Managed RAG до локального rerank. Больше — выше recall, но больше шума в контексте.",
+    )
+    st.number_input(
+        "Чанков в контексте",
+        min_value=1,
+        max_value=20,
+        key="managed_rag_context_chunks",
+        help="Резервный параметр для совместимости с кешем и будущими RAG API. Сейчас итоговый контекст ограничивается rerank top-3 на требование.",
+    )
+    st.number_input(
+        "Макс. токенов RAG",
+        min_value=128,
+        max_value=4096,
+        step=128,
+        key="managed_rag_max_tokens",
+        help="Используется только для эндпоинта /retrieve_generate. Для /retrieve генерации на стороне RAG нет, поэтому лимит не применяется.",
+    )
+    st.number_input(
+        "Температура RAG",
+        min_value=0.0,
+        max_value=1.0,
+        step=0.01,
+        key="managed_rag_temperature",
+        help="Температура генерации Managed RAG только для /retrieve_generate. Для стандартного /retrieve не влияет на результаты.",
+    )
+    st.number_input(
+        "Параллельность RAG",
+        min_value=1,
+        max_value=10,
+        key="managed_rag_concurrency",
+        help="Сколько RAG-запросов одновременно выполняется внутри одного батча в режиме per_requirement.",
+    )
+    st.checkbox(
+        "Кэшировать RAG-ответы",
+        key="managed_rag_cache_enabled",
+        help="Кэш ускоряет повторные прогоны фиксированной KB-версии. Для Knowledge Base Version = latest backend кэш автоматически пропускает.",
+    )
 
     st.divider()
     st.subheader("Настройки")
