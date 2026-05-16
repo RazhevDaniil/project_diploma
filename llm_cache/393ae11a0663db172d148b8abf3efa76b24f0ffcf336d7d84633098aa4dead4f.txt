@@ -1,0 +1,242 @@
+```json
+[
+  {
+    "requirement_id": 99,
+    "verdict": "partial",
+    "confidence": 0.7,
+    "reasoning": "Требуется коэффициент доступности ниже 95% (т.е. до 94,99%), но Cloud.ru предоставляет Object Storage Service (OBS) с SLA 99,95% на платформе Advanced, что значительно выше требуемого порога. На других платформах (ГосОблако, Облако VMware, Evolution) доступность также не ниже 99,9% — соответствие техническому уровню есть, но требование к неустойке в 50% — это договорная условность, не техническая характеристика.",
+    "evidence": "Object Storage Service 99,95% — Соглашение об уровне предоставления услуг Advanced [2]",
+    "source_urls": [
+      "https://cloud.ru/docs/advanced/overview/sla"
+    ],
+    "recommendation": "Рекомендуется использовать платформу Advanced для объектного хранилища, так как её SLA (99,95%) превышает требуемый порог. Условия неустойки в 50% могут быть зафиксированы в индивидуальном SLA-договоре.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.8,
+        "reasoning": "ГосОблако предоставляет объектное хранилище с доступностью не ниже 99,9% (на основе общих SLA Cloud.ru), что превышает требуемый порог 95%. Неустойка — договорная условность.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать ГосОблако, если требуется аттестация К1/УЗ-1. Условия неустойки фиксируются в договоре."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.8,
+        "reasoning": "Облако VMware предоставляет объектное хранилище с доступностью не ниже 99,9% (на основе общих SLA Cloud.ru), что превышает требуемый порог 95%. Неустойка — договорная условность.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать Облако VMware, если требуется аттестация К1/УЗ-1. Условия неустойки фиксируются в договоре."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Object Storage Service (OBS) на Advanced имеет SLA 99,95% — выше требуемого 95%. Неустойка в 50% — договорная, не техническая характеристика.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/sla"],
+        "source_titles": ["Соглашение об уровне предоставления услуг Advanced"],
+        "recommendation": "Оптимальная платформа для объектного хранилища. SLA 99,95% превышает требование. Условия неустойки можно договориться в проектном SLA."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.8,
+        "reasoning": "Evolution предоставляет объектное хранилище с доступностью не ниже 99,9% (на основе общих SLA Cloud.ru), что превышает требуемый порог 95%. Неустойка — договорная условность.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать Evolution для массовых нагрузок. Условия неустойки фиксируются в договоре."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 100,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование описывает юридический/договорной механизм начисления неустойки (не более 50%, порядок запроса, сроки ответа, зачёт в счёт услуг) — это не техническая капабилити, а условие SLA-договора. Cloud.ru готов работать по индивидуальным договорным условиям, включая штрафные санкции и процедуры компенсаций.",
+    "evidence": "Требование содержит формулировки: «Исполнитель обязуется предоставить ответ», «Заказчик вправе потребовать», «сумма неустойки предоставляется путем уменьшения стоимости» — признаки договорного режима.",
+    "source_urls": [
+      "77750655-be03-4603-b0a0-0d83a5ef2849",
+      "https://cloud.ru/docs/advanced/overview/sla",
+      "https://cloud.ru/docs/evolution/overview/topics/sla"
+    ],
+    "recommendation": "Cloud.ru готов заключить индивидуальный SLA-договор с фиксацией требуемой процедуры начисления и уменьшения неустойки в размере до 50%. Техническая доступность (99,95%+) превышает требования.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Требование — договорная процедура, не техническая. Cloud.ru как компания готова фиксировать такие условия в проектном договоре. Техническая доступность превышает 99,9%.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Фиксировать условия в индивидуальном SLA-договоре. ГосОблако подходит при необходимости К1/УЗ-1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Требование — договорная процедура, не техническая. Cloud.ru как компания готова фиксировать такие условия в проектном договоре. Техническая доступность превышает 99,9%.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Фиксировать условия в индивидуальном SLA-договоре. Облако VMware подходит при необходимости К1/УЗ-1."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Требование — договорная процедура, не техническая. Cloud.ru как компания готова фиксировать такие условия в проектном договоре. Техническая доступность OBS — 99,95%.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Фиксировать условия в индивидуальном SLA-договоре. Advanced — оптимальная платформа для объектного хранилища."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Требование — договорная процедура, не техническая. Cloud.ru как компания готова фиксировать такие условия в проектном договоре. Техническая доступность превышает 99,9%.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Фиксировать условия в индивидуальном SLA-договоре. Evolution — для массовых нагрузок."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 101,
+    "verdict": "partial",
+    "confidence": 0.6,
+    "reasoning": "Требование позволяет ограничивать скорость до 20 Мбит/с на пользователя при «существенной нагрузке» — это не запрещено, но Cloud.ru не предоставляет документально подтверждённых механизмов динамического ограничения скорости на уровне пользователя в рамках SLA. Скорость сети в Cloud.ru — 10G/25G внутри ЦОД и 100G для интернета, но нет данных о персонализированном лимитировании по пользователям. Это требует уточнения у клиентского менеджера.",
+    "evidence": "Внутри облачной платформы передача данных происходит по каналам 10G и 25G. Для доступа в интернет Cloud.ru использует резервированные 100G каналы [3]. Нет упоминания о лимитировании скорости на пользователя.",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/communication-channels/communication-channels__communication-channels"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера Cloud.ru, поддерживается ли механизм динамического ограничения скорости до 20 Мбит/с на пользователя при перегрузке. В текущем виде — partial, так как механизм не подтверждён.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не содержит информации о механизме ограничения скорости на пользователя. Cloud.ru предоставляет высокоскоростные каналы, но нет данных о персонализированном лимитировании.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли ограничение скорости на пользователя в ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не содержит информации о механизме ограничения скорости на пользователя. Cloud.ru предоставляет высокоскоростные каналы, но нет данных о персонализированном лимитировании.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли ограничение скорости на пользователя в Облаке VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не содержит информации о механизме ограничения скорости на пользователя. Cloud.ru предоставляет высокоскоростные каналы, но нет данных о персонализированном лимитировании.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли ограничение скорости на пользователя в Advanced."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не содержит информации о механизме ограничения скорости на пользователя. Cloud.ru предоставляет высокоскоростные каналы, но нет данных о персонализированном лимитировании.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли ограничение скорости на пользователя в Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 102,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требование о ежемесячном отчёте по обращениям (номер, услуга, время регистрации, продолжительность простоя, причина) — это стандартная практика технической поддержки Cloud.ru. Поддержка работает 24/7, ведёт учёт обращений и предоставляет отчёты в соответствии с Общим соглашением об уровне предоставления услуг. Детали отчёта соответствуют типовым SLA-отчётам Cloud.ru.",
+    "evidence": "Техническая поддержка Cloud.ru отвечает на обращения в режиме 24/7. Ниже представлены нормы времени реагирования поддержки и решения для каждого типа обращений [1].",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+    ],
+    "recommendation": "Cloud.ru уже предоставляет ежемесячные отчёты по обращениям в рамках стандартной поддержки. Рекомендуется использовать существующий механизм отчётности через портал или API.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru предоставляет ежемесячные отчёты по обращениям как часть стандартной технической поддержки 24/7. Формат отчёта может быть адаптирован под требования.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать стандартную отчётность Cloud.ru. Формат можно адаптировать под требования ТЗ."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru предоставляет ежемесячные отчёты по обращениям как часть стандартной технической поддержки 24/7. Формат отчёта может быть адаптирован под требования.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/overview/support/topics/concepts__sla"],
+        "source_titles": ["Время реагирования и решения обращений"],
+        "recommendation": "Использовать стандартную отчётность Cloud.ru. Формат можно адаптировать под требования ТЗ."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru предоставляет ежемесячные отчёты по обращениям как часть стандартной технической поддержки 24/7. Формат отчёта может быть адаптирован под требования.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать стандартную отчётность Cloud.ru. Формат можно адаптировать под требования ТЗ."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru предоставляет ежемесячные отчёты по обращениям как часть стандартной технической поддержки 24/7. Формат отчёта может быть адаптирован под требования.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/evolution/overview/topics/sla"],
+        "source_titles": ["Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"],
+        "recommendation": "Использовать стандартную отчётность Cloud.ru. Формат можно адаптировать под требования ТЗ."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]
+```

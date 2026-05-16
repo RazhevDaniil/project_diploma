@@ -1,0 +1,288 @@
+[
+  {
+    "requirement_id": 65,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование описывает юридические обязательства Заказчика по размещению легальных данных и предоставлению документов — это договорные условия, не техническая капабилити. Cloud.ru готов работать по индивидуальным SLA и договорным условиям, включая права на приостановку услуг при нарушении гарантий.",
+    "evidence": "",
+    "source_urls": [],
+    "recommendation": "Договорное условие фиксируется в проектном SLA/договоре с Cloud.ru. Cloud.ru готов работать по специфическим штрафным/договорным условиям заказчика через индивидуальный проектный договор.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Требование описывает юридические обязательства, а не техническую функцию. Cloud.ru как компания готова работать по индивидуальным договорным условиям на всех платформах.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Договорное условие фиксируется в проектном SLA/договоре с Cloud.ru. Cloud.ru готов работать по специфическим штрафным/договорным условиям заказчика через индивидуальный проектный договор."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Требование описывает юридические обязательства, а не техническую функцию. Cloud.ru как компания готова работать по индивидуальным договорным условиям на всех платформах.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Договорное условие фиксируется в проектном SLA/договоре с Cloud.ru. Cloud.ru готов работать по специфическим штрафным/договорным условиям заказчика через индивидуальный проектный договор."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Требование описывает юридические обязательства, а не техническую функцию. Cloud.ru как компания готова работать по индивидуальным договорным условиям на всех платформах.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Договорное условие фиксируется в проектном SLA/договоре с Cloud.ru. Cloud.ru готов работать по специфическим штрафным/договорным условиям заказчика через индивидуальный проектный договор."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Требование описывает юридические обязательства, а не техническую функцию. Cloud.ru как компания готова работать по индивидуальным договорным условиям на всех платформах.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Договорное условие фиксируется в проектном SLA/договоре с Cloud.ru. Cloud.ru готов работать по специфическим штрафным/договорным условиям заказчика через индивидуальный проектный договор."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 66,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Документация Cloud.ru явно подтверждает поддержку WORM (Write Once, Read Many) в Object Storage Service: «Сервис OBS поддерживает функцию WORM (write-once-read-many) для защиты объектов от удаления или изменения в течение заданного периода» [Local-DOC 1].",
+    "evidence": "Сервис OBS поддерживает функцию WORM (write-once-read-many) для защиты объектов от удаления или изменения в течение заданного периода.",
+    "source_urls": [
+      "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+    ],
+    "recommendation": "Функционал WORM поддерживается на платформах Advanced и Evolution. Рекомендуется использовать платформу Advanced для максимальной совместимости с enterprise-сценариями.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Поддержка WORM не подтверждена напрямую, требуется уточнение у клиентского менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли WORM в ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 1.0,
+        "reasoning": "Облако VMware не предоставляет сервис Object Storage (S3). WORM — это функция Object Storage, которая доступна только на платформах Advanced и Evolution. Облако VMware — это виртуальная инфраструктура, не S3-хранилище.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать платформу Advanced или Evolution для реализации S3 с WORM. Облако VMware не подходит для объектного хранилища."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Документация подтверждает поддержку WORM в Object Storage Service на платформе Advanced: «Сервис OBS поддерживает функцию WORM (write-once-read-many)» [Local-DOC 1].",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи — документация Object Storage Service руководство пользователя облако Cloud.ru"
+        ],
+        "recommendation": "Использовать платформу Advanced для реализации S3 с WORM. Поддерживается на всех регионах."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Документация подтверждает поддержку Object Storage Service с WORM на платформе Evolution: «Cloud.ru предоставляет сервисы объектного хранилища S3 на платформах Cloud.ru Evolution и Cloud.ru Advanced» [1]. Дополнительно, API и функции WORM подтверждены в документации Evolution [Local-DOC 1, [2]].",
+        "evidence_refs": [
+          "[Local-DOC 1]",
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm",
+          "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи — документация Object Storage Service руководство пользователя облако Cloud.ru",
+          "Миграция данных из внешних S3 в хранилища Cloud.ru"
+        ],
+        "recommendation": "Использовать платформу Evolution для реализации S3 с WORM. Поддерживается, но рекомендуется проверить лимиты и регионы (PD11, PD30)."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 67,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Документация Cloud.ru явно подтверждает поддержку версионирования (Versioning) в Object Storage Service: «Версионирование — инструмент для хранения нескольких версий объекта. Управление версионированием происходит на уровне бакета» [Local-DOC 1]. Версионирование является обязательным условием для работы Object Lock и WORM, что подтверждено в документации.",
+    "evidence": "Версионирование — инструмент для хранения нескольких версий объекта. Управление версионированием происходит на уровне бакета: настройки применяются ко всем его объектам.",
+    "source_urls": [
+      "https://cloud.ru/docs/s3e/ug/topics/concepts__versioning"
+    ],
+    "recommendation": "Функция версионирования поддерживается на платформах Advanced и Evolution. Рекомендуется включить версионирование при создании бакета.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Поддержка версионирования S3 не подтверждена напрямую, требуется уточнение у клиентского менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли версионирование в ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 1.0,
+        "reasoning": "Облако VMware не предоставляет сервис Object Storage (S3). Версионирование — это функция S3-хранилища, которая недоступна на платформе VMware. VMware — это виртуальная инфраструктура, а не объектное хранилище.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать платформу Advanced или Evolution для реализации S3 с версионированием. Облако VMware не подходит."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Документация подтверждает поддержку версионирования в Object Storage Service на платформе Advanced: «Версионирование — инструмент для хранения нескольких версий объекта» [Local-DOC 1].",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/concepts__versioning"
+        ],
+        "source_titles": [
+          "Версионирование в Object Storage — документация Object Storage руководство пользователя облако Cloud.ru"
+        ],
+        "recommendation": "Включить версионирование при создании бакета на платформе Advanced. Поддерживается в полном объеме."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Документация подтверждает поддержку Object Storage Service с версионированием на платформе Evolution: «Cloud.ru предоставляет сервисы объектного хранилища S3 на платформах Cloud.ru Evolution и Cloud.ru Advanced» [1]. API и функции версионирования подтверждены в документации Evolution [Local-DOC 1].",
+        "evidence_refs": [
+          "[Local-DOC 1]",
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/concepts__versioning",
+          "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+        ],
+        "source_titles": [
+          "Версионирование в Object Storage — документация Object Storage руководство пользователя облако Cloud.ru",
+          "Миграция данных из внешних S3 в хранилища Cloud.ru"
+        ],
+        "recommendation": "Включить версионирование при создании бакета на платформе Evolution. Поддерживается, но рекомендуется проверить лимиты и регионы (PD11, PD30)."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 68,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Документация Cloud.ru явно подтверждает поддержку S3 Object Lock с двумя типами блокировок: Retention Period (временная) и Legal Hold (бессрочная): «Object Lock поддерживает два способа управления блокировками: Retention period — временная блокировка объекта. Legal hold — бессрочная блокировка» [Local-DOC 1]. Также подтверждена возможность установки срока от 1 дня до 100 лет [Local-DOC 2].",
+    "evidence": "Object Lock поддерживает два способа управления блокировками: Retention period — временная блокировка объекта. Legal hold — бессрочная блокировка.",
+    "source_urls": [
+      "https://cloud.ru/docs/s3e/ug/topics/concepts",
+      "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+    ],
+    "recommendation": "Функция Object Lock с Retention Period поддерживается на платформах Advanced и Evolution. Рекомендуется использовать Advanced для enterprise-сценариев.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Поддержка Object Lock не подтверждена напрямую, требуется уточнение у клиентского менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли Object Lock в ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 1.0,
+        "reasoning": "Облако VMware не предоставляет сервис Object Storage (S3). Object Lock — это функция S3-хранилища, которая недоступна на платформе VMware. VMware — это виртуальная инфраструктура, а не объектное хранилище.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать платформу Advanced или Evolution для реализации S3 с Object Lock. Облако VMware не подходит."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Документация подтверждает поддержку Object Lock с Retention Period и Legal Hold на платформе Advanced: «Object Lock поддерживает два способа управления блокировками: Retention period — временная блокировка объекта. Legal hold — бессрочная блокировка» [Local-DOC 1].",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/concepts"
+        ],
+        "source_titles": [
+          "Концепции сервиса Object Storage — документация Object Storage руководство пользователя облако Cloud.ru"
+        ],
+        "recommendation": "Настроить Object Lock с Retention Period на платформе Advanced. Поддерживается в полном объеме."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Документация подтверждает поддержку Object Lock с Retention Period и Legal Hold на платформе Evolution: «Object Lock поддерживает два способа управления блокировками» [Local-DOC 1], а также API-методы для управления блокировками [Local-DOC 2, 3]. Cloud.ru предоставляет S3 на Evolution [1].",
+        "evidence_refs": [
+          "[Local-DOC 1]",
+          "[Local-DOC 2]",
+          "[Local-DOC 3]",
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/concepts",
+          "https://cloud.ru/docs/s3e/ug/topics/api__methods-object-lock",
+          "https://cloud.ru/docs/s3e/ug/topics/api__PutObjectLockConfiguration",
+          "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+        ],
+        "source_titles": [
+          "Концепции сервиса Object Storage — документация Object Storage руководство пользователя облако Cloud.ru",
+          "Методы Object Lock",
+          "PutObjectLockConfiguration",
+          "Миграция данных из внешних S3 в хранилища Cloud.ru"
+        ],
+        "recommendation": "Настроить Object Lock с Retention Period на платформе Evolution. Поддерживается, но рекомендуется проверить лимиты и регионы (PD11, PD30)."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

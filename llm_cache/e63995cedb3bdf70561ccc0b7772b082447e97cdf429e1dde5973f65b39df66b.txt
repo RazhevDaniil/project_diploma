@@ -1,0 +1,530 @@
+```json
+[
+  {
+    "requirement_id": 12,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Срок действия договора до 31 декабря 2028 года — это договорное условие, которое фиксируется в индивидуальном проектном договоре с Cloud.ru. Cloud.ru готов согласовывать сроки действия договора в соответствии с требованиями заказчика.",
+    "evidence": "",
+    "source_urls": [
+      "https://cloud.ru/docs/console/ug/topics/concepts__agreement"
+    ],
+    "recommendation": "Уточнить условия договора через менеджера Cloud.ru для фиксации срока действия до 31.12.2028.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Договорные условия, включая срок действия, фиксируются индивидуально в проектном договоре. Cloud.ru готов работать по любому сроку, включая до 31.12.2028.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/console/ug/topics/concepts__agreement"
+        ],
+        "source_titles": [
+          "Договор и условия использования"
+        ],
+        "recommendation": "Уточнить условия договора через менеджера Cloud.ru для фиксации срока действия до 31.12.2028."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Договорные условия, включая срок действия, фиксируются индивидуально в проектном договоре. Cloud.ru готов работать по любому сроку, включая до 31.12.2028.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/console/ug/topics/concepts__agreement"
+        ],
+        "source_titles": [
+          "Договор и условия использования"
+        ],
+        "recommendation": "Уточнить условия договора через менеджера Cloud.ru для фиксации срока действия до 31.12.2028."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Договорные условия, включая срок действия, фиксируются индивидуально в проектном договоре. Cloud.ru готов работать по любому сроку, включая до 31.12.2028.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/console/ug/topics/concepts__agreement"
+        ],
+        "source_titles": [
+          "Договор и условия использования"
+        ],
+        "recommendation": "Уточнить условия договора через менеджера Cloud.ru для фиксации срока действия до 31.12.2028."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Договорные условия, включая срок действия, фиксируются индивидуально в проектном договоре. Cloud.ru готов работать по любому сроку, включая до 31.12.2028.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/console/ug/topics/concepts__agreement"
+        ],
+        "source_titles": [
+          "Договор и условия использования"
+        ],
+        "recommendation": "Уточнить условия договора через менеджера Cloud.ru для фиксации срока действия до 31.12.2028."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 14,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Услуги Cloud.ru предоставляются с НДС 20% — это стандартная налоговая практика для юридических лиц в РФ. Размер НДС фиксируется в счетах и договоре в соответствии с законодательством РФ.",
+    "evidence": "",
+    "source_urls": [],
+    "recommendation": "Уточнить в договоре применение НДС 20% как стандартной ставки для юридических лиц.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru применяет НДС 20% в соответствии с налоговым законодательством РФ для всех юридических лиц — это стандартная практика, не требующая отдельной настройки.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить в договоре применение НДС 20% как стандартной ставки для юридических лиц."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru применяет НДС 20% в соответствии с налоговым законодательством РФ для всех юридических лиц — это стандартная практика, не требующая отдельной настройки.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить в договоре применение НДС 20% как стандартной ставки для юридических лиц."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru применяет НДС 20% в соответствии с налоговым законодательством РФ для всех юридических лиц — это стандартная практика, не требующая отдельной настройки.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить в договоре применение НДС 20% как стандартной ставки для юридических лиц."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru применяет НДС 20% в соответствии с налоговым законодательством РФ для всех юридических лиц — это стандартная практика, не требующая отдельной настройки.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить в договоре применение НДС 20% как стандартной ставки для юридических лиц."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 19,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требование «Не установлено» означает отсутствие ограничений для субъектов МСП. Cloud.ru не накладывает ограничений на участие субъектов малого и среднего предпринимательства — все платформы доступны любым юридическим лицам без дискриминации.",
+    "evidence": "",
+    "source_urls": [],
+    "recommendation": "Подтвердить в договоре отсутствие ограничений для МСП — это соответствует политике Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru не устанавливает ограничений для участия субъектов МСП — все платформы доступны любым юридическим лицам без дискриминации.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Подтвердить в договоре отсутствие ограничений для МСП — это соответствует политике Cloud.ru."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru не устанавливает ограничений для участия субъектов МСП — все платформы доступны любым юридическим лицам без дискриминации.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Подтвердить в договоре отсутствие ограничений для МСП — это соответствует политике Cloud.ru."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru не устанавливает ограничений для участия субъектов МСП — все платформы доступны любым юридическим лицам без дискриминации.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Подтвердить в договоре отсутствие ограничений для МСП — это соответствует политике Cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru не устанавливает ограничений для участия субъектов МСП — все платформы доступны любым юридическим лицам без дискриминации.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Подтвердить в договоре отсутствие ограничений для МСП — это соответствует политике Cloud.ru."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 20,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Критерий оценки «Цена» — это стандартный коммерческий параметр. Cloud.ru предоставляет прозрачные тарифы и готов предложить коммерческое предложение на основе требуемых ресурсов, включая цену за 135 ТБ и за 1 ТБ.",
+    "evidence": "",
+    "source_urls": [],
+    "recommendation": "Запросить коммерческое предложение у менеджера Cloud.ru с разбивкой по цене за 135 ТБ и за 1 ТБ.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru предоставляет прозрачные тарифы и готов предложить коммерческое предложение с разбивкой по цене за 135 ТБ и за 1 ТБ — цена является стандартным критерием оценки.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Запросить коммерческое предложение у менеджера Cloud.ru с разбивкой по цене за 135 ТБ и за 1 ТБ."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru предоставляет прозрачные тарифы и готов предложить коммерческое предложение с разбивкой по цене за 135 ТБ и за 1 ТБ — цена является стандартным критерием оценки.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Запросить коммерческое предложение у менеджера Cloud.ru с разбивкой по цене за 135 ТБ и за 1 ТБ."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru предоставляет прозрачные тарифы и готов предложить коммерческое предложение с разбивкой по цене за 135 ТБ и за 1 ТБ — цена является стандартным критерием оценки.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Запросить коммерческое предложение у менеджера Cloud.ru с разбивкой по цене за 135 ТБ и за 1 ТБ."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru предоставляет прозрачные тарифы и готов предложить коммерческое предложение с разбивкой по цене за 135 ТБ и за 1 ТБ — цена является стандартным критерием оценки.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Запросить коммерческое предложение у менеджера Cloud.ru с разбивкой по цене за 135 ТБ и за 1 ТБ."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 21,
+    "verdict": "mismatch",
+    "confidence": 1.0,
+    "reasoning": "Требуется поминутная или посекундная тарификация, но Cloud.ru тарифицирует ресурсы почасово или помесячно. Поминутная/посекундная тарификация не поддерживается ни на одной из платформ Cloud.ru.",
+    "evidence": "Cloud.ru тарифицирует ресурсы почасово/помесячно — поминутная/посекундная тарификация не предусмотрена.",
+    "source_urls": [],
+    "recommendation": "Использовать стандартную почасовую тарификацию Object Storage Service (OBS) на платформе Advanced — это ближайший эквивалент. Поминутная тарификация недоступна.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 1.0,
+        "reasoning": "Cloud.ru не предоставляет поминутную или посекундную тарификацию — тарификация только почасовая/помесячная. ГосОблако не поддерживает этот режим.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать стандартную почасовую тарификацию Object Storage Service (OBS) на платформе Advanced — это ближайший эквивалент. Поминутная тарификация недоступна."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 1.0,
+        "reasoning": "Cloud.ru не предоставляет поминутную или посекундную тарификацию — тарификация только почасовая/помесячная. Облако VMware не поддерживает этот режим.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать стандартную почасовую тарификацию Object Storage Service (OBS) на платформе Advanced — это ближайший эквивалент. Поминутная тарификация недоступна."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 1.0,
+        "reasoning": "Cloud.ru не предоставляет поминутную или посекундную тарификацию — тарификация только почасовая/помесячная. Object Storage Service (OBS) на Advanced также не поддерживает поминутную тарификацию.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать стандартную почасовую тарификацию Object Storage Service (OBS) на платформе Advanced — это ближайший эквивалент. Поминутная тарификация недоступна."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 1.0,
+        "reasoning": "Cloud.ru не предоставляет поминутную или посекундную тарификацию — тарификация только почасовая/помесячная. Evolution не поддерживает этот режим.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать стандартную почасовую тарификацию Object Storage Service (OBS) на платформе Advanced — это ближайший эквивалент. Поминутная тарификация недоступна."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 22,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требуется объем хранилища 135 ТБ. Объем хранилища в Object Storage Service (OBS) на платформе Advanced не ограничен по умолчанию — поддерживается объем более 135 ТБ.",
+    "evidence": "Объем хранилища (стандартный класс хранения) — Не ограничен [Local-DOC 1]",
+    "source_urls": [
+      "https://cloud.ru/docs/s3e/ug/topics/overview__limitations"
+    ],
+    "recommendation": "Использовать Object Storage Service (OBS) на платформе Advanced для хранения 135 ТБ — объем не ограничен, поддерживается.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Объем хранилища в Object Storage Service (OBS) не ограничен — поддерживается объем 135 ТБ и выше. ГосОблако использует тот же сервис OBS.",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности — документация Object Storage руководство пользователя облако Cloud.ru"
+        ],
+        "recommendation": "Использовать Object Storage Service (OBS) на платформе ГосОблако для хранения 135 ТБ — объем не ограничен, поддерживается."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Объем хранилища в Object Storage Service (OBS) не ограничен — поддерживается объем 135 ТБ и выше. Облако VMware предоставляет OBS как сервис.",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности — документация Object Storage руководство пользователя облако Cloud.ru"
+        ],
+        "recommendation": "Использовать Object Storage Service (OBS) на платформе Облако VMware для хранения 135 ТБ — объем не ограничен, поддерживается."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Объем хранилища в Object Storage Service (OBS) не ограничен — поддерживается объем 135 ТБ и выше. Advanced — основная платформа для OBS.",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности — документация Object Storage руководство пользователя облако Cloud.ru"
+        ],
+        "recommendation": "Использовать Object Storage Service (OBS) на платформе Advanced для хранения 135 ТБ — объем не ограничен, поддерживается."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Объем хранилища в Object Storage Service (OBS) не ограничен — поддерживается объем 135 ТБ и выше. Evolution также предоставляет OBS.",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности — документация Object Storage руководство пользователя облако Cloud.ru"
+        ],
+        "recommendation": "Использовать Object Storage Service (OBS) на платформе Evolution для хранения 135 ТБ — объем не ограничен, поддерживается."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 23,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требуется указать две стоимости: общую за 135 ТБ и за 1 ТБ. Cloud.ru предоставляет прозрачные тарифы и готов выдать коммерческое предложение с разбивкой по объему — это стандартная практика.",
+    "evidence": "",
+    "source_urls": [],
+    "recommendation": "Запросить коммерческое предложение у менеджера Cloud.ru с разбивкой по цене за 135 ТБ и за 1 ТБ.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru предоставляет прозрачные тарифы и готов выдать коммерческое предложение с разбивкой по цене за 135 ТБ и за 1 ТБ — это стандартная практика для всех платформ.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Запросить коммерческое предложение у менеджера Cloud.ru с разбивкой по цене за 135 ТБ и за 1 ТБ."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru предоставляет прозрачные тарифы и готов выдать коммерческое предложение с разбивкой по цене за 135 ТБ и за 1 ТБ — это стандартная практика для всех платформ.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Запросить коммерческое предложение у менеджера Cloud.ru с разбивкой по цене за 135 ТБ и за 1 ТБ."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru предоставляет прозрачные тарифы и готов выдать коммерческое предложение с разбивкой по цене за 135 ТБ и за 1 ТБ — это стандартная практика для всех платформ.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Запросить коммерческое предложение у менеджера Cloud.ru с разбивкой по цене за 135 ТБ и за 1 ТБ."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru предоставляет прозрачные тарифы и готов выдать коммерческое предложение с разбивкой по цене за 135 ТБ и за 1 ТБ — это стандартная практика для всех платформ.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Запросить коммерческое предложение у менеджера Cloud.ru с разбивкой по цене за 135 ТБ и за 1 ТБ."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 24,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Object Storage Service (OBS) на платформе Advanced поддерживает хранение любых типов файлов — видео, изображения, скрипты, документы и т.д. — как это указано в требованиях. Это стандартная функция S3-совместимого хранилища.",
+    "evidence": "Обзор Object Storage — поддержка хранения любых типов файлов [Local-DOC 1]",
+    "source_urls": [
+      "https://cloud.ru/docs/s3e/ug/topics/overview__limitations"
+    ],
+    "recommendation": "Использовать Object Storage Service (OBS) на платформе Advanced — поддерживает хранение любых типов контента: видео, изображения, документы, скрипты и т.д.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Object Storage Service (OBS) поддерживает хранение любых типов файлов — видео, изображения, скрипты, документы и т.д. — как стандартная функция S3-совместимого хранилища.",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности — документация Object Storage руководство пользователя облако Cloud.ru"
+        ],
+        "recommendation": "Использовать Object Storage Service (OBS) на платформе ГосОблако — поддерживает хранение любых типов контента: видео, изображения, документы, скрипты и т.д."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Object Storage Service (OBS) поддерживает хранение любых типов файлов — видео, изображения, скрипты, документы и т.д. — как стандартная функция S3-совместимого хранилища.",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности — документация Object Storage руководство пользователя облако Cloud.ru"
+        ],
+        "recommendation": "Использовать Object Storage Service (OBS) на платформе Облако VMware — поддерживает хранение любых типов контента: видео, изображения, документы, скрипты и т.д."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Object Storage Service (OBS) поддерживает хранение любых типов файлов — видео, изображения, скрипты, документы и т.д. — как стандартная функция S3-совместимого хранилища.",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности — документация Object Storage руководство пользователя облако Cloud.ru"
+        ],
+        "recommendation": "Использовать Object Storage Service (OBS) на платформе Advanced — поддерживает хранение любых типов контента: видео, изображения, документы, скрипты и т.д."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Object Storage Service (OBS) поддерживает хранение любых типов файлов — видео, изображения, скрипты, документы и т.д. — как стандартная функция S3-совместимого хранилища.",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности — документация Object Storage руководство пользователя облако Cloud.ru"
+        ],
+        "recommendation": "Использовать Object Storage Service (OBS) на платформе Evolution — поддерживает хранение любых типов контента: видео, изображения, документы, скрипты и т.д."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]
+```

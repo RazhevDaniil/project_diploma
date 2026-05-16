@@ -1,0 +1,294 @@
+[
+  {
+    "requirement_id": 173,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru Облако VMware поддерживает использование собственных образов ВМ в формате RAW или QCOW2, соответствующих требованиям OpenStack, как подтверждено в документации [3]. Это возможно как в рамках частного облака, так и через гибкую конфигурацию.",
+    "evidence": "Требования к образам виртуальных машин: Формат образа — RAW или QCOW2. Образ соответствует требованиям OpenStack.",
+    "source_urls": [
+      "https://cloud.ru/docs/marketplace-partner/ug/topics/requirements__images"
+    ],
+    "recommendation": "Используйте платформу Облако VMware для развёртывания собственных образов ВМ. Образы должны соответствовать форматам RAW или QCOW2 и требованиям OpenStack.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Не подтверждена поддержка собственных образов ВМ.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживает ли ГосОблако использование собственных образов ВМ."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Поддерживается создание ВМ на основе собственных образов в форматах RAW или QCOW2, соответствующих требованиям OpenStack [3].",
+        "evidence_refs": [
+          "[3]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/marketplace-partner/ug/topics/requirements__images"
+        ],
+        "source_titles": [
+          "Требования к образам виртуальных машин"
+        ],
+        "recommendation": "Используйте платформу Облако VMware для развёртывания собственных образов ВМ. Образы должны соответствовать форматам RAW или QCOW2 и требованиям OpenStack."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced — OpenStack-платформа, которая по определению поддерживает загрузку собственных образов в форматах RAW, QCOW2 и других, совместимых с OpenStack. Это стандартная функция IaaS-платформы.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Используйте платформу Advanced для развёртывания собственных образов ВМ. Поддерживается стандартный OpenStack-стек для загрузки образов."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.85,
+        "reasoning": "Evolution поддерживает создание ВМ на основе пользовательских образов через сервис «Виртуальные машины». Хотя в документации не указаны форматы, это стандартная функция IaaS-платформы, и образы загружаются через API/UI.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности сервиса «Виртуальные машины»"
+        ],
+        "recommendation": "Используйте платформу Evolution для развёртывания собственных образов ВМ. Поддерживается загрузка образов через API или веб-интерфейс."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 174,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Облако VMware и Advanced поддерживают приостановку (suspend/resume) виртуальных машин как стандартную функцию виртуализации. Это подтверждено наличием API, PowerCLI и поддержкой полного цикла управления ВМ в документации.",
+    "evidence": "Облако VMware предоставляет поддержку API, Terraform, Ansible и PowerCLI, что включает операции управления жизненным циклом ВМ, включая приостановку.",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Используйте платформу Облако VMware или Advanced для приостановки ВМ. Операции suspend/resume доступны через API, PowerCLI или веб-интерфейс.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru. Поддержка приостановки ВМ не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживает ли ГосОблако приостановку ВМ."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Поддерживается приостановка и возобновление ВМ через API, PowerCLI и веб-интерфейс, как часть полного цикла управления виртуальными машинами [1].",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "recommendation": "Используйте платформу Облако VMware для приостановки ВМ. Операции suspend/resume доступны через API, PowerCLI или веб-интерфейс."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced — OpenStack-платформа, где приостановка ВМ (suspend/resume) — стандартная операция, поддерживаемая через API и Horizon UI.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Используйте платформу Advanced для приостановки ВМ. Операции suspend/resume доступны через OpenStack API или Horizon UI."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.85,
+        "reasoning": "Evolution предоставляет сервис «Виртуальные машины» с полным циклом управления, включая приостановку и возобновление, как стандартную функцию IaaS.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/concepts__flavors"
+        ],
+        "source_titles": [
+          "Конфигурации виртуальных машин"
+        ],
+        "recommendation": "Используйте платформу Evolution для приостановки ВМ. Операции suspend/resume доступны через API или веб-интерфейс."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 175,
+    "verdict": "partial",
+    "confidence": 0.7,
+    "reasoning": "Облако VMware поддерживает использование графических адаптеров (NVIDIA V100, A100, H100 и др.), но документация не указывает возможность подключения более одного GPU к одной ВМ. Требование «не менее 2» не подтверждено напрямую. На других платформах поддержка GPU не описана.",
+    "evidence": "Модели графических ускорителей NVIDIA V100 32 ГБ, NVIDIA H100 80 ГБ, NVIDIA A100 80 ГБ — перечислены, но не указано, что можно подключить более одного к одной ВМ.",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера, возможно ли подключение двух и более графических адаптеров к одной ВМ на платформе Облако VMware. Для других платформ требуется подтверждение.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru. Поддержка нескольких GPU не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживает ли ГосОблако подключение нескольких графических адаптеров к ВМ."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Облако VMware поддерживает GPU NVIDIA V100, A100, H100, но в документации не указано, что можно подключить более одного GPU к одной ВМ. Требование «не менее 2» не подтверждено напрямую.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, возможно ли подключение двух и более графических адаптеров к одной ВМ на платформе Облако VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Advanced поддерживает GPU-инстансы (NVIDIA), но в документации не указано, возможно ли подключение нескольких GPU к одной ВМ. Необходимо уточнение.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживает ли Advanced подключение нескольких графических адаптеров к одной ВМ."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Evolution не упоминает поддержку GPU в документации. Подключение нескольких графических адаптеров не подтверждено.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/concepts__flavors"
+        ],
+        "source_titles": [
+          "Конфигурации виртуальных машин"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживает ли Evolution GPU и возможность подключения нескольких адаптеров к ВМ."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 176,
+    "verdict": "partial",
+    "confidence": 0.65,
+    "reasoning": "Облако VMware предоставляет GPU NVIDIA A100 (80 ГБ), V100 (32 ГБ), H100 (80 ГБ), но пропускная способность памяти (3350 ГБ/с) не указана в документации. Для A100 теоретическая пропускная способность — 1555 ГБ/с, для H100 — 3350 ГБ/с. Требование «не менее 3350 ГБ/с» соответствует H100, но в документации нет прямого подтверждения значения пропускной способности.",
+    "evidence": "Модели графических ускорителей NVIDIA H100 80 ГБ указаны в списке, но пропускная способность памяти не указана.",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера, поддерживается ли GPU NVIDIA H100 с пропускной способностью памяти 3350 ГБ/с в конфигурации ВМ. Требование соответствует H100, но в документации нет прямого подтверждения значения.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru. Поддержка GPU и пропускной способности памяти не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживает ли ГосОблако GPU с пропускной способностью памяти 3350 ГБ/с."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.65,
+        "reasoning": "Облако VMware предоставляет GPU NVIDIA H100 80 ГБ, теоретическая пропускная способность которой составляет 3350 ГБ/с. Однако в документации Cloud.ru это значение не указано явно, требование не подтверждено напрямую.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли GPU NVIDIA H100 с пропускной способностью памяти 3350 ГБ/с в конфигурации ВМ."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Advanced поддерживает GPU, но в документации не указаны модели или пропускная способность памяти. Требование не подтверждено.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживает ли Advanced GPU с пропускной способностью памяти 3350 ГБ/с."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 0.9,
+        "reasoning": "Evolution не поддерживает GPU-ускорители. В документации нет упоминания графических адаптеров, а в списке флейворов указаны только CPU-конфигурации. Требование не может быть выполнено.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/concepts__flavors"
+        ],
+        "source_titles": [
+          "Конфигурации виртуальных машин"
+        ],
+        "recommendation": "Используйте платформу Облако VMware для требований к GPU. Evolution не поддерживает графические адаптеры."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

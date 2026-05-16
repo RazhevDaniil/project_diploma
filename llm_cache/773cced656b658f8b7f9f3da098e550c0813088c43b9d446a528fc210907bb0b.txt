@@ -1,0 +1,291 @@
+[
+  {
+    "requirement_id": 9,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru предоставляет доступ к услугам через Личный кабинет, регистрация и уведомление по электронной почте — стандартные функции всех платформ Cloud.ru. Дата 01.09.2025 — договорной срок, не влияющий на техническую возможность.",
+    "evidence": "Все платформы Cloud.ru предоставляют доступ через Личный кабинет и уведомляют клиентов по электронной почте.",
+    "source_urls": [
+      "https://cloud.ru/docs/vmware/overview/index",
+      "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+    ],
+    "recommendation": "Доступ и уведомление настраиваются через стандартный интерфейс Cloud.ru. Уточните дату предоставления в рамках проектного SLA.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Функционал Личного кабинета предположительно доступен, но требует подтверждения у клиентского менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли Личный кабинет в продукте ГосОблако."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет доступ через Личный кабинет, регистрацию и уведомления по электронной почте — подтверждено в документации.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vmware/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Облако VMware"
+        ],
+        "recommendation": "Использовать стандартный интерфейс Облака VMware для управления доступом и уведомлениями."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced поддерживает Личный кабинет, регистрацию и email-уведомления как часть стандартного IaaS-интерфейса.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности сервиса «Виртуальные машины»"
+        ],
+        "recommendation": "Использовать стандартный интерфейс Advanced для управления доступом и уведомлениями."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution предоставляет Личный кабинет для управления виртуальными машинами и уведомления по электронной почте — подтверждено в документации.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности сервиса «Виртуальные машины»"
+        ],
+        "recommendation": "Использовать стандартный интерфейс Evolution для управления доступом и уведомлениями."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 10,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru не предъявляет требований к оборудованию клиента — доступ к услугам осуществляется через любой веб-браузер. Пропускная способность 128 кбит/с — минимально достаточна для управления через веб-интерфейс; Cloud.ru использует 10G/25G внутренние каналы и 100G интернет-каналы, что значительно превышает требование.",
+    "evidence": "Cloud.ru использует резервированные 100G каналы для доступа в интернет, а управление доступно через любой веб-браузер.",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/communication-channels/communication-channels__communication-channels"
+    ],
+    "recommendation": "Клиенту достаточно любого устройства с современным браузером и доступом в интернет. Пропускная способность 128 кбит/с легко обеспечивается даже мобильными сетями.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Однако, как платформа Cloud.ru, оно, вероятно, поддерживает веб-доступ. Требуется подтверждение.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли веб-доступ через браузер в ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware доступно через веб-интерфейс, не требует специального оборудования. Пропускная способность 128 кбит/с — минимальна и легко покрывается 100G каналами Cloud.ru.",
+        "evidence_refs": ["[1]", "[2]", "[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/communication-channels",
+          "https://cloud.ru/docs/vdc/ug/topics/faq/communication-channels/communication-channels__communication-channels"
+        ],
+        "source_titles": [
+          "Каналы связи",
+          "Какие каналы связи использует Cloud.ru?"
+        ],
+        "recommendation": "Использовать стандартный веб-интерфейс Облака VMware. Требование к пропускной способности выполнено с большим запасом."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced предоставляет веб-интерфейс для управления ресурсами. Пропускная способность 128 кбит/с — минимальна и покрывается инфраструктурой Cloud.ru.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/communication-channels/communication-channels__communication-channels"
+        ],
+        "source_titles": [
+          "Какие каналы связи использует Cloud.ru?"
+        ],
+        "recommendation": "Использовать веб-интерфейс Advanced. Требование к пропускной способности выполнено."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution предоставляет веб-интерфейс для управления виртуальными машинами. Пропускная способность 128 кбит/с — минимальна и покрывается инфраструктурой Cloud.ru.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности сервиса «Виртуальные машины»"
+        ],
+        "recommendation": "Использовать веб-интерфейс Evolution. Требование к пропускной способности выполнено."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 11,
+    "verdict": "partial",
+    "confidence": 0.9,
+    "reasoning": "Требование к УЗ-1 и ГИС К1 выполняется на Облаке VMware (подтверждено документацией). На Advanced — УЗ-1 есть, но К1 не указан явно в обзоре платформы, поэтому partial. На Evolution — УЗ-1 есть, но К1 явно не поддерживается (evolution-compliance ограничивается 152-ФЗ УЗ-1). ГосОблако не описано — needs_clarification.",
+    "evidence": "Облачная платформа Cloud.ru, предназначенная для размещения государственных информационных систем, аттестована на соответствие требованиям безопасности информации, предъявляемым к ГИС при обеспечении первого класса защищенности (К1). Все платформы Cloud.ru имеют уровень защиты 152-ФЗ УЗ-1.",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/security-introduction/topics/compliance",
+      "https://cloud.ru/docs/evolution/overview/topics/security__compliance"
+    ],
+    "recommendation": "Для соответствия требованию ГИС К1 и УЗ-1 рекомендуется использовать Облако VMware. Для Advanced — уточнить у менеджера, возможно ли применение сертификата К1. Evolution не подходит для ГИС К1.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Аттестации УЗ-1 и К1 не подтверждены для этого продукта. Требуется уточнение у клиентского менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, аттестовано ли ГосОблако по УЗ-1 и ГИС К1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware аттестовано на УЗ-1 и ГИС К1 (приказ ФСТЭК №17) — прямо подтверждено в документации Cloud.ru.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru Облако"
+        ],
+        "recommendation": "Использовать Облако VMware для размещения ГИС с классом защищенности К1 и УЗ-1."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Advanced имеет УЗ-1, но в обзоре платформы не указано явное соответствие ГИС К1. Хотя общий сертификат 59.20.pdf поддерживает К1, он не упомянут в документации Advanced — требуется юридическое подтверждение.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru Облако"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, возможно ли применение сертификата К1 для Advanced. Рекомендуется использовать Облако VMware для гарантированного соответствия."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 0.95,
+        "reasoning": "Evolution явно ограничивается только 152-ФЗ УЗ-1 и не поддерживает ГИС К1 (согласно evolution-compliance). Требование К1 не выполнимо на этой платформе.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/security__compliance"
+        ],
+        "source_titles": [
+          "Безопасность платформы Cloud.ru Evolution"
+        ],
+        "recommendation": "Не использовать Evolution для размещения ГИС с классом защищенности К1. Выбрать Облако VMware."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 12,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru предоставляет графический интерфейс управления через Личный кабинет на всех платформах. Подтверждено для Облака VMware, Evolution и Advanced — наличие веб-интерфейса, управления через UI.",
+    "evidence": "Облако VMware предоставляет инфраструктуру как услугу с графическим интерфейсом. Виртуальные машины в Evolution и Advanced управляются через Личный кабинет.",
+    "source_urls": [
+      "https://cloud.ru/docs/vmware/overview/index",
+      "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+    ],
+    "recommendation": "Использовать стандартный графический интерфейс Личного кабинета Cloud.ru на любой платформе.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Предположительно имеет веб-интерфейс, но требует подтверждения у клиентского менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, есть ли графический интерфейс в ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет графический интерфейс в Личном кабинете — подтверждено в документации.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "recommendation": "Использовать веб-интерфейс Облака VMware для управления."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced предоставляет графический интерфейс управления через Личный кабинет — подтверждено в документации.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности сервиса «Виртуальные машины»"
+        ],
+        "recommendation": "Использовать веб-интерфейс Advanced для управления."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution предоставляет графический интерфейс управления через Личный кабинет — подтверждено в документации.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности сервиса «Виртуальные машины»"
+        ],
+        "recommendation": "Использовать веб-интерфейс Evolution для управления."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

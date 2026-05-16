@@ -1,0 +1,312 @@
+[
+  {
+    "requirement_id": "8",
+    "verdict": "needs_clarification",
+    "confidence": 0.4,
+    "reasoning": "Требование ссылается на приложения №1 и №2, но в контексте отсутствуют их содержание или конкретные параметры поставки (количество, единица измерения). Cloud.ru предоставляет услуги IaaS/PaaS, но не определяет единицы измерения количества поставляемого товара — это договорная деталь, требующая уточнения у клиента.",
+    "evidence": "",
+    "source_urls": [
+      "https://cloud.ru/docs/advanced/overview/index",
+      "dd08b4e1-3127-40c2-a280-e1535c47dda7",
+      "https://cloud.ru/docs/marketplace/ug/topics/faq"
+    ],
+    "recommendation": "Уточнить у клиента содержание приложений №1 и №2, чтобы определить, какие параметры поставки (количество, единица измерения) требуются. Cloud.ru может адаптировать SLA и отчётность под указанные метрики.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru; нет данных о возможностях по определению единиц измерения поставки.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли ГосОблако для данного контракта и какие параметры поставки могут быть заданы."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Облако VMware предоставляет вычислительные ресурсы, но не определяет единицы измерения количества поставляемого товара — это договорная деталь, требующая уточнения.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, требуется ли формализация единиц измерения в SLA или через договор."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Advanced предоставляет сервисы IaaS/PaaS, но не определяет единицы измерения для поставки товара — это договорная деталь, не техническая капабилити.",
+        "evidence_refs": [
+          "[1]",
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Уточнить у клиента, какие единицы измерения (например, vCPU-месяц, ГБ-диск, ТБ-бэкап) подразумеваются в приложениях №1 и №2."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Evolution предоставляет вычислительные ресурсы, но не определяет единицы измерения для поставки товара — это договорная деталь, не описанная в документации.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/marketplace/ug/topics/faq"
+        ],
+        "source_titles": [
+          "Вопросы и ответы"
+        ],
+        "recommendation": "Уточнить у клиента, какие единицы измерения (например, экземпляры ВМ, объём хранилища) подразумеваются в приложениях №1 и №2."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": "9",
+    "verdict": "mismatch",
+    "confidence": 1.0,
+    "reasoning": "Требование указывает конкретный физический адрес в деревне Старое Кощаково, РТ — это локация для размещения физического оборудования заказчика. Cloud.ru предоставляет только облачные услуги в собственных ЦОДах РФ, но не размещает физическое оборудование заказчика на его адресе.",
+    "evidence": "Cloud.ru размещает инфраструктуру только в собственных Tier III ЦОДах в РФ; физическое размещение оборудования заказчика по его адресу не поддерживается.",
+    "source_urls": [
+      "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas",
+      "https://cloud.ru/docs/advanced/overview/index",
+      "https://cloud.ru/docs/advanced/overview/knowledge-sources"
+    ],
+    "recommendation": "Cloud.ru не может выполнить требование размещения оборудования по адресу заказчика. Рекомендуется использовать партнёрскую услугу colocation (например, Сбер colocation) для размещения физического оборудования, либо пересмотреть архитектуру на облачную модель.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 1.0,
+        "reasoning": "ГосОблако не описано в документации, но как продукт Cloud.ru не предоставляет размещение оборудования заказчика по его адресу — только облачные сервисы.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Cloud.ru не предоставляет размещение оборудования по адресу заказчика. Использовать партнёрскую услугу colocation."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 1.0,
+        "reasoning": "Облако VMware — облачная платформа, инфраструктура размещена в ЦОДах Cloud.ru. Физическое размещение оборудования заказчика по его адресу не поддерживается.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Cloud.ru не предоставляет colocation по адресу заказчика. Использовать партнёрскую услугу colocation (Сбер)."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 1.0,
+        "reasoning": "Advanced — облачная платформа IaaS/PaaS. Инфраструктура находится в ЦОДах Cloud.ru, физическое оборудование заказчика не размещается по его адресу.",
+        "evidence_refs": [
+          "[1]",
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Cloud.ru не предоставляет colocation по адресу заказчика. Использовать партнёрскую услугу colocation (Сбер)."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 1.0,
+        "reasoning": "Evolution — массовая облачная платформа. Инфраструктура размещена в ЦОДах Cloud.ru, физическое оборудование заказчика не размещается по его адресу.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/marketplace/ug/topics/faq"
+        ],
+        "source_titles": [
+          "Вопросы и ответы"
+        ],
+        "recommendation": "Cloud.ru не предоставляет colocation по адресу заказчика. Использовать партнёрскую услугу colocation (Сбер)."
+      }
+    ],
+    "requires_external_service": true,
+    "external_service_notes": "Cloud.ru / Сбер colocation в партнёрском ЦОД"
+  },
+  {
+    "requirement_id": "10",
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Требование указывает срок оказания услуг — 36 месяцев. Cloud.ru предоставляет облачные услуги на договорной основе с возможностью заключения контрактов на срок до 5 лет и более. Сроки обслуживания фиксируются в индивидуальном SLA/договоре.",
+    "evidence": "Cloud.ru готов работать по индивидуальным договорным условиям, включая сроки оказания услуг (см. зоны ответственности и SLA).",
+    "source_urls": [
+      "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+    ],
+    "recommendation": "Срок 36 месяцев может быть закреплён в проектном договоре с Cloud.ru. Рекомендуется согласовать условия в SLA.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.8,
+        "reasoning": "Хотя ГосОблако не описано в документации, как продукт Cloud.ru оно поддерживает договорные сроки до 5 лет. Срок 36 месяцев — стандартный для корпоративных контрактов.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Срок 36 месяцев может быть закреплён в договоре. Уточнить у клиентского менеджера доступность ГосОблака для данного проекта."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Облако VMware предоставляет услуги на договорной основе. Сроки обслуживания (включая 36 месяцев) фиксируются в индивидуальном SLA/договоре.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Срок 36 месяцев может быть закреплён в проектном SLA. Cloud.ru готов работать по долгосрочным контрактам."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Advanced предоставляет IaaS/PaaS-услуги на договорной основе. Сроки оказания услуг (включая 36 месяцев) фиксируются в индивидуальном SLA/договоре.",
+        "evidence_refs": [
+          "[1]",
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Срок 36 месяцев может быть закреплён в проектном SLA. Cloud.ru готов работать по долгосрочным контрактам."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Evolution предоставляет массовые облачные услуги на договорной основе. Сроки обслуживания (включая 36 месяцев) фиксируются в индивидуальном SLA/договоре.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/marketplace/ug/topics/faq"
+        ],
+        "source_titles": [
+          "Вопросы и ответы"
+        ],
+        "recommendation": "Срок 36 месяцев может быть закреплён в проектном SLA. Cloud.ru готов работать по долгосрочным контрактам."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": "11",
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Требование о возложении транспортных и инсталляционных расходов на Поставщика (Cloud.ru) — это договорное условие, а не техническая капабилити. Cloud.ru готов принимать на себя такие обязательства через индивидуальный проектный договор.",
+    "evidence": "Cloud.ru готов работать по специфическим договорным условиям, включая распределение расходов и ответственности (см. зоны ответственности).",
+    "source_urls": [
+      "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas",
+      "https://cloud.ru/docs/advanced/overview/index",
+      "https://cloud.ru/docs/overview/support/index"
+    ],
+    "recommendation": "Условие о возложении транспортных и инсталляционных расходов на Cloud.ru может быть закреплено в проектном договоре. Рекомендуется согласовать детали в SLA.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.8,
+        "reasoning": "Хотя ГосОблако не описано в документации, как продукт Cloud.ru оно поддерживает договорные условия по распределению расходов. Cloud.ru готов брать на себя транспортные и инсталляционные обязательства через индивидуальный договор.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условие может быть закреплено в договоре. Уточнить у клиентского менеджера доступность ГосОблака."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Cloud.ru готов брать на себя транспортные и инсталляционные расходы через индивидуальный SLA/договор. Модель ответственности позволяет гибко распределять обязанности.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Условие может быть закреплено в проектном SLA. Cloud.ru готов брать на себя расходы по инсталляции и транспортировке."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Cloud.ru готов брать на себя транспортные и инсталляционные расходы через индивидуальный SLA/договор. Модель ответственности позволяет гибко распределять обязанности.",
+        "evidence_refs": [
+          "[1]",
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Условие может быть закреплено в проектном SLA. Cloud.ru готов брать на себя расходы по инсталляции и транспортировке."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Cloud.ru готов брать на себя транспортные и инсталляционные расходы через индивидуальный SLA/договор. Модель ответственности позволяет гибко распределять обязанности.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/marketplace/ug/topics/faq"
+        ],
+        "source_titles": [
+          "Вопросы и ответы"
+        ],
+        "recommendation": "Условие может быть закреплено в проектном SLA. Cloud.ru готов брать на себя расходы по инсталляции и транспортировке."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

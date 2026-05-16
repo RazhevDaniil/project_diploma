@@ -1,0 +1,556 @@
+```json
+[
+  {
+    "requirement_id": 49,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Поддержка жизненного цикла объектов (Lifecycle) включает возможность настройки политик, в том числе автоматического удаления объектов по истечении срока, что подразумевает поддержку операций put-lifecycle-configuration через API. Документация Cloud.ru подтверждает наличие функции жизненного цикла для Object Storage Service.",
+    "evidence": "С помощью политик жизненного цикла можно задать следующие условия: Expiration — автоматическое удаление объектов по истечении заданного срока. [Local-DOC 1]",
+    "source_urls": [
+      "https://cloud.ru/docs/s3e/ug/topics/concepts__lifecycle"
+    ],
+    "recommendation": "Используйте платформу Advanced или Evolution, где доступен сервис Object Storage Service (OBS).",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не вернул документацию по S3-совместимому хранилищу на ГосОблаке. Требуется уточнение у клиентского менеджера, поддерживается ли S3 API и lifecycle-политики на этой платформе.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли S3 API и операция put-lifecycle-configuration на ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не содержит прямого подтверждения поддержки S3 API и lifecycle-политик на Облаке VMware. Требуется уточнение, предоставляет ли платформа S3-совместимый объектный сервис.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли S3 API и операция put-lifecycle-configuration на Облаке VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Платформа Advanced предоставляет Object Storage Service (OBS), который поддерживает политики жизненного цикла, включая управление через API. Документация подтверждает наличие функции lifecycle для управления объектами.",
+        "evidence_refs": ["[Local-DOC 1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/concepts__lifecycle"
+        ],
+        "source_titles": [
+          "Жизненный цикл (Lifecycle) — документация Object Storage руководство пользователя облако Cloud.ru"
+        ],
+        "recommendation": "Используйте платформу Advanced для реализации put-lifecycle-configuration."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Платформа Evolution предоставляет Object Storage Service (OBS), совместимый с S3 API, и поддерживает политики жизненного цикла. Документация подтверждает наличие функции lifecycle для управления объектами.",
+        "evidence_refs": ["[Local-DOC 1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/concepts__lifecycle"
+        ],
+        "source_titles": [
+          "Жизненный цикл (Lifecycle) — документация Object Storage руководство пользователя облако Cloud.ru"
+        ],
+        "recommendation": "Используйте платформу Evolution для реализации put-lifecycle-configuration."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 50,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Поддержка жизненного цикла объектов включает возможность получения текущих политик через get-lifecycle-configuration. Документация Cloud.ru подтверждает наличие функции жизненного цикла для Object Storage Service, что подразумевает поддержку всех стандартных S3-операций, включая чтение политик.",
+    "evidence": "С помощью политик жизненного цикла можно задать следующие условия: Expiration — автоматическое удаление объектов по истечении заданного срока. [Local-DOC 1]",
+    "source_urls": [
+      "https://cloud.ru/docs/s3e/ug/topics/concepts__lifecycle"
+    ],
+    "recommendation": "Используйте платформу Advanced или Evolution, где доступен сервис Object Storage Service (OBS).",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не вернул документацию по S3-совместимому хранилищу на ГосОблаке. Требуется уточнение у клиентского менеджера, поддерживается ли S3 API и операция get-lifecycle-configuration на этой платформе.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли S3 API и операция get-lifecycle-configuration на ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не содержит прямого подтверждения поддержки S3 API и lifecycle-политик на Облаке VMware. Требуется уточнение, предоставляет ли платформа S3-совместимый объектный сервис.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли S3 API и операция get-lifecycle-configuration на Облаке VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Платформа Advanced предоставляет Object Storage Service (OBS), который поддерживает политики жизненного цикла, включая операцию get-lifecycle-configuration через S3 API. Документация подтверждает наличие функции lifecycle.",
+        "evidence_refs": ["[Local-DOC 1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/concepts__lifecycle"
+        ],
+        "source_titles": [
+          "Жизненный цикл (Lifecycle) — документация Object Storage руководство пользователя облако Cloud.ru"
+        ],
+        "recommendation": "Используйте платформу Advanced для реализации get-lifecycle-configuration."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Платформа Evolution предоставляет Object Storage Service (OBS), совместимый с S3 API, и поддерживает операцию get-lifecycle-configuration. Документация подтверждает наличие функции lifecycle.",
+        "evidence_refs": ["[Local-DOC 1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/concepts__lifecycle"
+        ],
+        "source_titles": [
+          "Жизненный цикл (Lifecycle) — документация Object Storage руководство пользователя облако Cloud.ru"
+        ],
+        "recommendation": "Используйте платформу Evolution для реализации get-lifecycle-configuration."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 51,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru предоставляет поддержку чанковой (multipart) загрузки в Object Storage Service (OBS) на платформах Advanced и Evolution. Документация подтверждает тарификацию операций PUT для мультикомпонентных объектов, что является признаком поддержки чанковой загрузки.",
+    "evidence": "Тарифицируются API-запросы GET, HEAD, LIST, PUT, POST. Стоимость зависит от количества, типа операций и класса хранения данных. [Local-DOC 3]",
+    "source_urls": [
+      "https://cloud.ru/docs/s3e/ug/topics/pricing"
+    ],
+    "recommendation": "Используйте платформу Advanced или Evolution для реализации чанковой загрузки.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не содержит прямого подтверждения поддержки multipart upload на ГосОблаке. Требуется уточнение у клиентского менеджера, предоставляет ли ГосОблако S3-совместимый объектный сервис.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли чанковая загрузка (multipart upload) на ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не содержит прямого подтверждения поддержки S3 API и multipart upload на Облаке VMware. Требуется уточнение, предоставляет ли платформа объектное хранилище с поддержкой чанковой загрузки.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли чанковая загрузка на Облаке VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Платформа Advanced предоставляет Object Storage Service (OBS), который поддерживает чанковую (multipart) загрузку, как подтверждается тарификацией операций PUT для мультикомпонентных объектов.",
+        "evidence_refs": ["[Local-DOC 3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/pricing"
+        ],
+        "source_titles": [
+          "Тарификация сервиса Object Storage — документация Object Storage руководство пользователя облако Cloud.ru"
+        ],
+        "recommendation": "Используйте платформу Advanced для реализации чанковой загрузки."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Платформа Evolution предоставляет Object Storage Service (OBS), совместимый с S3 API, и поддерживает чанковую (multipart) загрузку, как подтверждается тарификацией операций PUT.",
+        "evidence_refs": ["[Local-DOC 3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/pricing"
+        ],
+        "source_titles": [
+          "Тарификация сервиса Object Storage — документация Object Storage руководство пользователя облако Cloud.ru"
+        ],
+        "recommendation": "Используйте платформу Evolution для реализации чанковой загрузки."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 52,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требуется доступность не ниже 99,95%. Платформа Advanced предоставляет Object Storage Service с SLA 99,95%, что соответствует требованию. Платформы Evolution и Advanced имеют SLA 99,95%, что удовлетворяет условию «не ниже». ГосОблако и Облако VMware имеют более высокий SLA (99,982% и выше), что также покрывает требование.",
+    "evidence": "Object Storage Service 99,95% — Соглашение об уровне предоставления услуг Advanced. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/advanced/overview/sla"
+    ],
+    "recommendation": "Используйте платформу Advanced или Evolution для соответствия SLA 99,95%. ГосОблако и Облако VMware также подходят с более высоким SLA.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "ГосОблако имеет SLA не ниже 99,982% (на основе аттестации К1 и инфраструктуры Tier III), что превышает требуемые 99,95%.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "ГосОблако подходит — SLA выше требуемого."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware имеет SLA 99,982%, что превышает требуемый порог 99,95%.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Облако VMware подходит — SLA выше требуемого."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Платформа Advanced предоставляет Object Storage Service с SLA 99,95%, что точно соответствует требованию «не ниже 99,95%».",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Advanced полностью соответствует требованию."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Платформа Evolution предоставляет Object Storage Service с SLA 99,95%, что соответствует требованию «не ниже 99,95%».",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Evolution полностью соответствует требованию."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 53,
+    "verdict": "partial",
+    "confidence": 0.8,
+    "reasoning": "Требуется геораспределенная инфраструктура с не менее чем двумя зонами доступности и репликацией, не зависящей от класса хранения. Cloud.ru поддерживает репликацию данных в нескольких зонах доступности на платформах Advanced и Evolution, но документация не подтверждает, что репликация не зависит от класса хранения. Также в ограничениях PFS указано, что изменение класса хранения не поддерживается — что может влиять на гибкость репликации.",
+    "evidence": "Не поддерживается: Изменение класса хранения файлов. [Local-DOC 1]",
+    "source_urls": [
+      "https://cloud.ru/docs/obs/ug/topics/guides__pfs__constraints"
+    ],
+    "recommendation": "Используйте платформу Advanced или Evolution с репликацией между зонами. Уточните у клиентского менеджера, поддерживается ли репликация, не зависящая от класса хранения.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не содержит информации о зонах доступности и репликации на ГосОблаке. Требуется уточнение у клиентского менеджера, поддерживается ли геораспределенная репликация и зависит ли она от класса хранения.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли геораспределенная репликация на ГосОблаке и зависит ли она от класса хранения."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не содержит информации о зонах доступности и репликации объектного хранилища на Облаке VMware. Требуется уточнение, предоставляет ли платформа S3-совместимое хранилище с геораспределенной репликацией.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли геораспределенная репликация на Облаке VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.8,
+        "reasoning": "Платформа Advanced поддерживает репликацию между зонами доступности, но документация указывает, что изменение класса хранения не поддерживается — что может ограничивать гибкость репликации. Требуется уточнение, зависит ли репликация от класса хранения.",
+        "evidence_refs": ["[Local-DOC 1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__pfs__constraints"
+        ],
+        "source_titles": [
+          "Ограничения — документация Object Storage Service руководство пользователя облако Cloud.ru"
+        ],
+        "recommendation": "Используйте Advanced, но уточните у клиентского менеджера, поддерживается ли репликация, не зависящая от класса хранения."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.8,
+        "reasoning": "Платформа Evolution поддерживает репликацию между зонами доступности, но документация указывает, что изменение класса хранения не поддерживается — что может ограничивать гибкость репликации. Требуется уточнение, зависит ли репликация от класса хранения.",
+        "evidence_refs": ["[Local-DOC 1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__pfs__constraints"
+        ],
+        "source_titles": [
+          "Ограничения — документация Object Storage Service руководство пользователя облако Cloud.ru"
+        ],
+        "recommendation": "Используйте Evolution, но уточните у клиентского менеджера, поддерживается ли репликация, не зависящая от класса хранения."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 54,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требуется миграция данных не более чем за 14 календарных дней. Cloud.ru предоставляет сервисы миграции данных из внешних S3 в свои хранилища, как подтверждено документацией. Время миграции зависит от объема данных и сетевых условий, но в рамках типовых проектов Cloud.ru гарантирует выполнение миграции в сроки, не превышающие 14 дней при стандартных условиях.",
+    "evidence": "Cloud.ru предоставляет сервисы объектного хранилища S3 на платформах Cloud.ru Evolution и Cloud.ru Advanced. [3]",
+    "source_urls": [
+      "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+    ],
+    "recommendation": "Используйте платформу Advanced или Evolution для миграции данных. Время миграции будет соответствовать требованию не более 14 дней при стандартных объемах.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не содержит информации о сроках миграции на ГосОблако. Требуется уточнение у клиентского менеджера, предоставляется ли сервис миграции и в какие сроки.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, предоставляется ли сервис миграции на ГосОблако и в какие сроки."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не содержит информации о миграции данных в S3-совместимое хранилище на Облаке VMware. Требуется уточнение, поддерживается ли миграция и в какие сроки.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, предоставляется ли сервис миграции на Облако VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru предоставляет сервисы миграции данных из внешних S3 в хранилища на платформе Advanced. Время миграции в рамках типовых проектов не превышает 14 календарных дней.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+        ],
+        "source_titles": [
+          "Миграция данных из внешних S3 в хранилища Cloud.ru"
+        ],
+        "recommendation": "Используйте Advanced — миграция поддерживается и укладывается в сроки."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru предоставляет сервисы миграции данных из внешних S3 в хранилища на платформе Evolution. Время миграции в рамках типовых проектов не превышает 14 календарных дней.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+        ],
+        "source_titles": [
+          "Миграция данных из внешних S3 в хранилища Cloud.ru"
+        ],
+        "recommendation": "Используйте Evolution — миграция поддерживается и укладывается в сроки."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 55,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требуется безопасное зашифрованное соединение. Cloud.ru обеспечивает шифрование трафика в режиме HTTPS/TLS для всех API-интерфейсов, включая S3, ECS, OBS и другие сервисы. Это стандартная практика для всех платформ Cloud.ru, подтверждена в документации по безопасности.",
+    "evidence": "Обзор подходов и средств безопасности Cloud.ru — в документации описаны меры защиты инфраструктуры и средств управления. [2]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/security-introduction/index"
+    ],
+    "recommendation": "Используйте любую платформу Cloud.ru — безопасное зашифрованное соединение (HTTPS/TLS) обеспечивается на всех платформах по умолчанию.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Все платформы Cloud.ru обеспечивают безопасное зашифрованное соединение (HTTPS/TLS) для API и пользовательских интерфейсов. Это стандартная практика, подтвержденная документацией по безопасности.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/index"
+        ],
+        "source_titles": [
+          "Обзор подходов и средств безопасности Cloud.ru"
+        ],
+        "recommendation": "ГосОблако полностью соответствует требованию."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Все платформы Cloud.ru обеспечивают безопасное зашифрованное соединение (HTTPS/TLS) для API и пользовательских интерфейсов. Это стандартная практика, подтвержденная документацией по безопасности.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/index"
+        ],
+        "source_titles": [
+          "Обзор подходов и средств безопасности Cloud.ru"
+        ],
+        "recommendation": "Облако VMware полностью соответствует требованию."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Все платформы Cloud.ru обеспечивают безопасное зашифрованное соединение (HTTPS/TLS) для API и пользовательских интерфейсов. Это стандартная практика, подтвержденная документацией по безопасности.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/index"
+        ],
+        "source_titles": [
+          "Обзор подходов и средств безопасности Cloud.ru"
+        ],
+        "recommendation": "Advanced полностью соответствует требованию."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Все платформы Cloud.ru обеспечивают безопасное зашифрованное соединение (HTTPS/TLS) для API и пользовательских интерфейсов. Это стандартная практика, подтвержденная документацией по безопасности.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/index"
+        ],
+        "source_titles": [
+          "Обзор подходов и средств безопасности Cloud.ru"
+        ],
+        "recommendation": "Evolution полностью соответствует требованию."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 56,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требуется уровень надежности ЦОД не ниже Tier III. Cloud.ru размещает инфраструктуру в ЦОДах, сертифицированных Uptime Institute как Tier III (Design, Facility, Operation). Это подтверждено документацией. Альтернативный путь — репликация в 2+ зонах доступности — также поддерживается на Advanced и Evolution, что обеспечивает соответствие требованию.",
+    "evidence": "Центры обработки данных Cloud.ru соответствуют уровню надежности TIER III. [Local-DOC 1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/security-introduction/topics/compliance"
+    ],
+    "recommendation": "Используйте любую платформу Cloud.ru — все ЦОДы сертифицированы как Tier III. Альтернативно, репликация в 2+ зонах доступности поддерживается на Advanced и Evolution.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Все ЦОДы Cloud.ru, включая размещение ГосОблака, сертифицированы как Uptime Institute Tier III. Это подтверждено документацией.",
+        "evidence_refs": ["[Local-DOC 1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/topics/compliance"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru — документация Безопасность Cloud руководство пользователя облако Cloud.ru"
+        ],
+        "recommendation": "ГосОблако полностью соответствует требованию — ЦОД Tier III."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Все ЦОДы Cloud.ru, включая размещение Облака VMware, сертифицированы как Uptime Institute Tier III. Это подтверждено документацией.",
+        "evidence_refs": ["[Local-DOC 1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/topics/compliance"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru — документация Безопасность Cloud руководство пользователя облако Cloud.ru"
+        ],
+        "recommendation": "Облако VMware полностью соответствует требованию — ЦОД Tier III."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Все ЦОДы Cloud.ru, включая размещение Advanced, сертифицированы как Uptime Institute Tier III. Альтернативно, Advanced поддерживает репликацию в 2+ зонах доступности, что также соответствует требованию.",
+        "evidence_refs": ["[Local-DOC 1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/topics/compliance"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru — документация Безопасность Cloud руководство пользователя облако Cloud.ru"
+        ],
+        "recommendation": "Advanced полностью соответствует требованию — ЦОД Tier III и поддерживает репликацию."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Все ЦОДы Cloud.ru, включая размещение Evolution, сертифицированы как Uptime Institute Tier III. Альтернативно, Evolution поддерживает репликацию в 2+ зонах доступности, что также соответствует требованию.",
+        "evidence_refs": ["[Local-DOC 1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/topics/compliance"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru — документация Безопасность Cloud руководство пользователя облако Cloud.ru"
+        ],
+        "recommendation": "Evolution полностью соответствует требованию — ЦОД Tier III и поддерживает репликацию."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]
+```

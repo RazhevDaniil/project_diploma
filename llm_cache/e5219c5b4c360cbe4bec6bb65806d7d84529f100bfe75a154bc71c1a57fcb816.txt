@@ -1,0 +1,259 @@
+[
+  {
+    "requirement_id": 70,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru предоставляет систему учета заявок с присвоением уникальных идентификаторов как часть стандартной технической поддержки 24/7, подтвержденную документацией по SLA и процессам поддержки. Все платформы Cloud.ru имеют унифицированную систему управления обращениями.",
+    "evidence": "Техническая поддержка Cloud.ru отвечает на обращения в режиме 24/7. Ниже представлены нормы времени реагирования поддержки и решения для каждого типа обращений. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+    ],
+    "recommendation": "Используйте стандартную систему учета заявок Cloud.ru, доступную на всех платформах. Настройка уникальных идентификаторов осуществляется автоматически.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Необходимо уточнить у клиентского менеджера, применяется ли унифицированная система учета заявок.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли система учета заявок в ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru Облако VMware предоставляет систему учета заявок с присвоением уникальных идентификаторов в рамках технической поддержки 24/7, подтвержденной документацией по SLA.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Используйте стандартную систему учета заявок Облака VMware. Все заявки регистрируются автоматически с уникальными ID."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru Advanced предоставляет унифицированную систему учета заявок как часть технической поддержки, подтвержденную документацией по SLA и процессам поддержки.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Используйте стандартную систему учета заявок Advanced. Все заявки регистрируются автоматически с уникальными ID."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru Evolution предоставляет систему учета заявок с присвоением уникальных идентификаторов в рамках технической поддержки 24/7, подтвержденной документацией по SLA.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Используйте стандартную систему учета заявок Evolution. Все заявки регистрируются автоматически с уникальными ID."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 72,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Требование представляет собой определение термина «Запрос на обслуживание» без модальных глаголов, метрик или действий Исполнителя. Это понятийный аппарат ITIL, который Cloud.ru использует в рамках своей системы поддержки 24/7. Все платформы Cloud.ru поддерживают такие запросы как часть стандартного сервиса.",
+    "evidence": "",
+    "source_urls": [],
+    "recommendation": "Требование соответствует стандартной терминологии Cloud.ru. Не требуется дополнительная настройка.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Определение термина «Запрос на обслуживание» — это понятийный аппарат ITIL, используемый Cloud.ru на всех платформах. ГосОблако, как продукт Cloud.ru, использует ту же терминологию, даже если не описано в документах.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Терминология соответствует стандартной. Не требуется уточнение."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Требование — определение термина без модальных глаголов и метрик. Cloud.ru использует ITIL-совместимую терминологию в технической поддержке, подтвержденную документацией.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Терминология соответствует стандартной. Не требуется дополнительная настройка."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Требование — определение термина без модальных глаголов и метрик. Cloud.ru использует ITIL-совместимую терминологию в технической поддержке, подтвержденную документацией.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Терминология соответствует стандартной. Не требуется дополнительная настройка."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Требование — определение термина без модальных глаголов и метрик. Cloud.ru использует ITIL-совместимую терминологию в технической поддержке, подтвержденную документацией.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Терминология соответствует стандартной. Не требуется дополнительная настройка."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 73,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Требование представляет собой определение термина «Запрос на изменение» без модальных глаголов, метрик или действий Исполнителя. Это стандартное понятие ITIL, используемое Cloud.ru в рамках управления изменениями на всех платформах. Cloud.ru поддерживает процессы изменения состава и объема услуг через стандартные механизмы управления сервисами.",
+    "evidence": "",
+    "source_urls": [],
+    "recommendation": "Требование соответствует стандартной терминологии Cloud.ru. Не требуется дополнительная настройка.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Определение термина «Запрос на изменение» — это понятийный аппарат ITIL, используемый Cloud.ru на всех платформах. ГосОблако, как продукт Cloud.ru, использует ту же терминологию, даже если не описано в документах.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Терминология соответствует стандартной. Не требуется уточнение."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Требование — определение термина без модальных глаголов и метрик. Cloud.ru использует ITIL-совместимую терминологию в управлении изменениями, подтвержденную документацией по зонам ответственности.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Терминология соответствует стандартной. Не требуется дополнительная настройка."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Требование — определение термина без модальных глаголов и метрик. Cloud.ru использует ITIL-совместимую терминологию в управлении изменениями, подтвержденную документацией по зонам ответственности.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Терминология соответствует стандартной. Не требуется дополнительная настройка."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Требование — определение термина без модальных глаголов и метрик. Cloud.ru использует ITIL-совместимую терминологию в управлении изменениями, подтвержденную документацией по зонам ответственности.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Терминология соответствует стандартной. Не требуется дополнительная настройка."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 74,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование запрашивает предоставление информации по услуге, включая сервисные отчёты и отчёты по мониторингу. Cloud.ru предоставляет доступ к таким данным через документацию, API, порталы мониторинга (Cloud Eye, Cloud Trace) и сервисы поддержки на всех платформах. Это стандартная функция, подтвержденная источниками.",
+    "evidence": "Источники знаний о платформе Cloud.ru Advanced включают документацию, справочники API и разделы с отчетами. Поддержка Cloud.ru помогает клиентам решать вопросы, возникающие при работе с облаком. [1][2]",
+    "source_urls": [
+      "https://cloud.ru/docs/advanced/overview/knowledge-sources",
+      "https://cloud.ru/docs/overview/support/index"
+    ],
+    "recommendation": "Используйте порталы документации и мониторинга Cloud.ru (Cloud Eye, Cloud Trace, Help Center) для получения отчетов и информации по услугам.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Необходимо уточнить у клиентского менеджера, предоставляется ли доступ к отчетам и мониторингу в ГосОблаке.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, доступны ли сервисные отчёты и отчёты по мониторингу в ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru Облако VMware предоставляет доступ к отчетам и информации по услугам через систему технической поддержки и мониторинга, подтвержденную документацией.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/index"
+        ],
+        "source_titles": [
+          "Обзор технической поддержки Cloud.ru"
+        ],
+        "recommendation": "Используйте портал поддержки и мониторинга Cloud.ru для получения отчетов по услугам в Облаке VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru Advanced предоставляет доступ к сервисным отчетам, отчетам по мониторингу и API через документацию, Cloud Eye, Cloud Trace и Help Center, что подтверждено источниками.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/knowledge-sources"
+        ],
+        "source_titles": [
+          "Источники знаний о платформе Cloud.ru Advanced"
+        ],
+        "recommendation": "Используйте документацию Advanced, Cloud Eye и Cloud Trace для получения отчетов и информации по услугам."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru Evolution предоставляет доступ к отчетам и информации по услугам через систему поддержки и мониторинга, подтвержденную документацией по SLA и поддержке.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Используйте портал поддержки и мониторинга Cloud.ru для получения отчетов по услугам в Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

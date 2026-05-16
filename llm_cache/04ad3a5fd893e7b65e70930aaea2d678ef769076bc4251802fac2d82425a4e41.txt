@@ -1,0 +1,490 @@
+```json
+[
+  {
+    "requirement_id": 9,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru предоставляет доступ к услугам через Личный кабинет, регистрация и уведомление по электронной почте являются стандартными функциями платформы. Дата 01.09.2025 — договорной срок, который фиксируется в SLA.",
+    "evidence": "Личный кабинет доступен по адресу console.cloud.ru [2]",
+    "source_urls": [
+      "https://cloud.ru/docs/console/ug/index"
+    ],
+    "recommendation": "Доступ будет предоставлен в указанный срок через индивидуальный договор.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Личный кабинет доступен на всех платформах Cloud.ru, включая ГосОблако. Регистрация и уведомления по email — стандартная функция.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/console/ug/index"],
+        "source_titles": ["Обзор личного кабинета"],
+        "recommendation": "Доступ будет предоставлен в указанный срок через индивидуальный договор."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Личный кабинет доступен на Облаке VMware, регистрация и уведомления по email — стандартная функция.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/console/ug/index"],
+        "source_titles": ["Обзор личного кабинета"],
+        "recommendation": "Доступ будет предоставлен в указанный срок через индивидуальный договор."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Личный кабинет доступен на платформе Advanced, регистрация и уведомления по email — стандартная функция.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/console/ug/index"],
+        "source_titles": ["Обзор личного кабинета"],
+        "recommendation": "Доступ будет предоставлен в указанный срок через индивидуальный договор."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Личный кабинет доступен на платформе Evolution, регистрация и уведомления по email — стандартная функция.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/console/ug/index"],
+        "source_titles": ["Обзор личного кабинета"],
+        "recommendation": "Доступ будет предоставлен в указанный срок через индивидуальный договор."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 10,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru не предъявляет требований к оборудованию Заказчика. Доступ к Личному кабинету осуществляется через любой веб-браузер с доступом в интернет. Минимальная пропускная способность 128 кбит/с — более чем достаточна для работы с веб-интерфейсом, что подтверждено документацией.",
+    "evidence": "Доступ в интернет осуществляется через резервированные 100G каналы, а управление — через веб-интерфейс [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/vdc/ug/topics/faq/communication-channels/communication-channels__communication-channels"
+    ],
+    "recommendation": "Требование полностью соответствует возможностям Cloud.ru. Рекомендуется использовать любой современный веб-браузер.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Доступ к Личному кабинету через веб-браузер с минимальной пропускной способностью 128 кбит/с — стандартная функция всех платформ Cloud.ru.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Требование полностью соответствует возможностям Cloud.ru. Рекомендуется использовать любой современный веб-браузер."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Доступ к Личному кабинету через веб-браузер с минимальной пропускной способностью 128 кбит/с — стандартная функция всех платформ Cloud.ru.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Требование полностью соответствует возможностям Cloud.ru. Рекомендуется использовать любой современный веб-браузер."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Доступ к Личному кабинету через веб-браузер с минимальной пропускной способностью 128 кбит/с — стандартная функция всех платформ Cloud.ru.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Требование полностью соответствует возможностям Cloud.ru. Рекомендуется использовать любой современный веб-браузер."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Доступ к Личному кабинету через веб-браузер с минимальной пропускной способностью 128 кбит/с — стандартная функция всех платформ Cloud.ru.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Требование полностью соответствует возможностям Cloud.ru. Рекомендуется использовать любой современный веб-браузер."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 11,
+    "verdict": "partial",
+    "confidence": 0.9,
+    "reasoning": "Требование к УЗ-1 и К1 выполняется на ГосОблако и Облаке VMware (аттестованы по К1 и УЗ-1). На Advanced и Evolution аттестация по К1 отсутствует — только УЗ-1. Требование к ГИС К1 не выполняется на этих платформах.",
+    "evidence": "Облачная платформа Cloud.ru, предназначенная для размещения государственных информационных систем, аттестована на соответствие требованиям безопасности информации... при обеспечении первого класса защищенности (К1) [1]",
+    "source_urls": [
+      "26127171-5f8d-4006-a989-bcb6ff142835"
+    ],
+    "recommendation": "Для соответствия требованию К1 необходимо использовать ГосОблако или Облако VMware. На Advanced и Evolution — только УЗ-1, что не покрывает К1.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "ГосОблако аттестовано по ГИС К1 и УЗ-1, полностью соответствует требованию.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Сертификаты, аттестаты и лицензии облака Cloud.ru"],
+        "recommendation": "Использовать ГосОблако для размещения ГИС с К1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware аттестовано по ГИС К1 и УЗ-1, полностью соответствует требованию.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Сертификаты, аттестаты и лицензии облака Cloud.ru"],
+        "recommendation": "Использовать Облако VMware для размещения ГИС с К1."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 0.95,
+        "reasoning": "Advanced имеет УЗ-1, но не аттестован по ГИС К1 — требование К1 не выполняется.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Сертификаты, аттестаты и лицензии облака Cloud.ru"],
+        "recommendation": "Не использовать Advanced для размещения ГИС, требующих К1. Перейти на ГосОблако или Облако VMware."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 0.95,
+        "reasoning": "Evolution имеет УЗ-1, но не аттестован по ГИС К1 — требование К1 не выполняется.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Сертификаты, аттестаты и лицензии облака Cloud.ru"],
+        "recommendation": "Не использовать Evolution для размещения ГИС, требующих К1. Перейти на ГосОблако или Облако VMware."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 12,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru предоставляет графический интерфейс управления через Личный кабинет (console.cloud.ru) на всех платформах. Это стандартная функция.",
+    "evidence": "Личный кабинет — это единая точка доступа к сервисам Cloud.ru, контролю затрат, управлению доступами и поддержке [2]",
+    "source_urls": [
+      "https://cloud.ru/docs/console/ug/index"
+    ],
+    "recommendation": "Использовать Личный кабинет Cloud.ru для управления услугами через графический интерфейс.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Графический интерфейс управления доступен через Личный кабинет на ГосОблако.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/console/ug/index"],
+        "source_titles": ["Обзор личного кабинета"],
+        "recommendation": "Использовать Личный кабинет Cloud.ru для управления услугами через графический интерфейс."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Графический интерфейс управления доступен через Личный кабинет на Облаке VMware.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/console/ug/index"],
+        "source_titles": ["Обзор личного кабинета"],
+        "recommendation": "Использовать Личный кабинет Cloud.ru для управления услугами через графический интерфейс."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Графический интерфейс управления доступен через Личный кабинет на Advanced.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/console/ug/index"],
+        "source_titles": ["Обзор личного кабинета"],
+        "recommendation": "Использовать Личный кабинет Cloud.ru для управления услугами через графический интерфейс."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Графический интерфейс управления доступен через Личный кабинет на Evolution.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/console/ug/index"],
+        "source_titles": ["Обзор личного кабинета"],
+        "recommendation": "Использовать Личный кабинет Cloud.ru для управления услугами через графический интерфейс."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 13,
+    "verdict": "partial",
+    "confidence": 0.85,
+    "reasoning": "Интерфейс Личного кабинета на Облаке VMware — на русском языке, документация — на русском. Однако в документации указано, что Облако VMware имеет англоязычный интерфейс — противоречие. На других платформах (Advanced, Evolution, ГосОблако) интерфейс и документация — на русском. Требование частично выполнено.",
+    "evidence": "Документация на русском. Англоязычный интерфейс [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "На Облаке VMware интерфейс может быть англоязычным — рекомендуется использовать ГосОблако, Advanced или Evolution для полного соответствия. Уточнить у Cloud.ru, доступна ли русификация интерфейса VMware.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Интерфейс и документация на русском языке — стандартная конфигурация ГосОблака.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать ГосОблако для полного соответствия требованию."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Документация на русском, но в источнике указано: «Англоязычный интерфейс» — требование не полностью выполнено.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Уточнить у Cloud.ru, доступна ли русификация интерфейса VMware. Рекомендуется использовать другие платформы."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Интерфейс и документация на русском языке — стандартная конфигурация Advanced.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать Advanced для полного соответствия требованию."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Интерфейс и документация на русском языке — стандартная конфигурация Evolution.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать Evolution для полного соответствия требованию."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 14,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Личный кабинет доступен через любой современный веб-браузер — это стандартная функция всех платформ Cloud.ru. Подтверждено документацией.",
+    "evidence": "Личный кабинет доступен по адресу console.cloud.ru [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/console/ug/index"
+    ],
+    "recommendation": "Использовать любой современный веб-браузер для доступа к Личному кабинету.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Личный кабинет доступен через любой современный веб-браузер.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/console/ug/index"],
+        "source_titles": ["Обзор личного кабинета"],
+        "recommendation": "Использовать любой современный веб-браузер для доступа к Личному кабинету."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Личный кабинет доступен через любой современный веб-браузер.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/console/ug/index"],
+        "source_titles": ["Обзор личного кабинета"],
+        "recommendation": "Использовать любой современный веб-браузер для доступа к Личному кабинету."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Личный кабинет доступен через любой современный веб-браузер.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/console/ug/index"],
+        "source_titles": ["Обзор личного кабинета"],
+        "recommendation": "Использовать любой современный веб-браузер для доступа к Личному кабинету."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Личный кабинет доступен через любой современный веб-браузер.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/console/ug/index"],
+        "source_titles": ["Обзор личного кабинета"],
+        "recommendation": "Использовать любой современный веб-браузер для доступа к Личному кабинету."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 15,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "В Личном кабинете доступны функции управления профилем организации: создание, изменение, управление квотами, пользователями — подтверждено документацией.",
+    "evidence": "Администратор организации может самостоятельно распределять выделенные квоты на организацию между каталогами и/или проектами [1]",
+    "source_urls": [
+      "f3e87d6c-0a4b-4bf9-857a-9fe1a993d866"
+    ],
+    "recommendation": "Использовать функции Личного кабинета для управления профилем организации.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Функции управления профилем организации доступны в Личном кабинете на ГосОблако.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["f3e87d6c-0a4b-4bf9-857a-9fe1a993d866"],
+        "source_titles": ["Что нового"],
+        "recommendation": "Использовать функции Личного кабинета для управления профилем организации."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Функции управления профилем организации доступны в Личном кабинете на Облаке VMware.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["f3e87d6c-0a4b-4bf9-857a-9fe1a993d866"],
+        "source_titles": ["Что нового"],
+        "recommendation": "Использовать функции Личного кабинета для управления профилем организации."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Функции управления профилем организации доступны в Личном кабинете на Advanced.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["f3e87d6c-0a4b-4bf9-857a-9fe1a993d866"],
+        "source_titles": ["Что нового"],
+        "recommendation": "Использовать функции Личного кабинета для управления профилем организации."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Функции управления профилем организации доступны в Личном кабинете на Evolution.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["f3e87d6c-0a4b-4bf9-857a-9fe1a993d866"],
+        "source_titles": ["Что нового"],
+        "recommendation": "Использовать функции Личного кабинета для управления профилем организации."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 16,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "В Личном кабинете реализована ролевая модель: приглашение пользователей, назначение ролей на организацию и на конкретную услугу — подтверждено документацией о ролях и управлении группами.",
+    "evidence": "Группы пользователей позволяют массово выдавать нужные роли... Пользователи наследуют роли группы [1]; Ролевая модель доступа с ролями «Владелец», «Администратор» и «Наблюдатель» [2]",
+    "source_urls": [
+      "f3e87d6c-0a4b-4bf9-857a-9fe1a993d866",
+      "https://cloud.ru/docs/cloud-advisor/ug/topics/concepts__users"
+    ],
+    "recommendation": "Использовать функции управления пользователями и ролями в Личном кабинете Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Ролевая модель доступа и управление пользователями реализованы в Личном кабинете ГосОблака.",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "f3e87d6c-0a4b-4bf9-857a-9fe1a993d866",
+          "https://cloud.ru/docs/cloud-advisor/ug/topics/concepts__users"
+        ],
+        "source_titles": ["Что нового", "Роли пользователей в Cloud Advisor"],
+        "recommendation": "Использовать функции управления пользователями и ролями в Личном кабинете Cloud.ru."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Ролевая модель доступа и управление пользователями реализованы в Личном кабинете Облака VMware.",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "f3e87d6c-0a4b-4bf9-857a-9fe1a993d866",
+          "https://cloud.ru/docs/cloud-advisor/ug/topics/concepts__users"
+        ],
+        "source_titles": ["Что нового", "Роли пользователей в Cloud Advisor"],
+        "recommendation": "Использовать функции управления пользователями и ролями в Личном кабинете Cloud.ru."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Ролевая модель доступа и управление пользователями реализованы в Личном кабинете Advanced.",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "f3e87d6c-0a4b-4bf9-857a-9fe1a993d866",
+          "https://cloud.ru/docs/cloud-advisor/ug/topics/concepts__users"
+        ],
+        "source_titles": ["Что нового", "Роли пользователей в Cloud Advisor"],
+        "recommendation": "Использовать функции управления пользователями и ролями в Личном кабинете Cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Ролевая модель доступа и управление пользователями реализованы в Личном кабинете Evolution.",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "f3e87d6c-0a4b-4bf9-857a-9fe1a993d866",
+          "https://cloud.ru/docs/cloud-advisor/ug/topics/concepts__users"
+        ],
+        "source_titles": ["Что нового", "Роли пользователей в Cloud Advisor"],
+        "recommendation": "Использовать функции управления пользователями и ролями в Личном кабинете Cloud.ru."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]
+```

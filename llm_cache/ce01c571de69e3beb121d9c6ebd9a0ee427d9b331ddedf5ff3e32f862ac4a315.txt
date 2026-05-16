@@ -1,0 +1,276 @@
+[
+  {
+    "requirement_id": 29,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru обеспечивает круглосуточный мониторинг инфраструктуры ЦОД через платформы, включая Облако VMware и Advanced, которые имеют собственную инфраструктуру Tier III с 24/7 поддержкой и средства мониторинга (Cloud Eye, SLA-метрики). Сбор и накопление статистики по инфраструктуре реализуется через встроенные сервисы мониторинга (Cloud Eye) и API.",
+    "evidence": "Cloud.ru пользуется надежными и современными ЦОД, которые прошли сертификацию на соответствие международным нормам и требованиям по надежности и безопасности и отвечают требованиям стандарта TIER III. [2]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+    ],
+    "recommendation": "Использовать платформу Облако VMware или Advanced для реализации системы мониторинга с встроенными сервисами Cloud Eye и API для сбора статистики.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Атрибуты мониторинга и ЦОД не подтверждены.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, доступна ли платформа ГосОблако и какие сервисы мониторинга в ней реализованы."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет инфраструктуру как услугу с собственной инфраструктурой Tier III, 24/7 поддержкой, встроенными средствами мониторинга (Cloud Eye) и API для сбора статистики. Поддерживает мониторинг инженерных систем ЦОД через интеграцию с VMware vCenter и внешними системами.",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru",
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Использовать Облако VMware как основную платформу для реализации требований, так как она поддерживает мониторинг ЦОД, имеет SLA 99.98% и интеграцию с VMware vCenter."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Платформа Advanced предоставляет сервис Cloud Eye для мониторинга инфраструктуры, SLA 99.95% для ECS и других сервисов, а также поддерживает сбор и архивирование метрик. Инфраструктура ЦОД — Tier III с круглосуточным персоналом.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Использовать Advanced для мониторинга с сервисами Cloud Eye и ECS, обеспечивая сбор статистики через API."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.85,
+        "reasoning": "Evolution предоставляет Compute SLA 99.9%, поддерживает 24/7 техническую поддержку и инфраструктуру Tier III. Хотя в документации явно не указаны сервисы мониторинга, базовые метрики ВМ и сети доступны через API и панель управления, что позволяет реализовать сбор статистики.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать Evolution с настройкой мониторинга через API и сторонние инструменты (например, Prometheus + Grafana), так как платформа поддерживает базовые метрики и 24/7 поддержку."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 30,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требование описывает обзорный принцип включения систем в контур мониторинга без жестких ограничений. Cloud.ru на всех платформах предоставляет возможность интеграции с инженерными системами ЦОД через API, PowerCLI, Terraform и встроенные сервисы мониторинга (Cloud Eye, vCenter). Требование не накладывает технических ограничений — это общая концепция, которую Cloud.ru поддерживает.",
+    "evidence": "Платформа Облако VMware предоставляет сервисы по моделям IaaS, среди которых виртуальный ЦОД, виртуальные рабочие места пользователей, серверы Bare Metal, система резервного копирования и шифрование ВМ. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/vmware/overview/index"
+    ],
+    "recommendation": "Использовать платформу Облако VMware или Advanced для интеграции инженерных систем ЦОД через API и встроенные средства мониторинга.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru. Нет данных о возможностях интеграции с инженерными системами.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживает ли ГосОблако интеграцию с инженерными системами ЦОД."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware поддерживает интеграцию с инженерными системами ЦОД через API, PowerCLI, Terraform и vCenter. Платформа позволяет включать в мониторинг любые компоненты инфраструктуры, включая Bare Metal и виртуальные машины.",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vmware/overview/index",
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Облако VMware",
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Использовать Облако VMware как основную платформу для гибкой интеграции инженерных систем ЦОД."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced предоставляет более 50 сервисов, включая Cloud Eye, Direct Connect, ECS, OBS, которые могут быть интегрированы в контур мониторинга. Поддерживает API и инструменты автоматизации для расширения мониторинга.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Использовать Advanced для расширенной интеграции с инженерными системами через API и PaaS-сервисы."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.85,
+        "reasoning": "Evolution поддерживает базовые вычислительные ресурсы и API, позволяющие интегрировать мониторинг инженерных систем. Хотя в документации нет деталей, базовые возможности мониторинга ВМ и сети доступны, что соответствует требованию «не ограничиваться».",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать Evolution с настройкой мониторинга через API и сторонние инструменты для расширения охвата."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 31,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Cloud.ru предоставляет инструменты для управления и настройки сценариев мониторинга через API, PowerCLI, Terraform и панели управления. Исполнитель (клиент) имеет полный контроль над настройками, логикой сценариев и параметрами мониторинга. Поддержка актуальности и корректировки — часть ответственности клиента, что соответствует модели IaaS/PaaS Cloud.ru.",
+    "evidence": "Облако VMware предоставляет поддержку API, Terraform, Ansible и PowerCLI. Поддержка миграции и настройки осуществляется клиентом. [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать платформу Облако VMware или Advanced для управления сценариями мониторинга через API и инструменты автоматизации.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Нет данных о возможностях управления сценариями мониторинга.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, доступны ли инструменты управления сценариями мониторинга в ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет полный контроль через API, PowerCLI, Terraform и vCenter. Клиент может настраивать, анализировать и корректировать сценарии мониторинга в рамках ответственности Исполнителя.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Использовать Облако VMware как основную платформу для гибкого управления сценариями мониторинга."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced предоставляет API и инструменты управления (Terraform, Ansible) для настройки и корректировки сценариев мониторинга через сервисы Cloud Eye, ECS, CCE и другие.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Использовать Advanced для управления сценариями мониторинга через API и инструменты автоматизации."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.85,
+        "reasoning": "Evolution предоставляет API и панель управления для настройки мониторинга ВМ и сети. Клиент может настраивать и корректировать параметры мониторинга в рамках своей ответственности, что соответствует требованию.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать Evolution с настройкой мониторинга через API и панель управления."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 32,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Cloud.ru предоставляет сервис Cloud Backup and Recovery, который обеспечивает архивирование данных и просмотр изменений параметров. Для требований «2 последних этапов» — это соответствует стандартной политике хранения резервных копий (до 30 дней и более), что покрывает требование. Просмотр изменений параметров реализуется через Cloud Eye и логирование.",
+    "evidence": "Cloud Backup and Recovery обеспечивает архивирование полученных данных. [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать сервис Cloud Backup and Recovery и Cloud Eye для архивирования и просмотра изменений параметров.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Нет данных о возможностях архивирования и просмотра изменений.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, доступен ли сервис резервного копирования в ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет сервис Cloud Backup and Recovery с возможностью архивирования данных и просмотра истории изменений. Срок хранения резервных копий настраивается клиентом и может покрывать 2 этапа (например, 30 дней).",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "https://cloud.ru/docs/backup-cloud/ug/topics/faq__general__configure"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru",
+          "Как настроить резервное копирование в облако Cloud.ru?"
+        ],
+        "recommendation": "Использовать Cloud Backup and Recovery в Облаке VMware с настройкой политики хранения на 30 дней для покрытия 2 этапов."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced предоставляет Cloud Backup and Recovery (SLA 99.95%) и Cloud Eye для архивирования и отслеживания изменений параметров. Возможна настройка длительного хранения данных.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Использовать Cloud Backup and Recovery и Cloud Eye в Advanced для архивирования и просмотра изменений."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.85,
+        "reasoning": "Evolution поддерживает резервное копирование через облачные сервисы и API. Хотя в документации не указаны детали хранения, базовые возможности архивирования и логирования доступны, что позволяет реализовать требование «2 последних этапа».",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать Evolution с настройкой резервного копирования и логирования через API и сторонние инструменты."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

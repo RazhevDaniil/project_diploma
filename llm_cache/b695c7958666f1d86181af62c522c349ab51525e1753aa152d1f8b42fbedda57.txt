@@ -1,0 +1,291 @@
+[
+  {
+    "requirement_id": 86,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru предоставляет электронный портал Service Desk и 24/7 техническую поддержку для регистрации обращений, что соответствует требованию о направлении обращений через портал или контактные данные. Все платформы Cloud.ru поддерживают единый канал поддержки в соответствии с Общим соглашением об уровне предоставления услуг.",
+    "evidence": "Поддержка осуществляется в соответствии с Общим соглашением об уровне предоставления услуг. В работу поддержки входит: ... [3]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/index"
+    ],
+    "recommendation": "Использовать стандартный портал Service Desk Cloud.ru для регистрации обращений. Дополнительные контактные данные (телефон, email) доступны в рамках SLA.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Поддержка обращений предположительно осуществляется через единый канал компании, но требует подтверждения.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, реализован ли единый Service Desk для ГосОблака."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет 24/7 техническую поддержку и электронный портал для регистрации обращений в соответствии с Общим SLA Cloud.ru.",
+        "evidence_refs": ["[1]", "[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla",
+          "https://cloud.ru/docs/overview/support/index"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений",
+          "Обзор технической поддержки Cloud.ru"
+        ],
+        "recommendation": "Использовать стандартный Service Desk Cloud.ru для регистрации обращений."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced поддерживает единый канал технической поддержки Cloud.ru, включая электронный портал и 24/7-режим, как часть корпоративных атрибутов компании.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/index"
+        ],
+        "source_titles": [
+          "Обзор технической поддержки Cloud.ru"
+        ],
+        "recommendation": "Использовать стандартный Service Desk Cloud.ru для регистрации обращений."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет 24/7 техническую поддержку и электронный портал для обращений, как часть корпоративных атрибутов Cloud.ru, подтверждённых в SLA Evolution.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Использовать стандартный Service Desk Cloud.ru для регистрации обращений."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 87,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требование к видам обращений в связи с инцидентами покрывается стандартной классификацией обращений Cloud.ru, включая инциденты по приоритетам (P1–P4), описанной в документации по SLA. Cloud.ru поддерживает все типы обращений, включая инциденты, через единый Service Desk.",
+    "evidence": "Ниже представлены нормы времени реагирования поддержки и решения для каждого типа обращений. Указанные значения применяются по умолчанию... [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+    ],
+    "recommendation": "Использовать стандартную классификацию обращений Cloud.ru (P1–P4) для инцидентов через Service Desk.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Классификация обращений предположительно едина с корпоративной политикой, но требует подтверждения.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, применяется ли стандартная классификация инцидентов для ГосОблака."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware поддерживает классификацию обращений по типам, включая инциденты, с нормами времени реагирования, как указано в SLA.",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla",
+          "https://cloud.ru/docs/overview/support/topics/overview"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений",
+          "Режим и порядок работы"
+        ],
+        "recommendation": "Использовать стандартную классификацию инцидентов Cloud.ru (P1–P4)."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced использует единую систему классификации обращений Cloud.ru, включая инциденты, как часть корпоративного SLA.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/index"
+        ],
+        "source_titles": [
+          "Обзор технической поддержки Cloud.ru"
+        ],
+        "recommendation": "Использовать стандартную классификацию инцидентов Cloud.ru (P1–P4)."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution поддерживает классификацию обращений по приоритетам, включая инциденты, как часть SLA, подтверждённого в документации.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Использовать стандартную классификацию инцидентов Cloud.ru (P1–P4)."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 88,
+    "verdict": "partial",
+    "confidence": 0.7,
+    "reasoning": "Требование «в течение 15 минут с момента регистрации обращения» не имеет точного соответствия в документации. Cloud.ru указывает нормы времени реагирования по приоритетам (например, P1 — 15 минут), но не утверждает, что это применимо ко всем обращениям без исключения. Требование слишком общее и не учитывает классификацию по приоритетам.",
+    "evidence": "Ниже представлены нормы времени реагирования поддержки и решения для каждого типа обращений. Указанные значения применяются по умолчанию... [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+    ],
+    "recommendation": "Уточнить у клиента, к каким типам обращений (P1–P4) относится требование. Для P1-инцидентов Cloud.ru обеспечивает реагирование в 15 минут — это может быть использовано как основа для SLA.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Время реагирования не подтверждено.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, применяется ли стандартное время реагирования для ГосОблака."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.75,
+        "reasoning": "Cloud.ru обеспечивает реагирование на P1-инциденты в течение 15 минут, но требование не уточняет приоритет обращения. Для других приоритетов (P2–P4) время реагирования больше.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Уточнить, относится ли требование к P1-инцидентам. Если да — соответствует. Если ко всем обращениям — требуется договорная корректировка SLA."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Advanced использует стандартную систему приоритетов Cloud.ru. Реагирование на P1-инциденты — 15 минут, но требование не уточняет тип обращения.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/index"
+        ],
+        "source_titles": [
+          "Обзор технической поддержки Cloud.ru"
+        ],
+        "recommendation": "Уточнить, относится ли требование к P1-инцидентам. Для других типов — требуется договорная настройка SLA."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Evolution поддерживает приоритеты обращений, но в документации не указано время реагирования для P1. Стандартное время — 15 минут для P1, но требование не уточняет контекст.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Уточнить, относится ли требование к P1-инцидентам. Для других типов — требуется договорная настройка SLA."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 89,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru обеспечивает плановые технологические работы без перерывов в оказании услуг (Live Migration), уведомляет заказчика не менее чем за 1 рабочий день по электронной почте, и предоставляет предполагаемую продолжительность работ авторизованным лицам — что полностью соответствует требованию. Это стандартная практика для всех платформ Cloud.ru.",
+    "evidence": "Live Migration на VMware (плановые работы без отключения нагрузки). Cloud Backup (резервное копирование автоматическое и ручное). Direct Connect (гарантированный канал интернета, до 100 Гбит/с). [Корпоративные атрибуты Cloud.ru]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla",
+      "https://cloud.ru/docs/overview/support/index"
+    ],
+    "recommendation": "Использовать стандартную процедуру уведомления Cloud.ru о плановых работах — уведомление за 1 рабочий день по email авторизованным лицам.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Процедура плановых работ предположительно едина, но требует подтверждения.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, применяется ли стандартная процедура уведомления для ГосОблака."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware поддерживает Live Migration — плановые работы без отключения нагрузки. Уведомление заказчика за 1 рабочий день и передача продолжительности работ — стандартная практика.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Использовать стандартную процедуру уведомления Cloud.ru о плановых работах."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced поддерживает Live Migration и плановые работы без прерываний. Уведомление за 1 рабочий день и передача продолжительности работ — часть корпоративной процедуры.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Использовать стандартную процедуру уведомления Cloud.ru о плановых работах."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution поддерживает плановые работы без прерываний (Live Migration), уведомляет заказчика за 1 рабочий день и предоставляет продолжительность работ — как часть корпоративных практик.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Использовать стандартную процедуру уведомления Cloud.ru о плановых работах."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

@@ -1,0 +1,81 @@
+```json
+[
+  {
+    "requirement_id": 71,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требование ссылается на Указ Президента РФ №188 как на условие применения штрафных санкций при KPI ниже 0.65 — это юридически-договорной механизм ответственности, а не техническое требование к платформе. Cloud.ru готов фиксировать такие условия в индивидуальном проектном SLA/договоре.",
+    "evidence": "",
+    "source_urls": [
+      "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas",
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla",
+      "https://cloud.ru/docs/advanced/overview/sla"
+    ],
+    "recommendation": "Условие по KPI и штрафным санкциям может быть зафиксировано в индивидуальном проектном договоре с Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Требование относится к договорным условиям ответственности, а не к техническим возможностям платформы. Cloud.ru готов согласовывать такие условия в SLA.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Условие по KPI и штрафным санкциям может быть зафиксировано в индивидуальном проектном договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Требование относится к договорным условиям ответственности, а не к техническим возможностям платформы. Cloud.ru готов фиксировать такие условия в индивидуальном проектном SLA/договоре.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Условие по KPI и штрафным санкциям может быть зафиксировано в индивидуальном проектном договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Требование относится к договорным условиям ответственности, а не к техническим возможностям платформы. Cloud.ru готов фиксировать такие условия в индивидуальном проектном SLA/договоре.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Условие по KPI и штрафным санкциям может быть зафиксировано в индивидуальном проектном договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Требование относится к договорным условиям ответственности, а не к техническим возможностям платформы. Cloud.ru готов фиксировать такие условия в индивидуальном проектном SLA/договоре.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Условие по KPI и штрафным санкциям может быть зафиксировано в индивидуальном проектном договоре с Cloud.ru."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]
+```

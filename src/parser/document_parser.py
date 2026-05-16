@@ -30,16 +30,34 @@ class ParsedTable:
 
 
 @dataclass
+class ParsedBlock:
+    """A structured document block in original order."""
+
+    kind: str
+    text: str
+    style: str = ""
+    level: int | None = None
+    table_index: int | None = None
+    row_index: int | None = None
+    headers: list[str] = field(default_factory=list)
+    cells: list[str] = field(default_factory=list)
+    caption: str = ""
+
+
+@dataclass
 class ParsedDocument:
     """Full result of parsing a document."""
     filename: str
     text: str
     tables: list[ParsedTable] = field(default_factory=list)
     metadata: dict = field(default_factory=dict)
+    blocks: list[ParsedBlock] = field(default_factory=list)
 
     @property
     def full_text(self) -> str:
         """Text with tables appended as markdown."""
+        if self.metadata.get("tables_in_text"):
+            return self.text
         parts = [self.text]
         for t in self.tables:
             md = t.to_markdown()
@@ -52,10 +70,30 @@ def parse_document(file_path: str | Path) -> ParsedDocument:
     """Detect format and parse the document."""
     path = Path(file_path)
     suffix = path.suffix.lower()
+
+    # Патч 2 (ZK10): .doc — старый бинарный формат, python-docx его не читает.
+    # До патча .doc мапился на _parse_docx и тихо падал. Теперь конвертируем
+    # .doc → .docx через libreoffice/soffice headless и парсим как docx,
+    # сохраняя оригинальное имя файла (UI отображает его пользователю).
+    if suffix == ".doc":
+        logger.info("Parsing %s: .doc detected, converting to .docx", path.name)
+        converted = _normalize_doc_to_docx(path)
+        if converted is None:
+            raise ValueError(
+                "Не удалось сконвертировать .doc → .docx: ни libreoffice, "
+                "ни soffice не найдены в PATH. "
+                f"Файл: {path.name}. Установите LibreOffice или пересохраните "
+                "документ как .docx вручную."
+            )
+        parsed = _parse_docx(converted)
+        # Сохраняем оригинальное имя, чтобы UI/отчёт показывали то, что
+        # пользователь загрузил, а не временный converted-файл.
+        parsed.filename = path.name
+        return parsed
+
     parsers = {
         ".pdf": _parse_pdf,
         ".docx": _parse_docx,
-        ".doc": _parse_docx,
         ".xlsx": _parse_xlsx,
         ".xls": _parse_xlsx,
         ".txt": _parse_txt,
@@ -65,6 +103,49 @@ def parse_document(file_path: str | Path) -> ParsedDocument:
         raise ValueError(f"Unsupported file format: {suffix}")
     logger.info("Parsing %s with %s parser", path.name, suffix)
     return parser_fn(path)
+
+
+def _normalize_doc_to_docx(path: Path) -> Path | None:
+    """Convert a legacy .doc file to .docx for parsing.
+
+    Tries `soffice --headless` and `libreoffice --headless`. Returns the
+    converted .docx path or None if no converter is available. Caller raises
+    a clear error if both methods fail.
+    """
+    import shutil
+    import subprocess
+    import tempfile
+
+    for tool in ("soffice", "libreoffice"):
+        if shutil.which(tool) is None:
+            continue
+        outdir = Path(tempfile.mkdtemp(prefix="doc2docx_"))
+        try:
+            result = subprocess.run(
+                [tool, "--headless", "--convert-to", "docx",
+                 "--outdir", str(outdir), str(path)],
+                capture_output=True,
+                text=True,
+                timeout=120,
+            )
+        except (FileNotFoundError, subprocess.TimeoutExpired) as exc:
+            logger.warning("%s convert raised %s", tool, exc)
+            continue
+        if result.returncode == 0:
+            converted = outdir / (path.stem + ".docx")
+            if converted.exists():
+                logger.info("Converted .doc → .docx via %s: %s", tool, converted.name)
+                return converted
+        logger.warning(
+            "%s convert failed (rc=%d): %s",
+            tool, result.returncode, (result.stderr or "")[:300],
+        )
+
+    logger.error(
+        "No .doc → .docx converter available (tried soffice, libreoffice). "
+        "Install LibreOffice or save the file as .docx manually."
+    )
+    return None
 
 
 def _parse_pdf(path: Path) -> ParsedDocument:
@@ -101,33 +182,96 @@ def _parse_pdf(path: Path) -> ParsedDocument:
 
 def _parse_docx(path: Path) -> ParsedDocument:
     from docx import Document
+    from docx.table import Table
+    from docx.text.paragraph import Paragraph
 
     doc = Document(str(path))
     text_parts: list[str] = []
     tables: list[ParsedTable] = []
+    blocks: list[ParsedBlock] = []
+    table_index = 0
 
-    for para in doc.paragraphs:
-        if para.text.strip():
-            text_parts.append(para.text)
+    def iter_block_items(parent):
+        for child in parent.element.body.iterchildren():
+            if child.tag.endswith("}p"):
+                yield Paragraph(child, parent)
+            elif child.tag.endswith("}tbl"):
+                yield Table(child, parent)
 
-    for i, table in enumerate(doc.tables):
+    def paragraph_level(paragraph: Paragraph) -> int | None:
+        style_name = paragraph.style.name if paragraph.style else ""
+        if style_name.lower().startswith("heading"):
+            parts = style_name.split()
+            if parts and parts[-1].isdigit():
+                return int(parts[-1])
+        return None
+
+    def cell_text(cell) -> str:
+        parts = [" ".join(paragraph.text.split()) for paragraph in cell.paragraphs]
+        return "\n".join(part for part in parts if part)
+
+    last_table_caption = ""
+
+    for item in iter_block_items(doc):
+        if isinstance(item, Paragraph):
+            text = " ".join(item.text.split())
+            if not text:
+                continue
+            style_name = item.style.name if item.style else ""
+            level = paragraph_level(item)
+            blocks.append(ParsedBlock(
+                kind="paragraph",
+                text=text,
+                style=style_name,
+                level=level,
+            ))
+            text_parts.append(text)
+            if text.lower().startswith(("таблица", "табл.")):
+                last_table_caption = text
+            continue
+
+        table_index += 1
+        caption_for_table = last_table_caption
+        last_table_caption = ""
         raw_rows = []
-        for row in table.rows:
-            raw_rows.append([cell.text.strip() for cell in row.cells])
+        for row in item.rows:
+            raw_rows.append([cell_text(cell) for cell in row.cells])
         if len(raw_rows) < 2:
             continue
         headers = raw_rows[0]
         rows = raw_rows[1:]
-        tables.append(ParsedTable(
-            page_or_section=f"таблица {i + 1}",
+        table = ParsedTable(
+            page_or_section=caption_for_table or f"таблица {table_index}",
             headers=headers,
             rows=rows,
-        ))
+        )
+        tables.append(table)
+        text_parts.append(f"[Таблица {table_index}]")
+        text_parts.append(table.to_markdown())
+        for row_index, row in enumerate(rows, start=1):
+            pairs = []
+            for idx, cell in enumerate(row):
+                header = headers[idx] if idx < len(headers) and headers[idx] else f"Колонка {idx + 1}"
+                if cell:
+                    pairs.append(f"{header}: {cell}")
+            row_text = "; ".join(pairs)
+            if row_text:
+                blocks.append(ParsedBlock(
+                    kind="table_row",
+                    text=row_text,
+                    table_index=table_index,
+                    row_index=row_index,
+                    headers=headers,
+                    cells=row,
+                    caption=caption_for_table,
+                ))
 
     return ParsedDocument(
         filename=path.name,
         text="\n".join(text_parts),
         tables=tables,
+        metadata={"tables_in_text": True},
+        blocks=blocks,
     )
 
 

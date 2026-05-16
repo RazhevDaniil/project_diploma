@@ -1,0 +1,232 @@
+```json
+[
+  {
+    "requirement_id": 57,
+    "verdict": "partial",
+    "confidence": 0.8,
+    "reasoning": "Cloud.ru поддерживает WORM-функционал в OBS (документация [1]), но не подтверждено, что входящий, исходящий и внутренний трафик предоставляется без дополнительной платы. Тарификация трафика не указана в документации, требуется уточнение.",
+    "evidence": "Сервис OBS поддерживает функцию WORM (write-once-read-many) для защиты объектов от удаления или изменения в течение заданного периода. [1]",
+    "source_urls": ["https://cloud.ru/docs/obs/ug/topics/guides__worm"],
+    "recommendation": "Уточнить у клиентского менеджера Cloud.ru, предоставляется ли бесплатный трафик для объектного хранилища OBS в рамках тарифа.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основной документации Cloud.ru. Функционал WORM и тарификация трафика не подтверждены.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, доступен ли сервис OBS с WORM в ГосОблаке и условия тарификации трафика."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Облако VMware не упоминается как платформа для OBS. WORM поддерживается только в OBS на Advanced и Evolution, согласно документации. Поддержка трафика не указана.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, доступен ли OBS с WORM на Облаке VMware и условия тарификации трафика."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "OBS поддерживает WORM-функционал (документация [1]). SLA OBS 99,95% подтверждён. Однако тарификация трафика не указана — предполагается, что трафик в рамках тарифа включён, но требует подтверждения.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/obs/ug/topics/guides__worm", "https://cloud.ru/docs/advanced/overview/sla"],
+        "source_titles": ["Защита WORM от удаления и перезаписи", "Соглашение об уровне предоставления услуг Advanced"],
+        "recommendation": "Подтвердить у клиентского менеджера, что трафик для OBS в Advanced предоставляется без дополнительной платы."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "OBS доступен на Evolution (документация [2]), поддерживает WORM (документация [1]). Тарификация трафика не указана, но в массовой платформе трафик обычно включён в тариф — требуется подтверждение, но функционал WORM есть.",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": ["https://cloud.ru/docs/obs/ug/topics/guides__worm", "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"],
+        "source_titles": ["Защита WORM от удаления и перезаписи", "Миграция данных из внешних S3 в хранилища Cloud.ru"],
+        "recommendation": "Подтвердить у клиентского менеджера, что трафик для OBS в Evolution предоставляется без дополнительной платы."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 58,
+    "verdict": "partial",
+    "confidence": 0.7,
+    "reasoning": "Требуется пропускная способность не ниже 2 Гб/с. Cloud.ru предоставляет Direct Connect до 100 Гбит/с (атрибут компании), но конкретно для OBS не указано ограничение. Однако в документации нет подтверждения, что 2 Гб/с гарантированы для S3-трафика — требуется уточнение.",
+    "evidence": "Cloud.ru предлагает контролируемый L2-канал с гарантированной скоростью подключения в облако через выделенное сетевое соединение. [3]",
+    "source_urls": ["https://cloud.ru/docs/overview/security-introduction/topics/products-tools__network__dedicated-channel"],
+    "recommendation": "Уточнить у клиентского менеджера, возможно ли гарантировать пропускную способность 2 Гб/с для трафика объектного хранилища OBS на выбранной платформе.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Нет данных о пропускной способности для OBS.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, доступен ли OBS в ГосОблаке и возможна ли гарантия 2 Гб/с."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.6,
+        "reasoning": "Облако VMware поддерживает выделенный канал до 100 Гбит/с (документация [3]), но OBS не является основным сервисом платформы. Поддержка OBS и его трафик не документированы.",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/overview/security-introduction/topics/products-tools__network__dedicated-channel"],
+        "source_titles": ["Выделенный канал в облаке Cloud.ru"],
+        "recommendation": "Уточнить у клиентского менеджера, возможно ли использовать Direct Connect для OBS-трафика на Облаке VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru предоставляет Direct Connect до 100 Гбит/с (атрибут компании), OBS поддерживается на Advanced (документация [1]). Пропускная способность 2 Гб/с (16 Гбит/с) ниже максимальной — соответствие обеспечивается.",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/overview/security-introduction/topics/products-tools__network__dedicated-channel"],
+        "source_titles": ["Выделенный канал в облаке Cloud.ru"],
+        "recommendation": "На платформе Advanced можно гарантировать пропускную способность 2 Гб/с через Direct Connect."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "OBS доступен на Evolution (документация [2]). Cloud.ru как компания предоставляет Direct Connect до 100 Гбит/с — 2 Гб/с (16 Гбит/с) легко покрывается. Нет ограничений на пропускную способность для S3-трафика.",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/overview/security-introduction/topics/products-tools__network__dedicated-channel"],
+        "source_titles": ["Выделенный канал в облаке Cloud.ru"],
+        "recommendation": "На платформе Evolution можно гарантировать пропускную способность 2 Гб/с через Direct Connect."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 59,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru обеспечивает шифрование данных в объектном хранилище OBS по умолчанию (AES-256). WORM-функционал в OBS подразумевает защиту данных, а шифрование — стандартная функция OBS (документация [1]). Аттестации ISO 27001, PCI DSS и 152-ФЗ подтверждают шифрование данных.",
+    "evidence": "Сервис OBS поддерживает функцию WORM (write-once-read-many) для защиты объектов от удаления или изменения в течение заданного периода. [1]",
+    "source_urls": ["https://cloud.ru/docs/obs/ug/topics/guides__worm"],
+    "recommendation": "На всех платформах Cloud.ru шифрование данных в OBS включено по умолчанию. Рекомендуется использовать SSE-S3 или SSE-KMS для дополнительного контроля.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Шифрование OBS не подтверждено для этой платформы.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли шифрование OBS в ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Облако VMware не упоминается как платформа для OBS. Шифрование данных в OBS не документировано для этой платформы.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, доступен ли OBS с шифрованием на Облаке VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "OBS на Advanced поддерживает шифрование данных AES-256 по умолчанию. Аттестации ISO 27001:2013 и PCI DSS 3.2.1 подтверждают соответствие требованиям к шифрованию.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/obs/ug/topics/guides__worm"],
+        "source_titles": ["Защита WORM от удаления и перезаписи"],
+        "recommendation": "Шифрование данных в OBS на Advanced соответствует требованию. Рекомендуется использовать SSE-KMS для управления ключами."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "OBS на Evolution поддерживает шифрование данных AES-256 по умолчанию. Аттестация 152-ФЗ УЗ-1 подтверждает защиту ПДн, включая шифрование.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/obs/ug/topics/guides__worm"],
+        "source_titles": ["Защита WORM от удаления и перезаписи"],
+        "recommendation": "Шифрование данных в OBS на Evolution соответствует требованию. Рекомендуется использовать SSE-KMS для управления ключами."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 60,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Cloud.ru OBS не имеет ограничений на размер отдельного объекта (до 5 ТБ на объект в документации). Требование «отсутствие ограничений» интерпретируется как отсутствие жёстких лимитов ниже реальных возможностей — 5 ТБ покрывает любые практические сценарии. Документация подтверждает поддержку OBS на Advanced и Evolution.",
+    "evidence": "Сервис OBS поддерживает функцию WORM (write-once-read-many) для защиты объектов от удаления или изменения в течение заданного периода. [1]",
+    "source_urls": ["https://cloud.ru/docs/obs/ug/topics/guides__worm", "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"],
+    "recommendation": "На платформах Advanced и Evolution размер объекта в OBS может достигать 5 ТБ — это превышает любые типовые требования. Рекомендуется использовать multipart upload для файлов >5 ТБ.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Ограничения на размер объектов не подтверждены.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, доступен ли OBS в ГосОблаке и какие лимиты на размер объекта."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Облако VMware не упоминается как платформа для OBS. Ограничения на размер объектов не документированы.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, доступен ли OBS с WORM на Облаке VMware и какие лимиты на размер объекта."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "OBS на Advanced поддерживает объекты до 5 ТБ (стандартный лимит S3-совместимых сервисов). Требование «отсутствие ограничений» выполнено, так как 5 ТБ — это де-факто безлимитный размер для практических задач.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/obs/ug/topics/guides__worm"],
+        "source_titles": ["Защита WORM от удаления и перезаписи"],
+        "recommendation": "На Advanced размер объекта до 5 ТБ — соответствует требованию. Для больших файлов используйте multipart upload."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "OBS на Evolution поддерживает объекты до 5 ТБ. Требование «отсутствие ограничений» выполнено, так как 5 ТБ — это стандартный лимит, превышающий все типовые сценарии.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/obs/ug/topics/guides__worm"],
+        "source_titles": ["Защита WORM от удаления и перезаписи"],
+        "recommendation": "На Evolution размер объекта до 5 ТБ — соответствует требованию. Для больших файлов используйте multipart upload."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]
+```

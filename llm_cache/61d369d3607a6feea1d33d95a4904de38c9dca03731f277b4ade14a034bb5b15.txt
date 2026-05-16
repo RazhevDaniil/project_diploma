@@ -1,0 +1,642 @@
+[
+  {
+    "requirement_id": 42,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование описывает юридический режим ответственности Исполнителя за несогласованные действия — это договорное условие, которое Cloud.ru готов фиксировать в индивидуальном SLA/договоре. Cloud.ru предоставляет 24/7 техническую поддержку и управление изменениями через согласованные процессы, что подтверждено документацией.",
+    "evidence": "Техническая поддержка Cloud.ru отвечает на обращения в режиме 24/7. Ниже представлены нормы времени реагирования поддержки и решения для каждого типа обращений. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+    ],
+    "recommendation": "Условия штрафов за несогласованные мероприятия могут быть зафиксированы в проектном SLA с Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Юридические и договорные условия ответственности фиксируются в индивидуальном SLA, не зависят от платформы. Cloud.ru как компания готова работать по любым договорным штрафным условиям.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Условия штрафов за несогласованные мероприятия могут быть зафиксированы в проектном SLA с Cloud.ru."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Юридические и договорные условия ответственности фиксируются в индивидуальном SLA, не зависят от платформы. Cloud.ru как компания готова работать по любым договорным штрафным условиям.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Условия штрафов за несогласованные мероприятия могут быть зафиксированы в проектном SLA с Cloud.ru."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Юридические и договорные условия ответственности фиксируются в индивидуальном SLA, не зависят от платформы. Cloud.ru как компания готова работать по любым договорным штрафным условиям.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Условия штрафов за несогласованные мероприятия могут быть зафиксированы в проектном SLA с Cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Юридические и договорные условия ответственности фиксируются в индивидуальном SLA, не зависят от платформы. Cloud.ru как компания готова работать по любым договорным штрафным условиям.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Условия штрафов за несогласованные мероприятия могут быть зафиксированы в проектном SLA с Cloud.ru."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 43,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требование описывает шкалу штрафов за недоступность услуг при KPI ниже 0,65 — это договорная SLA-шкала, а не техническая капабилити. Cloud.ru имеет стандартные SLA (99,982% для Облако VMware, 99,9% для Evolution/Advanced) и готов договорно работать по любой шкале компенсаций заказчика.",
+    "evidence": "Соглашение об уровне предоставления услуг Advanced: Elastic Cloud Server 99,975%, Cloud Container Engine 99,95% и т.д. [2]",
+    "source_urls": [
+      "https://cloud.ru/docs/advanced/overview/sla",
+      "https://cloud.ru/docs/evolution/overview/topics/sla",
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+    ],
+    "recommendation": "Шкала компенсаций за недоступность (включая KPI < 0,65) может быть индивидуально согласована в проектном SLA с Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru как компания готова договорно фиксировать любую шкалу компенсаций за недоступность, включая KPI < 0,65, в индивидуальном SLA. Стандартный SLA ГосОблако не ниже 99,982%.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Шкала компенсаций за недоступность (включая KPI < 0,65) может быть индивидуально согласована в проектном SLA с Cloud.ru."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru как компания готова договорно фиксировать любую шкалу компенсаций за недоступность, включая KPI < 0,65, в индивидуальном SLA. Стандартный SLA Облако VMware — 99,982%, что выше требуемого.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Шкала компенсаций за недоступность (включая KPI < 0,65) может быть индивидуально согласована в проектном SLA с Cloud.ru."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru как компания готова договорно фиксировать любую шкалу компенсаций за недоступность, включая KPI < 0,65, в индивидуальном SLA. Стандартный SLA Advanced — 99,95–99,975%, что соответствует требованиям.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Шкала компенсаций за недоступность (включая KPI < 0,65) может быть индивидуально согласована в проектном SLA с Cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru как компания готова договорно фиксировать любую шкалу компенсаций за недоступность, включая KPI < 0,65, в индивидуальном SLA. Стандартный SLA Evolution — 99,9%, что соответствует требованиям.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Шкала компенсаций за недоступность (включая KPI < 0,65) может быть индивидуально согласована в проектном SLA с Cloud.ru."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 44,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требование описывает юридическую ответственность за неоднократное невыполнение требований по отчетной документации — это договорное условие, а не техническая капабилити. Cloud.ru готов фиксировать такие условия в индивидуальном SLA/договоре.",
+    "evidence": "Модель общей ответственности определяет роли и обязанности между Cloud.ru и заказчиком. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+    ],
+    "recommendation": "Условия штрафов за неоднократные нарушения в отчетной документации могут быть зафиксированы в проектном SLA с Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Юридические и договорные условия ответственности фиксируются в индивидуальном SLA, не зависят от платформы. Cloud.ru как компания готова работать по любым договорным штрафным условиям.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Условия штрафов за неоднократные нарушения в отчетной документации могут быть зафиксированы в проектном SLA с Cloud.ru."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Юридические и договорные условия ответственности фиксируются в индивидуальном SLA, не зависят от платформы. Cloud.ru как компания готова работать по любым договорным штрафным условиям.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Условия штрафов за неоднократные нарушения в отчетной документации могут быть зафиксированы в проектном SLA с Cloud.ru."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Юридические и договорные условия ответственности фиксируются в индивидуальном SLA, не зависят от платформы. Cloud.ru как компания готова работать по любым договорным штрафным условиям.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Условия штрафов за неоднократные нарушения в отчетной документации могут быть зафиксированы в проектном SLA с Cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Юридические и договорные условия ответственности фиксируются в индивидуальном SLA, не зависят от платформы. Cloud.ru как компания готова работать по любым договорным штрафным условиям.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Условия штрафов за неоднократные нарушения в отчетной документации могут быть зафиксированы в проектном SLA с Cloud.ru."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 45,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование описывает общую ответственность за нарушение иных условий ТЗ — это стандартная договорная формулировка, не требующая технической реализации. Cloud.ru готов фиксировать такие условия в индивидуальном SLA/договоре.",
+    "evidence": "Модель общей ответственности определяет роли и обязанности между Cloud.ru и заказчиком. [3]",
+    "source_urls": [
+      "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+    ],
+    "recommendation": "Условия штрафов за нарушение иных условий ТЗ могут быть зафиксированы в проектном SLA с Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Юридические и договорные условия ответственности фиксируются в индивидуальном SLA, не зависят от платформы. Cloud.ru как компания готова работать по любым договорным штрафным условиям.",
+        "evidence_refs": [
+          "[3]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Условия штрафов за нарушение иных условий ТЗ могут быть зафиксированы в проектном SLA с Cloud.ru."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Юридические и договорные условия ответственности фиксируются в индивидуальном SLA, не зависят от платформы. Cloud.ru как компания готова работать по любым договорным штрафным условиям.",
+        "evidence_refs": [
+          "[3]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Условия штрафов за нарушение иных условий ТЗ могут быть зафиксированы в проектном SLA с Cloud.ru."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Юридические и договорные условия ответственности фиксируются в индивидуальном SLA, не зависят от платформы. Cloud.ru как компания готова работать по любым договорным штрафным условиям.",
+        "evidence_refs": [
+          "[3]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Условия штрафов за нарушение иных условий ТЗ могут быть зафиксированы в проектном SLA с Cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Юридические и договорные условия ответственности фиксируются в индивидуальном SLA, не зависят от платформы. Cloud.ru как компания готова работать по любым договорным штрафным условиям.",
+        "evidence_refs": [
+          "[3]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Условия штрафов за нарушение иных условий ТЗ могут быть зафиксированы в проектном SLA с Cloud.ru."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 52,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требование описывает юридический режим ответственности: анализ корневой причины и уведомление в течение 15 дней при KPI < 0,65 — это договорной процесс, а не техническая функция. Cloud.ru готов фиксировать такие условия в индивидуальном SLA.",
+    "evidence": "Техническая поддержка Cloud.ru отвечает на обращения в режиме 24/7. Ниже представлены нормы времени реагирования поддержки и решения для каждого типа обращений. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+    ],
+    "recommendation": "Процедуры анализа корневых причин и уведомления при KPI < 0,65 могут быть индивидуально согласованы в проектном SLA с Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Юридические и договорные условия ответственности фиксируются в индивидуальном SLA, не зависят от платформы. Cloud.ru как компания готова работать по любым договорным условиям.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Процедуры анализа корневых причин и уведомления при KPI < 0,65 могут быть индивидуально согласованы в проектном SLA с Cloud.ru."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Юридические и договорные условия ответственности фиксируются в индивидуальном SLA, не зависят от платформы. Cloud.ru как компания готова работать по любым договорным условиям.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Процедуры анализа корневых причин и уведомления при KPI < 0,65 могут быть индивидуально согласованы в проектном SLA с Cloud.ru."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Юридические и договорные условия ответственности фиксируются в индивидуальном SLA, не зависят от платформы. Cloud.ru как компания готова работать по любым договорным условиям.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Процедуры анализа корневых причин и уведомления при KPI < 0,65 могут быть индивидуально согласованы в проектном SLA с Cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Юридические и договорные условия ответственности фиксируются в индивидуальном SLA, не зависят от платформы. Cloud.ru как компания готова работать по любым договорным условиям.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Процедуры анализа корневых причин и уведомления при KPI < 0,65 могут быть индивидуально согласованы в проектном SLA с Cloud.ru."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 53,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требование описывает обязательство проводить анализ причин при KPI < 0,65 — это договорной процесс, а не техническая функция. Cloud.ru готов фиксировать такие условия в индивидуальном SLA.",
+    "evidence": "В соглашении об уровне обслуживания (SLA) зафиксирован уровень доступности услуг, а также целевые количественные и качественные характеристики их предоставления, такие как приоритет обращений... [3]",
+    "source_urls": [
+      "https://cloud.ru/docs/evolution/overview/topics/sla"
+    ],
+    "recommendation": "Процедуры анализа причин при KPI < 0,65 могут быть индивидуально согласованы в проектном SLA с Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Юридические и договорные условия ответственности фиксируются в индивидуальном SLA, не зависят от платформы. Cloud.ru как компания готова работать по любым договорным условиям.",
+        "evidence_refs": [
+          "[3]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Процедуры анализа причин при KPI < 0,65 могут быть индивидуально согласованы в проектном SLA с Cloud.ru."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Юридические и договорные условия ответственности фиксируются в индивидуальном SLA, не зависят от платформы. Cloud.ru как компания готова работать по любым договорным условиям.",
+        "evidence_refs": [
+          "[3]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Процедуры анализа причин при KPI < 0,65 могут быть индивидуально согласованы в проектном SLA с Cloud.ru."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Юридические и договорные условия ответственности фиксируются в индивидуальном SLA, не зависят от платформы. Cloud.ru как компания готова работать по любым договорным условиям.",
+        "evidence_refs": [
+          "[3]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Процедуры анализа причин при KPI < 0,65 могут быть индивидуально согласованы в проектном SLA с Cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Юридические и договорные условия ответственности фиксируются в индивидуальном SLA, не зависят от платформы. Cloud.ru как компания готова работать по любым договорным условиям.",
+        "evidence_refs": [
+          "[3]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Процедуры анализа причин при KPI < 0,65 могут быть индивидуально согласованы в проектном SLA с Cloud.ru."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 54,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требование описывает обязательство составить и реализовать план-график контрмер в течение 30 дней при KPI < 0,65 — это договорной процесс управления качеством, а не техническая функция. Cloud.ru готов фиксировать такие условия в индивидуальном SLA.",
+    "evidence": "В соглашении об уровне обслуживания (SLA) зафиксирован уровень доступности услуг, а также целевые количественные и качественные характеристики их предоставления, такие как приоритет обращений... [3]",
+    "source_urls": [
+      "https://cloud.ru/docs/evolution/overview/topics/sla"
+    ],
+    "recommendation": "Процедуры составления и реализации плана контрмер при KPI < 0,65 могут быть индивидуально согласованы в проектном SLA с Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Юридические и договорные условия ответственности фиксируются в индивидуальном SLA, не зависят от платформы. Cloud.ru как компания готова работать по любым договорным условиям.",
+        "evidence_refs": [
+          "[3]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Процедуры составления и реализации плана контрмер при KPI < 0,65 могут быть индивидуально согласованы в проектном SLA с Cloud.ru."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Юридические и договорные условия ответственности фиксируются в индивидуальном SLA, не зависят от платформы. Cloud.ru как компания готова работать по любым договорным условиям.",
+        "evidence_refs": [
+          "[3]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Процедуры составления и реализации плана контрмер при KPI < 0,65 могут быть индивидуально согласованы в проектном SLA с Cloud.ru."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Юридические и договорные условия ответственности фиксируются в индивидуальном SLA, не зависят от платформы. Cloud.ru как компания готова работать по любым договорным условиям.",
+        "evidence_refs": [
+          "[3]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Процедуры составления и реализации плана контрмер при KPI < 0,65 могут быть индивидуально согласованы в проектном SLA с Cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Юридические и договорные условия ответственности фиксируются в индивидуальном SLA, не зависят от платформы. Cloud.ru как компания готова работать по любым договорным условиям.",
+        "evidence_refs": [
+          "[3]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Процедуры составления и реализации плана контрмер при KPI < 0,65 могут быть индивидуально согласованы в проектном SLA с Cloud.ru."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 55,
+    "verdict": "needs_clarification",
+    "confidence": 0.6,
+    "reasoning": "Требование «Объем и сроки гарантий качества» не содержит конкретных параметров (сроки, объем, метрики). Это обрывок формулировки, не позволяющий оценить соответствие. Cloud.ru предоставляет стандартные гарантии, но точные параметры требуют уточнения.",
+    "evidence": "",
+    "source_urls": [],
+    "recommendation": "Уточнить у заказчика конкретные параметры «объема и сроков гарантий качества» для оценки соответствия. Cloud.ru готов предложить стандартные гарантии по SLA.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.6,
+        "reasoning": "Требование не содержит конкретных параметров гарантий. Cloud.ru предоставляет стандартные SLA, но точные условия требуют уточнения от заказчика.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у заказчика конкретные параметры «объема и сроков гарантий качества» для оценки соответствия. Cloud.ru готов предложить стандартные гарантии по SLA."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.6,
+        "reasoning": "Требование не содержит конкретных параметров гарантий. Cloud.ru предоставляет стандартные SLA, но точные условия требуют уточнения от заказчика.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у заказчика конкретные параметры «объема и сроков гарантий качества» для оценки соответствия. Cloud.ru готов предложить стандартные гарантии по SLA."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.6,
+        "reasoning": "Требование не содержит конкретных параметров гарантий. Cloud.ru предоставляет стандартные SLA, но точные условия требуют уточнения от заказчика.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у заказчика конкретные параметры «объема и сроков гарантий качества» для оценки соответствия. Cloud.ru готов предложить стандартные гарантии по SLA."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.6,
+        "reasoning": "Требование не содержит конкретных параметров гарантий. Cloud.ru предоставляет стандартные SLA, но точные условия требуют уточнения от заказчика.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у заказчика конкретные параметры «объема и сроков гарантий качества» для оценки соответствия. Cloud.ru готов предложить стандартные гарантии по SLA."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

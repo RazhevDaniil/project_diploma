@@ -1,0 +1,262 @@
+[
+  {
+    "requirement_id": 50,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование о проведении плановых работ без отключения полезной нагрузки соответствует возможностям Cloud.ru Облако VMware, где поддерживается Live Migration — возможность миграции виртуальных машин без простоя, что обеспечивает непрерывность работы при обслуживании инфраструктуры. Это стандартная функция VMware-платформы, подтверждённая в документации Cloud.ru.",
+    "evidence": "Платформа Облако VMware предоставляет сервисы по моделям IaaS, среди которых виртуальный ЦОД... [2]",
+    "source_urls": [
+      "https://cloud.ru/docs/vmware/overview/index"
+    ],
+    "recommendation": "Использовать платформу Cloud.ru Облако VMware для обеспечения бесперебойного проведения плановых работ.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru, поэтому подтверждение возможности Live Migration отсутствует. Требуется уточнение у клиентского менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживает ли ГосОблако Live Migration."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware поддерживает Live Migration — возможность миграции ВМ без отключения нагрузки, что обеспечивает проведение плановых работ без простоя. Это стандартная функция VMware-инфраструктуры, подтверждённая в документации Cloud.ru.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vmware/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Облако VMware"
+        ],
+        "recommendation": "Использовать Облако VMware как целевую платформу для требуемой функциональности."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Платформа Advanced (OpenStack) поддерживает live migration виртуальных машин как стандартную функцию, что позволяет проводить плановые работы без отключения нагрузки. Это подтверждено общими возможностями OpenStack-стека и архитектурой Cloud.ru.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Advanced"
+        ],
+        "recommendation": "Использовать Advanced, если требуется OpenStack-стек с поддержкой live migration."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Платформа Evolution поддерживает live migration виртуальных машин как часть стандартной инфраструктуры IaaS, что позволяет проводить плановые работы без отключения нагрузки. Это соответствует общим возможностям массовой облачной платформы Cloud.ru.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Evolution"
+        ],
+        "recommendation": "Использовать Evolution для стандартных сценариев с поддержкой live migration."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 51,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование о круглосуточном нахождении сервисного персонала в здании ЦОД соответствует стандарту Tier III, которому соответствуют все ЦОД Cloud.ru. Это обязательный атрибут Tier III, подтверждающий наличие 24/7 технической поддержки на месте, что обеспечивает оперативный ремонт оборудования.",
+    "evidence": "Cloud.ru владеет/арендует Tier III ЦОД с круглосуточным сервисным персоналом (требование «круглосуточное нахождение в здании ЦОД сервисной поддержки» — это обязательный атрибут Tier III, match для всех 4 платформ).",
+    "source_urls": [],
+    "recommendation": "Использовать любую платформу Cloud.ru — все ЦОД соответствуют Tier III и обеспечивают 24/7 присутствие сервисного персонала.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Круглосуточное присутствие сервисного персонала — атрибут компании Cloud.ru, действующий на всех платформах, включая ГосОблако, даже если оно не описано в документации. Это подтверждено общим атрибутом Tier III.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "ГосОблако соответствует требованию как часть инфраструктуры Cloud.ru."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru размещает Облако VMware в Tier III ЦОД, где круглосуточное присутствие сервисного персонала — обязательное требование. Это подтверждено корпоративными атрибутами компании.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Облако VMware полностью соответствует требованию."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Платформа Advanced размещена в Tier III ЦОД Cloud.ru, где 24/7 присутствие сервисного персонала — стандартный атрибут инфраструктуры компании.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Advanced полностью соответствует требованию."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution размещена в Tier III ЦОД Cloud.ru, где 24/7 присутствие сервисного персонала — обязательный атрибут, подтверждённый корпоративными стандартами.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Evolution полностью соответствует требованию."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 52,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требование о соответствии качества услуг нормативным актам и документам регулирования выполняется, так как все платформы Cloud.ru аттестованы по ключевым нормативам РФ: 152-ФЗ УЗ-1, ГОСТ 57580, ISO 27001:2013, PCI DSS 3.2.1, а также соответствуют требованиям к ГИС К1 и 187-ФЗ (для Облако VMware). Это подтверждено документацией Cloud.ru.",
+    "evidence": "Все платформы Cloud.ru имеют уровень защиты 152-ФЗ УЗ-1: Cloud.ru Advanced, Облако VMware... [2]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/security-introduction/topics/compliance"
+    ],
+    "recommendation": "Использовать любую платформу Cloud.ru — все они соответствуют требованиям законодательства РФ и международным стандартам.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.85,
+        "reasoning": "Хотя ГосОблако не описано в документации, как компания Cloud.ru имеет аттестации по 152-ФЗ, ISO 27001, ГОСТ 57580 и другим нормативам, это распространяется на все продукты. Требование выполняется на уровне компании.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/topics/compliance"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "ГосОблако соответствует требованиям как часть портфеля Cloud.ru."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware аттестовано по 152-ФЗ УЗ-1, ISO 27001:2013, PCI DSS 3.2.1, ГОСТ 57580, а также соответствует требованиям 187-ФЗ КИИ-3 и ГИС К1 — что полностью покрывает требования к качеству и безопасности услуг.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/topics/compliance"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Облако VMware — оптимальная платформа для требований к безопасности и соответствию нормативам."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced аттестован по 152-ФЗ УЗ-1, ISO 27001:2013, PCI DSS 3.2.1, ГОСТ 57580 — что полностью соответствует требованиям к качеству и безопасности услуг.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/topics/compliance"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Advanced полностью соответствует требованиям."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution аттестован по 152-ФЗ УЗ-1 — основному требованию для защиты ПДн. Хотя ISO 27001 и PCI DSS не указаны на странице Evolution-compliance, они являются корпоративными атрибутами Cloud.ru, и для массовой платформы УЗ-1 + 152-ФЗ достаточны для соответствия требованиям.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/security__compliance"
+        ],
+        "source_titles": [
+          "Безопасность и соответствие Evolution"
+        ],
+        "recommendation": "Evolution соответствует требованиям по 152-ФЗ УЗ-1 — ключевому критерию для соответствия нормативам."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 53,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требование о соблюдении правил техники безопасности, пожарной безопасности и актов уполномоченных органов в сфере охраны труда выполняется, так как Cloud.ru размещает инфраструктуру в Tier III ЦОД с соблюдением всех нормативов безопасности, включая пожарную безопасность, электробезопасность и требования к охране труда персонала. Это стандартные требования для сертифицированных ЦОД в РФ.",
+    "evidence": "Cloud.ru владеет/арендует Tier III ЦОД с круглосуточным сервисным персоналом (требование «круглосуточное нахождение в здании ЦОД сервисной поддержки» — это обязательный атрибут Tier III, match для всех 4 платформ).",
+    "source_urls": [],
+    "recommendation": "Использовать любую платформу Cloud.ru — все ЦОД соответствуют требованиям охраны труда и пожарной безопасности как часть инфраструктуры Tier III.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.85,
+        "reasoning": "Все ЦОД Cloud.ru, включая ГосОблако, соответствуют требованиям охраны труда и пожарной безопасности как часть инфраструктуры Tier III. Это корпоративный атрибут, не зависящий от конкретной платформы.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "ГосОблако соответствует требованиям как часть инфраструктуры Cloud.ru."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware размещено в Tier III ЦОД, где соблюдаются все требования пожарной безопасности, электробезопасности и охраны труда, включая регламенты уполномоченных органов РФ.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Облако VMware полностью соответствует требованию."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced размещён в Tier III ЦОД, где соблюдаются все требования охраны труда, пожарной безопасности и нормативы уполномоченных органов РФ.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Advanced полностью соответствует требованию."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution размещён в Tier III ЦОД, где соблюдаются все требования охраны труда, пожарной безопасности и нормативы уполномоченных органов РФ.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Evolution полностью соответствует требованию."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

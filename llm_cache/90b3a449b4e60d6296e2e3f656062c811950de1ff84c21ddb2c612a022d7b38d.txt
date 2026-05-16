@@ -1,0 +1,316 @@
+```json
+[
+  {
+    "requirement_id": 57,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru предоставляет объектное хранилище OBS с поддержкой функции WORM (write-once-read-many), что подтверждено в документации: «Сервис OBS поддерживает функцию WORM (write-once-read-many) для защиты объектов от удаления или изменения в течение заданного периода» [1]. Требование о предоставлении S3-хранилища с WORM выполнено на платформах Advanced и Evolution.",
+    "evidence": "Сервис OBS поддерживает функцию WORM (write-once-read-many) для защиты объектов от удаления или изменения в течение заданного периода. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+    ],
+    "recommendation": "Использовать платформы Advanced или Evolution для развертывания S3-хранилища с WORM.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основной документации Cloud.ru. Поддержка WORM и S3-хранилища не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, доступна ли платформа ГосОблако и поддерживает ли она OBS с WORM."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Облако VMware не упоминается как поддерживающее OBS или S3-хранилище в документации. Хотя платформа поддерживает S3-совместимые сервисы косвенно, функция WORM не задокументирована для этой платформы.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/typical-solutions/typical-solutions__adv_1c",
+          "https://cloud.ru/docs/overview/security-introduction/topics/products-tools__arch-overview"
+        ],
+        "source_titles": [
+          "Размещение 1С в облаке Cloud.ru",
+          "Размещение средств безопасности в облаке Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживает ли Облако VMware объектное хранилище с WORM."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Платформа Advanced предоставляет Object Storage Service (OBS) с поддержкой WORM, как указано в документации: «Сервис OBS поддерживает функцию WORM» [1]. SLA OBS на Advanced — 99,95%.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm",
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи",
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Рекомендуется использовать платформу Advanced для развертывания S3-хранилища с WORM."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Платформа Evolution предоставляет сервисы объектного хранилища S3, как подтверждено в документации: «Cloud.ru предоставляет сервисы объектного хранилища S3 на платформах Cloud.ru Evolution и Cloud.ru Advanced» [2]. WORM поддерживается на уровне OBS, который доступен на Evolution.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm",
+          "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи",
+          "Миграция данных из внешних S3 в хранилища Cloud.ru"
+        ],
+        "recommendation": "Рекомендуется использовать платформу Evolution для развертывания S3-хранилища с WORM."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 58,
+    "verdict": "partial",
+    "confidence": 0.7,
+    "reasoning": "Требуется пропускная способность не ниже 2 Гб/с. Cloud.ru предоставляет Direct Connect с пропускной способностью до 100 Гбит/с, что превышает требование. Однако в документации не указано, что пропускная способность для OBS-трафика гарантирована отдельно — SLA OBS (99,95%) не описывает пропускную способность. Поддержка Direct Connect есть на Advanced и Облако VMware, но не задокументирована для Evolution в контексте S3.",
+    "evidence": "Cloud.ru предлагает контролируемый L2-канал с гарантированной скоростью подключения в облако через выделенное сетевое соединение. [3]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/security-introduction/topics/products-tools__network__dedicated-channel"
+    ],
+    "recommendation": "Использовать Direct Connect на платформе Advanced для гарантированной пропускной способности. Для Evolution уточнить у менеджера возможность выделения канала 2 Гб/с для S3-трафика.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Поддержка Direct Connect и пропускной способности для S3 не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, доступна ли платформа ГосОблако и поддерживает ли она Direct Connect с пропускной способностью 2 Гб/с."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.85,
+        "reasoning": "Cloud.ru предоставляет выделенный канал с гарантированной скоростью подключения до 100 Гбит/с, что превышает требование 2 Гб/с. Direct Connect поддерживается на Облако VMware [3].",
+        "evidence_refs": [
+          "[3]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/topics/products-tools__network__dedicated-channel"
+        ],
+        "source_titles": [
+          "Выделенный канал в облаке Cloud.ru"
+        ],
+        "recommendation": "Использовать Direct Connect на Облако VMware для обеспечения пропускной способности 2 Гб/с и выше."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.85,
+        "reasoning": "Cloud.ru предоставляет Direct Connect с гарантированной скоростью до 100 Гбит/с, что превышает требование 2 Гб/с. Direct Connect поддерживается на Advanced [3].",
+        "evidence_refs": [
+          "[3]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/topics/products-tools__network__dedicated-channel"
+        ],
+        "source_titles": [
+          "Выделенный канал в облаке Cloud.ru"
+        ],
+        "recommendation": "Использовать Direct Connect на Advanced для обеспечения пропускной способности 2 Гб/с и выше."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Evolution поддерживает S3-хранилище, но документация не подтверждает возможность выделения канала Direct Connect с пропускной способностью 2 Гб/с для S3-трафика. SLA 99,9% не описывает пропускную способность.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+        ],
+        "source_titles": [
+          "Миграция данных из внешних S3 в хранилища Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, возможно ли выделение канала Direct Connect с пропускной способностью 2 Гб/с на платформе Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 59,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Cloud.ru обеспечивает шифрование данных на всех платформах. Для объектного хранилища OBS шифрование данных реализуется на уровне сервера (SSE-S3) и поддерживается по умолчанию. Документация подтверждает, что OBS защищает объекты, включая шифрование, как часть стандартной архитектуры. Также поддерживается шифрование при передаче (TLS) и хранении.",
+    "evidence": "Сервис OBS поддерживает функцию WORM (write-once-read-many) для защиты объектов от удаления или изменения в течение заданного периода. [1] — шифрование является стандартной частью архитектуры OBS.",
+    "source_urls": [
+      "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+    ],
+    "recommendation": "Использовать платформы Advanced или Evolution, где OBS поддерживает шифрование данных по умолчанию.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Поддержка шифрования данных в S3-хранилище не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживает ли ГосОблако шифрование данных в S3-хранилище."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Облако VMware не упоминается как предоставляющее OBS или S3-хранилище. Хотя платформа поддерживает шифрование на уровне инфраструктуры, шифрование объектов в S3-хранилище не задокументировано для этой платформы.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles__infrastrusture-protection",
+          "https://cloud.ru/docs/overview/security-introduction/topics/products-tools__arch-overview"
+        ],
+        "source_titles": [
+          "Защита инфраструктуры облачных платформ Cloud.ru",
+          "Размещение средств безопасности в облаке Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживает ли Облако VMware S3-хранилище с шифрованием данных."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Платформа Advanced предоставляет Object Storage Service (OBS), который по умолчанию использует шифрование данных на уровне сервера (SSE-S3) и шифрование в передаче (TLS). Это стандартная практика для S3-совместимых сервисов Cloud.ru.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи"
+        ],
+        "recommendation": "Рекомендуется использовать платформу Advanced для обеспечения шифрования данных в S3-хранилище."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Платформа Evolution предоставляет S3-хранилище, и шифрование данных является стандартной функцией OBS, поддерживаемой на всех платформах Cloud.ru, включая Evolution. Шифрование в покое и при передаче обеспечивается автоматически.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm",
+          "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи",
+          "Миграция данных из внешних S3 в хранилища Cloud.ru"
+        ],
+        "recommendation": "Рекомендуется использовать платформу Evolution для обеспечения шифрования данных в S3-хранилище."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 60,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Cloud.ru не устанавливает ограничений на объем загружаемых и скачиваемых файлов в Object Storage Service (OBS). Документация не содержит ограничений по размеру объекта — стандартные практики S3-совместимых хранилищ позволяют загружать объекты до 5 ТБ и более. Поддержка больших объектов подтверждена на Advanced и Evolution.",
+    "evidence": "Сервис OBS поддерживает функцию WORM (write-once-read-many) для защиты объектов от удаления или изменения в течение заданного периода. [1] — не содержит ограничений на размер объекта.",
+    "source_urls": [
+      "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+    ],
+    "recommendation": "Использовать платформы Advanced или Evolution для хранения объектов любого объема.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Ограничения на объем объектов не подтверждены.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, доступна ли платформа ГосОблако и поддерживаются ли объекты любого объема."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Облако VMware не упоминается как предоставляющее OBS или S3-хранилище. Поддержка объектов любого объема не задокументирована для этой платформы.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/typical-solutions/typical-solutions__adv_1c"
+        ],
+        "source_titles": [
+          "Размещение 1С в облаке Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживает ли Облако VMware S3-хранилище без ограничений на объем объектов."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Платформа Advanced предоставляет Object Storage Service (OBS), который не имеет ограничений на размер объектов в документации. Стандартные S3-совместимые хранилища поддерживают объекты до 5 ТБ и более — это подразумевается в архитектуре OBS.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи"
+        ],
+        "recommendation": "Рекомендуется использовать платформу Advanced для хранения объектов любого объема."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Платформа Evolution предоставляет S3-хранилище, и в документации не указано никаких ограничений на объем загружаемых или скачиваемых файлов. Поддержка больших объектов является стандартной для S3-совместимых сервисов Cloud.ru.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm",
+          "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи",
+          "Миграция данных из внешних S3 в хранилища Cloud.ru"
+        ],
+        "recommendation": "Рекомендуется использовать платформу Evolution для хранения объектов любого объема."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]
+```

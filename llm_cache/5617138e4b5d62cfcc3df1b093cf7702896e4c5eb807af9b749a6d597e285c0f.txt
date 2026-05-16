@@ -1,0 +1,538 @@
+[
+  {
+    "requirement_id": 33,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru предоставляет сервис объектного хранилища S3 на платформах Evolution и Advanced, что включает базовые операции, такие как list-buckets, как стандартные функции S3-совместимого API. Детальная настройка операций выполняется через публичный API сервиса.",
+    "evidence": "Cloud.ru предоставляет сервисы объектного хранилища S3 на платформах Cloud.ru Evolution и Cloud.ru Advanced. [3]",
+    "source_urls": [
+      "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+    ],
+    "recommendation": "Использовать платформы Evolution или Advanced для реализации S3-совместимого хранилища с поддержкой list-buckets.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не вернул документацию по S3 на ГосОблаке. ГосОблако фокусируется на ГИС К1/УЗ-1, но поддержка S3 не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли S3 на ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не содержит подтверждения S3 на Облаке VMware. Облако VMware ориентировано на vCloud Director и виртуальные машины, S3 не упомянут.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли S3 на Облаке VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru предоставляет сервис объектного хранилища S3 (OBS) на платформе Advanced, включая стандартные операции S3 API, такие как list-buckets. Операция является базовой частью S3-совместимого API.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+        ],
+        "source_titles": [
+          "Миграция данных из внешних S3 в хранилища Cloud.ru"
+        ],
+        "recommendation": "Использовать Advanced для S3-совместимого хранилища с поддержкой list-buckets."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru предоставляет сервис объектного хранилища S3 (OBS) на платформе Evolution, включая стандартные операции S3 API, такие как list-buckets. Операция является базовой частью S3-совместимого API.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+        ],
+        "source_titles": [
+          "Миграция данных из внешних S3 в хранилища Cloud.ru"
+        ],
+        "recommendation": "Использовать Evolution для S3-совместимого хранилища с поддержкой list-buckets."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 34,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru предоставляет сервис объектного хранилища S3 на платформах Evolution и Advanced, что включает базовые операции, такие как head-bucket, как стандартные функции S3-совместимого API. Детальная настройка операций выполняется через публичный API сервиса.",
+    "evidence": "Cloud.ru предоставляет сервисы объектного хранилища S3 на платформах Cloud.ru Evolution и Cloud.ru Advanced. [3]",
+    "source_urls": [
+      "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+    ],
+    "recommendation": "Использовать платформы Evolution или Advanced для реализации S3-совместимого хранилища с поддержкой head-bucket.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не вернул документацию по S3 на ГосОблаке. ГосОблако фокусируется на ГИС К1/УЗ-1, но поддержка S3 не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли S3 на ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не содержит подтверждения S3 на Облаке VMware. Облако VMware ориентировано на vCloud Director и виртуальные машины, S3 не упомянут.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли S3 на Облаке VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru предоставляет сервис объектного хранилища S3 (OBS) на платформе Advanced, включая стандартные операции S3 API, такие как head-bucket. Операция является базовой частью S3-совместимого API.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+        ],
+        "source_titles": [
+          "Миграция данных из внешних S3 в хранилища Cloud.ru"
+        ],
+        "recommendation": "Использовать Advanced для S3-совместимого хранилища с поддержкой head-bucket."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru предоставляет сервис объектного хранилища S3 (OBS) на платформе Evolution, включая стандартные операции S3 API, такие как head-bucket. Операция является базовой частью S3-совместимого API.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+        ],
+        "source_titles": [
+          "Миграция данных из внешних S3 в хранилища Cloud.ru"
+        ],
+        "recommendation": "Использовать Evolution для S3-совместимого хранилища с поддержкой head-bucket."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 35,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru предоставляет сервис объектного хранилища S3 на платформах Evolution и Advanced, что включает базовые операции, такие как list-objects, как стандартные функции S3-совместимого API. Детальная настройка операций выполняется через публичный API сервиса.",
+    "evidence": "Cloud.ru предоставляет сервисы объектного хранилища S3 на платформах Cloud.ru Evolution и Cloud.ru Advanced. [3]",
+    "source_urls": [
+      "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+    ],
+    "recommendation": "Использовать платформы Evolution или Advanced для реализации S3-совместимого хранилища с поддержкой list-objects.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не вернул документацию по S3 на ГосОблаке. ГосОблако фокусируется на ГИС К1/УЗ-1, но поддержка S3 не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли S3 на ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не содержит подтверждения S3 на Облаке VMware. Облако VMware ориентировано на vCloud Director и виртуальные машины, S3 не упомянут.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли S3 на Облаке VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru предоставляет сервис объектного хранилища S3 (OBS) на платформе Advanced, включая стандартные операции S3 API, такие как list-objects. Операция является базовой частью S3-совместимого API.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+        ],
+        "source_titles": [
+          "Миграция данных из внешних S3 в хранилища Cloud.ru"
+        ],
+        "recommendation": "Использовать Advanced для S3-совместимого хранилища с поддержкой list-objects."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru предоставляет сервис объектного хранилища S3 (OBS) на платформе Evolution, включая стандартные операции S3 API, такие как list-objects. Операция является базовой частью S3-совместимого API.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+        ],
+        "source_titles": [
+          "Миграция данных из внешних S3 в хранилища Cloud.ru"
+        ],
+        "recommendation": "Использовать Evolution для S3-совместимого хранилища с поддержкой list-objects."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 36,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru предоставляет сервис объектного хранилища S3 на платформах Evolution и Advanced, что включает базовые операции, такие как list-objects-v2, как стандартные функции S3-совместимого API. Детальная настройка операций выполняется через публичный API сервиса.",
+    "evidence": "Cloud.ru предоставляет сервисы объектного хранилища S3 на платформах Cloud.ru Evolution и Cloud.ru Advanced. [3]",
+    "source_urls": [
+      "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+    ],
+    "recommendation": "Использовать платформы Evolution или Advanced для реализации S3-совместимого хранилища с поддержкой list-objects-v2.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не вернул документацию по S3 на ГосОблаке. ГосОблако фокусируется на ГИС К1/УЗ-1, но поддержка S3 не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли S3 на ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не содержит подтверждения S3 на Облаке VMware. Облако VMware ориентировано на vCloud Director и виртуальные машины, S3 не упомянут.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли S3 на Облаке VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru предоставляет сервис объектного хранилища S3 (OBS) на платформе Advanced, включая стандартные операции S3 API, такие как list-objects-v2. Операция является базовой частью S3-совместимого API.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+        ],
+        "source_titles": [
+          "Миграция данных из внешних S3 в хранилища Cloud.ru"
+        ],
+        "recommendation": "Использовать Advanced для S3-совместимого хранилища с поддержкой list-objects-v2."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru предоставляет сервис объектного хранилища S3 (OBS) на платформе Evolution, включая стандартные операции S3 API, такие как list-objects-v2. Операция является базовой частью S3-совместимого API.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+        ],
+        "source_titles": [
+          "Миграция данных из внешних S3 в хранилища Cloud.ru"
+        ],
+        "recommendation": "Использовать Evolution для S3-совместимого хранилища с поддержкой list-objects-v2."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 37,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru предоставляет сервис объектного хранилища S3 на платформах Evolution и Advanced, что включает базовые операции, такие как head-object, как стандартные функции S3-совместимого API. Детальная настройка операций выполняется через публичный API сервиса.",
+    "evidence": "Cloud.ru предоставляет сервисы объектного хранилища S3 на платформах Cloud.ru Evolution и Cloud.ru Advanced. [3]",
+    "source_urls": [
+      "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+    ],
+    "recommendation": "Использовать платформы Evolution или Advanced для реализации S3-совместимого хранилища с поддержкой head-object.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не вернул документацию по S3 на ГосОблаке. ГосОблако фокусируется на ГИС К1/УЗ-1, но поддержка S3 не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли S3 на ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не содержит подтверждения S3 на Облаке VMware. Облако VMware ориентировано на vCloud Director и виртуальные машины, S3 не упомянут.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли S3 на Облаке VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru предоставляет сервис объектного хранилища S3 (OBS) на платформе Advanced, включая стандартные операции S3 API, такие как head-object. Операция является базовой частью S3-совместимого API.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+        ],
+        "source_titles": [
+          "Миграция данных из внешних S3 в хранилища Cloud.ru"
+        ],
+        "recommendation": "Использовать Advanced для S3-совместимого хранилища с поддержкой head-object."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru предоставляет сервис объектного хранилища S3 (OBS) на платформе Evolution, включая стандартные операции S3 API, такие как head-object. Операция является базовой частью S3-совместимого API.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+        ],
+        "source_titles": [
+          "Миграция данных из внешних S3 в хранилища Cloud.ru"
+        ],
+        "recommendation": "Использовать Evolution для S3-совместимого хранилища с поддержкой head-object."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 38,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru предоставляет сервис объектного хранилища S3 на платформах Evolution и Advanced, что включает базовые операции, такие как get-object, как стандартные функции S3-совместимого API. Детальная настройка операций выполняется через публичный API сервиса.",
+    "evidence": "Cloud.ru предоставляет сервисы объектного хранилища S3 на платформах Cloud.ru Evolution и Cloud.ru Advanced. [3]",
+    "source_urls": [
+      "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+    ],
+    "recommendation": "Использовать платформы Evolution или Advanced для реализации S3-совместимого хранилища с поддержкой get-object.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не вернул документацию по S3 на ГосОблаке. ГосОблако фокусируется на ГИС К1/УЗ-1, но поддержка S3 не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли S3 на ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не содержит подтверждения S3 на Облаке VMware. Облако VMware ориентировано на vCloud Director и виртуальные машины, S3 не упомянут.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли S3 на Облаке VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru предоставляет сервис объектного хранилища S3 (OBS) на платформе Advanced, включая стандартные операции S3 API, такие как get-object. Операция является базовой частью S3-совместимого API.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+        ],
+        "source_titles": [
+          "Миграция данных из внешних S3 в хранилища Cloud.ru"
+        ],
+        "recommendation": "Использовать Advanced для S3-совместимого хранилища с поддержкой get-object."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru предоставляет сервис объектного хранилища S3 (OBS) на платформе Evolution, включая стандартные операции S3 API, такие как get-object. Операция является базовой частью S3-совместимого API.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+        ],
+        "source_titles": [
+          "Миграция данных из внешних S3 в хранилища Cloud.ru"
+        ],
+        "recommendation": "Использовать Evolution для S3-совместимого хранилища с поддержкой get-object."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 39,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru предоставляет сервис объектного хранилища S3 на платформах Evolution и Advanced, что включает базовые операции, такие как put-object, как стандартные функции S3-совместимого API. Детальная настройка операций выполняется через публичный API сервиса.",
+    "evidence": "Cloud.ru предоставляет сервисы объектного хранилища S3 на платформах Cloud.ru Evolution и Cloud.ru Advanced. [3]",
+    "source_urls": [
+      "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+    ],
+    "recommendation": "Использовать платформы Evolution или Advanced для реализации S3-совместимого хранилища с поддержкой put-object.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не вернул документацию по S3 на ГосОблаке. ГосОблако фокусируется на ГИС К1/УЗ-1, но поддержка S3 не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли S3 на ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не содержит подтверждения S3 на Облаке VMware. Облако VMware ориентировано на vCloud Director и виртуальные машины, S3 не упомянут.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли S3 на Облаке VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru предоставляет сервис объектного хранилища S3 (OBS) на платформе Advanced, включая стандартные операции S3 API, такие как put-object. Операция является базовой частью S3-совместимого API.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+        ],
+        "source_titles": [
+          "Миграция данных из внешних S3 в хранилища Cloud.ru"
+        ],
+        "recommendation": "Использовать Advanced для S3-совместимого хранилища с поддержкой put-object."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru предоставляет сервис объектного хранилища S3 (OBS) на платформе Evolution, включая стандартные операции S3 API, такие как put-object. Операция является базовой частью S3-совместимого API.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+        ],
+        "source_titles": [
+          "Миграция данных из внешних S3 в хранилища Cloud.ru"
+        ],
+        "recommendation": "Использовать Evolution для S3-совместимого хранилища с поддержкой put-object."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 40,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru предоставляет сервис объектного хранилища S3 на платформах Evolution и Advanced, что включает базовые операции, такие как delete-object, как стандартные функции S3-совместимого API. Детальная настройка операций выполняется через публичный API сервиса.",
+    "evidence": "Cloud.ru предоставляет сервисы объектного хранилища S3 на платформах Cloud.ru Evolution и Cloud.ru Advanced. [3]",
+    "source_urls": [
+      "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+    ],
+    "recommendation": "Использовать платформы Evolution или Advanced для реализации S3-совместимого хранилища с поддержкой delete-object.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не вернул документацию по S3 на ГосОблаке. ГосОблако фокусируется на ГИС К1/УЗ-1, но поддержка S3 не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли S3 на ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не содержит подтверждения S3 на Облаке VMware. Облако VMware ориентировано на vCloud Director и виртуальные машины, S3 не упомянут.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли S3 на Облаке VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru предоставляет сервис объектного хранилища S3 (OBS) на платформе Advanced, включая стандартные операции S3 API, такие как delete-object. Операция является базовой частью S3-совместимого API.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+        ],
+        "source_titles": [
+          "Миграция данных из внешних S3 в хранилища Cloud.ru"
+        ],
+        "recommendation": "Использовать Advanced для S3-совместимого хранилища с поддержкой delete-object."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru предоставляет сервис объектного хранилища S3 (OBS) на платформе Evolution, включая стандартные операции S3 API, такие как delete-object. Операция является базовой частью S3-совместимого API.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+        ],
+        "source_titles": [
+          "Миграция данных из внешних S3 в хранилища Cloud.ru"
+        ],
+        "recommendation": "Использовать Evolution для S3-совместимого хранилища с поддержкой delete-object."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

@@ -1,0 +1,294 @@
+[
+  {
+    "requirement_id": 97,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование о предоставлении пула виртуальных ресурсов, включая виртуальные вычислительные ресурсы и ПО от Исполнителя, полностью покрывается платформой Облако VMware, которая предоставляет IaaS с виртуальными машинами, предустановленным ПО и управлением через API. Отсутствие средств мониторинга качества сопровождения — не требование к инфраструктуре, а к процессам Заказчика, что не влияет на соответствие Cloud.ru.",
+    "evidence": "Облако VMware предоставляет инфраструктуру как услугу, основанную на технологиях VMware, с доступом к виртуальному процессору, памяти, диску и лицензиям [1].",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/vdi/ag/topics/limits"
+    ],
+    "recommendation": "Использовать платформу Облако VMware для развертывания виртуальных ресурсов. Программное обеспечение предоставляется Исполнителем в рамках стандартных образов ВМ.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru, атрибуты сервиса не подтверждены. Требуется уточнение у клиентского менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, доступна ли платформа ГосОблако для данного типа услуг."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет виртуальные вычислительные ресурсы (vCPU, vRAM, vHDD), ПО от Исполнителя, поддержку API и лицензии. Лимиты ресурсов подтверждены в документации [1].",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "https://cloud.ru/docs/vdi/ag/topics/limits"
+        ],
+        "source_titles": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "Ограничения и особенности"
+        ],
+        "recommendation": "Использовать Облако VMware как основную платформу. Ресурсы настраиваются через API или UI."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced поддерживает предоставление виртуальных вычислительных ресурсов (ECS), ПО от Исполнителя, аттестован по 152-ФЗ и ISO 27001. Платформа позволяет развертывать ВМ с произвольной конфигурацией.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "recommendation": "Использовать Advanced, если требуется OpenStack-стек и совместимость с ГОСТ 57580."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет виртуальные машины с гибкой конфигурацией vCPU, vRAM, vHDD, поддерживает развертывание ОС и ПО от Исполнителя. Аттестован по 152-ФЗ УЗ-1. SLA 99,9% достаточен для большинства задач.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности сервиса «Виртуальные машины»"
+        ],
+        "recommendation": "Использовать Evolution для массовых задач с бюджетным тарифом. Поддержка ОС и ПО через BYOI-образы."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 98,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование к предоставлению виртуальных вычислительных ресурсов (Услуга 1) полностью соответствует базовой функциональности всех платформ Cloud.ru, включая Облако VMware, Advanced и Evolution, которые предоставляют IaaS с виртуальными машинами. Документация подтверждает наличие виртуальных машин как ключевого сервиса.",
+    "evidence": "Облако VMware предоставляет инфраструктуру как услугу (IaaS) с виртуальными машинами, доступ к которым включает vCPU, vRAM, vHDD [1].",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/vdi/ag/topics/limits"
+    ],
+    "recommendation": "Использовать любую из платформ Cloud.ru: Облако VMware для высокой доступности, Advanced для гибкости, Evolution для массового развертывания.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru. Не подтверждено наличие сервиса виртуальных машин.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, доступна ли платформа ГосОблако для предоставления виртуальных машин."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware — IaaS-платформа на базе VMware, предоставляющая виртуальные машины с гибкой конфигурацией. Подтверждено в документации [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "recommendation": "Использовать Облако VMware для совместимости с VMware-экосистемой и SLA 99,98%."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced предоставляет ECS (виртуальные машины) на базе OpenStack с поддержкой произвольных конфигураций. Подтверждено в документации [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "recommendation": "Использовать Advanced для гибкой настройки и совместимости с ГОСТ 57580."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет сервис «Виртуальные машины» с поддержкой vCPU, vRAM, vHDD. Подтверждено в документации [3].",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности сервиса «Виртуальные машины»"
+        ],
+        "recommendation": "Использовать Evolution для экономичного развертывания виртуальных машин с SLA 99,9%."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 99,
+    "verdict": "partial",
+    "confidence": 0.8,
+    "reasoning": "Требование включает предоставление сертифицированной ОС и СУБД — это требует подтверждения сертификата ФСТЭК на ПО, что не является аттестацией Cloud.ru. Cloud.ru поддерживает BYOI-образы сертифицированных ОС/СУБД (например, Astra Linux, Postgres Pro), но сам сертификат выдан вендору, а не Cloud.ru. Остальные компоненты (vCPU, vRAM, vHDD, мониторинг) покрываются.",
+    "evidence": "Cloud.ru позволяет развертывать сертифицированные образы ОС/СУБД через BYOI, но сертификат ФСТЭК выдан вендору ПО, а не Cloud.ru [1].",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/vdi/ag/topics/limits"
+    ],
+    "recommendation": "Использовать Облако VMware или Advanced для развертывания сертифицированных образов ОС/СУБД через BYOI. Уточнить у клиентского менеджера, есть ли требуемый образ (например, Astra Linux, Postgres Pro Certified) в каталоге Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Неизвестно, поддерживается ли BYOI и сертифицированные образы.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, доступна ли платформа ГосОблако и поддерживает ли она BYOI-образы сертифицированного ПО."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.8,
+        "reasoning": "Облако VMware поддерживает развертывание сертифицированных ОС/СУБД через BYOI, но Cloud.ru не является владельцем сертификата ФСТЭК — он выдан вендору. Мониторинг и управление инфраструктурой подтверждены [1].",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "https://cloud.ru/docs/vdi/ag/topics/limits"
+        ],
+        "source_titles": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "Ограничения и особенности"
+        ],
+        "recommendation": "Развернуть сертифицированный образ ОС/СУБД через BYOI. Уточнить у менеджера наличие требуемого образа в каталоге."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.8,
+        "reasoning": "Advanced поддерживает BYOI-образы сертифицированных ОС/СУБД. Мониторинг и управление инфраструктурой доступны через API и UI. Сертификат ФСТЭК на ПО — вендорский, не Cloud.ru [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "recommendation": "Использовать Advanced с BYOI-образами. Уточнить наличие требуемой СУБД в каталоге."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.8,
+        "reasoning": "Evolution поддерживает BYOI-образы ОС/СУБД. Мониторинг и управление доступны. Сертификат ФСТЭК на ПО — вендорский, не Cloud.ru. Подтверждено в документации [3].",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности сервиса «Виртуальные машины»"
+        ],
+        "recommendation": "Использовать Evolution с BYOI-образами. Уточнить у менеджера наличие требуемой сертифицированной ОС/СУБД."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 100,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование к количеству vCPU (шт.) — это стандартная характеристика виртуальных машин, предоставляемых всеми платформами Cloud.ru. Облако VMware поддерживает до 128 спецификаций ВМ, Evolution — до 45, Advanced — до 128. Требование не содержит числовых лимитов, поэтому любая конфигурация vCPU в рамках портфеля — match.",
+    "evidence": "Облако VMware предоставляет до 128 спецификаций виртуальных машин с гибкой конфигурацией vCPU [1]. Evolution и Advanced также поддерживают настройку vCPU в рамках своих лимитов [3].",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+    ],
+    "recommendation": "Использовать Облако VMware или Advanced для максимальной гибкости конфигурации vCPU. Evolution подходит для стандартных нагрузок.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Неизвестны лимиты vCPU.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, доступна ли платформа ГосОблако и какие лимиты vCPU она поддерживает."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет до 128 спецификаций виртуальных машин с гибкой настройкой vCPU. Подтверждено в документации [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "recommendation": "Использовать Облако VMware для максимальной гибкости и SLA 99,98%."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced поддерживает до 128 спецификаций виртуальных машин с произвольной конфигурацией vCPU. Подтверждено в документации [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "recommendation": "Использовать Advanced для гибкой настройки vCPU и совместимости с ГОСТ 57580."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет виртуальные машины с настройкой vCPU в рамках доступных спецификаций (до 45). Подтверждено в документации [3].",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности сервиса «Виртуальные машины»"
+        ],
+        "recommendation": "Использовать Evolution для стандартных нагрузок с SLA 99,9%."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

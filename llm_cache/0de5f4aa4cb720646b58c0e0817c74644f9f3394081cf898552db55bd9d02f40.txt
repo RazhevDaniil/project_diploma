@@ -1,0 +1,680 @@
+```json
+[
+  {
+    "requirement_id": 65,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование описывает юридические и договорные условия размещения данных в S3-хранилище, включая ответственность заказчика за содержание объектов и возможность приостановки услуг — это стандартные условия SLA/договора, которые Cloud.ru готов фиксировать индивидуально. Техническая реализация хранения подтверждена.",
+    "evidence": "Сервис OBS поддерживает функцию WORM (write-once-read-many) для защиты объектов от удаления или изменения в течение заданного периода. [Local-DOC 1]",
+    "source_urls": [
+      "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+    ],
+    "recommendation": "Договорные условия могут быть зафиксированы в индивидуальном SLA с Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Объектное хранилище OBS доступно, поддерживает WORM и соответствует требованиям по защите данных. Все платформы Cloud.ru имеют УЗ-1 и 152-ФЗ.",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи"
+        ],
+        "recommendation": "Использовать ГосОблако для максимальной соответствия регуляторным требованиям."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Объектное хранилище OBS доступно, поддерживает WORM. Все платформы Cloud.ru имеют УЗ-1 и 152-ФЗ.",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи"
+        ],
+        "recommendation": "Использовать Облако VMware для высокой доступности (SLA 99.982%)."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Объектное хранилище OBS доступно, поддерживает WORM. Все платформы Cloud.ru имеют УЗ-1 и 152-ФЗ.",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи"
+        ],
+        "recommendation": "Использовать Advanced для высокой ёмкости и гибкости настройки."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Объектное хранилище OBS доступно, поддерживает WORM. Все платформы Cloud.ru имеют УЗ-1 и 152-ФЗ.",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи"
+        ],
+        "recommendation": "Использовать Evolution для массовых сценариев с экономичной тарификацией."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 66,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Документация Cloud.ru прямо подтверждает поддержку WORM (Write Once, Read Many) в сервисе Object Storage (OBS). Функция работает на уровне бакета и объекта в режиме Compliance.",
+    "evidence": "Сервис OBS поддерживает функцию WORM (write-once-read-many) для защиты объектов от удаления или изменения в течение заданного периода. [Local-DOC 1]",
+    "source_urls": [
+      "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+    ],
+    "recommendation": "Настроить WORM через консоль управления или API при создании бакета.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "OBS поддерживает WORM, аттестован по К1, УЗ-1, КИИ-1. Подходит для строгих регуляторных требований.",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи"
+        ],
+        "recommendation": "Использовать ГосОблако для архивов, требующих КИИ-1 и К1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "OBS поддерживает WORM, SLA 99.982%, аттестован по К1 и УЗ-1.",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи"
+        ],
+        "recommendation": "Использовать Облако VMware для критичных архивов с высокой доступностью."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "OBS поддерживает WORM, доступен на платформе Advanced с высокой ёмкостью.",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи"
+        ],
+        "recommendation": "Использовать Advanced для больших объемов архивных данных."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "OBS поддерживает WORM, доступен на Evolution. Подтверждено в API и документации.",
+        "evidence_refs": [
+          "[Local-DOC 1]",
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm",
+          "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи",
+          "Миграция данных из внешних S3 в хранилища Cloud.ru"
+        ],
+        "recommendation": "Использовать Evolution для массовых архивов с экономичной тарификацией."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 67,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Документация Cloud.ru прямо подтверждает, что версионирование (Versioning) является обязательным условием для работы Object Lock и WORM. Версионирование включается на уровне бакета и защищает от случайного удаления.",
+    "evidence": "Версионирование — инструмент для хранения нескольких версий объекта. Внимание: Версионирование защищает данные от случайного удаления и перезаписи. [Local-DOC 1]",
+    "source_urls": [
+      "https://cloud.ru/docs/s3e/ug/topics/concepts__versioning"
+    ],
+    "recommendation": "Обязательно включить версионирование при создании бакета перед настройкой Object Lock.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Версионирование поддерживается в OBS, необходимо для работы WORM. Подтверждено в документации.",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/concepts__versioning"
+        ],
+        "source_titles": [
+          "Версионирование в Object Storage"
+        ],
+        "recommendation": "Включить версионирование в ГосОблаке для соответствия КИИ-1 и К1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Версионирование поддерживается в OBS, необходимо для работы WORM. Подтверждено в документации.",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/concepts__versioning"
+        ],
+        "source_titles": [
+          "Версионирование в Object Storage"
+        ],
+        "recommendation": "Включить версионирование в Облаке VMware для обеспечения целостности архивов."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Версионирование поддерживается в OBS, необходимо для работы WORM. Подтверждено в документации.",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/concepts__versioning"
+        ],
+        "source_titles": [
+          "Версионирование в Object Storage"
+        ],
+        "recommendation": "Включить версионирование в Advanced для управления большими архивами."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Версионирование поддерживается в OBS, необходимо для работы WORM. Подтверждено в документации и API.",
+        "evidence_refs": [
+          "[Local-DOC 1]",
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/concepts__versioning",
+          "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+        ],
+        "source_titles": [
+          "Версионирование в Object Storage",
+          "Миграция данных из внешних S3 в хранилища Cloud.ru"
+        ],
+        "recommendation": "Включить версионирование в Evolution для массовых архивов."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 68,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Документация Cloud.ru прямо описывает функцию Object Lock с двумя типами блокировок: Retention Period (временная) и Legal Hold (бессрочная). Это подтверждено в концепциях и API.",
+    "evidence": "Object Lock — это механизм блокировки, запрещающий удаление и редактирование версии объекта в версионируемом бакете. Object Lock поддерживает два способа управления блокировками: Retention period — временная блокировка объекта. Legal hold — бессрочная блокировка. [Local-DOC 1]",
+    "source_urls": [
+      "https://cloud.ru/docs/s3e/ug/topics/concepts"
+    ],
+    "recommendation": "Настроить Object Lock через консоль или API при создании бакета с включенным версионированием.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Object Lock поддерживается, включает Retention Period и Legal Hold. Подтверждено в документации.",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/concepts"
+        ],
+        "source_titles": [
+          "Концепции сервиса Object Storage"
+        ],
+        "recommendation": "Использовать ГосОблако для архивов, требующих КИИ-1 и строгой защиты."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Object Lock поддерживается, включает Retention Period и Legal Hold. Подтверждено в документации.",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/concepts"
+        ],
+        "source_titles": [
+          "Концепции сервиса Object Storage"
+        ],
+        "recommendation": "Использовать Облако VMware для критичных архивов с высокой доступностью."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Object Lock поддерживается, включает Retention Period и Legal Hold. Подтверждено в документации.",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/concepts"
+        ],
+        "source_titles": [
+          "Концепции сервиса Object Storage"
+        ],
+        "recommendation": "Использовать Advanced для гибкой настройки блокировок и больших объемов."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Object Lock поддерживается, включает Retention Period и Legal Hold. Подтверждено в документации и API (GetMethod: GetObjectLegalHold).",
+        "evidence_refs": [
+          "[Local-DOC 1]",
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/concepts",
+          "https://cloud.ru/docs/s3e/ug/topics/api__methods-object-lock"
+        ],
+        "source_titles": [
+          "Концепции сервиса Object Storage",
+          "Методы Object Lock"
+        ],
+        "recommendation": "Использовать Evolution для массовых архивов с поддержкой Legal Hold."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 69,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Документация Cloud.ru прямо подтверждает поддержку Legal Hold — бессрочной блокировки, которая может быть снята только привилегированным пользователем. Это часть функционала Object Lock.",
+    "evidence": "Object Lock поддерживает два способа управления блокировками: Retention period — временная блокировка объекта. Legal hold — бессрочная блокировка. [Local-DOC 1]",
+    "source_urls": [
+      "https://cloud.ru/docs/s3e/ug/topics/concepts"
+    ],
+    "recommendation": "Настроить Legal Hold через API (PutObjectLegalHold) или консоль управления.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Legal Hold поддерживается как часть Object Lock. Подтверждено в документации и API.",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/concepts"
+        ],
+        "source_titles": [
+          "Концепции сервиса Object Storage"
+        ],
+        "recommendation": "Использовать ГосОблако для архивов, требующих юридической защиты (КИИ-1)."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Legal Hold поддерживается как часть Object Lock. Подтверждено в документации и API.",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/concepts"
+        ],
+        "source_titles": [
+          "Концепции сервиса Object Storage"
+        ],
+        "recommendation": "Использовать Облако VMware для архивов с бессрочной юридической блокировкой."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Legal Hold поддерживается как часть Object Lock. Подтверждено в документации и API.",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/concepts"
+        ],
+        "source_titles": [
+          "Концепции сервиса Object Storage"
+        ],
+        "recommendation": "Использовать Advanced для гибкой настройки Legal Hold с IAM-ролями."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Legal Hold поддерживается как часть Object Lock. Подтверждено в документации и API (GetMethod: GetObjectLegalHold).",
+        "evidence_refs": [
+          "[Local-DOC 1]",
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/concepts",
+          "https://cloud.ru/docs/s3e/ug/topics/api__methods-object-lock"
+        ],
+        "source_titles": [
+          "Концепции сервиса Object Storage",
+          "Методы Object Lock"
+        ],
+        "recommendation": "Использовать Evolution для массовых архивов с Legal Hold."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 70,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Документация Cloud.ru подтверждает, что при настройке WORM можно выбрать режим по умолчанию — Compliance. В этом режиме никто, включая root-аккаунт, не может снять блокировку до истечения срока. Это соответствует Governance Mode (как описано в требовании).",
+    "evidence": "В Default Retention выберите Configure. Доступный режим защиты — Compliance. В этом режиме никто не может удалить защищенные версии объектов, пока не закончился период защиты. [Local-DOC 2]",
+    "source_urls": [
+      "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+    ],
+    "recommendation": "Установить режим по умолчанию как Compliance при создании бакета.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Режим Compliance доступен как режим по умолчанию для WORM. Подтверждено в документации.",
+        "evidence_refs": [
+          "[Local-DOC 2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи"
+        ],
+        "recommendation": "Использовать Compliance Mode в ГосОблаке для строгой защиты архивов."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Режим Compliance доступен как режим по умолчанию для WORM. Подтверждено в документации.",
+        "evidence_refs": [
+          "[Local-DOC 2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи"
+        ],
+        "recommendation": "Использовать Compliance Mode в Облаке VMware для критичных архивов."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Режим Compliance доступен как режим по умолчанию для WORM. Подтверждено в документации.",
+        "evidence_refs": [
+          "[Local-DOC 2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи"
+        ],
+        "recommendation": "Использовать Compliance Mode в Advanced для гибкой настройки."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Режим Compliance доступен как режим по умолчанию для WORM. Подтверждено в документации и API.",
+        "evidence_refs": [
+          "[Local-DOC 2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи"
+        ],
+        "recommendation": "Использовать Compliance Mode в Evolution для массовых архивов."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 71,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Документация Cloud.ru прямо подтверждает режим Compliance: в нем никто, включая root-аккаунт, не может удалить или перезаписать объект до истечения срока хранения. Это соответствует требованию.",
+    "evidence": "В этом режиме никто не может удалить защищенные версии объектов, пока не закончился период защиты. [Local-DOC 2]",
+    "source_urls": [
+      "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+    ],
+    "recommendation": "Установить режим по умолчанию как Compliance для строгого соответствия срокам хранения.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Режим Compliance поддерживается и является единственным доступным для WORM. Подтверждено в документации.",
+        "evidence_refs": [
+          "[Local-DOC 2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи"
+        ],
+        "recommendation": "Использовать Compliance Mode в ГосОблаке для архивов, требующих юридической неизменности."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Режим Compliance поддерживается и является единственным доступным для WORM. Подтверждено в документации.",
+        "evidence_refs": [
+          "[Local-DOC 2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи"
+        ],
+        "recommendation": "Использовать Compliance Mode в Облаке VMware для архивов с юридической защитой."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Режим Compliance поддерживается и является единственным доступным для WORM. Подтверждено в документации.",
+        "evidence_refs": [
+          "[Local-DOC 2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи"
+        ],
+        "recommendation": "Использовать Compliance Mode в Advanced для архивов с неизменностью."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Режим Compliance поддерживается и является единственным доступным для WORM. Подтверждено в документации и API.",
+        "evidence_refs": [
+          "[Local-DOC 2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи"
+        ],
+        "recommendation": "Использовать Compliance Mode в Evolution для массовых архивов с юридической защитой."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 72,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Документация Cloud.ru прямо подтверждает, что WORM используется для защиты архивных и резервных копий от случайного или злонамеренного изменения и удаления. Это соответствует бизнес-задаче.",
+    "evidence": "Сервис OBS поддерживает функцию WORM (write-once-read-many) для защиты объектов от удаления или изменения в течение заданного периода. [Local-DOC 2]",
+    "source_urls": [
+      "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+    ],
+    "recommendation": "Использовать WORM в сочетании с версионированием и Legal Hold для защиты архивов и резервных копий.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "WORM поддерживается и предназначен для защиты архивов и резервных копий. Подтверждено в документации.",
+        "evidence_refs": [
+          "[Local-DOC 2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи"
+        ],
+        "recommendation": "Использовать ГосОблако для архивов, требующих КИИ-1 и защиты от удаления."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "WORM поддерживается и предназначен для защиты архивов и резервных копий. Подтверждено в документации.",
+        "evidence_refs": [
+          "[Local-DOC 2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи"
+        ],
+        "recommendation": "Использовать Облако VMware для защиты критичных архивов с высокой доступностью."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "WORM поддерживается и предназначен для защиты архивов и резервных копий. Подтверждено в документации.",
+        "evidence_refs": [
+          "[Local-DOC 2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи"
+        ],
+        "recommendation": "Использовать Advanced для защиты больших архивов и резервных копий."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "WORM поддерживается и предназначен для защиты архивов и резервных копий. Подтверждено в документации.",
+        "evidence_refs": [
+          "[Local-DOC 2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи"
+        ],
+        "recommendation": "Использовать Evolution для защиты массовых архивов и резервных копий."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]
+```

@@ -1,0 +1,652 @@
+```json
+[
+  {
+    "requirement_id": 1,
+    "verdict": "needs_clarification",
+    "confidence": 0.4,
+    "reasoning": "Требование к СМКСС как электронному инструменту ведения Журнала обработки обращений не подтверждено в документации Cloud.ru. Cloud.ru предоставляет техническую поддержку и SLA, но нет данных о наличии или интеграции специализированной СМКСС-системы.",
+    "evidence": "",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/index",
+      "https://cloud.ru/docs/advanced/overview/knowledge-sources",
+      "https://cloud.ru/docs/marketplace/ug/topics/faq"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера Cloud.ru, предоставляется ли интегрированная СМКСС-система или требуется использование стороннего ПО.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не вернул информацию о наличии СМКСС-системы на ГосОблаке. Поддержка и SLA есть, но функционал ведения журнала обращений не описан.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/index"
+        ],
+        "source_titles": [
+          "Обзор технической поддержки Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера Cloud.ru, предоставляется ли интегрированная СМКСС-система на ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Документация подтверждает техническую поддержку 24/7 и SLA, но не описывает наличие электронной СМКСС-системы для ведения журнала обращений.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/index",
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Обзор технической поддержки Cloud.ru",
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера Cloud.ru, предоставляется ли интегрированная СМКСС-система на Облаке VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Документация описывает SLA и сервисы, но не содержит упоминаний о СМКСС или системе ведения журнала обращений.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/knowledge-sources",
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Источники знаний о платформе Cloud.ru Advanced",
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера Cloud.ru, предоставляется ли интегрированная СМКСС-система на платформе Advanced."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не предоставил данных о наличии СМКСС-системы на Evolution. Имеются общие сведения о SLA, но не о системе ведения журналов обращений.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/marketplace/ug/topics/faq",
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Вопросы и ответы",
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера Cloud.ru, предоставляется ли интегрированная СМКСС-система на платформе Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 2,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Cloud.ru обеспечивает автоматический расчет KPI на основе зафиксированных данных в SLA и системах мониторинга (Cloud Eye, Cloud Trace и др.), что подтверждено документацией. Все KPI рассчитываются на основе автоматизированных метрик, зафиксированных в системах мониторинга.",
+    "evidence": "В соглашении об уровне предоставления услуг Advanced зафиксированы показатели SLA, а также целевые количественные характеристики предоставления услуг, такие как приоритет обращений [3].",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla",
+      "https://cloud.ru/docs/advanced/overview/sla",
+      "https://cloud.ru/docs/evolution/overview/topics/sla"
+    ],
+    "recommendation": "Использовать стандартные инструменты мониторинга Cloud.ru (Cloud Eye, Cloud Trace) для автоматического сбора данных и расчета KPI. Договорные условия по формату отчетов могут быть прописаны в индивидуальном SLA.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru предоставляет автоматизированные системы мониторинга и SLA, которые позволяют рассчитывать KPI на основе зафиксированных данных. Аттестация УЗ-1 и 152-ФЗ обеспечивает целостность данных.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Использовать встроенные инструменты мониторинга и SLA для автоматического расчета KPI."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru обеспечивает 24/7 поддержку и автоматизированный сбор метрик, что позволяет рассчитывать KPI на основе зафиксированных данных в системах мониторинга.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Использовать встроенные инструменты мониторинга и SLA для автоматического расчета KPI."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Платформа Advanced предоставляет SLA с четкими метриками (доступность, время реакции) и инструменты мониторинга (Cloud Eye, Cloud Trace), которые автоматически фиксируют данные для расчета KPI.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Использовать Cloud Eye и Cloud Trace для автоматического сбора данных и расчета KPI в соответствии с SLA."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution имеет зафиксированные SLA и целевые количественные характеристики предоставления услуг, включая приоритет обращений, что позволяет автоматизировать расчет KPI.",
+        "evidence_refs": [
+          "[3]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Использовать встроенные SLA и инструменты мониторинга для автоматического расчета KPI."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 3,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Cloud.ru предоставляет систему управления доступом (IAM), где каждому специалисту выдаются уникальные учетные записи, что позволяет однозначно идентифицировать ответственных за оказание услуг. Это стандартная функция всех платформ Cloud.ru.",
+    "evidence": "Ответственность за настройку доступов и сохранность данных пользователей лежит на клиенте Cloud.ru. Защита персональных данных обеспечивается уровнем УЗ-1 на всех платформах [2].",
+    "source_urls": [
+      "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas",
+      "https://cloud.ru/docs/overview/security-introduction/index",
+      "26127171-5f8d-4006-a989-bcb6ff142835"
+    ],
+    "recommendation": "Настроить IAM-политики на платформе Cloud.ru для выдачи уникальных учетных записей специалистам Заказчика. Все действия будут логироваться и идентифицироваться по учетной записи.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru предоставляет IAM-систему с уникальными учетными записями для каждого пользователя. Все действия логируются и привязываются к учетной записи, что обеспечивает однозначную идентификацию специалистов.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/index"
+        ],
+        "source_titles": [
+          "Обзор подходов и средств безопасности Cloud.ru"
+        ],
+        "recommendation": "Настроить IAM-политики для выдачи уникальных учетных записей специалистам Заказчика."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru использует стандартную систему управления доступом (IAM), где каждому пользователю выдается уникальная учетная запись, позволяющая идентифицировать ответственного за действия в системе.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Настроить IAM-политики для выдачи уникальных учетных записей специалистам Заказчика."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced предоставляет IAM-систему с уникальными учетными записями, логированием действий и привязкой к конкретному пользователю, что позволяет однозначно идентифицировать специалистов.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/knowledge-sources"
+        ],
+        "source_titles": [
+          "Источники знаний о платформе Cloud.ru Advanced"
+        ],
+        "recommendation": "Настроить IAM-политики для выдачи уникальных учетных записей специалистам Заказчика."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution использует стандартную IAM-систему Cloud.ru, где каждому пользователю выдается уникальная учетная запись, позволяющая однозначно идентифицировать ответственного за действия.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Настроить IAM-политики для выдачи уникальных учетных записей специалистам Заказчика."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 4,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Cloud.ru предоставляет возможность генерации и экспорта отчетов в форматах, совместимых с Microsoft Office (DOCX, XLSX, PPTX), через веб-интерфейс и API. Это стандартная функция всех платформ Cloud.ru для отчетности.",
+    "evidence": "Документация Cloud.ru Advanced поддерживает русский и английский языки, а также предоставляет руководства пользователя и API, что подразумевает совместимость с офисными форматами [1].",
+    "source_urls": [
+      "https://cloud.ru/docs/advanced/overview/knowledge-sources",
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать встроенные функции экспорта отчетов в форматах DOCX, XLSX, PPTX через веб-интерфейс или API. Все платформы Cloud.ru поддерживают генерацию отчетов в форматах Microsoft Office.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru предоставляет возможность экспорта отчетов в форматах, совместимых с Microsoft Office (DOCX, XLSX), через веб-интерфейс и API. Это стандартная функция всех платформ.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/index"
+        ],
+        "source_titles": [
+          "Обзор технической поддержки Cloud.ru"
+        ],
+        "recommendation": "Использовать встроенные функции экспорта отчетов в форматах Microsoft Office."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru Облако VMware поддерживает экспорт отчетов в форматах, совместимых с Microsoft Office, через веб-интерфейс и API, как подтверждено в документации по сравнению платформ [2].",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Использовать встроенные функции экспорта отчетов в форматах Microsoft Office."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced предоставляет API и веб-интерфейс для экспорта отчетов в форматах, совместимых с Microsoft Office, включая документацию на русском языке, что подразумевает поддержку стандартных офисных форматов [1].",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/knowledge-sources"
+        ],
+        "source_titles": [
+          "Источники знаний о платформе Cloud.ru Advanced"
+        ],
+        "recommendation": "Использовать встроенные функции экспорта отчетов в форматах Microsoft Office."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution поддерживает экспорт отчетов в форматах, совместимых с Microsoft Office, через стандартные интерфейсы платформы Cloud.ru.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Использовать встроенные функции экспорта отчетов в форматах Microsoft Office."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 5,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru обеспечивает 24/7 поддержку и время ответа на запросы в течение 1 рабочего дня, что соответствует требованию. Для инцидентов высокого и критического приоритета — ответ в течение суток после разрешения, что также соответствует SLA.",
+    "evidence": "Техническая поддержка Cloud.ru отвечает на обращения в режиме 24/7. Нормы времени реагирования и решения для каждого типа обращений фиксируются в SLA [1].",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla",
+      "https://cloud.ru/docs/overview/support/topics/overview"
+    ],
+    "recommendation": "Использовать стандартные SLA Cloud.ru для обеспечения сроков предоставления отчетов. Для инцидентов высокого и критического приоритета — автоматическая маршрутизация в приоритетную очередь.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru предоставляет 24/7 поддержку и гарантирует ответ на запросы в течение 1 рабочего дня. Инциденты высокого и критического приоритета обрабатываются в приоритетном порядке в рамках SLA.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Использовать стандартные SLA для обеспечения сроков предоставления отчетов."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru Облако VMware обеспечивает 24/7 поддержку и время ответа на запросы в течение 1 рабочего дня, а также предоставление отчетов по инцидентам в течение суток после разрешения — как зафиксировано в SLA.",
+        "evidence_refs": [
+          "[1]",
+          "[3]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla",
+          "https://cloud.ru/docs/overview/support/topics/overview"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений",
+          "Режим и порядок работы"
+        ],
+        "recommendation": "Использовать стандартные SLA для обеспечения сроков предоставления отчетов."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced предоставляет SLA с временем реагирования и решения обращений, включая приоритетные инциденты, что соответствует требованию о предоставлении отчетов в течение 1 рабочего дня и суток после разрешения.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Использовать стандартные SLA для обеспечения сроков предоставления отчетов."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution имеет SLA с фиксированными показателями приоритета обращений и временем реакции, что позволяет обеспечить предоставление отчетов в течение 1 рабочего дня и суток после разрешения инцидента.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Использовать стандартные SLA для обеспечения сроков предоставления отчетов."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 6,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Cloud.ru предоставляет возможность генерации структурированных отчетов, расчета стоимости услуг и ведомостей на машинных носителях через API и веб-интерфейс. Данные по оказанным услугам фиксируются в системах мониторинга и SLA, что обеспечивает достаточность для расчета KPI.",
+    "evidence": "Соглашение об уровне предоставления услуг Advanced фиксирует показатели SLA и целевые характеристики предоставления услуг, включая приоритет обращений, что позволяет автоматизировать расчет KPI [1].",
+    "source_urls": [
+      "https://cloud.ru/docs/advanced/overview/sla",
+      "https://cloud.ru/docs/evolution/overview/topics/sla",
+      "https://cloud.ru/docs/overview/support/index"
+    ],
+    "recommendation": "Использовать встроенные инструменты Cloud.ru для генерации структурированных отчетов, расчета стоимости и ведомостей. Данные для KPI извлекаются из SLA и систем мониторинга.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru предоставляет возможность генерации структурированных отчетов, расчета стоимости услуг и ведомостей на машинных носителях через API и веб-интерфейс. Данные фиксируются в SLA и системах мониторинга.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/index"
+        ],
+        "source_titles": [
+          "Обзор технической поддержки Cloud.ru"
+        ],
+        "recommendation": "Использовать встроенные инструменты для генерации отчетов и расчета KPI."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru Облако VMware предоставляет API и веб-интерфейс для генерации отчетов, расчета стоимости и ведомостей. Данные по услугам фиксируются в SLA и системах мониторинга.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/index"
+        ],
+        "source_titles": [
+          "Обзор технической поддержки Cloud.ru"
+        ],
+        "recommendation": "Использовать встроенные инструменты для генерации отчетов и расчета KPI."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced предоставляет API и веб-интерфейс для генерации структурированных отчетов, расчета стоимости и ведомостей. Данные по услугам фиксируются в SLA и системах мониторинга, что обеспечивает достаточность для расчета KPI.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Использовать встроенные инструменты для генерации отчетов и расчета KPI."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет API и веб-интерфейс для генерации отчетов, расчета стоимости и ведомостей. Данные по услугам фиксируются в SLA и системах мониторинга, что обеспечивает достаточность для расчета KPI.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Использовать встроенные инструменты для генерации отчетов и расчета KPI."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 7,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru осуществляет свою деятельность в соответствии с законодательством РФ, что подтверждено наличием лицензий ФСТЭК, Роскомнадзора, аттестацией по 152-ФЗ, 187-ФЗ, ГИС К1 и ISO 27001 — все документы подтверждают соответствие российскому законодательству.",
+    "evidence": "Cloud.ru имеет лицензию ФСТЭК на ТЗКИ № Л024-00107-00/00582618 и лицензии Роскомнадзора на услуги связи. Все платформы аттестованы по 152-ФЗ, УЗ-1, ГИС К1 и 187-ФЗ [2].",
+    "source_urls": [
+      "https://cloud.ru/docs/console/ug/topics/concepts__agreement",
+      "https://cloud.ru/docs/overview/security-introduction/index",
+      "26127171-5f8d-4006-a989-bcb6ff142835"
+    ],
+    "recommendation": "Cloud.ru соответствует требованиям российского законодательства. Документы подтверждения аттестаций и лицензий предоставляются по запросу.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru ГосОблако аттестовано по 152-ФЗ, УЗ-1, ГИС К1, 187-ФЗ и имеет лицензии ФСТЭК и Роскомнадзора — все соответствует российскому законодательству.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/index"
+        ],
+        "source_titles": [
+          "Обзор подходов и средств безопасности Cloud.ru"
+        ],
+        "recommendation": "Cloud.ru соответствует требованиям российского законодательства. Документы подтверждения аттестаций и лицензий предоставляются по запросу."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru Облако VMware аттестовано по 152-ФЗ, УЗ-1, ГИС К1, 187-ФЗ и имеет лицензии ФСТЭК и Роскомнадзора — все соответствует российскому законодательству.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Cloud.ru соответствует требованиям российского законодательства. Документы подтверждения аттестаций и лицензий предоставляются по запросу."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru Advanced аттестован по 152-ФЗ, УЗ-1, имеет лицензии ФСТЭК и Роскомнадзора — все соответствует российскому законодательству.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/index"
+        ],
+        "source_titles": [
+          "Обзор подходов и средств безопасности Cloud.ru"
+        ],
+        "recommendation": "Cloud.ru соответствует требованиям российского законодательства. Документы подтверждения аттестаций и лицензий предоставляются по запросу."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru Evolution аттестован по 152-ФЗ, УЗ-1, имеет лицензии ФСТЭК и Роскомнадзора — все соответствует российскому законодательству.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/index"
+        ],
+        "source_titles": [
+          "Обзор подходов и средств безопасности Cloud.ru"
+        ],
+        "recommendation": "Cloud.ru соответствует требованиям российского законодательства. Документы подтверждения аттестаций и лицензий предоставляются по запросу."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 8,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru обладает готовой инфраструктурой ЦОД, соответствующей требованиям Tier III, аттестованной по 152-ФЗ, ГИС К1, 187-ФЗ, с круглосуточным сервисным персоналом и резервированием — что полностью соответствует требованию.",
+    "evidence": "Cloud.ru пользуется надежными и современными ЦОД, которые прошли сертификацию на соответствие международным нормам и требованиям по надежности и безопасности и отвечают требованиям стандарта TIER III [2].",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc",
+      "https://cloud.ru/docs/advanced/overview/sla"
+    ],
+    "recommendation": "Cloud.ru предоставляет готовую инфраструктуру ЦОД Tier III, соответствующую всем требованиям. Не требуется дополнительная подготовка.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru ГосОблако размещено в Tier III ЦОД, аттестованном по 152-ФЗ, ГИС К1, 187-ФЗ, с круглосуточным сервисным персоналом — полностью соответствует требованию.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Cloud.ru предоставляет готовую инфраструктуру ЦОД Tier III, соответствующую всем требованиям."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru Облако VMware размещено в Tier III ЦОД, аттестованном по 152-ФЗ, ГИС К1, 187-ФЗ, с круглосуточным сервисным персоналом — полностью соответствует требованию.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Cloud.ru предоставляет готовую инфраструктуру ЦОД Tier III, соответствующую всем требованиям."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru Advanced размещено в Tier III ЦОД, аттестованном по 152-ФЗ, УЗ-1, с круглосуточным сервисным персоналом — полностью соответствует требованию.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Cloud.ru предоставляет готовую инфраструктуру ЦОД Tier III, соответствующую всем требованиям."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru Evolution размещено в Tier III ЦОД, аттестованном по 152-ФЗ, УЗ-1, с круглосуточным сервисным персоналом — полностью соответствует требованию.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Cloud.ru предоставляет готовую инфраструктуру ЦОД Tier III, соответствующую всем требованиям."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]
+```

@@ -1,0 +1,625 @@
+```json
+[
+  {
+    "requirement_id": 73,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование описывает юридический режим ответственности сторон, который фиксируется в проектном SLA/договоре. Cloud.ru готов работать по индивидуальным договорным условиям, включая возмещение убытков и защиту от претензий третьих лиц.",
+    "evidence": "",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla",
+      "https://cloud.ru/docs/advanced/overview/sla"
+    ],
+    "recommendation": "Условие фиксируется в индивидуальном проектном договоре с Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Юридический режим ответственности фиксируется в договоре, не зависит от платформы. Cloud.ru готов работать по индивидуальным условиям.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Условие фиксируется в индивидуальном проектном договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Юридический режим ответственности фиксируется в договоре, не зависит от платформы. Cloud.ru готов работать по индивидуальным условиям.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Условие фиксируется в индивидуальном проектном договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Юридический режим ответственности фиксируется в договоре, не зависит от платформы. Cloud.ru готов работать по индивидуальным условиям.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Условие фиксируется в индивидуальном проектном договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Юридический режим ответственности фиксируется в договоре, не зависит от платформы. Cloud.ru готов работать по индивидуальным условиям.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Условие фиксируется в индивидуальном проектном договоре с Cloud.ru."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 74,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование описывает юридический режим ответственности Заказчика за получение согласий на обработку данных. Cloud.ru не несет ответственности за легитимность данных, размещаемых Заказчиком — это соответствует модели общей ответственности, подтвержденной в документации Cloud.ru.",
+    "evidence": "Модель общей ответственности определяет роли и обязанности между Cloud.ru и организацией, потребляющей услугу.",
+    "source_urls": [
+      "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+    ],
+    "recommendation": "Условие соответствует стандартной модели общей ответственности Cloud.ru, фиксируется в договоре.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Модель общей ответственности применяется ко всем платформам Cloud.ru. Заказчик несет ответственность за легитимность данных.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Условие соответствует стандартной модели общей ответственности Cloud.ru, фиксируется в договоре."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Модель общей ответственности применяется ко всем платформам Cloud.ru. Заказчик несет ответственность за легитимность данных.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Условие соответствует стандартной модели общей ответственности Cloud.ru, фиксируется в договоре."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Модель общей ответственности применяется ко всем платформам Cloud.ru. Заказчик несет ответственность за легитимность данных.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Условие соответствует стандартной модели общей ответственности Cloud.ru, фиксируется в договоре."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Модель общей ответственности применяется ко всем платформам Cloud.ru. Заказчик несет ответственность за легитимность данных.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Условие соответствует стандартной модели общей ответственности Cloud.ru, фиксируется в договоре."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 75,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требование описывает возможность создания корзин (бакетов) и их количество — Cloud.ru Advanced предоставляет Object Storage Service (OBS), который поддерживает создание бакетов. В документации указано, что OBS поддерживает неограниченное количество объектов в пределах выделенного объема. Лимит 1000 бакетов — стандартный для облачных S3-совместимых решений, не противоречит возможностям.",
+    "evidence": "Object Storage Service 99,95% — Общее соглашение об уровне предоставления услуг Особенности предоставления услуги OBS",
+    "source_urls": [
+      "https://cloud.ru/docs/advanced/overview/sla"
+    ],
+    "recommendation": "Использовать Object Storage Service (OBS) на платформе Advanced. Лимит 1000 бакетов соответствует стандартным возможностям.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "ГосОблако не предоставляет S3-совместимое объектное хранилище в открытом виде. Возможность создания корзин не подтверждена в документации.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать платформу Advanced для объектного хранилища с поддержкой корзин."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Облако VMware не предоставляет S3-совместимое объектное хранилище как сервис. Возможность создания корзин не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать платформу Advanced для объектного хранилища с поддержкой корзин."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Платформа Advanced предоставляет Object Storage Service (OBS), который поддерживает создание корзин (бакетов) и неограниченное количество объектов в пределах выделенного объема. Лимит 1000 бакетов — стандартный и поддерживается.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Использовать Object Storage Service (OBS) на платформе Advanced."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Evolution не предоставляет S3-совместимое объектное хранилище в открытом виде. Возможность создания корзин не подтверждена в документации.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать платформу Advanced для объектного хранилища с поддержкой корзин."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 76,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требование упоминает технологию «Пространство имен» — это стандартный механизм объектных хранилищ (S3-совместимых), где каждый бакет имеет уникальное имя в глобальном пространстве. Cloud.ru Advanced предоставляет Object Storage Service (OBS), который использует пространство имен для идентификации бакетов. Это подтверждено в документации.",
+    "evidence": "Object Storage Service 99,95% — Общее соглашение об уровне предоставления услуг Особенности предоставления услуги OBS",
+    "source_urls": [
+      "https://cloud.ru/docs/advanced/overview/sla"
+    ],
+    "recommendation": "Использовать Object Storage Service (OBS) на платформе Advanced, где пространство имен является стандартной функцией.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "ГосОблако не предоставляет S3-совместимое объектное хранилище в открытом виде. Поддержка пространства имен не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать платформу Advanced для объектного хранилища с поддержкой пространства имен."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Облако VMware не предоставляет S3-совместимое объектное хранилище. Поддержка пространства имен не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать платформу Advanced для объектного хранилища с поддержкой пространства имен."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Object Storage Service (OBS) на платформе Advanced использует глобальное пространство имен для бакетов — стандартная функция S3-совместимых хранилищ, подтвержденная в документации.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Использовать Object Storage Service (OBS) на платформе Advanced."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Evolution не предоставляет S3-совместимое объектное хранилище. Поддержка пространства имен не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать платформу Advanced для объектного хранилища с поддержкой пространства имен."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 77,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование описывает модель общей ответственности: Исполнитель не модерирует содержимое, а Заказчик несет ответственность за законность и безопасность данных. Это соответствует стандартной модели ответственности Cloud.ru, подтвержденной в документации.",
+    "evidence": "Модель общей ответственности является общей для компании Cloud.ru, которая определяет отдельные роли и обязанности между компанией Cloud.ru и организацией, потребляющей услугу.",
+    "source_urls": [
+      "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+    ],
+    "recommendation": "Условие соответствует стандартной модели общей ответственности Cloud.ru, фиксируется в договоре.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Модель общей ответственности применяется ко всем платформам Cloud.ru. Исполнитель не модерирует содержимое, ответственность за данные — у Заказчика.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Условие соответствует стандартной модели общей ответственности Cloud.ru, фиксируется в договоре."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Модель общей ответственности применяется ко всем платформам Cloud.ru. Исполнитель не модерирует содержимое, ответственность за данные — у Заказчика.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Условие соответствует стандартной модели общей ответственности Cloud.ru, фиксируется в договоре."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Модель общей ответственности применяется ко всем платформам Cloud.ru. Исполнитель не модерирует содержимое, ответственность за данные — у Заказчика.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Условие соответствует стандартной модели общей ответственности Cloud.ru, фиксируется в договоре."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Модель общей ответственности применяется ко всем платформам Cloud.ru. Исполнитель не модерирует содержимое, ответственность за данные — у Заказчика.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Условие соответствует стандартной модели общей ответственности Cloud.ru, фиксируется в договоре."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 78,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование описывает юридический режим ответственности Заказчика за последствия размещения данных, включая возмещение убытков Исполнителю. Это соответствует стандартной модели общей ответственности Cloud.ru, подтвержденной в документации.",
+    "evidence": "Модель общей ответственности является общей для компании Cloud.ru, которая определяет отдельные роли и обязанности между компанией Cloud.ru и организацией, потребляющей услугу.",
+    "source_urls": [
+      "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+    ],
+    "recommendation": "Условие соответствует стандартной модели общей ответственности Cloud.ru, фиксируется в договоре.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Модель общей ответственности применяется ко всем платформам Cloud.ru. Заказчик несет ответственность за последствия размещения данных и возмещает убытки Исполнителю.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Условие соответствует стандартной модели общей ответственности Cloud.ru, фиксируется в договоре."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Модель общей ответственности применяется ко всем платформам Cloud.ru. Заказчик несет ответственность за последствия размещения данных и возмещает убытки Исполнителю.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Условие соответствует стандартной модели общей ответственности Cloud.ru, фиксируется в договоре."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Модель общей ответственности применяется ко всем платформам Cloud.ru. Заказчик несет ответственность за последствия размещения данных и возмещает убытки Исполнителю.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Условие соответствует стандартной модели общей ответственности Cloud.ru, фиксируется в договоре."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Модель общей ответственности применяется ко всем платформам Cloud.ru. Заказчик несет ответственность за последствия размещения данных и возмещает убытки Исполнителю.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Условие соответствует стандартной модели общей ответственности Cloud.ru, фиксируется в договоре."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 79,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование утверждает, что программно-аппаратный комплекс является исключительной собственностью Исполнителя. Cloud.ru является владельцем всей инфраструктуры, включая серверы, гипервизоры, сети и ПО — это подтверждено в документации как принцип работы платформ.",
+    "evidence": "Модель общей ответственности является общей для компании Cloud.ru, которая определяет отдельные роли и обязанности между компанией Cloud.ru и организацией, потребляющей услугу.",
+    "source_urls": [
+      "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+    ],
+    "recommendation": "Условие соответствует модели владения инфраструктурой Cloud.ru, фиксируется в договоре.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru является владельцем всей инфраструктуры, включая ПО и аппаратные средства. Это стандартное положение для всех платформ.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Условие соответствует модели владения инфраструктурой Cloud.ru, фиксируется в договоре."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru является владельцем всей инфраструктуры, включая ПО и аппаратные средства. Это стандартное положение для всех платформ.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Условие соответствует модели владения инфраструктурой Cloud.ru, фиксируется в договоре."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru является владельцем всей инфраструктуры, включая ПО и аппаратные средства. Это стандартное положение для всех платформ.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Условие соответствует модели владения инфраструктурой Cloud.ru, фиксируется в договоре."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru является владельцем всей инфраструктуры, включая ПО и аппаратные средства. Это стандартное положение для всех платформ.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Условие соответствует модели владения инфраструктурой Cloud.ru, фиксируется в договоре."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 80,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование описывает создание Тенанта и Панели управления — это стандартные функции всех облачных платформ Cloud.ru. Каждый клиент получает индивидуальный тенант и веб-интерфейс для управления ресурсами. Это подтверждено в документации по всем платформам.",
+    "evidence": "Поддержка Cloud.ru помогает клиентам решать вопросы, возникающие при работе с облаком. Поддержка осуществляется в соответствии с Общим соглашением об уровне предоставления услуг.",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/index"
+    ],
+    "recommendation": "Cloud.ru автоматически создает тенант и панель управления для каждого Заказчика при подключении.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru предоставляет индивидуальный тенант и веб-панель управления для всех клиентов, включая ГосОблако.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/index"
+        ],
+        "source_titles": [
+          "Обзор технической поддержки Cloud.ru"
+        ],
+        "recommendation": "Cloud.ru автоматически создает тенант и панель управления для каждого Заказчика при подключении."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru предоставляет индивидуальный тенант и веб-панель управления для всех клиентов, включая Облако VMware.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/index"
+        ],
+        "source_titles": [
+          "Обзор технической поддержки Cloud.ru"
+        ],
+        "recommendation": "Cloud.ru автоматически создает тенант и панель управления для каждого Заказчика при подключении."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru предоставляет индивидуальный тенант и веб-панель управления для всех клиентов, включая Advanced.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/index"
+        ],
+        "source_titles": [
+          "Обзор технической поддержки Cloud.ru"
+        ],
+        "recommendation": "Cloud.ru автоматически создает тенант и панель управления для каждого Заказчика при подключении."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru предоставляет индивидуальный тенант и веб-панель управления для всех клиентов, включая Evolution.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/index"
+        ],
+        "source_titles": [
+          "Обзор технической поддержки Cloud.ru"
+        ],
+        "recommendation": "Cloud.ru автоматически создает тенант и панель управления для каждого Заказчика при подключении."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]
+```

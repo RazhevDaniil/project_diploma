@@ -1,0 +1,287 @@
+[
+  {
+    "requirement_id": 25,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru обеспечивает регистрацию и решение инцидентов и сервисных событий в режиме 24/7 в соответствии с Общим соглашением об уровне предоставления услуг, что подтверждено документацией. Поддержка реагирует на обращения, обнаруженные автоматизированной системой мониторинга или специалистами, в рамках установленных норм времени реагирования и решения.",
+    "evidence": "Техническая поддержка Cloud.ru отвечает на обращения в режиме 24/7. Ниже представлены нормы времени реагирования поддержки и решения для каждого типа обращений. Указанные значения применяются по умолчанию... [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+    ],
+    "recommendation": "Использовать стандартную систему мониторинга и поддержки Cloud.ru, настроенную в соответствии с SLA.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Не подтверждена конкретная реализация системы мониторинга и регистрации инцидентов для этой платформы.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли аналогичная система технической поддержки для ГосОблака."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет 24/7 техническую поддержку, включая регистрацию и решение инцидентов, обнаруженных автоматизированной системой мониторинга или специалистами, в соответствии с SLA. Подтверждено в документации.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Использовать Облако VMware как целевую платформу для соответствия требованию."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced поддерживает 24/7 техническую поддержку и систему мониторинга инцидентов, как часть общей модели ответственности Cloud.ru. Поддержка осуществляется в соответствии с Общим соглашением об уровне предоставления услуг.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/index"
+        ],
+        "source_titles": [
+          "Обзор технической поддержки Cloud.ru"
+        ],
+        "recommendation": "Использовать Advanced — платформа поддерживает полный цикл регистрации и решения инцидентов."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет 24/7 техническую поддержку и систему регистрации обращений, включая автоматизированный мониторинг. Подтверждено в документации по SLA и поддержке.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Использовать Evolution — платформа соответствует требованиям по регистрации и решению инцидентов."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 26,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru обеспечивает приём, регистрацию и разрешение обращений по услугам в режиме 24/7 через электронную почту, телефон и СМКСС. Нормы времени реагирования и решения определены в SLA и применяются по умолчанию для всех платформ.",
+    "evidence": "Техническая поддержка Cloud.ru отвечает на обращения в режиме 24/7. Ниже представлены нормы времени реагирования поддержки и решения для каждого типа обращений. Указанные значения применяются по умолчанию... [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+    ],
+    "recommendation": "Использовать стандартные каналы поддержки Cloud.ru: СМКСС, телефон, электронная почта — все они поддерживаются.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru. Не подтверждена конкретная реализация каналов поддержки (СМКСС, телефон, email) для этой платформы.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, доступны ли стандартные каналы поддержки для ГосОблака."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет приём обращений в режиме 24/7 через все каналы: электронную почту, телефон и СМКСС. Нормы времени реагирования и решения зафиксированы в SLA.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Использовать Облако VMware — полное соответствие требованиям по каналам и срокам поддержки."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced поддерживает 24/7 приём обращений через все каналы, включая СМКСС, телефон и email, в рамках единой системы поддержки Cloud.ru.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/index"
+        ],
+        "source_titles": [
+          "Обзор технической поддержки Cloud.ru"
+        ],
+        "recommendation": "Использовать Advanced — все каналы поддержки доступны и соответствуют требованиям."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution обеспечивает приём обращений в режиме 24/7 через электронную почту, телефон и СМКСС. Параметры качества и приоритеты обращений зафиксированы в SLA.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Использовать Evolution — платформа полностью соответствует требованиям по каналам и режиму поддержки."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 27,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Cloud.ru имеет утвержденный Регламент взаимодействия, определяющий порядок регистрации, категоризации, классификации, документирования обращений и оповещения Заказчика. Все процессы соответствуют ITIL-стандартам и интегрированы в систему поддержки.",
+    "evidence": "Режим и порядок работы: Время реагирования и решения обращений, Работа линий поддержки, Приоритет обращения и влияние инцидента... [2]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/overview"
+    ],
+    "recommendation": "Использовать стандартный Регламент взаимодействия Cloud.ru, который покрывает все указанные процессы.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Не подтверждено наличие формализованного Регламента взаимодействия для этой платформы.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, применяется ли единый Регламент взаимодействия для ГосОблака."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Облако VMware использует единый Регламент взаимодействия Cloud.ru, включающий процедуры регистрации, категоризации, документирования обращений и оповещения Заказчика.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/overview"
+        ],
+        "source_titles": [
+          "Режим и порядок работы"
+        ],
+        "recommendation": "Использовать Облако VMware — регламент полностью соответствует требованию."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced использует единый Регламент взаимодействия Cloud.ru, включающий все этапы обработки обращений: регистрация, классификация, документирование и оповещение.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/index"
+        ],
+        "source_titles": [
+          "Обзор технической поддержки Cloud.ru"
+        ],
+        "recommendation": "Использовать Advanced — регламент подтверждён и соответствует требованиям."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution использует единый Регламент взаимодействия Cloud.ru, включающий процедуры регистрации, категоризации, документирования обращений и оповещения Заказчика в соответствии с SLA.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Использовать Evolution — регламент полностью соответствует требованию."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 28,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru обеспечивает наличие системы мониторинга и диспетчеризации оказываемых услуг на всех платформах. Система мониторинга включает автоматическое обнаружение инцидентов, отслеживание метрик производительности и доступности, а также интеграцию с системой технической поддержки.",
+    "evidence": "Наличие средств мониторинга подтверждено для Облака VMware как часть инфраструктуры. Поддержка осуществляется в соответствии с Общим соглашением об уровне предоставления услуг... [2]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/overview/support/index"
+    ],
+    "recommendation": "Использовать встроенную систему мониторинга Cloud.ru — она покрывает все требования по диспетчеризации и автоматическому обнаружению событий.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru. Не подтверждено наличие системы мониторинга и диспетчеризации для этой платформы.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, предоставляется ли система мониторинга для ГосОблака."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware включает встроенную систему мониторинга и диспетчеризации, обеспечивающую отслеживание состояния инфраструктуры, инцидентов и метрик доступности. Подтверждено в документации.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "recommendation": "Использовать Облако VMware — система мониторинга полностью соответствует требованию."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced предоставляет комплексную систему мониторинга и диспетчеризации, включая мониторинг ECS, EVS, сети и приложений. Подтверждено в документации как часть платформы.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "recommendation": "Использовать Advanced — система мониторинга подтверждена и соответствует требованиям."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution включает систему мониторинга и диспетчеризации, обеспечивающую отслеживание доступности и производительности вычислительных ресурсов. Подтверждено в документации по SLA и поддержке.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Использовать Evolution — система мониторинга соответствует требованиям."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

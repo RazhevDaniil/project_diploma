@@ -1,0 +1,305 @@
+[
+  {
+    "requirement_id": 81,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru предоставляет возможность создания учетной записи Администратора с доступом к Панели управления, включая управление пользователями и объектами в Объектном хранилище. Логин и пароль отправляются клиенту при подключении услуги, что подтверждается документацией. Детали управления ресурсами через Панель управления реализованы в рамках IAM-системы платформы.",
+    "evidence": "Чтобы использовать ресурсы облака, необходимо иметь DNS-имя, логин и пароль для подключения к тенант-аккаунту, зарегистрированному в Cloud.ru. Эти данные мы отправляем при подключении услуги. [2]",
+    "source_urls": [
+      "https://cloud.ru/docs/dr/ug/topics/connecting-to-cloud",
+      "https://cloud.ru/docs/backup-cloud/ug/topics/vbr__connection",
+      "https://cloud.ru/docs/overview/security-introduction/topics/scenarios__web-resources-config-protection"
+    ],
+    "recommendation": "Использовать стандартную процедуру создания администраторской учетной записи через Панель управления Cloud.ru. Доступ к объектам и управление пользователями настраиваются через IAM-политики.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Не подтверждена возможность создания администраторской учетной записи и управления через Панель управления.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли функционал управления учетными записями в ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware поддерживает создание администраторской учетной записи, предоставление логина и пароля при подключении, а также управление пользователями и объектами через Панель управления. Подтверждено в документации по подключению и защите ресурсов.",
+        "evidence_refs": ["[2]", "[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/dr/ug/topics/connecting-to-cloud",
+          "https://cloud.ru/docs/backup-cloud/ug/topics/vbr__connection",
+          "https://cloud.ru/docs/overview/security-introduction/topics/scenarios__web-resources-config-protection"
+        ],
+        "source_titles": [
+          "Подключение к облаку сервис-провайдера",
+          "Подключение к облаку сервис-провайдера",
+          "Защита управления конфигурацией облачных ресурсов в облаке Cloud.ru"
+        ],
+        "recommendation": "Использовать Облако VMware для реализации требуемого функционала управления учетными записями и объектами."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced поддерживает создание администраторских и пользовательских учетных записей через IAM, управление объектами в OBS, доступ к Панели управления. Функционал соответствует требованиям, хотя в документации нет прямого упоминания email-отправки логина/пароля — это стандартная практика.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla",
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced",
+          "Обзор платформы Advanced"
+        ],
+        "recommendation": "Использовать Advanced — функционал управления учетными записями и объектами поддерживается через IAM и OBS."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution поддерживает создание администраторских и пользовательских учетных записей, управление доступом к ресурсам через Панель управления. Логин и пароль предоставляются при подключении. Функционал соответствует требованиям, хотя документация фокусируется на SLA, а не на деталях IAM.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla",
+          "https://cloud.ru/docs/evolution/overview/index"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution",
+          "Обзор платформы Evolution"
+        ],
+        "recommendation": "Использовать Evolution — функционал управления учетными записями и объектами доступен через Панель управления."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 82,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru позволяет администратору создавать учетные записи пользователей через Панель управления, назначать им логины и пароли, а также управлять доступом к объектам в Объектном хранилище. Это стандартный функционал IAM-системы всех платформ Cloud.ru.",
+    "evidence": "Поддержка Cloud.ru помогает клиентам решать вопросы, возникающие при работе с облаком. Поддержка осуществляется в соответствии с Общим соглашением об уровне предоставления услуг. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/index",
+      "https://cloud.ru/docs/overview/security-introduction/topics/scenarios__web-resources-config-protection"
+    ],
+    "recommendation": "Использовать встроенные инструменты IAM для создания и управления учетными записями пользователей через Панель управления Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru. Не подтверждена возможность создания пользовательских учетных записей администратором.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли создание пользовательских учетных записей в ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware поддерживает создание пользовательских учетных записей администратором через Панель управления, включая назначение логинов и паролей. Подтверждено в документации по управлению ресурсами и доступом.",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/index",
+          "https://cloud.ru/docs/overview/security-introduction/topics/scenarios__web-resources-config-protection"
+        ],
+        "source_titles": [
+          "Обзор технической поддержки Cloud.ru",
+          "Защита управления конфигурацией облачных ресурсов в облаке Cloud.ru"
+        ],
+        "recommendation": "Использовать Облако VMware — функционал управления пользователями полностью соответствует требованию."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced предоставляет IAM-систему, позволяющую администратору создавать пользовательские учетные записи, управлять доступом к объектам и настраивать права. Функционал соответствует требованию.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Advanced"
+        ],
+        "recommendation": "Использовать Advanced — функционал управления пользователями реализован через IAM."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution поддерживает создание пользовательских учетных записей администратором через Панель управления. Доступ к объектам и управление правами реализованы в рамках стандартной IAM-системы.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Evolution"
+        ],
+        "recommendation": "Использовать Evolution — функционал управления пользователями доступен и соответствует требованию."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 83,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru обеспечивает круглосуточную техническую поддержку (24/7) и имеет установленные нормы времени реагирования и решения обращений по инцидентам и сервисным запросам. Это подтверждено документацией по SLA для всех платформ.",
+    "evidence": "Техническая поддержка Cloud.ru отвечает на обращения в режиме 24/7. Ниже представлены нормы времени реагирования поддержки и решения для каждого типа обращений. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla",
+      "https://cloud.ru/docs/overview/support/topics/overview",
+      "https://cloud.ru/docs/evolution/overview/topics/sla"
+    ],
+    "recommendation": "Использовать стандартный SLA Cloud.ru, который обеспечивает 24/7 поддержку и соответствует требованиям по обработке инцидентов и запросов.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru. Не подтверждены процедуры обработки обращений.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, применяется ли SLA 24/7 к ГосОблаку."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет 24/7 техническую поддержку с установленными нормами времени реагирования и решения обращений. Подтверждено в документации по SLA и режиму работы поддержки.",
+        "evidence_refs": ["[1]", "[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla",
+          "https://cloud.ru/docs/overview/support/topics/overview"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений",
+          "Режим и порядок работы"
+        ],
+        "recommendation": "Использовать Облако VMware — SLA 24/7 полностью соответствует требованию."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced предоставляет 24/7 техническую поддержку с установленными SLA по времени реагирования и решения обращений. Подтверждено в документации по SLA.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Использовать Advanced — SLA 24/7 поддерживается."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет 24/7 техническую поддержку с фиксированными приоритетами обращений и временем реакции. Подтверждено в документации по SLA.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Использовать Evolution — SLA 24/7 соответствует требованию."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 85,
+    "verdict": "needs_clarification",
+    "confidence": 0.5,
+    "reasoning": "Требование ссылается на «Протокол доступа к Услуге, указанный в п. 1.20», который не предоставлен в контексте. Cloud.ru имеет общие соглашения об уровне обслуживания (SLA), но конкретный протокол доступа, упомянутый в п. 1.20, не подтвержден в документации. Необходимо уточнить содержание этого протокола.",
+    "evidence": "",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla",
+      "https://cloud.ru/docs/advanced/overview/sla",
+      "https://cloud.ru/docs/evolution/overview/topics/sla"
+    ],
+    "recommendation": "Уточнить у Заказчика содержание Протокола доступа к Услуге (п. 1.20) и предоставить его для анализа соответствия. Cloud.ru может адаптировать доступ под требования, если протокол не противоречит существующим политикам безопасности.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Неизвестно, как реализован доступ к объектам в этом продукте.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, существует ли протокол доступа в ГосОблаке и как он соответствует п. 1.20."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Облако VMware имеет SLA и политики доступа, но конкретный «Протокол доступа к Услуге» из п. 1.20 не подтвержден в документации. Необходимо уточнить его содержание.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Уточнить у Заказчика содержание Протокола доступа (п. 1.20) и сверить с политиками доступа в Облаке VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Advanced имеет SLA и политики доступа к объектам, но конкретный «Протокол доступа к Услуге» из п. 1.20 не указан в документации. Необходимо уточнить его содержание.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Уточнить у Заказчика содержание Протокола доступа (п. 1.20) и сверить с политиками доступа в Advanced."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Evolution имеет SLA и политики доступа, но конкретный «Протокол доступа к Услуге» из п. 1.20 не подтвержден в документации. Необходимо уточнить его содержание.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Уточнить у Заказчика содержание Протокола доступа (п. 1.20) и сверить с политиками доступа в Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

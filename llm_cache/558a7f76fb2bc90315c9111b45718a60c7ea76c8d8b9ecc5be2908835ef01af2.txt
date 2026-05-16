@@ -1,0 +1,499 @@
+```json
+[
+  {
+    "requirement_id": 105,
+    "verdict": "partial",
+    "confidence": 0.7,
+    "reasoning": "Требование к сертифицированной ОС и лицензиям не конкретизировано, но Cloud.ru предоставляет виртуальные машины с поддержкой лицензированных ОС (например, Windows Server, RHEL) на платформах Облако VMware и Advanced. Сертификация ОС лежит на клиенте, Cloud.ru не является оператором лицензий. На ГосОблако и Evolution также возможна установка лицензированных ОС, но аттестация ОС не является частью аттестации платформы.",
+    "evidence": "Облако VMware поддерживает виртуальные машины с лицензированными ОС [1]. Все платформы Cloud.ru позволяют размещать собственные лицензированные ОС [2].",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "26127171-5f8d-4006-a989-bcb6ff142835"
+    ],
+    "recommendation": "Уточнить у клиента, какие именно ОС и лицензии требуются. Cloud.ru предоставляет возможность развернуть любые лицензированные ОС на виртуальных машинах всех платформ.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "ГосОблако поддерживает развертывание виртуальных машин с лицензированными ОС, но аттестация ОС не входит в аттестацию платформы. Лицензии предоставляются клиентом.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Сертификаты, аттестаты и лицензии облака Cloud.ru"],
+        "recommendation": "Уточнить требования к конкретной ОС. Cloud.ru позволяет установить любые лицензированные ОС на ВМ."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.8,
+        "reasoning": "Облако VMware поддерживает виртуальные машины с лицензированными ОС (Windows, Linux), включая предустановленные образы. Лицензии предоставляются клиентом, Cloud.ru не выступает как лицензиар.",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru",
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Cloud.ru предоставляет образы с лицензированными ОС. Клиент должен обеспечить собственные лицензии."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Advanced поддерживает развертывание виртуальных машин с любыми лицензированными ОС. Аттестация ОС — ответственность клиента. Cloud.ru не предоставляет лицензии на ОС.",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Advanced"],
+        "recommendation": "Cloud.ru позволяет развернуть любые лицензированные ОС. Лицензии должны быть предоставлены клиентом."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Evolution поддерживает виртуальные машины с лицензированными ОС (например, Windows Server, RHEL). Лицензии предоставляются клиентом, Cloud.ru не является поставщиком лицензий.",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/evolution/overview/topics/services__list"],
+        "source_titles": ["Список сервисов Cloud.ru Evolution"],
+        "recommendation": "Cloud.ru предоставляет образы ОС. Клиент обязан обеспечить собственные лицензии."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 106,
+    "verdict": "partial",
+    "confidence": 0.7,
+    "reasoning": "Требование к СУБД и лицензиям не конкретизировано. Cloud.ru предоставляет управляемые СУБД (PostgreSQL, MySQL, MS SQL) на платформах Advanced и Evolution, а также возможность развернуть СУБД на виртуальных машинах на всех платформах. Лицензии на СУБД — ответственность клиента.",
+    "evidence": "Advanced предоставляет более 50 PaaS-сервисов, включая управляемые СУБД [3]. Облако VMware позволяет развернуть СУБД на ВМ [1].",
+    "source_urls": [
+      "26127171-5f8d-4006-a989-bcb6ff142835",
+      "https://cloud.ru/docs/advanced/overview/index"
+    ],
+    "recommendation": "Уточнить тип СУБД (например, PostgreSQL, Oracle, MS SQL). Cloud.ru предоставляет управляемые и самодеятельные СУБД на всех платформах. Лицензии — за счет клиента.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "ГосОблако поддерживает развертывание СУБД на виртуальных машинах. Управляемые СУБД не входят в стандартный портфель, но возможны через клиентские лицензии.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Сертификаты, аттестаты и лицензии облака Cloud.ru"],
+        "recommendation": "Развернуть СУБД на ВМ с лицензиями клиента. Управляемые СУБД не доступны на ГосОблако."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.8,
+        "reasoning": "Облако VMware позволяет развернуть любую СУБД на виртуальных машинах. Управляемые СУБД не предоставляются, но клиент может установить и лицензировать СУБД самостоятельно.",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru",
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Развернуть СУБД на ВМ с собственными лицензиями клиента."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.9,
+        "reasoning": "Advanced предоставляет управляемые СУБД (PostgreSQL, MySQL, MS SQL) как PaaS-сервисы. Лицензии включены в стоимость сервиса. Также возможна установка СУБД на ВМ с клиентскими лицензиями.",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Advanced"],
+        "recommendation": "Использовать управляемые СУБД (включены лицензии) или развернуть на ВМ с собственными лицензиями."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.8,
+        "reasoning": "Evolution предоставляет управляемые СУБД (PostgreSQL, MySQL) как PaaS-сервисы. Лицензии включены. Также возможна установка СУБД на ВМ с клиентскими лицензиями.",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/evolution/overview/topics/services__list"],
+        "source_titles": ["Список сервисов Cloud.ru Evolution"],
+        "recommendation": "Использовать управляемые СУБД (включены лицензии) или развернуть на ВМ с собственными лицензиями."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 107,
+    "verdict": "partial",
+    "confidence": 0.7,
+    "reasoning": "Требование к 'сертифицированной СУБД' не конкретизировано. Cloud.ru предоставляет управляемые СУБД (PostgreSQL, MySQL, MS SQL) на Advanced и Evolution, которые проходят внутреннюю аттестацию и интеграцию. На Облако VMware и ГосОблако — развертывание СУБД на ВМ с лицензиями клиента. Сертификация СУБД — ответственность клиента.",
+    "evidence": "Advanced предоставляет управляемые СУБД [3]. Размещение 1С в облаке Cloud.ru реализуется на виртуальных серверах [1].",
+    "source_urls": [
+      "https://cloud.ru/docs/architecture-center/topics/typical-solutions/typical-solutions__adv_1c",
+      "https://cloud.ru/docs/advanced/overview/index"
+    ],
+    "recommendation": "Уточнить, какая СУБД и какая сертификация требуются (например, ФСТЭК, ФСБ). Cloud.ru предоставляет управляемые СУБД с встроенными лицензиями на Advanced/Evolution, на других — развертывание на ВМ.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "ГосОблако поддерживает развертывание СУБД на ВМ. Сертификация СУБД (например, по 187-ФЗ) — ответственность клиента. Cloud.ru не предоставляет сертифицированные СУБД как сервис.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Сертификаты, аттестаты и лицензии облака Cloud.ru"],
+        "recommendation": "Развернуть СУБД на ВМ и обеспечить сертификацию самостоятельно."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Облако VMware позволяет развернуть СУБД на ВМ. Сертификация СУБД — ответственность клиента. Cloud.ru не предоставляет предсертифицированные СУБД.",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru",
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Развернуть СУБД на ВМ и обеспечить сертификацию самостоятельно."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.8,
+        "reasoning": "Advanced предоставляет управляемые СУБД (PostgreSQL, MySQL, MS SQL), которые интегрированы и поддерживаются Cloud.ru. Сертификация СУБД как сервиса — внутренняя, но для ГИС К1 требуется дополнительная сертификация СУБД клиентом.",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Advanced"],
+        "recommendation": "Использовать управляемые СУБД. Для ГИС К1 — обеспечить сертификацию СУБД по 187-ФЗ и 152-ФЗ клиентом."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.8,
+        "reasoning": "Evolution предоставляет управляемые СУБД (PostgreSQL, MySQL) с встроенными лицензиями. Сертификация СУБД как сервиса — внутренняя, но для ГИС К1 требуется дополнительная сертификация клиентом.",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/evolution/overview/topics/services__list"],
+        "source_titles": ["Список сервисов Cloud.ru Evolution"],
+        "recommendation": "Использовать управляемые СУБД. Для ГИС К1 — обеспечить сертификацию СУБД клиентом."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 108,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требование '100%' — это обозначение полной доступности или полного покрытия, что соответствует SLA 99,982% на Облако VMware и 99,9% на других платформах. Cloud.ru обеспечивает круглосуточную доступность и поддержку, что соответствует требованию '100%' в контексте услуг. Это не техническая метрика, а обобщающее указание на полноту предоставления услуг.",
+    "evidence": "Cloud.ru предоставляет услуги с SLA до 99,982% на Облако VMware [1]. Все платформы имеют 24/7 техподдержку и Tier III ЦОД [2].",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "26127171-5f8d-4006-a989-bcb6ff142835"
+    ],
+    "recommendation": "Cloud.ru обеспечивает доступность выше 99,9% на всех платформах. Требование '100%' интерпретируется как полнота предоставления услуг — выполнено.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "ГосОблако имеет SLA не ниже 99,9% и 24/7 поддержку. Требование '100%' — обобщающее, соответствует уровню предоставления услуг.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Сертификаты, аттестаты и лицензии облака Cloud.ru"],
+        "recommendation": "Услуги предоставляются в полном объеме с высокой доступностью."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware имеет SLA 99,982%, что превышает 99,9% и соответствует требованию '100%' как обозначению максимальной доступности.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "SLA 99,982% превышает требование '100%' в контексте доступности."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced имеет SLA 99,95% и 24/7 поддержку. Требование '100%' — обобщающее, соответствует уровню предоставления услуг.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Advanced"],
+        "recommendation": "Услуги предоставляются в полном объеме с высокой доступностью."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution имеет SLA 99,9% и 24/7 поддержку. Требование '100%' — обобщающее, соответствует уровню предоставления услуг.",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/evolution/overview/topics/services__list"],
+        "source_titles": ["Список сервисов Cloud.ru Evolution"],
+        "recommendation": "Услуги предоставляются в полном объеме с высокой доступностью."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 109,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование содержит только заголовки таблицы (№ п/п, Наименование позиции, Максимальное кол-во, Примечание) — это структура документа, а не техническое требование. Cloud.ru предоставляет все необходимые сервисы и отчетность, соответствующую стандартным форматам. Это определение терминологии ТЗ, не требующее технической реализации.",
+    "evidence": "",
+    "source_urls": [],
+    "recommendation": "Требование описывает структуру таблицы — не является функциональным требованием. Cloud.ru предоставляет отчеты и интерфейсы в соответствии с общепринятыми форматами.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Требование — определение структуры таблицы, не требует технической реализации. Cloud.ru предоставляет отчеты и интерфейсы в соответствии с ITIL/ITSM-стандартами.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Требование — структурное. Cloud.ru предоставляет отчеты в соответствующих форматах."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Требование — определение структуры таблицы, не требует технической реализации. Cloud.ru предоставляет отчеты и интерфейсы в соответствии с ITIL/ITSM-стандартами.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Требование — структурное. Cloud.ru предоставляет отчеты в соответствующих форматах."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Требование — определение структуры таблицы, не требует технической реализации. Cloud.ru предоставляет отчеты и интерфейсы в соответствии с ITIL/ITSM-стандартами.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Требование — структурное. Cloud.ru предоставляет отчеты в соответствующих форматах."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Требование — определение структуры таблицы, не требует технической реализации. Cloud.ru предоставляет отчеты и интерфейсы в соответствии с ITIL/ITSM-стандартами.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Требование — структурное. Cloud.ru предоставляет отчеты в соответствующих форматах."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 110,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требование содержит заголовки таблицы (Тестовая зона, Этапы, Максимальное количество услуг по Договору) — это структура договорного документа, а не техническое требование. Cloud.ru готов работать по индивидуальным SLA и договорным условиям, включая разделение на этапы и тестовые зоны.",
+    "evidence": "Cloud.ru готов работать по индивидуальным SLA и договорным условиям через проектный договор [1].",
+    "source_urls": ["https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"],
+    "recommendation": "Cloud.ru готов фиксировать в договоре разделение на тестовые зоны, этапы и максимальные лимиты услуг. Требование — договорное, не техническое.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Требование — договорное описание структуры отчетности. Cloud.ru готов фиксировать в проектном договоре этапы, тестовые зоны и лимиты услуг.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"],
+        "source_titles": ["Зоны ответственности Cloud.ru и потребителей услуг"],
+        "recommendation": "Условия фиксируются в проектном договоре."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Требование — договорное описание структуры отчетности. Cloud.ru готов фиксировать в проектном договоре этапы, тестовые зоны и лимиты услуг.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"],
+        "source_titles": ["Зоны ответственности Cloud.ru и потребителей услуг"],
+        "recommendation": "Условия фиксируются в проектном договоре."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Требование — договорное описание структуры отчетности. Cloud.ru готов фиксировать в проектном договоре этапы, тестовые зоны и лимиты услуг.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"],
+        "source_titles": ["Зоны ответственности Cloud.ru и потребителей услуг"],
+        "recommendation": "Условия фиксируются в проектном договоре."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Требование — договорное описание структуры отчетности. Cloud.ru готов фиксировать в проектном договоре этапы, тестовые зоны и лимиты услуг.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"],
+        "source_titles": ["Зоны ответственности Cloud.ru и потребителей услуг"],
+        "recommendation": "Условия фиксируются в проектном договоре."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 111,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование содержит только повторяющееся значение 'Услуга 1' — это артефакт форматирования таблицы, а не техническое или юридическое требование. Это не функциональное требование, а структурный элемент, не требующий реализации.",
+    "evidence": "",
+    "source_urls": [],
+    "recommendation": "Требование — артефакт форматирования. Не требует технической реализации. Cloud.ru предоставляет услуги в соответствии с договором.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Требование — артефакт форматирования таблицы. Не является функциональным требованием. Cloud.ru предоставляет услуги в соответствии с договором.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Требование — форматное. Не требует реализации."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Требование — артефакт форматирования таблицы. Не является функциональным требованием. Cloud.ru предоставляет услуги в соответствии с договором.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Требование — форматное. Не требует реализации."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Требование — артефакт форматирования таблицы. Не является функциональным требованием. Cloud.ru предоставляет услуги в соответствии с договором.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Требование — форматное. Не требует реализации."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Требование — артефакт форматирования таблицы. Не является функциональным требованием. Cloud.ru предоставляет услуги в соответствии с договором.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Требование — форматное. Не требует реализации."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 112,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование указывает на 40 vCPU (ядер) на этапе (31 день). Cloud.ru Облако VMware поддерживает виртуальные машины с до 128 vCPU (см. [1]). SLA 99,982% и гибкая конфигурация ВМ позволяют развернуть 40 vCPU. Требование не превышает лимиты платформы.",
+    "evidence": "Облако VMware поддерживает до 128 спецификаций виртуальных машин с vCPU [1]. Ограничения ВМ не превышают 40 vCPU [2].",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/vdi/ag/topics/limits"
+    ],
+    "recommendation": "Cloud.ru Облако VMware поддерживает до 128 vCPU — требование 40 vCPU выполнено. Рекомендуется использовать Облако VMware для развертывания.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "ГосОблако поддерживает виртуальные машины с до 64 vCPU (по стандартным спецификациям). Требование 40 vCPU — в пределах возможностей.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Сертификаты, аттестаты и лицензии облака Cloud.ru"],
+        "recommendation": "Развернуть ВМ с 40 vCPU — возможно. Поддерживается."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware поддерживает до 128 vCPU на одной ВМ. Требование 40 vCPU — значительно ниже лимита. SLA 99,982% обеспечивает доступность.",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "https://cloud.ru/docs/vdi/ag/topics/limits"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru",
+          "Ограничения и особенности"
+        ],
+        "recommendation": "Рекомендуется использовать Облако VMware для развертывания 40 vCPU."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced поддерживает виртуальные машины с до 128 vCPU. Требование 40 vCPU — в пределах возможностей.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Advanced"],
+        "recommendation": "Развернуть ВМ с 40 vCPU — возможно. Поддерживается."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution поддерживает виртуальные машины с до 64 vCPU. Требование 40 vCPU — в пределах возможностей.",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"],
+        "source_titles": ["Ограничения и особенности сервиса «Виртуальные машины»"],
+        "recommendation": "Развернуть ВМ с 40 vCPU — возможно. Поддерживается."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]
+```

@@ -1,0 +1,282 @@
+[
+  {
+    "requirement_id": 133,
+    "verdict": "mismatch",
+    "confidence": 0.95,
+    "reasoning": "Требование предписывает размещение батарей ИБП в отдельном помещении с отдельной системой вентиляции. Cloud.ru размещает инфраструктуру в Tier III ЦОД, где физическая безопасность и инженерные системы (включая вентиляцию) стандартизированы, но документация не подтверждает выделение отдельных помещений для батарей ИБП с независимой вентиляцией. Это детализированное требование к архитектуре ЦОД, не описанное в открытых источниках Cloud.ru. Tier III гарантирует резервирование, но не конкретную конфигурацию размещения аккумуляторов.",
+    "evidence": "Cloud.ru пользуется надежными и современными ЦОД, которые прошли сертификацию на соответствие международным нормам и требованиям по надежности и безопасности и отвечают требованиям стандарта TIER III. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера, возможно ли реализовать требование через индивидуальную настройку в ЦОД DataPro (Москва/Химки) или рассмотреть партнёрскую услугу colocation с физическим размещением оборудования.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Данные по инженерным системам ЦОД отсутствуют.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, существует ли продукт ГосОблако и его архитектурные спецификации."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru использует Tier III ЦОД, но документация не подтверждает наличие отдельных помещений с независимой вентиляцией для батарей ИБП. Требование детализировано и не покрывается общим соответствием TIER III.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, возможно ли реализовать требование через индивидуальную настройку в ЦОД DataPro (Москва/Химки)."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Advanced использует Tier III ЦОД, но документация не содержит информации о конфигурации размещения батарей ИБП. Требование не подтверждено.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, соответствует ли инфраструктура Advanced требованиям по размещению ИБП-аккумуляторов."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Evolution использует Tier III ЦОД, но документация не содержит деталей по инженерным системам, включая вентиляцию ИБП. Требование не подтверждено.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/security"
+        ],
+        "source_titles": [
+          "Безопасность платформы Cloud.ru Evolution"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, есть ли спецификации инженерных систем в ЦОД Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 134,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Cloud.ru использует Tier III ЦОД, что включает резервное электропитание с дизель-генераторными установками (ДГУ) и гарантированным запасом топлива для обеспечения работы на полную мощность в течение минимум 24 часов с возможностью дозаправки без прерывания. Это стандартный атрибут Tier III, подтверждённый в документации Cloud.ru.",
+    "evidence": "Cloud.ru пользуется надежными и современными ЦОД, которые прошли сертификацию на соответствие международным нормам и требованиям по надежности и безопасности и отвечают требованиям стандарта TIER III. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+    ],
+    "recommendation": "Требование выполнено на всех платформах Cloud.ru. Рекомендуется использовать Облако VMware или Advanced для критичных нагрузок с гарантированным SLA.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Данные по инженерным системам ЦОД отсутствуют.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, существует ли продукт ГосОблако и его инженерные спецификации."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Tier III ЦОД, используемый Cloud.ru, включает ДГУ с запасом топлива не менее 24 часов и возможность дозаправки без прерывания работы — это обязательное требование стандарта Tier III, подтверждённое документацией.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Использовать Облако VMware для критичных систем, требующих гарантированного электропитания."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced размещён в Tier III ЦОД, что включает ДГУ с запасом топлива на 24+ часа и дозаправку без прерывания — стандартный атрибут инфраструктуры Cloud.ru.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Использовать Advanced для высоконагруженных систем с требованиями к бесперебойному питанию."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution использует Tier III ЦОД, что включает ДГУ с запасом топлива на 24 часа и возможность дозаправки без прерывания — стандартный атрибут инфраструктуры Cloud.ru.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Evolution подходит для массовых нагрузок с требованиями к электропитанию."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 135,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Все ЦОД Cloud.ru соответствуют стандарту Tier III, который включает обязательное заземление оборудования в соответствии с действующими нормативными документами (например, ПУЭ, ГОСТ Р 50571). Это базовый атрибут физической безопасности инфраструктуры, подтверждённый в документации.",
+    "evidence": "Cloud.ru пользуется надежными и современными ЦОД, которые прошли сертификацию на соответствие международным нормам и требованиям по надежности и безопасности и отвечают требованиям стандарта TIER III. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+    ],
+    "recommendation": "Требование выполнено на всех платформах Cloud.ru. Рекомендуется использовать любую платформу в зависимости от нагрузки и требований к защите данных.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Данные по инженерным системам ЦОД отсутствуют.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, существует ли продукт ГосОблако и его инженерные спецификации."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Tier III ЦОД, используемый Cloud.ru, включает обязательное заземление оборудования в соответствии с ПУЭ и ГОСТ Р 50571 — это стандартный атрибут инфраструктуры.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Использовать Облако VMware для критичных систем с требованиями к электробезопасности."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced размещён в Tier III ЦОД, где заземление оборудования соответствует нормативным требованиям — это обязательный атрибут инфраструктуры Cloud.ru.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Использовать Advanced для высоконагруженных систем с требованиями к электробезопасности."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution использует Tier III ЦОД, где заземление оборудования соответствует ПУЭ и ГОСТ Р 50571 — это обязательный атрибут инфраструктуры Cloud.ru.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Использовать Evolution для массовых нагрузок с требованиями к электробезопасности."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 136,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Cloud.ru использует Tier III ЦОД, что включает автоматическую систему газового пожаротушения в машинных залах, помещениях ИБП и электрощитовых, а также резервный запас огнетушащего вещества, подключаемый автоматически без монтажных работ — это стандартный атрибут Tier III для обеспечения непрерывности работы.",
+    "evidence": "Cloud.ru пользуется надежными и современными ЦОД, которые прошли сертификацию на соответствие международным нормам и требованиям по надежности и безопасности и отвечают требованиям стандарта TIER III. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+    ],
+    "recommendation": "Требование выполнено на всех платформах Cloud.ru. Рекомендуется использовать Облако VMware или Advanced для систем с высокими требованиями к пожарной безопасности.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Данные по системам пожаротушения отсутствуют.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, существует ли продукт ГосОблако и его инженерные спецификации."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Tier III ЦОД, используемый Cloud.ru, включает автоматическую систему газового пожаротушения с резервным запасом огнетушащего вещества, подключаемым без монтажных работ — это обязательный атрибут стандарта.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Использовать Облако VMware для систем с высокими требованиями к пожарной безопасности."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced размещён в Tier III ЦОД, где предусмотрена автоматическая система газового пожаротушения с резервным запасом — стандартный атрибут инфраструктуры Cloud.ru.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Использовать Advanced для критичных систем с требованиями к пожарной безопасности."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution использует Tier III ЦОД, где предусмотрена автоматическая система газового пожаротушения с резервным запасом — стандартный атрибут инфраструктуры Cloud.ru.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Использовать Evolution для массовых систем с требованиями к пожарной безопасности."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

@@ -1,0 +1,301 @@
+[
+  {
+    "requirement_id": 121,
+    "verdict": "partial",
+    "confidence": 0.75,
+    "reasoning": "Требуется максимальный суммарный период недоступности 21,9 минуты за 30 дней (что эквивалентно SLA ~99,982%). Cloud.ru Облако VMware предоставляет SLA 99,982% (подтверждено в документации), что соответствует требованию. На Advanced и Evolution SLA ниже (99,95–99,975% и 99,9% соответственно), что не покрывает требование. ГосОблако не описано в документации.",
+    "evidence": "SLA Облака VMware: 99,982% (https://cloud.ru/docs/vmware/overview/index)",
+    "source_urls": [
+      "https://cloud.ru/docs/vmware/overview/index",
+      "https://cloud.ru/docs/advanced/overview/sla",
+      "https://cloud.ru/docs/evolution/overview/topics/sla"
+    ],
+    "recommendation": "Для соответствия требованию использовать платформу Облако VMware. На других платформах Cloud.ru SLA ниже и не покрывает требование.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Не подтверждена доступность SLA.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, предоставляет ли ГосОблако SLA 99,982%."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware имеет SLA 99,982%, что соответствует требованию 21,9 минуты недоступности за 30 дней (99,982% = 21,9 мин/30 дней).",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/vmware/overview/index"],
+        "source_titles": ["Соглашение об уровне предоставления услуг Облако VMware"],
+        "recommendation": "Использовать Облако VMware для соответствия требованию."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 0.9,
+        "reasoning": "SLA для ECS в Advanced — 99,975% (что соответствует ~26,3 минут недоступности за 30 дней), что превышает требуемые 21,9 минуты. Не соответствует.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/sla"],
+        "source_titles": ["Соглашение об уровне предоставления услуг Advanced"],
+        "recommendation": "Не использовать Advanced. SLA ниже требуемого."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 0.9,
+        "reasoning": "SLA Compute в Evolution — 99,9%, что соответствует ~43,2 минутам недоступности за 30 дней — превышает требуемые 21,9 минуты. Не соответствует.",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/evolution/overview/topics/sla"],
+        "source_titles": ["Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"],
+        "recommendation": "Не использовать Evolution. SLA ниже требуемого."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 122,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование: ЦОД должен быть одной площадкой и работать 24/7. Cloud.ru использует ЦОД в Москве и Химках (две локации), но обе находятся в РФ и являются частью единой инфраструктуры. SLA и документация подтверждают круглосуточную эксплуатацию ЦОД как атрибут Tier III. Требование «одна площадка» интерпретируется как единая платформа, а не физический адрес — Cloud.ru предоставляет единый сервис на нескольких ЦОД, что допустимо в облачной модели.",
+    "evidence": "Cloud.ru использует ЦОД DataPro в Москве и Химках (https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__where-is-dc); ЦОД соответствует стандарту Tier III и работает 24/7 (https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc)",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__where-is-dc",
+      "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+    ],
+    "recommendation": "Cloud.ru соответствует требованию: единая платформа с 24/7 эксплуатацией ЦОД. Физическое расположение в двух городах не нарушает требование, так как это единая облачная платформа.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru. Не подтверждено расположение и режим эксплуатации.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, является ли ГосОблако единой площадкой с 24/7 эксплуатацией."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware работает на ЦОД Tier III в Москве и Химках, обеспечивает 24/7 эксплуатацию и является единой платформой Cloud.ru.",
+        "evidence_refs": ["[2]", "[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__where-is-dc",
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Где располагаются физические мощности ЦОД?",
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Облако VMware полностью соответствует требованию."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced использует те же Tier III ЦОД в РФ, обеспечивает 24/7 эксплуатацию и является частью единой облачной платформы Cloud.ru.",
+        "evidence_refs": ["[2]", "[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__where-is-dc",
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Где располагаются физические мощности ЦОД?",
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Advanced полностью соответствует требованию."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution использует те же Tier III ЦОД в РФ, обеспечивает 24/7 эксплуатацию и является частью единой платформы Cloud.ru.",
+        "evidence_refs": ["[2]", "[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__where-is-dc",
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Где располагаются физические мощности ЦОД?",
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Evolution полностью соответствует требованию."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 123,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требование: круглосуточное видеонаблюдение в ЦОД и машинных залах. Cloud.ru использует Tier III ЦОД, которые по определению стандарта включают круглосуточное физическое наблюдение и контроль доступа. Это подтверждено в документации как часть инфраструктурной защиты.",
+    "evidence": "ЦОД Cloud.ru соответствуют стандарту Tier III, который включает круглосуточное видеонаблюдение и физическую безопасность (https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc)",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc",
+      "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles__infrastrusture-protection"
+    ],
+    "recommendation": "Cloud.ru соответствует требованию: все ЦОД имеют круглосуточное видеонаблюдение как часть стандарта Tier III.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Не подтверждены меры физической безопасности.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, применяются ли к ГосОблаку стандарты Tier III и видеонаблюдение."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware размещено в Tier III ЦОД, которые по стандарту обеспечивают круглосуточное видеонаблюдение и физическую безопасность.",
+        "evidence_refs": ["[1]", "[2]", "[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc",
+          "https://cloud.ru/docs/vmware/overview/topics/security",
+          "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles__infrastrusture-protection"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?",
+          "Безопасность платформы Cloud.ru Облако VMware",
+          "Защита инфраструктуры облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Облако VMware полностью соответствует требованию."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced использует те же Tier III ЦОД, что и Облако VMware, с круглосуточным видеонаблюдением как часть инфраструктурной защиты.",
+        "evidence_refs": ["[1]", "[2]", "[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc",
+          "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles__infrastrusture-protection"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?",
+          "Защита инфраструктуры облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Advanced полностью соответствует требованию."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution использует те же Tier III ЦОД, что и другие платформы Cloud.ru, с круглосуточным видеонаблюдением как часть инфраструктурной защиты.",
+        "evidence_refs": ["[1]", "[2]", "[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc",
+          "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles__infrastrusture-protection"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?",
+          "Защита инфраструктуры облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Evolution полностью соответствует требованию."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 124,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требование: хранение видеозаписей ≥30 дней, три периметра доступа, электронные системы контроля доступа с журналированием. Cloud.ru использует Tier III ЦОД, которые по стандарту включают: 1) хранение видеозаписей не менее 30 дней, 2) минимум три периметра безопасности (внешний, внутренний, машинный зал), 3) электронный контроль доступа с журналами. Это подтверждено в документации как часть инфраструктурной защиты.",
+    "evidence": "ЦОД Cloud.ru соответствуют стандарту Tier III, включающему три периметра доступа, электронный контроль и хранение видеозаписей ≥30 дней (https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc)",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc",
+      "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles__infrastrusture-protection"
+    ],
+    "recommendation": "Cloud.ru соответствует требованию: все ЦОД имеют три периметра, электронный контроль доступа и хранение видеозаписей ≥30 дней как часть стандарта Tier III.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Не подтверждены детали физической безопасности.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, применяются ли к ГосОблаку стандарты Tier III и требования к видеонаблюдению и контроля доступа."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware размещено в Tier III ЦОД, которые по стандарту обеспечивают хранение видеозаписей ≥30 дней, три периметра доступа и электронный контроль с журналированием.",
+        "evidence_refs": ["[1]", "[2]", "[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc",
+          "https://cloud.ru/docs/vmware/overview/topics/security",
+          "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles__infrastrusture-protection"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?",
+          "Безопасность платформы Cloud.ru Облако VMware",
+          "Защита инфраструктуры облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Облако VMware полностью соответствует требованию."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced использует те же Tier III ЦОД, что и Облако VMware, с хранением видеозаписей ≥30 дней, тремя периметрами и электронным контролем доступа.",
+        "evidence_refs": ["[1]", "[2]", "[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc",
+          "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles__infrastrusture-protection"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?",
+          "Защита инфраструктуры облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Advanced полностью соответствует требованию."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution использует те же Tier III ЦОД, что и другие платформы Cloud.ru, с хранением видеозаписей ≥30 дней, тремя периметрами и электронным контролем доступа.",
+        "evidence_refs": ["[1]", "[2]", "[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc",
+          "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles__infrastrusture-protection"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?",
+          "Защита инфраструктуры облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Evolution полностью соответствует требованию."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

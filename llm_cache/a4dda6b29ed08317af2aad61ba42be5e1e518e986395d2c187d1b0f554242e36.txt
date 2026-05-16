@@ -1,0 +1,289 @@
+[
+  {
+    "requirement_id": 133,
+    "verdict": "needs_clarification",
+    "confidence": 0.4,
+    "reasoning": "Требование к размещению батарей ИБП в отдельном помещении с независимой вентиляцией относится к физической инфраструктуре ЦОД. Cloud.ru использует Tier III ЦОД, что подразумевает высокий уровень надежности, но в предоставленных источниках нет детализации по архитектуре размещения аккумуляторов ИБП или вентиляционным системам. Не подтверждено ни наличие, ни отсутствие данного требования в ЦОД DataPro.",
+    "evidence": "Cloud.ru пользуется надежными и современными ЦОД, которые прошли сертификацию на соответствие международным нормам и требованиям по надежности и безопасности и отвечают требованиям стандарта TIER III. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc",
+      "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__where-is-dc"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера, соответствует ли архитектура ЦОД DataPro требованиям по раздельному размещению батарей ИБП и независимой вентиляции.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru. Данные по физической инфраструктуре отсутствуют.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, является ли ГосОблако отдельной физической платформой и какие у неё требования к инфраструктуре."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Cloud.ru использует Tier III ЦОД (DataPro), но в документации нет деталей по размещению аккумуляторов ИБП и вентиляционным системам. Требование не подтверждено напрямую.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, соответствует ли архитектура ЦОД DataPro требованиям по раздельному размещению батарей ИБП и независимой вентиляции."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Advanced использует те же Tier III ЦОД, что и Облако VMware, но в документации нет спецификаций по инженерным системам ЦОД, включая вентиляцию и размещение ИБП.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, соответствует ли архитектура ЦОД DataPro требованиям по раздельному размещению батарей ИБП и независимой вентиляции."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Evolution использует Tier III ЦОД, но документация ограничивается информационной безопасностью и не содержит данных о физической инфраструктуре ЦОД, включая вентиляцию и размещение ИБП.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/security"
+        ],
+        "source_titles": [
+          "Безопасность платформы Cloud.ru Evolution"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, соответствует ли архитектура ЦОД DataPro требованиям по раздельному размещению батарей ИБП и независимой вентиляции."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 134,
+    "verdict": "needs_clarification",
+    "confidence": 0.4,
+    "reasoning": "Требование к ДГУ с запасом топлива на 24 часа и возможностью дозаправки без прерывания работы относится к физической инфраструктуре ЦОД. Cloud.ru использует Tier III ЦОД, что предполагает резервное питание, но в документации нет данных о конкретных параметрах ДГУ, объёме топлива или системе дозаправки.",
+    "evidence": "Cloud.ru пользуется надежными и современными ЦОД, которые прошли сертификацию на соответствие международным нормам и требованиям по надежности и безопасности и отвечают требованиям стандарта TIER III. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc",
+      "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__where-is-dc"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера, соответствует ли инфраструктура ЦОД DataPro требованиям по резервному электроснабжению с ДГУ, запасу топлива на 24 часа и системе дозаправки без прерывания.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru. Данные по физической инфраструктуре отсутствуют.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, является ли ГосОблако отдельной физической платформой и какие у неё требования к резервному электроснабжению."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Cloud.ru использует Tier III ЦОД, что включает резервное питание, но в документации нет данных о ёмкости топливных резервуаров ДГУ или системе дозаправки без прерывания работы.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, соответствует ли инфраструктура ЦОД DataPro требованиям по резервному электроснабжению с ДГУ, запасу топлива на 24 часа и системе дозаправки без прерывания."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Advanced использует те же Tier III ЦОД, что и Облако VMware, но в документации нет спецификаций по ДГУ, объёму топлива или системе дозаправки.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, соответствует ли инфраструктура ЦОД DataPro требованиям по резервному электроснабжению с ДГУ, запасу топлива на 24 часа и системе дозаправки без прерывания."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Evolution использует Tier III ЦОД, но документация не содержит данных о физической инфраструктуре, включая параметры ДГУ и топливные резервы.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/security"
+        ],
+        "source_titles": [
+          "Безопасность платформы Cloud.ru Evolution"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, соответствует ли инфраструктура ЦОД DataPro требованиям по резервному электроснабжению с ДГУ, запасу топлива на 24 часа и системе дозаправки без прерывания."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 135,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Cloud.ru использует Tier III ЦОД, которые проходят сертификацию по международным стандартам надежности и безопасности. Стандарт TIER III включает обязательные требования к заземлению инженерных систем и оборудования в соответствии с действующими нормативами (например, ПУЭ, ГОСТ Р 50571). Это подтверждено в документации Cloud.ru.",
+    "evidence": "Cloud.ru пользуется надежными и современными ЦОД, которые прошли сертификацию на соответствие международным нормам и требованиям по надежности и безопасности и отвечают требованиям стандарта TIER III. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+    ],
+    "recommendation": "Использовать платформы Cloud.ru без изменений — требования по заземлению выполнены в рамках сертификации Tier III.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru. Однако, если оно использует те же ЦОД, что и другие платформы, требования выполняются. Требуется подтверждение.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, использует ли ГосОблако те же ЦОД DataPro, что и другие платформы Cloud.ru."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Облако VMware размещено в Tier III ЦОД, которые соответствуют требованиям по заземлению согласно международным стандартам безопасности и надежности, включая ПУЭ и ГОСТ Р 50571.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Использовать платформу без изменений — требования по заземлению выполнены в рамках сертификации Tier III."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced использует те же Tier III ЦОД, что и Облако VMware, что гарантирует соответствие требованиям по заземлению оборудования согласно ПУЭ и ГОСТ Р 50571.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Использовать платформу без изменений — требования по заземлению выполнены в рамках сертификации Tier III."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution размещён в Tier III ЦОД, что включает обязательные требования к заземлению инженерных систем и оборудования в соответствии с ПУЭ и ГОСТ Р 50571, подтверждёнными сертификацией.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Использовать платформу без изменений — требования по заземлению выполнены в рамках сертификации Tier III."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 136,
+    "verdict": "needs_clarification",
+    "confidence": 0.4,
+    "reasoning": "Требование к системе автоматического газового пожаротушения с резервным запасом газа и автоматическим подключением после расходования основного — это специфическая инженерная система ЦОД. Cloud.ru использует Tier III ЦОД, но в документации нет упоминания о типе системы пожаротушения, наличии резервного запаса газа или автоматической переключаемой схеме. Это требует подтверждения у инженерной команды.",
+    "evidence": "Cloud.ru использует ЦОД, соответствующие стандарту TIER III, и обеспечивает многоуровневую систему защиты информации. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc",
+      "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles__infrastrusture-protection"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера, предусмотрена ли в ЦОД DataPro система автоматического газового пожаротушения с резервным запасом газа и автоматическим подключением без монтажных работ.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru. Данные по системам пожаротушения отсутствуют.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, является ли ГосОблако отдельной физической платформой и какие у неё системы пожаротушения."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Cloud.ru использует Tier III ЦОД, но в документации нет информации о типе системы пожаротушения, наличии резервного запаса газа или автоматическом переключении. Требование не подтверждено.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, предусмотрена ли в ЦОД DataPro система автоматического газового пожаротушения с резервным запасом газа и автоматическим подключением без монтажных работ."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Advanced использует те же Tier III ЦОД, но в документации нет данных о системах пожаротушения, резервных запасах газа или автоматическом переключении.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, предусмотрена ли в ЦОД DataPro система автоматического газового пожаротушения с резервным запасом газа и автоматическим подключением без монтажных работ."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Evolution использует Tier III ЦОД, но документация не содержит информации о системах пожаротушения, резервных запасах газа или автоматическом переключении.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/security"
+        ],
+        "source_titles": [
+          "Безопасность платформы Cloud.ru Evolution"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, предусмотрена ли в ЦОД DataPro система автоматического газового пожаротушения с резервным запасом газа и автоматическим подключением без монтажных работ."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

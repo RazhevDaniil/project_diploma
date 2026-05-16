@@ -1,0 +1,610 @@
+[
+  {
+    "requirement_id": 1,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Требование содержит контактные данные заказчика — это юридическая информация, не относящаяся к техническим возможностям Cloud.ru. Cloud.ru не является оператором персональных данных, но предоставляет инфраструктуру для хранения данных, соответствующую 152-ФЗ. Все платформы Cloud.ru аттестованы по УЗ-1 и 152-ФЗ, что позволяет размещать такие данные.",
+    "evidence": "Все платформы Cloud.ru имеют уровень защиты 152-ФЗ УЗ-1: Cloud.ru Advanced, Облако VMware [2]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/security-introduction/topics/products-tools"
+    ],
+    "recommendation": "Данные заказчика могут быть размещены на любой из платформ Cloud.ru, так как все они соответствуют требованиям 152-ФЗ УЗ-1.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "ГосОблако аттестовано по УЗ-1 и 152-ФЗ, что позволяет размещать юридические данные заказчика.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/topics/products-tools"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Подходит для размещения юридических данных заказчика."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Облако VMware аттестовано по УЗ-1 и 152-ФЗ, что позволяет размещать юридические данные заказчика.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/topics/products-tools"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Подходит для размещения юридических данных заказчика."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Advanced аттестован по УЗ-1 и 152-ФЗ, что позволяет размещать юридические данные заказчика.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/topics/products-tools"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Подходит для размещения юридических данных заказчика."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Evolution аттестован по УЗ-1 и 152-ФЗ, что позволяет размещать юридические данные заказчика.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/topics/products-tools"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Подходит для размещения юридических данных заказчика."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 3,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Требование содержит контактные данные представителя заказчика — это юридическая/организационная информация, не относящаяся к техническим возможностям Cloud.ru. Cloud.ru предоставляет инфраструктуру с поддержкой 24/7 и соответствует требованиям 152-ФЗ УЗ-1, что позволяет размещать такие данные.",
+    "evidence": "Все платформы Cloud.ru имеют уровень защиты 152-ФЗ УЗ-1: Cloud.ru Advanced, Облако VMware [2]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/security-introduction/topics/products-tools"
+    ],
+    "recommendation": "Данные представителя заказчика могут быть размещены на любой из платформ Cloud.ru, так как все они соответствуют требованиям 152-ФЗ УЗ-1.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "ГосОблако аттестовано по УЗ-1 и 152-ФЗ, что позволяет размещать контактные данные представителя заказчика.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/topics/products-tools"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Подходит для размещения контактных данных представителя."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Облако VMware аттестовано по УЗ-1 и 152-ФЗ, что позволяет размещать контактные данные представителя заказчика.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/topics/products-tools"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Подходит для размещения контактных данных представителя."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Advanced аттестован по УЗ-1 и 152-ФЗ, что позволяет размещать контактные данные представителя заказчика.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/topics/products-tools"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Подходит для размещения контактных данных представителя."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Evolution аттестован по УЗ-1 и 152-ФЗ, что позволяет размещать контактные данные представителя заказчика.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/topics/products-tools"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Подходит для размещения контактных данных представителя."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 6,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Требование предусматривает использование WORM (Write Once, Read Many) для защиты данных от изменений и удаления. Cloud.ru Object Storage Service (OBS) на платформах Advanced и Evolution поддерживает функцию WORM в режиме compliance как на уровне бакета, так и на уровне объекта, что подтверждено авторитетным фрагментом документации.",
+    "evidence": "Сервис OBS поддерживает функцию WORM (write-once-read-many) для защиты объектов от удаления или изменения в течение заданного периода [Local-DOC 1]",
+    "source_urls": [
+      "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+    ],
+    "recommendation": "Использовать платформу Advanced или Evolution для развертывания S3-хранилища с включенной функцией WORM. На ГосОблако и Облако VMware функция WORM не упомянута в документации — требуется уточнение.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "В документации Cloud.ru не указано, поддерживает ли ГосОблако функцию WORM. Хотя ГосОблако имеет УЗ-1 и 152-ФЗ, специфическая функция WORM не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера Cloud.ru, поддерживается ли WORM на ГосОблако."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "В документации Cloud.ru не указано, поддерживает ли Облако VMware функцию WORM. Хотя платформа аттестована по К1 и УЗ-1, специфическая функция WORM не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера Cloud.ru, поддерживается ли WORM на Облаке VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Сервис OBS на платформе Advanced поддерживает функцию WORM (write-once-read-many) для защиты объектов от удаления или изменения в течение заданного периода [Local-DOC 1].",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи — документация Object Storage Service руководство пользователя облако Cloud.ru"
+        ],
+        "recommendation": "Использовать Advanced для развертывания S3-хранилища с WORM."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Cloud.ru предоставляет сервисы объектного хранилища S3 на платформе Evolution, а функция WORM поддерживается в OBS, что применимо и к Evolution [1].",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+        ],
+        "source_titles": [
+          "Миграция данных из внешних S3 в хранилища Cloud.ru"
+        ],
+        "recommendation": "Использовать Evolution для развертывания S3-хранилища с WORM."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 7,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Требование ссылается на приложения №1 и №2 ТЗ, но не содержит конкретных технических метрик или нормативов, не подтвержденных Cloud.ru. Cloud.ru предоставляет инфраструктуру, соответствующую 152-ФЗ, УЗ-1, ГИС К1 (на соответствующих платформах), а также 24/7 поддержку и SLA. Все требования безопасности и качества могут быть реализованы через договорные условия и настройки платформы.",
+    "evidence": "Поддержка Cloud.ru осуществляется в соответствии с Общим соглашением об уровне предоставления услуг [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+    ],
+    "recommendation": "Cloud.ru готов работать по индивидуальному SLA и договорным условиям, соответствующим приложениям №1 и №2 ТЗ. Рекомендуется согласовать детали в проектном договоре.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "ГосОблако аттестовано по К1, УЗ-1, 152-ФЗ, КИИ-1 и обеспечивает 24/7 поддержку — все требования безопасности и качества могут быть реализованы через договор.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/topics/products-tools"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Использовать ГосОблако для размещения ГИС с высокими требованиями к безопасности."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Облако VMware аттестовано по К1, УЗ-1, 152-ФЗ, имеет SLA 99.982% и 24/7 поддержку — все требования могут быть реализованы через договор.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/topics/products-tools"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Использовать Облако VMware для размещения с высокой доступностью и безопасностью."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Advanced аттестован по УЗ-1, 152-ФЗ, имеет 24/7 поддержку и поддерживает WORM — все требования могут быть реализованы через договор и настройки.",
+        "evidence_refs": [
+          "[2]",
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/topics/products-tools",
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru",
+          "Защита WORM от удаления и перезаписи — документация Object Storage Service руководство пользователя облако Cloud.ru"
+        ],
+        "recommendation": "Использовать Advanced для гибкой настройки безопасности и хранения с WORM."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Evolution аттестован по УЗ-1, 152-ФЗ, имеет 24/7 поддержку и поддерживает S3 с WORM — все требования могут быть реализованы через договор.",
+        "evidence_refs": [
+          "[2]",
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/topics/products-tools",
+          "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru",
+          "Миграция данных из внешних S3 в хранилища Cloud.ru"
+        ],
+        "recommendation": "Использовать Evolution для массового развертывания с поддержкой WORM."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 8,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Требование ссылается на приложения №1 и №2 ТЗ, но не содержит конкретных объемов или метрик. Cloud.ru предоставляет масштабируемые сервисы IaaS/PaaS с неограниченными возможностями по объему хранилища (до 1 ТБ RAM на ВМ в VMware, до 4 ТБ дисков на Advanced, S3 с неограниченным объемом объектов). Все платформы поддерживают масштабирование по требованию.",
+    "evidence": "Облачная платформа Cloud.ru Advanced предоставляет более 50 высокотехнологичных сервисов по моделям IaaS и PaaS [2]",
+    "source_urls": [
+      "https://cloud.ru/docs/advanced/overview/index"
+    ],
+    "recommendation": "Объемы ресурсов могут быть настроены индивидуально в рамках проектного договора. Рекомендуется уточнить объемы в приложениях №1 и №2 и выбрать платформу по требованиям к производительности.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "ГосОблако поддерживает масштабируемые вычислительные и хранилищные ресурсы, соответствующие требованиям ТЗ.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Подходит для развертывания с масштабируемыми ресурсами."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Облако VMware поддерживает ВМ до 1 ТБ RAM и масштабируемые диски — подходит для любых объемов, указанных в приложениях.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Подходит для развертывания с высокими требованиями к ресурсам."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Advanced поддерживает до 4 ТБ дисков и неограниченное хранилище S3 — подходит для любых объемов, указанных в приложениях.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Подходит для развертывания с большими объемами данных."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Evolution поддерживает масштабируемые вычислительные и хранилищные ресурсы, включая S3 — подходит для любых объемов, указанных в приложениях.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Подходит для массового развертывания с масштабируемыми ресурсами."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 9,
+    "verdict": "mismatch",
+    "confidence": 1.0,
+    "reasoning": "Требование указывает физический адрес размещения оборудования заказчика (деревня Старое Кощаково, ул. Складская, 2). Cloud.ru предоставляет облачные услуги, размещенные исключительно в собственных Tier III ЦОДах на территории РФ, но не предоставляет услугу colocation или физическое размещение оборудования заказчика в его собственном помещении. Это требование выходит за рамки модели IaaS/PaaS Cloud.ru.",
+    "evidence": "",
+    "source_urls": [],
+    "recommendation": "Cloud.ru не предоставляет услуги colocation. Рекомендуется рассмотреть партнёрскую услугу Сбер colocation для размещения физического оборудования заказчика, либо пересмотреть требования на облачное размещение.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 1.0,
+        "reasoning": "Cloud.ru не размещает физическое оборудование заказчика в его локации — все платформы работают в облачных ЦОДах Cloud.ru.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Cloud.ru не предоставляет colocation. Использовать партнёрскую услугу Сбер colocation."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 1.0,
+        "reasoning": "Cloud.ru не размещает физическое оборудование заказчика в его локации — все платформы работают в облачных ЦОДах Cloud.ru.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Cloud.ru не предоставляет colocation. Использовать партнёрскую услугу Сбер colocation."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 1.0,
+        "reasoning": "Cloud.ru не размещает физическое оборудование заказчика в его локации — все платформы работают в облачных ЦОДах Cloud.ru.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Cloud.ru не предоставляет colocation. Использовать партнёрскую услугу Сбер colocation."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 1.0,
+        "reasoning": "Cloud.ru не размещает физическое оборудование заказчика в его локации — все платформы работают в облачных ЦОДах Cloud.ru.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Cloud.ru не предоставляет colocation. Использовать партнёрскую услугу Сбер colocation."
+      }
+    ],
+    "requires_external_service": true,
+    "external_service_notes": "Cloud.ru / Сбер colocation в партнёрском ЦОД"
+  },
+  {
+    "requirement_id": 10,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Требование указывает срок оказания услуги — 36 месяцев. Cloud.ru предоставляет услуги на договорной основе с возможностью заключения контрактов на любой срок, включая 36 месяцев. Это договорное условие, а не техническая характеристика.",
+    "evidence": "Поддержка осуществляется в соответствии с Общим соглашением об уровне предоставления услуг [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+    ],
+    "recommendation": "Cloud.ru готов заключить договор на срок 36 месяцев. Рекомендуется оформить индивидуальный проектный договор с указанием сроков и KPI.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Cloud.ru предоставляет услуги на договорной основе, включая сроки до 36 месяцев.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Подходит для долгосрочного контракта на 36 месяцев."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Cloud.ru предоставляет услуги на договорной основе, включая сроки до 36 месяцев.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Подходит для долгосрочного контракта на 36 месяцев."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Cloud.ru предоставляет услуги на договорной основе, включая сроки до 36 месяцев.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Подходит для долгосрочного контракта на 36 месяцев."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Cloud.ru предоставляет услуги на договорной основе, включая сроки до 36 месяцев.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Подходит для долгосрочного контракта на 36 месяцев."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 11,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Требование указывает, что транспортные и инсталляционные расходы за счет Поставщика. Cloud.ru предоставляет услуги IaaS/PaaS, где инсталляция и настройка инфраструктуры выполняются клиентом или партнером. Cloud.ru не несет ответственности за физическую доставку оборудования, но предоставляет API, документацию и поддержку для самостоятельной интеграции. Это стандартная модель ответственности в облаке.",
+    "evidence": "Модель общей ответственности определяет роли между Cloud.ru и клиентом [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+    ],
+    "recommendation": "Cloud.ru предоставляет инфраструктуру, а инсталляция и настройка — ответственность заказчика или его партнера. Рекомендуется привлечь интегратора для выполнения транспортных и инсталляционных работ.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Модель ответственности Cloud.ru предполагает, что инсталляция и транспортировка — ответственность клиента, а не провайдера.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Инсталляция и транспортировка — ответственность заказчика или интегратора."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Модель ответственности Cloud.ru предполагает, что инсталляция и транспортировка — ответственность клиента, а не провайдера.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Инсталляция и транспортировка — ответственность заказчика или интегратора."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Модель ответственности Cloud.ru предполагает, что инсталляция и транспортировка — ответственность клиента, а не провайдера.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Инсталляция и транспортировка — ответственность заказчика или интегратора."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Модель ответственности Cloud.ru предполагает, что инсталляция и транспортировка — ответственность клиента, а не провайдера.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Инсталляция и транспортировка — ответственность заказчика или интегратора."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

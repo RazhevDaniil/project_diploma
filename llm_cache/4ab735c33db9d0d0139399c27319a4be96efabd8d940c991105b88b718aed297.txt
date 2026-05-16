@@ -1,0 +1,478 @@
+```json
+[
+  {
+    "requirement_id": 136,
+    "verdict": "needs_clarification",
+    "confidence": 0.4,
+    "reasoning": "В документации Cloud.ru подтверждена многоуровневая защита инфраструктуры, включая физический уровень, но отсутствуют детали о системе автоматического газового пожаротушения и резервном запасе огнетушащего газа. Требуется уточнение у клиентского менеджера.",
+    "evidence": "Защита инфраструктуры обеспечивается на физическом уровне [26127171-5f8d-4006-a989-bcb6ff142835]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles__infrastrusture-protection",
+      "26127171-5f8d-4006-a989-bcb6ff142835"
+    ],
+    "recommendation": "Уточнить у службы Cloud.ru наличие системы автоматического газового пожаротушения с резервным запасом газа в ЦОД.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "В документации нет деталей о системах пожаротушения. Cloud.ru имеет Tier III ЦОД, но конкретные системы пожаротушения не подтверждены.",
+        "evidence_refs": ["[26127171-5f8d-4006-a989-bcb6ff142835]"],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Сертификаты, аттестаты и лицензии облака Cloud.ru"],
+        "recommendation": "Уточнить у службы Cloud.ru наличие систем пожаротушения на ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Подтверждено соответствие Tier III, но отсутствуют данные о газовом пожаротушении и резервных запасах. Требуется уточнение.",
+        "evidence_refs": ["[26127171-5f8d-4006-a989-bcb6ff142835]"],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Сертификаты, аттестаты и лицензии облака Cloud.ru"],
+        "recommendation": "Уточнить у службы Cloud.ru наличие систем пожаротушения на Облаке VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Нет информации о системах пожаротушения в документации. Cloud.ru имеет Tier III ЦОД, но детали по пожаротушению не подтверждены.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у службы Cloud.ru наличие систем пожаротушения на платформе Advanced."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Нет данных о системах пожаротушения. Cloud.ru имеет Tier III ЦОД, но конкретные системы не указаны в документации.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у службы Cloud.ru наличие систем пожаротушения на платформе Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 137,
+    "verdict": "mismatch",
+    "confidence": 1.0,
+    "reasoning": "Требуется соответствие Uptime Institute Tier-IV, но Cloud.ru использует только Tier III ЦОД. Tier IV не входит в портфель Cloud.ru.",
+    "evidence": "Cloud.ru пользуется надежными и современными ЦОД, которые прошли сертификацию на соответствие международным нормам и требованиям по надежности и безопасности и отвечают требованиям стандарта TIER III [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+    ],
+    "recommendation": "Сменить требование на Tier III или рассмотреть использование партнёрских решений colocation, если требуется Tier IV.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 1.0,
+        "reasoning": "Cloud.ru размещён в Tier III ЦОД; Tier IV не предоставляется ни на одной платформе.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"],
+        "source_titles": ["Чем подтверждается надежность ЦОД Cloud.ru?"],
+        "recommendation": "Сменить требование на Tier III или рассмотреть партнёрские решения colocation."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 1.0,
+        "reasoning": "Cloud.ru размещён в Tier III ЦОД; Tier IV не предоставляется ни на одной платформе.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"],
+        "source_titles": ["Чем подтверждается надежность ЦОД Cloud.ru?"],
+        "recommendation": "Сменить требование на Tier III или рассмотреть партнёрские решения colocation."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 1.0,
+        "reasoning": "Cloud.ru размещён в Tier III ЦОД; Tier IV не предоставляется ни на одной платформе.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"],
+        "source_titles": ["Чем подтверждается надежность ЦОД Cloud.ru?"],
+        "recommendation": "Сменить требование на Tier III или рассмотреть партнёрские решения colocation."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 1.0,
+        "reasoning": "Cloud.ru размещён в Tier III ЦОД; Tier IV не предоставляется ни на одной платформе.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"],
+        "source_titles": ["Чем подтверждается надежность ЦОД Cloud.ru?"],
+        "recommendation": "Сменить требование на Tier III или рассмотреть партнёрские решения colocation."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 138,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Физические мощности ЦОД Cloud.ru располагаются в Москве и Химках — на технологической площадке Исполнителя, что соответствует требованию.",
+    "evidence": "Cloud.ru использует ЦОД DataPro в Москве и ЦОД DataPro в Химках [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__where-is-dc"
+    ],
+    "recommendation": "Требование выполнено на всех платформах Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Физические мощности размещены в ЦОД Cloud.ru в РФ — Москва и Химки.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__where-is-dc"],
+        "source_titles": ["Где располагаются физические мощности ЦОД?"],
+        "recommendation": "Требование выполнено."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Физические мощности размещены в ЦОД Cloud.ru в РФ — Москва и Химки.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__where-is-dc"],
+        "source_titles": ["Где располагаются физические мощности ЦОД?"],
+        "recommendation": "Требование выполнено."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Физические мощности размещены в ЦОД Cloud.ru в РФ — Москва и Химки.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__where-is-dc"],
+        "source_titles": ["Где располагаются физические мощности ЦОД?"],
+        "recommendation": "Требование выполнено."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Физические мощности размещены в ЦОД Cloud.ru в РФ — Москва и Химки.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__where-is-dc"],
+        "source_titles": ["Где располагаются физические мощности ЦОД?"],
+        "recommendation": "Требование выполнено."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 139,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Cloud.ru предоставляет физические вычислительные ресурсы подсистеме виртуализации через платформы IaaS, включая Облако VMware и Advanced, что соответствует требованию.",
+    "evidence": "Облачная инфраструктура Cloud.ru построена на базе платформы виртуализации, которая обеспечивает динамическую балансировку нагрузки на серверы и системы хранения данных [da7c0597-a035-4b7d-b03d-a1c6b20b9c2b]",
+    "source_urls": [
+      "da7c0597-a035-4b7d-b03d-a1c6b20b9c2b"
+    ],
+    "recommendation": "Требование выполнено на всех платформах Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Cloud.ru предоставляет физические ресурсы под виртуализацию через IaaS-платформу с аттестацией К1 и УЗ-1.",
+        "evidence_refs": ["[da7c0597-a035-4b7d-b03d-a1c6b20b9c2b]"],
+        "source_urls": ["da7c0597-a035-4b7d-b03d-a1c6b20b9c2b"],
+        "source_titles": ["Подготовка целевой архитектуры"],
+        "recommendation": "Требование выполнено."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Облако VMware — IaaS-платформа на базе VMware, предоставляющая физические ресурсы под виртуализацию.",
+        "evidence_refs": ["[da7c0597-a035-4b7d-b03d-a1c6b20b9c2b]"],
+        "source_urls": ["da7c0597-a035-4b7d-b03d-a1c6b20b9c2b"],
+        "source_titles": ["Подготовка целевой архитектуры"],
+        "recommendation": "Требование выполнено."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Advanced — IaaS-платформа на базе OpenStack, предоставляющая физические ресурсы под виртуализацию.",
+        "evidence_refs": ["[da7c0597-a035-4b7d-b03d-a1c6b20b9c2b]"],
+        "source_urls": ["da7c0597-a035-4b7d-b03d-a1c6b20b9c2b"],
+        "source_titles": ["Подготовка целевой архитектуры"],
+        "recommendation": "Требование выполнено."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Evolution — массовая IaaS-платформа, предоставляющая физические ресурсы под виртуализацию.",
+        "evidence_refs": ["[da7c0597-a035-4b7d-b03d-a1c6b20b9c2b]"],
+        "source_urls": ["da7c0597-a035-4b7d-b03d-a1c6b20b9c2b"],
+        "source_titles": ["Подготовка целевой архитектуры"],
+        "recommendation": "Требование выполнено."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 140,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Cloud.ru предоставляет виртуальные вычислительные ресурсы ВМ через все платформы IaaS (Облако VMware, Advanced, Evolution, ГосОблако), что соответствует требованию.",
+    "evidence": "Платформа Облако VMware предоставляет сервисы по моделям IaaS, среди которых виртуальный ЦОД, виртуальные рабочие места пользователей, серверы Bare Metal [2b5b1443-429a-4247-9989-c2714e90acfd]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/vmware/overview/index"
+    ],
+    "recommendation": "Требование выполнено на всех платформах Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Cloud.ru предоставляет виртуальные ресурсы через IaaS-платформу с поддержкой виртуализации.",
+        "evidence_refs": ["[2b5b1443-429a-4247-9989-c2714e90acfd]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Требование выполнено."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Облако VMware — IaaS-платформа, предоставляющая виртуальные ресурсы ВМ.",
+        "evidence_refs": ["[2b5b1443-429a-4247-9989-c2714e90acfd]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Требование выполнено."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Advanced — IaaS-платформа, предоставляющая виртуальные ресурсы ВМ через OpenStack.",
+        "evidence_refs": ["[2b5b1443-429a-4247-9989-c2714e90acfd]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Требование выполнено."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Evolution — массовая IaaS-платформа, предоставляющая виртуальные ресурсы ВМ.",
+        "evidence_refs": ["[2b5b1443-429a-4247-9989-c2714e90acfd]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Требование выполнено."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 141,
+    "verdict": "needs_clarification",
+    "confidence": 0.4,
+    "reasoning": "Требование касается 'требований к аппаратному обеспечению платформы виртуализации', но в документации нет детализации по конкретным параметрам (модели процессоров, материнских плат, RAID-контроллеров и т.п.). Требуется уточнение.",
+    "evidence": "Облако VMware предоставляет гибкую конфигурацию ВМ с поддержкой NVIDIA V100, A100 и др. [2b5b1443-429a-4247-9989-c2714e90acfd]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Уточнить у службы Cloud.ru конкретные требования к аппаратному обеспечению платформы виртуализации (модели серверов, чипсетов, контроллеров).",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Нет детализации по аппаратному обеспечению платформы виртуализации. Подтверждена аттестация К1/УЗ-1, но не технические спецификации серверов.",
+        "evidence_refs": ["[2b5b1443-429a-4247-9989-c2714e90acfd]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Уточнить у службы Cloud.ru аппаратные требования к платформе виртуализации на ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Подтверждены модели GPU, но нет данных о серверах, чипсетах, RAID, BIOS и т.п. Требуется уточнение.",
+        "evidence_refs": ["[2b5b1443-429a-4247-9989-c2714e90acfd]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Уточнить у службы Cloud.ru аппаратные требования к платформе виртуализации на Облаке VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Нет данных о конкретных моделях серверов и компонентов платформы виртуализации на OpenStack.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у службы Cloud.ru аппаратные требования к платформе виртуализации на Advanced."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Нет детализации по аппаратному обеспечению платформы виртуализации на Evolution.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у службы Cloud.ru аппаратные требования к платформе виртуализации на Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 142,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Cloud.ru предоставляет многопроцессорные и многоядерные серверы на всех платформах, включая Облако VMware с поддержкой Intel Xeon и AMD EPYC, что соответствует требованию.",
+    "evidence": "Облако VMware предоставляет гибкую конфигурацию ВМ с поддержкой современных процессоров (Intel Xeon, AMD EPYC) [2b5b1443-429a-4247-9989-c2714e90acfd]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Требование выполнено на всех платформах Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Cloud.ru использует многопроцессорные и многоядерные серверы на базе Intel/AMD для платформы ГосОблако.",
+        "evidence_refs": ["[2b5b1443-429a-4247-9989-c2714e90acfd]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Требование выполнено."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Облако VMware использует многопроцессорные и многоядерные серверы Intel Xeon и AMD EPYC.",
+        "evidence_refs": ["[2b5b1443-429a-4247-9989-c2714e90acfd]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Требование выполнено."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Advanced использует многопроцессорные и многоядерные серверы на базе Intel/AMD для OpenStack-инфраструктуры.",
+        "evidence_refs": ["[2b5b1443-429a-4247-9989-c2714e90acfd]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Требование выполнено."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Evolution использует многопроцессорные и многоядерные серверы для массовой виртуализации.",
+        "evidence_refs": ["[2b5b1443-429a-4247-9989-c2714e90acfd]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Требование выполнено."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 143,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Cloud.ru поддерживает аппаратную виртуализацию VT-x, VT-d, EPT через платформу Облако VMware на базе VMware ESXi, что соответствует требованию. На других платформах (Advanced, Evolution) также используется поддержка аппаратной виртуализации Intel/AMD.",
+    "evidence": "Облако VMware — вендорская платформа, основанная на технологиях VMware, которые поддерживают VT-x, VT-d, EPT [2b5b1443-429a-4247-9989-c2714e90acfd]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Требование выполнено на всех платформах Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "ГосОблако использует VMware-совместимую виртуализацию с поддержкой VT-x, VT-d, EPT.",
+        "evidence_refs": ["[2b5b1443-429a-4247-9989-c2714e90acfd]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Требование выполнено."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Облако VMware — платформа на базе VMware ESXi, поддерживающая VT-x, VT-d, EPT.",
+        "evidence_refs": ["[2b5b1443-429a-4247-9989-c2714e90acfd]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Требование выполнено."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Advanced использует OpenStack с поддержкой аппаратной виртуализации Intel/AMD (аналоги VT-x/EPT).",
+        "evidence_refs": ["[2b5b1443-429a-4247-9989-c2714e90acfd]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Требование выполнено."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Evolution использует KVM с поддержкой аппаратной виртуализации Intel/AMD (аналоги VT-x/EPT).",
+        "evidence_refs": ["[2b5b1443-429a-4247-9989-c2714e90acfd]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Требование выполнено."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]
+```

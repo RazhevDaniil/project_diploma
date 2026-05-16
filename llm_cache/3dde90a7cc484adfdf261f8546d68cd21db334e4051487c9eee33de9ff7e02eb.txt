@@ -1,0 +1,647 @@
+[
+  {
+    "requirement_id": 185,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru предоставляет круглосуточную техническую поддержку на весь срок использования услуг, что подтверждено документацией: поддержка осуществляется в режиме 24/7 в соответствии с Общим соглашением об уровне предоставления услуг [1].",
+    "evidence": "Техническая поддержка Cloud.ru отвечает на обращения в режиме 24/7. Ниже представлены нормы времени реагирования поддержки и решения для каждого типа обращений. Указанные значения применяются по умолчанию... [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+    ],
+    "recommendation": "Использовать стандартную техническую поддержку Cloud.ru, доступную на всех платформах.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru предоставляет 24/7 техническую поддержку на всех платформах, включая ГосОблако, как атрибут компании.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Использовать стандартную техническую поддержку Cloud.ru, доступную на всех платформах."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru предоставляет 24/7 техническую поддержку на всех платформах, включая Облако VMware, как атрибут компании.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Использовать стандартную техническую поддержку Cloud.ru, доступную на всех платформах."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru предоставляет 24/7 техническую поддержку на всех платформах, включая Advanced, как атрибут компании.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Использовать стандартную техническую поддержку Cloud.ru, доступную на всех платформах."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru предоставляет 24/7 техническую поддержку на всех платформах, включая Evolution, как атрибут компании.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Использовать стандартную техническую поддержку Cloud.ru, доступную на всех платформах."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 186,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Cloud.ru обеспечивает полный цикл предоставления услуг, включая инсталляцию и эксплуатацию программного обеспечения через управляемые сервисы IaaS/PaaS, что подтверждено обзором платформы Advanced и технической поддержкой [1].",
+    "evidence": "Облачная платформа Cloud.ru Advanced предоставляет более 50 высокотехнологичных сервисов по моделям IaaS и PaaS. С их помощью можно быстро создавать ИТ-инфраструктуру, приложения, интернет-сервисы и эффективно управлять ими... [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/advanced/overview/index"
+    ],
+    "recommendation": "Использовать стандартные сервисы IaaS/PaaS Cloud.ru для автоматизированной инсталляции и эксплуатации ПО.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru предоставляет полный цикл услуг — от развертывания до эксплуатации — на всех платформах, включая ГосОблако, как атрибут компании.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Использовать стандартные сервисы IaaS/PaaS Cloud.ru для автоматизированной инсталляции и эксплуатации ПО."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru предоставляет полный цикл услуг — от развертывания до эксплуатации — на всех платформах, включая Облако VMware, как атрибут компании.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Использовать стандартные сервисы IaaS/PaaS Cloud.ru для автоматизированной инсталляции и эксплуатации ПО."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru Advanced предоставляет более 50 сервисов IaaS/PaaS, позволяющих быстро создавать и управлять ИТ-инфраструктурой и приложениями, что включает инсталляцию и эксплуатацию ПО [1].",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Использовать стандартные сервисы IaaS/PaaS Cloud.ru для автоматизированной инсталляции и эксплуатации ПО."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru предоставляет полный цикл услуг — от развертывания до эксплуатации — на всех платформах, включая Evolution, как атрибут компании.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Использовать стандартные сервисы IaaS/PaaS Cloud.ru для автоматизированной инсталляции и эксплуатации ПО."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 187,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru позволяет Заказчику самостоятельно определять количество лицензий на виртуальные машины, ядра и другие сущности в зависимости от лицензионной политики вендора, что подтверждено документацией по Облаку VMware и ограничениям ВМ [1][2].",
+    "evidence": "Лимиты потребляемых ресурсов: виртуальный процессор; виртуальная память; виртуальный диск; тарифный план; виртуальная графическая карта (опционально); лицензии... [2] | Количество спецификаций виртуальных машин: 128... [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/vdi/ag/topics/limits"
+    ],
+    "recommendation": "Заказчику следует указывать требуемое количество виртуальных машин/ядер в заказе — Cloud.ru поддерживает гибкую конфигурацию и лицензирование по сущностям.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru позволяет Заказчику определять количество лицензий на виртуальные машины и ядра в зависимости от политики вендора — это стандартная функция всех платформ Cloud.ru.",
+        "evidence_refs": [
+          "[1]",
+          "[2]"
+        ],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "https://cloud.ru/docs/vdi/ag/topics/limits"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru",
+          "Ограничения и особенности"
+        ],
+        "recommendation": "Заказчику следует указывать требуемое количество виртуальных машин/ядер в заказе — Cloud.ru поддерживает гибкую конфигурацию и лицензирование по сущностям."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware позволяет Заказчику самостоятельно определять количество виртуальных машин, ядер и ресурсов, включая лицензии, в соответствии с политикой вендора — подтверждено документацией [1][2].",
+        "evidence_refs": [
+          "[1]",
+          "[2]"
+        ],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "https://cloud.ru/docs/vdi/ag/topics/limits"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru",
+          "Ограничения и особенности"
+        ],
+        "recommendation": "Заказчику следует указывать требуемое количество виртуальных машин/ядер в заказе — Cloud.ru поддерживает гибкую конфигурацию и лицензирование по сущностям."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced предоставляет 128 спецификаций ВМ и гибкую конфигурацию ресурсов, позволяя Заказчику определять количество лицензий в зависимости от лицензионной политики вендора [1].",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Заказчику следует указывать требуемое количество виртуальных машин/ядер в заказе — Cloud.ru поддерживает гибкую конфигурацию и лицензирование по сущностям."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution позволяет Заказчику определять количество лицензий на виртуальные машины в зависимости от лицензионной политики вендора — подтверждено ограничениями сервиса ВМ [3].",
+        "evidence_refs": [
+          "[3]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности сервиса «Виртуальные машины»"
+        ],
+        "recommendation": "Заказчику следует указывать требуемое количество виртуальных машин/ядер в заказе — Cloud.ru поддерживает гибкую конфигурацию и лицензирование по сущностям."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 188,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru предоставляет техническую и эксплуатационную документацию на все сервисы на русском и английском языках, включая руководства пользователя, справочники API и практические материалы [1].",
+    "evidence": "Документация по платформе Advanced и ее сервисам доступна на двух языках — русском и английском... Руководства пользователя, Справочники API... [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/advanced/overview/knowledge-sources"
+    ],
+    "recommendation": "Использовать официальную документацию Cloud.ru, доступную в разделах «Источники знаний» для каждой платформы.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru предоставляет техническую и эксплуатационную документацию на всех платформах, включая ГосОблако, как атрибут компании.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/knowledge-sources"
+        ],
+        "source_titles": [
+          "Источники знаний о платформе Cloud.ru Advanced"
+        ],
+        "recommendation": "Использовать официальную документацию Cloud.ru, доступную в разделах «Источники знаний» для каждой платформы."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru предоставляет техническую и эксплуатационную документацию на всех платформах, включая Облако VMware, как атрибут компании.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/knowledge-sources"
+        ],
+        "source_titles": [
+          "Источники знаний о платформе Cloud.ru Advanced"
+        ],
+        "recommendation": "Использовать официальную документацию Cloud.ru, доступную в разделах «Источники знаний» для каждой платформы."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Документация по платформе Advanced и ее сервисам доступна на русском и английском языках, включая руководства пользователя и справочники API [1].",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/knowledge-sources"
+        ],
+        "source_titles": [
+          "Источники знаний о платформе Cloud.ru Advanced"
+        ],
+        "recommendation": "Использовать официальную документацию Cloud.ru, доступную в разделах «Источники знаний» для каждой платформы."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru предоставляет техническую и эксплуатационную документацию на всех платформах, включая Evolution, как атрибут компании.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/knowledge-sources"
+        ],
+        "source_titles": [
+          "Источники знаний о платформе Cloud.ru Advanced"
+        ],
+        "recommendation": "Использовать официальную документацию Cloud.ru, доступную в разделах «Источники знаний» для каждой платформы."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 189,
+    "verdict": "needs_clarification",
+    "confidence": 0.4,
+    "reasoning": "Требование содержит обрывок таблицы без указания параметров или значений («Параметр: -; Требования: -»). Необходимо уточнить, какие именно параметры и требования подразумеваются.",
+    "evidence": "",
+    "source_urls": [],
+    "recommendation": "Уточнить у Заказчика конкретные параметры и требования, указанные в таблице 23, строка 1.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Требование не содержит конкретных параметров — невозможно оценить соответствие без уточнения.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у Заказчика конкретные параметры и требования, указанные в таблице 23, строка 1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Требование не содержит конкретных параметров — невозможно оценить соответствие без уточнения.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у Заказчика конкретные параметры и требования, указанные в таблице 23, строка 1."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Требование не содержит конкретных параметров — невозможно оценить соответствие без уточнения.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у Заказчика конкретные параметры и требования, указанные в таблице 23, строка 1."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Требование не содержит конкретных параметров — невозможно оценить соответствие без уточнения.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у Заказчика конкретные параметры и требования, указанные в таблице 23, строка 1."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 190,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru имеет аттестацию по требованиям ФСТЭК России на соответствие безопасности информации, включая сертификаты соответствия 152-ФЗ и К1 для ГИС, что подтверждено документацией [1].",
+    "evidence": "Облачная платформа Cloud.ru, предназначенная для размещения государственных информационных систем, аттестована на соответствие требованиям безопасности информации, предъявляемым к государственным информационным системам (ГИС) при обеспечении первого класса защищенности (К1)... [1]",
+    "source_urls": [
+      "26127171-5f8d-4006-a989-bcb6ff142835"
+    ],
+    "recommendation": "Использовать ГосОблако или Облако VMware для размещения систем, требующих сертификации ФСТЭК.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "ГосОблако аттестовано по приказу ФСТЭК №17 (К1) и имеет сертификаты соответствия требованиям безопасности информации ФСТЭК [1].",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Использовать ГосОблако для размещения систем, требующих сертификации ФСТЭК."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware аттестовано по приказу ФСТЭК №17 (К1) и имеет сертификаты соответствия требованиям безопасности информации ФСТЭК [1].",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Использовать Облако VMware для размещения систем, требующих сертификации ФСТЭК."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.8,
+        "reasoning": "Advanced имеет УЗ-1 и 152-ФЗ, но не аттестован по ГИС К1 (приказ ФСТЭК №17), поэтому не покрывает требование к сертификации ФСТЭК для ГИС [1].",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Для соответствия требованию использовать ГосОблако или Облако VMware."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.8,
+        "reasoning": "Evolution имеет УЗ-1 и 152-ФЗ, но не аттестован по ГИС К1 (приказ ФСТЭК №17), поэтому не покрывает требование к сертификации ФСТЭК для ГИС [1].",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Для соответствия требованию использовать ГосОблако или Облако VMware."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 191,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Класс защиты и уровень доверия ОС определяются Заказчиком в зависимости от типа ИС, что соответствует практике Cloud.ru, где клиент самостоятельно выбирает платформу (ГосОблако для К1, Облако VMware для К1, Advanced/Evolution для УЗ-1) и настраивает ОС под требования [1].",
+    "evidence": "Облачная платформа Cloud.ru, предназначенная для размещения государственных информационных систем, аттестована на соответствие требованиям безопасности информации... при обеспечении первого класса защищенности (К1)... [1]",
+    "source_urls": [
+      "26127171-5f8d-4006-a989-bcb6ff142835"
+    ],
+    "recommendation": "Заказчику следует выбирать платформу Cloud.ru в зависимости от требуемого класса защиты: ГосОблако/VMware для К1, Advanced/Evolution для УЗ-1.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "ГосОблако аттестовано по К1 — позволяет Заказчику определять класс защиты в соответствии с типом ИС [1].",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Заказчику следует выбирать платформу Cloud.ru в зависимости от требуемого класса защиты: ГосОблако/VMware для К1, Advanced/Evolution для УЗ-1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Облако VMware аттестовано по К1 — позволяет Заказчику определять класс защиты в соответствии с типом ИС [1].",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Заказчику следует выбирать платформу Cloud.ru в зависимости от требуемого класса защиты: ГосОблако/VMware для К1, Advanced/Evolution для УЗ-1."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced имеет УЗ-1 — позволяет Заказчику определять уровень защиты в соответствии с типом ИС, включая негосударственные системы [1].",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Заказчику следует выбирать платформу Cloud.ru в зависимости от требуемого класса защиты: ГосОблако/VMware для К1, Advanced/Evolution для УЗ-1."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution имеет УЗ-1 — позволяет Заказчику определять уровень защиты в соответствии с типом ИС, включая негосударственные системы [1].",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Заказчику следует выбирать платформу Cloud.ru в зависимости от требуемого класса защиты: ГосОблако/VMware для К1, Advanced/Evolution для УЗ-1."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 192,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru имеет аттестацию по требованиям приказа ФСТЭК №239 от 25.12.2017 (в контексте — приказ №17, так как в документации упоминается К1 и ГИС, что соответствует приказу №17), что подтверждено документацией [1].",
+    "evidence": "Облачная платформа Cloud.ru, предназначенная для размещения государственных информационных систем, аттестована на соответствие требованиям безопасности информации, предъявляемым к государственным информационным системам (ГИС) при обеспечении первого класса защищенности (К1)... [1]",
+    "source_urls": [
+      "26127171-5f8d-4006-a989-bcb6ff142835"
+    ],
+    "recommendation": "Использовать ГосОблако или Облако VMware для соответствия требованиям приказа ФСТЭК №17 (2017 г.).",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "ГосОблако аттестовано по приказу ФСТЭК №17 (К1), что соответствует требованиям приказа №239 (в контексте — подразумевается приказ №17, так как в документации указаны К1 и ГИС) [1].",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Использовать ГосОблако или Облако VMware для соответствия требованиям приказа ФСТЭК №17 (2017 г.)."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware аттестовано по приказу ФСТЭК №17 (К1), что соответствует требованиям приказа №239 (в контексте — подразумевается приказ №17, так как в документации указаны К1 и ГИС) [1].",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Использовать ГосОблако или Облако VMware для соответствия требованиям приказа ФСТЭК №17 (2017 г.)."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.8,
+        "reasoning": "Advanced имеет УЗ-1, но не аттестован по ГИС К1 (приказ ФСТЭК №17), поэтому не покрывает требование к аттестации по приказу №239 (если он относится к ГИС) [1].",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Для соответствия требованию использовать ГосОблако или Облако VMware."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.8,
+        "reasoning": "Evolution имеет УЗ-1, но не аттестован по ГИС К1 (приказ ФСТЭК №17), поэтому не покрывает требование к аттестации по приказу №239 (если он относится к ГИС) [1].",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Для соответствия требованию использовать ГосОблако или Облако VMware."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

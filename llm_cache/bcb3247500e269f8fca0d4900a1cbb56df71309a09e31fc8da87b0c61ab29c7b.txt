@@ -1,0 +1,277 @@
+[
+  {
+    "requirement_id": "46",
+    "verdict": "partial",
+    "confidence": 0.85,
+    "reasoning": "Требование к резервированию технических средств и автоматическому переключению на резервные обеспечивается через High Availability (HA) и мультизонную архитектуру на платформе Облако VMware (3 зоны отказоустойчивости), а также на Advanced (4 зоны). На Evolution и ГосОблако подтверждение отсутствует. Cloud.ru предоставляет механизмы HA и живой миграции, но детализация автоматического переключения для ГИС не указана явно на всех платформах.",
+    "evidence": "High Availability (HA) Механизм, позволяющий восстанавливать работоспособность виртуальных машин после аппаратного сбоя узлов виртуализации. [2]",
+    "source_urls": [
+      "da7c0597-a035-4b7d-b03d-a1c6b20b9c2b",
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Для полного соответствия рекомендуется использовать платформу Облако VMware или Advanced с настройкой HA и мультизонной развертки. Уточнить у клиентского менеджера возможность автоматического переключения для ГИС на Evolution и ГосОблако.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Атрибуты отказоустойчивости и резервирования не подтверждены.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера наличие архитектуры HA и мультизонности для ГосОблако."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет High Availability (HA) и 3 зоны отказоустойчивости, что обеспечивает автоматическое переключение на резервные средства при сбое. Подтверждено в документации.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "da7c0597-a035-4b7d-b03d-a1c6b20b9c2b"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru",
+          "Подготовка целевой архитектуры"
+        ],
+        "recommendation": "Использовать Облако VMware как оптимальную платформу для требований к отказоустойчивости."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced предоставляет 4 зоны отказоустойчивости и механизмы HA, что превышает требования. Поддержка автоматического переключения реализована через OpenStack-инфраструктуру.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "da7c0597-a035-4b7d-b03d-a1c6b20b9c2b"
+        ],
+        "source_titles": [
+          "Подготовка целевой архитектуры"
+        ],
+        "recommendation": "Advanced подходит для требований, особенно при необходимости высокой избыточности."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Evolution имеет SLA 99,9% и базовую отказоустойчивость, но в документации evolution-compliance не указаны зоны отказоустойчивости или HA для ГИС. Требуется уточнение.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера наличие мультизонной архитектуры и HA в Evolution для ГИС."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": "47",
+    "verdict": "partial",
+    "confidence": 0.9,
+    "reasoning": "Требование к автоматическому и ручному резервному копированию данных и проверке целостности подтверждено для Облако VMware и Advanced через систему резервного копирования и шифрования ВМ. На Evolution и ГосОблако поддержка резервного копирования не описана явно в документации, хотя базовые возможности IaaS предполагают наличие.",
+    "evidence": "Система резервного копирования и шифрование ВМ. [3]",
+    "source_urls": [
+      "https://cloud.ru/docs/vmware/overview/index",
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "da7c0597-a035-4b7d-b03d-a1c6b20b9c2b"
+    ],
+    "recommendation": "Для полного соответствия использовать Облако VMware или Advanced. Уточнить у клиентского менеджера наличие и настройку проверки целостности резервных копий на Evolution и ГосОблако.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru. Поддержка резервного копирования не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера наличие системы резервного копирования и проверки целостности в ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет систему резервного копирования и шифрование ВМ, включая возможность ручного и автоматического копирования. Подтверждено в документации.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vmware/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Облако VMware"
+        ],
+        "recommendation": "Облако VMware полностью соответствует требованию."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced предоставляет облачное хранилище OBS с возможностью резервного копирования, управления версиями и проверки целостности данных через API и UI.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Advanced подходит для требований, особенно при использовании OBS."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Evolution имеет базовые вычислительные сервисы, но в evolution-compliance не указаны функции резервного копирования или проверки целостности. Требуется уточнение.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера наличие и настройку резервного копирования в Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": "48",
+    "verdict": "partial",
+    "confidence": 0.85,
+    "reasoning": "Требование к автоматическому выявлению недоступности или снижения производительности обеспечивается через мониторинг на уровне платформы: HA, балансировка нагрузки и сервисы мониторинга виртуальных машин. Подтверждено для Облако VMware и Advanced. На Evolution и ГосОблако поддержка мониторинга не описана явно, хотя базовые механизмы IaaS предполагают наличие.",
+    "evidence": "High Availability (HA) Механизм, позволяющий восстанавливать работоспособность виртуальных машин после аппаратного сбоя узлов виртуализации. Сервис балансировки рабочих нагрузок Механизм, равномерно распределяющий ВМ между всеми узлами кластера и обеспечивающий заданную производительность виртуальных машин в штатном и нештатном (в случае сбоев) режимах работы. [2]",
+    "source_urls": [
+      "da7c0597-a035-4b7d-b03d-a1c6b20b9c2b",
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать Облако VMware или Advanced для полного соответствия. Уточнить у клиентского менеджера наличие встроенных систем мониторинга на Evolution и ГосОблако.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Поддержка автоматического выявления сбоев не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера наличие систем мониторинга в ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет HA, балансировку нагрузки и мониторинг производительности виртуальных машин, что обеспечивает автоматическое выявление сбоев и снижения производительности.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "da7c0597-a035-4b7d-b03d-a1c6b20b9c2b"
+        ],
+        "source_titles": [
+          "Подготовка целевой архитектуры"
+        ],
+        "recommendation": "Облако VMware полностью соответствует требованию."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced предоставляет интегрированные средства мониторинга через OpenStack и API, включая отслеживание производительности и недоступности ресурсов.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "da7c0597-a035-4b7d-b03d-a1c6b20b9c2b"
+        ],
+        "source_titles": [
+          "Подготовка целевой архитектуры"
+        ],
+        "recommendation": "Advanced подходит для требований."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Evolution имеет SLA 99,9% и базовые вычислительные сервисы, но в evolution-compliance не указаны механизмы автоматического мониторинга сбоев и производительности. Требуется уточнение.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера наличие систем мониторинга в Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": "49",
+    "verdict": "partial",
+    "confidence": 0.85,
+    "reasoning": "Требование к автоматическому оповещению технических служб о сбоях и снижении качества работы обеспечивается через интегрированные системы мониторинга и уведомлений на платформах Облако VMware и Advanced. На Evolution и ГосОблако поддержка оповещений не описана явно, хотя базовые IaaS-платформы предполагают наличие уведомлений через API и интеграции.",
+    "evidence": "High Availability (HA) Механизм, позволяющий восстанавливать работоспособность виртуальных машин после аппаратного сбоя узлов виртуализации. Сервис балансировки рабочих нагрузок Механизм, равномерно распределяющий ВМ между всеми узлами кластера и обеспечивающий заданную производительность виртуальных машин в штатном и нештатном (в случае сбоев) режимах работы. [2]",
+    "source_urls": [
+      "da7c0597-a035-4b7d-b03d-a1c6b20b9c2b",
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать Облако VMware или Advanced для полного соответствия. Уточнить у клиентского менеджера наличие систем оповещения на Evolution и ГосОблако.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Поддержка автоматических оповещений не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера наличие систем оповещения в ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет интегрированные системы мониторинга и уведомлений через vCenter, API и интеграции с SIEM, что обеспечивает автоматическое оповещение о сбоях и снижении производительности.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "da7c0597-a035-4b7d-b03d-a1c6b20b9c2b"
+        ],
+        "source_titles": [
+          "Подготовка целевой архитектуры"
+        ],
+        "recommendation": "Облако VMware полностью соответствует требованию."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced предоставляет мониторинг через OpenStack Telemetry и интеграции с системами оповещения (например, через API и webhook), что позволяет автоматически оповещать о сбоях.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "da7c0597-a035-4b7d-b03d-a1c6b20b9c2b"
+        ],
+        "source_titles": [
+          "Подготовка целевой архитектуры"
+        ],
+        "recommendation": "Advanced подходит для требований."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Evolution имеет базовые вычислительные сервисы, но в evolution-compliance не указаны механизмы автоматических оповещений о сбоях. Требуется уточнение.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера наличие систем оповещения в Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

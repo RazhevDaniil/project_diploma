@@ -1,0 +1,286 @@
+[
+  {
+    "requirement_id": 185,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru предоставляет круглосуточную техническую поддержку 24/7 на весь срок использования услуг, что соответствует требованию о технической поддержке за счет Исполнителя на весь срок использования. Подтверждено в документации по поддержке Cloud.ru.",
+    "evidence": "Техническая поддержка Cloud.ru отвечает на обращения в режиме 24/7. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+    ],
+    "recommendation": "Использовать стандартную техническую поддержку Cloud.ru, доступную на всех платформах.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru; поддержка как атрибут компании подразумевается, но требует подтверждения.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, распространяется ли политика поддержки Cloud.ru на ГосОблако."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет поддержку 24/7 в соответствии с Общим соглашением об уровне предоставления услуг. Поддержка включает решение вопросов при работе с облаком.",
+        "evidence_refs": ["[1]", "[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla",
+          "https://cloud.ru/docs/overview/support/index"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений",
+          "Обзор технической поддержки Cloud.ru"
+        ],
+        "recommendation": "Использовать Облако VMware для обеспечения 24/7 технической поддержки."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru Advanced предоставляет техническую поддержку 24/7 как часть корпоративных атрибутов компании, подтвержденных в документации по поддержке.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/index"
+        ],
+        "source_titles": [
+          "Обзор технической поддержки Cloud.ru"
+        ],
+        "recommendation": "Использовать Advanced для обеспечения технической поддержки 24/7."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет поддержку в соответствии с SLA, включающим приоритет обращений и круглосуточный режим работы, как атрибут компании Cloud.ru.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Использовать Evolution для обеспечения технической поддержки 24/7."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 186,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Cloud.ru предоставляет полный цикл услуг по инсталляции и эксплуатации программного обеспечения через управляемые сервисы IaaS/PaaS, включая настройку, миграцию и сопровождение, что охватывает технологически неразрывные мероприятия.",
+    "evidence": "Платформа Advanced предоставляет более 50 высокотехнологичных сервисов по моделям IaaS и PaaS, с помощью которых можно быстро создавать ИТ-инфраструктуру и приложения. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/advanced/overview/index"
+    ],
+    "recommendation": "Использовать платформы Advanced или Облако VMware для автоматизированного развертывания и сопровождения ПО.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации; инсталляция и эксплуатация ПО как часть сервиса требует уточнения.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, включает ли ГосОблако услуги по инсталляции и эксплуатации ПО."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Облако VMware предоставляет инфраструктуру как услугу с поддержкой API, Terraform, Ansible и PowerCLI, что позволяет автоматизировать инсталляцию и эксплуатацию ПО.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vmware/overview/index"
+        ],
+        "source_titles": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "recommendation": "Использовать Облако VMware для автоматизированной инсталляции и эксплуатации ПО через API и инструменты управления."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced предоставляет более 50 PaaS/IaaS-сервисов, позволяющих быстро создавать и управлять приложениями, что включает все технологически неразрывные мероприятия по инсталляции и эксплуатации.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Использовать Advanced для полного цикла развертывания и эксплуатации ПО через PaaS-сервисы."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.85,
+        "reasoning": "Evolution предоставляет базовые вычислительные ресурсы и инструменты для развертывания и управления ВМ, что позволяет выполнять инсталляцию и эксплуатацию ПО в рамках стандартных операций.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать Evolution для развертывания ПО на виртуальных машинах с ручной или автоматизированной настройкой."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 187,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru позволяет Заказчику самостоятельно определять количество лицензий на основе количества виртуальных машин, ядер и других сущностей, что соответствует лицензионной политике вендора. Подтверждено наличием гибкой конфигурации ВМ и управления ресурсами.",
+    "evidence": "Количество спецификаций виртуальных машин: 128. Возможность создания гибкой конфигурации ВМ. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/vmware/overview/index"
+    ],
+    "recommendation": "Использовать Облако VMware или Advanced для гибкого управления количеством лицензий на основе конфигурации ВМ.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации; возможность управления лицензиями на основе ВМ требует уточнения.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли гибкая настройка лицензий в ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет 128 спецификаций виртуальных машин и гибкую конфигурацию, позволяющую Заказчику определять количество лицензий в зависимости от числа ВМ и ядер, как указано в лицензионной политике вендора.",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vmware/overview/index",
+          "https://cloud.ru/docs/vdi/ag/topics/limits"
+        ],
+        "source_titles": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "Ограничения и особенности"
+        ],
+        "recommendation": "Использовать Облако VMware для точного соответствия лицензионной политике вендора через гибкую конфигурацию ВМ."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced предоставляет 128 спецификаций ВМ и гибкую настройку ресурсов, что позволяет Заказчику определять количество лицензий в соответствии с лицензионной политикой вендора.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vmware/overview/index"
+        ],
+        "source_titles": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "recommendation": "Использовать Advanced для гибкого управления лицензиями на основе конфигурации ВМ."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.85,
+        "reasoning": "Evolution предоставляет гибкие конфигурации виртуальных машин, позволяющие Заказчику определять количество лицензий в зависимости от числа ВМ и ядер, как требует лицензионная политика вендора.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности сервиса «Виртуальные машины»"
+        ],
+        "recommendation": "Использовать Evolution для управления лицензиями на основе конфигурации ВМ."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 188,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru предоставляет полную техническую и эксплуатационную документацию на все сервисы платформ, включая руководства пользователя, справочники API и практические руководства, доступные на русском и английском языках.",
+    "evidence": "Документация Cloud.ru Advanced доступна на двух языках — русском и английском. Руководства пользователя, справочники API доступны на портале документации. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/advanced/overview/knowledge-sources"
+    ],
+    "recommendation": "Использовать документацию Cloud.ru, доступную на портале, для предоставления технической и эксплуатационной документации Заказчику.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации; наличие документации требует уточнения.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, предоставляется ли документация на ГосОблако."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Облако VMware предоставляет документацию на русском языке, включая руководства пользователя и справочники API, доступные через портал Cloud.ru.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/knowledge-sources"
+        ],
+        "source_titles": [
+          "Источники знаний о платформе Cloud.ru Advanced"
+        ],
+        "recommendation": "Использовать документацию Cloud.ru для Облака VMware, доступную на портале."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced предоставляет полную документацию на русском и английском языках, включая руководства пользователя, справочники API и практические решения, доступные через портал.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/knowledge-sources"
+        ],
+        "source_titles": [
+          "Источники знаний о платформе Cloud.ru Advanced"
+        ],
+        "recommendation": "Использовать документацию Advanced, доступную на портале Cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет документацию на русском языке, включая руководства по использованию виртуальных машин и других сервисов, доступные на портале Cloud.ru.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/knowledge-sources"
+        ],
+        "source_titles": [
+          "Источники знаний о платформе Cloud.ru Advanced"
+        ],
+        "recommendation": "Использовать документацию Evolution, доступную на портале Cloud.ru."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

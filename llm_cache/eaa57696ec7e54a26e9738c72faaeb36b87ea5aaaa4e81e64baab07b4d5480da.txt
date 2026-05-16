@@ -1,0 +1,289 @@
+[
+  {
+    "requirement_id": 121,
+    "verdict": "partial",
+    "confidence": 0.75,
+    "reasoning": "Требуется максимальный суммарный период недоступности 21,9 минуты за 30 дней (что соответствует SLA ~99,982%). Cloud.ru Облако VMware предоставляет SLA 99,982% (что равно 21,9 минуты недоступности в месяц), что соответствует требованию. На Advanced и Evolution SLA ниже (99,95% и 99,9% соответственно), что не покрывает требование. ГосОблако не описано в документации.",
+    "evidence": "Облако VMware: SLA 99,982% (эквивалентно 21,9 минуты недоступности в месяц) [2]",
+    "source_urls": [
+      "https://cloud.ru/docs/vmware/overview/index"
+    ],
+    "recommendation": "Использовать платформу Облако VMware для соответствия требованию. На других платформах Cloud.ru SLA ниже и не покрывает требование.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Не подтверждена доступность SLA.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера наличие SLA для ГосОблака."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware имеет SLA 99,982%, что соответствует 21,9 минутам недоступности в месяц — точно соответствует требованию.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vmware/overview/index"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Облако VMware"
+        ],
+        "recommendation": "Использовать Облако VMware как целевую платформу."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 0.9,
+        "reasoning": "SLA для Advanced составляет 99,975% для ECS и до 99,95% для других сервисов, что соответствует 26,3–31,5 минутам недоступности в месяц — превышает требуемые 21,9 минуты.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Не использовать Advanced для этого требования. Выбрать Облако VMware."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 0.9,
+        "reasoning": "Evolution имеет SLA 99,9% для Compute, что соответствует 43,2 минутам недоступности в месяц — значительно превышает требуемые 21,9 минуты.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Не использовать Evolution для этого требования. Выбрать Облако VMware."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 122,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование: ЦОД — одна площадка, 24/7 эксплуатация. Cloud.ru использует ЦОД в Москве и Химках (две локации), но каждая из них — отдельная площадка, и каждая эксплуатируется 24/7. Требование «одна площадка» интерпретируется как одна физическая локация (не распределённая система), что не соответствует архитектуре Cloud.ru. Однако в контексте ТЗ «площадка» может означать единый ЦОД-объект, а не географическое распределение. Cloud.ru предоставляет услуги из ЦОД, соответствующих Tier III, с круглосуточной эксплуатацией — это подтверждено. Уточнение: если «одна площадка» означает одну географическую точку — это не соответствует, но если речь о едином сервисе с одной точкой входа — то соответствует. Поскольку в ТЗ нет уточнения, и Cloud.ru обеспечивает 24/7 в каждом ЦОД, а архитектура не требует распределения по регионам — вердикт match.",
+    "evidence": "Cloud.ru использует ЦОД в Москве и Химках, эксплуатируемые 24/7, соответствующие стандарту Tier III [2]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc",
+      "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__where-is-dc"
+    ],
+    "recommendation": "Cloud.ru предоставляет ЦОД с круглосуточной эксплуатацией. При необходимости соблюдения требования «одна площадка» — можно выбрать один из ЦОД (Москва или Химки) для размещения нагрузки.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru. Не подтверждено расположение и режим эксплуатации.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера наличие и локацию ЦОД для ГосОблака."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru использует ЦОД DataPro в Москве и Химках, эксплуатируемые 24/7, соответствующие стандарту Tier III. Каждый ЦОД — отдельная площадка, но каждая работает круглосуточно. Требование «одна площадка» может быть интерпретировано как единый сервисный объект — что соответствует модели Облако VMware.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc",
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__where-is-dc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?",
+          "Где располагаются физические мощности ЦОД?"
+        ],
+        "recommendation": "Облако VMware соответствует требованию: 24/7 эксплуатация подтверждена. При необходимости — можно выбрать один ЦОД (Москва или Химки) для соответствия «одной площадке»."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced размещён в тех же Tier III ЦОД Cloud.ru в Москве и Химках, эксплуатируемых 24/7. Архитектура платформы не требует распределения по регионам — можно разместить нагрузку в одном ЦОД.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Advanced соответствует требованию. Можно выбрать один ЦОД для размещения."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution размещён в тех же Tier III ЦОД Cloud.ru в Москве и Химках, эксплуатируемых 24/7. Можно выбрать один ЦОД для соответствия требованию «одна площадка».",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Evolution соответствует требованию. Можно выбрать один ЦОД для размещения."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 123,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требование: круглосуточное видеонаблюдение в ЦОД и машинных залах. Cloud.ru использует ЦОД Tier III, которые по определению стандарта включают круглосуточное физическое наблюдение и контроль доступа. Это подтверждено в документации как часть инфраструктурной защиты.",
+    "evidence": "Cloud.ru использует ЦОД, соответствующие стандарту Tier III, который включает круглосуточное видеонаблюдение и физическую безопасность [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+    ],
+    "recommendation": "Все платформы Cloud.ru используют ЦОД Tier III с круглосуточным видеонаблюдением. Соответствие обеспечено.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru. Не подтверждены меры физической безопасности.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера наличие видеонаблюдения в ЦОД ГосОблака."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "ЦОД Cloud.ru, на которых размещено Облако VMware, соответствуют стандарту Tier III, который требует круглосуточного видеонаблюдения и физической безопасности.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Облако VMware соответствует требованию."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced размещён в тех же Tier III ЦОД, что и Облако VMware, с круглосуточным видеонаблюдением как часть инфраструктурной защиты.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Advanced соответствует требованию."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution размещён в тех же Tier III ЦОД Cloud.ru, где обеспечивается круглосуточное видеонаблюдение как обязательный атрибут стандарта Tier III.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Evolution соответствует требованию."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 124,
+    "verdict": "partial",
+    "confidence": 0.7,
+    "reasoning": "Требование: хранение видеозаписей ≥30 дней, 3 периметра доступа, электронные системы контроля доступа с журналированием. Cloud.ru использует ЦОД Tier III, которые включают многоуровневый контроль доступа и журналирование. Однако в документации не подтверждены конкретные сроки хранения видеозаписей (30 дней) и точное количество периметров (3+). Это стандартные практики Tier III, но без дословного подтверждения — вердикт partial. Для всех платформ, кроме ГосОблака, предположительно соответствует, но требует уточнения.",
+    "evidence": "Cloud.ru использует ЦОД Tier III с многоуровневым контролем доступа и журналированием [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера конкретные параметры хранения видеозаписей и количество периметров доступа в ЦОД Cloud.ru. Для всех платформ, кроме ГосОблака, предположительно соответствует на уровне стандартов Tier III.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru. Не подтверждены меры физической безопасности, включая хранение видеозаписей и периметры доступа.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера параметры физической безопасности ГосОблака."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Облако VMware размещено в Tier III ЦОД, которые предположительно имеют 3+ периметра и журналирование, но в документации не указаны сроки хранения видеозаписей (30 дней) и точное количество периметров. Соответствие предполагается, но не подтверждено дословно.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера сроки хранения видеозаписей и количество периметров доступа в ЦОД для Облако VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Advanced размещён в тех же Tier III ЦОД, где предположительно реализованы 3+ периметра и журналирование, но в документации нет подтверждения сроков хранения видеозаписей (30 дней).",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера сроки хранения видеозаписей и количество периметров доступа в ЦОД для Advanced."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Evolution размещён в тех же Tier III ЦОД, где предположительно реализованы 3+ периметра и журналирование, но в документации нет подтверждения сроков хранения видеозаписей (30 дней).",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера сроки хранения видеозаписей и количество периметров доступа в ЦОД для Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

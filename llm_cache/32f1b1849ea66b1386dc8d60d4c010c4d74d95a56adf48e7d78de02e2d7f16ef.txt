@@ -1,0 +1,537 @@
+```json
+[
+  {
+    "requirement_id": 33,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Облако VMware поддерживает API (включая PowerCLI, Terraform, Ansible), что позволяет передавать данные мониторинга во внешние системы в реальном времени. Документация подтверждает наличие API-интерфейсов для интеграции.",
+    "evidence": "Англоязычный интерфейс, поддержка API, Terraform, Ansible и PowerCLI [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать API платформы Облако VMware для интеграции с системой мониторинга Заказчика.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "ГосОблако предоставляет API для управления ресурсами и мониторинга, совместимый с требованиями интеграции в реальном времени.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать API ГосОблака для интеграции с системой мониторинга Заказчика."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware поддерживает API (PowerCLI, Terraform, Ansible), что позволяет передавать данные мониторинга в реальном времени во внешние системы.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Использовать API платформы Облако VMware для интеграции с системой мониторинга Заказчика."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced предоставляет API для управления ресурсами и мониторингом (Cloud Eye, Cloud Trace и др.), что позволяет интегрировать данные в реальном времени.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Использовать API Advanced (Cloud Eye, Cloud Trace) для интеграции с системой мониторинга Заказчика."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет API для управления и мониторинга ресурсов, включая Cloud Eye, что позволяет передавать данные в реальном времени.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Использовать API Evolution (Cloud Eye) для интеграции с системой мониторинга Заказчика."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 35,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Облако VMware предоставляет встроенную функцию миграции с помощью VMware Cloud Director Availability, обеспечивающую миграцию ВМ без остановки работы (live migration). Поддерживается миграция до 15 ТБ на VM.",
+    "evidence": "Ограничения при самостоятельном выполнении миграции: Общий объем мигрирующей VM — до 15 TB. Объем каждого из дисков мигрирующей VM — до 4 TB. Рекомендации при самостоятельном выполнении миграции [1]",
+    "source_urls": [
+      "4d196260-7466-48ce-8e29-b24d01647267"
+    ],
+    "recommendation": "Использовать VMware Cloud Director Availability для бесперебойной миграции ресурсов на платформу Облако VMware.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "ГосОблако поддерживает миграцию, но не предоставляет детализированную документацию по live migration без остановки. Требуется уточнение у менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера возможность бесперебойной миграции на ГосОблако."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет VMware Cloud Director Availability с поддержкой live migration ВМ без остановки, включая миграцию до 15 ТБ.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "4d196260-7466-48ce-8e29-b24d01647267"
+        ],
+        "source_titles": [
+          "4d196260-7466-48ce-8e29-b24d01647267"
+        ],
+        "recommendation": "Использовать VMware Cloud Director Availability для бесперебойной миграции ресурсов."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.75,
+        "reasoning": "Advanced поддерживает миграцию через инструменты OpenStack (Live Migration), но документация не подтверждает полную бесперебойность для всех типов ВМ. Требуется уточнение.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера возможность бесперебойной миграции на Advanced."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Evolution поддерживает Live Migration, но SLA и документация не гарантируют бесперебойность для всех сценариев. Требуется подтверждение.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера возможность бесперебойной миграции на Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 36,
+    "verdict": "partial",
+    "confidence": 0.8,
+    "reasoning": "Требование к показателю Rмониторинга ≥0,65 — это договорная метрика. Cloud.ru предоставляет SLA 99,982% для Облако VMware и 99,9% для Evolution, что выше 0,65, но сам показатель Rмониторинга не определён в документации как KPI.",
+    "evidence": "Уровень доступности Облако VMware — 99,982% [2]; Уровень доступности Evolution — 99,9% [3]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc",
+      "https://cloud.ru/docs/evolution/overview/topics/sla"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера, как именно рассчитывается Rмониторинга, и договориться о его интеграции в SLA.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.75,
+        "reasoning": "ГосОблако имеет высокую доступность, но показатель Rмониторинга как KPI не определён в документации. Требуется уточнение.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, как рассчитывается Rмониторинга на ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.8,
+        "reasoning": "Облако VMware имеет SLA 99,982%, что выше 0,65, но показатель Rмониторинга как отдельный KPI не описан в документации. Требуется договорная фиксация.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Договориться о фиксации Rмониторинга ≥0,65 в индивидуальном SLA."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "external_service",
+        "verdict": "partial",
+        "confidence": 0.75,
+        "reasoning": "Advanced имеет SLA 99,975% для ECS, что выше 0,65, но показатель Rмониторинга не определён как KPI в документации. Требуется уточнение.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера возможность фиксации Rмониторинга в SLA для Advanced."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.8,
+        "reasoning": "Evolution имеет SLA 99,9% для Compute, что выше 0,65, но показатель Rмониторинга как KPI не определён в документации. Требуется договорная фиксация.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Договориться о фиксации Rмониторинга ≥0,65 в индивидуальном SLA."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 37,
+    "verdict": "partial",
+    "confidence": 0.8,
+    "reasoning": "Требование к показателю RСТП ≥0,65 — это договорная метрика. Cloud.ru предоставляет 24/7 техподдержку и стандартные SLA по времени реакции, но показатель RСТП как KPI не определён в документации.",
+    "evidence": "Техническая поддержка Cloud.ru отвечает на обращения в режиме 24/7 [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера, как именно рассчитывается RСТП, и договориться о его интеграции в SLA.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.75,
+        "reasoning": "ГосОблако предоставляет 24/7 поддержку, но показатель RСТП как KPI не определён в документации. Требуется уточнение.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, как рассчитывается RСТП на ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.8,
+        "reasoning": "Облако VMware предоставляет 24/7 поддержку, но показатель RСТП как отдельный KPI не описан в документации. Требуется договорная фиксация.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Договориться о фиксации RСТП ≥0,65 в индивидуальном SLA."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "external_service",
+        "verdict": "partial",
+        "confidence": 0.75,
+        "reasoning": "Advanced предоставляет 24/7 поддержку, но показатель RСТП как KPI не определён в документации. Требуется уточнение.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера возможность фиксации RСТП в SLA для Advanced."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.8,
+        "reasoning": "Evolution предоставляет 24/7 поддержку, но показатель RСТП как KPI не определён в документации. Требуется договорная фиксация.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Договориться о фиксации RСТП ≥0,65 в индивидуальном SLA."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 38,
+    "verdict": "partial",
+    "confidence": 0.85,
+    "reasoning": "Облако VMware поддерживает мониторинг CPU Ready, RAM Swapped, IOPS, задержки диска и потери пакетов через инструменты VMware и Cloud Eye, но точные пороговые значения (например, 31% CPU Ready) не указаны в документации как стандартные пороги инцидентов. Требуется настройка.",
+    "evidence": "Уровень SLA Облако VMware — 99,98%, поддержка мониторинга через API и PowerCLI [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Настроить мониторинг в Cloud Eye и VMware vCenter с порогами, соответствующими требованиям, и интегрировать оповещения по телефону и в СМКСС.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.75,
+        "reasoning": "ГосОблако предоставляет мониторинг ресурсов, но документация не подтверждает поддержку всех указанных порогов (например, 31% CPU Ready) как стандартные инциденты. Требуется настройка.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Настроить мониторинг и пороги инцидентов через инструменты ГосОблака и интегрировать оповещения."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.85,
+        "reasoning": "Облако VMware поддерживает мониторинг CPU Ready, RAM Swapped, IOPS, задержки диска и потери пакетов через vCenter и Cloud Eye. Технически возможно настроить пороги, указанные в ТЗ, но документация не фиксирует их как стандартные.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Настроить пороги мониторинга в vCenter и Cloud Eye, интегрировать оповещения по телефону и в СМКСС."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "external_service",
+        "verdict": "partial",
+        "confidence": 0.8,
+        "reasoning": "Advanced предоставляет Cloud Eye для мониторинга, но документация не подтверждает поддержку всех указанных порогов (например, 41 мс для диска типа 2) как стандартные инциденты. Требуется настройка.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Настроить пороги мониторинга в Cloud Eye и интегрировать оповещения."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.8,
+        "reasoning": "Evolution предоставляет Cloud Eye для мониторинга, но документация не подтверждает поддержку всех указанных порогов как стандартные инциденты. Требуется настройка.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности сервиса «Виртуальные машины»"
+        ],
+        "recommendation": "Настроить пороги мониторинга в Cloud Eye и интегрировать оповещения."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 39,
+    "verdict": "partial",
+    "confidence": 0.85,
+    "reasoning": "Облако VMware поддерживает мониторинг CPU Ready, RAM Swapped, IOPS, задержки диска и потери пакетов, и технически возможно настроить пороги, указанные в ТЗ (например, 5–30% CPU Ready). Но документация не фиксирует эти пороги как стандартные инциденты среднего приоритета.",
+    "evidence": "Поддержка мониторинга CPU Ready, RAM Swapped, IOPS, потери пакетов через API и Cloud Eye [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Настроить мониторинг в Cloud Eye и vCenter с порогами, соответствующими требованиям, и интегрировать оповещения по электронной почте и в СМКСС.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.75,
+        "reasoning": "ГосОблако предоставляет мониторинг ресурсов, но документация не подтверждает поддержку всех указанных порогов (например, 5–10% RAM Swapped) как стандартные инциденты среднего приоритета. Требуется настройка.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Настроить пороги мониторинга и интегрировать оповещения по электронной почте."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.85,
+        "reasoning": "Облако VMware поддерживает мониторинг всех указанных метрик (CPU Ready, RAM Swapped, IOPS, задержка диска, потери пакетов) через vCenter и Cloud Eye. Технически возможно настроить пороги, указанные в ТЗ, но документация не фиксирует их как стандартные инциденты среднего приоритета.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Настроить пороги мониторинга в vCenter и Cloud Eye, интегрировать оповещения по электронной почте и в СМКСС."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "external_service",
+        "verdict": "partial",
+        "confidence": 0.8,
+        "reasoning": "Advanced предоставляет Cloud Eye для мониторинга, но документация не подтверждает поддержку всех указанных порогов как стандартные инциденты среднего приоритета. Требуется настройка.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Настроить пороги мониторинга в Cloud Eye и интегрировать оповещения по электронной почте."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.8,
+        "reasoning": "Evolution предоставляет Cloud Eye для мониторинга, но документация не подтверждает поддержку всех указанных порогов как стандартные инциденты среднего приоритета. Требуется настройка.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности сервиса «Виртуальные машины»"
+        ],
+        "recommendation": "Настроить пороги мониторинга в Cloud Eye и интегрировать оповещения по электронной почте."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 40,
+    "verdict": "needs_clarification",
+    "confidence": 0.5,
+    "reasoning": "Требование описывает формулу расчёта коэффициента Rмониторинга через «Обработка обращений», но не определяет, как именно это связано с метриками. Это нечёткая формулировка, требующая уточнения от Заказчика.",
+    "evidence": "",
+    "source_urls": [],
+    "recommendation": "Уточнить у Заказчика, как именно рассчитывается коэффициент Rмониторинга через «Обработка обращений» — какая метрика, какая формула, какие данные используются.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Формула расчёта Rмониторинга не определена в документации. Требуется уточнение от Заказчика.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у Заказчика формулу расчёта Rмониторинга."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Формула расчёта Rмониторинга не определена в документации. Требуется уточнение от Заказчика.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у Заказчика формулу расчёта Rмониторинга."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "external_service",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Формула расчёта Rмониторинга не определена в документации. Требуется уточнение от Заказчика.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у Заказчика формулу расчёта Rмониторинга."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Формула расчёта Rмониторинга не определена в документации. Требуется уточнение от Заказчика.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у Заказчика формулу расчёта Rмониторинга."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 41,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование описывает юридический/договорной режим уплаты штрафа при KPI < 0,65 за два этапа. Cloud.ru готов работать по индивидуальным SLA и договорным условиям, включая штрафные санкции.",
+    "evidence": "Cloud.ru готов работать по специфическим штрафным/договорным условиям заказчика через индивидуальный проектный договор.",
+    "source_urls": [],
+    "recommendation": "Зафиксировать условия штрафа в индивидуальном проектном SLA/договоре с Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Договорное условие о штрафе за KPI < 0,65 фиксируется в индивидуальном SLA. Cloud.ru готов работать по таким условиям.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Зафиксировать условия штрафа в индивидуальном проектном SLA/договоре."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Договорное условие о штрафе за KPI < 0,65 фиксируется в индивидуальном SLA. Cloud.ru готов работать по таким условиям.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Зафиксировать условия штрафа в индивидуальном проектном SLA/договоре."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "external_service",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Договорное условие о штрафе за KPI < 0,65 фиксируется в индивидуальном SLA. Cloud.ru готов работать по таким условиям.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Зафиксировать условия штрафа в индивидуальном проектном SLA/договоре."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Договорное условие о штрафе за KPI < 0,65 фиксируется в индивидуальном SLA. Cloud.ru готов работать по таким условиям.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Зафиксировать условия штрафа в индивидуальном проектном SLA/договоре."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]
+```

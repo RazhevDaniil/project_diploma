@@ -1,0 +1,288 @@
+[
+  {
+    "requirement_id": 66,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru предоставляет консультации по работе услуг в рамках круглосуточной технической поддержки, что подтверждено в документации по SLA. Консультации входят в стандартный объем поддержки.",
+    "evidence": "Техническая поддержка Cloud.ru отвечает на обращения в режиме 24/7. Ниже представлены нормы времени реагирования поддержки и решения для каждого типа обращений. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+    ],
+    "recommendation": "Использовать стандартную техническую поддержку Cloud.ru, включающую консультации по работе услуг.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Необходимо уточнить у клиентского менеджера, включены ли консультации в его гарантийное сопровождение.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, предоставляется ли гарантийное техническое сопровождение с консультациями для ГосОблака."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Техническая поддержка Облака VMware включает консультации по работе услуг в режиме 24/7, как указано в документации по SLA.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Использовать Облако VMware для обеспечения гарантийного технического сопровождения с консультациями."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Техническая поддержка Advanced включает консультации по работе услуг, подтверждено в рамках общего соглашения об уровне предоставления услуг и стандартной поддержки Cloud.ru.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Использовать Advanced, так как техническая поддержка включает консультации."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет техническую поддержку с консультациями в рамках SLA, включая приоритеты обращений и ответы на вопросы по работе услуг.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Использовать Evolution, так как техническая поддержка включает консультации по работе услуг."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 67,
+    "verdict": "match",
+    "confidence": 0.98,
+    "reasoning": "Cloud.ru обеспечивает круглосуточную техническую поддержку (24/7) для оперативного реагирования на инциденты и вопросы, что прямо подтверждено в документации по SLA для всех платформ, кроме ГосОблако.",
+    "evidence": "Техническая поддержка Cloud.ru отвечает на обращения в режиме 24/7. Ниже представлены нормы времени реагирования поддержки и решения для каждого типа обращений. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+    ],
+    "recommendation": "Использовать любую платформу Cloud.ru, кроме ГосОблака, для обеспечения круглосуточной технической поддержки.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Необходимо уточнить у клиентского менеджера, предоставляется ли круглосуточная поддержка.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, включена ли круглосуточная техническая поддержка для ГосОблака."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.98,
+        "reasoning": "Облако VMware предоставляет круглосуточную техническую поддержку (24/7) для оперативного реагирования на инциденты, как указано в документации.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Использовать Облако VMware для обеспечения круглосуточной поддержки."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced обеспечивает круглосуточную техническую поддержку в рамках стандартного SLA Cloud.ru, подтверждено в документации по поддержке.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Использовать Advanced, так как поддержка 24/7 обеспечивается."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution предоставляет круглосуточную техническую поддержку, включая приоритеты обращений и оперативное реагирование, как указано в SLA.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Использовать Evolution, так как поддержка 24/7 обеспечивается."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 68,
+    "verdict": "match",
+    "confidence": 0.97,
+    "reasoning": "Cloud.ru предоставляет услуги в режиме 24/7, за исключением времени плановых работ и аварийных простоев, что прямо подтверждено в документации. Это стандартный режим работы для всех платформ.",
+    "evidence": "Техническая поддержка Cloud.ru отвечает на обращения в режиме 24/7. Ниже представлены нормы времени реагирования поддержки и решения для каждого типа обращений. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+    ],
+    "recommendation": "Использовать любую платформу Cloud.ru, кроме ГосОблака, для обеспечения круглосуточного режима работы.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Необходимо уточнить у клиентского менеджера, предоставляется ли режим 24/7.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, обеспечивается ли круглосуточный режим работы для ГосОблака."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.97,
+        "reasoning": "Облако VMware работает в режиме 24/7, за исключением плановых работ и аварийных простоев, как указано в документации по поддержке.",
+        "evidence_refs": ["[1]", "[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla",
+          "https://cloud.ru/docs/overview/support/topics/overview"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений",
+          "Режим и порядок работы"
+        ],
+        "recommendation": "Использовать Облако VMware для обеспечения круглосуточного режима работы."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced обеспечивает круглосуточную доступность услуг, за исключением плановых работ и аварий, что соответствует стандартному режиму Cloud.ru.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Использовать Advanced, так как режим 24/7 поддерживается."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution предоставляет услуги в режиме 24/7, за исключением времени плановых работ и аварий, как указано в SLA.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Использовать Evolution, так как режим 24/7 обеспечивается."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 69,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru предоставляет единую точку обращения через личный кабинет, электронную почту и телефон техподдержки, что подтверждено в обзоре технической поддержки. Это стандартные каналы для всех платформ.",
+    "evidence": "Поддержка осуществляется в соответствии с Общим соглашением об уровне предоставления услуг. В работу поддержки входит: ... [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/index"
+    ],
+    "recommendation": "Использовать любую платформу Cloud.ru, кроме ГосОблака, для обеспечения единой точки обращения через указанные каналы.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Необходимо уточнить у клиентского менеджера, доступны ли все три канала обращения.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, предоставляются ли личный кабинет, электронная почта и телефон поддержки для ГосОблака."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет единую точку обращения через личный кабинет, электронную почту и телефон технической поддержки, как указано в обзоре поддержки.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/index"
+        ],
+        "source_titles": [
+          "Обзор технической поддержки Cloud.ru"
+        ],
+        "recommendation": "Использовать Облако VMware для обеспечения единой точки обращения."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced предоставляет все три канала обращения (личный кабинет, email, телефон) в рамках стандартной технической поддержки Cloud.ru.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Использовать Advanced, так как все каналы обращения доступны."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution обеспечивает единую точку обращения через личный кабинет, электронную почту и телефон поддержки, как часть стандартного SLA.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Использовать Evolution, так как все каналы обращения доступны."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

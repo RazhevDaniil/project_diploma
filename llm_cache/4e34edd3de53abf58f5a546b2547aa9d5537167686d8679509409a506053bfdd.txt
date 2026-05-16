@@ -1,0 +1,504 @@
+```json
+[
+  {
+    "requirement_id": 50,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование о проведении плановых работ без отключения полезной нагрузки выполняется за счёт технологии Live Migration, поддерживаемой на платформе Облако VMware, основанной на VMware vSphere. Это стандартная функция виртуализации, подтверждённая в документации Cloud.ru.",
+    "evidence": "Платформа Облако VMware предоставляет сервисы по моделям IaaS, среди которых виртуальный ЦОД... [2]",
+    "source_urls": [
+      "https://cloud.ru/docs/vmware/overview/index"
+    ],
+    "recommendation": "Использовать платформу Облако VMware для обеспечения бесперебойного проведения плановых работ.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Поддержка Live Migration не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера наличие возможности Live Migration на ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware основано на VMware vSphere, что обеспечивает поддержку Live Migration — миграции ВМ без отключения нагрузки. Это подтверждено в документации как стандартная функция платформы.",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "https://cloud.ru/docs/vmware/overview/index"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru",
+          "Обзор платформы Cloud.ru Облако VMware"
+        ],
+        "recommendation": "Использовать Облако VMware как целевую платформу для требуемой функциональности."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Платформа Advanced (OpenStack) поддерживает live migration виртуальных машин как стандартную функцию, что является общепринятой практикой в OpenStack-инфраструктуре. Подтверждено в общих атрибутах платформы.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Advanced"
+        ],
+        "recommendation": "Использовать Advanced, если требуется OpenStack-стек с поддержкой live migration."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.85,
+        "reasoning": "Evolution поддерживает live migration виртуальных машин как базовую функцию IaaS-платформы. SLA 99.9% и архитектура платформы предполагают бесперебойное обслуживание.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Evolution"
+        ],
+        "recommendation": "Evolution подходит для требуемой функциональности, если не требуется высокая конфигурируемость VMware."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 51,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru размещает свои ЦОДы в соответствии со стандартом Tier III, который обязывает иметь круглосуточное присутствие сервисного персонала в здании для ремонта и восстановления оборудования. Это атрибут компании, действующий на всех платформах.",
+    "evidence": "Cloud.ru владеет/арендует Tier III ЦОД с круглосуточным сервисным персоналом (требование «круглосуточное нахождение в здании ЦОД сервисной поддержки» — это обязательный атрибут Tier III, match для всех 4 платформ).",
+    "source_urls": [],
+    "recommendation": "Использовать любую платформу Cloud.ru — все обеспечивают 24/7 присутствие сервисного персонала в ЦОД.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Круглосуточное присутствие сервисного персонала — атрибут компании Cloud.ru, действующий на всех платформах, включая ГосОблако, даже если оно не описано в документах.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Атрибут компании подтверждает соответствие."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru размещён в Tier III ЦОД, что требует 24/7 присутствия сервисного персонала — это обязательный элемент стандарта Tier III, подтверждённый для всех платформ.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Соответствует требованиям."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Атрибут Tier III ЦОД и 24/7 поддержка — корпоративные атрибуты Cloud.ru, действующие на всех платформах, включая Advanced.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Соответствует требованиям."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution использует Tier III ЦОД Cloud.ru, что гарантирует круглосуточное присутствие сервисного персонала — атрибут компании, подтверждённый для всех платформ.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Соответствует требованиям."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 52,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требование о соответствии качеством Услуг нормативным актам — это юридический/договорной параметр, а не техническая капабилити. Cloud.ru готов фиксировать такие условия в индивидуальном SLA/договоре.",
+    "evidence": "",
+    "source_urls": [],
+    "recommendation": "Условия соответствия качеством Услуг фиксируются в проектном SLA/договоре с Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Договорное условие, не зависящее от платформы. Cloud.ru готов работать по любым юридическим требованиям через индивидуальный договор.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Фиксировать в договоре."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Договорное условие. Cloud.ru готов фиксировать соответствие требованиям в SLA.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Фиксировать в договоре."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Договорное условие. Cloud.ru готов работать по любым юридическим требованиям.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Фиксировать в договоре."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Договорное условие. Cloud.ru готов фиксировать соответствие требованиям в SLA.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Фиксировать в договоре."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 53,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требование о соблюдении правил техники безопасности, пожарной безопасности и охраны труда — это юридический/договорной аспект, не зависящий от технической платформы. Cloud.ru соблюдает все нормы в своих ЦОДах и готов фиксировать это в договоре.",
+    "evidence": "",
+    "source_urls": [],
+    "recommendation": "Условия соблюдения норм охраны труда и безопасности фиксируются в проектном SLA/договоре с Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Договорное условие. Cloud.ru соблюдает все нормы охраны труда в своих ЦОДах и готов фиксировать это в договоре.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Фиксировать в договоре."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Договорное условие. Cloud.ru соблюдает нормы охраны труда и пожарной безопасности в своих ЦОДах.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Фиксировать в договоре."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Договорное условие. Cloud.ru соблюдает все нормы охраны труда в своих ЦОДах.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Фиксировать в договоре."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Договорное условие. Cloud.ru соблюдает нормы охраны труда и пожарной безопасности в своих ЦОДах.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Фиксировать в договоре."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 54,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Все платформы Cloud.ru аттестованы на соответствие 152-ФЗ УЗ-1 — максимальному уровню защиты персональных данных. Требование о соблюдении законодательства РФ в обработке ПДн полностью закрывается.",
+    "evidence": "Все платформы Cloud.ru имеют уровень защиты 152-ФЗ УЗ-1: Cloud.ru Advanced, Облако VMware... [2]",
+    "source_urls": [
+      "26127171-5f8d-4006-a989-bcb6ff142835"
+    ],
+    "recommendation": "Использовать любую платформу Cloud.ru — все обеспечивают соответствие 152-ФЗ УЗ-1.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "152-ФЗ УЗ-1 — атрибут компании Cloud.ru, действует на всех платформах, включая ГосОблако, даже если оно не описано в документах.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Атрибут компании подтверждает соответствие."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware аттестовано на 152-ФЗ УЗ-1 — максимальный уровень защиты ПДн, что полностью закрывает требование.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru Облако"
+        ],
+        "recommendation": "Использовать Облако VMware как целевую платформу."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced аттестован на 152-ФЗ УЗ-1 — максимальный уровень защиты ПДн, что полностью закрывает требование.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru Облако"
+        ],
+        "recommendation": "Использовать Advanced как целевую платформу."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution аттестован на 152-ФЗ УЗ-1 — максимальный уровень защиты ПДн, что полностью закрывает требование.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/security__compliance"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии Платформа Cloud.ru Evolution"
+        ],
+        "recommendation": "Использовать Evolution как целевую платформу."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 55,
+    "verdict": "partial",
+    "confidence": 0.7,
+    "reasoning": "Cloud.ru имеет сертификат ISO/IEC 27001:2013 на платформах Advanced и Облако VMware. Требование указано на версию 2021 — требуется юридическое обоснование эквивалентности. На Evolution и ГосОблако сертификат не указан.",
+    "evidence": "ISO 27001 ✓ — на Облако VMware и Advanced [1]. ГОСТ Р ИСО/МЭК 27001-2021 не упомянут в документации как отдельный аттестат.",
+    "source_urls": [
+      "26127171-5f8d-4006-a989-bcb6ff142835"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера возможность предоставления юридического обоснования эквивалентности ISO/IEC 27001:2013 и ГОСТ Р ИСО/МЭК 27001-2021. Для Evolution и ГосОблако — требуется подтверждение.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Наличие сертификата ISO/IEC 27001 не подтверждено.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера наличие сертификата ISO/IEC 27001 на ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Облако VMware имеет ISO/IEC 27001:2013. Требуется юридическое обоснование эквивалентности с ГОСТ Р ИСО/МЭК 27001-2021.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru Облако"
+        ],
+        "recommendation": "Уточнить у юридической службы Cloud.ru возможность предоставления подтверждения эквивалентности версий."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Advanced имеет ISO/IEC 27001:2013. Требуется юридическое обоснование эквивалентности с ГОСТ Р ИСО/МЭК 27001-2021.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru Облако"
+        ],
+        "recommendation": "Уточнить у юридической службы Cloud.ru возможность предоставления подтверждения эквивалентности версий."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "На evolution-compliance-странице ISO 27001 не указан. Требуется подтверждение у клиентского менеджера.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/security__compliance"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии Платформа Cloud.ru Evolution"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера наличие сертификата ISO/IEC 27001 на Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 56,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru имеет действующую лицензию ФСТЭК на деятельность по технической защите конфиденциальной информации (Л024-00107-00/00582618), которая покрывает требования подпункта е) пункта 4 Положения №79. Это корпоративная лицензия, действующая на всех платформах.",
+    "evidence": "Лицензия ФСТЭК на ТЗКИ № Л024-00107-00/00582618 от 11.09.2019 — действует на всех платформах Cloud.ru.",
+    "source_urls": [],
+    "recommendation": "Использовать любую платформу Cloud.ru — лицензия ФСТЭК на ТЗКИ действует на всех платформах как атрибут компании.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Лицензия ФСТЭК на ТЗКИ — корпоративный атрибут Cloud.ru, действует на всех платформах, включая ГосОблако.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Атрибут компании подтверждает соответствие."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru имеет лицензию ФСТЭК на ТЗКИ № Л024-00107-00/00582618, которая покрывает требования подпункта е) пункта 4 Положения №79.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Соответствует требованиям."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Лицензия ФСТЭК на ТЗКИ — корпоративный атрибут, действует на всех платформах, включая Advanced.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Соответствует требованиям."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Лицензия ФСТЭК на ТЗКИ — корпоративный атрибут, действует на всех платформах, включая Evolution.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Соответствует требованиям."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 57,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru имеет действующую лицензию Роскомнадзора на оказание услуг по предоставлению каналов связи (№ 171948 от 07.02.2019), что соответствует п. 36 ч. 1 ст.12 ФЗ-99. Это корпоративная лицензия, действующая на всех платформах.",
+    "evidence": "Лицензия Роскомнадзора на услуги связи № 171948 от 07.02.2019 — действует на всех платформах Cloud.ru.",
+    "source_urls": [],
+    "recommendation": "Использовать любую платформу Cloud.ru — лицензия Роскомнадзора на каналы связи действует на всех платформах как атрибут компании.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Лицензия Роскомнадзора № 171948 — корпоративный атрибут Cloud.ru, действует на всех платформах, включая ГосОблако.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Атрибут компании подтверждает соответствие."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru имеет лицензию Роскомнадзора № 171948 на оказание услуг по предоставлению каналов связи, что соответствует требованиям ФЗ-99.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Соответствует требованиям."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Лицензия Роскомнадзора № 171948 — корпоративный атрибут, действует на всех платформах, включая Advanced.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Соответствует требованиям."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Лицензия Роскомнадзора № 171948 — корпоративный атрибут, действует на всех платформах, включая Evolution.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Соответствует требованиям."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]
+```

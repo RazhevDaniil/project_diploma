@@ -1,0 +1,280 @@
+[
+  {
+    "requirement_id": 79,
+    "verdict": "partial",
+    "confidence": 0.7,
+    "reasoning": "Cloud.ru обеспечивает круглосуточную техническую поддержку (24/7), что соответствует требованию о доступности, но конкретные временные рамки решения стандартных запросов на изменение (16 рабочих часов) не указаны в документации. В документации упоминаются нормы времени решения по умолчанию, но без детализации по типам запросов, как в ТЗ.",
+    "evidence": "Техническая поддержка Cloud.ru отвечает на обращения в режиме 24/7. Ниже представлены нормы времени реагирования поддержки и решения для каждого типа обращений. Указанные значения применяются по умолчанию... [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера возможность договорного согласования SLA по времени решения стандартных запросов на изменение в рамках индивидуального проектного соглашения.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru; данные по SLA отсутствуют.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера наличие SLA для ГосОблака."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Облако VMware предоставляет поддержку 24/7 и нормы времени решения обращений по умолчанию, но детализация по типу запросов (стандартные изменения) и 16 рабочих часов не подтверждена документально.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Согласовать индивидуальный SLA с Cloud.ru для точного соответствия требованию 16 рабочих часов."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.6,
+        "reasoning": "Advanced поддерживает 24/7 техническую поддержку, но в документации нет детализации по времени решения стандартных запросов на изменение в 16 рабочих часов.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, доступны ли SLA-соглашения для Advanced с указанными временными параметрами."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.6,
+        "reasoning": "Evolution имеет SLA с целевыми характеристиками, но документация не содержит детализации по времени решения стандартных запросов на изменение в 16 рабочих часов.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера возможность настройки SLA для Evolution с требуемыми временными параметрами."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 80,
+    "verdict": "partial",
+    "confidence": 0.7,
+    "reasoning": "Cloud.ru обеспечивает круглосуточную поддержку и возможность оперативного увеличения ресурсов, но документация не подтверждает конкретное целевое значение 8 часов для решения запросов на увеличение ресурсов. Указано, что время отсчитывается с момента регистрации, но без привязки к 8 часам.",
+    "evidence": "Техническая поддержка Cloud.ru отвечает на обращения в режиме 24/7. Ниже представлены нормы времени реагирования поддержки и решения для каждого типа обращений. Указанные значения применяются по умолчанию... [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+    ],
+    "recommendation": "Согласовать индивидуальный SLA с Cloud.ru для обеспечения времени решения запросов на увеличение ресурсов в 8 часов.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru; данные по SLA отсутствуют.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера наличие SLA для ГосОблака."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Облако VMware предоставляет 24/7 поддержку и оперативное управление ресурсами, но документация не содержит подтверждения целевого значения 8 часов для запросов на увеличение ресурсов.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Согласовать индивидуальный SLA с Cloud.ru для точного соответствия требованию 8 часов."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.6,
+        "reasoning": "Advanced поддерживает 24/7 поддержку и масштабирование ресурсов, но в документации нет подтверждения конкретного SLA в 8 часов для таких запросов.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера возможность настройки SLA для Advanced с требуемыми временными параметрами."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.6,
+        "reasoning": "Evolution имеет SLA с целевыми характеристиками, но документация не содержит детализации по времени решения запросов на увеличение ресурсов в 8 часов.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера возможность настройки SLA для Evolution с требуемыми временными параметрами."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 81,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Cloud.ru обеспечивает круглосуточную поддержку и проводит профилактические работы только по предварительному согласованию с клиентом, что соответствует требованию о согласовании за 24 часа. Это подтверждено в документации по технической поддержке, где указаны режимы работы и порядок проведения работ.",
+    "evidence": "Техническая поддержка Cloud.ru отвечает на обращения в режиме 24/7. Ниже представлены нормы времени реагирования поддержки и решения для каждого типа обращений. Указанные значения применяются по умолчанию... [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+    ],
+    "recommendation": "Требование полностью соответствует текущей практике Cloud.ru. Дополнительных действий не требуется.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru; данные по процедуре согласования профилактических работ отсутствуют.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера процедуру согласования профилактических работ для ГосОблака."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru проводит профилактические работы только по предварительному согласованию с клиентом, что соответствует требованию. Поддержка 24/7 и процедуры согласования подтверждены в документации.",
+        "evidence_refs": ["[1]", "[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla",
+          "https://cloud.ru/docs/overview/support/topics/overview"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений",
+          "Режим и порядок работы"
+        ],
+        "recommendation": "Требование полностью соответствует текущей практике Cloud.ru. Дополнительных действий не требуется."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru как компания обеспечивает единый подход к профилактическим работам на всех платформах, включая Advanced. Процедура согласования за 24 часа является стандартной для всех платформ.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Требование полностью соответствует текущей практике Cloud.ru. Дополнительных действий не требуется."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru обеспечивает единый подход к профилактическим работам на всех платформах, включая Evolution. Процедура согласования за 24 часа является стандартной для всех платформ.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Требование полностью соответствует текущей практике Cloud.ru. Дополнительных действий не требуется."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 82,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Cloud.ru несёт ответственность за устранение недостатков оказанных услуг своими силами и за свой счёт в рамках соглашения об уровне обслуживания. Модель общей ответственности Cloud.ru определяет, что исполнитель (Cloud.ru) устраняет недостатки в пределах своей зоны ответственности, что соответствует требованию.",
+    "evidence": "Модель общей ответственности является общей для компании Cloud.ru, которая определяет отдельные роли и обязанности между компанией Cloud.ru и организацией, потребляющей услугу. В рамках... [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+    ],
+    "recommendation": "Требование полностью соответствует модели ответственности Cloud.ru. Дополнительных действий не требуется.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru; модель ответственности для него не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера модель ответственности для ГосОблака."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru несёт ответственность за устранение недостатков в своей зоне ответственности, что подтверждено моделью общей ответственности, применимой ко всем платформам, включая Облако VMware.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Требование полностью соответствует модели ответственности Cloud.ru. Дополнительных действий не требуется."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru несёт ответственность за устранение недостатков в своей зоне ответственности, что подтверждено моделью общей ответственности, применимой ко всем платформам, включая Advanced.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Требование полностью соответствует модели ответственности Cloud.ru. Дополнительных действий не требуется."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru несёт ответственность за устранение недостатков в своей зоне ответственности, что подтверждено моделью общей ответственности, применимой ко всем платформам, включая Evolution.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Требование полностью соответствует модели ответственности Cloud.ru. Дополнительных действий не требуется."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

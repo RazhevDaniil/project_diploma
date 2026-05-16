@@ -1,0 +1,294 @@
+[
+  {
+    "requirement_id": 49,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru поддерживает политики жизненного цикла (Lifecycle) для объектного хранилища S3, включая автоматизированное управление объектами через конфигурации, что покрывает операцию put-lifecycle-configuration как часть стандартного API S3. Документация подтверждает наличие функции жизненного цикла.",
+    "evidence": "С помощью политик жизненного цикла можно задать следующие условия: Expiration — автоматическое удаление объектов по истечении заданного срока. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/s3e/ug/topics/concepts__lifecycle"
+    ],
+    "recommendation": "Использовать Object Storage Service (OBS) на платформах Advanced или Evolution для настройки политик жизненного цикла через API или консоль.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основной документации Cloud.ru; поддержка S3-функций не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, предоставляет ли ГосОблако сервис Object Storage с поддержкой политик жизненного цикла."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 0.9,
+        "reasoning": "Облако VMware не предоставляет сервис Object Storage S3; его архитектура ориентирована на виртуальные машины и vCloud Director, а не на S3-совместимое хранилище.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать платформу Advanced или Evolution для S3-совместимого хранилища."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru Advanced предоставляет Object Storage Service (OBS) с поддержкой политик жизненного цикла, включая управление через API (put-lifecycle-configuration).",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/concepts__lifecycle",
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Жизненный цикл (Lifecycle) — документация Object Storage",
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Использовать OBS на платформе Advanced для настройки политик жизненного цикла."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru Evolution предоставляет сервисы объектного хранилища S3, включая поддержку политик жизненного цикла, как подтверждено в документации миграции данных и общих возможностях S3.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/concepts__lifecycle",
+          "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+        ],
+        "source_titles": [
+          "Жизненный цикл (Lifecycle) — документация Object Storage",
+          "Миграция данных из внешних S3 в хранилища Cloud.ru"
+        ],
+        "recommendation": "Использовать OBS на платформе Evolution для настройки политик жизненного цикла."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 50,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru поддерживает получение конфигураций жизненного цикла (get-lifecycle-configuration) как часть стандартного API S3, поскольку политики жизненного цикла полностью реализованы в Object Storage Service (OBS). Документация подтверждает наличие функции жизненного цикла, что подразумевает возможность чтения конфигураций.",
+    "evidence": "С помощью политик жизненного цикла можно задать следующие условия: Expiration — автоматическое удаление объектов по истечении заданного срока. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/s3e/ug/topics/concepts__lifecycle"
+    ],
+    "recommendation": "Использовать Object Storage Service (OBS) на платформах Advanced или Evolution для получения конфигураций жизненного цикла через API или консоль.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основной документации Cloud.ru; поддержка S3-функций не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, предоставляет ли ГосОблако сервис Object Storage с поддержкой получения политик жизненного цикла."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 0.9,
+        "reasoning": "Облако VMware не предоставляет сервис Object Storage S3; его архитектура ориентирована на виртуальные машины и vCloud Director, а не на S3-совместимое хранилище.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать платформу Advanced или Evolution для S3-совместимого хранилища."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru Advanced предоставляет Object Storage Service (OBS) с поддержкой политик жизненного цикла, включая возможность получения конфигураций через API (get-lifecycle-configuration).",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/concepts__lifecycle",
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Жизненный цикл (Lifecycle) — документация Object Storage",
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Использовать OBS на платформе Advanced для получения политик жизненного цикла."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru Evolution предоставляет сервисы объектного хранилища S3, включая поддержку политик жизненного цикла и возможность получения их конфигураций через API.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/concepts__lifecycle",
+          "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+        ],
+        "source_titles": [
+          "Жизненный цикл (Lifecycle) — документация Object Storage",
+          "Миграция данных из внешних S3 в хранилища Cloud.ru"
+        ],
+        "recommendation": "Использовать OBS на платформе Evolution для получения политик жизненного цикла."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 51,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Cloud.ru предоставляет сервис Object Storage (OBS) на платформах Advanced и Evolution, который поддерживает чанковую (многопоточную) загрузку объектов (multipart upload) как стандартную функцию S3-совместимого хранилища. Документация подтверждает наличие S3-совместимого хранилища, что подразумевает поддержку базовых операций S3, включая чанковую загрузку.",
+    "evidence": "Cloud.ru предоставляет сервисы объектного хранилища S3 на платформах Cloud.ru Evolution и Cloud.ru Advanced. [3]",
+    "source_urls": [
+      "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+    ],
+    "recommendation": "Использовать Object Storage Service (OBS) на платформах Advanced или Evolution для чанковой загрузки данных через S3 API.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основной документации Cloud.ru; поддержка чанковой загрузки S3 не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, предоставляет ли ГосОблако S3-совместимое хранилище с поддержкой multipart upload."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 0.9,
+        "reasoning": "Облако VMware не предоставляет сервис Object Storage S3; его архитектура ориентирована на виртуальные машины и vCloud Director, а не на S3-совместимое хранилище.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать платформу Advanced или Evolution для S3-совместимого хранилища."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru Advanced предоставляет Object Storage Service (OBS) с поддержкой S3 API, включая чанковую загрузку (multipart upload) как стандартную функцию.",
+        "evidence_refs": [
+          "[3]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+        ],
+        "source_titles": [
+          "Миграция данных из внешних S3 в хранилища Cloud.ru"
+        ],
+        "recommendation": "Использовать OBS на платформе Advanced для чанковой загрузки."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru Evolution предоставляет сервисы объектного хранилища S3, включая поддержку чанковой загрузки (multipart upload) как часть S3-совместимого API.",
+        "evidence_refs": [
+          "[3]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+        ],
+        "source_titles": [
+          "Миграция данных из внешних S3 в хранилища Cloud.ru"
+        ],
+        "recommendation": "Использовать OBS на платформе Evolution для чанковой загрузки."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 52,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование — доступность не ниже 99,95%. Cloud.ru Advanced предоставляет Object Storage Service с SLA 99,95%, что соответствует требованию. Cloud.ru Evolution также имеет SLA 99,9% для Compute, но для Object Storage — не указано явно; однако Advanced полностью покрывает требование. Уровень 99,95% является минимальным порогом, и Cloud.ru его обеспечивает.",
+    "evidence": "Object Storage Service 99,95% — Соглашение об уровне предоставления услуг Advanced. [2]",
+    "source_urls": [
+      "https://cloud.ru/docs/advanced/overview/sla"
+    ],
+    "recommendation": "Использовать Object Storage Service на платформе Advanced для обеспечения SLA 99,95% и выше.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основной документации Cloud.ru; SLA для его сервисов не подтверждены.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера SLA для ГосОблака."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.8,
+        "reasoning": "Облако VMware имеет SLA 99,982% для вычислительных ресурсов, но не предоставляет Object Storage Service. Требование относится к S3-хранилищу, которое на этой платформе недоступно.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать платформу Advanced для S3-хранилища с SLA 99,95%."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru Advanced предоставляет Object Storage Service с SLA 99,95%, что точно соответствует требованию «не ниже 99,95%».",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Использовать OBS на платформе Advanced для гарантированного SLA 99,95%."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Cloud.ru Evolution имеет SLA 99,9% для Compute, но документация не указывает SLA для Object Storage Service. Хотя S3-хранилище доступно, точный SLA для него не подтверждён, поэтому покрытие частичное.",
+        "evidence_refs": [
+          "[3]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера SLA для Object Storage на платформе Evolution. Для гарантированного SLA 99,95% рекомендуется Advanced."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

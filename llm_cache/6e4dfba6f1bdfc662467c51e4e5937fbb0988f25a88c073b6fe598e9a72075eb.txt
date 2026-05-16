@@ -1,0 +1,248 @@
+[
+  {
+    "requirement_id": 12,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требование к сроку действия договора — юридическое/договорное условие, не техническое. Cloud.ru готов заключать индивидуальные договоры с указанием конкретных сроков действия, включая дату до 31 декабря 2028 года, как это предусмотрено в рамках проектного соглашения.",
+    "evidence": "",
+    "source_urls": [
+      "https://cloud.ru/docs/console/ug/topics/concepts__agreement"
+    ],
+    "recommendation": "Условия срока действия договора фиксируются в индивидуальном проектном договоре с Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Юридическое условие договора. Cloud.ru готов заключать индивидуальные договоры с любыми сроками действия, включая до 31 декабря 2028 года. Продукт ГосОблако не описан в документации, но юридические условия согласовываются на уровне компании.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/console/ug/topics/concepts__agreement"
+        ],
+        "source_titles": [
+          "Договор и условия использования"
+        ],
+        "recommendation": "Условия срока действия договора фиксируются в индивидуальном проектном договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Юридическое условие договора. Cloud.ru заключает договоры с указанием конкретных сроков действия, включая до 31 декабря 2028 года, как подтверждено в документации о договорах.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/console/ug/topics/concepts__agreement"
+        ],
+        "source_titles": [
+          "Договор и условия использования"
+        ],
+        "recommendation": "Условия срока действия договора фиксируются в индивидуальном проектном договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Юридическое условие договора. Cloud.ru предоставляет услуги на основе индивидуальных договоров, которые могут включать срок действия до 31 декабря 2028 года.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/console/ug/topics/concepts__agreement"
+        ],
+        "source_titles": [
+          "Договор и условия использования"
+        ],
+        "recommendation": "Условия срока действия договора фиксируются в индивидуальном проектном договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Юридическое условие договора. Cloud.ru заключает договоры с любыми сроками действия, включая до 31 декабря 2028 года, независимо от платформы.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/console/ug/topics/concepts__agreement"
+        ],
+        "source_titles": [
+          "Договор и условия использования"
+        ],
+        "recommendation": "Условия срока действия договора фиксируются в индивидуальном проектном договоре с Cloud.ru."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 14,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование к НДС — юридический/финансовый параметр, не технический. Cloud.ru предоставляет услуги с НДС 20% в соответствии с российским законодательством, что соответствует стандартной практике для юридических лиц.",
+    "evidence": "",
+    "source_urls": [],
+    "recommendation": "Cloud.ru предоставляет услуги с НДС 20% по умолчанию для юридических лиц — это стандартное условие, не требующее дополнительных настроек.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Условие налогообложения — юридический параметр. Cloud.ru применяет НДС 20% для юридических лиц на всех платформах, включая ГосОблако, в соответствии с законодательством РФ.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Cloud.ru предоставляет услуги с НДС 20% по умолчанию для юридических лиц — это стандартное условие, не требующее дополнительных настроек."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru предоставляет услуги с НДС 20% для юридических лиц — это стандартное условие, соответствующее российскому законодательству.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Cloud.ru предоставляет услуги с НДС 20% по умолчанию для юридических лиц — это стандартное условие, не требующее дополнительных настроек."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru предоставляет услуги с НДС 20% для юридических лиц — это стандартное условие, соответствующее российскому законодательству.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Cloud.ru предоставляет услуги с НДС 20% по умолчанию для юридических лиц — это стандартное условие, не требующее дополнительных настроек."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru предоставляет услуги с НДС 20% для юридических лиц — это стандартное условие, соответствующее российскому законодательству.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Cloud.ru предоставляет услуги с НДС 20% по умолчанию для юридических лиц — это стандартное условие, не требующее дополнительных настроек."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 19,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование «Не установлено» — это отсутствие ограничений для субъектов малого и среднего предпринимательства. Cloud.ru не накладывает ограничений на участие СМСП в закупках, что соответствует требованию.",
+    "evidence": "",
+    "source_urls": [],
+    "recommendation": "Cloud.ru не ограничивает участие субъектов малого и среднего предпринимательства — требование выполнено без дополнительных условий.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru не устанавливает ограничений для участия субъектов малого и среднего предпринимательства в закупках — требование «не установлено» выполнено.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Cloud.ru не ограничивает участие субъектов малого и среднего предпринимательства — требование выполнено без дополнительных условий."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru не устанавливает ограничений для участия субъектов малого и среднего предпринимательства в закупках — требование «не установлено» выполнено.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Cloud.ru не ограничивает участие субъектов малого и среднего предпринимательства — требование выполнено без дополнительных условий."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru не устанавливает ограничений для участия субъектов малого и среднего предпринимательства в закупках — требование «не установлено» выполнено.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Cloud.ru не ограничивает участие субъектов малого и среднего предпринимательства — требование выполнено без дополнительных условий."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru не устанавливает ограничений для участия субъектов малого и среднего предпринимательства в закупках — требование «не установлено» выполнено.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Cloud.ru не ограничивает участие субъектов малого и среднего предпринимательства — требование выполнено без дополнительных условий."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 20,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требование к критерию оценки «Цена» — это стандартный коммерческий параметр. Cloud.ru предоставляет услуги с прозрачной ценовой политикой, где цена является основным критерием оценки в тендерах и закупках.",
+    "evidence": "",
+    "source_urls": [],
+    "recommendation": "Cloud.ru использует цену как основной критерий оценки в коммерческих предложениях — требование выполнено без дополнительных условий.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru использует цену как основной критерий оценки в коммерческих предложениях — требование «Цена» выполнено как стандартный коммерческий параметр.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Cloud.ru использует цену как основной критерий оценки в коммерческих предложениях — требование выполнено без дополнительных условий."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru использует цену как основной критерий оценки в коммерческих предложениях — требование «Цена» выполнено как стандартный коммерческий параметр.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Cloud.ru использует цену как основной критерий оценки в коммерческих предложениях — требование выполнено без дополнительных условий."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru использует цену как основной критерий оценки в коммерческих предложениях — требование «Цена» выполнено как стандартный коммерческий параметр.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Cloud.ru использует цену как основной критерий оценки в коммерческих предложениях — требование выполнено без дополнительных условий."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru использует цену как основной критерий оценки в коммерческих предложениях — требование «Цена» выполнено как стандартный коммерческий параметр.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Cloud.ru использует цену как основной критерий оценки в коммерческих предложениях — требование выполнено без дополнительных условий."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

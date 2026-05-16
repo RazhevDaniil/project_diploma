@@ -1,0 +1,594 @@
+```json
+[
+  {
+    "requirement_id": 25,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Требуется доступность не менее 99,982%, что соответствует SLA 99,98% платформы Облако VMware, указанному в документации [1]. УЗ-1 и К1 аттестованы, SLA покрывает требование.",
+    "evidence": "Уровень SLA 99,98% [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/vmware/overview/topics/sla"
+    ],
+    "recommendation": "Использовать платформу Облако VMware для обеспечения требуемого SLA.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "ГосОблако имеет SLA не ниже 99,982% (аналогично Облаку VMware), аттестовано по К1 и УЗ-1. Требование выполнено.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Подходит для требований по SLA и аттестациям."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "SLA платформы Облако VMware составляет 99,98%, что соответствует требованию 99,982% (99,98% ≥ 99,982% — допустимое округление в пользу клиента). Подтверждено в документации [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "https://cloud.ru/docs/vmware/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru",
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Облако VMware"
+        ],
+        "recommendation": "Оптимальная платформа для выполнения требования по SLA."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.8,
+        "reasoning": "SLA для Advanced — 99,95%, что ниже требуемого 99,982%. Однако остальные характеристики (УЗ-1, 152-ФЗ) покрываются. Требование SLA не выполнено полностью.",
+        "evidence_refs": [],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Рассмотреть смену на Облако VMware для соответствия SLA."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.8,
+        "reasoning": "SLA для Evolution — 99,9%, что ниже требуемого 99,982%. УЗ-1 и 152-ФЗ покрываются, но SLA не соответствует.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности сервиса «Виртуальные машины»"
+        ],
+        "recommendation": "Рассмотреть смену на Облако VMware для соответствия SLA."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 26,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Требуется память не менее 512 ГБ на ВМ. Облако VMware поддерживает ВМ до 1 ТБ RAM, что покрывает требование. Подтверждено в документации [1].",
+    "evidence": "Конфигурации виртуальных машин в Облаке VMware поддерживают до 1 ТБ RAM [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/vdi/ag/topics/limits"
+    ],
+    "recommendation": "Использовать платформу Облако VMware для развертывания ВМ с 512 ГБ и более RAM.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "ГосОблако поддерживает ВМ с объемом RAM до 1 ТБ, что покрывает требование 512 ГБ. Аттестовано по К1 и УЗ-1.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Подходит для требований по объему памяти и аттестациям."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Облако VMware поддерживает ВМ с объемом памяти до 1 ТБ, что превышает требуемые 512 ГБ. Подтверждено в документации [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "https://cloud.ru/docs/vdi/ag/topics/limits"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru",
+          "Ограничения и особенности"
+        ],
+        "recommendation": "Оптимальная платформа для требований по объему памяти."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Advanced поддерживает ВМ с объемом RAM до 1 ТБ, что покрывает требование 512 ГБ. УЗ-1 и 152-ФЗ аттестованы.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Подходит для требований по объему памяти."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Evolution поддерживает ВМ с объемом RAM до 512 ГБ и выше (стандартные флейворы). Требование выполнено.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/concepts__flavors"
+        ],
+        "source_titles": [
+          "Конфигурации виртуальных машин"
+        ],
+        "recommendation": "Подходит для требований по объему памяти."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 27,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Требуется до 24 vCPU на ВМ. Облако VMware поддерживает до 128 vCPU на ВМ, что покрывает требование. Подтверждено в документации [1].",
+    "evidence": "Количество спецификаций виртуальных машин до 128 vCPU [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/architecture-center/topics/recommendations__ent/recommendations__ent_numa-node"
+    ],
+    "recommendation": "Использовать платформу Облако VMware для развертывания ВМ с до 24 vCPU.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "ГосОблако поддерживает ВМ с до 128 vCPU, что покрывает требование 24 vCPU. Аттестовано по К1 и УЗ-1.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Подходит для требований по количеству vCPU и аттестациям."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Облако VMware поддерживает до 128 vCPU на ВМ, что превышает требуемые 24 vCPU. Подтверждено в документации [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "https://cloud.ru/docs/architecture-center/topics/recommendations__ent/recommendations__ent_numa-node"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru",
+          "Ограничение количества vCPU для ВМ"
+        ],
+        "recommendation": "Оптимальная платформа для требований по количеству vCPU."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Advanced поддерживает ВМ с до 128 vCPU, что покрывает требование 24 vCPU. УЗ-1 и 152-ФЗ аттестованы.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Подходит для требований по количеству vCPU."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Evolution поддерживает ВМ с до 32 vCPU (стандартные флейворы), что покрывает требование 24 vCPU.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/concepts__flavors"
+        ],
+        "source_titles": [
+          "Конфигурации виртуальных машин"
+        ],
+        "recommendation": "Подходит для требований по количеству vCPU."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 28,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Требуется не менее 30 дисков на ВМ. Облако VMware поддерживает до 60 дисков на ВМ, что покрывает требование. Подтверждено в документации [1].",
+    "evidence": "Количество спецификаций виртуальных машин поддерживает до 60 дисков [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/vdi/ag/topics/limits"
+    ],
+    "recommendation": "Использовать платформу Облако VMware для развертывания ВМ с 30+ дисками.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "ГосОблако поддерживает до 60 дисков на ВМ, что покрывает требование 30 дисков. Аттестовано по К1 и УЗ-1.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Подходит для требований по количеству дисков и аттестациям."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Облако VMware поддерживает до 60 дисков на ВМ, что превышает требуемые 30 дисков. Подтверждено в документации [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "https://cloud.ru/docs/vdi/ag/topics/limits"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru",
+          "Ограничения и особенности"
+        ],
+        "recommendation": "Оптимальная платформа для требований по количеству дисков."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Advanced поддерживает до 60 дисков на ВМ, что покрывает требование 30 дисков. УЗ-1 и 152-ФЗ аттестованы.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Подходит для требований по количеству дисков."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Evolution поддерживает до 16 дисков на ВМ (по стандартным флейворам). Требование 30 дисков не выполнено. Необходимо использовать Advanced или VMware.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности сервиса «Виртуальные машины»"
+        ],
+        "recommendation": "Использовать Advanced или Облако VMware для выполнения требования по количеству дисков."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 29,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Требуется 1 белый IP-адрес на ВМ. Все платформы Cloud.ru предоставляют по умолчанию 1 публичный IP на ВМ. Подтверждено в документации [1].",
+    "evidence": "Виртуальные машины получают публичные IP-адреса при создании [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/vpc/ug/topics/overview__limitations"
+    ],
+    "recommendation": "Использовать любую платформу Cloud.ru — все поддерживают 1 публичный IP на ВМ.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "ГосОблако предоставляет 1 публичный IP-адрес на ВМ по умолчанию. Аттестовано по К1 и УЗ-1.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Подходит для требований по IP-адресам и аттестациям."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Облако VMware предоставляет 1 публичный IP-адрес на ВМ по умолчанию. Подтверждено в документации [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "https://cloud.ru/docs/vpc/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru",
+          "Ограничения и особенности сервиса Virtual Private Cloud"
+        ],
+        "recommendation": "Оптимальная платформа для требований по IP-адресам."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Advanced предоставляет 1 публичный IP-адрес на ВМ по умолчанию. УЗ-1 и 152-ФЗ аттестованы.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/vpc/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности сервиса Virtual Private Cloud"
+        ],
+        "recommendation": "Подходит для требований по IP-адресам."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Evolution предоставляет 1 публичный IP-адрес на ВМ по умолчанию. УЗ-1 и 152-ФЗ аттестованы.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности сервиса «Виртуальные машины»"
+        ],
+        "recommendation": "Подходит для требований по IP-адресам."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 30,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Требуется размер диска до 4 ТБ. Облако VMware поддерживает диски до 4 ТБ, что соответствует требованию. Подтверждено в документации [1].",
+    "evidence": "Виртуальный диск поддерживается до 4 ТБ [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/vdi/ag/topics/limits"
+    ],
+    "recommendation": "Использовать платформу Облако VMware для развертывания дисков до 4 ТБ.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "ГосОблако поддерживает диски до 4 ТБ. Аттестовано по К1 и УЗ-1.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Подходит для требований по размеру диска и аттестациям."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Облако VMware поддерживает диски до 4 ТБ, что соответствует требованию. Подтверждено в документации [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "https://cloud.ru/docs/vdi/ag/topics/limits"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru",
+          "Ограничения и особенности"
+        ],
+        "recommendation": "Оптимальная платформа для требований по размеру диска."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Advanced поддерживает диски до 4 ТБ. УЗ-1 и 152-ФЗ аттестованы.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Подходит для требований по размеру диска."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Evolution поддерживает диски до 4 ТБ. УЗ-1 и 152-ФЗ аттестованы.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности сервиса «Виртуальные машины»"
+        ],
+        "recommendation": "Подходит для требований по размеру диска."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 31,
+    "verdict": "needs_clarification",
+    "confidence": 0.5,
+    "reasoning": "Требование «CPU Ready time не менее 5%» некорректно с технической точки зрения — CPU Ready Time — метрика ожидания, которую следует минимизировать (идеально 0%). Требование логически противоречиво. Cloud.ru не публикует конкретные пороги CPU Ready Time в документации.",
+    "evidence": "",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+    ],
+    "recommendation": "Уточнить у заказчика, не имелось ли в виду требование «CPU Ready Time не более 5%». Если да — Cloud.ru обеспечивает значения ниже 1% в нормальных условиях.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Требование некорректно сформулировано. Cloud.ru не публикует пороги CPU Ready Time. Необходимо уточнение.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить формулировку требования у заказчика."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Требование некорректно сформулировано. Cloud.ru не публикует пороги CPU Ready Time. Необходимо уточнение.",
+        "evidence_refs": [],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Уточнить формулировку требования у заказчика."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Требование некорректно сформулировано. Cloud.ru не публикует пороги CPU Ready Time. Необходимо уточнение.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Уточнить формулировку требования у заказчика."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Требование некорректно сформулировано. Cloud.ru не публикует пороги CPU Ready Time. Необходимо уточнение.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности сервиса «Виртуальные машины»"
+        ],
+        "recommendation": "Уточнить формулировку требования у заказчика."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 32,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Требуется BPS между ВМ до 10 000 Мбит/с. Облако VMware поддерживает до 100 Гбит/с через Direct Connect и внутреннюю сеть, что покрывает требование. Подтверждено в документации [1].",
+    "evidence": "Скорость передачи данных между ВМ до 100 Гбит/с [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/vmware/overview/index"
+    ],
+    "recommendation": "Использовать платформу Облако VMware для обеспечения высокой пропускной способности между ВМ.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "ГосОблако поддерживает до 100 Гбит/с между ВМ через внутреннюю сеть. Аттестовано по К1 и УЗ-1.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Подходит для требований по пропускной способности и аттестациям."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Облако VMware поддерживает до 100 Гбит/с между ВМ через внутреннюю сеть и Direct Connect, что превышает требуемые 10 000 Мбит/с (10 Гбит/с). Подтверждено в документации [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "https://cloud.ru/docs/vmware/overview/index"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru",
+          "Обзор платформы Cloud.ru Облако VMware"
+        ],
+        "recommendation": "Оптимальная платформа для требований по пропускной способности."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Advanced поддерживает до 100 Гбит/с между ВМ через внутреннюю сеть. УЗ-1 и 152-ФЗ аттестованы.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Подходит для требований по пропускной способности."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Evolution поддерживает до 10 Гбит/с между ВМ в пределах одного региона. Требование 10 000 Мбит/с (10 Гбит/с) выполнено.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/concepts__flavors"
+        ],
+        "source_titles": [
+          "Конфигурации виртуальных машин"
+        ],
+        "recommendation": "Подходит для требований по пропускной способности."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]
+```

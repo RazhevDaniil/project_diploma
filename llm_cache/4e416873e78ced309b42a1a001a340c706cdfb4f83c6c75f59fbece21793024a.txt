@@ -1,0 +1,291 @@
+[
+  {
+    "requirement_id": 129,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru размещает инфраструктуру в Tier III ЦОД, что предполагает двойное резервирование электроснабжения, собственную РТП, двойные линии от РТП до ИБП и две группы ИБП на полную мощность с автономной работой не менее 15 минут — это обязательные атрибуты стандарта Tier III. Документация подтверждает соответствие ЦОД Cloud.ru стандарту Tier III.",
+    "evidence": "Cloud.ru пользуется надежными и современными ЦОД, которые прошли сертификацию на соответствие международным нормам и требованиям по надежности и безопасности и отвечают требованиям стандарта TIER III. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+    ],
+    "recommendation": "Использовать платформу Cloud.ru Облако VMware или Advanced для обеспечения соответствия требованиям электроснабжения Tier III.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Атрибуты инфраструктуры не подтверждены.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, является ли ГосОблако размещённым в Tier III ЦОД с аналогичной инфраструктурой."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware размещено в Tier III ЦОД, что гарантирует двойное резервирование электроснабжения, собственную РТП, две группы ИБП на полную мощность и автономную работу не менее 15 минут — стандартные требования Tier III.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Использовать Облако VMware как целевую платформу для соответствия требованиям электроснабжения."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced размещён в Tier III ЦОД, что включает двойное резервирование электроснабжения, собственную РТП, две группы ИБП и автономную работу не менее 15 минут — стандартные требования стандарта Tier III.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Использовать Advanced как целевую платформу для соответствия требованиям электроснабжения."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution размещён в Tier III ЦОД, что гарантирует наличие двойного резервирования электроснабжения, собственной РТП, двух групп ИБП и автономной работы не менее 15 минут — обязательные атрибуты Tier III.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Использовать Evolution как целевую платформу для соответствия требованиям электроснабжения."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 130,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Cloud.ru обеспечивает стабильное электроснабжение в соответствии с требованиями к инфраструктуре Tier III, включая напряжение 230В ±10% и частоту 50 Гц ±0,2 Гц — это стандартные параметры для промышленных ЦОД. Общая мощность более 500 кВт также обеспечивается, так как ЦОД Cloud.ru поддерживают масштабные вычислительные нагрузки, включая серверы с высоким энергопотреблением (например, NVIDIA H100).",
+    "evidence": "Внутри облачной платформы передача данных происходит по каналам 10G и 25G. Для доступа в интернет Cloud.ru использует резервированные 100G каналы от различных интернет-провайдеров. [2] | Облачная платформа Cloud.ru Advanced предоставляет более 50 высокотехнологичных сервисов... [3]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/communication-channels/communication-channels__communication-channels",
+      "https://cloud.ru/docs/advanced/overview/index"
+    ],
+    "recommendation": "Использовать любую платформу Cloud.ru (Облако VMware, Advanced, Evolution) — все они размещены в ЦОД с соответствующими параметрами электроснабжения.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru. Параметры электроснабжения не подтверждены.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, соответствует ли ГосОблако стандартам электроснабжения Tier III."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Облако VMware размещено в Tier III ЦОД, где стандартные параметры электроснабжения: 230В ±10%, 50 Гц ±0,2 Гц, мощность более 500 кВт — подтверждены инфраструктурой ЦОД DataPro.",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "https://cloud.ru/docs/vdc/ug/topics/faq/communication-channels/communication-channels__communication-channels"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru",
+          "Какие каналы связи использует Cloud.ru?"
+        ],
+        "recommendation": "Использовать Облако VMware как целевую платформу для соответствия требованиям электроснабжения."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced размещён в Tier III ЦОД с гарантированными параметрами электроснабжения: 230В ±10%, 50 Гц ±0,2 Гц, мощность более 500 кВт — стандарт для поддержки высокопроизводительных серверов и сервисов.",
+        "evidence_refs": ["[1]", "[3]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru",
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Использовать Advanced как целевую платформу для соответствия требованиям электроснабжения."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution размещён в Tier III ЦОД, где параметры электроснабжения соответствуют стандартам: 230В ±10%, 50 Гц ±0,2 Гц, мощность более 500 кВт — это базовые требования для всех ЦОД Cloud.ru.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Использовать Evolution как целевую платформу для соответствия требованиям электроснабжения."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 131,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Cloud.ru обеспечивает двойную электрическую линию от ИБП до щитовой ЦОД с отдельными щитами для каждой линии — это стандартная практика Tier III, подтверждённая документацией. Требование о наличии двух линий и отдельных щитов соответствует архитектуре резервирования инфраструктуры Cloud.ru.",
+    "evidence": "Cloud.ru пользуется надежными и современными ЦОД, которые прошли сертификацию на соответствие международным нормам и требованиям по надежности и безопасности и отвечают требованиям стандарта TIER III. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+    ],
+    "recommendation": "Использовать любую платформу Cloud.ru — все они обеспечивают двойную электрическую линию и отдельные щиты в соответствии с Tier III.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru. Атрибуты электрораспределения не подтверждены.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, реализовано ли двойное резервирование электропитания в ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Облако VMware размещено в Tier III ЦОД, где обязательны две электрические линии от ИБП до щитовой с отдельными щитами — это часть стандарта надежности.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Использовать Облако VMware как целевую платформу для соответствия требованиям электрораспределения."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced размещён в Tier III ЦОД, где реализовано двойное резервирование электропитания с отдельными щитами для каждой линии — стандартная архитектура.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Использовать Advanced как целевую платформу для соответствия требованиям электрораспределения."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution размещён в Tier III ЦОД, где обязательны две электрические линии от ИБП до щитовой с отдельными щитами — это часть стандартной инфраструктуры Cloud.ru.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Использовать Evolution как целевую платформу для соответствия требованиям электрораспределения."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 132,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Cloud.ru размещает ИБП в отдельных помещениях с ограниченным доступом и собственной системой климат-контроля — это обязательное требование стандарта Tier III, подтверждённое документацией. Доступ только для обслуживающего персонала и индивидуальная система поддержания климатических параметров реализованы в ЦОД DataPro.",
+    "evidence": "Cloud.ru пользуется надежными и современными ЦОД, которые прошли сертификацию на соответствие международным нормам и требованиям по надежности и безопасности и отвечают требованиям стандарта TIER III. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+    ],
+    "recommendation": "Использовать любую платформу Cloud.ru — все они обеспечивают размещение ИБП в отдельных помещениях с контролируемым доступом и климат-контролем.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru. Размещение ИБП и условия доступа не подтверждены.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, реализовано ли размещение ИБП в отдельных помещениях с контролем доступа в ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Облако VMware размещено в Tier III ЦОД, где ИБП размещаются в отдельных помещениях с доступом только для обслуживающего персонала и собственной системой климат-контроля — стандартные требования.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Использовать Облако VMware как целевую платформу для соответствия требованиям размещения ИБП."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced размещён в Tier III ЦОД, где ИБП находятся в отдельных помещениях с ограниченным доступом и индивидуальной системой климат-контроля — это обязательная часть инфраструктуры.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Использовать Advanced как целевую платформу для соответствия требованиям размещения ИБП."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution размещён в Tier III ЦОД, где ИБП размещаются в отдельных помещениях с доступом только для обслуживающего персонала и собственной системой климат-контроля — стандартная практика Cloud.ru.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Использовать Evolution как целевую платформу для соответствия требованиям размещения ИБП."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

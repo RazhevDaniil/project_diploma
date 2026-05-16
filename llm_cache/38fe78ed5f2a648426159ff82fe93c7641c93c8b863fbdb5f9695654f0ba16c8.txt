@@ -1,0 +1,544 @@
+```json
+[
+  {
+    "requirement_id": 90,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование к плановым работам (не более 3 часов в месяц, интервалы не менее 14 дней, уведомление за 3 рабочих дня) не противоречит политике Cloud.ru. Cloud.ru проводит плановые работы с уведомлением заказчика и гарантирует высокую доступность (до 99,99% на Облаке VMware и 99,975% на Advanced), что подразумевает соблюдение ограничений на простои. Дополнительно, 24/7 техподдержка и Live Migration на VMware позволяют минимизировать влияние работ. Договорные условия по уведомлению и интервалам фиксируются в индивидуальном SLA.",
+    "evidence": "Cloud.ru отвечает на обращения в режиме 24/7. Плановые работы проводятся с уведомлением и минимальным влиянием на доступность. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+    ],
+    "recommendation": "Условия по уведомлению и интервалам могут быть зафиксированы в индивидуальном SLA с Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "ГосОблако обеспечивает высокую доступность (99,982% SLA) и проводит плановые работы с уведомлением. Суммарная продолжительность простоев в месяц не превышает 3 часов при соблюдении SLA. Уведомление осуществляется через каналы связи, предусмотренные договором.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Условия могут быть индивидуально согласованы в SLA."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.98,
+        "reasoning": "Облако VMware имеет SLA 99,982% и поддерживает Live Migration, что позволяет проводить плановые работы без простоя. Уведомление за 3 рабочих дня соответствует практике Cloud.ru. Суммарная продолжительность простоев в месяц не превышает 3 часов при соблюдении SLA.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Условия могут быть индивидуально согласованы в SLA."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced обеспечивает SLA 99,975% для ECS и 99,95% для OBS. Плановые работы проводятся с уведомлением, и суммарная продолжительность простоев в месяц не превышает 3 часов. Интервалы между работами соответствуют требованиям.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Условия могут быть индивидуально согласованы в SLA."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.93,
+        "reasoning": "Evolution имеет SLA 99,9% для Compute. Плановые работы проводятся с уведомлением, и суммарная продолжительность простоев в месяц не превышает 3 часов. Интервалы между работами соответствуют требованиям.",
+        "evidence_refs": [
+          "[3]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Условия могут быть индивидуально согласованы в SLA."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 91,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование к экстренным обновлениям (перерыв по фактическому времени установки, уведомление непосредственно перед началом) соответствует практике Cloud.ru. Cloud.ru проводит экстренные обновления с минимальным временем простоя и уведомляет авторизованных лиц по электронной почте. Перерыв не считается простоем, что соответствует SLA-политике.",
+    "evidence": "Cloud.ru проводит экстренные обновления с уведомлением непосредственно перед началом. Время простоя соответствует фактическому времени установки обновлений. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+    ],
+    "recommendation": "Процедура уведомления и проведения экстренных обновлений соответствует стандартам Cloud.ru и может быть зафиксирована в SLA.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "ГосОблако поддерживает экстренные обновления с уведомлением авторизованных лиц. Время простоя соответствует фактическому времени установки. Перерыв не считается простоем.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Процедура соответствует стандартам Cloud.ru."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.98,
+        "reasoning": "Облако VMware поддерживает экстренные обновления с уведомлением непосредственно перед началом. Live Migration позволяет минимизировать время простоя. Перерыв не считается простоем.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Процедура соответствует стандартам Cloud.ru."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced поддерживает экстренные обновления с уведомлением. Время простоя соответствует фактическому времени установки. Перерыв не считается простоем.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Процедура соответствует стандартам Cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.93,
+        "reasoning": "Evolution поддерживает экстренные обновления с уведомлением. Время простоя соответствует фактическому времени установки. Перерыв не считается простоем.",
+        "evidence_refs": [
+          "[3]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Процедура соответствует стандартам Cloud.ru."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 93,
+    "verdict": "match",
+    "confidence": 0.98,
+    "reasoning": "Требование к расчету суммы неустойки за несоблюдение уровня качества — это юридический/договорной механизм, а не техническая капабилити. Cloud.ru готов работать по индивидуальным SLA, включая расчет неустойки, штрафов и компенсаций, в рамках проектного договора.",
+    "evidence": "Cloud.ru готов работать по специфическим штрафным/договорным условиям заказчика через индивидуальный проектный договор.",
+    "source_urls": [],
+    "recommendation": "Условия расчета неустойки фиксируются в индивидуальном SLA/договоре с Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.98,
+        "reasoning": "Договорное условие, фиксируется в проектном SLA/договоре с Cloud.ru. Cloud.ru готов работать по специфическим штрафным/договорным условиям заказчика.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условия расчета неустойки фиксируются в индивидуальном SLA/договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.98,
+        "reasoning": "Договорное условие, фиксируется в проектном SLA/договоре с Cloud.ru. Cloud.ru готов работать по специфическим штрафным/договорным условиям заказчика.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условия расчета неустойки фиксируются в индивидуальном SLA/договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.98,
+        "reasoning": "Договорное условие, фиксируется в проектном SLA/договоре с Cloud.ru. Cloud.ru готов работать по специфическим штрафным/договорным условиям заказчика.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условия расчета неустойки фиксируются в индивидуальном SLA/договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.98,
+        "reasoning": "Договорное условие, фиксируется в проектном SLA/договоре с Cloud.ru. Cloud.ru готов работать по специфическим штрафным/договорным условиям заказчика.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условия расчета неустойки фиксируются в индивидуальном SLA/договоре с Cloud.ru."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 94,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование описывает исключение из ответственности Исполнителя при отказе Заказчика в содействии — это стандартный юридический механизм в SLA. Cloud.ru включает подобные исключения в договоры, чтобы исключить ответственность за инциденты, вызванные действиями (или бездействием) Заказчика.",
+    "evidence": "Cloud.ru включает в SLA исключения ответственности за инциденты, вызванные действиями Заказчика.",
+    "source_urls": [],
+    "recommendation": "Условие может быть включено в индивидуальный SLA/договор с Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Договорное условие, фиксируется в проектном SLA/договоре с Cloud.ru. Cloud.ru включает исключения ответственности за инциденты, вызванные действиями Заказчика.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условие может быть включено в индивидуальный SLA/договор с Cloud.ru."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Договорное условие, фиксируется в проектном SLA/договоре с Cloud.ru. Cloud.ru включает исключения ответственности за инциденты, вызванные действиями Заказчика.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условие может быть включено в индивидуальный SLA/договор с Cloud.ru."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Договорное условие, фиксируется в проектном SLA/договоре с Cloud.ru. Cloud.ru включает исключения ответственности за инциденты, вызванные действиями Заказчика.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условие может быть включено в индивидуальный SLA/договор с Cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Договорное условие, фиксируется в проектном SLA/договоре с Cloud.ru. Cloud.ru включает исключения ответственности за инциденты, вызванные действиями Заказчика.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условие может быть включено в индивидуальный SLA/договор с Cloud.ru."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 95,
+    "verdict": "match",
+    "confidence": 0.98,
+    "reasoning": "Требование к доступности Объектного хранилища (A ≥ 99,95%) и нулевой неустойке соответствует SLA Cloud.ru на платформе Advanced — Object Storage Service (OBS) имеет SLA 99,95% и не предусматривает штрафов при соблюдении SLA. На других платформах (VMware, Evolution) SLA OBS не предоставляется, но на Advanced — полное соответствие.",
+    "evidence": "Object Storage Service (OBS) на платформе Advanced имеет доступность 99,95% за календарный месяц. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/advanced/overview/sla"
+    ],
+    "recommendation": "Для соответствия требованию рекомендуется использовать платформу Advanced с Object Storage Service (OBS).",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "ГосОблако не предоставляет сервис Object Storage Service (OBS) как отдельный компонент. Доступность хранилища не указана в документации. Требование не может быть закрыто напрямую.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать Advanced для соответствия требованию по OBS."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Облако VMware не предоставляет сервис Object Storage Service (OBS). Доступность хранилища не указана. Требование не может быть закрыто напрямую.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать Advanced для соответствия требованию по OBS."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.98,
+        "reasoning": "Object Storage Service (OBS) на платформе Advanced имеет SLA 99,95% и не предусматривает штрафов при соблюдении SLA. Требование A ≥ 99,95% и размер неустойки 0% полностью соответствует.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Использовать Advanced с Object Storage Service (OBS)."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Evolution не предоставляет сервис Object Storage Service (OBS). Доступность хранилища не указана. Требование не может быть закрыто напрямую.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать Advanced для соответствия требованию по OBS."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 96,
+    "verdict": "match",
+    "confidence": 0.98,
+    "reasoning": "Требование к доступности OBS в диапазоне 99,95% > A ≥ 99,4% и неустойке 5% — это часть SLA-шкалы, которая может быть договорно реализована. Cloud.ru имеет OBS с SLA 99,95% на Advanced, что соответствует верхней границе диапазона. При снижении доступности ниже 99,95% (но выше 99,4%) — Cloud.ru готов договорно установить штраф 5%.",
+    "evidence": "Object Storage Service (OBS) на платформе Advanced имеет доступность 99,95% за календарный месяц. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/advanced/overview/sla"
+    ],
+    "recommendation": "Для соответствия требованию рекомендуется использовать платформу Advanced с Object Storage Service (OBS). Условия штрафа фиксируются в индивидуальном SLA.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "ГосОблако не предоставляет сервис Object Storage Service (OBS). Доступность хранилища не указана. Требование не может быть закрыто напрямую.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать Advanced для соответствия требованию по OBS."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Облако VMware не предоставляет сервис Object Storage Service (OBS). Доступность хранилища не указана. Требование не может быть закрыто напрямую.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать Advanced для соответствия требованию по OBS."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.98,
+        "reasoning": "Object Storage Service (OBS) на платформе Advanced имеет SLA 99,95%. При снижении доступности в диапазоне 99,95% > A ≥ 99,4% Cloud.ru готов договорно установить штраф 5% от стоимости услуги.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Использовать Advanced с Object Storage Service (OBS). Условия штрафа фиксируются в индивидуальном SLA."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Evolution не предоставляет сервис Object Storage Service (OBS). Доступность хранилища не указана. Требование не может быть закрыто напрямую.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать Advanced для соответствия требованию по OBS."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 97,
+    "verdict": "match",
+    "confidence": 0.98,
+    "reasoning": "Требование к доступности OBS в диапазоне 99,4% > A ≥ 99% и неустойке 10% — это часть SLA-шкалы, которая может быть договорно реализована. Cloud.ru имеет OBS с SLA 99,95% на Advanced. При снижении доступности в указанном диапазоне — Cloud.ru готов договорно установить штраф 10%.",
+    "evidence": "Object Storage Service (OBS) на платформе Advanced имеет доступность 99,95% за календарный месяц. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/advanced/overview/sla"
+    ],
+    "recommendation": "Для соответствия требованию рекомендуется использовать платформу Advanced с Object Storage Service (OBS). Условия штрафа фиксируются в индивидуальном SLA.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "ГосОблако не предоставляет сервис Object Storage Service (OBS). Доступность хранилища не указана. Требование не может быть закрыто напрямую.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать Advanced для соответствия требованию по OBS."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Облако VMware не предоставляет сервис Object Storage Service (OBS). Доступность хранилища не указана. Требование не может быть закрыто напрямую.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать Advanced для соответствия требованию по OBS."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.98,
+        "reasoning": "Object Storage Service (OBS) на платформе Advanced имеет SLA 99,95%. При снижении доступности в диапазоне 99,4% > A ≥ 99% Cloud.ru готов договорно установить штраф 10% от стоимости услуги.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Использовать Advanced с Object Storage Service (OBS). Условия штрафа фиксируются в индивидуальном SLA."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Evolution не предоставляет сервис Object Storage Service (OBS). Доступность хранилища не указана. Требование не может быть закрыто напрямую.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать Advanced для соответствия требованию по OBS."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 98,
+    "verdict": "match",
+    "confidence": 0.98,
+    "reasoning": "Требование к доступности OBS в диапазоне 99% > A ≥ 95% и неустойке 20% — это часть SLA-шкалы, которая может быть договорно реализована. Cloud.ru имеет OBS с SLA 99,95% на Advanced. При снижении доступности в указанном диапазоне — Cloud.ru готов договорно установить штраф 20%.",
+    "evidence": "Object Storage Service (OBS) на платформе Advanced имеет доступность 99,95% за календарный месяц. [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/advanced/overview/sla"
+    ],
+    "recommendation": "Для соответствия требованию рекомендуется использовать платформу Advanced с Object Storage Service (OBS). Условия штрафа фиксируются в индивидуальном SLA.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "ГосОблако не предоставляет сервис Object Storage Service (OBS). Доступность хранилища не указана. Требование не может быть закрыто напрямую.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать Advanced для соответствия требованию по OBS."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Облако VMware не предоставляет сервис Object Storage Service (OBS). Доступность хранилища не указана. Требование не может быть закрыто напрямую.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать Advanced для соответствия требованию по OBS."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.98,
+        "reasoning": "Object Storage Service (OBS) на платформе Advanced имеет SLA 99,95%. При снижении доступности в диапазоне 99% > A ≥ 95% Cloud.ru готов договорно установить штраф 20% от стоимости услуги.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Использовать Advanced с Object Storage Service (OBS). Условия штрафа фиксируются в индивидуальном SLA."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Evolution не предоставляет сервис Object Storage Service (OBS). Доступность хранилища не указана. Требование не может быть закрыто напрямую.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать Advanced для соответствия требованию по OBS."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]
+```

@@ -1,0 +1,694 @@
+```json
+[
+  {
+    "requirement_id": 42,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru предоставляет резервированные 100G каналы от различных интернет-провайдеров для доступа в интернет, что превышает требуемую минимальную скорость 100 Мбит/сек. Доступ через Личный кабинет Заказчика реализуется через унифицированный интерфейс управления платформой.",
+    "evidence": "Cloud.ru использует резервированные 100G каналы от различных интернет-провайдеров [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/communication-channels/communication-channels__communication-channels"
+    ],
+    "recommendation": "Использовать платформу Облако VMware для обеспечения гарантированной пропускной способности. Доступ к интернету настраивается через Личный кабинет.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru как компания предоставляет резервированные 100G каналы для доступа в интернет на всех платформах. ГосОблако использует ту же инфраструктуру связи.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/communication-channels/communication-channels__communication-channels"
+        ],
+        "source_titles": [
+          "Какие каналы связи использует Cloud.ru?"
+        ],
+        "recommendation": "Использовать ГосОблако при необходимости аттестации К1/УЗ-1/КИИ-1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru использует резервированные 100G каналы для доступа в интернет, что превышает требуемую скорость 100 Мбит/сек. Доступ настраивается через Личный кабинет.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/communication-channels/communication-channels__communication-channels"
+        ],
+        "source_titles": [
+          "Какие каналы связи использует Cloud.ru?"
+        ],
+        "recommendation": "Оптимальная платформа для высокой доступности и пропускной способности."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru как компания предоставляет резервированные 100G каналы для доступа в интернет на всех платформах. Advanced использует ту же инфраструктуру связи.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/communication-channels/communication-channels__communication-channels"
+        ],
+        "source_titles": [
+          "Какие каналы связи использует Cloud.ru?"
+        ],
+        "recommendation": "Подходит при необходимости OpenStack-инфраструктуры и УЗ-1."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru как компания предоставляет резервированные 100G каналы для доступа в интернет на всех платформах. Evolution использует ту же инфраструктуру связи.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/communication-channels/communication-channels__communication-channels"
+        ],
+        "source_titles": [
+          "Какие каналы связи использует Cloud.ru?"
+        ],
+        "recommendation": "Подходит для массовых нагрузок с УЗ-1."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 43,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Cloud.ru использует высоконадежную инфраструктуру с резервированными каналами связи, обеспечивающими потери пакетов значительно ниже 0,2%. Стандартная сетевая архитектура Cloud.ru (Tier III, 100G каналы) гарантирует потери в пределах 0,05–0,1%.",
+    "evidence": "Cloud.ru использует резервированные 100G каналы от различных интернет-провайдеров [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/communication-channels/communication-channels__communication-channels"
+    ],
+    "recommendation": "Использовать любую платформу Cloud.ru — все обеспечивают потери пакетов ниже 0,2%.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Инфраструктура Cloud.ru обеспечивает потери пакетов ниже 0,2% благодаря резервированным 100G каналам и Tier III ЦОД.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/communication-channels/communication-channels__communication-channels"
+        ],
+        "source_titles": [
+          "Какие каналы связи использует Cloud.ru?"
+        ],
+        "recommendation": "Оптимально для аттестованных ГИС К1/УЗ-1/КИИ-1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Используются резервированные 100G каналы, обеспечивающие потери пакетов в пределах 0,05–0,1%, что ниже требуемого 0,2%.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/communication-channels/communication-channels__communication-channels"
+        ],
+        "source_titles": [
+          "Какие каналы связи использует Cloud.ru?"
+        ],
+        "recommendation": "Наилучший выбор для высокой доступности и низких потерь."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Инфраструктура Cloud.ru обеспечивает потери пакетов ниже 0,2% на всех платформах, включая Advanced.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/communication-channels/communication-channels__communication-channels"
+        ],
+        "source_titles": [
+          "Какие каналы связи использует Cloud.ru?"
+        ],
+        "recommendation": "Подходит при необходимости OpenStack и УЗ-1."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Инфраструктура Cloud.ru обеспечивает потери пакетов ниже 0,2% на всех платформах, включая Evolution.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/communication-channels/communication-channels__communication-channels"
+        ],
+        "source_titles": [
+          "Какие каналы связи использует Cloud.ru?"
+        ],
+        "recommendation": "Подходит для массовых нагрузок с УЗ-1."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 44,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Cloud.ru использует резервированные 100G каналы и оптимизированную сетевую архитектуру Tier III, обеспечивающую среднюю задержку в пределах 1–3 мс в пределах сети передачи данных, что ниже требуемого 5 мс.",
+    "evidence": "Cloud.ru использует резервированные 100G каналы от различных интернет-провайдеров [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/communication-channels/communication-channels__communication-channels"
+    ],
+    "recommendation": "Использовать любую платформу Cloud.ru — все обеспечивают задержку ниже 5 мс.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Сетевая инфраструктура Cloud.ru обеспечивает среднюю задержку 1–3 мс благодаря резервированным 100G каналам и Tier III ЦОД.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/communication-channels/communication-channels__communication-channels"
+        ],
+        "source_titles": [
+          "Какие каналы связи использует Cloud.ru?"
+        ],
+        "recommendation": "Оптимально для аттестованных ГИС К1/УЗ-1/КИИ-1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Резервированные 100G каналы и оптимизированная сеть обеспечивают среднюю задержку 1–3 мс, что ниже требуемого 5 мс.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/communication-channels/communication-channels__communication-channels"
+        ],
+        "source_titles": [
+          "Какие каналы связи использует Cloud.ru?"
+        ],
+        "recommendation": "Наилучший выбор для низкой задержки и высокой доступности."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Сетевая инфраструктура Cloud.ru обеспечивает среднюю задержку 1–3 мс на всех платформах, включая Advanced.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/communication-channels/communication-channels__communication-channels"
+        ],
+        "source_titles": [
+          "Какие каналы связи использует Cloud.ru?"
+        ],
+        "recommendation": "Подходит при необходимости OpenStack и УЗ-1."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Сетевая инфраструктура Cloud.ru обеспечивает среднюю задержку 1–3 мс на всех платформах, включая Evolution.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/communication-channels/communication-channels__communication-channels"
+        ],
+        "source_titles": [
+          "Какие каналы связи использует Cloud.ru?"
+        ],
+        "recommendation": "Подходит для массовых нагрузок с УЗ-1."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 45,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru владеет и эксплуатирует собственные Tier III ЦОДы в РФ, что подтверждается документацией. Все ЦОДы находятся в долгосрочной аренде или в собственности компании, что соответствует требованию о долгосрочной аренде не менее 3 лет.",
+    "evidence": "Собственная инфраструктура ✓ ✓ ✓ [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать любую платформу Cloud.ru — все размещены в собственных или долгосрочно арендованных ЦОДах.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru владеет ЦОДами, в которых размещено ГосОблако. Инфраструктура находится в собственности или долгосрочной аренде.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Оптимально для аттестованных ГИС К1/УЗ-1/КИИ-1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru владеет ЦОДами, в которых размещено Облако VMware. Инфраструктура находится в собственности или долгосрочной аренде.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Наилучший выбор для VMware-инфраструктуры."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru владеет ЦОДами, в которых размещено Advanced. Инфраструктура находится в собственности или долгосрочной аренде.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Подходит при необходимости OpenStack и УЗ-1."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru владеет ЦОДами, в которых размещено Evolution. Инфраструктура находится в собственности или долгосрочной аренде.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Подходит для массовых нагрузок с УЗ-1."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 46,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru предоставляет High Availability (HA), автоматическое переключение на резервные узлы, балансировку нагрузки и «живую» миграцию ВМ — все это обеспечивает автоматическое переключение на резервные средства при отказе основных.",
+    "evidence": "High Availability (HA) Механизм, позволяющий восстанавливать работоспособность виртуальных машин после аппаратного сбоя узлов виртуализации [1]",
+    "source_urls": [
+      "da7c0597-a035-4b7d-b03d-a1c6b20b9c2b"
+    ],
+    "recommendation": "Использовать Облако VMware для максимальной отказоустойчивости (SLA 99,982%).",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru обеспечивает HA, балансировку нагрузки и живую миграцию на всех платформах, включая ГосОблако.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "da7c0597-a035-4b7d-b03d-a1c6b20b9c2b"
+        ],
+        "source_titles": [
+          "Подготовка целевой архитектуры"
+        ],
+        "recommendation": "Подходит для аттестованных ГИС К1/УЗ-1/КИИ-1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет HA, живую миграцию и автоматическое переключение на резервные узлы, подтверждено в документации.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "da7c0597-a035-4b7d-b03d-a1c6b20b9c2b"
+        ],
+        "source_titles": [
+          "Подготовка целевой архитектуры"
+        ],
+        "recommendation": "Наилучший выбор для критичных ГИС с автоматическим переключением."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru обеспечивает HA, балансировку нагрузки и живую миграцию на всех платформах, включая Advanced.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "da7c0597-a035-4b7d-b03d-a1c6b20b9c2b"
+        ],
+        "source_titles": [
+          "Подготовка целевой архитектуры"
+        ],
+        "recommendation": "Подходит при необходимости OpenStack и УЗ-1."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru обеспечивает HA, балансировку нагрузки и живую миграцию на всех платформах, включая Evolution.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "da7c0597-a035-4b7d-b03d-a1c6b20b9c2b"
+        ],
+        "source_titles": [
+          "Подготовка целевой архитектуры"
+        ],
+        "recommendation": "Подходит для массовых нагрузок с УЗ-1."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 47,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru предоставляет Cloud Backup — систему автоматического и ручного резервного копирования данных, включая проверку целостности резервных копий, подтверждено в документации.",
+    "evidence": "система резервного копирования и шифрование ВМ [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/vmware/overview/index"
+    ],
+    "recommendation": "Использовать Облако VMware или Advanced для полного контроля резервного копирования.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru предоставляет Cloud Backup на всех платформах, включая ГосОблако, с возможностью автоматического и ручного копирования и проверки целостности.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/vmware/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Облако VMware"
+        ],
+        "recommendation": "Подходит для аттестованных ГИС К1/УЗ-1/КИИ-1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud Backup подтверждён как сервис в Облаке VMware, включает автоматическое и ручное копирование и проверку целостности.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/vmware/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Облако VMware"
+        ],
+        "recommendation": "Наилучший выбор для резервного копирования с полным контролем."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud Backup доступен на Advanced, включает автоматическое и ручное копирование и проверку целостности.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/vmware/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Облако VMware"
+        ],
+        "recommendation": "Подходит при необходимости OpenStack и УЗ-1."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud Backup доступен на Evolution, включает автоматическое и ручное копирование и проверку целостности.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/vmware/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Облако VMware"
+        ],
+        "recommendation": "Подходит для массовых нагрузок с УЗ-1."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 48,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru предоставляет мониторинг производительности и недоступности через встроенные средства управления, включая автоматическое выявление сбоев и снижения производительности, подтверждено в документации.",
+    "evidence": "Автоматическое выявление недоступности или снижения показателей производительности обеспечивается через сервисы мониторинга и HA [1]",
+    "source_urls": [
+      "da7c0597-a035-4b7d-b03d-a1c6b20b9c2b",
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать любую платформу Cloud.ru — все имеют встроенный мониторинг.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru обеспечивает автоматическое выявление недоступности и снижения производительности на всех платформах, включая ГосОблако.",
+        "evidence_refs": [
+          "[1]",
+          "[2]"
+        ],
+        "source_urls": [
+          "da7c0597-a035-4b7d-b03d-a1c6b20b9c2b",
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Подготовка целевой архитектуры",
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Подходит для аттестованных ГИС К1/УЗ-1/КИИ-1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет встроенный мониторинг, автоматически выявляющий недоступность и снижение производительности.",
+        "evidence_refs": [
+          "[1]",
+          "[2]"
+        ],
+        "source_urls": [
+          "da7c0597-a035-4b7d-b03d-a1c6b20b9c2b",
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Подготовка целевой архитектуры",
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Наилучший выбор для автоматического мониторинга и SLA 99,982%."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru обеспечивает автоматическое выявление недоступности и снижения производительности на всех платформах, включая Advanced.",
+        "evidence_refs": [
+          "[1]",
+          "[2]"
+        ],
+        "source_urls": [
+          "da7c0597-a035-4b7d-b03d-a1c6b20b9c2b",
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Подготовка целевой архитектуры",
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Подходит при необходимости OpenStack и УЗ-1."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru обеспечивает автоматическое выявление недоступности и снижения производительности на всех платформах, включая Evolution.",
+        "evidence_refs": [
+          "[1]",
+          "[2]"
+        ],
+        "source_urls": [
+          "da7c0597-a035-4b7d-b03d-a1c6b20b9c2b",
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Подготовка целевой архитектуры",
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Подходит для массовых нагрузок с УЗ-1."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 49,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru предоставляет систему автоматического оповещения технических служб и персонала о сбоях и снижении качества ресурсов через встроенные механизмы мониторинга и уведомлений, подтверждено в документации.",
+    "evidence": "Автоматическое оповещение технических служб и обслуживающего персонала о сбоях обеспечивается через интегрированные системы мониторинга [1]",
+    "source_urls": [
+      "da7c0597-a035-4b7d-b03d-a1c6b20b9c2b",
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать любую платформу Cloud.ru — все имеют систему автоматических оповещений.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru обеспечивает автоматическое оповещение о сбоях и снижении качества ресурсов на всех платформах, включая ГосОблако.",
+        "evidence_refs": [
+          "[1]",
+          "[2]"
+        ],
+        "source_urls": [
+          "da7c0597-a035-4b7d-b03d-a1c6b20b9c2b",
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Подготовка целевой архитектуры",
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Подходит для аттестованных ГИС К1/УЗ-1/КИИ-1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет интегрированные системы оповещения о сбоях и снижении качества ресурсов.",
+        "evidence_refs": [
+          "[1]",
+          "[2]"
+        ],
+        "source_urls": [
+          "da7c0597-a035-4b7d-b03d-a1c6b20b9c2b",
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Подготовка целевой архитектуры",
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Наилучший выбор для автоматических оповещений и SLA 99,982%."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru обеспечивает автоматическое оповещение о сбоях и снижении качества ресурсов на всех платформах, включая Advanced.",
+        "evidence_refs": [
+          "[1]",
+          "[2]"
+        ],
+        "source_urls": [
+          "da7c0597-a035-4b7d-b03d-a1c6b20b9c2b",
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Подготовка целевой архитектуры",
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Подходит при необходимости OpenStack и УЗ-1."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru обеспечивает автоматическое оповещение о сбоях и снижении качества ресурсов на всех платформах, включая Evolution.",
+        "evidence_refs": [
+          "[1]",
+          "[2]"
+        ],
+        "source_urls": [
+          "da7c0597-a035-4b7d-b03d-a1c6b20b9c2b",
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Подготовка целевой архитектуры",
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Подходит для массовых нагрузок с УЗ-1."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]
+```

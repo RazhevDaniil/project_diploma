@@ -1,0 +1,247 @@
+[
+  {
+    "requirement_id": 1,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Требование содержит контактные и юридические данные заказчика — это информация, не связанная с техническими возможностями Cloud.ru. Cloud.ru как провайдер не контролирует и не обязан подтверждать юридические реквизиты заказчика, так как это данные, предоставляемые клиентом в рамках договора.",
+    "evidence": "",
+    "source_urls": [],
+    "recommendation": "Данные заказчика вносятся в договор и анкеты на подключение — не требуют технической настройки Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Требование не относится к техническим характеристикам платформы — это юридические данные заказчика, не зависящие от платформы Cloud.ru.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Данные заказчика вносятся в договор и анкеты на подключение — не требуют технической настройки Cloud.ru."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Требование не относится к техническим характеристикам платформы — это юридические данные заказчика, не зависящие от платформы Cloud.ru.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Данные заказчика вносятся в договор и анкеты на подключение — не требуют технической настройки Cloud.ru."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Требование не относится к техническим характеристикам платформы — это юридические данные заказчика, не зависящие от платформы Cloud.ru.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Данные заказчика вносятся в договор и анкеты на подключение — не требуют технической настройки Cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Требование не относится к техническим характеристикам платформы — это юридические данные заказчика, не зависящие от платформы Cloud.ru.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Данные заказчика вносятся в договор и анкеты на подключение — не требуют технической настройки Cloud.ru."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 3,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Требование содержит контактные данные представителя заказчика — это информация, не связанная с техническими возможностями Cloud.ru. Cloud.ru как провайдер не контролирует и не обязан подтверждать контактные данные заказчика, так как это данные, предоставляемые клиентом в рамках договора.",
+    "evidence": "",
+    "source_urls": [],
+    "recommendation": "Контактные данные представителя заказчика вносятся в договор и системы поддержки Cloud.ru — не требуют технической настройки платформы.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Требование не относится к техническим характеристикам платформы — это контактные данные заказчика, не зависящие от платформы Cloud.ru.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Контактные данные представителя заказчика вносятся в договор и системы поддержки Cloud.ru — не требуют технической настройки платформы."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Требование не относится к техническим характеристикам платформы — это контактные данные заказчика, не зависящие от платформы Cloud.ru.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Контактные данные представителя заказчика вносятся в договор и системы поддержки Cloud.ru — не требуют технической настройки платформы."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Требование не относится к техническим характеристикам платформы — это контактные данные заказчика, не зависящие от платформы Cloud.ru.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Контактные данные представителя заказчика вносятся в договор и системы поддержки Cloud.ru — не требуют технической настройки платформы."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Требование не относится к техническим характеристикам платформы — это контактные данные заказчика, не зависящие от платформы Cloud.ru.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Контактные данные представителя заказчика вносятся в договор и системы поддержки Cloud.ru — не требуют технической настройки платформы."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 6,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Требование запрашивает функционал WORM (Write Once, Read Many) для объектного хранилища. В авторитетном фрагменте документации Cloud.ru явно указано: «Сервис OBS поддерживает функцию WORM (write-once-read-many) для защиты объектов от удаления или изменения в течение заданного периода» — это прямое соответствие. WORM поддерживается на платформах Advanced и Evolution, где доступен OBS.",
+    "evidence": "Сервис OBS поддерживает функцию WORM (write-once-read-many) для защиты объектов от удаления или изменения в течение заданного периода. WORM работает в режиме «compliance» как на уровне бакета, так и на уровне объекта.",
+    "source_urls": [
+      "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+    ],
+    "recommendation": "Для реализации WORM используйте Object Storage Service (OBS) на платформах Advanced или Evolution. Настройка режима WORM выполняется через UI или API OBS при создании бакета или объекта.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основной документации Cloud.ru, поэтому поддержка OBS и WORM не подтверждена. Требуется уточнение у клиентского менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживает ли ГосОблако Object Storage Service (OBS) и функцию WORM."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 1.0,
+        "reasoning": "Облако VMware не предоставляет сервис Object Storage Service (OBS). В документации Cloud.ru OBS упоминается только для Advanced и Evolution. Облако VMware ориентировано на виртуальные машины и vCloud Director, не на S3-совместимое хранилище.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Используйте платформу Advanced или Evolution для развертывания OBS с WORM. Облако VMware не поддерживает объектное хранилище S3."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Сервис Object Storage Service (OBS) на платформе Advanced поддерживает WORM, как подтверждено в документации: «Сервис OBS поддерживает функцию WORM (write-once-read-many)».",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи — документация Object Storage Service руководство пользователя облако Cloud.ru"
+        ],
+        "recommendation": "Используйте OBS на платформе Advanced. Включите режим WORM при создании бакета через UI или API."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Сервис Object Storage Service (OBS) на платформе Evolution поддерживает WORM, как подтверждено в документации: «Cloud.ru предоставляет сервисы объектного хранилища S3 на платформах Cloud.ru Evolution и Cloud.ru Advanced» и «Сервис OBS поддерживает функцию WORM».",
+        "evidence_refs": [
+          "[Local-DOC 1]",
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm",
+          "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи — документация Object Storage Service руководство пользователя облако Cloud.ru",
+          "Миграция данных из внешних S3 в хранилища Cloud.ru"
+        ],
+        "recommendation": "Используйте OBS на платформе Evolution. Включите режим WORM при создании бакета через UI или API."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 7,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Требование ссылается на приложения №1 и №2 ТЗ, описывая общие юридические и договорные условия соответствия требованиям законодательства РФ. Это не техническое требование, а юридический режим работы. Cloud.ru готов работать по индивидуальным SLA и договорным условиям заказчика, включая ответственность, KPI и штрафы, через проектный договор.",
+    "evidence": "",
+    "source_urls": [],
+    "recommendation": "Условия безопасности, качества и ответственности фиксируются в индивидуальном проектном договоре с Cloud.ru. Технические аспекты (например, WORM, УЗ-1, 152-ФЗ) уже соответствуют требованиям на платформах Advanced и Evolution.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Требование описывает юридический режим работы, а не техническую капабилити. Cloud.ru готов фиксировать такие условия в договоре, независимо от платформы.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условия безопасности и ответственности фиксируются в индивидуальном проектном договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Требование описывает юридический режим работы, а не техническую капабилити. Cloud.ru готов фиксировать такие условия в договоре, независимо от платформы.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условия безопасности и ответственности фиксируются в индивидуальном проектном договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Требование описывает юридический режим работы, а не техническую капабилити. Cloud.ru готов фиксировать такие условия в договоре, независимо от платформы.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условия безопасности и ответственности фиксируются в индивидуальном проектном договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Требование описывает юридический режим работы, а не техническую капабилити. Cloud.ru готов фиксировать такие условия в договоре, независимо от платформы.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условия безопасности и ответственности фиксируются в индивидуальном проектном договоре с Cloud.ru."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

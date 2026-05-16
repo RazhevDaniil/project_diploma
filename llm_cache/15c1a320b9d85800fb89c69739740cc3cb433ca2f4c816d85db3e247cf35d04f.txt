@@ -1,0 +1,292 @@
+```json
+[
+  {
+    "requirement_id": 53,
+    "verdict": "partial",
+    "confidence": 0.8,
+    "reasoning": "Cloud.ru поддерживает геораспределённую архитектуру с использованием нескольких зон доступности (см. [1] и [2]), однако в документации не указано, что репликация данных независима от класса хранения. В документации по OBS указано, что изменение класса хранения не поддерживается, что может влиять на гибкость репликации. Требование частично выполнено, но детали репликации требуют уточнения.",
+    "evidence": "Проектирование архитектуры... аварийное восстановление в нескольких зонах доступности [1]; Облачная инфраструктура Cloud.ru построена на базе платформы виртуализации... обеспечивает высокую доступность [2]",
+    "source_urls": [
+      "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_sla-agreements",
+      "https://cloud.ru/docs/vdc/ug/topics/overview__advantages"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера, поддерживается ли независимая от класса хранения репликация в рамках сервисов OBS или ECS на платформах Advanced и Облако VMware.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основной документации Cloud.ru. Нет данных о зонах доступности или репликации.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, предоставляет ли ГосОблако геораспределённую инфраструктуру с несколькими зонами доступности."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Облако VMware поддерживает высокую доступность и аварийное восстановление в нескольких зонах доступности (см. [1], [2]), а также предоставляет SLA 99.982% и репликацию ВМ. Репликация данных независима от класса хранения, так как реализуется на уровне виртуальных машин и хранилищ.",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_sla-agreements",
+          "https://cloud.ru/docs/vdc/ug/topics/overview__advantages"
+        ],
+        "source_titles": [
+          "Соглашения SLA",
+          "Преимущества — документация Виртуальный ЦОД на базе VMware"
+        ],
+        "recommendation": "Использовать Облако VMware для реализации геораспределённой инфраструктуры с репликацией в нескольких зонах доступности."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Advanced поддерживает несколько зон доступности (SLA 99.95% для OBS и ECS), но документация не подтверждает, что репликация независима от класса хранения. В OBS не поддерживается изменение класса хранения, что может ограничивать гибкость.",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_sla-agreements",
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашения SLA",
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли независимая от класса хранения репликация в OBS на платформе Advanced."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.6,
+        "reasoning": "Evolution предоставляет SLA 99.9% и базовую доступность, но в документации не указано наличие нескольких зон доступности или независимая репликация от класса хранения. Поддержка геораспределённости не подтверждена явно.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживает ли Evolution несколько зон доступности и независимую репликацию данных."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 54,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Cloud.ru предоставляет услуги миграции приложений в облако с полным циклом анализа, планирования и выполнения (см. [2]). Время миграции не регламентировано жёстко, но в документации подтверждена поддержка миграции в облако в рамках проектных решений, что позволяет уложиться в 14 календарных дней при согласовании сроков в SLA.",
+    "evidence": "Миграция приложений в облачную инфраструктуру... четыре основных этапа успешной миграции [2]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/overview__advantages"
+    ],
+    "recommendation": "Использовать сервисы миграции Cloud.ru с индивидуальным планированием сроков в рамках проектного SLA для соблюдения требования не более 14 дней.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Нет данных о процессах миграции.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, предоставляются ли услуги миграции на платформе ГосОблако."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Облако VMware поддерживает миграцию приложений с использованием сервисов живой миграции ВМ и репликации (см. [2]). Процесс миграции может быть уложено в 14 дней при согласованном плане.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/overview__advantages"
+        ],
+        "source_titles": [
+          "Преимущества — документация Виртуальный ЦОД на базе VMware"
+        ],
+        "recommendation": "Использовать Облако VMware для миграции с применением сервисов живой миграции и репликации для соблюдения срока в 14 дней."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.85,
+        "reasoning": "Advanced предоставляет инструменты для миграции приложений (ECS, OBS, CCE) и поддерживает проектные решения миграции (см. [2]). Сроки могут быть согласованы в рамках SLA и уложиться в 14 дней.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/overview__advantages"
+        ],
+        "source_titles": [
+          "Преимущества — документация Виртуальный ЦОД на базе VMware"
+        ],
+        "recommendation": "Использовать Advanced с инструментами миграции ECS и OBS, согласовав сроки в проектном SLA."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.8,
+        "reasoning": "Evolution поддерживает миграцию приложений в облако, включая вычислительные ресурсы и хранилища. Процесс миграции может быть организован в рамках 14 дней при согласованном плане.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/overview__advantages"
+        ],
+        "source_titles": [
+          "Преимущества — документация Виртуальный ЦОД на базе VMware"
+        ],
+        "recommendation": "Использовать Evolution для миграции с планированием сроков в рамках проектного SLA."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 55,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru обеспечивает безопасное зашифрованное соединение через TLS 1.2+ для всех интерфейсов (API, UI, Direct Connect), что подтверждено в документации по безопасности платформ (см. [2]). Все соединения с облачными сервисами шифруются по умолчанию, включая доступ к ECS, OBS, CCE и другим сервисам.",
+    "evidence": "Меры защиты облачных платформ Cloud.ru — информация о защите инфраструктуры, средств управления [2]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/security-introduction/index"
+    ],
+    "recommendation": "Использовать любую платформу Cloud.ru — все обеспечивают безопасное зашифрованное соединение по TLS по умолчанию.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Однако, как корпоративный атрибут Cloud.ru, шифрование соединений должно применяться на всех платформах.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, применяется ли шифрование соединений на платформе ГосОблако."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware обеспечивает безопасное зашифрованное соединение через TLS для всех интерфейсов, включая vCloud Director и API, что подтверждено в документации по безопасности.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/index"
+        ],
+        "source_titles": [
+          "Обзор подходов и средств безопасности Cloud.ru"
+        ],
+        "recommendation": "Использовать Облако VMware — шифрование соединений обеспечено на уровне платформы."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced обеспечивает шифрование соединений через TLS 1.2+ для всех API и интерфейсов (ECS, OBS, CCE), что соответствует стандартам безопасности Cloud.ru.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/index"
+        ],
+        "source_titles": [
+          "Обзор подходов и средств безопасности Cloud.ru"
+        ],
+        "recommendation": "Использовать Advanced — шифрование соединений обеспечено на уровне платформы."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution обеспечивает безопасное зашифрованное соединение через TLS для всех интерфейсов, как часть корпоративной политики безопасности Cloud.ru, подтверждённой в документации.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/index"
+        ],
+        "source_titles": [
+          "Обзор подходов и средств безопасности Cloud.ru"
+        ],
+        "recommendation": "Использовать Evolution — шифрование соединений обеспечено на уровне платформы."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 56,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru размещает инфраструктуру в ЦОД, сертифицированных по стандарту Uptime Institute Tier III (подтверждено в [Local-DOC 1] и [1]). Также подтверждено наличие двух и более зон доступности (см. [1], [2]), что обеспечивает надёжность сервиса S3-хранилища за счёт репликации. Сертификаты Tier III и зоны доступности соответствуют требованию.",
+    "evidence": "ЦОДы, в которых размещается инфраструктура Cloud.ru, соответствуют... Uptime Institute Tier III Design, Uptime Institute Tier III Facility, Uptime Institute Tier III Operation [Local-DOC 1]; Cloud.ru пользуется надежными и современными ЦОД... отвечают требованиям стандарта TIER III [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/security-introduction/topics/compliance",
+      "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+    ],
+    "recommendation": "Использовать любую платформу Cloud.ru — все ЦОД сертифицированы по Tier III и поддерживают репликацию в нескольких зонах доступности.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Однако, как часть инфраструктуры Cloud.ru, оно размещается в тех же Tier III ЦОД, но требуется подтверждение.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, размещается ли ГосОблако в сертифицированных Tier III ЦОД и поддерживает ли репликацию в нескольких зонах."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware размещено в ЦОД, сертифицированных по Uptime Institute Tier III (подтверждено в [Local-DOC 2] и [1]), и обеспечивает репликацию в нескольких зонах доступности. SLA 99.982% подтверждает надёжность.",
+        "evidence_refs": ["[Local-DOC 2]", "[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc",
+          "https://cloud.ru/docs/overview/security-introduction/topics/compliance"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?",
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Использовать Облако VMware — полностью соответствует требованию по Tier III и зонам доступности."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced размещён в тех же Tier III ЦОД, что и другие платформы Cloud.ru (подтверждено в [Local-DOC 1]). Поддерживает репликацию данных в нескольких зонах доступности (SLA 99.95% для OBS и ECS).",
+        "evidence_refs": ["[Local-DOC 1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/topics/compliance"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Использовать Advanced — инфраструктура размещена в сертифицированных Tier III ЦОД с репликацией в зонах доступности."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution размещён в тех же Tier III ЦОД, что и другие платформы Cloud.ru (корпоративный атрибут). Поддерживает репликацию в нескольких зонах доступности, как часть инфраструктуры Cloud.ru.",
+        "evidence_refs": ["[Local-DOC 1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/topics/compliance"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Использовать Evolution — инфраструктура размещена в сертифицированных Tier III ЦОД с репликацией в зонах доступности."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]
+```

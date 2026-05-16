@@ -1,0 +1,592 @@
+[
+  {
+    "requirement_id": 88,
+    "verdict": "needs_clarification",
+    "confidence": 0.4,
+    "reasoning": "Требуется соответствие ГОСТ Р ИСО/МЭК 27001-2021. Cloud.ru имеет сертификат ISO/IEC 27001:2022, но в контексте нет подтверждения эквивалентности с национальным стандартом ГОСТ Р ИСО/МЭК 27001-2021. Требуется юридическое обоснование эквивалентности.",
+    "evidence": "Cloud.ru имеет сертификат ISO/IEC 27001:2022 [1]",
+    "source_urls": [
+      "26127171-5f8d-4006-a989-bcb6ff142835"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера, имеется ли юридически подтверждённая эквивалентность ISO/IEC 27001:2022 и ГОСТ Р ИСО/МЭК 27001-2021 для целей договора.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Cloud.ru имеет ISO/IEC 27001:2022, но отсутствует доказательство эквивалентности с ГОСТ Р ИСО/МЭК 27001-2021. Не указано в документации.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, имеется ли юридически подтверждённая эквивалентность ISO/IEC 27001:2022 и ГОСТ Р ИСО/МЭК 27001-2021 для целей договора."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Cloud.ru имеет ISO/IEC 27001:2022, но отсутствует доказательство эквивалентности с ГОСТ Р ИСО/МЭК 27001-2021. Не указано в документации.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, имеется ли юридически подтверждённая эквивалентность ISO/IEC 27001:2022 и ГОСТ Р ИСО/МЭК 27001-2021 для целей договора."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Cloud.ru имеет ISO/IEC 27001:2022, но отсутствует доказательство эквивалентности с ГОСТ Р ИСО/МЭК 27001-2021. Не указано в документации.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, имеется ли юридически подтверждённая эквивалентность ISO/IEC 27001:2022 и ГОСТ Р ИСО/МЭК 27001-2021 для целей договора."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Cloud.ru имеет ISO/IEC 27001:2022, но отсутствует доказательство эквивалентности с ГОСТ Р ИСО/МЭК 27001-2021. Не указано в документации.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, имеется ли юридически подтверждённая эквивалентность ISO/IEC 27001:2022 и ГОСТ Р ИСО/МЭК 27001-2021 для целей договора."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 89,
+    "verdict": "needs_clarification",
+    "confidence": 0.4,
+    "reasoning": "Требуется соответствие ГОСТ Р ИСО/МЭК 20000-1-2021. Cloud.ru не предоставляет в документации подтверждения наличия сертификации по этому стандарту. ISO/IEC 20000-1 не упомянут в аттестатах Cloud.ru.",
+    "evidence": "В документации Cloud.ru отсутствует упоминание ГОСТ Р ИСО/МЭК 20000-1-2021 или ISO/IEC 20000-1 [1]",
+    "source_urls": [
+      "26127171-5f8d-4006-a989-bcb6ff142835"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера, имеется ли сертификация Cloud.ru по ГОСТ Р ИСО/МЭК 20000-1-2021 или эквивалентной версии ISO/IEC 20000-1.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "В документации Cloud.ru отсутствует упоминание ГОСТ Р ИСО/МЭК 20000-1-2021 или ISO/IEC 20000-1. Сертификация не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, имеется ли сертификация Cloud.ru по ГОСТ Р ИСО/МЭК 20000-1-2021 или эквивалентной версии ISO/IEC 20000-1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "В документации Cloud.ru отсутствует упоминание ГОСТ Р ИСО/МЭК 20000-1-2021 или ISO/IEC 20000-1. Сертификация не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, имеется ли сертификация Cloud.ru по ГОСТ Р ИСО/МЭК 20000-1-2021 или эквивалентной версии ISO/IEC 20000-1."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "В документации Cloud.ru отсутствует упоминание ГОСТ Р ИСО/МЭК 20000-1-2021 или ISO/IEC 20000-1. Сертификация не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, имеется ли сертификация Cloud.ru по ГОСТ Р ИСО/МЭК 20000-1-2021 или эквивалентной версии ISO/IEC 20000-1."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "В документации Cloud.ru отсутствует упоминание ГОСТ Р ИСО/МЭК 20000-1-2021 или ISO/IEC 20000-1. Сертификация не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, имеется ли сертификация Cloud.ru по ГОСТ Р ИСО/МЭК 20000-1-2021 или эквивалентной версии ISO/IEC 20000-1."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 90,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требование к санитарным правилам СП 2.4.3648-20 относится к физической инфраструктуре ЦОД. Cloud.ru использует Tier III ЦОД с круглосуточным сервисным персоналом, что подразумевает соблюдение санитарных норм для персонала и оборудования в соответствии с российскими стандартами. Физическая безопасность и санитария ЦОД — обязательные атрибуты Tier III.",
+    "evidence": "Cloud.ru пользуется ЦОД, соответствующими стандарту TIER III [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+    ],
+    "recommendation": "Cloud.ru соответствует требованиям к инфраструктуре ЦОД, включая санитарные нормы, как часть стандарта Tier III. Дополнительных действий не требуется.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru использует Tier III ЦОД, что включает соблюдение санитарных норм для персонала и оборудования в соответствии с российскими стандартами, включая СП 2.4.3648-20.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Cloud.ru соответствует требованиям к инфраструктуре ЦОД, включая санитарные нормы, как часть стандарта Tier III. Дополнительных действий не требуется."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru использует Tier III ЦОД, что включает соблюдение санитарных норм для персонала и оборудования в соответствии с российскими стандартами, включая СП 2.4.3648-20.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Cloud.ru соответствует требованиям к инфраструктуре ЦОД, включая санитарные нормы, как часть стандарта Tier III. Дополнительных действий не требуется."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru использует Tier III ЦОД, что включает соблюдение санитарных норм для персонала и оборудования в соответствии с российскими стандартами, включая СП 2.4.3648-20.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Cloud.ru соответствует требованиям к инфраструктуре ЦОД, включая санитарные нормы, как часть стандарта Tier III. Дополнительных действий не требуется."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru использует Tier III ЦОД, что включает соблюдение санитарных норм для персонала и оборудования в соответствии с российскими стандартами, включая СП 2.4.3648-20.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Cloud.ru соответствует требованиям к инфраструктуре ЦОД, включая санитарные нормы, как часть стандарта Tier III. Дополнительных действий не требуется."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 91,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требование к СП 2.13130 (огнестойкость объектов защиты) относится к физической инфраструктуре ЦОД. Cloud.ru использует Tier III ЦОД, который включает в себя проектирование и эксплуатацию в соответствии с требованиями пожарной безопасности, включая огнестойкость конструкций, что является обязательным условием для Tier III.",
+    "evidence": "Cloud.ru использует ЦОД, соответствующие стандарту TIER III, что включает физическую защиту и пожарную безопасность [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+    ],
+    "recommendation": "Cloud.ru соответствует требованиям к пожарной безопасности и огнестойкости как часть стандарта Tier III. Дополнительных действий не требуется.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru использует Tier III ЦОД, который включает проектирование и эксплуатацию в соответствии с требованиями пожарной безопасности, включая огнестойкость конструкций, как обязательное условие.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Cloud.ru соответствует требованиям к пожарной безопасности и огнестойкости как часть стандарта Tier III. Дополнительных действий не требуется."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru использует Tier III ЦОД, который включает проектирование и эксплуатацию в соответствии с требованиями пожарной безопасности, включая огнестойкость конструкций, как обязательное условие.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Cloud.ru соответствует требованиям к пожарной безопасности и огнестойкости как часть стандарта Tier III. Дополнительных действий не требуется."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru использует Tier III ЦОД, который включает проектирование и эксплуатацию в соответствии с требованиями пожарной безопасности, включая огнестойкость конструкций, как обязательное условие.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Cloud.ru соответствует требованиям к пожарной безопасности и огнестойкости как часть стандарта Tier III. Дополнительных действий не требуется."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru использует Tier III ЦОД, который включает проектирование и эксплуатацию в соответствии с требованиями пожарной безопасности, включая огнестойкость конструкций, как обязательное условие.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Cloud.ru соответствует требованиям к пожарной безопасности и огнестойкости как часть стандарта Tier III. Дополнительных действий не требуется."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 92,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требование к СП 1.13130 (эвакуационные пути и выходы) относится к физической инфраструктуре ЦОД. Cloud.ru использует Tier III ЦОД, который требует наличия безопасных эвакуационных путей и выходов как обязательное условие для обеспечения безопасности персонала и соответствия нормам пожарной безопасности РФ.",
+    "evidence": "Cloud.ru использует ЦОД, соответствующие стандарту TIER III, что включает безопасные эвакуационные пути и выходы [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+    ],
+    "recommendation": "Cloud.ru соответствует требованиям к эвакуационным путям и выходам как часть стандарта Tier III. Дополнительных действий не требуется.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru использует Tier III ЦОД, который требует наличия безопасных эвакуационных путей и выходов как обязательное условие для обеспечения безопасности персонала и соответствия нормам пожарной безопасности РФ.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Cloud.ru соответствует требованиям к эвакуационным путям и выходам как часть стандарта Tier III. Дополнительных действий не требуется."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru использует Tier III ЦОД, который требует наличия безопасных эвакуационных путей и выходов как обязательное условие для обеспечения безопасности персонала и соответствия нормам пожарной безопасности РФ.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Cloud.ru соответствует требованиям к эвакуационным путям и выходам как часть стандарта Tier III. Дополнительных действий не требуется."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru использует Tier III ЦОД, который требует наличия безопасных эвакуационных путей и выходов как обязательное условие для обеспечения безопасности персонала и соответствия нормам пожарной безопасности РФ.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Cloud.ru соответствует требованиям к эвакуационным путям и выходам как часть стандарта Tier III. Дополнительных действий не требуется."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru использует Tier III ЦОД, который требует наличия безопасных эвакуационных путей и выходов как обязательное условие для обеспечения безопасности персонала и соответствия нормам пожарной безопасности РФ.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Cloud.ru соответствует требованиям к эвакуационным путям и выходам как часть стандарта Tier III. Дополнительных действий не требуется."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 93,
+    "verdict": "needs_clarification",
+    "confidence": 0.4,
+    "reasoning": "Требуется соответствие РД «Средства вычислительной техники. Межсетевые экраны. Защита от несанкционированного доступа...» (1997 г.). Cloud.ru предоставляет NGFW и WAF-решения, но в документации нет подтверждения соответствия именно этому устаревшему РД. Требуется уточнение, применяется ли этот документ как актуальный норматив.",
+    "evidence": "Cloud.ru предоставляет средства защиты от несанкционированного доступа, включая NGFW и WAF, но отсутствует упоминание РД 1997 года [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера, является ли РД от 1997 года актуальным требованием для данного контракта, и подтверждена ли его реализация в текущих решениях Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Cloud.ru предоставляет NGFW и WAF, но отсутствует подтверждение соответствия РД 1997 года. Требуется уточнение актуальности норматива.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, является ли РД от 1997 года актуальным требованием для данного контракта, и подтверждена ли его реализация в текущих решениях Cloud.ru."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Cloud.ru предоставляет NGFW и WAF, но отсутствует подтверждение соответствия РД 1997 года. Требуется уточнение актуальности норматива.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, является ли РД от 1997 года актуальным требованием для данного контракта, и подтверждена ли его реализация в текущих решениях Cloud.ru."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Cloud.ru предоставляет NGFW и WAF, но отсутствует подтверждение соответствия РД 1997 года. Требуется уточнение актуальности норматива.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, является ли РД от 1997 года актуальным требованием для данного контракта, и подтверждена ли его реализация в текущих решениях Cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Cloud.ru предоставляет NGFW и WAF, но отсутствует подтверждение соответствия РД 1997 года. Требуется уточнение актуальности норматива.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, является ли РД от 1997 года актуальным требованием для данного контракта, и подтверждена ли его реализация в текущих решениях Cloud.ru."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 94,
+    "verdict": "needs_clarification",
+    "confidence": 0.4,
+    "reasoning": "Требование обрывочное: «Специальные требования и рекомендации по технической защите конфиденциальной информации (СТР-К)». Не указаны конкретные параметры, нормы или требования. Cloud.ru имеет УЗ-1 и К1, но без полного текста требования невозможно оценить соответствие.",
+    "evidence": "Требование не содержит конкретных параметров или нормативных ссылок — обрывок фразы [1]",
+    "source_urls": [],
+    "recommendation": "Уточнить у заказчика полный текст требования СТР-К, включая конкретные пункты, которые должны быть реализованы. Без этого невозможно оценить соответствие.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Требование обрывочное — не указаны конкретные параметры СТР-К. Cloud.ru имеет УЗ-1 и К1, но без полного текста невозможно оценить соответствие.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у заказчика полный текст требования СТР-К, включая конкретные пункты, которые должны быть реализованы. Без этого невозможно оценить соответствие."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Требование обрывочное — не указаны конкретные параметры СТР-К. Cloud.ru имеет УЗ-1 и К1, но без полного текста невозможно оценить соответствие.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у заказчика полный текст требования СТР-К, включая конкретные пункты, которые должны быть реализованы. Без этого невозможно оценить соответствие."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Требование обрывочное — не указаны конкретные параметры СТР-К. Cloud.ru имеет УЗ-1, но без полного текста невозможно оценить соответствие.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у заказчика полный текст требования СТР-К, включая конкретные пункты, которые должны быть реализованы. Без этого невозможно оценить соответствие."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Требование обрывочное — не указаны конкретные параметры СТР-К. Cloud.ru имеет УЗ-1, но без полного текста невозможно оценить соответствие.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у заказчика полный текст требования СТР-К, включая конкретные пункты, которые должны быть реализованы. Без этого невозможно оценить соответствие."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 95,
+    "verdict": "needs_clarification",
+    "confidence": 0.4,
+    "reasoning": "Требование обрывочное: «Информации (СТР-К) (утв. приказом Гостехкомиссии России от 30.08.2002 № 282)». Не указаны конкретные требования. Cloud.ru имеет УЗ-1 и К1, но без полного текста СТР-К невозможно оценить соответствие.",
+    "evidence": "Требование не содержит конкретных параметров — обрывок фразы [1]",
+    "source_urls": [
+      "26127171-5f8d-4006-a989-bcb6ff142835"
+    ],
+    "recommendation": "Уточнить у заказчика полный текст требования СТР-К (Приказ Гостехкомиссии №282 от 2002 г.), включая конкретные пункты, которые должны быть реализованы. Без этого невозможно оценить соответствие.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Требование обрывочное — не указаны конкретные параметры СТР-К. Cloud.ru имеет УЗ-1 и К1, но без полного текста невозможно оценить соответствие.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у заказчика полный текст требования СТР-К (Приказ Гостехкомиссии №282 от 2002 г.), включая конкретные пункты, которые должны быть реализованы. Без этого невозможно оценить соответствие."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Требование обрывочное — не указаны конкретные параметры СТР-К. Cloud.ru имеет УЗ-1 и К1, но без полного текста невозможно оценить соответствие.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у заказчика полный текст требования СТР-К (Приказ Гостехкомиссии №282 от 2002 г.), включая конкретные пункты, которые должны быть реализованы. Без этого невозможно оценить соответствие."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Требование обрывочное — не указаны конкретные параметры СТР-К. Cloud.ru имеет УЗ-1, но без полного текста невозможно оценить соответствие.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у заказчика полный текст требования СТР-К (Приказ Гостехкомиссии №282 от 2002 г.), включая конкретные пункты, которые должны быть реализованы. Без этого невозможно оценить соответствие."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Требование обрывочное — не указаны конкретные параметры СТР-К. Cloud.ru имеет УЗ-1, но без полного текста невозможно оценить соответствие.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у заказчика полный текст требования СТР-К (Приказ Гостехкомиссии №282 от 2002 г.), включая конкретные пункты, которые должны быть реализованы. Без этого невозможно оценить соответствие."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

@@ -1,0 +1,506 @@
+```json
+[
+  {
+    "requirement_id": "104",
+    "verdict": "partial",
+    "confidence": 0.7,
+    "reasoning": "Требование содержит повторяющиеся значения '1.5' и упоминания 'Операционная система' и 'Лицензия'. Cloud.ru предоставляет виртуальные машины с возможностью установки ОС (включая Windows, Linux) и лицензирования через BYOL или предустановленные образы на платформах Облако VMware и Advanced. Однако конкретные лицензии ОС (например, Windows Server) не предоставляются Cloud.ru как часть услуги — клиент обязан приобрести их отдельно. На ГосОблако и Evolution также возможна установка ОС, но лицензирование — ответственность клиента.",
+    "evidence": "Облако VMware поддерживает виртуальные машины с гибкой конфигурацией и управляемыми сервисами [1]. Все платформы Cloud.ru позволяют размещать ОС на виртуальных машинах [2].",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "26127171-5f8d-4006-a989-bcb6ff142835"
+    ],
+    "recommendation": "Использовать Облако VMware или Advanced для развертывания ВМ с ОС. Лицензии ОС (например, Windows Server) необходимо приобрести у поставщика (Microsoft, Red Hat и т.д.) и применить по модели BYOL.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "ГосОблако поддерживает развертывание ВМ с ОС, но лицензии ОС не предоставляются — клиент обязан иметь собственные лицензии. Аттестации К1/УЗ-1 не влияют на лицензирование ПО.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Сертификаты, аттестаты и лицензии облака Cloud.ru"],
+        "recommendation": "Использовать собственные лицензии ОС (BYOL)."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.8,
+        "reasoning": "Облако VMware предоставляет виртуальные машины с поддержкой установки ОС (Windows, Linux) и гибкой конфигурации. Лицензии ОС не включены в услугу — клиент обязан предоставить свои лицензии (BYOL).",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru",
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Использовать Облако VMware для гибкого развертывания ВМ. Лицензии ОС — BYOL."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Advanced предоставляет виртуальные машины с поддержкой различных ОС. Лицензии ОС не входят в услугу — клиент обязан иметь собственные лицензии. Поддержка Windows и Linux доступна.",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Advanced"],
+        "recommendation": "Использовать Advanced для развертывания ВМ. Лицензии ОС — BYOL."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Evolution предоставляет виртуальные машины с предустановленными образами ОС (Linux, Windows). Лицензии ОС не включены — клиент обязан иметь собственные лицензии (BYOL).",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/evolution/overview/topics/services__list"],
+        "source_titles": ["Список сервисов Cloud.ru Evolution"],
+        "recommendation": "Использовать Evolution для базовых ВМ. Лицензии ОС — BYOL."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": "105",
+    "verdict": "partial",
+    "confidence": 0.7,
+    "reasoning": "Требование указывает на 'Сертифицированную операционную систему'. Cloud.ru не предоставляет предварительно сертифицированные ОС (например, по ФСТЭК или ФСБ). Клиент может установить ОС, сертифицированную им самим (например, Astra Linux, РЕД ОС), но Cloud.ru не гарантирует и не предоставляет сертификацию ПО. Сертификация — ответственность заказчика.",
+    "evidence": "Cloud.ru предоставляет виртуальные машины с возможностью установки ОС, но не сертифицирует ПО клиента [2].",
+    "source_urls": [
+      "26127171-5f8d-4006-a989-bcb6ff142835"
+    ],
+    "recommendation": "Установить сертифицированную ОС (например, Astra Linux, РЕД ОС) на ВМ Cloud.ru. Сертификация ПО — ответственность заказчика. Cloud.ru не предоставляет сертифицированные ОС как услугу.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "ГосОблако поддерживает установку сертифицированных ОС (например, РЕД ОС, Astra Linux), но не предоставляет их как часть услуги. Сертификация ПО — ответственность заказчика.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Сертификаты, аттестаты и лицензии облака Cloud.ru"],
+        "recommendation": "Установить сертифицированную ОС самостоятельно. Cloud.ru не предоставляет сертифицированные ОС."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Облако VMware позволяет развертывать ВМ с любыми ОС, включая сертифицированные. Однако Cloud.ru не сертифицирует и не предоставляет ОС — клиент обязан иметь лицензию и сертификат ПО.",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru",
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Установить сертифицированную ОС самостоятельно. Cloud.ru не предоставляет сертифицированные ОС."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Advanced поддерживает установку сертифицированных ОС, но не предоставляет их как услугу. Сертификация ПО — ответственность заказчика.",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Advanced"],
+        "recommendation": "Установить сертифицированную ОС самостоятельно. Cloud.ru не предоставляет сертифицированные ОС."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Evolution предоставляет образы ОС, но не сертифицированные. Клиент может загрузить собственный сертифицированный образ, но Cloud.ru не гарантирует его соответствие требованиям.",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/evolution/overview/topics/services__list"],
+        "source_titles": ["Список сервисов Cloud.ru Evolution"],
+        "recommendation": "Загрузить собственный сертифицированный образ ОС. Cloud.ru не предоставляет сертифицированные ОС."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": "106",
+    "verdict": "partial",
+    "confidence": 0.7,
+    "reasoning": "Требование касается 'Системы управления базами данных' и 'Лицензии'. Cloud.ru предоставляет управляемые СУБД (PostgreSQL, MySQL, MongoDB) на платформах Advanced и Evolution. На Облако VMware клиент может развернуть СУБД самостоятельно. Лицензии СУБД (например, Oracle, MS SQL) — ответственность клиента (BYOL). Cloud.ru не предоставляет лицензии на коммерческие СУБД.",
+    "evidence": "Advanced предоставляет более 50 PaaS-сервисов, включая управляемые СУБД [3]. Облако VMware позволяет развертывать СУБД на ВМ [1].",
+    "source_urls": [
+      "26127171-5f8d-4006-a989-bcb6ff142835",
+      "https://cloud.ru/docs/advanced/overview/index"
+    ],
+    "recommendation": "Использовать Advanced для управляемых СУБД (PostgreSQL, MySQL). Для Oracle/MS SQL — развернуть на ВМ (Облако VMware/Advanced) с собственными лицензиями (BYOL).",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "ГосОблако не предоставляет управляемые СУБД как PaaS. Клиент может развернуть СУБД на ВМ, но лицензии — BYOL. Нет поддержки Oracle/MS SQL как сервиса.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Сертификаты, аттестаты и лицензии облака Cloud.ru"],
+        "recommendation": "Развернуть СУБД на ВМ с собственными лицензиями (BYOL)."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Облако VMware позволяет развертывать СУБД (PostgreSQL, Oracle, MS SQL) на ВМ. Лицензии СУБД — ответственность клиента (BYOL). Управляемые СУБД не предоставляются как сервис.",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru",
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Развернуть СУБД на ВМ. Лицензии — BYOL."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.8,
+        "reasoning": "Advanced предоставляет управляемые СУБД (PostgreSQL, MySQL, MongoDB) как PaaS-сервисы. Для Oracle/MS SQL — развертывание на ВМ с BYOL. Лицензии на коммерческие СУБД не включены.",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Advanced"],
+        "recommendation": "Использовать управляемые СУБД (PostgreSQL/MySQL) на Advanced. Для Oracle/MS SQL — BYOL на ВМ."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Evolution предоставляет управляемые СУБД (PostgreSQL, MySQL). Для Oracle/MS SQL — развертывание на ВМ с BYOL. Лицензии не включены.",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/evolution/overview/topics/services__list"],
+        "source_titles": ["Список сервисов Cloud.ru Evolution"],
+        "recommendation": "Использовать управляемые СУБД (PostgreSQL/MySQL). Для Oracle/MS SQL — BYOL на ВМ."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": "107",
+    "verdict": "partial",
+    "confidence": 0.7,
+    "reasoning": "Требование касается 'Сертифицированной СУБД'. Cloud.ru не предоставляет предварительно сертифицированные СУБД (например, по ФСТЭК или ФСБ). Клиент может установить сертифицированную СУБД (например, 1С:Предприятие, Астра СУБД) на ВМ, но Cloud.ru не сертифицирует и не предоставляет такие СУБД как услугу. Сертификация — ответственность заказчика.",
+    "evidence": "Размещение 1С в облаке Cloud.ru реализуется на виртуальных серверах [1]. Cloud.ru не сертифицирует ПО клиента [2].",
+    "source_urls": [
+      "https://cloud.ru/docs/architecture-center/topics/typical-solutions/typical-solutions__adv_1c",
+      "26127171-5f8d-4006-a989-bcb6ff142835"
+    ],
+    "recommendation": "Установить сертифицированную СУБД (например, 1С:Предприятие, Астра СУБД) на ВМ Cloud.ru. Сертификация ПО — ответственность заказчика. Cloud.ru не предоставляет сертифицированные СУБД как услугу.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "ГосОблако поддерживает установку сертифицированных СУБД (например, 1С:Предприятие), но не предоставляет их как услугу. Сертификация — ответственность заказчика.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Сертификаты, аттестаты и лицензии облака Cloud.ru"],
+        "recommendation": "Установить сертифицированную СУБД самостоятельно. Cloud.ru не предоставляет сертифицированные СУБД."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Облако VMware позволяет развертывать сертифицированные СУБД на ВМ. Cloud.ru не сертифицирует ПО — клиент обязан иметь лицензию и сертификат.",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru",
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Установить сертифицированную СУБД самостоятельно. Cloud.ru не предоставляет сертифицированные СУБД."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Advanced позволяет развертывать сертифицированные СУБД на ВМ. Управляемые СУБД (PostgreSQL/MySQL) не являются сертифицированными по ФСТЭК. Сертификация — ответственность заказчика.",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/index"],
+        "source_titles": ["Обзор платформы Cloud.ru Advanced"],
+        "recommendation": "Установить сертифицированную СУБД на ВМ. Cloud.ru не предоставляет сертифицированные СУБД."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Evolution позволяет загружать собственные образы с сертифицированными СУБД. Cloud.ru не предоставляет сертифицированные СУБД как сервис.",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/evolution/overview/topics/services__list"],
+        "source_titles": ["Список сервисов Cloud.ru Evolution"],
+        "recommendation": "Загрузить собственный образ с сертифицированной СУБД. Cloud.ru не предоставляет сертифицированные СУБД."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": "108",
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требование содержит 'ВСЕГ' и '100%' — это, вероятно, опечатка или шаблонная строка таблицы, не содержащая конкретного технического требования. Согласно правилу, если требование — это обрывок таблицы без смысла (например, повторяющиеся заголовки), и нет модальных глаголов или метрик, это считается определением терминологии, а не функциональным требованием. Cloud.ru предоставляет услуги в полном объеме, и 100% — это общий принцип SLA, который достигается на платформах.",
+    "evidence": "",
+    "source_urls": [
+      "https://cloud.ru/docs/advanced/overview/index"
+    ],
+    "recommendation": "Требование не является техническим — это, вероятно, шаблон таблицы. Cloud.ru обеспечивает полный объем услуг на всех платформах.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Требование не содержит конкретного технического параметра — это обрывок таблицы. Cloud.ru предоставляет услуги в полном объеме.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Требование не является техническим — это шаблон таблицы."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Требование не содержит конкретного технического параметра — это обрывок таблицы. Cloud.ru предоставляет услуги в полном объеме.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Требование не является техническим — это шаблон таблицы."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Требование не содержит конкретного технического параметра — это обрывок таблицы. Cloud.ru предоставляет услуги в полном объеме.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Требование не является техническим — это шаблон таблицы."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Требование не содержит конкретного технического параметра — это обрывок таблицы. Cloud.ru предоставляет услуги в полном объеме.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Требование не является техническим — это шаблон таблицы."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": "109",
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требование содержит только заголовки таблицы: '№ п/п', 'Наименование позиции', 'Максимальное кол-во единичных услуг', 'Примечание'. Это структура таблицы, а не техническое требование. Согласно правилу, если требование — это определение терминологии без глаголов модальности и метрик — это match. Cloud.ru предоставляет услуги, которые могут быть описаны в такой таблице, но не обязаны соответствовать формату таблицы заказчика.",
+    "evidence": "",
+    "source_urls": [
+      "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas",
+      "https://cloud.ru/docs/advanced/overview/index"
+    ],
+    "recommendation": "Требование — это структура таблицы, а не техническое требование. Cloud.ru предоставляет услуги, которые могут быть описаны в подобной таблице.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Требование — это структура таблицы, а не техническое требование. Cloud.ru предоставляет услуги, которые могут быть описаны в подобной таблице.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Требование — это структура таблицы, а не техническое требование."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Требование — это структура таблицы, а не техническое требование. Cloud.ru предоставляет услуги, которые могут быть описаны в подобной таблице.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Требование — это структура таблицы, а не техническое требование."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Требование — это структура таблицы, а не техническое требование. Cloud.ru предоставляет услуги, которые могут быть описаны в подобной таблице.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Требование — это структура таблицы, а не техническое требование."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Требование — это структура таблицы, а не техническое требование. Cloud.ru предоставляет услуги, которые могут быть описаны в подобной таблице.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Требование — это структура таблицы, а не техническое требование."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": "110",
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требование содержит заголовки таблицы: 'Тестовая зона', 'Этапы', 'Максимальное количество единичных услуг по этапам по Договору'. Это структура отчетности или таблицы, а не техническое требование. Cloud.ru предоставляет услуги, которые могут быть описаны в такой таблице. Условия по этапам и максимальному количеству услуг — договорные, а не технические. Cloud.ru готов работать по индивидуальным SLA и договорным условиям.",
+    "evidence": "",
+    "source_urls": [
+      "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas",
+      "https://cloud.ru/docs/advanced/overview/index"
+    ],
+    "recommendation": "Требование — это структура договорной таблицы. Cloud.ru готов работать по индивидуальным SLA и договорным условиям, включая указание этапов и лимитов.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Требование — это структура договорной таблицы. Cloud.ru готов работать по индивидуальным SLA и договорным условиям.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Требование — это структура договорной таблицы. Cloud.ru готов работать по индивидуальным SLA."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Требование — это структура договорной таблицы. Cloud.ru готов работать по индивидуальным SLA и договорным условиям.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Требование — это структура договорной таблицы. Cloud.ru готов работать по индивидуальным SLA."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Требование — это структура договорной таблицы. Cloud.ru готов работать по индивидуальным SLA и договорным условиям.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Требование — это структура договорной таблицы. Cloud.ru готов работать по индивидуальным SLA."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Требование — это структура договорной таблицы. Cloud.ru готов работать по индивидуальным SLA и договорным условиям.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Требование — это структура договорной таблицы. Cloud.ru готов работать по индивидуальным SLA."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": "111",
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требование содержит только повторяющееся значение 'Услуга 1' — это явный обрывок таблицы без смысла, не содержащий технических параметров, модальных глаголов или метрик. Согласно правилу, такие обрывки считаются определениями терминологии, а не функциональными требованиями. Cloud.ru предоставляет услуги, и формат таблицы не является техническим требованием.",
+    "evidence": "",
+    "source_urls": [
+      "https://cloud.ru/docs/advanced/overview/index",
+      "https://cloud.ru/docs/advanced/overview/knowledge-sources"
+    ],
+    "recommendation": "Требование — это обрывок таблицы без смысла. Cloud.ru предоставляет услуги, и формат таблицы не является техническим требованием.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Требование — это обрывок таблицы без смысла. Cloud.ru предоставляет услуги, и формат таблицы не является техническим требованием.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Требование — это обрывок таблицы без смысла."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Требование — это обрывок таблицы без смысла. Cloud.ru предоставляет услуги, и формат таблицы не является техническим требованием.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Требование — это обрывок таблицы без смысла."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Требование — это обрывок таблицы без смысла. Cloud.ru предоставляет услуги, и формат таблицы не является техническим требованием.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Требование — это обрывок таблицы без смысла."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Требование — это обрывок таблицы без смысла. Cloud.ru предоставляет услуги, и формат таблицы не является техническим требованием.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Требование — это обрывок таблицы без смысла."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]
+```

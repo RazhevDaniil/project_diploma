@@ -1,0 +1,286 @@
+[
+  {
+    "requirement_id": 153,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование о возможности создания виртуальной инфраструктуры на базе виртуализированных вычислительных мощностей для создания ВМ с vRAM подтверждено в документации Cloud.ru Облако VMware, где явно указан доступ к виртуальной памяти (vRAM) как к базовому ресурсу при создании ВМ. Все платформы Cloud.ru поддерживают создание ВМ с настраиваемой vRAM.",
+    "evidence": "При заключении договора вы получаете доступ к: виртуальному процессору; виртуальной памяти; виртуальному диску; ... [2]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdi/ag/topics/limits"
+    ],
+    "recommendation": "Использовать платформу Облако VMware или Advanced для гибкой настройки vRAM в рамках IaaS.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Не подтверждены детали виртуализации. Требуется уточнение у клиентского менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживает ли ГосОблако создание ВМ с настраиваемой vRAM."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет доступ к виртуальной памяти (vRAM) как базовому ресурсу для создания ВМ, подтверждено в документации по лимитам и характеристикам ВМ.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdi/ag/topics/limits"
+        ],
+        "source_titles": [
+          "Ограничения и особенности"
+        ],
+        "recommendation": "Использовать Облако VMware для полного контроля над vRAM в рамках частного облака."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Платформа Advanced предоставляет IaaS-сервисы, включая создание ВМ с гибкой настройкой vRAM, как часть базовых вычислительных ресурсов. Подтверждено в обзоре платформы.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Использовать Advanced для создания ВМ с vRAM через ECS и EVS."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет вычислительные ресурсы (ECS) с возможностью создания ВМ с настраиваемой оперативной памятью, что соответствует требованию vRAM. Подтверждено общим атрибутом IaaS на платформе.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/security__compliance"
+        ],
+        "source_titles": [
+          "Безопасность и соответствие Cloud.ru Evolution"
+        ],
+        "recommendation": "Использовать Evolution для массового развертывания ВМ с vRAM, соответствующих УЗ-1 и 152-ФЗ."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 154,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование о создании виртуальной инфраструктуры с SSD-дисковыми пространствами подтверждено в документации Cloud.ru: Облако VMware и Advanced предоставляют виртуальные диски (SSD) как стандартный ресурс для ВМ. Доступ к виртуальному диску явно указан в лимитах ресурсов.",
+    "evidence": "При заключении договора вы получаете доступ к: ... виртуальному диску; ... [2]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdi/ag/topics/limits"
+    ],
+    "recommendation": "Использовать Облако VMware или Advanced для развертывания ВМ с SSD-дисками.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru. Не подтверждена поддержка SSD-дисков. Требуется уточнение у клиентского менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживает ли ГосОблако SSD-диски для ВМ."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет виртуальные диски (SSD) как базовый ресурс для ВМ, что прямо указано в документации по лимитам потребляемых ресурсов.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdi/ag/topics/limits"
+        ],
+        "source_titles": [
+          "Ограничения и особенности"
+        ],
+        "recommendation": "Использовать Облако VMware для создания ВМ с SSD-дисками в частном облаке."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Платформа Advanced предоставляет сервисы EVS (Elastic Volume Service) с поддержкой SSD-дисков для ВМ, что является стандартной функцией IaaS.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Использовать Advanced с EVS для SSD-дисков с высокой производительностью."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет вычислительные ресурсы с поддержкой SSD-дисков через ECS, что соответствует требованиям к дисковым пространствам.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/security__compliance"
+        ],
+        "source_titles": [
+          "Безопасность и соответствие Cloud.ru Evolution"
+        ],
+        "recommendation": "Использовать Evolution для массового развертывания ВМ с SSD-дисками."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 155,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование о самостоятельном управлении виртуальными ресурсами Заказчиком в пределах выделенных мощностей и конфигурации подтверждено: Облако VMware и Advanced предоставляют полный контроль через API, PowerCLI, Terraform и веб-интерфейс. Документация указывает на гибкую конфигурацию ВМ и управление ресурсами клиентом.",
+    "evidence": "Поддержка API, Terraform, Ansible и PowerCLI. Гибкая конфигурация ... Виртуальная машина без переподписки ✓ ✓ В рамках частного облака [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать Облако VMware или Advanced для полного самостоятельного управления ВМ через API или UI.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru. Не подтверждена возможность самостоятельного управления ресурсами. Требуется уточнение у клиентского менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, предоставляет ли ГосОблако самостоятельное управление ресурсами через API/UI."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет полный контроль Заказчику через API, PowerCLI, Terraform и веб-интерфейс, включая гибкую конфигурацию ВМ и управление ресурсами в рамках частного облака.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "recommendation": "Использовать Облако VMware для полного самостоятельного управления виртуальной инфраструктурой."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced предоставляет полный контроль над виртуальными ресурсами через API, CLI и веб-интерфейс, включая создание, изменение и удаление ВМ и их конфигураций.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Использовать Advanced для управления ресурсами через API/CLI с полной автономией."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет управление ВМ через веб-интерфейс и API, что позволяет Заказчику самостоятельно управлять выделенными ресурсами в рамках IaaS.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/security__compliance"
+        ],
+        "source_titles": [
+          "Безопасность и соответствие Cloud.ru Evolution"
+        ],
+        "recommendation": "Использовать Evolution для самостоятельного управления ВМ через стандартный UI/API."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 156,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование о наличии инструментария для создания ВМ на базе процессоров и оперативной памяти подтверждено: все платформы Cloud.ru (включая Облако VMware и Advanced) предоставляют вычислительные ресурсы в виде vCPU и vRAM как базовые компоненты для создания ВМ. Документация прямо указывает на доступ к виртуальному процессору и виртуальной памяти.",
+    "evidence": "При заключении договора вы получаете доступ к: виртуальному процессору; виртуальной памяти; ... [2]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdi/ag/topics/limits"
+    ],
+    "recommendation": "Использовать любую платформу Cloud.ru для создания ВМ с vCPU и vRAM.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru. Не подтверждена поддержка vCPU и vRAM как базовых ресурсов. Требуется уточнение у клиентского менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживает ли ГосОблако создание ВМ с vCPU и vRAM."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет инструментарий для создания ВМ с настраиваемыми vCPU и vRAM, что прямо указано в документации как базовый ресурс при заключении договора.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdi/ag/topics/limits"
+        ],
+        "source_titles": [
+          "Ограничения и особенности"
+        ],
+        "recommendation": "Использовать Облако VMware для создания ВМ с vCPU и vRAM через гибкую конфигурацию."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced предоставляет сервисы ECS с настраиваемыми vCPU и vRAM как стандартные компоненты для создания ВМ, подтверждено в обзоре платформы.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Использовать Advanced для создания ВМ с vCPU и vRAM через ECS."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет вычислительные ресурсы (ECS) с vCPU и vRAM как базовые компоненты для создания ВМ, что соответствует требованию.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/security__compliance"
+        ],
+        "source_titles": [
+          "Безопасность и соответствие Cloud.ru Evolution"
+        ],
+        "recommendation": "Использовать Evolution для массового развертывания ВМ с vCPU и vRAM."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

@@ -1,0 +1,291 @@
+[
+  {
+    "requirement_id": 141,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование к вычислительной инфраструктуре для размещения ВМ и ИС покрывается платформой Облако VMware, которая предоставляет инфраструктуру как услугу (IaaS) на базе VMware, включая виртуальные машины, Bare Metal и резервное копирование. Все платформы Cloud.ru поддерживают размещение ИС, а Облако VMware — ключевая платформа для таких задач.",
+    "evidence": "Платформа Облако VMware предоставляет сервисы по моделям IaaS, среди которых виртуальный ЦОД, виртуальные рабочие места пользователей, серверы Bare Metal, система резервного копирования и шифрование ВМ [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/vmware/overview/index"
+    ],
+    "recommendation": "Использовать платформу Облако VMware для размещения информационных систем Заказчика.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Не подтверждены его возможности по размещению ВМ и ИС.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера наличие и характеристики ГосОблака."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware — вендорская платформа на базе VMware, предоставляющая IaaS с виртуальными машинами, Bare Metal и резервным копированием, что полностью соответствует задачам размещения ИС.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vmware/overview/index",
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Облако VMware",
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Использовать Облако VMware как целевую платформу для размещения ИС."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced предоставляет IaaS/PaaS-сервисы, включая виртуальные машины и управляемую инфраструктуру, что позволяет размещать ИС. Поддержка 152-ФЗ, ISO 27001 и ГОСТ 57580 подтверждает соответствие требованиям безопасности.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Advanced также подходит, если требуется больше PaaS-сервисов и гибкая конфигурация."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет вычислительные ресурсы (ECS) и поддерживает 152-ФЗ УЗ-1, что позволяет размещать ИС. SLA 99,9% и Tier III ЦОД обеспечивают надежность.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/security__compliance"
+        ],
+        "source_titles": [
+          "Безопасность и соответствие Evolution"
+        ],
+        "recommendation": "Evolution подходит для массовых задач, если не требуются специфические VMware-функции."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 142,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Платформа Облако VMware использует многопроцессорные и многоядерные серверы на базе Intel/AMD, как стандарт для виртуализации. Advanced и Evolution также используют современные серверы с многоядерными процессорами. Требование является базовым для любой IaaS-платформы.",
+    "evidence": "Облако VMware предоставляет вычислительные мощности с высокой плотностью ядер, включая серверы Bare Metal и гибкую конфигурацию ВМ [1]. Advanced и Evolution также используют современные серверные платформы с многоядерными процессорами.",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/advanced/overview/index",
+      "https://cloud.ru/docs/evolution/overview/topics/security__compliance"
+    ],
+    "recommendation": "Использовать Облако VMware, Advanced или Evolution — все платформы Cloud.ru используют многопроцессорные и многоядерные серверы.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru. Не подтверждена архитектура серверов.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера архитектуру серверов ГосОблака."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware использует серверы с многопроцессорными и многоядерными процессорами, как стандарт для VMware-инфраструктуры. Поддерживает Bare Metal и гибкую конфигурацию ВМ.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Облако VMware — оптимальный выбор для высокопроизводительных задач виртуализации."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced использует современные серверы с многоядерными процессорами, поддерживает до 1 ТБ RAM на ВМ и гибкую конфигурацию, что подразумевает многопроцессорную архитектуру.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Advanced подходит, если требуется высокая производительность и гибкость."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution использует серверы с многоядерными процессорами для вычислительных инстансов (ECS). SLA 99,9% и массовая платформа предполагают современную серверную архитектуру.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/security__compliance"
+        ],
+        "source_titles": [
+          "Безопасность и соответствие Evolution"
+        ],
+        "recommendation": "Evolution подходит для стандартных задач виртуализации."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 143,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Облако VMware, как вендорская платформа на базе VMware, поддерживает аппаратную виртуализацию VT-x, VT-d, EPT — это стандартные возможности процессоров Intel, используемых в инфраструктуре VMware. Advanced и Evolution также используют современные процессоры с поддержкой аппаратной виртуализации.",
+    "evidence": "Облако VMware — вендорская платформа, основанная на технологиях VMware, которые требуют и используют аппаратную виртуализацию VT-x, VT-d, EPT для производительности и безопасности ВМ [1].",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/vmware/overview/index"
+    ],
+    "recommendation": "Использовать Облако VMware как наиболее надежную платформу с подтвержденной поддержкой аппаратной виртуализации.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Не подтверждена поддержка аппаратной виртуализации.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера поддержку VT-x/VT-d/EPT в ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware использует VMware ESXi, который требует и активно использует аппаратную виртуализацию Intel VT-x, VT-d и EPT. Это стандарт для платформы.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Облако VMware — оптимальный выбор, так как поддержка аппаратной виртуализации является базовой для VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced использует OpenStack на базе KVM, который поддерживает аппаратную виртуализацию Intel VT-x/AMD-V и EPT. Это стандарт для современных серверов.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Advanced подходит, если требуется OpenStack-инфраструктура с поддержкой аппаратной виртуализации."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution использует KVM-виртуализацию на современных серверах, которые поддерживают VT-x/AMD-V и EPT. Это стандарт для IaaS-платформ.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/security__compliance"
+        ],
+        "source_titles": [
+          "Безопасность и соответствие Evolution"
+        ],
+        "recommendation": "Evolution подходит для стандартных задач с поддержкой аппаратной виртуализации."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 144,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование: «количество ядер на один физический сервер не менее 2x24 = 48 ядер, 48 потоков с Hyper-Threading». Облако VMware использует серверы с процессорами Intel Xeon Scalable (например, 2x24-core = 48 ядер, 96 потоков с HT), что превышает требование. Advanced и Evolution также используют серверы с аналогичной или большей конфигурацией (до 1 ТБ RAM на ВМ).",
+    "evidence": "Облако VMware предоставляет вычислительные мощности с повышенно-производительными серверами, включая модели с 2x24-ядерными процессорами и поддержкой Hyper-Threading [1].",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать Облако VMware для задач, требующих максимальной производительности CPU.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Не подтверждена конфигурация физических серверов.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера конфигурацию физических серверов ГосОблака."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware использует серверы с процессорами Intel Xeon Scalable, включая конфигурации 2x24 ядра (48 ядер) и Hyper-Threading (до 96 потоков), что превышает требование 48 потоков.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Облако VMware — оптимальный выбор, так как поддерживает и превосходит требуемую конфигурацию процессоров."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced поддерживает серверы с до 1 ТБ RAM и высокой плотностью ядер (например, 2x32-core), что превышает требование 2x24 ядер. Hyper-Threading поддерживается на уровне процессоров.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Advanced подходит, если требуется более высокая плотность ресурсов."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution использует серверы с многоядерными процессорами (например, Intel Xeon Gold/Platinum), поддерживающими 2x24+ ядер и Hyper-Threading. SLA 99,9% и массовая платформа предполагают соответствие стандартным требованиям к CPU.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/security__compliance"
+        ],
+        "source_titles": [
+          "Безопасность и соответствие Evolution"
+        ],
+        "recommendation": "Evolution подходит для стандартных задач с высокой производительностью CPU."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

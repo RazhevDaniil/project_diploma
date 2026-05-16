@@ -1,0 +1,285 @@
+```json
+[
+  {
+    "requirement_id": 13,
+    "verdict": "needs_clarification",
+    "confidence": 0.5,
+    "reasoning": "Требование требует предоставления документов и участия в управлении операционным обслуживанием ЦОД. Cloud.ru предоставляет инфраструктуру в Tier III ЦОД с круглосуточным сервисным персоналом, но конкретные процедуры участия в управлении операционным обслуживанием ЦОД (например, совместные смены, отчетность) не описаны в документации. Не подтверждено, какие документы должны быть предоставлены и в каком формате.",
+    "evidence": "Cloud.ru использует ЦОД, соответствующие стандарту TIER III [1], но нет описания процедур участия в управлении операционным обслуживанием.",
+    "source_urls": [
+      "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc",
+      "https://cloud.ru/docs/vmware/overview/index",
+      "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__where-is-dc"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера, какие именно документы и процедуры участия в управлении ЦОД требуются, и возможно ли их формализовать в рамках SLA-договора.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Нет данных о процедурах управления ЦОД или предоставлении документов.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, существует ли продукт ГосОблако и какие процедуры по управлению ЦОД он поддерживает."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Облако VMware предоставляет виртуальный ЦОД в Tier III с 24/7 поддержкой, но документация не описывает процедуры участия Исполнителя в управлении операционным обслуживанием ЦОД или предоставление документов Заказчику.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+        ],
+        "source_titles": [
+          "Чем подтверждается надежность ЦОД Cloud.ru?"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, возможно ли формализовать участие в управлении ЦОД через SLA или отдельный сервис управления."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Advanced предоставляет IaaS/PaaS-сервисы в Tier III ЦОД, но документация не описывает процедуры участия в управлении операционным обслуживанием ЦОД или предоставление документов Заказчику.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, есть ли возможность предоставить отчеты или участие в управлении ЦОД как часть сервиса."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Evolution предоставляет вычислительные ресурсы в Tier III ЦОД, но документация не описывает процедуры участия в управлении операционным обслуживанием ЦОД или предоставление документов Заказчику.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, возможно ли включить участие в управлении ЦОД в рамках договора на Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 14,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru обеспечивает соответствие услуг требованиям законодательства РФ, включая 152-ФЗ (УЗ-1), 187-ФЗ (КИИ-3 для Облако VMware), ГОСТ 57580 и Положение 719-П ЦБ РФ. Все платформы Cloud.ru аттестованы на соответствие нормативным требованиям, что подтверждено сертификатами. Ответственность за настройку доступов лежит на клиенте, но инфраструктура соответствует требованиям.",
+    "evidence": "Все платформы Cloud.ru имеют уровень защиты 152-ФЗ УЗ-1. Облачная платформа Cloud.ru, предназначенная для размещения ГИС, аттестована на соответствие требованиям К1. Соответствие 187-ФЗ и ГОСТ 57580 подтверждено [1].",
+    "source_urls": [
+      "26127171-5f8d-4006-a989-bcb6ff142835"
+    ],
+    "recommendation": "Cloud.ru соответствует требованиям законодательства РФ. Рекомендуется включить в договор ссылку на аттестаты соответствия 152-ФЗ, 187-ФЗ и ГОСТ 57580.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru. Не подтверждено соответствие нормативам для этой платформы.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, существует ли ГосОблако и какие аттестации на него выданы."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware аттестовано по 152-ФЗ УЗ-1, 187-ФЗ КИИ-3, ГОСТ 57580 и Положению 719-П ЦБ РФ. Инфраструктура соответствует требованиям законодательства РФ [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "recommendation": "Использовать Облако VMware как основную платформу для соответствия нормативам РФ."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced аттестован по 152-ФЗ УЗ-1, ISO 27001:2013, PCI DSS 3.2.1, ГОСТ 57580 и Положению 719-П ЦБ РФ. Соответствие законодательству РФ подтверждено [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "recommendation": "Использовать Advanced как основную платформу для соответствия нормативам РФ."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution аттестован по 152-ФЗ УЗ-1, что соответствует требованиям законодательства РФ о защите персональных данных. Другие нормативы не указаны, но 152-ФЗ УЗ-1 — ключевое требование [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "recommendation": "Evolution соответствует основному требованию 152-ФЗ. Для полного соответствия рекомендуется уточнить поддержку ГОСТ 57580 и 187-ФЗ у менеджера."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 15,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Cloud.ru обеспечивает круглосуточное (24/7) предоставление услуг с непрерывным обслуживанием инфраструктуры. Все платформы Cloud.ru работают в Tier III ЦОД, что требует круглосуточного присутствия сервисного персонала для поддержания качества услуг без деградации. Это подтверждено документацией по SLA и архитектуре.",
+    "evidence": "Техническая поддержка Cloud.ru отвечает на обращения в режиме 24/7 [1]. Cloud.ru использует Tier III ЦОД с круглосуточным сервисным персоналом [1].",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla",
+      "https://cloud.ru/docs/vdc/ug/topics/faq/common-questions/common-questions__reliability-vdc"
+    ],
+    "recommendation": "Cloud.ru соответствует требованию штатного режима. Рекомендуется включить в SLA формулировку: «Услуги предоставляются в режиме 24/7 с круглосуточным мониторингом и поддержкой».",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Не подтверждено наличие 24/7 поддержки для этой платформы.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживает ли ГосОблако 24/7 режим."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Облако VMware работает в Tier III ЦОД с круглосуточным сервисным персоналом и 24/7 технической поддержкой [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Использовать Облако VMware для обеспечения 24/7 режима."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced работает в Tier III ЦОД с 24/7 технической поддержкой и круглосуточным обслуживанием инфраструктуры [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Использовать Advanced для обеспечения 24/7 режима."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution работает в Tier III ЦОД с 24/7 технической поддержкой. SLA подтверждает круглосуточное обслуживание [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Использовать Evolution для обеспечения 24/7 режима."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 16,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Cloud.ru проводит плановые, технические и профилактические работы в рамках обслуживания инфраструктуры, что может вызывать кратковременные инциденты. Это стандартная практика для IaaS/PaaS-платформ. Live Migration на Облаке VMware позволяет проводить обслуживание без отключения нагрузки, а в других платформах — с минимальным влиянием. SLA документы подтверждают наличие плановых работ и их влияние на доступность.",
+    "evidence": "Cloud.ru проводит плановые работы, включая Live Migration на Облаке VMware (без отключения нагрузки). SLA для Advanced и Evolution включают периоды обслуживания, при которых возможны инциденты [1].",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla",
+      "https://cloud.ru/docs/advanced/overview/sla",
+      "https://cloud.ru/docs/evolution/overview/topics/sla"
+    ],
+    "recommendation": "Cloud.ru соответствует требованию сервисного режима. Рекомендуется включить в SLA раздел о плановых работах, с указанием уведомления за 72 часа и использованием Live Migration для минимизации влияния.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Не подтверждены процедуры плановых работ и влияние на инциденты.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, как организованы плановые работы в ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Облако VMware поддерживает Live Migration — плановые работы проводятся без отключения нагрузки, что соответствует требованию сервисного режима. Инциденты возможны только при непредвиденных обстоятельствах [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Использовать Облако VMware для минимизации влияния плановых работ."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced имеет SLA с указанием периодов обслуживания и возможных инцидентов. Плановые работы проводятся в соответствии с регламентом, с уведомлением клиентов [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Использовать Advanced с учетом SLA на плановые работы."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution имеет SLA, в котором зафиксированы цели обслуживания и возможные инциденты при плановых работах. Работы проводятся в соответствии с регламентом [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Использовать Evolution с учетом SLA на плановые работы."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]
+```

@@ -1,0 +1,318 @@
+[
+  {
+    "requirement_id": 56,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование описывает юридический/договорной режим ответственности Исполнителя при KPI ниже 0.65 — это условие SLA/договора, а не техническая капабилити. Cloud.ru готов работать по индивидуальным договорным условиям, включая штрафные санкции и гарантии качества, через проектный договор.",
+    "evidence": "",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla",
+      "https://cloud.ru/docs/advanced/overview/sla",
+      "https://cloud.ru/docs/evolution/overview/topics/sla"
+    ],
+    "recommendation": "Условие фиксируется в проектном SLA/договоре с Cloud.ru. Рекомендуется согласовать детали KPI и гарантий в индивидуальном договоре.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Юридические/договорные условия фиксируются в проектном договоре, независимо от платформы. Cloud.ru предоставляет единый подход к договорным обязательствам.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условие фиксируется в проектном SLA/договоре с Cloud.ru. Рекомендуется согласовать детали KPI и гарантий в индивидуальном договоре."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Юридические/договорные условия фиксируются в проектном договоре, независимо от платформы. Cloud.ru предоставляет единый подход к договорным обязательствам. Подтверждено наличие SLA-модели в документации.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Условие фиксируется в проектном SLA/договоре с Cloud.ru. Рекомендуется согласовать детали KPI и гарантий в индивидуальном договоре."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Юридические/договорные условия фиксируются в проектном договоре, независимо от платформы. Cloud.ru предоставляет единый подход к договорным обязательствам. Подтверждено наличие SLA для сервисов Advanced.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Условие фиксируется в проектном SLA/договоре с Cloud.ru. Рекомендуется согласовать детали KPI и гарантий в индивидуальном договоре."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Юридические/договорные условия фиксируются в проектном договоре, независимо от платформы. Cloud.ru предоставляет единый подход к договорным обязательствам. Подтверждено наличие SLA для сервисов Evolution.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Условие фиксируется в проектном SLA/договоре с Cloud.ru. Рекомендуется согласовать детали KPI и гарантий в индивидуальном договоре."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 57,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование описывает юридический/договорной режим ответственности Исполнителя за устранение недостатков услуг в гарантийный период — это условие договора, а не техническая капабилити. Cloud.ru готов работать по индивидуальным договорным условиям, включая обязательства по устранению дефектов за свой счет.",
+    "evidence": "",
+    "source_urls": [
+      "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas",
+      "https://cloud.ru/docs/overview/support/index"
+    ],
+    "recommendation": "Условие фиксируется в проектном SLA/договоре с Cloud.ru. Рекомендуется согласовать сроки устранения дефектов и процедуру уведомления в индивидуальном договоре.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Юридические/договорные условия фиксируются в проектном договоре, независимо от платформы. Cloud.ru предоставляет единый подход к договорным обязательствам.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условие фиксируется в проектном SLA/договоре с Cloud.ru. Рекомендуется согласовать сроки устранения дефектов и процедуру уведомления в индивидуальном договоре."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Юридические/договорные условия фиксируются в проектном договоре, независимо от платформы. Cloud.ru предоставляет единый подход к договорным обязательствам. Подтверждена модель общей ответственности и техническая поддержка 24/7.",
+        "evidence_refs": [
+          "[1]",
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas",
+          "https://cloud.ru/docs/overview/support/index"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг",
+          "Обзор технической поддержки Cloud.ru"
+        ],
+        "recommendation": "Условие фиксируется в проектном SLA/договоре с Cloud.ru. Рекомендуется согласовать сроки устранения дефектов и процедуру уведомления в индивидуальном договоре."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Юридические/договорные условия фиксируются в проектном договоре, независимо от платформы. Cloud.ru предоставляет единый подход к договорным обязательствам. Подтверждена модель общей ответственности и техническая поддержка.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Условие фиксируется в проектном SLA/договоре с Cloud.ru. Рекомендуется согласовать сроки устранения дефектов и процедуру уведомления в индивидуальном договоре."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Юридические/договорные условия фиксируются в проектном договоре, независимо от платформы. Cloud.ru предоставляет единый подход к договорным обязательствам. Подтверждена модель общей ответственности и техническая поддержка.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Условие фиксируется в проектном SLA/договоре с Cloud.ru. Рекомендуется согласовать сроки устранения дефектов и процедуру уведомления в индивидуальном договоре."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 58,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требование к безопасности оказания услуг в рамках KPI ниже 0.65 — это юридический/договорной аспект, а не техническая спецификация. Cloud.ru обеспечивает безопасность на всех платформах (УЗ-1, 152-ФЗ, ISO 27001, КИИ-3 на VMware) и гарантирует соответствие требованиям безопасности в рамках договора.",
+    "evidence": "",
+    "source_urls": [
+      "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas",
+      "https://cloud.ru/docs/overview/security-introduction/index"
+    ],
+    "recommendation": "Требования к безопасности интегрируются в проектный SLA/договор. Cloud.ru обеспечивает соответствие стандартам безопасности на всех платформах. Рекомендуется уточнить детали в индивидуальном договоре.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.85,
+        "reasoning": "Юридические/договорные условия фиксируются в проектном договоре. Cloud.ru обеспечивает безопасность на всех платформах, включая ГосОблако, при подтверждении аттестаций у менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Требования к безопасности интегрируются в проектный SLA/договор. Cloud.ru обеспечивает соответствие стандартам безопасности на всех платформах. Рекомендуется уточнить детали в индивидуальном договоре."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru Облако VMware аттестовано по УЗ-1, 152-ФЗ, ISO 27001:2013, КИИ-3 и обеспечивает безопасность инфраструктуры. Модель ответственности подтверждена в документации.",
+        "evidence_refs": [
+          "[1]",
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas",
+          "https://cloud.ru/docs/overview/security-introduction/index"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг",
+          "Обзор подходов и средств безопасности Cloud.ru"
+        ],
+        "recommendation": "Требования к безопасности интегрируются в проектный SLA/договор. Cloud.ru обеспечивает соответствие стандартам безопасности на всех платформах. Рекомендуется уточнить детали в индивидуальном договоре."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru Advanced аттестован по УЗ-1, 152-ФЗ, ISO 27001:2013, PCI DSS, ГОСТ 57580. Модель ответственности и меры защиты подтверждены в документации.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Требования к безопасности интегрируются в проектный SLA/договор. Cloud.ru обеспечивает соответствие стандартам безопасности на всех платформах. Рекомендуется уточнить детали в индивидуальном договоре."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru Evolution аттестован по УЗ-1 и 152-ФЗ. Модель ответственности и базовые меры безопасности подтверждены. Детали безопасности интегрируются в договор.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Требования к безопасности интегрируются в проектный SLA/договор. Cloud.ru обеспечивает соответствие стандартам безопасности на всех платформах. Рекомендуется уточнить детали в индивидуальном договоре."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 59,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование о несении ответственности за распространение информации, к которой Исполнитель получает доступ — это юридический/договорной аспект, а не техническая капабилити. Cloud.ru имеет лицензии ФСТЭК и Роскомнадзора, а также модель общей ответственности, подтверждённую в документации, и готов фиксировать такие обязательства в индивидуальном договоре.",
+    "evidence": "",
+    "source_urls": [
+      "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas",
+      "https://cloud.ru/docs/overview/security-introduction/index"
+    ],
+    "recommendation": "Условие фиксируется в проектном SLA/договоре с Cloud.ru. Cloud.ru имеет лицензии на обработку ПДн и защиту информации. Рекомендуется согласовать перечень информации и меры ответственности в индивидуальном договоре.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Юридические/договорные условия фиксируются в проектном договоре. Cloud.ru имеет общие лицензии на обработку ПДн и защиту информации, действующие на всех платформах.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условие фиксируется в проектном SLA/договоре с Cloud.ru. Cloud.ru имеет лицензии на обработку ПДн и защиту информации. Рекомендуется согласовать перечень информации и меры ответственности в индивидуальном договоре."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru имеет лицензии ФСТЭК и Роскомнадзора на обработку ПДн и каналы связи. Модель ответственности за доступ к информации подтверждена в документации.",
+        "evidence_refs": [
+          "[1]",
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas",
+          "https://cloud.ru/docs/overview/security-introduction/index"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг",
+          "Обзор подходов и средств безопасности Cloud.ru"
+        ],
+        "recommendation": "Условие фиксируется в проектном SLA/договоре с Cloud.ru. Cloud.ru имеет лицензии на обработку ПДн и защиту информации. Рекомендуется согласовать перечень информации и меры ответственности в индивидуальном договоре."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru имеет лицензии ФСТЭК и Роскомнадзора на обработку ПДн и каналы связи. Модель ответственности за доступ к информации подтверждена в документации.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Условие фиксируется в проектном SLA/договоре с Cloud.ru. Cloud.ru имеет лицензии на обработку ПДн и защиту информации. Рекомендуется согласовать перечень информации и меры ответственности в индивидуальном договоре."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru имеет лицензии ФСТЭК и Роскомнадзора на обработку ПДн и каналы связи. Модель ответственности за доступ к информации подтверждена в документации.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Условие фиксируется в проектном SLA/договоре с Cloud.ru. Cloud.ru имеет лицензии на обработку ПДн и защиту информации. Рекомендуется согласовать перечень информации и меры ответственности в индивидуальном договоре."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

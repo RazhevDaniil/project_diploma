@@ -1,0 +1,524 @@
+```json
+[
+  {
+    "requirement_id": 169,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru обеспечивает аренду и назначение публичных IP-адресов для ВМ на всех платформах, что подтверждено документацией по сервису «Публичные IP» для Evolution и общими возможностями IaaS на других платформах.",
+    "evidence": "Сколько публичных IP-адресов можно арендовать? Можно ли выбрать публичный IP-адрес при аренде? Можно ли выбрать публичный IP-адрес при назначении виртуальной машине? [2]",
+    "source_urls": [
+      "https://cloud.ru/docs/public-ip/ug/topics/faq"
+    ],
+    "recommendation": "Использовать стандартный сервис «Публичные IP» на любой платформе Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "ГосОблако предоставляет IaaS-сервисы, включая назначение публичных IP-адресов, как часть стандартной сетевой инфраструктуры.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать стандартный сервис «Публичные IP»."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware поддерживает назначение публичных IP-адресов через vCloud Director и API, как подтверждено в документации по сетевым ресурсам.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "recommendation": "Использовать функционал vCloud Director для назначения публичных IP."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced предоставляет сервис Virtual Private Cloud с возможностью назначения публичных IP-адресов, что подтверждено документацией по ограничениям VPC.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vpc/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности сервиса Virtual Private Cloud"
+        ],
+        "recommendation": "Настроить публичные IP через сервис VPC."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution поддерживает аренду и назначение публичных IP-адресов через сервис «Публичные IP», что прямо указано в FAQ.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/public-ip/ug/topics/faq"
+        ],
+        "source_titles": [
+          "Вопросы и ответы про сервис «Публичные IP»"
+        ],
+        "recommendation": "Использовать сервис «Публичные IP» в интерфейсе Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 170,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru поддерживает использование SSH-ключей для безопасного удалённого подключения к ВМ на всех платформах, что является стандартной функцией IaaS-сервисов и подтверждено документацией по управлению доступом.",
+    "evidence": "IAM (Identity Access Management) — совокупность технологических и административных решений, которые обеспечивают предоставлен... [3]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/security-introduction/topics/products-tools__access-mngmnt"
+    ],
+    "recommendation": "Использовать SSH-ключи через IAM и стандартные механизмы аутентификации на любой платформе Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "ГосОблако поддерживает SSH-ключи как стандартный метод аутентификации для ВМ, соответствующий требованиям УЗ-1 и 152-ФЗ.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Настроить SSH-ключи через консоль управления."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware, как платформа на базе VMware, поддерживает SSH-ключи для доступа к ВМ через API и интерфейс, что подтверждено документацией по IAM.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/topics/products-tools__access-mngmnt"
+        ],
+        "source_titles": [
+          "Управление доступом в облаке Cloud.ru"
+        ],
+        "recommendation": "Использовать SSH-ключи через vCloud Director и IAM."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced предоставляет полный контроль над ВМ, включая настройку SSH-ключей через OpenStack-совместимые инструменты.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать OpenStack CLI или Horizon для загрузки SSH-ключей."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution поддерживает SSH-ключи при создании ВМ, как стандартная функция сервиса «Виртуальные машины».",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Загружать SSH-ключи при создании ВМ через веб-интерфейс."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 171,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru предоставляет сервис «Группы безопасности» с возможностью создания правил для входящего и исходящего трафика, применяемых к сетевым интерфейсам ВМ, что подтверждено документацией для Evolution и VMware.",
+    "evidence": "Группы безопасности назначаются сетевым интерфейсам виртуальных машин. На каждый сетевой интерфейс действуют правила всех групп безопасности, в которые он добавлен. [2]",
+    "source_urls": [
+      "https://cloud.ru/docs/security-groups/ug/topics/faq__vm-sg-list"
+    ],
+    "recommendation": "Использовать сервис «Группы безопасности» на любой платформе Cloud.ru для управления трафиком ВМ.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "ГосОблако поддерживает группы безопасности как часть сетевой инфраструктуры, совместимой с требованиями К1 и УЗ-1.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Настроить группы безопасности через консоль ГосОблака."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware поддерживает группы безопасности через vCloud Director и API, что подтверждено документацией по сетевым политикам.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "recommendation": "Использовать функционал vCloud Director для настройки правил безопасности."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced предоставляет сервис групп безопасности на базе OpenStack, поддерживающий правила для входящего и исходящего трафика.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать Neutron Security Groups через CLI или Horizon."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution имеет полнофункциональный сервис «Группы безопасности» с поддержкой правил для входящего и исходящего трафика, как указано в FAQ.",
+        "evidence_refs": ["[2]", "[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/security-groups/ug/topics/faq__vm-sg-list",
+          "https://cloud.ru/docs/security-groups/ug/topics/faq"
+        ],
+        "source_titles": [
+          "Где посмотреть все разрешающие правила, действующие на виртуальную машину?",
+          "Вопросы и ответы про сервис «Группы безопасности»"
+        ],
+        "recommendation": "Настроить правила через веб-интерфейс Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 172,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru поддерживает создание маршрутизируемых и изолированных подсетей через VPC и vCloud Director, что позволяет объединять ВМ в единый домен маршрутизации и изолировать трафик, как подтверждено документацией.",
+    "evidence": "ЦОД организации: Organization VDC (Org VDC) Подгруппа вычислительных ресурсов, памяти, ресурсов хранения, сетей и сетевых маршру... [2]",
+    "source_urls": [
+      "fd4c23ed-8914-4e69-ad3d-7209968df942"
+    ],
+    "recommendation": "Использовать VPC на Advanced/Evolution или Org VDC на Облаке VMware для создания подсетей.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "ГосОблако предоставляет VPC-подобные возможности для создания маршрутизируемых и изолированных подсетей в рамках аттестованной инфраструктуры.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать сетевые сервисы ГосОблака для настройки подсетей."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware на базе vCloud Director поддерживает Organization VDC и Provider VDC, позволяющие создавать маршрутизируемые и изолированные подсети.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "fd4c23ed-8914-4e69-ad3d-7209968df942"
+        ],
+        "source_titles": [
+          "Архитектура платформы Облако VMware"
+        ],
+        "recommendation": "Настроить Org VDC и pVDC через vCloud Director."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced предоставляет сервис Virtual Private Cloud с поддержкой создания маршрутизируемых и изолированных подсетей.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vpc/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности сервиса Virtual Private Cloud"
+        ],
+        "recommendation": "Использовать VPC с настройкой CIDR и маршрутизации."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution поддерживает создание изолированных и маршрутизируемых подсетей через сервис VPC, как часть стандартной сетевой инфраструктуры.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Настроить подсети через веб-интерфейс Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 173,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru поддерживает использование собственных образов ВМ (custom images) на всех платформах, включая форматы RAW и QCOW2, что подтверждено документацией по требованиям к образам.",
+    "evidence": "Формат образа — RAW или QCOW2. Образ соответствует требованиям OpenStack . [3]",
+    "source_urls": [
+      "https://cloud.ru/docs/marketplace-partner/ug/topics/requirements__images"
+    ],
+    "recommendation": "Загружать собственные образы в формате RAW или QCOW2 через Marketplace или API.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "ГосОблако поддерживает загрузку и использование собственных образов ВМ в рамках аттестованной инфраструктуры.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать функцию загрузки образов в консоли ГосОблака."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware поддерживает использование собственных образов в форматах RAW и QCOW2, как указано в требованиях к образам.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/marketplace-partner/ug/topics/requirements__images"
+        ],
+        "source_titles": [
+          "Требования к образам виртуальных машин"
+        ],
+        "recommendation": "Загружать образы через vCloud Director или API."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced поддерживает загрузку собственных образов в формате RAW/QCOW2 через Glance, как часть OpenStack-стека.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Использовать Glance API для загрузки образов."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution поддерживает использование собственных образов ВМ, как подтверждено в документации по ограничениям сервиса.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности сервиса «Виртуальные машины»"
+        ],
+        "recommendation": "Загружать образы через веб-интерфейс Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 174,
+    "verdict": "partial",
+    "confidence": 0.7,
+    "reasoning": "Cloud.ru не подтверждает поддержку приостановки ВМ (suspend/resume) в документации. Хотя Live Migration и другие функции есть, приостановка ВМ не упомянута ни на одной платформе, требует уточнения.",
+    "evidence": "",
+    "source_urls": [],
+    "recommendation": "Уточнить у клиентского менеджера Cloud.ru, поддерживается ли функция приостановки ВМ на целевой платформе.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не вернул документацию по приостановке ВМ. Функция возможна, но не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у службы поддержки Cloud.ru."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Хотя VMware vSphere поддерживает suspend, документация Cloud.ru не подтверждает эту функцию на платформе Облако VMware.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли suspend в vCloud Director."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не содержит информации о поддержке suspend в OpenStack-стеке Advanced.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у службы поддержки Cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не содержит подтверждения функции приостановки ВМ на Evolution.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 175,
+    "verdict": "partial",
+    "confidence": 0.8,
+    "reasoning": "Cloud.ru Облако VMware поддерживает до двух графических адаптеров (NVIDIA V100, A100 и др.), но требование «не менее 2» выполняется. На других платформах (Advanced, Evolution, ГосОблако) поддержка GPU не подтверждена в RAG, требуется уточнение.",
+    "evidence": "Модели графических ускорителей NVIDIA V100 32 ГБ NVIDIA H100 80 ГБ NVIDIA A100 80 ГБ... [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать Облако VMware для развертывания ВМ с двумя GPU. Для других платформ уточнить поддержку GPU.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не содержит информации о поддержке нескольких GPU в ГосОблаке.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли многопроцессорная GPU-конфигурация."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware поддерживает конфигурации с двумя и более GPU (NVIDIA V100, A100, H100), что прямо указано в документации.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "recommendation": "Выбрать спецификацию с двумя GPU (например, NVIDIA A100 80 ГБ)."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не подтверждает поддержку нескольких GPU на Advanced.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у службы поддержки Cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не содержит информации о поддержке нескольких GPU на Evolution.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 176,
+    "verdict": "partial",
+    "confidence": 0.75,
+    "reasoning": "Облако VMware предоставляет GPU с пропускной способностью памяти до 1000 ГБ/с (NVIDIA A100 — 1555 ГБ/с, H100 — 3350 ГБ/с), что соответствует требованию. Однако требование «пропускная способность памяти не менее 3350 ГБ/с» — это характеристика H100, которая в документации указана как доступная. На других платформах поддержка GPU не подтверждена.",
+    "evidence": "Модели графических ускорителей NVIDIA V100 32 ГБ NVIDIA H100 80 ГБ NVIDIA A100 80 ГБ... [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать Облако VMware с GPU NVIDIA H100 80 ГБ для соответствия требованию. Для других платформ уточнить поддержку GPU.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не содержит информации о GPU и пропускной способности памяти в ГосОблаке.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет GPU NVIDIA H100 80 ГБ с пропускной способностью памяти 3350 ГБ/с, что точно соответствует требованию.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "recommendation": "Выбрать спецификацию с NVIDIA H100 80 ГБ."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не подтверждает наличие GPU с пропускной способностью 3350 ГБ/с на Advanced.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у службы поддержки Cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не содержит информации о GPU и пропускной способности памяти на Evolution.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]
+```

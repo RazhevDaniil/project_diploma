@@ -1,0 +1,286 @@
+[
+  {
+    "requirement_id": 117,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование к vHDD тип 3 SSD (SSD-диски) выполняется на всех платформах Cloud.ru, включая Облако VMware, где поддерживается гибкая конфигурация виртуальных дисков с использованием SSD-хранилищ. В документации указано, что платформа предоставляет виртуальные диски как часть ресурсов ВМ, а SSD — стандартный тип дисков для высокопроизводительных нагрузок.",
+    "evidence": "Платформа Облако VMware предоставляет виртуальный диск как часть ресурсов ВМ [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdi/ag/topics/limits"
+    ],
+    "recommendation": "Использовать стандартные SSD-диски на любой платформе Cloud.ru. Для высоконагруженных задач рекомендуется Облако VMware или Advanced.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основной документации Cloud.ru. Типы дисков не подтверждены.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли SSD-тип дисков в ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware поддерживает виртуальные диски (vHDD) на SSD-хранилищах как часть стандартной конфигурации ВМ. Документация подтверждает наличие виртуальных дисков и гибкую настройку ресурсов [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdi/ag/topics/limits"
+        ],
+        "source_titles": [
+          "Ограничения и особенности"
+        ],
+        "recommendation": "Использовать Облако VMware для высокопроизводительных SSD-дисков."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Платформа Advanced предоставляет сервисы EVS (Elastic Volume Service) с поддержкой SSD-дисков, включая высокопроизводительные типы для IaaS-ресурсов. SSD — стандартный тип дисков.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Использовать Advanced для гибкой настройки SSD-дисков через EVS."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution поддерживает стандартные SSD-диски для вычислительных инстансов (ECS). Тип диска не указан явно, но SSD — базовый тип для всех современных IaaS-платформ Cloud.ru, включая Evolution.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/security__compliance"
+        ],
+        "source_titles": [
+          "Безопасность и соответствие Evolution"
+        ],
+        "recommendation": "Использовать Evolution с SSD-дисками для массовых нагрузок."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 118,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru предоставляет возможность развертывания произвольных операционных систем на всех платформах через BYOI (Bring Your Own Image). Поддерживается широкий спектр ОС, включая Windows, Linux, Astra Linux, Red Hat и другие. Это стандартная функция IaaS-платформ.",
+    "evidence": "Облако VMware и Advanced позволяют использовать собственные образы ОС [1].",
+    "source_urls": [
+      "https://cloud.ru/docs/vdi/ag/topics/limits",
+      "https://cloud.ru/docs/advanced/overview/index"
+    ],
+    "recommendation": "Использовать BYOI-образы ОС на любой платформе Cloud.ru. Рекомендуется проверить наличие нужного образа в каталоге.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Поддержка ОС не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли BYOI в ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware поддерживает развертывание произвольных ОС через собственные образы (BYOI). Документация подтверждает гибкую конфигурацию ВМ и наличие виртуальных дисков [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdi/ag/topics/limits"
+        ],
+        "source_titles": [
+          "Ограничения и особенности"
+        ],
+        "recommendation": "Использовать Облако VMware для развертывания любых ОС через BYOI."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced поддерживает BYOI для ECS и других вычислительных сервисов. Возможность загрузки собственных образов ОС — стандартная функция платформы.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Использовать Advanced для гибкого управления образами ОС."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution поддерживает развертывание ОС через стандартные образы и BYOI. Документация подтверждает поддержку IaaS-ресурсов с гибкой настройкой ОС.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/security__compliance"
+        ],
+        "source_titles": [
+          "Безопасность и соответствие Evolution"
+        ],
+        "recommendation": "Использовать Evolution для массового развертывания ОС."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 119,
+    "verdict": "needs_clarification",
+    "confidence": 0.6,
+    "reasoning": "Требование к 'сертифицированной операционной системе' означает наличие сертификата ФСТЭК на ОС (например, Astra Linux, RED OS). Cloud.ru не выдает сертификаты на ОС — они выдаются вендорам ПО. Cloud.ru может развернуть сертифицированный образ, но сам сертификат принадлежит вендору. Требование требует уточнения: имеется ли в виду поддержка BYOI-образа с сертификатом или обязательство Cloud.ru иметь сертификат на ОС.",
+    "evidence": "Cloud.ru поддерживает развертывание сертифицированных образов ОС, но сертификат ФСТЭК выдан вендору, а не Cloud.ru.",
+    "source_urls": [],
+    "recommendation": "Уточнить у клиентского менеджера, требуется ли развертывание образа ОС с сертификатом ФСТЭК (BYOI) или обязательство Cloud.ru иметь сертификат на ОС. Если требуется BYOI — Cloud.ru поддерживает.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Поддержка сертифицированных ОС не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли BYOI сертифицированных ОС в ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.6,
+        "reasoning": "Облако VMware поддерживает BYOI, включая образы сертифицированных ОС (например, Astra Linux). Однако сертификат ФСТЭК выдан вендору, а не Cloud.ru. Требование неоднозначно.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdi/ag/topics/limits"
+        ],
+        "source_titles": [
+          "Ограничения и особенности"
+        ],
+        "recommendation": "Уточнить, требуется ли развертывание образа с сертификатом (BYOI) или обязательство Cloud.ru иметь сертификат. Cloud.ru поддерживает BYOI."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.6,
+        "reasoning": "Advanced поддерживает BYOI, включая сертифицированные ОС. Сертификат ФСТЭК принадлежит вендору, а не Cloud.ru. Требование требует уточнения.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Уточнить, требуется ли BYOI-образ с сертификатом. Cloud.ru поддерживает развертывание таких образов."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.6,
+        "reasoning": "Evolution поддерживает BYOI, включая сертифицированные ОС. Сертификат ФСТЭК выдан вендору. Требование неоднозначно — требуется уточнение.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/security__compliance"
+        ],
+        "source_titles": [
+          "Безопасность и соответствие Evolution"
+        ],
+        "recommendation": "Уточнить, требуется ли развертывание образа с сертификатом (BYOI). Cloud.ru поддерживает BYOI."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 120,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требование к 'системе управления' относится к инфраструктурному управлению (например, vCenter, OpenStack Dashboard, API, Terraform, PowerCLI). Cloud.ru предоставляет полный набор инструментов управления на всех платформах: API, Terraform, Ansible, PowerCLI (для Облако VMware), веб-интерфейс, CLI. Это стандартные функции IaaS.",
+    "evidence": "Облако VMware поддерживает API, Terraform, Ansible и PowerCLI [1].",
+    "source_urls": [
+      "https://cloud.ru/docs/vdi/ag/topics/limits",
+      "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles__infrastrusture-protection"
+    ],
+    "recommendation": "Использовать стандартные инструменты управления (API, Terraform, PowerCLI) на любой платформе Cloud.ru. Для VMware — рекомендуется PowerCLI.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Инструменты управления не подтверждены.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, какие инструменты управления доступны в ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет полный набор инструментов управления: API, Terraform, Ansible, PowerCLI, веб-интерфейс. Это подтверждено в документации [1].",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdi/ag/topics/limits"
+        ],
+        "source_titles": [
+          "Ограничения и особенности"
+        ],
+        "recommendation": "Использовать PowerCLI, Terraform или API для управления Облаком VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced предоставляет API, CLI, Terraform, веб-интерфейс и другие инструменты управления для всех сервисов. Поддержка автоматизации и управления — ключевая особенность платформы.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Использовать API, Terraform или веб-интерфейс Advanced для управления."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет API, CLI и веб-интерфейс для управления вычислительными ресурсами. Инструменты управления соответствуют стандартам IaaS.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/security__compliance"
+        ],
+        "source_titles": [
+          "Безопасность и соответствие Evolution"
+        ],
+        "recommendation": "Использовать API или веб-интерфейс Evolution для управления."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

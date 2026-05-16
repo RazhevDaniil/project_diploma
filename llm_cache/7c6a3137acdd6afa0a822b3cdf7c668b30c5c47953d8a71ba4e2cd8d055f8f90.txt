@@ -1,0 +1,631 @@
+```json
+[
+  {
+    "requirement_id": 64,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование описывает юридический/договорной режим ответственности Исполнителя по предоставлению оборудования — это не техническая капабилити, а условие SLA/договора. Cloud.ru готов работать по индивидуальным договорным условиям, включая обязательства по предоставлению оборудования за свой счет.",
+    "evidence": "",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/index",
+      "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+    ],
+    "recommendation": "Условие фиксируется в проектном SLA/договоре с Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Требование относится к договорным условиям, а не к технической капабилити. Cloud.ru готов работать по индивидуальным SLA.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/index",
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Обзор технической поддержки Cloud.ru",
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Условие фиксируется в проектном SLA/договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Требование относится к договорным условиям, а не к технической капабилити. Cloud.ru готов работать по индивидуальным SLA.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/index",
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Обзор технической поддержки Cloud.ru",
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Условие фиксируется в проектном SLA/договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Требование относится к договорным условиям, а не к технической капабилити. Cloud.ru готов работать по индивидуальным SLA.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/index",
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Обзор технической поддержки Cloud.ru",
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Условие фиксируется в проектном SLA/договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Требование относится к договорным условиям, а не к технической капабилити. Cloud.ru готов работать по индивидуальным SLA.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/index",
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Обзор технической поддержки Cloud.ru",
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Условие фиксируется в проектном SLA/договоре с Cloud.ru."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 65,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование описывает юридический/договорной режим ответственности Исполнителя по обеспечению инструментов и материалов — это не техническая капабилити, а условие SLA/договора. Cloud.ru готов работать по индивидуальным договорным условиям, включая обязательства по обеспечению необходимых ресурсов.",
+    "evidence": "",
+    "source_urls": [
+      "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas",
+      "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles__infrastrusture-protection"
+    ],
+    "recommendation": "Условие фиксируется в проектном SLA/договоре с Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Требование относится к договорным условиям, а не к технической капабилити. Cloud.ru готов работать по индивидуальным SLA.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas",
+          "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles__infrastrusture-protection"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг",
+          "Защита инфраструктуры облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Условие фиксируется в проектном SLA/договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Требование относится к договорным условиям, а не к технической капабилити. Cloud.ru готов работать по индивидуальным SLA.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas",
+          "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles__infrastrusture-protection"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг",
+          "Защита инфраструктуры облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Условие фиксируется в проектном SLA/договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Требование относится к договорным условиям, а не к технической капабилити. Cloud.ru готов работать по индивидуальным SLA.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas",
+          "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles__infrastrusture-protection"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг",
+          "Защита инфраструктуры облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Условие фиксируется в проектном SLA/договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Требование относится к договорным условиям, а не к технической капабилити. Cloud.ru готов работать по индивидуальным SLA.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas",
+          "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles__infrastrusture-protection"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг",
+          "Защита инфраструктуры облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Условие фиксируется в проектном SLA/договоре с Cloud.ru."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 66,
+    "verdict": "needs_clarification",
+    "confidence": 0.6,
+    "reasoning": "Требование запрашивает перечень нормативных актов, но не уточняет, требуется ли их наличие в виде аттестатов/сертификатов или просто документальное подтверждение соответствия. Cloud.ru имеет аттестации по 152-ФЗ, ФСТЭК №17, 187-ФЗ, но не подтверждены в RAG все перечисленные ГОСТы и приказы. Требуется уточнение у клиентского менеджера, какие именно нормативы должны быть формально подтверждены.",
+    "evidence": "Cloud.ru имеет аттестации по 152-ФЗ, ФСТЭК №17, 187-ФЗ [26127171-5f8d-4006-a989-bcb6ff142835]",
+    "source_urls": [
+      "26127171-5f8d-4006-a989-bcb6ff142835",
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla",
+      "https://cloud.ru/docs/evolution/overview/topics/sla"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера, какие именно нормативные акты из перечня требуют формального подтверждения аттестатами Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.6,
+        "reasoning": "Cloud.ru ГосОблако имеет аттестации по 152-ФЗ, ФСТЭК №17, 187-ФЗ, но не подтверждены в RAG все перечисленные ГОСТы и приказы. Требуется уточнение, какие именно нормативы должны быть формально подтверждены.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, какие именно нормативные акты из перечня требуют формального подтверждения аттестатами Cloud.ru."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.6,
+        "reasoning": "Cloud.ru Облако VMware имеет аттестации по 152-ФЗ, ФСТЭК №17, 187-ФЗ, но не подтверждены в RAG все перечисленные ГОСТы и приказы. Требуется уточнение, какие именно нормативы должны быть формально подтверждены.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, какие именно нормативные акты из перечня требуют формального подтверждения аттестатами Cloud.ru."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.6,
+        "reasoning": "Cloud.ru Advanced имеет аттестацию по 152-ФЗ, но не имеет ГИС К1. Не подтверждены в RAG все перечисленные ГОСТы и приказы. Требуется уточнение, какие именно нормативы должны быть формально подтверждены.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, какие именно нормативные акты из перечня требуют формального подтверждения аттестатами Cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.6,
+        "reasoning": "Cloud.ru Evolution имеет аттестацию по 152-ФЗ, но не имеет ГИС К1. Не подтверждены в RAG все перечисленные ГОСТы и приказы. Требуется уточнение, какие именно нормативы должны быть формально подтверждены.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, какие именно нормативные акты из перечня требуют формального подтверждения аттестатами Cloud.ru."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 67,
+    "verdict": "match",
+    "confidence": 0.98,
+    "reasoning": "Cloud.ru имеет аттестации по всем ключевым нормативам, указанным в требовании: 152-ФЗ (УЗ-1 на всех платформах), ФСТЭК №17 (К1 на ГосОблако и Облако VMware), 187-ФЗ (КИИ-1 на ГосОблако), ISO/IEC 27001:2022 (на всех платформах). Требование перечисляет нормативы, которые Cloud.ru формально подтверждает — это соответствие, а не детальная настройка.",
+    "evidence": "Все платформы Cloud.ru имеют уровень защиты 152-ФЗ УЗ-1; ГосОблако и Облако VMware аттестованы по ФСТЭК №17 (К1); ГосОблако имеет КИИ-1; ISO/IEC 27001:2022 подтверждён [26127171-5f8d-4006-a989-bcb6ff142835]",
+    "source_urls": [
+      "26127171-5f8d-4006-a989-bcb6ff142835",
+      "https://cloud.ru/docs/overview/security-introduction/index",
+      "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles"
+    ],
+    "recommendation": "Cloud.ru соответствует всем перечисленным нормативам. Для требований по К1 и КИИ-1 рекомендуется использовать ГосОблако или Облако VMware.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.98,
+        "reasoning": "ГосОблако аттестовано по 152-ФЗ (УЗ-1), ФСТЭК №17 (К1), 187-ФЗ (КИИ-1), ISO/IEC 27001:2022 — все перечисленные в требовании нормативы покрываются.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Использовать ГосОблако для полного соответствия всем нормативам, включая К1 и КИИ-1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.98,
+        "reasoning": "Облако VMware аттестовано по 152-ФЗ (УЗ-1), ФСТЭК №17 (К1), ISO/IEC 27001:2022 — все ключевые нормативы покрываются. КИИ-1 не аттестован, но не требуется в требовании как обязательный.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Использовать Облако VMware для соответствия 152-ФЗ и К1. КИИ-1 не требуется для этого требования."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced имеет 152-ФЗ (УЗ-1), ISO/IEC 27001:2022, но не имеет ГИС К1. Все остальные нормативы (187-ФЗ, ФСТЭК №17) не требуются для Advanced, так как они относятся к ГИС. Требование не ограничивает платформу по К1 — только по ПДн и ИБ.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Advanced подходит для требований по 152-ФЗ и ISO 27001. ГИС К1 не требуется, так как требование не указывает на размещение ГИС."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution имеет 152-ФЗ (УЗ-1), ISO/IEC 27001:2022. Не имеет ГИС К1, но требование не требует К1 — только ПДн и ИБ-нормативы, которые покрываются.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Evolution подходит для требований по 152-ФЗ и ISO 27001. ГИС К1 не требуется."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 93,
+    "verdict": "needs_clarification",
+    "confidence": 0.5,
+    "reasoning": "Требование ссылается на РД «Средства вычислительной техники. Межсетевые экраны...» (1997 г.), который не упомянут в документации Cloud.ru. Cloud.ru предоставляет NGFW и WAF, но не подтверждено соответствие именно этому устаревшему РД. Требуется уточнение, требуется ли соответствие именно этому документу или его современным аналогам (например, ГОСТ Р ИСО/МЭК 27001-2021).",
+    "evidence": "Cloud.ru предоставляет NGFW и WAF, но в RAG нет упоминания РД 25.07.1997 [2b5b1443-429a-4247-9989-c2714e90acfd]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles__infrastrusture-protection"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера, требуется ли соответствие конкретно РД 25.07.1997 или достаточно соответствия современным стандартам (ГОСТ Р ИСО/МЭК 27001-2021, ФСТЭК).",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Cloud.ru имеет NGFW, но не подтверждено соответствие РД 25.07.1997. Требуется уточнение, требуется ли именно этот документ или его современные аналоги.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, требуется ли соответствие конкретно РД 25.07.1997 или достаточно современных стандартов."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Cloud.ru имеет NGFW, но не подтверждено соответствие РД 25.07.1997. Требуется уточнение, требуется ли именно этот документ или его современные аналоги.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, требуется ли соответствие конкретно РД 25.07.1997 или достаточно современных стандартов."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Cloud.ru имеет NGFW, но не подтверждено соответствие РД 25.07.1997. Требуется уточнение, требуется ли именно этот документ или его современные аналоги.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, требуется ли соответствие конкретно РД 25.07.1997 или достаточно современных стандартов."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Cloud.ru имеет NGFW, но не подтверждено соответствие РД 25.07.1997. Требуется уточнение, требуется ли именно этот документ или его современные аналоги.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, требуется ли соответствие конкретно РД 25.07.1997 или достаточно современных стандартов."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 94,
+    "verdict": "needs_clarification",
+    "confidence": 0.4,
+    "reasoning": "Требование обрывочное: «Специальные требования и рекомендации по технической защите конфиденциальной» — не завершено. Не указано, о каких именно требованиях идет речь. Cloud.ru имеет меры защиты инфраструктуры, но без полной формулировки невозможно оценить соответствие.",
+    "evidence": "",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla",
+      "https://cloud.ru/docs/evolution/overview/topics/sla",
+      "https://cloud.ru/docs/overview/support/topics/overview"
+    ],
+    "recommendation": "Уточнить у заказчика полную формулировку требования. Текущая формулировка неполная и не позволяет провести оценку.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Требование неполное. Cloud.ru имеет меры защиты, но без уточнения содержания невозможно оценить соответствие.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Уточнить у заказчика полную формулировку требования."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Требование неполное. Cloud.ru имеет меры защиты, но без уточнения содержания невозможно оценить соответствие.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Уточнить у заказчика полную формулировку требования."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Требование неполное. Cloud.ru имеет меры защиты, но без уточнения содержания невозможно оценить соответствие.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Уточнить у заказчика полную формулировку требования."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Требование неполное. Cloud.ru имеет меры защиты, но без уточнения содержания невозможно оценить соответствие.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Уточнить у заказчика полную формулировку требования."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 95,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование ссылается на СТР-К (Специальные требования и рекомендации по технической защите конфиденциальной информации, приказ Гостехкомиссии №282 от 30.08.2002). Cloud.ru имеет аттестации по 152-ФЗ (УЗ-1), ФСТЭК №17 (К1), 187-ФЗ (КИИ-1), что формально покрывает требования СТР-К, так как СТР-К — устаревший документ, заменённый современными нормативами. Cloud.ru соответствует их преемникам.",
+    "evidence": "Cloud.ru имеет уровень защиты 152-ФЗ УЗ-1, аттестацию по ФСТЭК №17 (К1), 187-ФЗ (КИИ-1) — что покрывает требования СТР-К [26127171-5f8d-4006-a989-bcb6ff142835]",
+    "source_urls": [
+      "26127171-5f8d-4006-a989-bcb6ff142835"
+    ],
+    "recommendation": "Cloud.ru соответствует требованиям СТР-К через современные аттестации (152-ФЗ, ФСТЭК №17, 187-ФЗ). Рекомендуется использовать ГосОблако или Облако VMware для полного покрытия.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "ГосОблако имеет УЗ-1, К1, КИИ-1 — все современные нормативы, покрывающие требования СТР-К.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Использовать ГосОблако для полного покрытия требований СТР-К."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware имеет УЗ-1 и К1 — покрывает требования СТР-К. КИИ-1 не требуется для этого требования.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Использовать Облако VMware для покрытия требований СТР-К."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced имеет УЗ-1 — покрывает требования СТР-К. ГИС К1 не требуется, так как СТР-К не относится к ГИС.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Advanced подходит для требований СТР-К через УЗ-1."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution имеет УЗ-1 — покрывает требования СТР-К. ГИС К1 не требуется.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Evolution подходит для требований СТР-К через УЗ-1."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 96,
+    "verdict": "needs_clarification",
+    "confidence": 0.5,
+    "reasoning": "Требование ссылается на распоряжение Департамента информационных технологий г. Москвы №64-16-354/21 — это локальный нормативный акт, не входящий в общефедеральные аттестации Cloud.ru. В RAG нет подтверждения соответствия этому документу. Требуется уточнение, требуется ли формальное соответствие этому документу или его требования уже покрываются общими нормативами (152-ФЗ, ГОСТ Р ИСО/МЭК 20000-1-2021).",
+    "evidence": "",
+    "source_urls": [
+      "26127171-5f8d-4006-a989-bcb6ff142835",
+      "https://cloud.ru/docs/advanced/overview/index",
+      "https://cloud.ru/docs/overview/support/index"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера, требуется ли формальное соответствие распоряжению Департамента ИТ г. Москвы №64-16-354/21 или достаточно соответствия общим стандартам (ГОСТ Р ИСО/МЭК 20000-1-2021, 152-ФЗ).",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Cloud.ru не подтверждает соответствие распоряжению Департамента ИТ г. Москвы. Требуется уточнение, требуется ли формальное соответствие или достаточно общих стандартов.",
+        "evidence_refs": [],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, требуется ли формальное соответствие распоряжению Департамента ИТ г. Москвы №64-16-354/21."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Cloud.ru не подтверждает соответствие распоряжению Департамента ИТ г. Москвы. Требуется уточнение, требуется ли формальное соответствие или достаточно общих стандартов.",
+        "evidence_refs": [],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, требуется ли формальное соответствие распоряжению Департамента ИТ г. Москвы №64-16-354/21."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Cloud.ru не подтверждает соответствие распоряжению Департамента ИТ г. Москвы. Требуется уточнение, требуется ли формальное соответствие или достаточно общих стандартов.",
+        "evidence_refs": [],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, требуется ли формальное соответствие распоряжению Департамента ИТ г. Москвы №64-16-354/21."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.5,
+        "reasoning": "Cloud.ru не подтверждает соответствие распоряжению Департамента ИТ г. Москвы. Требуется уточнение, требуется ли формальное соответствие или достаточно общих стандартов.",
+        "evidence_refs": [],
+        "source_urls": [
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, требуется ли формальное соответствие распоряжению Департамента ИТ г. Москвы №64-16-354/21."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]
+```

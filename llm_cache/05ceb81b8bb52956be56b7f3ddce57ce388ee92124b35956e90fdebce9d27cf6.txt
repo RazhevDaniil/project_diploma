@@ -1,0 +1,287 @@
+[
+  {
+    "requirement_id": 181,
+    "verdict": "mismatch",
+    "confidence": 0.95,
+    "reasoning": "Требуется графический адаптер с производительностью Int8 с разреженными тензорами не менее 3958 TOPS. В документации Cloud.ru указаны модели графических ускорителей NVIDIA (V100, A100, H100), но не приведены конкретные метрики производительности в TOPS для Int8 с разреженными тензорами. Даже если предположить, что A100/H100 могут достигать таких значений, в документации нет подтверждения, что Cloud.ru предоставляет именно такие конфигурации с гарантированной производительностью ≥3958 TOPS. Требование специфично и не покрывается общим упоминанием GPU.",
+    "evidence": "Модели графических ускорителей NVIDIA V100 32 ГБ, NVIDIA A100 80 ГБ, NVIDIA H100 80 ГБ — указаны, но без числовых значений TOPS для Int8 с разреженными тензорами [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера, доступны ли виртуальные машины с GPU NVIDIA H100/A100 с подтверждённой производительностью Int8 ≥3958 TOPS. Если нет — рассмотреть возможность использования партнёрских решений для HPC-нагрузок.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru. Нет данных о наличии GPU-ресурсов или их характеристиках.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, существует ли продукт ГосОблако и какие GPU-возможности он предоставляет."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 0.9,
+        "reasoning": "Облако VMware предоставляет GPU NVIDIA V100, A100, H100, но в документации нет подтверждения производительности Int8 с разреженными тензорами ≥3958 TOPS. Требование не покрывается явно, и Cloud.ru не гарантирует такую специфическую метрику.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера, доступны ли специфические конфигурации GPU с подтверждённой производительностью Int8 ≥3958 TOPS. В текущем виде — не соответствует."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 0.85,
+        "reasoning": "В документации Advanced не упоминаются GPU-ускорители. Платформа ориентирована на общие вычислительные ресурсы, без поддержки специализированных графических адаптеров для HPC-задач.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Advanced не поддерживает GPU-ускорители. Для таких задач требуется Облако VMware или партнёрские решения."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет только базовые виртуальные машины без поддержки GPU-ускорителей. В документации нет упоминания о графических адаптерах или HPC-возможностях.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/concepts__flavors"
+        ],
+        "source_titles": [
+          "Конфигурации виртуальных машин"
+        ],
+        "recommendation": "Evolution не поддерживает GPU. Для требуемой нагрузки требуется другая платформа или партнёрское решение."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 182,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование описывает назначение вычислительной инфраструктуры для размещения ВМ с ИС. Cloud.ru Облако VMware предоставляет IaaS-сервисы, включая виртуальные машины, Bare Metal, шифрование ВМ и резервное копирование — что прямо соответствует цели обеспечения функционирования ИС. Детали задач (например, «сопутствующие инфраструктурные службы») покрываются общим функционалом платформы.",
+    "evidence": "Платформа Облако VMware предоставляет сервисы по моделям IaaS, среди которых виртуальный ЦОД, виртуальные рабочие места пользователей, серверы Bare Metal, система резервного копирования и шифрование ВМ [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/vmware/overview/index",
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Облако VMware полностью соответствует требованию. Рекомендуется использовать эту платформу для развертывания ИС.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru. Нет данных о его функционале для размещения ИС.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, существует ли продукт ГосОблако и какие сервисы он предоставляет для размещения ИС."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет IaaS-сервисы: виртуальные машины, Bare Metal, резервное копирование, шифрование ВМ — что напрямую соответствует цели обеспечения функционирования ИС. Детализация задач покрывается стандартным функционалом платформы.",
+        "evidence_refs": ["[1]", "[3]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "https://cloud.ru/docs/vmware/overview/index"
+        ],
+        "source_titles": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd",
+          "Обзор платформы Cloud.ru Облако VMware"
+        ],
+        "recommendation": "Облако VMware — оптимальная платформа для выполнения требования."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced предоставляет более 50 сервисов IaaS/PaaS, включая виртуальные машины, резервное копирование, шифрование — что покрывает требования к инфраструктуре для ИС. Детализация задач не требует специфических API — стандартный функционал достаточен.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Advanced подходит для развертывания ИС. Рекомендуется при необходимости PaaS-сервисов."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет виртуальные машины (free tier и платные), что позволяет размещать ИС. Хотя функционал проще, чем у Advanced или VMware, базовые возможности для обеспечения функционирования ИС присутствуют.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/services__list"
+        ],
+        "source_titles": [
+          "Список сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Evolution подходит для базовых ИС. Для высоконагруженных систем рекомендуется Advanced или Облако VMware."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 183,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование — предоставить ПО ОС и СУБД для установки на ВМ. Cloud.ru на всех платформах поддерживает BYOI (Bring Your Own Image): клиент может загрузить и установить любую ОС (включая Astra Linux, RedOS, Windows, CentOS) и СУБД (PostgreSQL, MySQL, Oracle и др.) в виде образа. Это стандартная функция IaaS-платформ Cloud.ru.",
+    "evidence": "Виртуальная машина без переподписки — доступна в рамках частного облака [1]; Каталог операционных систем доступен в Evolution [2]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/evolution/overview/topics/services__list"
+    ],
+    "recommendation": "Cloud.ru поддерживает установку любого ПО ОС и СУБД через BYOI. Рекомендуется использовать каталог образов или загрузить собственные образы.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Нет данных о поддержке BYOI или загрузке образов ОС/СУБД.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживает ли ГосОблако загрузку пользовательских образов ОС и СУБД."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware позволяет создавать ВМ без переподписки и загружать собственные образы ОС и СУБД (BYOI). Поддержка API, PowerCLI, Terraform позволяет автоматизировать развертывание.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "recommendation": "Облако VMware — оптимальная платформа для установки произвольных ОС и СУБД."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced поддерживает загрузку пользовательских образов ОС и СУБД через каталог и API. Возможность BYOI — стандартная функция OpenStack-платформы.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Advanced поддерживает BYOI. Рекомендуется для гибкого управления образами."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет каталог операционных систем и позволяет развертывать ВМ с различными ОС. Пользователь может загружать собственные образы (BYOI) — подтверждено в документации.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/services__list"
+        ],
+        "source_titles": [
+          "Список сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Evolution поддерживает установку ОС и СУБД через каталог и BYOI. Подходит для большинства задач."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 184,
+    "verdict": "partial",
+    "confidence": 0.8,
+    "reasoning": "Требование — ПО должно быть внесено в Единый реестр российских ПО (reestr.digital.gov.ru). Cloud.ru предоставляет в каталоге образов только ОС/СУБД, сертифицированные вендорами (например, Astra Linux, Postgres Pro Certified), которые внесены в реестр. Однако сам Cloud.ru не гарантирует, что все загружаемые образы соответствуют реестру — это ответственность клиента. Платформа поддерживает только внесённые в реестр образы, но не проверяет их соответствие автоматически.",
+    "evidence": "Реестр отечественного ПО — отмечен как наличие в Облако VMware [1]; в Evolution доступен каталог ОС, включая российские [2]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/evolution/overview/topics/services__list"
+    ],
+    "recommendation": "Cloud.ru предоставляет образы ОС/СУБД, внесённые в реестр (например, Astra Linux). Рекомендуется использовать только такие образы из каталога. Для других ПО — клиент должен обеспечить соответствие реестру самостоятельно.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Нет данных о наличии каталога сертифицированного ПО или поддержке реестра.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживает ли ГосОблако образы из Единого реестра российских ПО."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.85,
+        "reasoning": "В документации указано наличие «Реестр отечественного ПО» — это означает, что платформа поддерживает образы из реестра (например, Astra Linux). Однако Cloud.ru не гарантирует, что все загружаемые образы соответствуют реестру — это ответственность клиента.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "recommendation": "Использовать только образы из каталога, внесённые в реестр. Для других ПО — клиент должен обеспечить соответствие."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.8,
+        "reasoning": "Advanced не упоминает реестр ПО в документации. Хотя клиент может загрузить сертифицированные образы, платформа не предоставляет каталога или поддержки реестра — это требует ручной проверки.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Клиент должен самостоятельно загружать и проверять соответствие образов реестру. Платформа не обеспечивает автоматическую поддержку."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.85,
+        "reasoning": "Evolution предоставляет каталог операционных систем, включая российские (например, Astra Linux), которые внесены в реестр. Однако платформа не гарантирует, что все образы соответствуют реестру — клиент должен выбирать только сертифицированные.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/services__list"
+        ],
+        "source_titles": [
+          "Список сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Использовать образы из каталога Evolution, внесённые в реестр. Для других ПО — клиент должен обеспечить соответствие."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

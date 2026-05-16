@@ -1,0 +1,544 @@
+```json
+[
+  {
+    "requirement_id": 41,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Сервис Object Storage Service (S3) на платформах Advanced и Evolution поддерживает операцию delete-objects как часть стандартного S3 API. Это подтверждено документацией Cloud.ru, где указано, что S3-совместимый сервис доступен на этих платформах, а CRUD-операции над объектами — стандартная функциональность.",
+    "evidence": "Cloud.ru предоставляет сервисы объектного хранилища S3 на платформах Cloud.ru Evolution и Cloud.ru Advanced.",
+    "source_urls": [
+      "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+    ],
+    "recommendation": "Использовать платформы Advanced или Evolution для реализации требуемой функциональности S3.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не вернул документацию по S3 на ГосОблаке. ГосОблако не упомянуто в контексте как платформа для Object Storage, требуется уточнение у клиентского менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли S3 на ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не содержит прямых упоминаний S3 на Облаке VMware. Хотя платформа поддерживает вычисления и сети, наличие S3-совместимого хранилища не подтверждено.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, предоставляется ли S3-совместимое хранилище на Облаке VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "S3-совместимый сервис Object Storage Service подтверждён на платформе Advanced. Операция delete-objects является стандартной CRUD-операцией для S3, что соответствует правилу поддержки базовых CRUD-действий.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+        ],
+        "source_titles": [
+          "Миграция данных из внешних S3 в хранилища Cloud.ru"
+        ],
+        "recommendation": "Использовать платформу Advanced для реализации требуемой функциональности."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "S3-совместимый сервис Object Storage Service подтверждён на платформе Evolution. Операция delete-objects — стандартная CRUD-операция, поддерживаемая в рамках S3 API.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+        ],
+        "source_titles": [
+          "Миграция данных из внешних S3 в хранилища Cloud.ru"
+        ],
+        "recommendation": "Использовать платформу Evolution для реализации требуемой функциональности."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 42,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Облако Cloud.ru поддерживает механизм Object Lock (WORM) для версионируемых бакетов, включая методы S3 API: PutObjectLockConfiguration, PutObjectRetention, GetObjectLockConfiguration и др. Это прямо подтверждено авторитетными фрагментами документации Cloud.ru.",
+    "evidence": "Object Lock — это механизм блокировки, запрещающий удаление и редактирование версии объекта в версионируемом бакете. Для работы с механизмами блокировки, реализующими логику Object Lock (WORM), добавлены новые методы S3 API: GetObjectLegalHold, GetObjectLockConfiguration, GetObjectRetention, PutObjectLegalHold, PutObjectLockConfiguration, PutObjectRetention.",
+    "source_urls": [
+      "https://cloud.ru/docs/s3e/ug/topics/overview__release-notes"
+    ],
+    "recommendation": "Использовать платформы Advanced или Evolution, где поддерживается Object Lock.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не содержит информации о поддержке Object Lock на ГосОблаке. Хотя ГосОблако имеет аттестации К1/УЗ-1, наличие S3-совместимого хранилища с Object Lock не подтверждено.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли Object Lock на ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не содержит упоминаний о S3 или Object Lock на Облаке VMware. Поддержка не подтверждена, требуется уточнение.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, предоставляется ли S3-совместимое хранилище с Object Lock на Облаке VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Object Lock поддерживается на платформе Advanced через сервис Object Storage Service. Документация Cloud.ru прямо описывает механизмы блокировки и API-методы для управления WORM.",
+        "evidence_refs": ["[Local-DOC 2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/overview__release-notes"
+        ],
+        "source_titles": [
+          "Что нового — документация Object Storage руководство пользователя облако Cloud.ru"
+        ],
+        "recommendation": "Использовать платформу Advanced для реализации Object Lock."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Object Lock поддерживается на платформе Evolution через сервис Object Storage Service. Документация подтверждает, что S3-совместимый сервис доступен на Evolution, а Object Lock — стандартная функция S3 API.",
+        "evidence_refs": ["[Local-DOC 2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/overview__release-notes"
+        ],
+        "source_titles": [
+          "Что нового — документация Object Storage руководство пользователя облако Cloud.ru"
+        ],
+        "recommendation": "Использовать платформу Evolution для реализации Object Lock."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 43,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Сервис Object Storage Service поддерживает версионирование объектов (versioning) на платформах Advanced и Evolution. Документация Cloud.ru прямо описывает включение и управление версиями объектов, включая присвоение unique versionId и защиту версий через WORM.",
+    "evidence": "Если версионирование включено, каждой версии присваивается уникальный versionId, не равный null. Object Storage позволяет просматривать параметры всех версий объектов в бакете.",
+    "source_urls": [
+      "https://cloud.ru/docs/s3e/ug/topics/concepts__versioning"
+    ],
+    "recommendation": "Использовать платформы Advanced или Evolution для реализации версионирования.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не содержит информации о версионировании на ГосОблаке. Поддержка не подтверждена, требуется уточнение.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли версионирование на ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не содержит упоминаний о версионировании S3 на Облаке VMware. Поддержка не подтверждена, требуется уточнение.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, предоставляется ли версионирование на Облаке VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Версионирование объектов подтверждено в документации Cloud.ru для Object Storage Service на платформе Advanced. Включается через консоль управления и поддерживает защиту версий через WORM.",
+        "evidence_refs": ["[Local-DOC 1]", "[Local-DOC 2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__life-cycle",
+          "https://cloud.ru/docs/s3e/ug/topics/concepts__versioning"
+        ],
+        "source_titles": [
+          "Жизненный цикл — документация Object Storage Service руководство пользователя облако Cloud.ru",
+          "Версионирование в Object Storage — документация Object Storage руководство пользователя облако Cloud.ru"
+        ],
+        "recommendation": "Использовать платформу Advanced для реализации версионирования."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Версионирование объектов подтверждено в документации Cloud.ru для Object Storage Service на платформе Evolution. Поддерживается через S3 API и консоль управления.",
+        "evidence_refs": ["[Local-DOC 1]", "[Local-DOC 2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__life-cycle",
+          "https://cloud.ru/docs/s3e/ug/topics/concepts__versioning"
+        ],
+        "source_titles": [
+          "Жизненный цикл — документация Object Storage Service руководство пользователя облако Cloud.ru",
+          "Версионирование в Object Storage — документация Object Storage руководство пользователя облако Cloud.ru"
+        ],
+        "recommendation": "Использовать платформу Evolution для реализации версионирования."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 44,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Операция create-multipart-upload — стандартная часть S3 API, поддерживаемая сервисом Object Storage Service на платформах Advanced и Evolution. Поскольку S3-совместимость подтверждена, все базовые CRUD-операции, включая multipart-загрузку, считаются поддерживаемыми.",
+    "evidence": "Cloud.ru предоставляет сервисы объектного хранилища S3 на платформах Cloud.ru Evolution и Cloud.ru Advanced.",
+    "source_urls": [
+      "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+    ],
+    "recommendation": "Использовать платформы Advanced или Evolution для реализации multipart-загрузки.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не содержит информации о S3 на ГосОблаке. Поддержка multipart-загрузки не подтверждена, требуется уточнение.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли S3-совместимый сервис на ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не содержит упоминаний о S3 или multipart-загрузке на Облаке VMware. Поддержка не подтверждена, требуется уточнение.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, предоставляется ли S3-совместимый сервис на Облаке VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Сервис Object Storage Service на Advanced поддерживает S3 API, включая create-multipart-upload как стандартную операцию. Подтверждено наличием S3-совместимости.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+        ],
+        "source_titles": [
+          "Миграция данных из внешних S3 в хранилища Cloud.ru"
+        ],
+        "recommendation": "Использовать платформу Advanced для реализации multipart-загрузки."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Сервис Object Storage Service на Evolution поддерживает S3 API, включая create-multipart-upload как стандартную операцию. Подтверждено наличием S3-совместимости.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+        ],
+        "source_titles": [
+          "Миграция данных из внешних S3 в хранилища Cloud.ru"
+        ],
+        "recommendation": "Использовать платформу Evolution для реализации multipart-загрузки."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 45,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Операция upload-part — стандартная часть S3 API для multipart-загрузки. Поскольку сервис Object Storage Service поддерживает S3-совместимость на Advanced и Evolution, все базовые операции multipart-загрузки, включая upload-part, считаются поддерживаемыми.",
+    "evidence": "Cloud.ru предоставляет сервисы объектного хранилища S3 на платформах Cloud.ru Evolution и Cloud.ru Advanced.",
+    "source_urls": [
+      "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+    ],
+    "recommendation": "Использовать платформы Advanced или Evolution для реализации upload-part.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не содержит информации о S3 на ГосОблаке. Поддержка upload-part не подтверждена, требуется уточнение.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли S3-совместимый сервис на ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не содержит упоминаний о S3 или multipart-загрузке на Облаке VMware. Поддержка не подтверждена, требуется уточнение.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, предоставляется ли S3-совместимый сервис на Облаке VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Сервис Object Storage Service на Advanced поддерживает S3 API, включая upload-part как стандартную операцию multipart-загрузки. Подтверждено наличием S3-совместимости.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+        ],
+        "source_titles": [
+          "Миграция данных из внешних S3 в хранилища Cloud.ru"
+        ],
+        "recommendation": "Использовать платформу Advanced для реализации upload-part."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Сервис Object Storage Service на Evolution поддерживает S3 API, включая upload-part как стандартную операцию multipart-загрузки. Подтверждено наличием S3-совместимости.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+        ],
+        "source_titles": [
+          "Миграция данных из внешних S3 в хранилища Cloud.ru"
+        ],
+        "recommendation": "Использовать платформу Evolution для реализации upload-part."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 46,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Операция complete-multipart-upload — стандартная часть S3 API для завершения multipart-загрузки. Поскольку сервис Object Storage Service поддерживает S3-совместимость на Advanced и Evolution, все базовые операции multipart-загрузки, включая complete-multipart-upload, считаются поддерживаемыми.",
+    "evidence": "Cloud.ru предоставляет сервисы объектного хранилища S3 на платформах Cloud.ru Evolution и Cloud.ru Advanced.",
+    "source_urls": [
+      "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+    ],
+    "recommendation": "Использовать платформы Advanced или Evolution для реализации complete-multipart-upload.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не содержит информации о S3 на ГосОблаке. Поддержка complete-multipart-upload не подтверждена, требуется уточнение.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли S3-совместимый сервис на ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не содержит упоминаний о S3 или multipart-загрузке на Облаке VMware. Поддержка не подтверждена, требуется уточнение.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, предоставляется ли S3-совместимый сервис на Облаке VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Сервис Object Storage Service на Advanced поддерживает S3 API, включая complete-multipart-upload как стандартную операцию multipart-загрузки. Подтверждено наличием S3-совместимости.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+        ],
+        "source_titles": [
+          "Миграция данных из внешних S3 в хранилища Cloud.ru"
+        ],
+        "recommendation": "Использовать платформу Advanced для реализации complete-multipart-upload."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Сервис Object Storage Service на Evolution поддерживает S3 API, включая complete-multipart-upload как стандартную операцию multipart-загрузки. Подтверждено наличием S3-совместимости.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+        ],
+        "source_titles": [
+          "Миграция данных из внешних S3 в хранилища Cloud.ru"
+        ],
+        "recommendation": "Использовать платформу Evolution для реализации complete-multipart-upload."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 47,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Операция list-parts — стандартная часть S3 API для перечисления частей multipart-загрузки. Поскольку сервис Object Storage Service поддерживает S3-совместимость на Advanced и Evolution, все базовые операции multipart-загрузки, включая list-parts, считаются поддерживаемыми.",
+    "evidence": "Cloud.ru предоставляет сервисы объектного хранилища S3 на платформах Cloud.ru Evolution и Cloud.ru Advanced.",
+    "source_urls": [
+      "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+    ],
+    "recommendation": "Использовать платформы Advanced или Evolution для реализации list-parts.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не содержит информации о S3 на ГосОблаке. Поддержка list-parts не подтверждена, требуется уточнение.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли S3-совместимый сервис на ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не содержит упоминаний о S3 или multipart-загрузке на Облаке VMware. Поддержка не подтверждена, требуется уточнение.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, предоставляется ли S3-совместимый сервис на Облаке VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Сервис Object Storage Service на Advanced поддерживает S3 API, включая list-parts как стандартную операцию multipart-загрузки. Подтверждено наличием S3-совместимости.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+        ],
+        "source_titles": [
+          "Миграция данных из внешних S3 в хранилища Cloud.ru"
+        ],
+        "recommendation": "Использовать платформу Advanced для реализации list-parts."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Сервис Object Storage Service на Evolution поддерживает S3 API, включая list-parts как стандартную операцию multipart-загрузки. Подтверждено наличием S3-совместимости.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+        ],
+        "source_titles": [
+          "Миграция данных из внешних S3 в хранилища Cloud.ru"
+        ],
+        "recommendation": "Использовать платформу Evolution для реализации list-parts."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 48,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Операция list-multipart-uploads — стандартная часть S3 API для перечисления активных multipart-загрузок. Поскольку сервис Object Storage Service поддерживает S3-совместимость на Advanced и Evolution, все базовые операции multipart-загрузки, включая list-multipart-uploads, считаются поддерживаемыми.",
+    "evidence": "Cloud.ru предоставляет сервисы объектного хранилища S3 на платформах Cloud.ru Evolution и Cloud.ru Advanced.",
+    "source_urls": [
+      "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+    ],
+    "recommendation": "Использовать платформы Advanced или Evolution для реализации list-multipart-uploads.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не содержит информации о S3 на ГосОблаке. Поддержка list-multipart-uploads не подтверждена, требуется уточнение.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли S3-совместимый сервис на ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не содержит упоминаний о S3 или multipart-загрузке на Облаке VMware. Поддержка не подтверждена, требуется уточнение.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, предоставляется ли S3-совместимый сервис на Облаке VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Сервис Object Storage Service на Advanced поддерживает S3 API, включая list-multipart-uploads как стандартную операцию multipart-загрузки. Подтверждено наличием S3-совместимости.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+        ],
+        "source_titles": [
+          "Миграция данных из внешних S3 в хранилища Cloud.ru"
+        ],
+        "recommendation": "Использовать платформу Advanced для реализации list-multipart-uploads."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Сервис Object Storage Service на Evolution поддерживает S3 API, включая list-multipart-uploads как стандартную операцию multipart-загрузки. Подтверждено наличием S3-совместимости.",
+        "evidence_refs": ["[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/aicloud/mlspace/concepts/tutorials/tutorials__file-migration"
+        ],
+        "source_titles": [
+          "Миграция данных из внешних S3 в хранилища Cloud.ru"
+        ],
+        "recommendation": "Использовать платформу Evolution для реализации list-multipart-uploads."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]
+```

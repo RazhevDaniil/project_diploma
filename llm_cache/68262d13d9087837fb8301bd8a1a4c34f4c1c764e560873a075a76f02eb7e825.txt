@@ -1,0 +1,277 @@
+[
+  {
+    "requirement_id": 21,
+    "verdict": "mismatch",
+    "confidence": 1.0,
+    "reasoning": "Требуется поминутная или посекундная тарификация, однако Cloud.ru тарифицирует услуги Object Storage Service почасово или помесячно, что прямо противоречит требованию. В документации не указано поддержание посекундной или поминутной оплаты.",
+    "evidence": "Cloud.ru тарифицирует почасово/помесячно → mismatch при явном требовании посекундной/поминутной тарификации",
+    "source_urls": [
+      "https://cloud.ru/docs/s3e/ug/topics/overview__limitations",
+      "https://cloud.ru/docs/obs/ug/topics/guides__pfs__constraints"
+    ],
+    "recommendation": "Использовать стандартную тарификацию почасово/помесячно Object Storage Service на платформе Advanced или Облако VMware. Поминутная/посекундная тарификация не поддерживается.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru. Тарификация не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, доступна ли тарификация Object Storage в ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 1.0,
+        "reasoning": "Облако VMware не предоставляет Object Storage с поминутной/посекундной тарификацией. Тарификация почасовая/помесячная — стандарт для всех платформ Cloud.ru.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Использовать Object Storage Service на платформе Advanced, но с пониманием, что тарификация не посекундная."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 1.0,
+        "reasoning": "Object Storage Service на Advanced тарифицируется почасово/помесячно, как указано в SLA и документации. Поминутная/посекундная тарификация не поддерживается.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla",
+          "https://cloud.ru/docs/s3e/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced",
+          "Ограничения и особенности Object Storage"
+        ],
+        "recommendation": "Использовать Object Storage Service на Advanced с почасовой/помесячной тарификацией. Поминутная/посекундная тарификация не поддерживается."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 1.0,
+        "reasoning": "Evolution не предоставляет Object Storage как сервис. Даже если бы предоставлял — тарификация почасовая/помесячная, как у всех платформ Cloud.ru. Поминутная/посекундная тарификация не поддерживается.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Evolution не подходит для хранения файлов через Object Storage. Использовать Advanced или Облако VMware с почасовой/помесячной тарификацией."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 22,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Объем хранилища Object Storage Service на платформе Advanced не ограничен по умолчанию (документация: «Не ограничен»). Требуемые 135 ТБ легко укладываются в возможности платформы.",
+    "evidence": "Объем хранилища (стандартный класс хранения) — Не ограничен",
+    "source_urls": [
+      "https://cloud.ru/docs/s3e/ug/topics/overview__limitations"
+    ],
+    "recommendation": "Использовать Object Storage Service на платформе Advanced. Объем 135 ТБ поддерживается без ограничений.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru. Поддержка Object Storage не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, доступен ли Object Storage в ГосОблаке и его лимиты."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Облако VMware поддерживает Object Storage (через OBS) с неограниченным объемом хранилища. 135 ТБ — в пределах возможностей.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности Object Storage"
+        ],
+        "recommendation": "Использовать Object Storage Service на Облаке VMware. Объем 135 ТБ поддерживается."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Object Storage Service на Advanced имеет неограниченный объем хранилища (документация: «Не ограничен»). 135 ТБ — легко покрывается.",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности Object Storage"
+        ],
+        "recommendation": "Использовать Object Storage Service на Advanced. Объем 135 ТБ поддерживается без ограничений."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 1.0,
+        "reasoning": "Evolution не предоставляет Object Storage как сервис. Доступны только вычислительные ресурсы (ECS) и базовые сети. Хранение файлов в объеме 135 ТБ не поддерживается.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/security__compliance"
+        ],
+        "source_titles": [
+          "Безопасность и соответствие Evolution"
+        ],
+        "recommendation": "Evolution не подходит для хранения файлов. Использовать Advanced или Облако VMware."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 23,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Требование — указать две стоимости: за 135 ТБ и за 1 ТБ. Это не техническое ограничение, а коммерческая форма представления тарифов. Cloud.ru готов предоставить расчет стоимости по запросу в рамках индивидуального коммерческого предложения.",
+    "evidence": "Требование описывает коммерческую форму отчетности, а не техническую капабилити.",
+    "source_urls": [],
+    "recommendation": "Cloud.ru предоставит коммерческое предложение с расчетом стоимости за 135 ТБ и за 1 ТБ по запросу. Это стандартная практика для госзаказчиков.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Требование — коммерческое, не техническое. Cloud.ru предоставляет расчеты стоимости по запросу для всех платформ, включая ГосОблако.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Запросить коммерческое предложение у менеджера Cloud.ru с разбивкой по 1 ТБ и 135 ТБ."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Требование — коммерческое. Cloud.ru предоставляет расчет стоимости по запросу для всех платформ, включая Облако VMware.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Запросить коммерческое предложение у менеджера Cloud.ru с разбивкой по 1 ТБ и 135 ТБ."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Требование — коммерческое. Cloud.ru предоставляет расчет стоимости по запросу для всех платформ, включая Advanced.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Запросить коммерческое предложение у менеджера Cloud.ru с разбивкой по 1 ТБ и 135 ТБ."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Требование — коммерческое. Cloud.ru предоставляет расчет стоимости по запросу для всех платформ, включая Evolution.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Запросить коммерческое предложение у менеджера Cloud.ru с разбивкой по 1 ТБ и 135 ТБ."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 24,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Object Storage Service Cloud.ru поддерживает хранение любых типов файлов — видео, изображения, документы, скрипты и т.д. — как стандартная функция S3-совместимого хранилища. Это не ограничено типом контента.",
+    "evidence": "Object Storage Service поддерживает хранение любых типов файлов (документы, видео, скрипты и т.д.) — стандартная функция S3-совместимого хранилища.",
+    "source_urls": [
+      "https://cloud.ru/docs/s3e/ug/topics/overview__limitations"
+    ],
+    "recommendation": "Использовать Object Storage Service на платформе Advanced или Облако VMware. Поддерживается хранение любого типа контента.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Поддержка Object Storage не подтверждена.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли Object Storage в ГосОблаке и хранение любых типов файлов."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Object Storage Service на Облаке VMware поддерживает хранение любых типов файлов — видео, изображения, документы, скрипты и т.д. — как S3-совместимое хранилище.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности Object Storage"
+        ],
+        "recommendation": "Использовать Object Storage Service на Облаке VMware. Поддерживается хранение любого типа контента."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Object Storage Service на Advanced поддерживает хранение любых типов файлов — видео, изображения, документы, скрипты и т.д. — как S3-совместимое хранилище.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности Object Storage"
+        ],
+        "recommendation": "Использовать Object Storage Service на Advanced. Поддерживается хранение любого типа контента."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "mismatch",
+        "confidence": 1.0,
+        "reasoning": "Evolution не предоставляет Object Storage как сервис. Хранение файлов любого типа не поддерживается на этой платформе.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/security__compliance"
+        ],
+        "source_titles": [
+          "Безопасность и соответствие Evolution"
+        ],
+        "recommendation": "Evolution не подходит для хранения файлов. Использовать Advanced или Облако VMware."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

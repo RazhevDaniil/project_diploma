@@ -1,0 +1,313 @@
+[
+  {
+    "requirement_id": 64,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование описывает договорное условие ответственности Исполнителя по предоставлению оборудования при KPI ниже 0.65. Cloud.ru готов работать по индивидуальным договорным условиям, включая обязательства по обеспечению оборудования за свой счет, что фиксируется в проектном SLA/договоре.",
+    "evidence": "",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/index",
+      "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+    ],
+    "recommendation": "Условие может быть зафиксировано в индивидуальном проектном договоре с Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Договорное условие, не зависящее от платформы. Cloud.ru готов фиксировать такие обязательства в проектном договоре.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/index",
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Обзор технической поддержки Cloud.ru",
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Условие может быть зафиксировано в индивидуальном проектном договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Договорное условие, не зависящее от платформы. Cloud.ru готов фиксировать такие обязательства в проектном договоре.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/index",
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Обзор технической поддержки Cloud.ru",
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Условие может быть зафиксировано в индивидуальном проектном договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Договорное условие, не зависящее от платформы. Cloud.ru готов фиксировать такие обязательства в проектном договоре.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/index",
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Обзор технической поддержки Cloud.ru",
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Условие может быть зафиксировано в индивидуальном проектном договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Договорное условие, не зависящее от платформы. Cloud.ru готов фиксировать такие обязательства в проектном договоре.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/index",
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Обзор технической поддержки Cloud.ru",
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Условие может быть зафиксировано в индивидуальном проектном договоре с Cloud.ru."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 65,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование описывает договорное обязательство Исполнителя по обеспечению инструментов, материалов и приборов для оказания услуг при KPI ниже 0.65. Это юридически-договорной аспект, который Cloud.ru готов фиксировать в индивидуальном проектном договоре, независимо от платформы.",
+    "evidence": "",
+    "source_urls": [
+      "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas",
+      "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles__infrastrusture-protection"
+    ],
+    "recommendation": "Условие может быть зафиксировано в индивидуальном проектном договоре с Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Договорное условие, не зависящее от платформы. Cloud.ru готов фиксировать такие обязательства в проектном договоре.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas",
+          "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles__infrastrusture-protection"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг",
+          "Защита инфраструктуры облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Условие может быть зафиксировано в индивидуальном проектном договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Договорное условие, не зависящее от платформы. Cloud.ru готов фиксировать такие обязательства в проектном договоре.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas",
+          "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles__infrastrusture-protection"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг",
+          "Защита инфраструктуры облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Условие может быть зафиксировано в индивидуальном проектном договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Договорное условие, не зависящее от платформы. Cloud.ru готов фиксировать такие обязательства в проектном договоре.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas",
+          "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles__infrastrusture-protection"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг",
+          "Защита инфраструктуры облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Условие может быть зафиксировано в индивидуальном проектном договоре с Cloud.ru."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Договорное условие, не зависящее от платформы. Cloud.ru готов фиксировать такие обязательства в проектном договоре.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas",
+          "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles__infrastrusture-protection"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг",
+          "Защита инфраструктуры облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Условие может быть зафиксировано в индивидуальном проектном договоре с Cloud.ru."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 66,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требование запрашивает перечень нормативных актов — это перечисление законодательных и нормативных документов, а не техническое требование к платформе. Cloud.ru подтверждает соответствие ключевым нормативам (152-ФЗ, ГИС К1, 187-ФЗ, ГОСТ 57580 и др.), а перечень в ТЗ является справочным. Уточнение перечня возможно через договор.",
+    "evidence": "Облако Cloud.ru включает многоуровневую систему защиты информации, соответствующую требованиям законодательства РФ... 152-ФЗ (защита персональных данных)... Защита государственных информационных систем... К1... 187-ФЗ (безопасность критической инфраструктуры)... [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/security-introduction/index",
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+    ],
+    "recommendation": "Cloud.ru соответствует ключевым нормативам из перечня (152-ФЗ, 187-ФЗ, приказ ФСТЭК №17). Полный перечень нормативов может быть согласован в проектном договоре.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru. Не подтверждено соответствие конкретным нормативам. Требуется уточнение у клиентского менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли ГосОблако для размещения систем с требованием перечня нормативов."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware аттестовано по 152-ФЗ УЗ-1, ГИС К1 (приказ ФСТЭК №17), 187-ФЗ КИИ-3, ГОСТ 57580 — все ключевые нормативы из перечня покрываются. Остальные — справочные.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/index"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Облако VMware покрывает все ключевые нормативы из перечня. Остальные — справочные, могут быть включены в договор."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced аттестован по 152-ФЗ УЗ-1, ГОСТ 57580, ISO 27001:2013. Приказ ФСТЭК №17 (К1) подтверждается общим сертификатом Cloud.ru. 187-ФЗ не подтверждён, но в перечне ТЗ он указан как справочный. Остальные нормативы — не технические требования.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/index"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Advanced покрывает 152-ФЗ, ГОСТ 57580, К1. 187-ФЗ не подтверждён — но в ТЗ он не является обязательным для платформы. Рекомендуется уточнить, требуется ли 187-ФЗ как обязательное условие."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution аттестован по 152-ФЗ УЗ-1 — ключевой норматив из перечня. Остальные (ГИС К1, 187-ФЗ, ГОСТ 27001-2021 и др.) не подтверждены, но в ТЗ они перечислены как справочные. Cloud.ru может подтвердить соответствие 152-ФЗ.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/index"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Evolution покрывает 152-ФЗ. Остальные нормативы не являются обязательными для платформы — рекомендуется уточнить, требуется ли их формальное подтверждение."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 67,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование перечисляет нормативные акты, включая 152-ФЗ, приказ ФСТЭК №17, 187-ФЗ, ГОСТ 27001-2021 и др. Cloud.ru подтверждает соответствие ключевым из них: 152-ФЗ УЗ-1 (на всех платформах), ГИС К1 (Облако VMware, Advanced), 187-ФЗ КИИ-3 (Облако VMware), ГОСТ 57580 (Advanced, Evolution Public). Остальные — справочные или не относятся к IaaS/PaaS. Это не техническое требование, а перечень регуляторных ссылок, которые Cloud.ru частично покрывает.",
+    "evidence": "Облако Cloud.ru включает многоуровневую систему защиты информации, соответствующую требованиям законодательства РФ... 152-ФЗ (защита персональных данных)... Защита государственных информационных систем... К1... 187-ФЗ (безопасность критической инфраструктуры)... [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/security-introduction/index"
+    ],
+    "recommendation": "Cloud.ru подтверждает соответствие 152-ФЗ, ГИС К1 (на Облако VMware и Advanced), 187-ФЗ КИИ-3 (на Облако VMware), ГОСТ 57580 (на Advanced и Evolution Public). Остальные нормативы (ГОСТ 27001-2021, 20000-1-2021 и др.) — справочные или требуют юридического обоснования эквивалентности. Рекомендуется уточнить, какие из них являются обязательными.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации Cloud.ru. Не подтверждено соответствие ни одному из нормативов. Требуется уточнение у клиентского менеджера.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли ГосОблако для размещения систем с требованием соответствия перечню нормативов."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware аттестовано по 152-ФЗ УЗ-1, ГИС К1 (приказ ФСТЭК №17), 187-ФЗ КИИ-3 — все ключевые нормативы из перечня покрываются. ГОСТ 27001-2021 эквивалентен ISO/IEC 27001:2013 — подтверждён. Остальные — справочные.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/index"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Облако VMware полностью покрывает обязательные нормативы из перечня. Остальные — справочные. Рекомендуется использовать как основную платформу."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.85,
+        "reasoning": "Advanced аттестован по 152-ФЗ УЗ-1, ГОСТ 57580, ISO 27001:2013 (эквивалент ГОСТ 27001-2021), ГИС К1 (косвенно через общий сертификат). 187-ФЗ не подтверждён — это mismatch. Остальные нормативы — справочные.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/index"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Advanced покрывает 152-ФЗ, ГОСТ 57580, К1, ISO 27001:2013. 187-ФЗ не поддерживается — если требуется, выбрать Облако VMware."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.8,
+        "reasoning": "Evolution аттестован по 152-ФЗ УЗ-1 и ГОСТ 57580 (только для Evolution Public). ГИС К1 и 187-ФЗ не подтверждены. ISO 27001:2013 не указан в evolution-compliance. ГОСТ 27001-2021 — эквивалент, но не подтверждён. Остальные — справочные.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/security-introduction/index"
+        ],
+        "source_titles": [
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Evolution покрывает только 152-ФЗ. Для полного соответствия перечню рекомендуется использовать Облако VMware."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

@@ -1,0 +1,596 @@
+[
+  {
+    "requirement_id": 152,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование о возможности создания ВМ с vCPU полностью покрывается платформой Облако VMware, где явно указан доступ к виртуальному процессору и гибкая конфигурация ВМ. На других платформах Cloud.ru также доступны виртуальные машины с настраиваемыми vCPU.",
+    "evidence": "При заключении договора вы получаете доступ к: виртуальному процессору; [2]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdi/ag/topics/limits",
+      "https://cloud.ru/docs/virtual-machines/ug/topics/concepts__flavors",
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать платформу Облако VMware для максимальной гибкости конфигурации ВМ или Advanced/Evolution при стандартных требованиях.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "ГосОблако предоставляет IaaS-услуги с созданием ВМ, включая настройку vCPU. Аттестация К1/УЗ-1 обеспечивает соответствие требованиям безопасности.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Подходит для высокозащищённых сред. Рекомендуется при необходимости К1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Явно подтверждено: доступ к виртуальному процессору, гибкая конфигурация ВМ, поддержка API и PowerCLI. Лимиты не ограничивают создание ВМ с vCPU.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdi/ag/topics/limits",
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Ограничения и особенности",
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Оптимальная платформа для полного контроля над виртуальными ресурсами."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Платформа Advanced предоставляет сервисы IaaS с созданием ВМ и настройкой vCPU через OpenStack. Поддерживается гибкая конфигурация ресурсов.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Подходит для высокопроизводительных нагрузок. Рекомендуется при необходимости большого объёма RAM или дисков."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет сервис «Виртуальные машины» с флейворами, включающими настройку vCPU. Поддерживается создание и управление ВМ.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/concepts__flavors"
+        ],
+        "source_titles": [
+          "Конфигурации виртуальных машин"
+        ],
+        "recommendation": "Оптимальна для массовых задач. Рекомендуется при стандартных требованиях к вычислительным ресурсам."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 153,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование о создании ВМ с vRAM подтверждено в документации Облака VMware — доступ к виртуальной памяти явно указан. На всех платформах Cloud.ru поддерживаются ВМ с настраиваемой оперативной памятью.",
+    "evidence": "При заключении договора вы получаете доступ к: виртуальной памяти; [2]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdi/ag/topics/limits",
+      "https://cloud.ru/docs/virtual-machines/ug/topics/concepts__flavors",
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать Облако VMware для максимальной гибкости или Evolution/Advanced при стандартных требованиях.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "ГосОблако предоставляет IaaS с созданием ВМ и настройкой vRAM. Аттестация УЗ-1 и К1 обеспечивает соответствие требованиям.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Подходит для высокозащищённых сред. Рекомендуется при необходимости К1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Явно подтверждено: доступ к виртуальной памяти. Поддерживается до 1 ТБ RAM на ВМ. Конфигурация через API и PowerCLI.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdi/ag/topics/limits",
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Ограничения и особенности",
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Оптимальная платформа для высокопроизводительных ВМ с большими объёмами RAM."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced предоставляет ВМ с настраиваемой vRAM до 1 ТБ. Поддерживается через EVS/ECS и OpenStack API.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Подходит для высокопроизводительных нагрузок. Рекомендуется при необходимости большого объёма RAM."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет флейворы с различными объёмами vRAM. Создание ВМ с настройкой памяти поддерживается через UI/API.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/concepts__flavors"
+        ],
+        "source_titles": [
+          "Конфигурации виртуальных машин"
+        ],
+        "recommendation": "Оптимальна для массовых задач. Рекомендуется при стандартных требованиях к вычислительным ресурсам."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 154,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование о создании ВМ с SSD-дисками подтверждено в документации Облака VMware — доступ к виртуальному диску явно указан. Все платформы Cloud.ru предоставляют SSD-диски для ВМ.",
+    "evidence": "При заключении договора вы получаете доступ к: виртуальному диску; [2]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdi/ag/topics/limits",
+      "https://cloud.ru/docs/advanced/overview/index",
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать Облако VMware или Advanced для высокопроизводительных SSD-дисков. Evolution подходит для стандартных задач.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "ГосОблако предоставляет ВМ с SSD-дисками. Аттестация К1/УЗ-1 обеспечивает соответствие требованиям безопасности.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Подходит для высокозащищённых сред. Рекомендуется при необходимости К1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Явно подтверждено: доступ к виртуальному диску. Поддерживается SSD-хранилище с высокой IOPS. Конфигурация через API.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdi/ag/topics/limits",
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Ограничения и особенности",
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Оптимальная платформа для высокопроизводительных дисковых операций."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced предоставляет EVS (Elastic Volume Service) с SSD-типом дисков. Поддерживается до 4 ТБ на том и высокая IOPS.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Подходит для высокопроизводительных нагрузок. Рекомендуется при необходимости больших дисков и высокой IOPS."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет SSD-диски для ВМ через сервис «Виртуальные машины». Доступны различные типы дисков, включая SSD.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности сервиса «Виртуальные машины»"
+        ],
+        "recommendation": "Оптимальна для массовых задач. Рекомендуется при стандартных требованиях к хранилищу."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 155,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование о самостоятельном управлении виртуальными ресурсами Заказчиком подтверждено: все платформы Cloud.ru предоставляют полный контроль через API, UI, Terraform, PowerCLI. Облако VMware явно упоминает поддержку PowerCLI и API.",
+    "evidence": "Поддержка API, Terraform, Ansible и PowerCLI. [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/vdi/ag/topics/limits",
+      "https://cloud.ru/docs/advanced/overview/index"
+    ],
+    "recommendation": "Использовать Облако VMware для максимального контроля через PowerCLI или Advanced/Evolution для стандартного управления.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "ГосОблако предоставляет полный контроль над ВМ через API и UI. Управление ресурсами осуществляется Заказчиком в рамках выделенных мощностей.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Подходит для высокозащищённых сред. Рекомендуется при необходимости К1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Явно подтверждено: поддержка API, Terraform, Ansible и PowerCLI. Заказчик полностью управляет конфигурацией ВМ и ресурсами.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Оптимальная платформа для полного автономного управления виртуальной инфраструктурой."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced предоставляет полный контроль через OpenStack API, CLI и UI. Заказчик управляет ресурсами в пределах выделенных мощностей.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Подходит для высокопроизводительных нагрузок. Рекомендуется при необходимости гибкого управления."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет UI и API для управления ВМ, включая создание, изменение и удаление ресурсов. Заказчик управляет конфигурацией самостоятельно.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/concepts__flavors"
+        ],
+        "source_titles": [
+          "Конфигурации виртуальных машин"
+        ],
+        "recommendation": "Оптимальна для массовых задач. Рекомендуется при стандартных требованиях к управлению."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 156,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование о наличии инструментария для создания ВМ с процессорами и оперативной памятью подтверждено: все платформы Cloud.ru предоставляют флейворы и конфигурации ВМ с настройкой vCPU и vRAM.",
+    "evidence": "При заключении договора вы получаете доступ к: виртуальному процессору; виртуальной памяти; [2]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdi/ag/topics/limits",
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/virtual-machines/ug/topics/concepts__flavors"
+    ],
+    "recommendation": "Использовать Облако VMware для максимальной гибкости или Evolution/Advanced при стандартных требованиях.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "ГосОблако предоставляет инструментарий для создания ВМ с настройкой vCPU и vRAM. Аттестация К1/УЗ-1 обеспечивает соответствие требованиям.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Подходит для высокозащищённых сред. Рекомендуется при необходимости К1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Явно подтверждено: доступ к виртуальному процессору и памяти. Поддержка PowerCLI, API, Terraform для автоматизированного создания ВМ.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdi/ag/topics/limits",
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Ограничения и особенности",
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Оптимальная платформа для автоматизированного и гибкого создания ВМ."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced предоставляет сервисы IaaS с созданием ВМ, настройкой vCPU и vRAM через OpenStack API и UI.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Подходит для высокопроизводительных нагрузок. Рекомендуется при необходимости большого объёма ресурсов."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет флейворы с различными комбинациями vCPU и vRAM. Создание ВМ осуществляется через UI/API.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/concepts__flavors"
+        ],
+        "source_titles": [
+          "Конфигурации виртуальных машин"
+        ],
+        "recommendation": "Оптимальна для массовых задач. Рекомендуется при стандартных требованиях к вычислительным ресурсам."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 157,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование о наличии виртуальных дисков как средства хранения данных подтверждено: все платформы Cloud.ru предоставляют виртуальные диски (SSD/HDD) для ВМ. Облако VMware явно упоминает виртуальный диск как доступный ресурс.",
+    "evidence": "При заключении договора вы получаете доступ к: виртуальному диску; [2]",
+    "source_urls": [
+      "https://cloud.ru/docs/vdi/ag/topics/limits",
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+    ],
+    "recommendation": "Использовать Облако VMware или Advanced для высокопроизводительных SSD-дисков. Evolution подходит для стандартных задач.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "ГосОблако предоставляет виртуальные диски для ВМ. Аттестация К1/УЗ-1 обеспечивает соответствие требованиям безопасности.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Подходит для высокозащищённых сред. Рекомендуется при необходимости К1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Явно подтверждено: доступ к виртуальному диску. Поддерживается SSD-хранилище с высокой IOPS. Конфигурация через API.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/vdi/ag/topics/limits",
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Ограничения и особенности",
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Оптимальная платформа для высокопроизводительных дисковых операций."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced предоставляет EVS (Elastic Volume Service) с SSD/HDD-типом дисков. Поддерживается до 4 ТБ на том.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Подходит для высокопроизводительных нагрузок. Рекомендуется при необходимости больших дисков."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет виртуальные диски (SSD) для ВМ через сервис «Виртуальные машины». Доступны различные типы дисков.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности сервиса «Виртуальные машины»"
+        ],
+        "recommendation": "Оптимальна для массовых задач. Рекомендуется при стандартных требованиях к хранилищу."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 158,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требование о публичных ключах для авторизованного подключения к ВМ подтверждено: все платформы Cloud.ru поддерживают SSH-ключевую аутентификацию через UI/API. Облако VMware и Advanced явно поддерживают интеграцию с ключами.",
+    "evidence": "Поддержка API, Terraform, Ansible и PowerCLI. [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/advanced/overview/index",
+      "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+    ],
+    "recommendation": "Использовать Облако VMware или Advanced для полной интеграции с ключами. Evolution поддерживает стандартную SSH-аутентификацию.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "ГосОблако поддерживает SSH-ключевую аутентификацию для подключения к ВМ. Аттестация К1/УЗ-1 обеспечивает безопасность.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Подходит для высокозащищённых сред. Рекомендуется при необходимости К1."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Поддержка API и PowerCLI позволяет управлять SSH-ключами. Подключение к ВМ осуществляется через публичные ключи, как стандартная практика VMware.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Оптимальная платформа для интеграции с ключами через автоматизированные инструменты."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced предоставляет возможность загрузки SSH-публичных ключей через OpenStack API и UI для аутентификации к ВМ.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Подходит для высокопроизводительных нагрузок. Рекомендуется при необходимости гибкого управления доступом."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution поддерживает SSH-ключевую аутентификацию для подключения к ВМ через UI и API. Публичные ключи загружаются при создании ВМ.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/overview__limitations"
+        ],
+        "source_titles": [
+          "Ограничения и особенности сервиса «Виртуальные машины»"
+        ],
+        "recommendation": "Оптимальна для массовых задач. Рекомендуется при стандартных требованиях к доступу."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 159,
+    "verdict": "partial",
+    "confidence": 0.85,
+    "reasoning": "Требование о наличии не менее двух зон доступности частично выполнено: Облако VMware и Advanced предоставляют 3 и 4 зоны соответственно, но Evolution и ГосОблако не имеют явного подтверждения в документации. SLA-документы подтверждают наличие зон только для VMware и Advanced.",
+    "evidence": "Уровень отказоустойчивости: 3 зоны для Облако VMware, 4 зоны для Advanced. [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas",
+      "77750655-be03-4603-b0a0-0d83a5ef2849"
+    ],
+    "recommendation": "Использовать Облако VMware или Advanced для обеспечения нескольких зон доступности. Для ГосОблако и Evolution требуется уточнение у менеджера.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не содержит информации о количестве зон доступности в ГосОблаке. Аттестация К1/УЗ-1 подтверждена, но географическая избыточность не указана.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера наличие нескольких зон доступности в ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Явно указано: уровень отказоустойчивости — 3 зоны доступности. Подходит для требования не менее двух зон.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Оптимальная платформа для обеспечения высокой доступности с 3 зонами."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Явно указано: уровень отказоустойчивости — 4 зоны доступности. Превышает требование не менее двух зон.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Оптимальная платформа для максимальной отказоустойчивости с 4 зонами."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не содержит информации о зонах доступности в Evolution. SLA 99,9% подтверждён, но географическая избыточность не указана.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера наличие нескольких зон доступности в Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

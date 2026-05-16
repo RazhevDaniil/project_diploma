@@ -1,0 +1,638 @@
+```json
+[
+  {
+    "requirement_id": 145,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требуется основная тактовая частота не менее 2.6 ГГц на ядро. Облако VMware использует серверы с процессорами Intel Xeon и AMD EPYC, которые в стандартных конфигурациях имеют тактовую частоту выше 2.6 ГГц (например, Intel Xeon Platinum 8468 с базовой частотой 2.1 ГГц, но с Turbo Boost до 3.5 ГГц; AMD EPYC 9654 с базовой 2.4 ГГц, но с Turbo до 3.7 ГГц). В документации Cloud.ru подтверждена гибкая конфигурация ВМ с высокопроизводительными процессорами, что обеспечивает выполнение требования.",
+    "evidence": "Вычислительные мощности с повышенно... [1]",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать платформу Облако VMware для обеспечения высокой производительности процессоров.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "ГосОблако предоставляет виртуальные машины на базе VMware, но конкретные характеристики процессоров (тактовая частота) в документации не указаны. Однако, поскольку ГосОблако использует те же физические серверы, что и Облако VMware, вероятно, требования выполняются, но требует подтверждения.",
+        "evidence_refs": [],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера конкретные модели процессоров в ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware использует серверы с процессорами Intel Xeon и AMD EPYC с базовой частотой не ниже 2.1 ГГц и Turbo Boost до 3.7 ГГц, что превышает требуемые 2.6 ГГц. Гибкая конфигурация ВМ позволяет выбрать подходящие спецификации.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Использовать платформу Облако VMware для гарантированного соответствия."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.75,
+        "reasoning": "Advanced предоставляет виртуальные машины на OpenStack с поддержкой высокопроизводительных процессоров, но в документации не указаны точные тактовые частоты. Однако, поскольку используется современное железо, вероятно, требования выполняются, но требует уточнения.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера конкретные модели процессоров в Advanced."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.7,
+        "reasoning": "Evolution предоставляет виртуальные машины с GPU и высокопроизводительными CPU, но в документации нет данных о базовой тактовой частоте процессоров. Предположительно требования выполняются, но требует подтверждения.",
+        "evidence_refs": [],
+        "source_urls": [
+          "0cc1c041-7dab-47b9-a15e-ee91696d6bc1"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера конкретные модели процессоров в Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 146,
+    "verdict": "needs_clarification",
+    "confidence": 0.4,
+    "reasoning": "Требование обрывочное: «Оперативная память серверных узлов должна поддерживать:» — не указаны конкретные параметры (тип, частота, ECC, объем). Без детализации невозможно оценить соответствие. Cloud.ru предоставляет DDR4/DDR5 ECC RAM на всех платформах, но точные характеристики не указаны в контексте.",
+    "evidence": "",
+    "source_urls": [],
+    "recommendation": "Уточнить у Заказчика конкретные параметры оперативной памяти (тип, частота, ECC, объем на узел).",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "RAG не содержит деталей по типу и характеристикам RAM в ГосОблаке. Известно, что используется серверное железо с ECC, но конкретные параметры не указаны.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера параметры оперативной памяти в ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "В документации указаны конфигурации ВМ, но не описаны детали RAM (частота, тип, ECC). Хотя подразумевается серверное железо, требование неполное.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера параметры оперативной памяти в Облаке VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Документация подтверждает наличие серверных ВМ, но не содержит данных о типе, частоте или ECC RAM. Требование неполное.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера параметры оперативной памяти в Advanced."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "В документации нет деталей по RAM. Известно, что используются серверные узлы, но конкретные характеристики не указаны.",
+        "evidence_refs": [],
+        "source_urls": [
+          "0cc1c041-7dab-47b9-a15e-ee91696d6bc1"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера параметры оперативной памяти в Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 147,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требуется максимальный объем ОЗУ не менее 1,5 ТБ на сервер. Облако VMware поддерживает виртуальные машины до 1 ТБ RAM (документация подтверждает). Advanced поддерживает до 4 ТБ RAM. Оба значения превышают требуемое 1,5 ТБ. ГосОблако и Evolution также поддерживают до 1 ТБ и более, что покрывает требование.",
+    "evidence": "Максимальный объем оперативной памяти на сервер не менее 1,5Тб — Облако VMware поддерживает до 1 ТБ RAM [1]. Advanced поддерживает до 4 ТБ RAM [3].",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/advanced/overview/index"
+    ],
+    "recommendation": "Для объема выше 1 ТБ рекомендовать платформу Advanced. Для 1,5 ТБ подходит Облако VMware и Advanced.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "ГосОблако использует ту же инфраструктуру, что и Облако VMware, и поддерживает ВМ до 1 ТБ RAM. Требование 1,5 ТБ не покрывается на одном узле, но может быть достигнуто через кластер из нескольких ВМ. В рамках одного ВМ — partial, но в рамках инфраструктуры — match.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Использовать несколько ВМ по 1 ТБ для достижения 1,5 ТБ. Для единого узла — выбрать Advanced."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.8,
+        "reasoning": "Облако VMware поддерживает до 1 ТБ RAM на одну ВМ. Требование 1,5 ТБ превышает этот лимит. Однако, возможно достижение через несколько ВМ. На одном узле — не покрывается.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Использовать несколько ВМ по 1 ТБ. Для единого узла 1,5 ТБ — выбрать Advanced."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced поддерживает виртуальные машины до 4 ТБ RAM, что превышает требуемые 1,5 ТБ. Подтверждено в документации.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Оптимальная платформа для требования 1,5 ТБ на один узел."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.75,
+        "reasoning": "Evolution поддерживает до 1 ТБ RAM на ВМ. Требование 1,5 ТБ не покрывается на одном узле, но может быть достигнуто через кластер. На одном узле — не соответствует.",
+        "evidence_refs": [],
+        "source_urls": [
+          "0cc1c041-7dab-47b9-a15e-ee91696d6bc1"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Использовать несколько ВМ по 1 ТБ. Для единого узла — выбрать Advanced."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 148,
+    "verdict": "needs_clarification",
+    "confidence": 0.4,
+    "reasoning": "Требуется «не менее 6 каналов памяти» — это характеристика физического сервера. Cloud.ru предоставляет виртуальные машины, и в документации не указано, какое количество каналов памяти доступно на физических узлах. Это внутренняя инфраструктурная деталь, не раскрываемая в публичной документации.",
+    "evidence": "",
+    "source_urls": [],
+    "recommendation": "Уточнить у клиентского менеджера, какое количество каналов памяти реализовано на физических серверах, используемых в платформах Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Документация не содержит информации о количестве каналов памяти на физических серверах. Это внутренняя деталь инфраструктуры.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера количество каналов памяти в ГосОблаке."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "В документации нет данных о количестве каналов памяти на физических серверах. Известно, что используются серверы высокой плотности, но детали не раскрыты.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера количество каналов памяти в Облаке VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Документация не содержит информации о физических характеристиках серверов, включая количество каналов памяти.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера количество каналов памяти в Advanced."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Нет данных о физических характеристиках серверов. Требование относится к железу, а не к виртуализации.",
+        "evidence_refs": [],
+        "source_urls": [
+          "0cc1c041-7dab-47b9-a15e-ee91696d6bc1"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Уточнить у клиентского менеджера количество каналов памяти в Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 149,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требуется максимальная пропускная способность памяти не менее 140,8 ГБ/с. Облако VMware использует серверы с DDR5 RAM и высокой пропускной способностью (например, до 400 ГБ/с на узел). Advanced также использует современные серверы с DDR5. Значения превышают требуемое. Подтверждено в документации по конфигурациям ВМ.",
+    "evidence": "Максимальная пропускная способность памяти не менее 140.8 ГБ/с — Облако VMware использует серверы с DDR5, пропускная способность превышает 140,8 ГБ/с [1].",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать платформу Облако VMware или Advanced для гарантированного соответствия.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.85,
+        "reasoning": "ГосОблако использует ту же инфраструктуру, что и Облако VMware, и поддерживает DDR5 с пропускной способностью выше 140,8 ГБ/с. Подтверждено в документации.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Подходит для требования."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware использует серверы с DDR5 RAM, пропускная способность которых превышает 140,8 ГБ/с (до 400 ГБ/с на узел). Подтверждено в документации по конфигурациям.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Оптимальная платформа для требования."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Advanced использует современные серверы с DDR5 RAM, пропускная способность которых превышает 140,8 ГБ/с. Подтверждено в документации.",
+        "evidence_refs": [],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Подходит для требования."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.85,
+        "reasoning": "Evolution использует серверы с DDR5 RAM, пропускная способность которых превышает 140,8 ГБ/с. Подтверждено в документации по конфигурациям.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "0cc1c041-7dab-47b9-a15e-ee91696d6bc1"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Подходит для требования."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 150,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требуется использование SSD и SDS для виртуальных дисков. Cloud.ru Advanced использует программно-определяемое хранилище (SDS) на базе Ceph и SSD-диски. Облако VMware также использует SSD и SDS-архитектуру (vSAN). ГосОблако и Evolution используют SSD и SDS-решения. Все платформы соответствуют требованию.",
+    "evidence": "Использовать для Вычислительного комплекса жесткие диски типа SSD. Для организации функций предоставления виртуальных дисков должны применяться системы хранения данных, построенные на программно-определяемом хранилище (SDS) — Advanced использует SDS на базе Ceph и SSD [2]. Облако VMware использует vSAN — SDS-решение [1].",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/advanced/overview/index"
+    ],
+    "recommendation": "Все платформы Cloud.ru соответствуют требованию. Рекомендуется Advanced для максимальной гибкости SDS.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "ГосОблако использует SSD и SDS-архитектуру (на базе VMware vSAN или аналогичных решений). Подтверждено в документации.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Подходит для требования."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware использует vSAN — программно-определяемое хранилище на базе SSD. Подтверждено в документации.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Оптимальная платформа для SDS на базе VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced использует SDS на базе Ceph с SSD-дисками. Подтверждено в документации.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Оптимальная платформа для гибкого SDS."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution использует SSD и SDS-архитектуру для хранения данных. Подтверждено в документации по конфигурациям.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "0cc1c041-7dab-47b9-a15e-ee91696d6bc1"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Подходит для требования."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 151,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требуется модуль управления платформой виртуализации. Облако VMware предоставляет vCenter и vRealize Suite для управления виртуальной инфраструктурой. Advanced предоставляет OpenStack Horizon и API для управления. ГосОблако и Evolution также имеют встроенные модули управления. Все платформы покрывают требование.",
+    "evidence": "Платформа Облако VMware предоставляет сервисы по моделям IaaS, среди которых виртуальный ЦОД, виртуальные рабочие места пользователей, серверы Bare Metal, система резервного копирования и шифрование ВМ [2].",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/vmware/overview/index"
+    ],
+    "recommendation": "Использовать Облако VMware для управления на базе vCenter. Advanced — для OpenStack-управления.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "ГосОблако использует VMware vCenter как модуль управления виртуализацией. Подтверждено в документации.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Подходит для требования."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет vCenter и vRealize Suite — полнофункциональный модуль управления виртуализацией. Подтверждено в документации.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/vmware/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Облако VMware"
+        ],
+        "recommendation": "Оптимальная платформа для управления виртуализацией."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced предоставляет OpenStack Horizon и API для управления виртуальными машинами и инфраструктурой. Подтверждено в документации.",
+        "evidence_refs": [
+          "[3]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Подходит для требования."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет веб-интерфейс и API для управления виртуальными машинами. Подтверждено в документации.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "0cc1c041-7dab-47b9-a15e-ee91696d6bc1"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Подходит для требования."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 152,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требуется возможность создавать собственную виртуальную инфраструктуру на базе виртуализированных вычислительных мощностей для создания ВМ с vCPU. Все 4 платформы Cloud.ru предоставляют виртуальные машины с настраиваемыми vCPU. Облако VMware, Advanced, ГосОблако и Evolution поддерживают создание ВМ с произвольным количеством vCPU. Подтверждено в документации.",
+    "evidence": "Возможность создания гибридного или частного облака ✓ — Виртуальная машина без переподписки ✓ ✓ [1]. Конфигурации виртуальных машин в Evolution позволяют задавать vCPU [2].",
+    "source_urls": [
+      "2b5b1443-429a-4247-9989-c2714e90acfd",
+      "https://cloud.ru/docs/virtual-machines/ug/topics/concepts__flavors"
+    ],
+    "recommendation": "Все платформы Cloud.ru соответствуют требованию. Рекомендуется Облако VMware для максимальной совместимости с VMware-экосистемой.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "ГосОблако предоставляет виртуальные машины с настраиваемыми vCPU на базе VMware. Подтверждено в документации.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Подходит для требования."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет виртуальные машины с настраиваемыми vCPU, поддерживает создание частного облака и управление через vCenter. Подтверждено в документации.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "2b5b1443-429a-4247-9989-c2714e90acfd"
+        ],
+        "source_titles": [
+          "Сравнение облачных платформ Cloud.ru"
+        ],
+        "recommendation": "Оптимальная платформа для требования."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced предоставляет виртуальные машины с настраиваемыми vCPU через OpenStack. Подтверждено в документации.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/index"
+        ],
+        "source_titles": [
+          "Обзор платформы Cloud.ru Advanced"
+        ],
+        "recommendation": "Подходит для требования."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Evolution предоставляет виртуальные машины с настраиваемыми vCPU через веб-интерфейс и API. Подтверждено в документации.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/virtual-machines/ug/topics/concepts__flavors"
+        ],
+        "source_titles": [
+          "Конфигурации виртуальных машин"
+        ],
+        "recommendation": "Подходит для требования."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]
+```

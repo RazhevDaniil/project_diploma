@@ -1,0 +1,337 @@
+[
+  {
+    "requirement_id": 60,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование описывает юридический/договорной режим ответственности Исполнителя при низком KPI — не техническую капабилити, а условие договора. Cloud.ru готов работать по индивидуальным SLA и договорным условиям, включая привлечение квалифицированных специалистов и соблюдение правил техники безопасности в рамках проектного соглашения.",
+    "evidence": "Модель общей ответственности является общей для компании Cloud.ru, которая определяет отдельные роли и обязанности между компанией Cloud.ru и организацией, потребляющей услугу [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+    ],
+    "recommendation": "Условия привлечения специалистов и соблюдения ТБ фиксируются в индивидуальном проектном договоре с Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Юридические и договорные условия не зависят от платформы — Cloud.ru как компания готова согласовывать такие условия на всех платформах.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Условия фиксируются в индивидуальном проектном договоре."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Юридические и договорные условия не зависят от платформы — Cloud.ru как компания готова согласовывать такие условия на всех платформах.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Условия фиксируются в индивидуальном проектном договоре."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Юридические и договорные условия не зависят от платформы — Cloud.ru как компания готова согласовывать такие условия на всех платформах.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Условия фиксируются в индивидуальном проектном договоре."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Юридические и договорные условия не зависят от платформы — Cloud.ru как компания готова согласовывать такие условия на всех платформах.",
+        "evidence_refs": [
+          "[1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Условия фиксируются в индивидуальном проектном договоре."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 61,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование описывает юридический/договорной режим исполнения услуг при низком KPI — не техническую капабилити, а условие договора. Cloud.ru готов работать по индивидуальным SLA и договорным условиям, включая соблюдение нормативных актов, указанных в ТЗ, через проектный договор.",
+    "evidence": "Облако Cloud.ru включает многоуровневую систему защиты информации, соответствующую требованиям законодательства РФ и реализующую лучшие мировые практики кибербезопасности, что подтверждено имеющимися аттестатами и сертификатами соответствия разнообразным требованиям [3]",
+    "source_urls": [
+      "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas",
+      "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles"
+    ],
+    "recommendation": "Соблюдение требований актов из пунктов 7.5–7.30 фиксируется в индивидуальном проектном договоре с Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Юридические и договорные условия не зависят от платформы — Cloud.ru как компания готова согласовывать такие условия на всех платформах.",
+        "evidence_refs": [
+          "[1]",
+          "[3]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas",
+          "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг",
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Условия фиксируются в индивидуальном проектном договоре."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Юридические и договорные условия не зависят от платформы — Cloud.ru как компания готова согласовывать такие условия на всех платформах.",
+        "evidence_refs": [
+          "[1]",
+          "[3]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas",
+          "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг",
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Условия фиксируются в индивидуальном проектном договоре."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Юридические и договорные условия не зависят от платформы — Cloud.ru как компания готова согласовывать такие условия на всех платформах.",
+        "evidence_refs": [
+          "[1]",
+          "[3]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas",
+          "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг",
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Условия фиксируются в индивидуальном проектном договоре."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Юридические и договорные условия не зависят от платформы — Cloud.ru как компания готова согласовывать такие условия на всех платформах.",
+        "evidence_refs": [
+          "[1]",
+          "[3]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas",
+          "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг",
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Условия фиксируются в индивидуальном проектном договоре."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 62,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование о запрете передачи информации третьим лицам без согласия Заказчика — это стандартное условие договора о конфиденциальности. Cloud.ru имеет модель общей ответственности, где клиент несёт ответственность за управление доступом и сохранность данных, а Cloud.ru обеспечивает безопасность инфраструктуры. Передача данных третьим лицам регулируется договором, что Cloud.ru готов фиксировать в индивидуальном SLA.",
+    "evidence": "Ответственность за обеспечение безопасности информационных ресурсов, размещенных в облаке Cloud.ru, распределяется между провайдером и клиентом. Разделение зависит от области обеспечения безопасности и модели предоставления услуг [2]",
+    "source_urls": [
+      "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas",
+      "https://cloud.ru/docs/overview/security-introduction/topics/responsibility-areas"
+    ],
+    "recommendation": "Условия конфиденциальности и запрета передачи данных третьим лицам фиксируются в индивидуальном проектном договоре с Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Юридические и договорные условия не зависят от платформы — Cloud.ru как компания готова согласовывать такие условия на всех платформах.",
+        "evidence_refs": [
+          "[1]",
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas",
+          "https://cloud.ru/docs/overview/security-introduction/topics/responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг",
+          "Зоны ответственности в облаке Cloud.ru"
+        ],
+        "recommendation": "Условия фиксируются в индивидуальном проектном договоре."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Юридические и договорные условия не зависят от платформы — Cloud.ru как компания готова согласовывать такие условия на всех платформах.",
+        "evidence_refs": [
+          "[1]",
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas",
+          "https://cloud.ru/docs/overview/security-introduction/topics/responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг",
+          "Зоны ответственности в облаке Cloud.ru"
+        ],
+        "recommendation": "Условия фиксируются в индивидуальном проектном договоре."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Юридические и договорные условия не зависят от платформы — Cloud.ru как компания готова согласовывать такие условия на всех платформах.",
+        "evidence_refs": [
+          "[1]",
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas",
+          "https://cloud.ru/docs/overview/security-introduction/topics/responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг",
+          "Зоны ответственности в облаке Cloud.ru"
+        ],
+        "recommendation": "Условия фиксируются в индивидуальном проектном договоре."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Юридические и договорные условия не зависят от платформы — Cloud.ru как компания готова согласовывать такие условия на всех платформах.",
+        "evidence_refs": [
+          "[1]",
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas",
+          "https://cloud.ru/docs/overview/security-introduction/topics/responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг",
+          "Зоны ответственности в облаке Cloud.ru"
+        ],
+        "recommendation": "Условия фиксируются в индивидуальном проектном договоре."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 63,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Требование к используемым материалам и оборудованию — это юридический/договорной аспект, а не техническая капабилити. Cloud.ru предоставляет услуги на собственной инфраструктуре Tier III, соответствующей требованиям безопасности и надежности. Конкретные требования к материалам и оборудованию (например, классы защиты, сертификация компонентов) могут быть зафиксированы в индивидуальном проектном договоре.",
+    "evidence": "Облачная платформа Cloud.ru Advanced предоставляет более 50 высокотехнологичных сервисов по моделям IaaS и PaaS. Сервисы платформы Advanced постоянно обновляются и их список пополняется [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/advanced/overview/index",
+      "https://cloud.ru/docs/overview/security-introduction/topics/architecture-principles__infrastrusture-protection"
+    ],
+    "recommendation": "Требования к материалам и оборудованию фиксируются в индивидуальном проектном договоре с Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.85,
+        "reasoning": "Юридические и договорные условия не зависят от платформы — Cloud.ru как компания готова согласовывать такие условия на всех платформах.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условия фиксируются в индивидуальном проектном договоре."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Юридические и договорные условия не зависят от платформы — Cloud.ru как компания готова согласовывать такие условия на всех платформах.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условия фиксируются в индивидуальном проектном договоре."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Юридические и договорные условия не зависят от платформы — Cloud.ru как компания готова согласовывать такие условия на всех платформах.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условия фиксируются в индивидуальном проектном договоре."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Юридические и договорные условия не зависят от платформы — Cloud.ru как компания готова согласовывать такие условия на всех платформах.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Условия фиксируются в индивидуальном проектном договоре."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

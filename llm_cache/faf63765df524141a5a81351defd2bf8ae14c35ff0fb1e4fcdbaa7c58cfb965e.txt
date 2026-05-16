@@ -1,0 +1,289 @@
+[
+  {
+    "requirement_id": 21,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru обеспечивает оповещение о проводимых работах в рамках регламентированного взаимодействия с клиентами, что подтверждено в документации по режимам работы технической поддержки (24/7, приоритеты инцидентов, порядок уведомлений). Требование описывает стандартную процедуру, реализуемую через Общее соглашение об уровне предоставления услуг и Регламент взаимодействия, которые формируются индивидуально с клиентом.",
+    "evidence": "Работа линий поддержки; Приоритет обращения и влияние инцидента [2]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/overview"
+    ],
+    "recommendation": "Регламент взаимодействия и порядок оповещения фиксируются в индивидуальном SLA-договоре с клиентом Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru; требуется уточнение у клиентского менеджера, применяются ли стандартные регламенты поддержки.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, применяются ли стандартные процедуры оповещения для ГосОблака."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru обеспечивает оповещение о работах в рамках режима 24/7 и регламента взаимодействия, подтверждено в документации по режимам работы поддержки и приоритетам инцидентов.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/overview"
+        ],
+        "source_titles": [
+          "Режим и порядок работы"
+        ],
+        "recommendation": "Стандартные процедуры оповещения применяются на платформе Облако VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru Advanced предоставляет услуги в рамках общего SLA и регламента взаимодействия, включающего уведомления о плановых и аварийных работах, подтверждено в документации по SLA и поддержке.",
+        "evidence_refs": ["[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/overview"
+        ],
+        "source_titles": [
+          "Режим и порядок работы"
+        ],
+        "recommendation": "Стандартные процедуры оповещения применяются на платформе Advanced."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution обеспечивает техническую поддержку в режиме 24/7 и имеет регламент взаимодействия, включающий оповещение о работах, что соответствует общим корпоративным практикам Cloud.ru.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Стандартные процедуры оповещения применяются на платформе Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 22,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru устанавливает аварийный режим при инцидентах критического и высокого приоритета, обеспечивая восстановление работоспособности инфраструктуры и сервисов. Это подтверждено документацией по SLA и приоритетам обращений, где указаны процедуры реагирования на инциденты и восстановления услуг.",
+    "evidence": "Приоритет обращения и влияние инцидента; Время реагирования и решения обращений в режиме 24/7 [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla",
+      "https://cloud.ru/docs/overview/support/topics/overview"
+    ],
+    "recommendation": "Процедуры аварийного режима и восстановления инфраструктуры реализованы на всех платформах Cloud.ru через стандартные SLA и регламенты поддержки.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru; требуется уточнение у клиентского менеджера, применяются ли стандартные процедуры аварийного режима.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, применяются ли стандартные процедуры аварийного режима для ГосОблака."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru обеспечивает аварийный режим при инцидентах критического и высокого приоритета, включая восстановление инфраструктуры и сервисов, что подтверждено документацией по приоритетам обращений и SLA.",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla",
+          "https://cloud.ru/docs/overview/support/topics/overview"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений",
+          "Режим и порядок работы"
+        ],
+        "recommendation": "Процедуры аварийного режима реализованы на платформе Облако VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru Advanced поддерживает аварийный режим при инцидентах критического уровня, включая восстановление сервисов, что соответствует SLA и регламентам поддержки.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Процедуры аварийного режима реализованы на платформе Advanced."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution обеспечивает аварийный режим при инцидентах критического и высокого приоритета, включая восстановление работоспособности сервисов, в рамках стандартного SLA и регламента поддержки.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Процедуры аварийного режима реализованы на платформе Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 23,
+    "verdict": "partial",
+    "confidence": 0.8,
+    "reasoning": "Cloud.ru предоставляет SLA для ключевых сервисов (например, ECS — 99,975%, OBS — 99,95%), но требование ссылается на Приложение 4 ТЗ с конкретными параметрами, которые не указаны в документации. Cloud.ru может договорно согласовать SLA-параметры, но не предоставляет готовую таблицу параметров по всем инфраструктурным компонентам, как в ТЗ.",
+    "evidence": "Elastic Cloud Server 99,975%; Object Storage Service 99,95% [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/advanced/overview/sla",
+      "https://cloud.ru/docs/evolution/overview/topics/sla"
+    ],
+    "recommendation": "Согласовать индивидуальный SLA с Cloud.ru, включив в Приложение 4 конкретные параметры доступности для каждого сервиса, используемого на платформе.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации; требуется уточнение, какие SLA-параметры применяются.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера SLA-параметры для ГосОблака."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.8,
+        "reasoning": "Облако VMware имеет SLA 99,982% для инфраструктуры, но конкретные параметры для всех компонентов (ППО, проприетарное оборудование) не детализированы в открытых документах. Требуется индивидуальное согласование.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Согласовать индивидуальный SLA с детализацией параметров для всех компонентов, как в Приложении 4 ТЗ."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.8,
+        "reasoning": "Advanced предоставляет SLA для отдельных сервисов (ECS — 99,975%, OBS — 99,95%), но не содержит единой таблицы параметров для всей инфраструктуры, как в Приложении 4 ТЗ. Требуется договорная привязка.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/advanced/overview/sla"
+        ],
+        "source_titles": [
+          "Соглашение об уровне предоставления услуг Advanced"
+        ],
+        "recommendation": "Согласовать индивидуальный SLA, включив в Приложение 4 конкретные параметры для каждого сервиса Advanced."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "partial",
+        "confidence": 0.8,
+        "reasoning": "Evolution имеет SLA 99,9% для Compute, но не предоставляет детализированные параметры для всех компонентов (системное ПО, проприетарное оборудование), как требуется в Приложении 4. Требуется договорная привязка.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/evolution/overview/topics/sla"
+        ],
+        "source_titles": [
+          "Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"
+        ],
+        "recommendation": "Согласовать индивидуальный SLA с детализацией параметров для всех компонентов, как в Приложении 4 ТЗ."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 24,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Cloud.ru обеспечивает исполнение порядка и правил работы в СМКСС и выполнение Регламента взаимодействия сотрудниками СТП, что является стандартной практикой поддержки. Это подтверждено документацией по технической поддержке, SLA и режимам работы, где описаны процессы взаимодействия, приоритеты и ответственность.",
+    "evidence": "Техническая поддержка Cloud.ru отвечает на обращения в режиме 24/7; Работа линий поддержки; Приоритет обращения и влияние инцидента [1]",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla",
+      "https://cloud.ru/docs/overview/support/topics/overview"
+    ],
+    "recommendation": "Процедуры работы в СМКСС и Регламент взаимодействия формируются индивидуально в SLA-договоре с клиентом Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основных документах Cloud.ru; требуется уточнение у клиентского менеджера, применяются ли стандартные процедуры СМКСС и Регламента взаимодействия.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, применяются ли стандартные процедуры СМКСС и Регламента взаимодействия для ГосОблака."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru обеспечивает исполнение правил СМКСС и Регламента взаимодействия сотрудниками СТП, что подтверждено документацией по технической поддержке и режимам работы.",
+        "evidence_refs": ["[1]", "[3]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla",
+          "https://cloud.ru/docs/overview/support/topics/overview"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений",
+          "Режим и порядок работы"
+        ],
+        "recommendation": "Процедуры СМКСС и Регламента взаимодействия реализованы на платформе Облако VMware."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Cloud.ru Advanced обеспечивает соблюдение правил СМКСС и Регламента взаимодействия в рамках стандартной поддержки и SLA.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Процедуры СМКСС и Регламента взаимодействия реализованы на платформе Advanced."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution обеспечивает исполнение правил СМКСС и Регламента взаимодействия в рамках стандартной поддержки 24/7 и SLA.",
+        "evidence_refs": ["[1]"],
+        "source_urls": [
+          "https://cloud.ru/docs/overview/support/topics/concepts__sla"
+        ],
+        "source_titles": [
+          "Время реагирования и решения обращений"
+        ],
+        "recommendation": "Процедуры СМКСС и Регламента взаимодействия реализованы на платформе Evolution."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

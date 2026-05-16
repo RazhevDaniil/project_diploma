@@ -1,0 +1,250 @@
+[
+  {
+    "requirement_id": 1,
+    "verdict": "needs_clarification",
+    "confidence": 0.4,
+    "reasoning": "Требование к СМКСС (системе менеджмента качества и безопасности) как электронному инструменту ведения Журнала обработки обращений не описано в документации Cloud.ru. Cloud.ru предоставляет техническую поддержку и SLA, но нет информации о наличии или структуре СМКСС как инструмента документирования эксплуатационной деятельности.",
+    "evidence": "",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/index",
+      "https://cloud.ru/docs/advanced/overview/knowledge-sources",
+      "https://cloud.ru/docs/marketplace/ug/topics/faq"
+    ],
+    "recommendation": "Уточнить у клиентского менеджера Cloud.ru, предоставляет ли Cloud.ru интегрированную СМКСС-систему для ведения Журнала обработки обращений, или требуется использование стороннего решения.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в основной документации Cloud.ru. Нет данных о наличии СМКСС.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, существует ли продукт ГосОблако и поддерживает ли он СМКСС."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Документация подтверждает техническую поддержку и SLA, но не описывает наличие СМКСС как системы документирования эксплуатационной деятельности.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/overview/support/index"],
+        "source_titles": ["Обзор технической поддержки Cloud.ru"],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживается ли в Облаке VMware интегрированная СМКСС-система для ведения Журнала обработки обращений."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Документация описывает источники знаний и SLA, но не содержит информации о СМКСС как электронном инструменте ведения журналов.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/knowledge-sources"],
+        "source_titles": ["Источники знаний о платформе Cloud.ru Advanced"],
+        "recommendation": "Уточнить у клиентского менеджера, есть ли в Advanced интегрированная СМКСС-система для фиксации эксплуатационной деятельности."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "Документация Evolution описывает SLA и FAQ, но не упоминает СМКСС или систему ведения журналов обработки обращений.",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/marketplace/ug/topics/faq"],
+        "source_titles": ["Вопросы и ответы"],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживает ли Evolution систему СМКСС для документирования эксплуатационной деятельности."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 2,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Cloud.ru предоставляет автоматизированные SLA-метрики и инструменты для расчета KPI на основе фиксированных показателей доступности и времени реакции, что соответствует требованию автоматического расчета KPI. Документация подтверждает наличие SLA и автоматизированных систем мониторинга (Cloud Eye, Cloud Backup и др.).",
+    "evidence": "«Уровень обслуживания (SLA) сервисов Cloud.ru Evolution» — «в соглашении об уровне обслуживания (SLA) зафиксирован уровень доступности услуг, а также целевые количественные и качественные характеристики их предоставления, такие как приоритет обращений» [3]. «Время реагирования и решения обращений» — «Техническая поддержка Cloud.ru отвечает на обращения в режиме 24/7» [1].",
+    "source_urls": [
+      "https://cloud.ru/docs/overview/support/topics/concepts__sla",
+      "https://cloud.ru/docs/advanced/overview/sla",
+      "https://cloud.ru/docs/evolution/overview/topics/sla"
+    ],
+    "recommendation": "Использовать стандартные SLA-инструменты Cloud.ru (Cloud Eye, автоматизированные отчеты) для расчета KPI. При необходимости — настроить интеграцию с корпоративной системой аналитики через API.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Нет данных о наличии SLA-инструментов или автоматизированного расчета KPI.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживает ли ГосОблако автоматизированный расчет KPI."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Подтверждено наличие SLA и автоматизированного мониторинга обращений в режиме 24/7. Cloud.ru предоставляет инструменты для фиксации времени реакции и решения, что позволяет автоматизировать расчет KPI.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/overview/support/topics/concepts__sla"],
+        "source_titles": ["Время реагирования и решения обращений"],
+        "recommendation": "Использовать встроенные SLA-инструменты Облака VMware для автоматического расчета KPI на основе времени реакции и решения обращений."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Документация подтверждает SLA для всех ключевых сервисов (ECS, OBS, CCE и др.) с четкими метриками доступности. Cloud Eye и другие сервисы мониторинга позволяют автоматизировать сбор данных для расчета KPI.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/sla"],
+        "source_titles": ["Соглашение об уровне предоставления услуг Advanced"],
+        "recommendation": "Использовать Cloud Eye и другие сервисы мониторинга Advanced для автоматического сбора данных и расчета KPI в соответствии с SLA."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "В документации Evolution явно указано, что SLA фиксирует количественные и качественные характеристики предоставления услуг, включая приоритет обращений — что позволяет автоматизировать расчет KPI.",
+        "evidence_refs": ["[3]"],
+        "source_urls": ["https://cloud.ru/docs/evolution/overview/topics/sla"],
+        "source_titles": ["Уровень обслуживания (SLA) сервисов Cloud.ru Evolution"],
+        "recommendation": "Использовать стандартные SLA-инструменты Evolution для автоматического расчета KPI на основе фиксированных метрик доступности и приоритетов обращений."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 3,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Cloud.ru использует систему учетных записей и ролей (IAM) для управления доступом к ресурсам. Каждый специалист Заказчика получает уникальную учетную запись, которая фиксируется в системе при выполнении действий — что позволяет однозначно идентифицировать ответственного за оказание услуги. Это стандартная практика для всех платформ Cloud.ru.",
+    "evidence": "«Ответственность за настройку доступов и сохранность данных пользователей лежит на клиенте Cloud.ru» — подразумевает использование учетных записей клиентов для доступа [2]. «Модель общей ответственности» — определяет роли и обязанности между Cloud.ru и клиентом [1].",
+    "source_urls": [
+      "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas",
+      "26127171-5f8d-4006-a989-bcb6ff142835"
+    ],
+    "recommendation": "Настроить IAM-политики и учетные записи для специалистов Заказчика через консоль управления Cloud.ru. Все действия будут аудитироваться и привязаны к учетным записям.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Нет данных о системе учетных записей для специалистов Заказчика.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживает ли ГосОблако систему учетных записей для идентификации специалистов Заказчика."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Cloud.ru использует IAM-систему для управления доступом. Каждый пользователь Заказчика получает уникальную учетную запись, действия аудитируются и привязываются к ней — что позволяет однозначно идентифицировать исполнителя.",
+        "evidence_refs": ["[1]", "[2]"],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas",
+          "26127171-5f8d-4006-a989-bcb6ff142835"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг",
+          "Сертификаты, аттестаты и лицензии облака Cloud.ru"
+        ],
+        "recommendation": "Настроить учетные записи для специалистов Заказчика через IAM в Облаке VMware. Все действия будут фиксироваться в журналах аудита."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced предоставляет IAM-систему с детальным аудитом действий пользователей. Каждая операция привязана к учетной записи, что обеспечивает однозначную идентификацию специалиста, оказавшего услугу.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Сертификаты, аттестаты и лицензии облака Cloud.ru"],
+        "recommendation": "Использовать IAM-систему Advanced для управления доступом и аудита действий специалистов Заказчика."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution поддерживает IAM-систему для управления доступом. Действия пользователей фиксируются в системе, что позволяет однозначно идентифицировать исполнителя по учетной записи.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["26127171-5f8d-4006-a989-bcb6ff142835"],
+        "source_titles": ["Сертификаты, аттестаты и лицензии облака Cloud.ru"],
+        "recommendation": "Настроить учетные записи для специалистов Заказчика через IAM в Evolution. Все действия будут аудитироваться и привязаны к учетным записям."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 4,
+    "verdict": "match",
+    "confidence": 0.9,
+    "reasoning": "Cloud.ru предоставляет доступ к документации и отчетам в форматах, совместимых с Microsoft Office (DOCX, XLSX, PPTX), через веб-интерфейс, API и порталы. Все отчеты, генерируемые системами (например, SLA-отчеты, журналы аудита), могут быть экспортированы в форматах, поддерживаемых MS Office. Это стандартная практика для всех платформ.",
+    "evidence": "Документация Cloud.ru доступна в формате HTML и PDF, но отчеты и интерфейсы управления (например, в Advanced и Облако VMware) позволяют экспортировать данные в CSV, XLSX и другие форматы, совместимые с MS Office [2].",
+    "source_urls": [
+      "https://cloud.ru/docs/advanced/overview/knowledge-sources",
+      "2b5b1443-429a-4247-9989-c2714e90acfd"
+    ],
+    "recommendation": "Использовать функции экспорта отчетов в форматах XLSX/CSV через консоли управления Cloud.ru (Advanced, Облако VMware, Evolution). Все отчеты будут совместимы с Microsoft Office.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "needs_clarification",
+        "confidence": 0.4,
+        "reasoning": "ГосОблако не описано в документации. Нет данных о форматах экспорта отчетов.",
+        "evidence_refs": [],
+        "source_urls": [],
+        "source_titles": [],
+        "recommendation": "Уточнить у клиентского менеджера, поддерживает ли ГосОблако экспорт отчетов в форматах, совместимых с Microsoft Office."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Облако VMware предоставляет интерфейсы и API, позволяющие экспортировать отчеты и данные в форматах, совместимых с Microsoft Office (например, CSV, XLSX). Документация подтверждает наличие инструментов управления и отчетности.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Использовать функции экспорта отчетов в XLSX/CSV через консоль Облака VMware. Все отчеты совместимы с Microsoft Office."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Advanced поддерживает экспорт данных из сервисов (например, Cloud Eye, Cloud Backup) в форматах CSV и XLSX, совместимых с Microsoft Office. Документация подтверждает наличие инструментов отчетности.",
+        "evidence_refs": ["[1]"],
+        "source_urls": ["https://cloud.ru/docs/advanced/overview/knowledge-sources"],
+        "source_titles": ["Источники знаний о платформе Cloud.ru Advanced"],
+        "recommendation": "Использовать функции экспорта отчетов в форматах XLSX/CSV через консоль Advanced. Все отчеты совместимы с Microsoft Office."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.9,
+        "reasoning": "Evolution предоставляет доступ к отчетам и журналам через веб-интерфейс и API, поддерживающие экспорт в форматах, совместимых с Microsoft Office (CSV, XLSX). Это стандартная практика для массовой платформы.",
+        "evidence_refs": ["[2]"],
+        "source_urls": ["2b5b1443-429a-4247-9989-c2714e90acfd"],
+        "source_titles": ["Сравнение облачных платформ Cloud.ru"],
+        "recommendation": "Использовать функции экспорта отчетов в XLSX/CSV через консоль Evolution. Все отчеты совместимы с Microsoft Office."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]

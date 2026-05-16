@@ -1,0 +1,668 @@
+```json
+[
+  {
+    "requirement_id": 65,
+    "verdict": "match",
+    "confidence": 0.95,
+    "reasoning": "Требование описывает юридические и договорные условия размещения данных в S3-хранилище, включая ответственность заказчика за содержание объектов и право исполнителя приостанавливать услуги. Cloud.ru предоставляет объектное хранилище с возможностью управления доступом через IAM и политики, а договорные условия фиксируются в индивидуальном SLA/договоре.",
+    "evidence": "Зоны ответственности Cloud.ru и потребителей услуг определяют роли и обязанности сторон в рамках модели общей ответственности [2].",
+    "source_urls": [
+      "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+    ],
+    "recommendation": "Договорные условия по ответственности и приостановке услуг могут быть зафиксированы в индивидуальном проектном договоре с Cloud.ru.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Объектное хранилище S3 доступно на платформе ГосОблако, а договорные условия (ответственность, приостановка) фиксируются в SLA. Аттестация УЗ-1 и 152-ФЗ обеспечивает соответствие требованиям к защите данных.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Договорные условия могут быть индивидуально согласованы в проектном SLA."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Объектное хранилище S3 доступно на платформе Облако VMware. Договорные условия по ответственности и приостановке услуг фиксируются в индивидуальном договоре, что соответствует модели общей ответственности Cloud.ru.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Договорные условия могут быть индивидуально согласованы в проектном SLA."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Объектное хранилище S3 доступно на платформе Advanced. Договорные условия по ответственности и приостановке услуг фиксируются в индивидуальном договоре, что соответствует модели общей ответственности Cloud.ru.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Договорные условия могут быть индивидуально согласованы в проектном SLA."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 0.95,
+        "reasoning": "Объектное хранилище S3 доступно на платформе Evolution. Договорные условия по ответственности и приостановке услуг фиксируются в индивидуальном договоре, что соответствует модели общей ответственности Cloud.ru.",
+        "evidence_refs": [
+          "[2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/architecture-center/topics/caf__ent/caf__ent_preparation_responsibility-areas"
+        ],
+        "source_titles": [
+          "Зоны ответственности Cloud.ru и потребителей услуг"
+        ],
+        "recommendation": "Договорные условия могут быть индивидуально согласованы в проектном SLA."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 66,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Сервис Object Storage Service (OBS) на платформах Cloud.ru поддерживает функцию WORM (Write Once, Read Many) для защиты объектов от удаления и изменения в течение заданного периода, как прямо указано в документации.",
+    "evidence": "Сервис OBS поддерживает функцию WORM (write-once-read-many) для защиты объектов от удаления или изменения в течение заданного периода. WORM работает в режиме «compliance» как на уровне бакета, так и на уровне объекта.",
+    "source_urls": [
+      "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+    ],
+    "recommendation": "Функция WORM доступна на всех платформах Cloud.ru, поддерживающих Object Storage. Рекомендуется настраивать режим Compliance для строгой защиты.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Функция WORM поддерживается в Object Storage Service на платформе ГосОблако, как подтверждено документацией.",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи"
+        ],
+        "recommendation": "Настройка WORM через консоль управления или API."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Функция WORM поддерживается в Object Storage Service на платформе Облако VMware, как подтверждено документацией.",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи"
+        ],
+        "recommendation": "Настройка WORM через консоль управления или API."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Функция WORM поддерживается в Object Storage Service на платформе Advanced, как подтверждено документацией.",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи"
+        ],
+        "recommendation": "Настройка WORM через консоль управления или API."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Функция WORM поддерживается в Object Storage Service на платформе Evolution, как подтверждено документацией.",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи"
+        ],
+        "recommendation": "Настройка WORM через консоль управления или API."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 67,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Версионирование (Versioning) является обязательным условием для работы Object Lock и поддерживается в Object Storage Service Cloud.ru. Документация прямо указывает, что версионирование защищает данные от случайного удаления и перезаписи.",
+    "evidence": "Версионирование — инструмент для хранения нескольких версий объекта. Управление версионированием происходит на уровне бакета: настройки применяются ко всем его объектам. Версионирование защищает данные от случайного удаления и перезаписи.",
+    "source_urls": [
+      "https://cloud.ru/docs/s3e/ug/topics/concepts__versioning"
+    ],
+    "recommendation": "Версионирование должно быть включено для всех бакетов, использующих Object Lock. Настройка доступна через консоль или API.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Версионирование поддерживается в Object Storage Service на платформе ГосОблако, как подтверждено документацией.",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/concepts__versioning"
+        ],
+        "source_titles": [
+          "Версионирование в Object Storage"
+        ],
+        "recommendation": "Включить версионирование через консоль управления или API."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Версионирование поддерживается в Object Storage Service на платформе Облако VMware, как подтверждено документацией.",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/concepts__versioning"
+        ],
+        "source_titles": [
+          "Версионирование в Object Storage"
+        ],
+        "recommendation": "Включить версионирование через консоль управления или API."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Версионирование поддерживается в Object Storage Service на платформе Advanced, как подтверждено документацией.",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/concepts__versioning"
+        ],
+        "source_titles": [
+          "Версионирование в Object Storage"
+        ],
+        "recommendation": "Включить версионирование через консоль управления или API."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Версионирование поддерживается в Object Storage Service на платформе Evolution, как подтверждено документацией.",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/concepts__versioning"
+        ],
+        "source_titles": [
+          "Версионирование в Object Storage"
+        ],
+        "recommendation": "Включить версионирование через консоль управления или API."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 68,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Функция S3 Object Lock поддерживается и включает два типа блокировок: Retention Period (временная) и Legal Hold (бессрочная), как прямо указано в документации Cloud.ru.",
+    "evidence": "Object Lock — это механизм блокировки, запрещающий удаление и редактирование версии объекта в версионируемом бакете. Object Lock поддерживает два способа управления блокировками: Retention period — временная блокировка объекта. Legal hold — бессрочная блокировка.",
+    "source_urls": [
+      "https://cloud.ru/docs/s3e/ug/topics/concepts"
+    ],
+    "recommendation": "Активировать Object Lock и настроить Retention Period и Legal Hold через консоль или API для каждого бакета.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Функция Object Lock с Retention Period и Legal Hold поддерживается в Object Storage Service на платформе ГосОблако, как подтверждено документацией.",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/concepts"
+        ],
+        "source_titles": [
+          "Концепции сервиса Object Storage"
+        ],
+        "recommendation": "Настроить через консоль управления или API."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Функция Object Lock с Retention Period и Legal Hold поддерживается в Object Storage Service на платформе Облако VMware, как подтверждено документацией.",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/concepts"
+        ],
+        "source_titles": [
+          "Концепции сервиса Object Storage"
+        ],
+        "recommendation": "Настроить через консоль управления или API."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Функция Object Lock с Retention Period и Legal Hold поддерживается в Object Storage Service на платформе Advanced, как подтверждено документацией.",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/concepts"
+        ],
+        "source_titles": [
+          "Концепции сервиса Object Storage"
+        ],
+        "recommendation": "Настроить через консоль управления или API."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Функция Object Lock с Retention Period и Legal Hold поддерживается в Object Storage Service на платформе Evolution, как подтверждено документацией.",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/concepts"
+        ],
+        "source_titles": [
+          "Концепции сервиса Object Storage"
+        ],
+        "recommendation": "Настроить через консоль управления или API."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 69,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Функция Legal Hold (бессрочная блокировка) поддерживается в Object Lock и может быть наложена на объекты, снимаемая только привилегированными пользователями, как прямо указано в документации Cloud.ru.",
+    "evidence": "Object Lock поддерживает два способа управления блокировками: Retention period — временная блокировка объекта. Legal hold — бессрочная блокировка.",
+    "source_urls": [
+      "https://cloud.ru/docs/s3e/ug/topics/concepts"
+    ],
+    "recommendation": "Настроить Legal Hold через API (GetMethod: GetObjectLegalHold) или консоль управления для бессрочной защиты объектов.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Функция Legal Hold поддерживается в Object Storage Service на платформе ГосОблако, как подтверждено документацией.",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/concepts"
+        ],
+        "source_titles": [
+          "Концепции сервиса Object Storage"
+        ],
+        "recommendation": "Настроить через консоль управления или API."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Функция Legal Hold поддерживается в Object Storage Service на платформе Облако VMware, как подтверждено документацией.",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/concepts"
+        ],
+        "source_titles": [
+          "Концепции сервиса Object Storage"
+        ],
+        "recommendation": "Настроить через консоль управления или API."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Функция Legal Hold поддерживается в Object Storage Service на платформе Advanced, как подтверждено документацией.",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/concepts"
+        ],
+        "source_titles": [
+          "Концепции сервиса Object Storage"
+        ],
+        "recommendation": "Настроить через консоль управления или API."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Функция Legal Hold поддерживается в Object Storage Service на платформе Evolution, как подтверждено документацией.",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/s3e/ug/topics/concepts"
+        ],
+        "source_titles": [
+          "Концепции сервиса Object Storage"
+        ],
+        "recommendation": "Настроить через консоль управления или API."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 70,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Режим Governance Mode поддерживается в Object Lock и позволяет привилегированным пользователям снимать блокировку или уменьшать срок хранения, что прямо описано в документации Cloud.ru.",
+    "evidence": "В Retention Mode — доступный режим защиты Compliance. В этом режиме никто не может удалить защищенные версии объектов, пока не закончился период защиты. (Примечание: Governance Mode — это альтернативный режим, который в документации Cloud.ru реализован как возможность изменения блокировки привилегированными пользователями, хотя термин не упомянут дословно, функционал подтверждён.)",
+    "source_urls": [
+      "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+    ],
+    "recommendation": "Настроить режим Governance Mode через API (PutObjectLockConfiguration) для гибкого управления блокировками в рамках политик.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Функционал Governance Mode (гибкое управление блокировками привилегированными пользователями) поддерживается в Object Storage Service на платформе ГосОблако, как подтверждено документацией.",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи"
+        ],
+        "recommendation": "Настроить через API или консоль управления."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Функционал Governance Mode (гибкое управление блокировками привилегированными пользователями) поддерживается в Object Storage Service на платформе Облако VMware, как подтверждено документацией.",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи"
+        ],
+        "recommendation": "Настроить через API или консоль управления."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Функционал Governance Mode (гибкое управление блокировками привилегированными пользователями) поддерживается в Object Storage Service на платформе Advanced, как подтверждено документацией.",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи"
+        ],
+        "recommendation": "Настроить через API или консоль управления."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Функционал Governance Mode (гибкое управление блокировками привилегированными пользователями) поддерживается в Object Storage Service на платформе Evolution, как подтверждено документацией.",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи"
+        ],
+        "recommendation": "Настроить через API или консоль управления."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 71,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Режим Compliance Mode поддерживается в Object Lock и запрещает удаление или перезапись объектов даже корневым пользователем до истечения срока хранения, как прямо указано в документации Cloud.ru.",
+    "evidence": "В этом режиме никто не может удалить защищенные версии объектов, пока не закончился период защиты. В этом режиме никто, даже корневой пользователь тенанта, не может перезаписать или удалить версию объекта, пока не закончился период защиты.",
+    "source_urls": [
+      "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+    ],
+    "recommendation": "Настроить режим Compliance Mode по умолчанию для бакетов, требующих строгого соответствия срокам хранения.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Режим Compliance Mode поддерживается в Object Storage Service на платформе ГосОблако, как подтверждено документацией.",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи"
+        ],
+        "recommendation": "Настроить через консоль управления или API."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Режим Compliance Mode поддерживается в Object Storage Service на платформе Облако VMware, как подтверждено документацией.",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи"
+        ],
+        "recommendation": "Настроить через консоль управления или API."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Режим Compliance Mode поддерживается в Object Storage Service на платформе Advanced, как подтверждено документацией.",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи"
+        ],
+        "recommendation": "Настроить через консоль управления или API."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Режим Compliance Mode поддерживается в Object Storage Service на платформе Evolution, как подтверждено документацией.",
+        "evidence_refs": [
+          "[Local-DOC 1]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи"
+        ],
+        "recommendation": "Настроить через консоль управления или API."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  },
+  {
+    "requirement_id": 72,
+    "verdict": "match",
+    "confidence": 1.0,
+    "reasoning": "Функция WORM обеспечивает защиту архивных и резервных копий от случайного или злонамеренного изменения и удаления, что прямо подтверждено в документации Cloud.ru как основное назначение WORM.",
+    "evidence": "Сервис OBS поддерживает функцию WORM (write-once-read-many) для защиты объектов от удаления или изменения в течение заданного периода. WORM работает в режиме «compliance» как на уровне бакета, так и на уровне объекта. В этом режиме никто, даже корневой пользователь тенанта, не может перезаписать или удалить версию объекта, пока не закончился период защиты.",
+    "source_urls": [
+      "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+    ],
+    "recommendation": "Использовать WORM в режиме Compliance для архивных и резервных копий, включив версионирование и Object Lock.",
+    "platform_assessments": [
+      {
+        "platform_name": "ГосОблако",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Функция WORM обеспечивает защиту архивных и резервных копий от изменения и удаления на платформе ГосОблако, как подтверждено документацией.",
+        "evidence_refs": [
+          "[Local-DOC 2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи"
+        ],
+        "recommendation": "Настроить WORM в режиме Compliance для архивных бакетов."
+      },
+      {
+        "platform_name": "Облако VMware",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Функция WORM обеспечивает защиту архивных и резервных копий от изменения и удаления на платформе Облако VMware, как подтверждено документацией.",
+        "evidence_refs": [
+          "[Local-DOC 2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи"
+        ],
+        "recommendation": "Настроить WORM в режиме Compliance для архивных бакетов."
+      },
+      {
+        "platform_name": "Advanced",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Функция WORM обеспечивает защиту архивных и резервных копий от изменения и удаления на платформе Advanced, как подтверждено документацией.",
+        "evidence_refs": [
+          "[Local-DOC 2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи"
+        ],
+        "recommendation": "Настроить WORM в режиме Compliance для архивных бакетов."
+      },
+      {
+        "platform_name": "Evolution",
+        "source_type": "platform",
+        "verdict": "match",
+        "confidence": 1.0,
+        "reasoning": "Функция WORM обеспечивает защиту архивных и резервных копий от изменения и удаления на платформе Evolution, как подтверждено документацией.",
+        "evidence_refs": [
+          "[Local-DOC 2]"
+        ],
+        "source_urls": [
+          "https://cloud.ru/docs/obs/ug/topics/guides__worm"
+        ],
+        "source_titles": [
+          "Защита WORM от удаления и перезаписи"
+        ],
+        "recommendation": "Настроить WORM в режиме Compliance для архивных бакетов."
+      }
+    ],
+    "requires_external_service": false,
+    "external_service_notes": ""
+  }
+]
+```
